@@ -6,3 +6,4 @@ from lcctoolkit.mainapp import models
 admin.site.register(models.TaxonomyTagGroup)
 admin.site.register(models.TaxonomyTag)
 admin.site.register(models.TaxonomyClassification)
+admin.site.register(models.Country)
