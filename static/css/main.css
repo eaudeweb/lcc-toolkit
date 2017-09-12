@@ -1,6 +1,4 @@
-// Let's import the styling done by this great lads from the binarytheme
-
-@import "style.css" 
+@import url("style.css");
 
 .menu-section {
     border-bottom:2px solid #C9C6D1;
