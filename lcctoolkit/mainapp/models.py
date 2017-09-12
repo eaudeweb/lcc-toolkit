@@ -1,9 +1,7 @@
+import mptt.models
+import lcctoolkit.mainapp as mainapp
+
 from django.db import models
-from django.db.models.signals import pre_save
-
-from mptt.models import MPTTModel, TreeForeignKey
-
-from lcctoolkit.mainapp.utils import generate_code
 
 
 class Country(models.Model):
@@ -36,13 +34,13 @@ class TaxonomyTag(models.Model):
         return "Tag " + self.name
 
 
-class TaxonomyClassification(MPTTModel):
+class TaxonomyClassification(mptt.models.MPTTModel):
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=16, unique=True, blank=True)
-    parent = TreeForeignKey('self',
-                            null=True,
-                            blank=True,
-                            related_name='children')
+    parent = mptt.models.TreeForeignKey('self',
+                                        null=True,
+                                        blank=True,
+                                        related_name='children')
 
     class MPTTMeta:
         order_insertion_by = ['code']
@@ -52,7 +50,7 @@ class TaxonomyClassification(MPTTModel):
         """Logic executed before saving a new TaxonomyClassification instance.
         Set the next code for the classification.
         """
-        instance.code = generate_code(cls, instance)
+        instance.code = mainapp.utils.generate_code(cls, instance)
 
     @staticmethod
     def _pre_save_classification_code_on_edit(instance):
@@ -89,5 +87,7 @@ class TaxonomyClassification(MPTTModel):
         )
 
 
-pre_save.connect(TaxonomyClassification.pre_save_classification_code,
-                 sender=TaxonomyClassification)
+models.signals.pre_save.connect(
+    TaxonomyClassification.pre_save_classification_code,
+    sender=TaxonomyClassification
+)
