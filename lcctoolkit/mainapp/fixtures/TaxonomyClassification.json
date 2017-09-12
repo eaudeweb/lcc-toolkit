@@ -1,0 +1,1926 @@
+[
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 1,
+    "fields": {
+      "name": "Overarching climate laws and governance",
+      "code": "1",
+      "parent": null,
+      "lft": 1,
+      "rght": 144,
+      "tree_id": 8,
+      "level": 0
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 2,
+    "fields": {
+      "name": "Mitigation targets and budgets",
+      "code": "1.1",
+      "parent": 1,
+      "lft": 118,
+      "rght": 143,
+      "tree_id": 8,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 3,
+    "fields": {
+      "name": "Mitigation target \u2013 emissions reduction target",
+      "code": "1.1.1",
+      "parent": 2,
+      "lft": 141,
+      "rght": 142,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 4,
+    "fields": {
+      "name": "Mitigation target \u2013 emissions baseline year",
+      "code": "1.1.2",
+      "parent": 2,
+      "lft": 119,
+      "rght": 120,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 5,
+    "fields": {
+      "name": "Mitigation target \u2013 identification of regulated greenhouse gases",
+      "code": "1.1.3",
+      "parent": 2,
+      "lft": 121,
+      "rght": 122,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 6,
+    "fields": {
+      "name": "Mitigation target \u2013 territorial scope",
+      "code": "1.1.4",
+      "parent": 2,
+      "lft": 123,
+      "rght": 124,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 7,
+    "fields": {
+      "name": "Mitigation target \u2013 consultation requirements for targets or baselines",
+      "code": "1.1.5",
+      "parent": 2,
+      "lft": 125,
+      "rght": 126,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 8,
+    "fields": {
+      "name": "Carbon budgeting - general",
+      "code": "1.1.6",
+      "parent": 2,
+      "lft": 127,
+      "rght": 128,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 9,
+    "fields": {
+      "name": "Carbon budgeting - matters to be taken into account in setting budgets",
+      "code": "1.1.7",
+      "parent": 2,
+      "lft": 129,
+      "rght": 130,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 10,
+    "fields": {
+      "name": "Carbon budgeting - limits of use of carbon units",
+      "code": "1.1.8",
+      "parent": 2,
+      "lft": 131,
+      "rght": 132,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 11,
+    "fields": {
+      "name": "Carbon budgeting - consultation requirements",
+      "code": "1.1.9",
+      "parent": 2,
+      "lft": 133,
+      "rght": 134,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 12,
+    "fields": {
+      "name": "Carbon budgeting - duty to prepare proposals\/policies to meet carbon budgets",
+      "code": "1.1.10",
+      "parent": 2,
+      "lft": 135,
+      "rght": 136,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 13,
+    "fields": {
+      "name": "Provision for alteration of mitigation target or carbon budgets",
+      "code": "1.1.11",
+      "parent": 2,
+      "lft": 137,
+      "rght": 138,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 14,
+    "fields": {
+      "name": "Enforceability",
+      "code": "1.1.12",
+      "parent": 2,
+      "lft": 139,
+      "rght": 140,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 15,
+    "fields": {
+      "name": "Legislation establishing national climate institutions",
+      "code": "1.2",
+      "parent": 1,
+      "lft": 2,
+      "rght": 25,
+      "tree_id": 8,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 16,
+    "fields": {
+      "name": "Advisory body independent of executive, e.g. Climate change committee",
+      "code": "1.2.1",
+      "parent": 15,
+      "lft": 23,
+      "rght": 24,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 17,
+    "fields": {
+      "name": "Qualifications for appointment to committee",
+      "code": "1.2.2",
+      "parent": 15,
+      "lft": 3,
+      "rght": 4,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 18,
+    "fields": {
+      "name": "Duties and responsibilities of committee members",
+      "code": "1.2.3",
+      "parent": 15,
+      "lft": 5,
+      "rght": 6,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 19,
+    "fields": {
+      "name": "Duties to advise on targets and budgets",
+      "code": "1.2.4",
+      "parent": 15,
+      "lft": 7,
+      "rght": 8,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 20,
+    "fields": {
+      "name": "Committee reporting obligations",
+      "code": "1.2.5",
+      "parent": 15,
+      "lft": 9,
+      "rght": 10,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 21,
+    "fields": {
+      "name": "Government obligations to respond to committee reporting",
+      "code": "1.2.6",
+      "parent": 15,
+      "lft": 11,
+      "rght": 12,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 22,
+    "fields": {
+      "name": "Government powers to direct committee",
+      "code": "1.2.7",
+      "parent": 15,
+      "lft": 13,
+      "rght": 14,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 23,
+    "fields": {
+      "name": "Government coordination body",
+      "code": "1.2.8",
+      "parent": 15,
+      "lft": 15,
+      "rght": 16,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 24,
+    "fields": {
+      "name": "Multi stakeholder coordination body",
+      "code": "1.2.9",
+      "parent": 15,
+      "lft": 17,
+      "rght": 18,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 25,
+    "fields": {
+      "name": "Government climate regulator",
+      "code": "1.2.10",
+      "parent": 15,
+      "lft": 19,
+      "rght": 20,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 26,
+    "fields": {
+      "name": "Designation of national focal points to international climate bodies",
+      "code": "1.2.11",
+      "parent": 15,
+      "lft": 21,
+      "rght": 22,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 27,
+    "fields": {
+      "name": "Overarching adaptation measures",
+      "code": "1.3",
+      "parent": 1,
+      "lft": 26,
+      "rght": 41,
+      "tree_id": 8,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 28,
+    "fields": {
+      "name": "Duty to report on climate risks and impacts",
+      "code": "1.3.1",
+      "parent": 27,
+      "lft": 39,
+      "rght": 40,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 29,
+    "fields": {
+      "name": "Duty to set out climate adaptation programme",
+      "code": "1.3.2",
+      "parent": 27,
+      "lft": 27,
+      "rght": 28,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 30,
+    "fields": {
+      "name": "Duty to report on adaptation programme progress",
+      "code": "1.3.3",
+      "parent": 27,
+      "lft": 29,
+      "rght": 30,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 31,
+    "fields": {
+      "name": "Adapt school curricula to climate change",
+      "code": "1.3.4",
+      "parent": 27,
+      "lft": 31,
+      "rght": 32,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 32,
+    "fields": {
+      "name": "Provision for sector-specific adaptation consultations",
+      "code": "1.3.5",
+      "parent": 27,
+      "lft": 33,
+      "rght": 34,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 33,
+    "fields": {
+      "name": "Adaptation and compatibility standards",
+      "code": "1.3.6",
+      "parent": 27,
+      "lft": 35,
+      "rght": 36,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 34,
+    "fields": {
+      "name": "Power to make adaptation regulations",
+      "code": "1.3.7",
+      "parent": 27,
+      "lft": 37,
+      "rght": 38,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 35,
+    "fields": {
+      "name": "Legislation establishing reporting obligations",
+      "code": "1.4",
+      "parent": 1,
+      "lft": 42,
+      "rght": 63,
+      "tree_id": 8,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 36,
+    "fields": {
+      "name": "Reporting obligation on government",
+      "code": "1.4.1",
+      "parent": 35,
+      "lft": 61,
+      "rght": 62,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 37,
+    "fields": {
+      "name": "Designation of agency to prepare national inventory",
+      "code": "1.4.2",
+      "parent": 35,
+      "lft": 43,
+      "rght": 44,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 38,
+    "fields": {
+      "name": "Requirement to publicize emissions data",
+      "code": "1.4.3",
+      "parent": 35,
+      "lft": 45,
+      "rght": 46,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 39,
+    "fields": {
+      "name": "Annual statement to legislature or other public accountability mechanism",
+      "code": "1.4.4",
+      "parent": 35,
+      "lft": 47,
+      "rght": 48,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 40,
+    "fields": {
+      "name": "Reporting obligation on companies\/installations",
+      "code": "1.4.5",
+      "parent": 35,
+      "lft": 49,
+      "rght": 50,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 41,
+    "fields": {
+      "name": "Requirement of monitor emissions",
+      "code": "1.4.6",
+      "parent": 35,
+      "lft": 51,
+      "rght": 52,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 42,
+    "fields": {
+      "name": "Obligation to maintain records",
+      "code": "1.4.7",
+      "parent": 35,
+      "lft": 53,
+      "rght": 54,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 43,
+    "fields": {
+      "name": "Verification of reporting data",
+      "code": "1.4.8",
+      "parent": 35,
+      "lft": 55,
+      "rght": 56,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 44,
+    "fields": {
+      "name": "Requirement for verifiers to be registered",
+      "code": "1.4.9",
+      "parent": 35,
+      "lft": 57,
+      "rght": 58,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 45,
+    "fields": {
+      "name": "Power of entry and collection of data",
+      "code": "1.4.10",
+      "parent": 35,
+      "lft": 59,
+      "rght": 60,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 46,
+    "fields": {
+      "name": "Legislation for market mechanisms",
+      "code": "1.5",
+      "parent": 1,
+      "lft": 64,
+      "rght": 85,
+      "tree_id": 8,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 47,
+    "fields": {
+      "name": "Emissions trading system (ETS) - general",
+      "code": "1.5.1",
+      "parent": 46,
+      "lft": 83,
+      "rght": 84,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 48,
+    "fields": {
+      "name": "ETS - designation of activities subject to trading system",
+      "code": "1.5.2",
+      "parent": 46,
+      "lft": 65,
+      "rght": 66,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 49,
+    "fields": {
+      "name": "Other tradable permits",
+      "code": "1.5.3",
+      "parent": 46,
+      "lft": 67,
+      "rght": 68,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 50,
+    "fields": {
+      "name": "Definition of carbon unit or equivalent",
+      "code": "1.5.4",
+      "parent": 46,
+      "lft": 69,
+      "rght": 70,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 51,
+    "fields": {
+      "name": "Participation in international market mechanisms \u2013 emissions trading scheme",
+      "code": "1.5.5",
+      "parent": 46,
+      "lft": 71,
+      "rght": 72,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 52,
+    "fields": {
+      "name": "Participation in international market mechanisms \u2013 other tradable permits",
+      "code": "1.5.6",
+      "parent": 46,
+      "lft": 73,
+      "rght": 74,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 53,
+    "fields": {
+      "name": "Facilitation of participation in international market mechanisms",
+      "code": "1.5.7",
+      "parent": 46,
+      "lft": 75,
+      "rght": 76,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 54,
+    "fields": {
+      "name": "Voluntary emissions abatement accreditation process",
+      "code": "1.5.8",
+      "parent": 46,
+      "lft": 77,
+      "rght": 78,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 55,
+    "fields": {
+      "name": "Government purchasing of emissions abatements",
+      "code": "1.5.9",
+      "parent": 46,
+      "lft": 79,
+      "rght": 80,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 56,
+    "fields": {
+      "name": "Government emissions offsetting powers and duties",
+      "code": "1.5.10",
+      "parent": 46,
+      "lft": 81,
+      "rght": 82,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 57,
+    "fields": {
+      "name": "Constitutional provisions",
+      "code": "1.6",
+      "parent": 1,
+      "lft": 86,
+      "rght": 93,
+      "tree_id": 8,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 58,
+    "fields": {
+      "name": "Right to (or duty to promote) a clean environment",
+      "code": "1.6.1",
+      "parent": 57,
+      "lft": 91,
+      "rght": 92,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 59,
+    "fields": {
+      "name": "Duty to promote a stable climate",
+      "code": "1.6.2",
+      "parent": 57,
+      "lft": 87,
+      "rght": 88,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 60,
+    "fields": {
+      "name": "Duty to preserve natural resources for future generations",
+      "code": "1.6.3",
+      "parent": 57,
+      "lft": 89,
+      "rght": 90,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 61,
+    "fields": {
+      "name": "Climate Finance",
+      "code": "1.7",
+      "parent": 1,
+      "lft": 94,
+      "rght": 117,
+      "tree_id": 8,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 62,
+    "fields": {
+      "name": "National fund - establishment of climate-specific trust fund",
+      "code": "1.7.1",
+      "parent": 61,
+      "lft": 115,
+      "rght": 116,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 63,
+    "fields": {
+      "name": "National fund - climate-related levies",
+      "code": "1.7.2",
+      "parent": 61,
+      "lft": 95,
+      "rght": 96,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 64,
+    "fields": {
+      "name": "National fund - designation of monies to be held by fund",
+      "code": "1.7.3",
+      "parent": 61,
+      "lft": 97,
+      "rght": 98,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 65,
+    "fields": {
+      "name": "National fund - payments from the fund",
+      "code": "1.7.4",
+      "parent": 61,
+      "lft": 99,
+      "rght": 100,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 66,
+    "fields": {
+      "name": "National fund - provision for investment",
+      "code": "1.7.5",
+      "parent": 61,
+      "lft": 101,
+      "rght": 102,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 67,
+    "fields": {
+      "name": "National fund - provision for borrowing",
+      "code": "1.7.6",
+      "parent": 61,
+      "lft": 103,
+      "rght": 104,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 68,
+    "fields": {
+      "name": "Procurement of goods and services",
+      "code": "1.7.7",
+      "parent": 61,
+      "lft": 105,
+      "rght": 106,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 69,
+    "fields": {
+      "name": "Designation of national focal point to international climate finance bodies",
+      "code": "1.7.8",
+      "parent": 61,
+      "lft": 107,
+      "rght": 108,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 70,
+    "fields": {
+      "name": "Mandate to access international climate finance (e.g. Clean Development Mechanism)",
+      "code": "1.7.9",
+      "parent": 61,
+      "lft": 109,
+      "rght": 110,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 71,
+    "fields": {
+      "name": "Regulation of debt markets (e.g. Green bonds)",
+      "code": "1.7.10",
+      "parent": 61,
+      "lft": 111,
+      "rght": 112,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 72,
+    "fields": {
+      "name": "Regulation of equity markets (e.g. Disclosure requirements of listed companies)",
+      "code": "1.7.11",
+      "parent": 61,
+      "lft": 113,
+      "rght": 114,
+      "tree_id": 8,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 73,
+    "fields": {
+      "name": "Energy f sector laws",
+      "code": "2",
+      "parent": null,
+      "lft": 1,
+      "rght": 140,
+      "tree_id": 1,
+      "level": 0
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 74,
+    "fields": {
+      "name": "Energy market regulation",
+      "code": "2.1",
+      "parent": 73,
+      "lft": 118,
+      "rght": 139,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 75,
+    "fields": {
+      "name": "Decarbonization target (or target range) for electricity generation (targeting carbon intensity)",
+      "code": "2.1.1",
+      "parent": 74,
+      "lft": 137,
+      "rght": 138,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 76,
+    "fields": {
+      "name": "Designation of matters to be taken into account in decarbonization target",
+      "code": "2.1.2",
+      "parent": 74,
+      "lft": 119,
+      "rght": 120,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 77,
+    "fields": {
+      "name": "Regulation of low-carbon electricity generation contracts (e.g. Contract for difference)",
+      "code": "2.1.3",
+      "parent": 74,
+      "lft": 121,
+      "rght": 122,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 78,
+    "fields": {
+      "name": "Energy supply measures",
+      "code": "2.1.4",
+      "parent": 74,
+      "lft": 123,
+      "rght": 124,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 79,
+    "fields": {
+      "name": "Electricity demand reduction provisions",
+      "code": "2.1.5",
+      "parent": 74,
+      "lft": 125,
+      "rght": 126,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 80,
+    "fields": {
+      "name": "Tax on electricity generators",
+      "code": "2.1.6",
+      "parent": 74,
+      "lft": 127,
+      "rght": 128,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 81,
+    "fields": {
+      "name": "Direction to state-owned enterprises regarding energy generation",
+      "code": "2.1.7",
+      "parent": 74,
+      "lft": 129,
+      "rght": 130,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 82,
+    "fields": {
+      "name": "Direction to state-owned enterprises regarding energy sourcing",
+      "code": "2.1.8",
+      "parent": 74,
+      "lft": 131,
+      "rght": 132,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 83,
+    "fields": {
+      "name": "Provision for microgeneration",
+      "code": "2.1.9",
+      "parent": 74,
+      "lft": 133,
+      "rght": 134,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 84,
+    "fields": {
+      "name": "Procurement of new generating capacity",
+      "code": "2.1.10",
+      "parent": 74,
+      "lft": 135,
+      "rght": 136,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 85,
+    "fields": {
+      "name": "Grid infrastructure\/electricity distribution",
+      "code": "2.2",
+      "parent": 73,
+      "lft": 2,
+      "rght": 19,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 86,
+    "fields": {
+      "name": "Specification of grid standards",
+      "code": "2.2.1",
+      "parent": 85,
+      "lft": 17,
+      "rght": 18,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 87,
+    "fields": {
+      "name": "Grid access measures - general",
+      "code": "2.2.2",
+      "parent": 85,
+      "lft": 3,
+      "rght": 4,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 88,
+    "fields": {
+      "name": "Grid access measures - access for electricity generated from renewables to transmission and distribution lines",
+      "code": "2.2.3",
+      "parent": 85,
+      "lft": 5,
+      "rght": 6,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 89,
+    "fields": {
+      "name": "Integration of renewable energy projects into energy system",
+      "code": "2.2.4",
+      "parent": 85,
+      "lft": 7,
+      "rght": 8,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 90,
+    "fields": {
+      "name": "Rural electrification provisions \u2013 obligation to prepare policy on standalone systems for rural electrification",
+      "code": "2.2.5",
+      "parent": 85,
+      "lft": 9,
+      "rght": 10,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 91,
+    "fields": {
+      "name": "Rural electrification provisions \u2013 micro-grid or renewable energy",
+      "code": "2.2.6",
+      "parent": 85,
+      "lft": 11,
+      "rght": 12,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 92,
+    "fields": {
+      "name": "Standardized licensing or concession processes for mini-grids",
+      "code": "2.2.7",
+      "parent": 85,
+      "lft": 13,
+      "rght": 14,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 93,
+    "fields": {
+      "name": "Distributed\/off-grid energy measures",
+      "code": "2.2.8",
+      "parent": 85,
+      "lft": 15,
+      "rght": 16,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 94,
+    "fields": {
+      "name": "Renewable energy",
+      "code": "2.3",
+      "parent": 73,
+      "lft": 20,
+      "rght": 61,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 95,
+    "fields": {
+      "name": "Renewable energy targets",
+      "code": "2.3.1",
+      "parent": 94,
+      "lft": 59,
+      "rght": 60,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 96,
+    "fields": {
+      "name": "Ministerial obligation to promote renewables",
+      "code": "2.3.2",
+      "parent": 94,
+      "lft": 21,
+      "rght": 22,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 97,
+    "fields": {
+      "name": "Duty on government agency to promote renewables",
+      "code": "2.3.3",
+      "parent": 94,
+      "lft": 23,
+      "rght": 24,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 98,
+    "fields": {
+      "name": "Obligation to set tariffs to promote energy generation from renewables",
+      "code": "2.3.4",
+      "parent": 94,
+      "lft": 25,
+      "rght": 26,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 99,
+    "fields": {
+      "name": "Prescription of renewable energy sources",
+      "code": "2.3.5",
+      "parent": 94,
+      "lft": 27,
+      "rght": 28,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 100,
+    "fields": {
+      "name": "Laws on specific renewable energy sources (solar, wind, geothermal, biomass, etc)",
+      "code": "2.3.6",
+      "parent": 94,
+      "lft": 29,
+      "rght": 30,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 101,
+    "fields": {
+      "name": "Licensing provisions",
+      "code": "2.3.7",
+      "parent": 94,
+      "lft": 31,
+      "rght": 32,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 102,
+    "fields": {
+      "name": "Licensing\/tariff approval exemptions",
+      "code": "2.3.8",
+      "parent": 94,
+      "lft": 33,
+      "rght": 34,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 103,
+    "fields": {
+      "name": "Renewable energy obligations \u2013 renewable portfolio standard",
+      "code": "2.3.9",
+      "parent": 94,
+      "lft": 35,
+      "rght": 36,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 104,
+    "fields": {
+      "name": "Renewable energy obligations \u2013 renewable obligations certificates",
+      "code": "2.3.10",
+      "parent": 94,
+      "lft": 37,
+      "rght": 38,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 105,
+    "fields": {
+      "name": "Renewable transport fuel obligations",
+      "code": "2.3.11",
+      "parent": 94,
+      "lft": 39,
+      "rght": 40,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 106,
+    "fields": {
+      "name": "Duty of renewable energy producers",
+      "code": "2.3.12",
+      "parent": 94,
+      "lft": 41,
+      "rght": 42,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 107,
+    "fields": {
+      "name": "Feed-in tariffs",
+      "code": "2.3.13",
+      "parent": 94,
+      "lft": 43,
+      "rght": 44,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 108,
+    "fields": {
+      "name": "Cost-covering tariffs or tariff caps",
+      "code": "2.3.14",
+      "parent": 94,
+      "lft": 45,
+      "rght": 46,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 109,
+    "fields": {
+      "name": "Feed-in premiums",
+      "code": "2.3.15",
+      "parent": 94,
+      "lft": 47,
+      "rght": 48,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 110,
+    "fields": {
+      "name": "Fiscal incentives",
+      "code": "2.3.16",
+      "parent": 94,
+      "lft": 49,
+      "rght": 50,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 111,
+    "fields": {
+      "name": "Standardized power purchase agreements",
+      "code": "2.3.17",
+      "parent": 94,
+      "lft": 51,
+      "rght": 52,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 112,
+    "fields": {
+      "name": "Compensation mechanism",
+      "code": "2.3.18",
+      "parent": 94,
+      "lft": 53,
+      "rght": 54,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 113,
+    "fields": {
+      "name": "Debt support",
+      "code": "2.3.19",
+      "parent": 94,
+      "lft": 55,
+      "rght": 56,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 114,
+    "fields": {
+      "name": "Net metering",
+      "code": "2.3.20",
+      "parent": 94,
+      "lft": 57,
+      "rght": 58,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 115,
+    "fields": {
+      "name": "Energy efficiency\/demand reduction",
+      "code": "2.4",
+      "parent": 73,
+      "lft": 62,
+      "rght": 95,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 116,
+    "fields": {
+      "name": "Energy efficiency targets",
+      "code": "2.4.1",
+      "parent": 115,
+      "lft": 93,
+      "rght": 94,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 117,
+    "fields": {
+      "name": "Obligation to prepare national energy efficiency programmes",
+      "code": "2.4.2",
+      "parent": 115,
+      "lft": 63,
+      "rght": 64,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 118,
+    "fields": {
+      "name": "Creation of energy efficiency agencies",
+      "code": "2.4.3",
+      "parent": 115,
+      "lft": 65,
+      "rght": 66,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 119,
+    "fields": {
+      "name": "Establishment of energy efficiency management office",
+      "code": "2.4.4",
+      "parent": 115,
+      "lft": 67,
+      "rght": 68,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 120,
+    "fields": {
+      "name": "Establishment of energy efficiency committee",
+      "code": "2.4.5",
+      "parent": 115,
+      "lft": 69,
+      "rght": 70,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 121,
+    "fields": {
+      "name": "Promotion of RD&D initiatives",
+      "code": "2.4.6",
+      "parent": 115,
+      "lft": 71,
+      "rght": 72,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 122,
+    "fields": {
+      "name": "Formulation of energy efficiency pilot projects",
+      "code": "2.4.7",
+      "parent": 115,
+      "lft": 73,
+      "rght": 74,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 123,
+    "fields": {
+      "name": "Product design standards & sales restrictions",
+      "code": "2.4.8",
+      "parent": 115,
+      "lft": 75,
+      "rght": 76,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 124,
+    "fields": {
+      "name": "Information labelling regulations & energy efficiency ratings",
+      "code": "2.4.9",
+      "parent": 115,
+      "lft": 77,
+      "rght": 78,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 125,
+    "fields": {
+      "name": "Energy efficiency certificates or energy performance certificates",
+      "code": "2.4.10",
+      "parent": 115,
+      "lft": 79,
+      "rght": 80,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 126,
+    "fields": {
+      "name": "Building regulations and disclosure requirements",
+      "code": "2.4.11",
+      "parent": 115,
+      "lft": 81,
+      "rght": 82,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 127,
+    "fields": {
+      "name": "Control of industrial activities\/emissions",
+      "code": "2.4.12",
+      "parent": 115,
+      "lft": 83,
+      "rght": 84,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 128,
+    "fields": {
+      "name": "Energy efficiency incentive schemes",
+      "code": "2.4.13",
+      "parent": 115,
+      "lft": 85,
+      "rght": 86,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 129,
+    "fields": {
+      "name": "Energy audits \u2013 public actors",
+      "code": "2.4.14",
+      "parent": 115,
+      "lft": 87,
+      "rght": 88,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 130,
+    "fields": {
+      "name": "Energy audits \u2013 private actors",
+      "code": "2.4.15",
+      "parent": 115,
+      "lft": 89,
+      "rght": 90,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 131,
+    "fields": {
+      "name": "Offences for non-compliance with standards",
+      "code": "2.4.16",
+      "parent": 115,
+      "lft": 91,
+      "rght": 92,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 132,
+    "fields": {
+      "name": "Nuclear energy",
+      "code": "2.5",
+      "parent": 73,
+      "lft": 96,
+      "rght": 105,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 133,
+    "fields": {
+      "name": "Creation of national nuclear regulatory body",
+      "code": "2.5.1",
+      "parent": 132,
+      "lft": 103,
+      "rght": 104,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 134,
+    "fields": {
+      "name": "Nuclear power capacity measures",
+      "code": "2.5.2",
+      "parent": 132,
+      "lft": 97,
+      "rght": 98,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 135,
+    "fields": {
+      "name": "Licensing provisions",
+      "code": "2.5.3",
+      "parent": 132,
+      "lft": 99,
+      "rght": 100,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 136,
+    "fields": {
+      "name": "Nuclear safety regulation",
+      "code": "2.5.4",
+      "parent": 132,
+      "lft": 101,
+      "rght": 102,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 137,
+    "fields": {
+      "name": "Fossil fuels",
+      "code": "2.6",
+      "parent": 73,
+      "lft": 106,
+      "rght": 117,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 138,
+    "fields": {
+      "name": "Subsidy reform",
+      "code": "2.6.1",
+      "parent": 137,
+      "lft": 115,
+      "rght": 116,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 139,
+    "fields": {
+      "name": "Taxation",
+      "code": "2.6.2",
+      "parent": 137,
+      "lft": 107,
+      "rght": 108,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 140,
+    "fields": {
+      "name": "Carbon capture and storage",
+      "code": "2.6.3",
+      "parent": 137,
+      "lft": 109,
+      "rght": 110,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 141,
+    "fields": {
+      "name": "Emissions performance standards",
+      "code": "2.6.4",
+      "parent": 137,
+      "lft": 111,
+      "rght": 112,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 142,
+    "fields": {
+      "name": "Licensing provisions",
+      "code": "2.6.5",
+      "parent": 137,
+      "lft": 113,
+      "rght": 114,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 143,
+    "fields": {
+      "name": "Transport",
+      "code": "3",
+      "parent": null,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 2,
+      "level": 0
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 144,
+    "fields": {
+      "name": "Agriculture, Forestry and Other Land Use",
+      "code": "4",
+      "parent": null,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 3,
+      "level": 0
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 145,
+    "fields": {
+      "name": "Waste",
+      "code": "5",
+      "parent": null,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 4,
+      "level": 0
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 146,
+    "fields": {
+      "name": "Water",
+      "code": "6",
+      "parent": null,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 5,
+      "level": 0
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 147,
+    "fields": {
+      "name": "Industrial Processes and Product Use",
+      "code": "7",
+      "parent": null,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 6,
+      "level": 0
+    }
+  },
+  {
+    "model": "mainapp.taxonomyclassification",
+    "pk": 148,
+    "fields": {
+      "name": "Health",
+      "code": "8",
+      "parent": null,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 7,
+      "level": 0
+    }
+  }
+]

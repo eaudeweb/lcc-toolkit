@@ -1,3 +1,78 @@
 from django.db import models
+from django.db.models.signals import pre_save
 
-# Create your models here.
+from mptt.models import MPTTModel, TreeForeignKey
+
+from lcctoolkit.mainapp.utils import generate_code
+
+
+class TaxonomyTagGroup(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return 'Tagging by ' + self.name
+
+
+class TaxonomyTag(models.Model):
+    name = models.CharField(max_length=255)
+    group = models.ForeignKey(TaxonomyTagGroup, related_name='tags')
+
+    def __str__(self):
+        return "Tag " + self.name
+
+
+class TaxonomyClassification(MPTTModel):
+    name = models.CharField(max_length=255)
+    code = models.CharField(max_length=16, unique=True, blank=True)
+    parent = TreeForeignKey('self',
+                            null=True,
+                            blank=True,
+                            related_name='children')
+
+    class MPTTMeta:
+        order_insertion_by = ['code']
+
+    @classmethod
+    def _pre_save_classification_code_on_create(cls, instance):
+        """Logic executed before saving a new TaxonomyClassification instance.
+        Set the next code for the classification.
+        """
+        instance.code = generate_code(cls, instance)
+
+    @staticmethod
+    def _pre_save_classification_code_on_edit(instance):
+        """Logic executed before editing an TaxonomyClassification instance.
+
+        Update the code for every child to match the parent classification.
+        """
+        for classification in instance.children.all():
+            parts = classification.code.split('.')
+            suffix_code = parts[-1]
+            classification.code = '{0}.{1}'.format(instance.code, suffix_code)
+            classification.save()
+
+    @staticmethod
+    def pre_save_classification_code(**kwargs):
+
+        instance = kwargs['instance']
+
+        if instance.code:
+            TaxonomyClassification._pre_save_classification_code_on_edit(
+                instance)
+        else:
+            TaxonomyClassification._pre_save_classification_code_on_create(
+                instance)
+
+    def get_classification_level(self):
+        # The logical classification of taxonomy starts from 1
+        # The tree level of an object starts from 0
+        return self.get_level() + 1
+
+    def __str__(self):
+        return "Level {} classification: {}".format(
+            self.get_classification_level(), self.name
+        )
+
+
+pre_save.connect(TaxonomyClassification.pre_save_classification_code,
+                 sender=TaxonomyClassification)
