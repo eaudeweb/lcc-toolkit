@@ -2,6 +2,7 @@ import mptt.models
 import lcctoolkit.mainapp as mainapp
 
 from django.db import models
+from django.contrib import auth
 
 
 class Country(models.Model):
@@ -17,6 +18,31 @@ class Country(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class UserRole(models.Model):
+
+    name = models.CharField(max_length=32)
+    
+    def __str__(self):
+        return self.name
+    
+         
+class UserProfile(auth.models.User):
+    
+    current_role = models.ForeignKey(UserRole, related_name="current_role")        
+    roles = models.ManyToManyField(UserRole)
+    
+    home_country = models.ForeignKey(Country, related_name="home_country", null=True)
+    countries = models.ManyToManyField(Country)
+    
+    @property
+    def role(self):
+        return self.current_role.name
+
+    @property
+    def country(self):
+        return self.home_country.name
 
 
 class TaxonomyTagGroup(models.Model):
