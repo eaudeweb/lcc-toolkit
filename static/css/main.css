@@ -1,0 +1,9 @@
+@import url("style.css");
+
+.menu-section {
+    border-bottom:2px solid #C9C6D1;
+}
+
+.footer-section {
+	border-top:2px solid #C9C6D1;
+}
