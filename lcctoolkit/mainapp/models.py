@@ -6,6 +6,21 @@ from mptt.models import MPTTModel, TreeForeignKey
 from lcctoolkit.mainapp.utils import generate_code
 
 
+class Country(models.Model):
+
+    iso = models.CharField('ISO', max_length=2, primary_key=True)
+    name = models.CharField('Name', max_length=128)
+
+    class Meta:
+        verbose_name = 'Country'
+        verbose_name_plural = 'Countries'
+        ordering = ('name',)
+        db_table = "country"
+
+    def __str__(self):
+        return self.name
+
+
 class TaxonomyTagGroup(models.Model):
     name = models.CharField(max_length=255)
 

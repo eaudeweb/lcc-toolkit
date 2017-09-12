@@ -6,7 +6,8 @@ class Command(BaseCommand):
 
     help = "Load intial data"
 
+    FIXTURES = ["TaxonomyTagGroup", "TaxonomyTag", "TaxonomyClassification", "Countries"]
+
     def handle(self, *args, **options):
-        for fixture in ('TaxonomyTagGroup', 'TaxonomyTag',
-                        'TaxonomyClassification'):
+        for fixture in Command.FIXTURES:
             call_command('loaddata', fixture)
