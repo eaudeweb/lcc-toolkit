@@ -1,8 +1,10 @@
 import mptt.models
 import lcctoolkit.mainapp as mainapp
 
-from django.db import models
 from django.contrib import auth
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Country(models.Model):
@@ -28,9 +30,11 @@ class UserRole(models.Model):
         return self.name
     
          
-class UserProfile(auth.models.User):
+class UserProfile(models.Model):
     
-    current_role = models.ForeignKey(UserRole, related_name="current_role")        
+    user = models.OneToOneField(auth.models.User, on_delete=models.CASCADE)
+    
+    current_role = models.ForeignKey(UserRole, related_name="current_role", null=True)      
     roles = models.ManyToManyField(UserRole)
     
     home_country = models.ForeignKey(Country, related_name="home_country", null=True)
@@ -43,6 +47,19 @@ class UserProfile(auth.models.User):
     @property
     def country(self):
         return self.home_country.name
+    
+    def __str__(self):
+        return self.user.username
+
+
+@receiver(post_save, sender=auth.models.User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+@receiver(post_save, sender=auth.models.User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.userprofile.save()
 
 
 class TaxonomyTagGroup(models.Model):
