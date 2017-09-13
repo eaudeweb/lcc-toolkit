@@ -251,7 +251,7 @@
     "model": "mainapp.taxonomytag",
     "pk": 32,
     "fields": {
-      "name": "Education",
+      "name": "Education/training/public awareness",
       "group": 4
     }
   },

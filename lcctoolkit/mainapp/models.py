@@ -1,5 +1,5 @@
 import mptt.models
-import lcctoolkit.mainapp as mainapp
+import lcctoolkit.mainapp.utils as utils
 
 from django.contrib import auth
 from django.db import models
@@ -24,21 +24,23 @@ class Country(models.Model):
 class UserRole(models.Model):
 
     name = models.CharField(max_length=32)
-    
+
     def __str__(self):
         return self.name
-    
-         
+
+
 class UserProfile(models.Model):
-    
+
     user = models.OneToOneField(auth.models.User, on_delete=models.CASCADE)
-    
-    current_role = models.ForeignKey(UserRole, related_name="current_role", null=True)      
+
+    current_role = models.ForeignKey(
+        UserRole, related_name="current_role", null=True)
     roles = models.ManyToManyField(UserRole)
-    
-    home_country = models.ForeignKey(Country, related_name="home_country", null=True)
+
+    home_country = models.ForeignKey(
+        Country, related_name="home_country", null=True)
     countries = models.ManyToManyField(Country)
-    
+
     @property
     def role(self):
         return self.current_role.name
@@ -46,7 +48,7 @@ class UserProfile(models.Model):
     @property
     def country(self):
         return self.home_country.name
-    
+
     def __str__(self):
         return self.user.username
 
@@ -55,6 +57,7 @@ class UserProfile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
+
 
 @receiver(models.signals.post_save, sender=auth.models.User)
 def save_user_profile(sender, instance, **kwargs):
@@ -92,7 +95,7 @@ class TaxonomyClassification(mptt.models.MPTTModel):
         """Logic executed before saving a new TaxonomyClassification instance.
         Set the next code for the classification.
         """
-        instance.code = mainapp.utils.generate_code(cls, instance)
+        instance.code = utils.generate_code(cls, instance)
 
     @staticmethod
     def _pre_save_classification_code_on_edit(instance):
