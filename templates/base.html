@@ -51,7 +51,8 @@
             </div>
 
             <div class="right-div">
-                <a href="#" class="btn btn-danger pull-right">Register</a>
+            	{% block header-top-right %}
+            	{% endblock %}
             </div>
         </div>
     </div>
@@ -79,12 +80,13 @@
 	        	<div class="row pad-botm">
 	            	<div class="col-md-12">
 	            	  {% block content-title %}
-	                	<!--  <h4 class="header-line"> Page title </h4> -->
 	                  {% endblock %}
 	                 </div>
-	            </div>             
-             	<div class="row">
-        		 </div>
+	            </div>
+	     
+	     {% block content %}
+	     
+	     {% endblock %}             
     	</div>
     </div>
      <!-- CONTENT-WRAPPER SECTION END-->

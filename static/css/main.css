@@ -7,3 +7,7 @@
 .footer-section {
 	border-top:2px solid #C9C6D1;
 }
+
+.form-field-error {
+	color: red;
+}
