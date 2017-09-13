@@ -1,1 +1,15 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
+
+{% block menu-top %} 
+	<li> <a href="/#" class="menu-top-active"> Dashboard </a> </li>
+{% endblock %}
+
+{% block header-top-right %}
+	{% if request.user.is_authenticated %}
+		{{request.user.email}} <a href="/logout/" id='login-link'> | Logout </a>
+	{% else %}
+		<a href="/login/" id='register-link'> Login </a> |  		
+		<a href="#" id='register-link'> Register </a> 	
+	{% endif %}
+		 
+{% endblock %}
