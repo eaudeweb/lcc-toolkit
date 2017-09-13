@@ -20,18 +20,18 @@ class TaxonomyTagGroupTest(WebTest):
     def test_tag_group_add(self):
         tag_group = create_taxonomy_tag_group()
         self.assertEqual(tag_group.name, "test_tag_group")
-        tag_group_2 = create_taxonomy_tag_group("test_another_tag_group")
-        self.assertEqual(tag_group_2.name, "test_another_tag_group")
+        second_tag_group = create_taxonomy_tag_group("test_another_tag_group")
+        self.assertEqual(second_tag_group.name, "test_another_tag_group")
 
 
 class TaxonomyTagTest(WebTest):
     def test_tag_add(self):
         tag_group = create_taxonomy_tag_group()
-        tag_group_2 = create_taxonomy_tag_group("test_another_tag_group")
+        second_tag_group = create_taxonomy_tag_group("test_another_tag_group")
         tag = create_taxonomy_tag(tag_group)
         self.assertEqual(tag.group, tag_group)
         self.assertEqual(tag_group.tags.count(), 1)
-        self.assertEqual(tag_group_2.tags.count(), 0)
+        self.assertEqual(second_tag_group.tags.count(), 0)
 
 
 class TaxonomyClassificationTest(WebTest):
