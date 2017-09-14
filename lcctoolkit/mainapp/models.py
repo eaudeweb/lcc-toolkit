@@ -33,12 +33,10 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(auth.models.User, on_delete=models.CASCADE)
 
-    current_role = models.ForeignKey(
-        UserRole, related_name="current_role", null=True)
+    current_role = models.ForeignKey(UserRole, related_name="current_role", null=True)
     roles = models.ManyToManyField(UserRole)
 
-    home_country = models.ForeignKey(
-        Country, related_name="home_country", null=True)
+    home_country = models.ForeignKey(Country, related_name="home_country", null=True)
     countries = models.ManyToManyField(Country)
 
     @property
