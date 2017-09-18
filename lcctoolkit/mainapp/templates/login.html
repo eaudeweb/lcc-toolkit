@@ -3,37 +3,37 @@
 {% load static %}
 
 {% block extra-scripts %}
-	<script src="{% static "js/login.js" %}"> </script>
+  <script src="{% static "js/login.js" %}"> </script>
 {% endblock %}
 
 {% block content-title %}
-	<!-- <h4 class="header-line"> Authenticate </h4> -->
+  <!-- <h4 class="header-line"> Authenticate </h4> -->
 {% endblock %}
 
 {% block content %}
-	<div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
-               <div class="panel panel-info">
-                        <div class="panel-heading">
-                         	Log in
-                        </div>
-                        <div class="panel-body">
-                            <form role="form" id='login-form'>
-                            			{% csrf_token %}
-                                        <div class="form-group">
-                                            <label>User name</label>
-                                            <input class="form-control" type="text" name="username" id="form-username-input"/>
-                                        </div>
-                                 <div class="form-group">
-                                            <label>Enter password</label>
-                                            <input class="form-control" type="password" name="password" id="form-password-input"/>
-                                            <p id='auth-failed-error-msg' class="help-block form-field-error hidden">Authentication failed!</p>
-                                            <p id='user-empty-error-msg' class="help-block form-field-error hidden">User name, or password field empty!</p>                                            
-                                 </div>
-                                 <button type="submit" class="btn btn-info" id="login-btn"> Log in </button>
-                             </form>
-                         </div>
-              </div>
-            </div>
+  <div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+     <div class="panel panel-info">
+      <div class="panel-heading">
+        Log in
+      </div>
+      <div class="panel-body">
+        <form role="form" id='login-form'>
+          {% csrf_token %}
+          <div class="form-group">
+            <label>User name</label>
+            <input class="form-control" type="text" name="username" id="form-username-input"/>
+          </div>
+         <div class="form-group">
+            <label>Enter password</label>
+            <input class="form-control" type="password" name="password" id="form-password-input"/>
+            <p id='auth-failed-error-msg' class="help-block form-field-error hidden">Authentication failed!</p>
+            <p id='user-empty-error-msg' class="help-block form-field-error hidden">User name, or password field empty!</p>                                            
+         </div>
+         <button type="submit" class="btn btn-info" id="login-btn"> Log in </button>
+         </form>
+       </div>
+    </div>
+    </div>
    </div>
 {% endblock %}

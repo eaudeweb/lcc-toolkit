@@ -6,7 +6,7 @@ from django.contrib import auth
 from django.db import models
 from django.dispatch import receiver
 
-    
+
 class Country(models.Model):
 
     iso = models.CharField('ISO', max_length=2, primary_key=True)
@@ -34,10 +34,12 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(auth.models.User, on_delete=models.CASCADE)
 
-    current_role = models.ForeignKey(UserRole, related_name="current_role", null=True)
+    current_role = models.ForeignKey(
+        UserRole, related_name="current_role", null=True)
     roles = models.ManyToManyField(UserRole)
 
-    home_country = models.ForeignKey(Country, related_name="home_country", null=True)
+    home_country = models.ForeignKey(
+        Country, related_name="home_country", null=True)
     countries = models.ManyToManyField(Country)
 
     @property
@@ -85,6 +87,11 @@ class TaxonomyClassification(mptt.models.MPTTModel):
                                         null=True,
                                         blank=True,
                                         related_name='children')
+
+    class Meta:
+        verbose_name = 'Taxonomy Classification'
+        verbose_name_plural = 'Taxonomy Classifications'
+        ordering = ('code',)
 
     class MPTTMeta:
         order_insertion_by = ['code']
@@ -137,32 +144,32 @@ models.signals.pre_save.connect(
 )
 
 
-
 class Legislation(models.Model):
-    
+
     country = models.ForeignKey(Country)
-    language = models.CharField(choices=constants.ALL_LANGUAGES, 
-                                default=constants.DEFAULT_LANGUAGE, 
+    language = models.CharField(choices=constants.ALL_LANGUAGES,
+                                default=constants.DEFAULT_LANGUAGE,
                                 max_length=64)
-    type = models.CharField(choices=constants.LEGISLATION_TYPE, 
-                            default=constants.LEGISLATION_TYPE_DEFAULT,
-                            max_length=64)
+    law_type = models.CharField(choices=constants.LEGISLATION_TYPE,
+                                default=constants.LEGISLATION_TYPE_DEFAULT,
+                                max_length=64)
 
     # @ATTN: The significant years of the legislation is handled by
     #       reverse relation through LegislationSignificantYear objects
     #        The articles are handled the same by LegislationArticle
     #       objects
-    
-    #@TODO:  Add implementation of this as FileField when dealing
-    #       with the upload of the pdf task    
+
+    # @TODO:  Add implementation of this as FileField when dealing
+    #       with the upload of the pdf task
     full_text_file = models.CharField(max_length=32)
-    
-    tags = models.ManyToManyField(TaxonomyTag)    
+
+    tags = models.ManyToManyField(TaxonomyTag)
     classifications = models.ManyToManyField(TaxonomyClassification)
-    
+
+    title = models.CharField(max_length=256)
     abstract = models.CharField(max_length=1024)
 
-    #@TODO: Change the __str__ to something more appropriate    
+    # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Legislation: " + ' | '.join([self.country.name, self.type])
 
@@ -170,26 +177,24 @@ class Legislation(models.Model):
 class LegislationSignificantYear(models.Model):
 
     text = models.CharField(max_length=128, blank=True)
-    year = models.IntegerField(choices=constants.LEGISLATION_YEAR_RANGE, 
-                               default=(constants.LEGISLATION_DEFAULT_YEAR, 
+    year = models.IntegerField(choices=constants.LEGISLATION_YEAR_RANGE,
+                               default=(constants.LEGISLATION_DEFAULT_YEAR,
                                         constants.LEGISLATION_DEFAULT_YEAR))
 
     legislation = models.ForeignKey(Legislation)
 
-    #@TODO: Change the __str__ to something more appropriate    
+    # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Significant year:" + str(self.year) + " %s" % str(self.legislation)
 
 
 class LegislationArticle(models.Model):
-    
+
     text = models.CharField(max_length=65535)
     legislation = models.ForeignKey(Legislation)
     tags = models.ManyToManyField(TaxonomyTag)
     classifications = models.ManyToManyField(TaxonomyClassification)
-    
-    #@TODO: Change the __str__ to something more appropriate    
+
+    # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Article: %s" % str(self.legislation)
-        
-    

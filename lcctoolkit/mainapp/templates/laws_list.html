@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block extra-scripts %}
+{% endblock %}
+
+{% block content-title %}
+{% endblock %}
+
+{% block content %}
+  <div>
+      {% for law in laws %}
+        <div class="law-container">
+          <p class="law-title"><h3>{{ law.title }}</h3></p>
+          <p class="law-country"><b>Country</b>: {{ law.country.name }}</p>
+          <p class="law-tag"><b>Taxonomy Tags</b>: {{ law.all_tags }}</p>
+          <p class="law-classification"><b>Taxonomy Clasification</b>: {{ law.classifications.first.name }}</p>
+        </div>
+      {% endfor %}
+  </div>
+{% endblock %}
