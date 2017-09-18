@@ -14,6 +14,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/', views.Login.as_view()),
     url(r'^logout/', views.Logout.as_view()),
-    url(r'^legislation/', views.ListLaws.as_view()),
+    url(r'^legislation/', views.LegislationMain.as_view()),
     url(r'^$', views.Index.as_view()),
 ] + OTHER_URLS

@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div style="margin-bottom:28px;">
+  <a href="#" class="btn btn-info">Add legislation</a>
+</div>
+  {% for law in laws %}
+    <div class="law-list-block">
+      <p> <h4>{{ law.title }}</h4> </p>
+      <p class="law-list-item"><b>Country</b>: {{ law.country.name }}</p>
+      <p class="law-list-item"><b>Tags</b>: {{ law.all_tags }}</p>
+      <p class="law-list-item"><b>Classification</b>: {{ law.classifications.first.name }}</p>
+    </div>
+   	<br>
+  {% endfor %}
+
+{% endblock %}

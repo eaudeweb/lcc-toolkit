@@ -6,7 +6,7 @@ import django.http
 import django.views
 
 import lcctoolkit.mainapp.constants as constants
-import lcctoolkit.mainapp.models as lcct_models
+import lcctoolkit.mainapp.models as models
 
 
 class Index(django.views.View):
@@ -46,13 +46,16 @@ class Logout(django.views.View):
         return django.http.HttpResponseRedirect("/")
 
 
-class ListLaws(django.views.View):
+class LegislationMain(django.views.View):
 
-    template = "laws_list.html"
+    template = "legislation.html"
 
     def get(self, request):
-        laws = lcct_models.Legislation.objects.all()
-        for law in laws:
-            law.all_tags = ", ".join(
-                list(law.tags.values_list('name', flat=True)))
-        return django.shortcuts.render(request, self.template, {'laws': laws})
+        
+        def update_law_object(law):
+            law.all_tags=", ".join(law.tags.values_list('name', flat=True))
+            return law
+
+        return django.shortcuts.render(request, self.template, 
+                {'laws': [update_law_object(law) 
+                            for law in models.Legislation.objects.all()] })
