@@ -9,15 +9,15 @@ class Command(BaseCommand):
 
     help = "Load initial data"
 
-    FIXTURES = ("TaxonomyTagGroup", "TaxonomyTag", "TaxonomyClassification", "Countries")
+    FIXTURES = ("TaxonomyTagGroup", "TaxonomyTag",
+                "TaxonomyClassification", "Countries", "Legislation")
 
     def load_user_profile_roles(self):
         for user_role_name in mainapp_constants.USER_PROFILE_ROLES:
             print("Importing user role: %s" % user_role_name)
             mainapp_models.UserRole(name=user_role_name).save()
-            
+
     def handle(self, *args, **options):
         for fixture in Command.FIXTURES:
             call_command('loaddata', fixture)
         self.load_user_profile_roles()
-        
