@@ -157,7 +157,8 @@ class Legislation(models.Model):
                                 max_length=64)
     year = models.IntegerField(default=constants.LEGISLATION_DEFAULT_YEAR)
     pdf_file = models.FileField(null=True)
-
+    pdf_file_name = models.CharField(null=True, max_length=256)
+    
     tags = models.ManyToManyField(TaxonomyTag)
     classifications = models.ManyToManyField(TaxonomyClassification)
 
