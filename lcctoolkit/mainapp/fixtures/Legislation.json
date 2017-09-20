@@ -4,6 +4,7 @@
     "pk": 1,
     "fields": {
       "country": "AF",
+      "year": 2017,
       "language": "en",
       "law_type": "Constitution",
       "pdf_file": "a",
@@ -24,6 +25,7 @@
     "pk": 2,
     "fields": {
       "country": "AL",
+      "year": 2017,
       "language": "en",
       "law_type": "Constitution",
       "pdf_file": "a",
@@ -44,6 +46,7 @@
     "pk": 3,
     "fields": {
       "country": "DZ",
+      "year": 2015,
       "language": "en",
       "law_type": "Constitution",
       "pdf_file": "a",
@@ -64,6 +67,7 @@
     "pk": 4,
     "fields": {
       "country": "AG",
+      "year": 2015,
       "language": "en",
       "law_type": "Constitution",
       "pdf_file": "a",
@@ -84,6 +88,7 @@
     "pk": 5,
     "fields": {
       "country": "BD",
+      "year": 2013,
       "language": "en",
       "law_type": "Constitution",
       "pdf_file": "a",
@@ -104,6 +109,7 @@
     "pk": 6,
     "fields": {
       "country": "BN",
+      "year": 2013,
       "language": "en",
       "law_type": "Legislation",
       "pdf_file": "a",
@@ -124,6 +130,7 @@
     "pk": 7,
     "fields": {
       "country": "KY",
+      "year": 2011,
       "language": "en",
       "law_type": "Unknown",
       "pdf_file": "a",
@@ -144,6 +151,7 @@
     "pk": 8,
     "fields": {
       "country": "AQ",
+      "year": 2011,
       "language": "en",
       "law_type": "Constitution",
       "pdf_file": "a",
@@ -164,6 +172,7 @@
     "pk": 9,
     "fields": {
       "country": "BR",
+      "year": 2009,
       "language": "en",
       "law_type": "Miscellaneous",
       "pdf_file": "a",
@@ -182,6 +191,7 @@
     "pk": 10,
     "fields": {
       "country": "CI",
+      "year": 2009,
       "language": "en",
       "law_type": "Regulation",
       "pdf_file": "a",
@@ -202,6 +212,7 @@
     "pk": 11,
     "fields": {
       "country": "NO",
+      "year": 2012,
       "language": "en",
       "law_type": "Legislation",
       "pdf_file": "a",
@@ -222,6 +233,7 @@
     "pk": 12,
     "fields": {
       "country": "CY",
+      "year": 2012,
       "language": "en",
       "law_type": "Miscellaneous",
       "pdf_file": "a",
