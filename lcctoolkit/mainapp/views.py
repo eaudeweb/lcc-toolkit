@@ -6,7 +6,7 @@ import django.http
 import django.views
 
 import lcctoolkit.mainapp.constants as constants
-import lcctoolkit.mainapp.models as lcct_models
+import lcctoolkit.mainapp.models as models
 
 
 class Index(django.views.View):
@@ -46,13 +46,79 @@ class Logout(django.views.View):
         return django.http.HttpResponseRedirect("/")
 
 
-class ListLaws(django.views.View):
+class LegislationMain(django.views.View):
 
-    template = "laws_list.html"
+    template = "legislation.html"
 
     def get(self, request):
-        laws = lcct_models.Legislation.objects.all()
-        for law in laws:
-            law.all_tags = ", ".join(
-                list(law.tags.values_list('name', flat=True)))
-        return django.shortcuts.render(request, self.template, {'laws': laws})
+        
+        def update_law_object(law):
+            law.all_tags=", ".join(law.tags.values_list('name', flat=True))
+            return law
+
+        return django.shortcuts.render(request, self.template, 
+                {'laws': [update_law_object(law) 
+                            for law in models.Legislation.objects.all()] })
+
+     
+class LegislationAdd(django.views.View):
+    
+    template = "legislationAdd.html"
+    
+    class TagGroupRender():
+        
+        def __init__(self, tag_group):
+            self.name = tag_group.name
+            self.pk = tag_group.pk
+            self.tags = [ {'name': tag.name, 'pk': tag.pk } 
+                         for tag in models.TaxonomyTag.objects.filter(
+                                group=tag_group)]
+            
+    def get(self, request):
+        taxonomy_classifications = models.TaxonomyClassification.\
+            objects.filter(level=0).order_by('code')                 
+        return django.shortcuts.render(request, self.template, { 
+            "countries": models.Country.objects.all(),
+            "legislation_type": constants.LEGISLATION_TYPE,
+            "tag_groups": [ LegislationAdd.TagGroupRender(tag_group) 
+                            for tag_group in models.TaxonomyTagGroup.objects.all()],
+            "classifications": taxonomy_classifications,
+            "available_languages": constants.ALL_LANGUAGES,
+            "adoption_years": constants.LEGISLATION_YEAR_RANGE
+        })
+    
+    def post(self, request):
+        
+        def selected_taxonomy(request, is_tags=False):
+            selector = "classification"
+            if is_tags:
+                selector = "tag"                
+            selected_ids = [ int(el.split('_')[1]) 
+                                for el in request.POST.keys() if el.startswith(selector + "_")]
+            if is_tags:
+                return models.TaxonomyTag.objects.filter(pk__in=selected_ids)
+            else:
+                return models.TaxonomyClassification.objects.filter(pk__in=selected_ids)
+
+        def selected_tags(request):
+            selected_tag_ids = [ int(el.split('_')[1]) 
+                                    for el in request.POST.keys() if el.startswith("tag_")]
+            return models.TaxonomyTag.objects.filter(pk__in=selected_tag_ids)
+
+        new_law = models.Legislation()
+        new_law.law_type = request.POST["law_type"]
+        new_law.title = request.POST["title"] 
+        new_law.abstract = request.POST["abstract"]
+        new_law.country = models.Country.objects.filter(iso=request.POST["country"])[0]
+        new_law.language = request.POST["language"]
+        new_law.year = int(request.POST["law_year"])
+        new_law.pdf_file.save(request.FILES['pdf_file'].name,  request.FILES['pdf_file'].file)
+        for tag in selected_taxonomy(request, is_tags=True):
+            new_law.tags.add(tag)        
+        for classification in selected_taxonomy(request):
+            new_law.classifications.add(classification) 
+        new_law.save()
+        return django.http.HttpResponseRedirect("/legislation/")
+
+
+    

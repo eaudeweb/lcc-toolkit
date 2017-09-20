@@ -146,6 +146,8 @@ models.signals.pre_save.connect(
 
 class Legislation(models.Model):
 
+    title = models.CharField(max_length=256)
+    abstract = models.CharField(max_length=1024)
     country = models.ForeignKey(Country)
     language = models.CharField(choices=constants.ALL_LANGUAGES,
                                 default=constants.DEFAULT_LANGUAGE,
@@ -153,39 +155,15 @@ class Legislation(models.Model):
     law_type = models.CharField(choices=constants.LEGISLATION_TYPE,
                                 default=constants.LEGISLATION_TYPE_DEFAULT,
                                 max_length=64)
-
-    # @ATTN: The significant years of the legislation is handled by
-    #       reverse relation through LegislationSignificantYear objects
-    #        The articles are handled the same by LegislationArticle
-    #       objects
-
-    # @TODO:  Add implementation of this as FileField when dealing
-    #       with the upload of the pdf task
-    full_text_file = models.CharField(max_length=32)
-
+    year = models.IntegerField(default=constants.LEGISLATION_DEFAULT_YEAR)
+    pdf_file = models.FileField(null=True)
+    
     tags = models.ManyToManyField(TaxonomyTag)
     classifications = models.ManyToManyField(TaxonomyClassification)
-
-    title = models.CharField(max_length=256)
-    abstract = models.CharField(max_length=1024)
 
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Legislation: " + ' | '.join([self.country.name, self.type])
-
-
-class LegislationSignificantYear(models.Model):
-
-    text = models.CharField(max_length=128, blank=True)
-    year = models.IntegerField(choices=constants.LEGISLATION_YEAR_RANGE,
-                               default=(constants.LEGISLATION_DEFAULT_YEAR,
-                                        constants.LEGISLATION_DEFAULT_YEAR))
-
-    legislation = models.ForeignKey(Legislation)
-
-    # @TODO: Change the __str__ to something more appropriate
-    def __str__(self):
-        return "Significant year:" + str(self.year) + " %s" % str(self.legislation)
 
 
 class LegislationArticle(models.Model):

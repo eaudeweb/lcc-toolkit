@@ -11,3 +11,26 @@
 .form-field-error {
 	color: red;
 }
+
+
+.law-list-item {
+	margin-bottom:0px;
+}
+
+.law-meta-data-text-field {
+	width:100%;
+}
+
+.law-meta-data-abstract-field {
+	height:128px;
+}
+
+.law-meta-data-combobox {
+	width: 128px;
+}
+
+.law-meta-data-container {
+	width:100%;
+	margin-bottom:14px;
+}
+

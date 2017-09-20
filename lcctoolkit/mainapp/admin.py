@@ -4,7 +4,6 @@ from lcctoolkit.mainapp import models
 
 # Register your models here.
 admin.site.register(models.Legislation)
-admin.site.register(models.LegislationSignificantYear)
 admin.site.register(models.LegislationArticle)
 admin.site.register(models.UserRole)
 admin.site.register(models.UserProfile)
