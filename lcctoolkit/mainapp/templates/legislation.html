@@ -6,19 +6,112 @@
   <script src="{% static "js/legislation.js" %}"> </script>
 {% endblock %}
 
-{% block content %}
+{% block content-title %}
+{% endblock %}
 
-<div style="margin-bottom:28px;">
-  <a href="/legislation/add/" class="btn btn-info">Add legislation</a>
-</div>
-  {% for law in laws %}
-    <div class="law-list-block">
-      <p> <h4>{{ law.title }}</h4> </p>
-      <p class="law-list-item"><b>Country</b>: {{ law.country.name }}</p>
-      <p class="law-list-item"><b>Tags</b>: {{ law.all_tags }}</p>
-      <p class="law-list-item"><b>Classification</b>: {{ law.classifications.first.name }}</p>
+{% block content %}
+  <div style="margin-bottom:28px;">
+    <a href="/legislation/add/" class="btn btn-info">Add legislation</a>
+  </div>
+
+  <div id="laws">
+      {% for law in laws %}
+        <div class="law-container">
+          <p class="law-title"><h3>{{ law }} - {{ law.title }}</h3></p>
+          <p class="law-country"><b>Country</b>: {{ law.country.name }}</p>
+          <p class="law-tag"><b>Taxonomy Tags</b>: {{ law.all_tags }}</p>
+          <p class="law-classification"><b>Taxonomy Classification</b>: {{ law.classifications.first.name }}</p>
+        </div>
+      {% endfor %}
+  </div>
+
+  <div class="filters">
+    
+    <div class="filter-tags">
+      <select name="tags[]" id="TagDropDown" multiple="multiple"">
+        {% for group_tag in group_tags %}
+          <optgroup label="{{group_tag.name}}">
+            {% for tag in group_tag.tags.all %}
+              <option value="{{tag.pk}}" class="option-child-1">{{ tag.name }}</option>
+            {% endfor %}
+          </optgroup>
+        {% endfor %}
+      </select>
     </div>
-   	<br>
-  {% endfor %}
+
+    <div class="filter-classifications">
+      <select name="classifications" id="classificationsDropDown">
+        {% for top_class in top_classifications %}
+          <option value="{{top_class.pk}}" class="option-group">{{ top_class.name }}</option>
+          {% for second_class in top_class.get_children %}
+            <option value="{{second_class.pk}}" class="option-child-1">{{ second_class.name }}</option>
+            {% for third_class in second_class.get_children %}
+              <option value="{{third_class.pk}}" class="option-child-2">{{ third_class.name }}</option>
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+      </select>
+    </div>
+    
+    <div class="filter-countries">
+      <select name="countries" id="countriesDropDown">
+        {% for country in countries %}
+          <option value="{{country.iso}}">{{ country.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="filter-type">
+      <select name="type" id="typeDropDown">
+        {% for key, value in legislation_type %}
+          <option value="{{key}}">{{ value }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <button type="button" id="submitButton">Apply filters</button>
+
+  </div>
+
+
+  <script>
+    $(document).ready(function(){
+      var AjaxSubmit = {}
+
+      $('#TagDropDown').on('change',function(e){
+        AjaxSubmit['tags'] = $(this).val()
+      });
+
+      $('#classificationsDropDown').on('click', function() {
+        AjaxSubmit['classification'] = $('#classificationsDropDown option:selected').val();
+      });
+
+      $('#countriesDropDown').on('click', function() {
+        AjaxSubmit['country'] = $('#countriesDropDown option:selected').val();
+      });
+
+      $('#typeDropDown').on('click', function() {
+        AjaxSubmit['type'] = $('#typeDropDown option:selected').val();
+      });
+
+      $("#submitButton").on('click', function(){
+        console.log(AjaxSubmit)
+        $.ajax({
+          type: 'GET',
+          url: '{% url "legislation" %}',
+          data: AjaxSubmit,
+          success : function(data) {
+            $laws = $(data).find('#laws');
+            $laws_container = $laws.find('.law-container')
+            $("#laws").html('').append($laws)
+            if($laws_container.length == 0) {
+              $('#laws').html('<span cass="error">No bla bla found </span>')
+            }
+          } 
+        });
+      })
+
+     });
+  </script>
 
 {% endblock %}
