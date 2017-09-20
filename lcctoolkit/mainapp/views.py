@@ -169,7 +169,6 @@ class LegislationAdd(django.views.View):
             new_law.classifications.add(classification)
         have_error = False
         errors = []
-        import ipdb; ipdb.set_trace()
         try:
             new_law.save()
         except Exception as e:
