@@ -2,10 +2,14 @@
 
 {% load static %}
 
+{% block extra-scripts %}
+  <script src="{% static "js/legislation.js" %}"> </script>
+{% endblock %}
+
 {% block content %}
 
 <div style="margin-bottom:28px;">
-  <a href="#" class="btn btn-info">Add legislation</a>
+  <a href="/legislation/add/" class="btn btn-info">Add legislation</a>
 </div>
   {% for law in laws %}
     <div class="law-list-block">
