@@ -71,8 +71,6 @@ ALL_LANGUAGES = (
     ('el-gr', 'Greek'),
 )
 
-LEGISLATION_DEFAULT_YEAR = datetime.datetime.now().year 
-LEGISLATION_YEAR_RANGE = tuple((year, year) for year in range(1945, LEGISLATION_DEFAULT_YEAR + 1))
 LEGISLATION_TYPE_DEFAULT = ("Constitution", "Constitution")
 LEGISLATION_TYPE = (
     LEGISLATION_TYPE_DEFAULT,
@@ -82,3 +80,4 @@ LEGISLATION_TYPE = (
     ("Unknown", "Unknown"),     
 )
 
+LEGISLATION_DEFAULT_YEAR = datetime.datetime.now().year 

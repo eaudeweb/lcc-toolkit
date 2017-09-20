@@ -8,6 +8,8 @@ import django.views
 import lcctoolkit.mainapp.constants as constants
 import lcctoolkit.mainapp.models as models
 
+LEGISLATION_YEAR_RANGE = range(1945, constants.LEGISLATION_DEFAULT_YEAR + 1)
+
 
 class Index(django.views.View):
 
@@ -83,9 +85,10 @@ class LegislationExplorer(django.views.View):
                 list(law.tags.values_list('name', flat=True)))
 
         legislation_year = (
-            constants.LEGISLATION_YEAR_RANGE[0][0],
-            constants.LEGISLATION_YEAR_RANGE[-1][0]
+            LEGISLATION_YEAR_RANGE[0],
+            LEGISLATION_YEAR_RANGE[len(LEGISLATION_YEAR_RANGE) - 1]
         )
+        
         context = {
             'laws': laws,
             'group_tags': group_tags,
@@ -94,12 +97,15 @@ class LegislationExplorer(django.views.View):
             'legislation_type': constants.LEGISLATION_TYPE,
             'legislation_year': legislation_year
         }
+        
         return django.shortcuts.render(request, self.template, context)
 
 
 class LegislationAdd(django.views.View):
 
     template = "legislationAdd.html"
+    taxonomy_classifications = models.TaxonomyClassification.\
+        objects.filter(level=0).order_by('code')
 
     class TagGroupRender():
 
@@ -111,17 +117,17 @@ class LegislationAdd(django.views.View):
                 group=tag_group)]
 
     def get(self, request):
-        taxonomy_classifications = models.TaxonomyClassification.\
-            objects.filter(level=0).order_by('code')
         return django.shortcuts.render(request, self.template, {
             "countries": models.Country.objects.all(),
             "legislation_type": constants.LEGISLATION_TYPE,
             "tag_groups": [LegislationAdd.TagGroupRender(tag_group)
                            for tag_group in models.TaxonomyTagGroup.objects.all()],
-            "classifications": taxonomy_classifications,
+            "classifications": LegislationAdd.taxonomy_classifications,
             "available_languages": constants.ALL_LANGUAGES,
-            "adoption_years": constants.LEGISLATION_YEAR_RANGE
+            "adoption_years": LEGISLATION_YEAR_RANGE,
+            "classifications": LegislationAdd.taxonomy_classifications
         })
+        
 
     def post(self, request):
 
@@ -130,11 +136,13 @@ class LegislationAdd(django.views.View):
             if is_tags:
                 selector = "tag"
             selected_ids = [int(el.split('_')[1])
-                            for el in request.POST.keys() if el.startswith(selector + "_")]
+                            for el in request.POST.keys() 
+                                if el.startswith(selector + "_")]
             if is_tags:
                 return models.TaxonomyTag.objects.filter(pk__in=selected_ids)
             else:
-                return models.TaxonomyClassification.objects.filter(pk__in=selected_ids)
+                return models.TaxonomyClassification.objects.filter(
+                    pk__in=selected_ids)
 
         def selected_tags(request):
             selected_tag_ids = [int(el.split('_')[1])
@@ -149,11 +157,56 @@ class LegislationAdd(django.views.View):
             iso=request.POST["country"])[0]
         new_law.language = request.POST["language"]
         new_law.year = int(request.POST["law_year"])
+        #   Let's save the original name for showing it to the user back 
+        # in the frontend. If the name contains spaces or other non compatible
+        # chrs for a file name, the name will be altered by the undelying code 
+        new_law.pdf_file_name = request.FILES['pdf_file'].name 
         new_law.pdf_file.save(
             request.FILES['pdf_file'].name, request.FILES['pdf_file'].file)
         for tag in selected_taxonomy(request, is_tags=True):
             new_law.tags.add(tag)
         for classification in selected_taxonomy(request):
             new_law.classifications.add(classification)
-        new_law.save()
-        return django.http.HttpResponseRedirect("/legislation/")
+        have_error = False
+        errors = []
+        try:
+            new_law.save()
+        except Exception as e:
+            have_error = True
+            errors.append("Error: %s" % str(e))
+        if have_error:
+            return django.shortcuts.render(request, self.template,{
+                "title": new_law.title,
+                "abstract": new_law.abstract,
+                "selected_country": new_law.country,
+                "selected_language": new_law.language,
+                "selected_law_type": new_law.law_type,
+                "selected_year_of_adoption": new_law.year,
+                "selected_pdf_file": new_law.pdf_file_name,
+                "selected_tags": [ tag.name for tag in new_law.tags.all()],
+                "selected_classifications":[ cl.name for cl in new_law.classifications.all()], 
+                "countries": models.Country.objects.all(),
+                "legislation_type": constants.LEGISLATION_TYPE,
+                "tag_groups": [LegislationAdd.TagGroupRender(tag_group)
+                               for tag_group in models.TaxonomyTagGroup.objects.all()],
+                "available_languages": constants.ALL_LANGUAGES,
+                "adoption_years": LEGISLATION_YEAR_RANGE,
+                "classifications": LegislationAdd.taxonomy_classifications,
+                "errors": errors
+            })
+        else:
+            if "save-and-continue-btn" in request.POST:
+                return django.http.HttpResponseRedirect("/legislation/add/articles?law_id=%s" % str(new_law.pk))
+            if "save-btn" in request.POST:
+                return django.http.HttpResponseRedirect("/legislation/")
+            
+
+class LegislationManagerArticles(django.views.View):
+
+    template = "legislationManageArticles.html"
+    
+    def get(self, request):
+        # WIP
+        law = models.Legislation.objects.get(pk=int(request.GET.get("law_id")))        
+        return django.shortcuts.render(request, self.template,{"title": law.title, "country": law.country})
+    
