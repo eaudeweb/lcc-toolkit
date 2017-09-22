@@ -150,61 +150,76 @@
 							<input type="file" name="pdf_file" required id="id_pdf_file" accept=".pdf, .Pdf, .PDF, .PDf" value='{{selected_pdf_file}}'>
 						</div>
 					</div>
-					<div class='law-meta-data-container'>
-						<div> 	
-								<label for="id_tags">Tags</label>
-						</div>
-						<div>
-							Select the best areas where the legislation fits
-						</div>
-						<div>
-								<ul name='tags' id='tags'>
-									{% for tag_group in tag_groups %}
-										 <li> <span name='tagGroup_{{tag_group.pk}}'> {{tag_group.name}} </span>
-										 		<ul>
-												 {% for tag in tag_group.tags %}
-												 	 <li> 
-												 	 	<input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
-												 	 		{% if selected_tags %}
-												 	 			{% if tag.name in selected_tags %}
-												 	 				checked
-												 	 			{% endif %}
-												 	 		{% endif %}>
-												 	 	{{tag.name}} 
-												 	 	</input>
-												 	 </li>
-												 {% endfor %}
-												</ul>
-										 </li>
-									{% endfor %}  
-								</ul>
-						</div>						
-						<div>
+					<div class='law-meta-data-container check-fields'>
+						<div class="tags wrapper">
+							<div> 	
+									<label for="id_tags">Tags</label>
+							</div>
+							<div>
+								Select the best areas where the legislation fits
+							</div>
+							<div class="list-container">
+									<ul name='tags' id='tags'>
+										{% for tag_group in tag_groups %}
+											 <li class="first-level level">
+												 <span class="list-header">
+													 <i class="fa fa-plus-square" aria-hidden="true"></i>
+													 <span name='tagGroup_{{tag_group.pk}}'> {{tag_group.name}} </span>
+												 </span>
+											 		<ul class="second-level level">
+													 {% for tag in tag_group.tags %}
+													 	 <li> 
+													 	 	<input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
+													 	 		{% if selected_tags %}
+													 	 			{% if tag.name in selected_tags %}
+													 	 				checked
+													 	 			{% endif %}
+													 	 		{% endif %}>
+													 	 	{{tag.name}} 
+													 	 	</input>
+													 	 </li>
+													 {% endfor %}
+													</ul>
+											 </li>
+										{% endfor %}  
+									</ul>
+							</div>	
+						</div>					
+						<div class="classificaions wrapper">
 							<div>
 								<label for="id_classifications">Classifications</label>
 							</div>
 							<div>
 								Select the legal areas where the legislation fits
 							</div>
-							<div>
+							<div class="list-container">
 							<ul>
 							{% for top_class in classifications %}
-					        <li>
-					        	<input name='classification_{{ top_class.pk }}' type='checkbox'
-					        		{% if top_class.name in selected_classifications %}
-					        			checked
-					        		{% endif %}> 
-					        		{{ top_class.name }}</input>
-					        	<ul>
+					        <li class="first-level level">
+								<span class="list-header">
+						        	<input name='classification_{{ top_class.pk }}' type='checkbox'
+						        		{% if top_class.name in selected_classifications %}
+						        			checked
+						        		{% endif %}> 
+						        		{{ top_class.name }}
+						        	 </input>
+									<i  class="fa fa-plus-square" aria-hidden="true"></i>
+
+						        </span>
+					        	<ul class="second-level level">
 						        {% for second_class in top_class.get_children %}
 						          <li> 
-						          <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox
-					        		{% if second_class.name in selected_classifications %}
-					        			checked
-					        		{% endif %}> 
-						          	{{ second_class.name }}
-						          </input>
-								  <ul>						          
+									  <span class="list-header">
+								          <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox
+							        		{% if second_class.name in selected_classifications %}
+							        			checked
+							        		{% endif %}> 
+								          	{{ second_class.name }}
+								          </input>
+									<i class="fa fa-plus-square" aria-hidden="true"></i>
+
+							          </span>
+								  <ul class="third-level level">						          
 						          {% for third_class in second_class.get_children %}
 						          <li>
 						            <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox

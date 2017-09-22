@@ -1,0 +1,51 @@
+.list-header {
+	font-weight: bold;
+}
+
+.list-container {
+	li {
+		cursor: pointer;
+		position: relative;
+	}
+	li > ul {
+		padding-left: 2rem;
+	}
+	li > ul > li > ul {
+		padding-left: 3rem;
+	}
+}
+
+.first-level {
+	.clearfix;
+	.second-level {
+	.clearfix;
+
+		display: none;
+		.third-level {
+	.clearfix;
+
+			display: none;
+		}
+	}
+}
+
+.check-fields {
+	.clearfix;	
+	.wrapper {
+		width: 50%;
+		float: left;
+
+		&.classificaions {
+			i {
+				position: absolute;
+				right: -1rem;
+				top: 8px;
+			}
+		.second-level {
+			i {
+				right: 0;
+			}
+		}
+		}
+	}
+}
