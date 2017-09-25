@@ -1,5 +1,5 @@
 .list-header {
-    font-weight: bold;
+    // font-weight: bold;
 }
 
 .list-container {
@@ -58,25 +58,37 @@
 }
 
 .label-large {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.6rem;
 }
 
 .label-medium {
-    font-weight: 500;
-    font-size: 1.4rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.selector {
+  padding: 1rem;
+  padding-left: 0;
+}
+
+.selector-inline {
+  display: inline-block;
+  width: 33%;
 }
 
 
-.law-meta-data-container.upload,
 .full-width-bg {
     background: #d1d2d4;
+    &.check-fields {
+      background: #f2f3f4;
+      margin-bottom: 2rem;
+    }
     width: 100vw;
     position: relative;
-    margin-left: -50vw;
+    margin-left: calc(~"-50vw + 15px");
     left: 50%;
     .upload-container {
-        padding-left: 2.5rem;
         padding-bottom: 4rem;
         padding-top: 4rem;
     }

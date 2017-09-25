@@ -39,7 +39,7 @@
 						</div>
 						
 
-						<div class='law-meta-data-container upload'>
+						<div class='full-width-bg'>
 							<div class="container upload-container">
 								
 							<div>
@@ -58,9 +58,9 @@
 
 
 						<div class='law-meta-data-container'>
-							<div>
+							<div class="selector selector-inline">
 								<div>
-									<label for="id_country">Country:</label>
+									<label class="label-medium" for="id_country">Country:</label>
 								</div>
 								<div> 
 									<select name="country" required id="id_country" class="law-meta-data-combobox">  
@@ -82,12 +82,13 @@
 								</div>
 							</div>
 							
-							<div>
+							<div class="selector selector-inline">
 								<div>
-									<label for="id_law_language">Language</label>
+									<label class="label-medium" for="id_law_language">Language</label>
 								</div> 
 								<div>
 									<select name="language" id="id_law_language" class="law-meta-data-combobox">
+										<!-- <option selected="selected">Select Language</option> -->
 										{% for iso, language in available_languages %}
 											<option value="{{iso}}"
 												{% if selected_language %}
@@ -106,9 +107,9 @@
 								</div>
 							</div>
 							
-							<div>
+							<div class="selector selector-inline">
 								<div>
-									<label for="id_law_type">Law type:</label>
+									<label class="label-medium" for="id_law_type">Law type:</label>
 								</div>
 								<div> 
 									<select name="law_type" id="id_law_type" class="law-meta-data-combobox">
@@ -130,9 +131,9 @@
 								</div>
 							</div>
 							
-							<div>
+							<div class="selector">
 								<div>
-									<label for="id_law_year">Year of adoption </label>
+									<label class="label-medium" for="id_law_year">Year of adoption </label>
 								</div>
 								<div> 
 									<select name="law_year" id="id_law_year" class="law-meta-data-combobox">
@@ -158,93 +159,95 @@
 													
 
 			
-					<div class='law-meta-data-container check-fields'>
-						<div class="tags wrapper">
-							<div> 	
-									<label for="id_tags">Tags</label>
-							</div>
-							<div>
-								Select the best areas where the legislation fits
-							</div>
-							<div class="list-container">
-									<ul name='tags' id='tags'>
-										{% for tag_group in tag_groups %}
-											 <li class="first-level level">
-												 <span class="list-header">
-													 <i class="fa fa-plus-square" aria-hidden="true"></i>
-													 <span name='tagGroup_{{tag_group.pk}}'> {{tag_group.name}} </span>
-												 </span>
-											 		<ul class="second-level level">
-													 {% for tag in tag_group.tags %}
-													 	 <li> 
-													 	 	<input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
-													 	 		{% if selected_tags %}
-													 	 			{% if tag.name in selected_tags %}
-													 	 				checked
-													 	 			{% endif %}
-													 	 		{% endif %}>
-													 	 	{{tag.name}} 
-													 	 	</input>
-													 	 </li>
-													 {% endfor %}
-													</ul>
-											 </li>
-										{% endfor %}  
-									</ul>
-							</div>	
-						</div>					
-						<div class="classificaions wrapper">
-							<div>
-								<label for="id_classifications">Classifications</label>
-							</div>
-							<div>
-								Select the legal areas where the legislation fits
-							</div>
-							<div class="list-container">
-							<ul>
-							{% for top_class in classifications %}
-					        <li class="first-level level">
-								<span class="list-header">
-						        	<input name='classification_{{ top_class.pk }}' type='checkbox'
-						        		{% if top_class.name in selected_classifications %}
-						        			checked
-						        		{% endif %}> 
-						        		{{ top_class.name }}
-						        	 </input>
-									<i  class="fa fa-plus-square" aria-hidden="true"></i>
-
-						        </span>
-					        	<ul class="second-level level">
-						        {% for second_class in top_class.get_children %}
-						          <li> 
-									  <span class="list-header">
-								          <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox
-							        		{% if second_class.name in selected_classifications %}
+					<div class='check-fields full-width-bg'>
+						<div class="container">
+							<div class="tags wrapper">
+								<div> 	
+										<label for="id_tags">Tags</label>
+								</div>
+								<div>
+									Select the best areas where the legislation fits
+								</div>
+								<div class="list-container">
+										<ul name='tags' id='tags'>
+											{% for tag_group in tag_groups %}
+												 <li class="first-level level">
+													 <span class="list-header">
+														 <i class="fa fa-plus-square" aria-hidden="true"></i>
+														 <span name='tagGroup_{{tag_group.pk}}'> {{tag_group.name}} </span>
+													 </span>
+												 		<ul class="second-level level">
+														 {% for tag in tag_group.tags %}
+														 	 <li> 
+														 	 	<input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
+														 	 		{% if selected_tags %}
+														 	 			{% if tag.name in selected_tags %}
+														 	 				checked
+														 	 			{% endif %}
+														 	 		{% endif %}>
+														 	 	{{tag.name}} 
+														 	 	</input>
+														 	 </li>
+														 {% endfor %}
+														</ul>
+												 </li>
+											{% endfor %}  
+										</ul>
+								</div>	
+							</div>					
+							<div class="classificaions wrapper">
+								<div>
+									<label for="id_classifications">Classifications</label>
+								</div>
+								<div>
+									Select the legal areas where the legislation fits
+								</div>
+								<div class="list-container">
+								<ul>
+								{% for top_class in classifications %}
+						        <li class="first-level level">
+									<span class="list-header">
+							        	<input name='classification_{{ top_class.pk }}' type='checkbox'
+							        		{% if top_class.name in selected_classifications %}
 							        			checked
 							        		{% endif %}> 
-								          	{{ second_class.name }}
-								          </input>
-									<i class="fa fa-plus-square" aria-hidden="true"></i>
+							        		{{ top_class.name }}
+							        	 </input>
+										<i  class="fa fa-plus-square" aria-hidden="true"></i>
 
-							          </span>
-								  <ul class="third-level level">						          
-						          {% for third_class in second_class.get_children %}
-						          <li>
-						            <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
-						            {% if third_class.name in selected_classifications %}
-					        			checked
-					        		{% endif %}> 
-						            	{{ third_class.name }}
-						            </input>
-						          </li>
-						          {% endfor %}
-						          </ul>
-						        {% endfor %}
-						        </ul>
-						       </li>
-						     </li>
-					      	{% endfor %}
-							</ul>
+							        </span>
+						        	<ul class="second-level level">
+							        {% for second_class in top_class.get_children %}
+							          <li> 
+										  <span class="list-header">
+									          <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox
+								        		{% if second_class.name in selected_classifications %}
+								        			checked
+								        		{% endif %}> 
+									          	{{ second_class.name }}
+									          </input>
+										<i class="fa fa-plus-square" aria-hidden="true"></i>
+
+								          </span>
+									  <ul class="third-level level">						          
+							          {% for third_class in second_class.get_children %}
+							          <li>
+							            <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
+							            {% if third_class.name in selected_classifications %}
+						        			checked
+						        		{% endif %}> 
+							            	{{ third_class.name }}
+							            </input>
+							          </li>
+							          {% endfor %}
+							          </ul>
+							        {% endfor %}
+							        </ul>
+							       </li>
+							     </li>
+						      	{% endfor %}
+								</ul>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -258,8 +261,10 @@
 							<img src="{% static "img/loader.gif" %}">
 							<span> Please wait until data is saved ... </span>
 						</p>
-						<button type="submit" class="btn btn-info" id='save-btn' name='save-btn'> Save </button> 
-						<button type="submit" class="btn btn-info" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add articles</button>
+						<div class="button-wrapper">
+							<button type="submit" class="btn btn-success" id='save-btn' name='save-btn'> Save </button> 
+							<button type="submit" class="btn btn-primary" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add articles</button>
+						</div>
 					</form>  
     			</div>
 			</div>
