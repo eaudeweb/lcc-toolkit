@@ -209,29 +209,29 @@
 								{% for top_class in classifications %}
 						        <li class="first-level level">
 									<span class="list-header">
+							        	{% if top_class.get_children %}
+											<i  class="fa fa-plus-square" aria-hidden="true"></i>
+										{% endif %}
 							        	<input name='classification_{{ top_class.pk }}' type='checkbox'
 							        		{% if top_class.name in selected_classifications %}
 							        			checked
 							        		{% endif %}> 
 							        		{{ top_class.name }}
 							        	 </input>
-							        	{% if top_class.get_children %}
-											<i  class="fa fa-plus-square" aria-hidden="true"></i>
-										{% endif %}
 							        </span>
 						        	<ul class="second-level level">
 							        {% for second_class in top_class.get_children %}
 							          <li> 
 										  <span class="list-header">
+								        	{% if second_class.get_children %}
+												<i class="fa fa-plus-square" aria-hidden="true"></i>
+											{% endif %}
 									          <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox
 								        		{% if second_class.name in selected_classifications %}
 								        			checked
 								        		{% endif %}> 
 									          	{{ second_class.name }}
 									          </input>
-								        	{% if second_class.get_children %}
-												<i class="fa fa-plus-square" aria-hidden="true"></i>
-											{% endif %}
  								          </span>
 									  <ul class="third-level level">						          
 							          {% for third_class in second_class.get_children %}

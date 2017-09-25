@@ -1,7 +1,9 @@
 function highlightChecked(item) {
     $parent = item.parent().parent().parent().parent('li').find('.list-header').first();
+    if($parent.length == 0)
+        return
     $parent.addClass('selected')
-    console.log($parent)
+
     if (!$parent.parent().hasClass('first-level')) {
         $recursion_item = $parent.find('input')
         highlightChecked($recursion_item)
@@ -10,6 +12,8 @@ function highlightChecked(item) {
 
 function removeHighlight(item) {
     $parent = item.parent().parent().parent().parent('li').find('.list-header').first();
+    if($parent.length == 0)
+        return
     $checked = item.closest('ul').first().find("input:checked").length;
     if ($checked == 0)
         $parent.removeClass('selected')
@@ -26,6 +30,7 @@ $(document).ready(function() {
         if ($(e.target).attr('type') == "checkbox") {
             return
         }
+        $(this).parent().toggleClass('expanded');
         $checkbox = $(this).find('i').first();
         $sub_level = $(this).parent().find('ul').first();
         $sub_level.animate({
@@ -41,11 +46,14 @@ $(document).ready(function() {
     })
 
 
-    $(".check-fields .second-level input").change(function() {
+    $(".check-fields input").change(function() {
         if (this.checked) {
             highlightChecked($(this))
+            $(this).parent().addClass('selected')
         } else {
             removeHighlight($(this))
+            $(this).parent().removeClass('selected')
+
         }
     });
 })
