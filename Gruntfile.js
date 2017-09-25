@@ -41,5 +41,5 @@ module.exports = function(grunt) {
         },
     });
 
-    grunt.registerTask('default', ['less', 'watch']);
+    grunt.registerTask('default', ['less', 'concat', 'watch']);
 };
