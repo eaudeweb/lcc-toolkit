@@ -179,6 +179,7 @@
 												 		<ul class="second-level level">
 														 {% for tag in tag_group.tags %}
 														 	 <li> 
+														 	 <span class="list-header">
 														 	 	<input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
 														 	 		{% if selected_tags %}
 														 	 			{% if tag.name in selected_tags %}
@@ -187,6 +188,7 @@
 														 	 		{% endif %}>
 														 	 	{{tag.name}} 
 														 	 	</input>
+														 	 	</span>
 														 	 </li>
 														 {% endfor %}
 														</ul>
@@ -213,8 +215,9 @@
 							        		{% endif %}> 
 							        		{{ top_class.name }}
 							        	 </input>
-										<i  class="fa fa-plus-square" aria-hidden="true"></i>
-
+							        	{% if top_class.get_children %}
+											<i  class="fa fa-plus-square" aria-hidden="true"></i>
+										{% endif %}
 							        </span>
 						        	<ul class="second-level level">
 							        {% for second_class in top_class.get_children %}
@@ -226,18 +229,21 @@
 								        		{% endif %}> 
 									          	{{ second_class.name }}
 									          </input>
-										<i class="fa fa-plus-square" aria-hidden="true"></i>
-
-								          </span>
+								        	{% if second_class.get_children %}
+												<i class="fa fa-plus-square" aria-hidden="true"></i>
+											{% endif %}
+ 								          </span>
 									  <ul class="third-level level">						          
 							          {% for third_class in second_class.get_children %}
 							          <li>
+										<span class="list-header fake">
 							            <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
 							            {% if third_class.name in selected_classifications %}
 						        			checked
 						        		{% endif %}> 
 							            	{{ third_class.name }}
 							            </input>
+							            </span>
 							          </li>
 							          {% endfor %}
 							          </ul>
