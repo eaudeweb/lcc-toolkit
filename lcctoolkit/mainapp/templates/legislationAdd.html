@@ -9,10 +9,10 @@
 
 {% block content %}
 
-<div class="row">
+<div class="row addLeg">
 		<div class="col-md-12 col-sm-12 col-xs-12">
-	       <div class="panel panel-info">
-	        	<div class="panel-heading">
+	       <div class="">
+	        	<div class="heading">
 	                Add new legislation 
 	            </div>
 	            <div class="panel-body">	            
@@ -20,23 +20,43 @@
 				    	{% csrf_token %}
 						<div class='law-meta-data-container'>
 							<div>
-								<label for="id_title">Title</label>
+								<label class="label-large" for="id_title">Title</label>
 							</div>
 							<div> 
-								<input class='law-meta-data-text-field' type="text" name="title" maxlength="256" required id="id_title" value="{{title}}"/>
+								<input class='law-meta-data-text-field' type="text" placeholder="Add title" name="title" maxlength="256" required id="id_title" value="{{title}}"/>
 							</div>
 						</div>
 						
 						<div class='law-meta-data-container'>
 							<div>					
-								<label for="id_abstract">Abstract:</label>
+								<label class="label-large" for="id_abstract">Abstract:</label>
 							</div>
 							
-							<div>						
-								<textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract"> {{abstract}} </textarea>
+							<div class="clearfix">						
+								<textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract"> {{abstract}} </textarea>
+								<small class="pull-right" id="rem_char"></small>
 							</div>					
 						</div>
 						
+
+						<div class='law-meta-data-container upload'>
+							<div class="container upload-container">
+								
+							<div>
+								<label for="id_pdf_file">Upload file</label>
+							</div>
+							
+							<div style='font-size:small; font-weight: normal;'>
+								Document extension .pdf allowed
+							</div>							
+								
+							<div class="custom-file-upload">							
+								<input type="file" name="pdf_file" name="myfiles[]" required id="id_pdf_file" accept=".pdf, .Pdf, .PDF, .PDf" value='{{selected_pdf_file}}'>
+							</div>
+							</div>
+						</div>
+
+
 						<div class='law-meta-data-container'>
 							<div>
 								<div>
@@ -137,19 +157,7 @@
 						</div>
 													
 
-					<div class='law-meta-data-container'>
-						<div>
-							<label for="id_pdf_file">Upload file</label>
-						</div>
-						
-						<div style='font-size:small; font-weight: normal;'>
-							Document extension .pdf allowed
-						</div>							
-							
-						<div>							
-							<input type="file" name="pdf_file" required id="id_pdf_file" accept=".pdf, .Pdf, .PDF, .PDf" value='{{selected_pdf_file}}'>
-						</div>
-					</div>
+			
 					<div class='law-meta-data-container check-fields'>
 						<div class="tags wrapper">
 							<div> 	
