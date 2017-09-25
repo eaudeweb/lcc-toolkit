@@ -1,18 +1,33 @@
 {% extends "index.html" %}
 
 {% load static %}
+{% load utils %}
 
 {% block extra-scripts %}
   <script src="{% static "js/legislation.js" %}"> </script>
+  <script src="{% static "js/add_articles.js" %}"> </script>
 {% endblock %}
 
 {% block content-title %}
 {% endblock %}
 
 {% block content %}
-  <div style="margin-bottom:28px;">
-    Manage Articles for: {{ title }} | {{ country.name }}
+  <div id="title" style="margin-bottom:28px;" pk="{{ law.pk }}">
+  Manage Articles for: {{ law.title }} | {{ law.country.name }}
   </div>
 
+  <button type="button" id="prev">Previous</button>
+  <button type="button" id="next">Next</button>
+  {% with law.page.all|index:starting_page as current_page %}
+    <h1 id="page_number" max_page="{{ max_page }}">{{ current_page.page_number }}</h1>
 
+    <div id="raw-text-page">
+        {{ current_page.page_text|safe }}
+    </div>
+  {% endwith %}
+
+
+  <script type="text/javascript">
+
+  </script>
 {% endblock %}

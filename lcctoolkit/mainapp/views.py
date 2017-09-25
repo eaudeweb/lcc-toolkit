@@ -1,4 +1,6 @@
 import json
+import os
+import pdftotext
 
 import django.contrib.auth as auth
 import django.shortcuts
@@ -7,6 +9,7 @@ import django.views
 
 import lcctoolkit.mainapp.constants as constants
 import lcctoolkit.mainapp.models as models
+import lcctoolkit.settings as settings
 
 LEGISLATION_YEAR_RANGE = range(1945, constants.LEGISLATION_DEFAULT_YEAR + 1)
 
@@ -66,9 +69,9 @@ class LegislationExplorer(django.views.View):
                 for tag in req_dict['tags[]']:
                     laws = laws.filter(tags=tag)
 
-            if req_dict.get('classification'):
-                laws = laws.filter(
-                    classifications=req_dict.get('classification')[0])
+            if req_dict.get('classification[]'):
+                for classification in req_dict['classification[]']:
+                    laws = laws.filter(classifications=classification)
 
             if req_dict.get('country'):
                 laws = laws.filter(country=req_dict.get('country')[0])
@@ -78,17 +81,19 @@ class LegislationExplorer(django.views.View):
 
         laws = laws.distinct()
 
-        # For now, tags are displayed as a string
+        # For now, tags and classifications are displayed as a string
         # @TODO find a better approach
         for law in laws:
             law.all_tags = ", ".join(
                 list(law.tags.values_list('name', flat=True)))
+            law.all_classifications = ", ".join(
+                list(law.classifications.values_list('name', flat=True)))
 
         legislation_year = (
             LEGISLATION_YEAR_RANGE[0],
             LEGISLATION_YEAR_RANGE[len(LEGISLATION_YEAR_RANGE) - 1]
         )
-        
+
         context = {
             'laws': laws,
             'group_tags': group_tags,
@@ -97,7 +102,7 @@ class LegislationExplorer(django.views.View):
             'legislation_type': constants.LEGISLATION_TYPE,
             'legislation_year': legislation_year
         }
-        
+
         return django.shortcuts.render(request, self.template, context)
 
 
@@ -128,7 +133,6 @@ class LegislationAdd(django.views.View):
             "adoption_years": LEGISLATION_YEAR_RANGE,
             "classifications": LegislationAdd.taxonomy_classifications
         })
-        
 
     def post(self, request):
 
@@ -137,15 +141,27 @@ class LegislationAdd(django.views.View):
             if is_tags:
                 selector = "tag"
             selected_ids = [int(el.split('_')[1])
-                            for el in request.POST.keys() 
-                                if el.startswith(selector + "_")]
+                            for el in request.POST.keys()
+                            if el.startswith(selector + "_")]
             if is_tags:
                 return models.TaxonomyTag.objects.filter(pk__in=selected_ids)
             else:
                 return models.TaxonomyClassification.objects.filter(
                     pk__in=selected_ids)
 
-        law_obj = models.Legislation()                
+        def add_legislation_page(law):
+            with open(os.path.join(settings.MEDIA_ROOT, law.pdf_file_name), "rb") as f:
+                pdf = pdftotext.PDF(f)
+
+            counter = 1
+            for page in pdf:
+                models.LegislationPage.objects.create(
+                    page_text="<pre>%s</pre>" % page,
+                    page_number=counter,
+                    legislation=law)
+                counter = counter + 1
+
+        law_obj = models.Legislation()
         law_obj.law_type = request.POST["law_type"]
         law_obj.title = request.POST["title"]
         law_obj.abstract = request.POST["abstract"]
@@ -153,25 +169,53 @@ class LegislationAdd(django.views.View):
             iso=request.POST["country"])[0]
         law_obj.language = request.POST["language"]
         law_obj.year = int(request.POST["law_year"])
-        law_obj.pdf_file_name = request.FILES['pdf_file'].name 
-        law_obj.pdf_file.save(request.FILES['pdf_file'].name, request.FILES['pdf_file'].file)
+        law_obj.pdf_file_name = request.FILES['pdf_file'].name
+        law_obj.pdf_file.save(
+            request.FILES['pdf_file'].name, request.FILES['pdf_file'].file)
         law_obj.save()
         for tag in selected_taxonomy(request, is_tags=True):
             law_obj.tags.add(tag)
         for classification in selected_taxonomy(request):
             law_obj.classifications.add(classification)
+        # @TODO find a better way to call "add_legislation_page"
         if "save-and-continue-btn" in request.POST:
-            return django.http.HttpResponseRedirect("/legislation/add/articles?law_id=%s" % str(law_obj.pk))
+            add_legislation_page(law_obj)
+            return django.http.HttpResponseRedirect(
+                "/legislation/add/articles?law_id=%s" % str(law_obj.pk)
+            )
         if "save-btn" in request.POST:
+            add_legislation_page(law_obj)
             return django.http.HttpResponseRedirect("/legislation/")
-            
+
 
 class LegislationManagerArticles(django.views.View):
 
     template = "legislationManageArticles.html"
-    
+
     def get(self, request):
         # WIP
-        law = models.Legislation.objects.get(pk=int(request.GET.get("law_id")))        
-        return django.shortcuts.render(request, self.template,{"title": law.title, "country": law.country})
-    
+        law = models.Legislation.objects.get(pk=int(request.GET.get("law_id")))
+        if request.GET.get("page_number"):
+            starting_page = int(request.GET.get("page_number"))
+        else:
+            starting_page = 0
+
+        return django.shortcuts.render(request, self.template, {
+            "law": law,
+            "starting_page": starting_page,
+            "max_page": law.page.count() - 1
+        })
+
+
+class LegislationView(django.views.View):
+
+    template = "legislationView.html"
+
+    def get(self, request, legislation_pk):
+        law = django.shortcuts.get_object_or_404(
+            models.Legislation, pk=legislation_pk)
+        law.all_tags = ", ".join(
+            list(law.tags.values_list('name', flat=True)))
+        law.all_classifications = ", ".join(
+            list(law.classifications.values_list('name', flat=True)))
+        return django.shortcuts.render(request, self.template, {"law": law})
