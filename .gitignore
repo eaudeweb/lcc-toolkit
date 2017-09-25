@@ -6,3 +6,5 @@ db.sqlite3*
 sandbox/*
 /node_modules/
 static/upload/
+static/css/
+static/js/
