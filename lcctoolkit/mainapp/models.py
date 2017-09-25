@@ -156,7 +156,7 @@ class Legislation(models.Model):
                                 default=constants.LEGISLATION_TYPE_DEFAULT,
                                 max_length=64)
     year = models.IntegerField(default=constants.LEGISLATION_DEFAULT_YEAR)
-    year_mention = models.CharField(max_length=64, blank=True, null=True)
+    year_mention = models.CharField(max_length=1024, blank=True, null=True)
     pdf_file = models.FileField(null=True)
     pdf_file_name = models.CharField(null=True, max_length=256)
 

@@ -11,6 +11,9 @@
 {% block content-title %}
 {% endblock %}
 
+{% block hidden_variables %}
+{% endblock %}
+
 {% block content %}
   <div id="title" style="margin-bottom:28px;" pk="{{ law.pk }}">
   Manage Articles for: {{ law.title }} | {{ law.country.name }}

@@ -2,6 +2,13 @@
 
 {% load static %}
 
+{% block extra-scripts %}
+  <script src="{% static "js/legislation_filter.js" %}"> </script>
+{% endblock %}
+
+{% block content-title %}
+{% endblock %}
+
 {% block content %}
   <div style="margin-bottom:28px;">
     <a href="/legislation/add/" class="btn btn-info">Add legislation</a>
@@ -65,46 +72,4 @@
     <button type="button" id="submitButton">Apply filters</button>
 
   </div>
-
-
-  <script>
-    $(document).ready(function(){
-      var AjaxSubmit = {}
-
-      $('#TagDropDown').on('change',function(e){
-        AjaxSubmit['tags'] = $(this).val();
-      });
-
-      $('#classificationsDropDown').on('change', function() {
-        AjaxSubmit['classification'] = $(this).val();
-      });
-
-      $('#countriesDropDown').on('click', function() {
-        AjaxSubmit['country'] = $('#countriesDropDown option:selected').val();
-      });
-
-      $('#typeDropDown').on('click', function() {
-        AjaxSubmit['type'] = $('#typeDropDown option:selected').val();
-      });
-
-      $("#submitButton").on('click', function(){
-        console.log(AjaxSubmit)
-        $.ajax({
-          type: 'GET',
-          url: '{% url "legislation" %}',
-          data: AjaxSubmit,
-          success : function(data) {
-            $laws = $(data).find('#laws');
-            $laws_container = $laws.find('.law-container')
-            $("#laws").html('').append($laws)
-            if($laws_container.length == 0) {
-              $('#laws').html('<span cass="error">No bla bla found </span>')
-            }
-          } 
-        });
-      })
-
-     });
-  </script>
-
 {% endblock %}
