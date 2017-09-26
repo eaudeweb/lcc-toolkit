@@ -6,7 +6,6 @@ $(document).ready(function(){
     $page_number = parseInt($('#page_number').text()) - 2;
     AjaxSubmit["page_number"] = $page_number;
     AjaxSubmit["law_id"] = $("#title").attr("pk");
-    console.log(AjaxSubmit)
     $.ajax({
       type: 'GET',
       url: '/legislation/add/articles',
@@ -30,7 +29,6 @@ $(document).ready(function(){
     $page_number = parseInt($('#page_number').text());
     AjaxSubmit["page_number"] = $page_number; 
     AjaxSubmit["law_id"] = $("#title").attr("pk");
-    console.log(AjaxSubmit)
     $.ajax({
       type: 'GET',
       url: '/legislation/add/articles',

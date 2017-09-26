@@ -200,10 +200,13 @@ class LegislationManagerArticles(django.views.View):
         else:
             starting_page = 0
 
+        pages = law.page.all()
+
         return django.shortcuts.render(request, self.template, {
             "law": law,
             "starting_page": starting_page,
-            "max_page": law.page.count() - 1
+            "max_page": len(pages) - 1,
+            "pages": pages
         })
 
 
