@@ -79,7 +79,7 @@ class LegislationExplorer(django.views.View):
             if req_dict.get('type'):
                 laws = laws.filter(law_type=req_dict.get('type')[0])
 
-        laws = laws.distinct()
+        laws = laws.order_by('-pk')
 
         # For now, tags and classifications are displayed as a string
         # @TODO find a better approach

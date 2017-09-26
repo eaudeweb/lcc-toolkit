@@ -19,16 +19,19 @@
   Manage Articles for: {{ law.title }} | {{ law.country.name }}
   </div>
 
-  <button type="button" id="prev">Previous</button>
-  <button type="button" id="next">Next</button>
-  {% with law.page.all|index:starting_page as current_page %}
-    <h1 id="page_number" max_page="{{ max_page }}">{{ current_page.page_number }}</h1>
+  {% if pages %}
+    <button type="button" id="prev">Previous</button>
+    <button type="button" id="next">Next</button>
+    {% with pages|index:starting_page as current_page %}
+      <h1 id="page_number" max_page="{{ max_page }}">{{ current_page.page_number }}</h1>
 
-    <div id="raw-text-page">
-        {{ current_page.page_text|safe }}
-    </div>
-  {% endwith %}
-
+      <div id="raw-text-page">
+          {{ current_page.page_text|safe }}
+      </div>
+    {% endwith %}
+  {% else %}
+    <div>No pages created for this legislation</div>
+  {% endif %}
 
   <script type="text/javascript">
 
