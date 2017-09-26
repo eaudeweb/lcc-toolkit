@@ -2,10 +2,6 @@
 
 {% load static %}
 
-{% block hidden_variables %}
-	<input type="file" name="pdf_file_original" id="pdf_file_original"> {{selected_pdf_file}} </input>
-{% endblock %}
-
 
 {% block content %}
 
@@ -23,7 +19,7 @@
 								<label class="label-large" for="id_title">Title</label>
 							</div>
 							<div> 
-								<input class='law-meta-data-text-field' type="text" placeholder="Add title" name="title" maxlength="256" required id="id_title" value="{{title}}"/>
+								<input class='law-meta-data-text-field' type="text" name="title" maxlength="256" required id="id_title"/>
 							</div>
 						</div>
 						
@@ -33,7 +29,7 @@
 							</div>
 							
 							<div class="clearfix">						
-								<textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract"> {{abstract}} </textarea>
+								<textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract">  </textarea>
 								<small class="pull-right" id="rem_char"></small>
 							</div>					
 						</div>
@@ -41,7 +37,6 @@
 
 						<div class='full-width-bg'>
 							<div class="container upload-container">
-								
 							<div>
 								<label style="margin-bottom: 0" class="label-large" for="id_pdf_file">Upload file</label>
 							</div>
@@ -51,7 +46,7 @@
 							</div>							
 								
 							<div class="custom-file-upload">							
-								<input type="file" name="pdf_file" name="myfiles[]" required id="id_pdf_file" accept=".pdf, .Pdf, .PDF, .PDf" value='{{selected_pdf_file}}'>
+								<input type="file" name="pdf_file" name="myfiles[]" required id="id_pdf_file" accept=".pdf, .Pdf, .PDF, .PDf">
 							</div>
 							</div>
 						</div>
@@ -66,15 +61,9 @@
 									<select name="country" required id="id_country" class="law-meta-data-combobox">  
 											{% for country in countries %}
 												<option value="{{country.iso}}"
-													{% if selected_country %}
-														{% if selected_country.name == country.name %}
-															selected
-														{% endif %}
-													{% else %} 
 														{% if forloop.first %} 
 															selected 
-														{% endif %}
-													{% endif%}> 
+														{% endif %}>
 													{{country.name}} 
 												</option>
 											{% endfor %}
@@ -91,15 +80,9 @@
 										<!-- <option selected="selected">Select Language</option> -->
 										{% for iso, language in available_languages %}
 											<option value="{{iso}}"
-												{% if selected_language %}
-													{% if selected_language == iso %}
-														selected
-													{% endif %}
-												{% else %} 
 													{% if forloop.first %} 
 														selected 
-													{% endif %}
-												{% endif %}> 
+													{% endif %}>
 												{{language}} 
 											</option>
 										{% endfor %}  
@@ -115,15 +98,9 @@
 									<select name="law_type" id="id_law_type" class="law-meta-data-combobox">
 										{% for law_type_key, law_value_key in legislation_type %}  
 											<option value="{{law_type_key}}" 
-												{% if selected_law_type %}
-													{% if selected_law_type == law_type_key %}
-														selected
-													{% endif %}
-												{% else %} 
 													{% if forloop.first %} 
 														selected 
-													{% endif %}
-												{% endif %}> 
+													{% endif %}>
 												{{law_value_key}} 
 											</option>
 										{% endfor %}  
@@ -139,138 +116,102 @@
 									<select name="law_year" id="id_law_year" class="law-meta-data-combobox">
 										{% for year in adoption_years %}
 											<option value="{{year}}"
-												{% if selected_year_of_adoption %}
-													{% if selected_year_of_adoption == year %}
-														selected
-													{% endif %}
-												{% else %} 
 													{% if forloop.last %} 
 														selected 
-													{% endif %}
-												{% endif %}> 
+													{% endif %}>
 												{{year}} 
 											</option>
 										{% endfor %}  
 									</select>
-								</div>
+								</div>																
 							</div>
-							
+
+							<div>
+								<div>
+									<label for="id_law_year">Year of adoption mention </label>
+									
+								</div>
+								<div>
+									<input class='law-meta-data-text-field' type="text" name="year_of_adoption_mention" maxlength="256"/>
+								</div>																
+							</div>							
 						</div>
 													
 
-			
-					<div class='check-fields full-width-bg'>
-						<div class="container">
-							<div class="tags wrapper">
-								<div> 	
-										<label for="id_tags">Tags</label>
-								</div>
-								<div>
-									Select the best areas where the legislation fits
-								</div>
-								<div class="list-container">
-										<ul name='tags' id='tags'>
-											{% for tag_group in tag_groups %}
-												 <li class="first-level level">
-													 <span class="list-header">
-														 <i class="fa fa-plus-square" aria-hidden="true"></i>
-														 <span name='tagGroup_{{tag_group.pk}}'> {{tag_group.name}} </span>
-													 </span>
-												 		<ul class="second-level level">
-														 {% for tag in tag_group.tags %}
-														 	 <li> 
-														 	 <span class="list-header">
-														 	 	<input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
-														 	 		{% if selected_tags %}
-														 	 			{% if tag.name in selected_tags %}
-														 	 				checked
-														 	 			{% endif %}
-														 	 		{% endif %}>
-														 	 	{{tag.name}} 
-														 	 	</input>
-														 	 	</span>
-														 	 </li>
-														 {% endfor %}
-														</ul>
-												 </li>
-											{% endfor %}  
-										</ul>
-								</div>	
-							</div>					
-							<div class="classificaions wrapper">
-								<div>
-									<label for="id_classifications">Classifications</label>
-								</div>
-								<div>
-									Select the legal areas where the legislation fits
-								</div>
-								<div class="list-container">
-								<ul>
-								{% for top_class in classifications %}
-						        <li class="first-level level">
-									<span class="list-header">
-							        	{% if top_class.get_children %}
-											<i  class="fa fa-plus-square" aria-hidden="true"></i>
-										{% endif %}
-							        	<input name='classification_{{ top_class.pk }}' type='checkbox'
-							        		{% if top_class.name in selected_classifications %}
-							        			checked
-							        		{% endif %}> 
-							        		{{ top_class.name }}
-							        	 </input>
-							        </span>
-						        	<ul class="second-level level">
-							        {% for second_class in top_class.get_children %}
-							          <li> 
-										  <span class="list-header">
-								        	{% if second_class.get_children %}
-												<i class="fa fa-plus-square" aria-hidden="true"></i>
-											{% endif %}
-									          <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox
-								        		{% if second_class.name in selected_classifications %}
-								        			checked
-								        		{% endif %}> 
-									          	{{ second_class.name }}
-									          </input>
- 								          </span>
-									  <ul class="third-level level">						          
-							          {% for third_class in second_class.get_children %}
-							          <li>
-										<span class="list-header fake">
-							            <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
-							            {% if third_class.name in selected_classifications %}
-						        			checked
-						        		{% endif %}> 
-							            	{{ third_class.name }}
-							            </input>
-							            </span>
-							          </li>
-							          {% endfor %}
-							          </ul>
-							        {% endfor %}
-							        </ul>
-							       </li>
-							     </li>
-						      	{% endfor %}
-								</ul>
-								</div>
+					<div class='law-meta-data-container check-fields'>
+						<div class="tags wrapper">
+							<div> 	
+									<label for="id_tags">Tags</label>
+							</div>
+							<div>
+								Select the best areas where the legislation fits
+							</div>
+							<div class="list-container">
+									<ul name='tags' id='tags'>
+										{% for tag_group in tag_groups %}
+											 <li class="first-level level">
+												 <span class="list-header">
+													 <i class="fa fa-plus-square" aria-hidden="true"></i>
+													 <span name='tagGroup_{{tag_group.pk}}'> {{tag_group.name}} </span>
+												 </span>
+											 		<ul class="second-level level">
+													 {% for tag in tag_group.tags %}
+													 	 <li> 
+													 	 	<input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'>
+													 	 	{{tag.name}} 
+													 	 	</input>
+													 	 </li>
+													 {% endfor %}
+													</ul>
+											 </li>
+										{% endfor %}  
+									</ul>
+							</div>	
+						</div>					
+						<div class="classificaions wrapper">
+							<div>
+								<label for="id_classifications">Classifications</label>
+							</div>
+							<div>
+								Select the legal areas where the legislation fits
+							</div>
+							<div class="list-container">
+							<ul>
+							{% for top_class in classifications %}
+					        <li class="first-level level">
+								<span class="list-header">
+						        	<input name='classification_{{ top_class.pk }}' type='checkbox'> {{ top_class.name }} </input>
+									<i class="fa fa-plus-square" aria-hidden="true"></i>
+						        </span>
+					        	<ul class="second-level level">
+						        {% for second_class in top_class.get_children %}
+						          <li> 
+									  <span class="list-header">
+								          <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox>
+								          	{{ second_class.name }}
+								          </input>
+										<i class="fa fa-plus-square" aria-hidden="true"></i>
+							          </span>
+								  <ul class="third-level level">						          
+						          {% for third_class in second_class.get_children %}
+						          <li>
+						            <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox>
+						            	{{ third_class.name }}
+						            </input>
+						          </li>
+						          {% endfor %}
+						          </ul>
+						        {% endfor %}
+						        </ul>
+						       </li>
+						     </li>
+					      	{% endfor %}
+							</ul>
 							</div>
 						</div>
 					</div>
-						{% if errors %}
-							{% for error in errors %}
-								<p class="help-block form-field-error error"> {{ error }} </p>		
-							{% endfor %}
-						{% endif %}
-						<p id='error-msg' class="help-block form-field-error hidden"></p>		
-						<p id='in-progress-msg' class="help-block hidden"> 
-							<img src="{% static "img/loader.gif" %}">
-							<span> Please wait until data is saved ... </span>
-						</p>
-						<div class="button-wrapper">
-							<button type="submit" class="btn btn-success" id='save-btn' name='save-btn'> Save </button> 
-							<button type="submit" class="btn btn-primary" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add articles</button>
-						</div>
+						<button type="submit" class="btn btn-info" id='save-btn' name='save-btn'> Save </button> 
+						<button type="submit" class="btn btn-info" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add articles</button>
 					</form>  
     			</div>
 			</div>
