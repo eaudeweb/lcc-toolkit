@@ -177,6 +177,8 @@ class LegislationArticle(models.Model):
     legislation = models.ForeignKey(Legislation)
     tags = models.ManyToManyField(TaxonomyTag)
     classifications = models.ManyToManyField(TaxonomyClassification)
+    legislation_page = models.IntegerField()
+    code = models.CharField(max_length=64)
 
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
