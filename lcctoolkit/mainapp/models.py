@@ -156,10 +156,10 @@ class Legislation(models.Model):
                                 default=constants.LEGISLATION_TYPE_DEFAULT,
                                 max_length=64)
     year = models.IntegerField(default=constants.LEGISLATION_DEFAULT_YEAR)
-    year_mention = models.CharField(max_length=64, blank=True, null=True)
+    year_mention = models.CharField(max_length=1024, blank=True, null=True)
     pdf_file = models.FileField(null=True)
     pdf_file_name = models.CharField(null=True, max_length=256)
-    
+
     tags = models.ManyToManyField(TaxonomyTag)
     classifications = models.ManyToManyField(TaxonomyClassification)
 
@@ -181,3 +181,13 @@ class LegislationArticle(models.Model):
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Article: %s" % str(self.legislation)
+
+
+class LegislationPage(models.Model):
+
+    page_text = models.CharField(max_length=65535)
+    page_number = models.IntegerField()
+    legislation = models.ForeignKey(Legislation, related_name="page")
+
+    def __str__(self):
+        return "Page %d of Legislation %s" % (self.page_number, str(self.legislation.title))

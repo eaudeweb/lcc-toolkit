@@ -2,6 +2,13 @@
 
 {% load static %}
 
+{% block extra-scripts %}
+  <script src="{% static "js/legislation_filter.js" %}"> </script>
+{% endblock %}
+
+{% block content-title %}
+{% endblock %}
+
 {% block content %}
   <div style="margin-bottom:28px;">
     <a href="/legislation/add/" class="btn btn-info">Add legislation</a>
@@ -10,10 +17,10 @@
   <div id="laws">
       {% for law in laws %}
         <div class="law-container">
-          <p class="law-title"><h3>{{ law }} - {{ law.title }}</h3></p>
+          <a href="{% url 'legislation_details' law.pk %}"><h3>{{ law }} - {{ law.title }}</h3></a>
           <p class="law-country"><b>Country</b>: {{ law.country.name }}</p>
           <p class="law-tag"><b>Taxonomy Tags</b>: {{ law.all_tags }}</p>
-          <p class="law-classification"><b>Taxonomy Classification</b>: {{ law.classifications.first.name }}</p>
+          <p class="law-classification"><b>Taxonomy Classification</b>: {{ law.all_classifications }}</p>
         </div>
       {% endfor %}
   </div>
@@ -21,7 +28,7 @@
   <div class="filters">
     
     <div class="filter-tags">
-      <select name="tags[]" id="TagDropDown" multiple="multiple"">
+      <select name="tags[]" id="TagDropDown" multiple="multiple">
         {% for group_tag in group_tags %}
           <optgroup label="{{group_tag.name}}">
             {% for tag in group_tag.tags.all %}
@@ -33,7 +40,7 @@
     </div>
 
     <div class="filter-classifications">
-      <select name="classifications" id="classificationsDropDown">
+      <select name="classifications[]" id="classificationsDropDown" multiple="multiple">
         {% for top_class in top_classifications %}
           <option value="{{top_class.pk}}" class="option-group">{{ top_class.name }}</option>
           {% for second_class in top_class.get_children %}
@@ -65,46 +72,4 @@
     <button type="button" id="submitButton">Apply filters</button>
 
   </div>
-
-
-  <script>
-    $(document).ready(function(){
-      var AjaxSubmit = {}
-
-      $('#TagDropDown').on('change',function(e){
-        AjaxSubmit['tags'] = $(this).val()
-      });
-
-      $('#classificationsDropDown').on('click', function() {
-        AjaxSubmit['classification'] = $('#classificationsDropDown option:selected').val();
-      });
-
-      $('#countriesDropDown').on('click', function() {
-        AjaxSubmit['country'] = $('#countriesDropDown option:selected').val();
-      });
-
-      $('#typeDropDown').on('click', function() {
-        AjaxSubmit['type'] = $('#typeDropDown option:selected').val();
-      });
-
-      $("#submitButton").on('click', function(){
-        console.log(AjaxSubmit)
-        $.ajax({
-          type: 'GET',
-          url: '{% url "legislation" %}',
-          data: AjaxSubmit,
-          success : function(data) {
-            $laws = $(data).find('#laws');
-            $laws_container = $laws.find('.law-container')
-            $("#laws").html('').append($laws)
-            if($laws_container.length == 0) {
-              $('#laws').html('<span cass="error">No bla bla found </span>')
-            }
-          } 
-        });
-      })
-
-     });
-  </script>
-
 {% endblock %}
