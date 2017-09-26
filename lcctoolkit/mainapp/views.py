@@ -117,8 +117,9 @@ class LegislationAdd(django.views.View):
                 group=tag_group)]
 
     def get(self, request):
+        countries = sorted(models.Country.objects.all(), key=lambda c: c.name)
         return django.shortcuts.render(request, self.template, {
-            "countries": models.Country.objects.all(),
+            "countries": countries,
             "legislation_type": constants.LEGISLATION_TYPE,
             "tag_groups": [LegislationAdd.TagGroupRender(tag_group)
                            for tag_group in models.TaxonomyTagGroup.objects.all()],
@@ -144,61 +145,25 @@ class LegislationAdd(django.views.View):
                 return models.TaxonomyClassification.objects.filter(
                     pk__in=selected_ids)
 
-        def selected_tags(request):
-            selected_tag_ids = [int(el.split('_')[1])
-                                for el in request.POST.keys() if el.startswith("tag_")]
-            return models.TaxonomyTag.objects.filter(pk__in=selected_tag_ids)
-
-        new_law = models.Legislation()
-        new_law.law_type = request.POST["law_type"]
-        new_law.title = request.POST["title"]
-        new_law.abstract = request.POST["abstract"]
-        new_law.country = models.Country.objects.filter(
+        law_obj = models.Legislation()                
+        law_obj.law_type = request.POST["law_type"]
+        law_obj.title = request.POST["title"]
+        law_obj.abstract = request.POST["abstract"]
+        law_obj.country = models.Country.objects.filter(
             iso=request.POST["country"])[0]
-        new_law.language = request.POST["language"]
-        new_law.year = int(request.POST["law_year"])
-        #   Let's save the original name for showing it to the user back 
-        # in the frontend. If the name contains spaces or other non compatible
-        # chrs for a file name, the name will be altered by the undelying code 
-        new_law.pdf_file_name = request.FILES['pdf_file'].name 
-        new_law.pdf_file.save(
-            request.FILES['pdf_file'].name, request.FILES['pdf_file'].file)
+        law_obj.language = request.POST["language"]
+        law_obj.year = int(request.POST["law_year"])
+        law_obj.pdf_file_name = request.FILES['pdf_file'].name 
+        law_obj.pdf_file.save(request.FILES['pdf_file'].name, request.FILES['pdf_file'].file)
+        law_obj.save()
         for tag in selected_taxonomy(request, is_tags=True):
-            new_law.tags.add(tag)
+            law_obj.tags.add(tag)
         for classification in selected_taxonomy(request):
-            new_law.classifications.add(classification)
-        have_error = False
-        errors = []
-        try:
-            new_law.save()
-        except Exception as e:
-            have_error = True
-            errors.append("Error: %s" % str(e))
-        if have_error:
-            return django.shortcuts.render(request, self.template,{
-                "title": new_law.title,
-                "abstract": new_law.abstract,
-                "selected_country": new_law.country,
-                "selected_language": new_law.language,
-                "selected_law_type": new_law.law_type,
-                "selected_year_of_adoption": new_law.year,
-                "selected_pdf_file": new_law.pdf_file_name,
-                "selected_tags": [ tag.name for tag in new_law.tags.all()],
-                "selected_classifications":[ cl.name for cl in new_law.classifications.all()], 
-                "countries": models.Country.objects.all(),
-                "legislation_type": constants.LEGISLATION_TYPE,
-                "tag_groups": [LegislationAdd.TagGroupRender(tag_group)
-                               for tag_group in models.TaxonomyTagGroup.objects.all()],
-                "available_languages": constants.ALL_LANGUAGES,
-                "adoption_years": LEGISLATION_YEAR_RANGE,
-                "classifications": LegislationAdd.taxonomy_classifications,
-                "errors": errors
-            })
-        else:
-            if "save-and-continue-btn" in request.POST:
-                return django.http.HttpResponseRedirect("/legislation/add/articles?law_id=%s" % str(new_law.pk))
-            if "save-btn" in request.POST:
-                return django.http.HttpResponseRedirect("/legislation/")
+            law_obj.classifications.add(classification)
+        if "save-and-continue-btn" in request.POST:
+            return django.http.HttpResponseRedirect("/legislation/add/articles?law_id=%s" % str(law_obj.pk))
+        if "save-btn" in request.POST:
+            return django.http.HttpResponseRedirect("/legislation/")
             
 
 class LegislationManagerArticles(django.views.View):
