@@ -1,7 +1,9 @@
 import json
 import os
 import pdftotext
+import time
 
+import django.db
 import django.contrib.auth as auth
 import django.shortcuts
 import django.http
@@ -150,17 +152,19 @@ class LegislationAdd(django.views.View):
                     pk__in=selected_ids)
 
         def add_legislation_page(law):
-            with open(os.path.join(settings.MEDIA_ROOT, law.pdf_file_name), "rb") as f:
-                pdf = pdftotext.PDF(f)
-
-            counter = 1
-            for page in pdf:
-                models.LegislationPage.objects.create(
-                    page_text="<pre>%s</pre>" % page,
-                    page_number=counter,
-                    legislation=law)
-                counter = counter + 1
-
+            if settings.DEBUG:
+                time_to_load_pdf = time.time()
+            with open(os.path.join(settings.MEDIA_ROOT, law.pdf_file.name), "rb") as fd:
+                pdf = pdftotext.PDF(fd)
+            if settings.DEBUG:
+                print("INFO: FS pdf file load time: %fs" % (time.time()-time_to_load_pdf))
+                time_begin_transaction = time.time()
+            with django.db.transaction.atomic():
+                for idx, page in enumerate(pdf):
+                    models.LegislationPage(page_text="<pre>%s</pre>" % page, page_number=idx+1, legislation=law).save()
+            if settings.DEBUG:
+                print("INFO: ORM models.LegislationPages save time: %fs" % (time.time()-time_begin_transaction))
+            
         law_obj = models.Legislation()
         law_obj.law_type = request.POST["law_type"]
         law_obj.title = request.POST["title"]
