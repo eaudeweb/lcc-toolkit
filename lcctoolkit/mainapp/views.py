@@ -5,6 +5,7 @@ import time
 
 import django.db
 import django.contrib.auth as auth
+import django.contrib.auth.mixins as mixins
 import django.shortcuts
 import django.http
 import django.views
@@ -16,12 +17,20 @@ import lcctoolkit.settings as settings
 LEGISLATION_YEAR_RANGE = range(1945, constants.LEGISLATION_DEFAULT_YEAR + 1)
 
 
-class Index(django.views.View):
+class UserPatchMixin():
 
-    template = "index.html"
+    def dispatch(self, request, *args, **kwargs):
+        self.user_profile = None
+        if request.user.is_authenticated:
+          self.user_profile = models.UserProfile.objects.get(user=request.user)
+          request.user_profile = self.user_profile
+        return super(UserPatchMixin, self).dispatch(request, *args, **kwargs)
+
+
+class Index(UserPatchMixin, django.views.View):
 
     def get(self, request):
-        return django.shortcuts.render(request, self.template)
+        return django.http.HttpResponseRedirect("/legislation/")
 
 
 class Login(django.views.View):
@@ -53,7 +62,7 @@ class Logout(django.views.View):
         return django.http.HttpResponseRedirect("/")
 
 
-class LegislationExplorer(django.views.View):
+class LegislationExplorer(UserPatchMixin, django.views.View):
 
     template = "legislation.html"
 
@@ -108,8 +117,9 @@ class LegislationExplorer(django.views.View):
         return django.shortcuts.render(request, self.template, context)
 
 
-class LegislationAdd(django.views.View):
+class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
 
+    login_url = constants.LOGIN_URL
     template = "legislationAdd.html"
     taxonomy_classifications = models.TaxonomyClassification.\
         objects.filter(level=0).order_by('code')
@@ -127,6 +137,7 @@ class LegislationAdd(django.views.View):
         countries = sorted(models.Country.objects.all(), key=lambda c: c.name)
         return django.shortcuts.render(request, self.template, {
             "countries": countries,
+            "user_country": request.user_profile.country,
             "legislation_type": constants.LEGISLATION_TYPE,
             "tag_groups": [LegislationAdd.TagGroupRender(tag_group)
                            for tag_group in models.TaxonomyTagGroup.objects.all()],
@@ -196,8 +207,9 @@ class LegislationAdd(django.views.View):
             return django.http.HttpResponseRedirect("/legislation/")
 
 
-class LegislationManagerArticles(django.views.View):
+class LegislationManagerArticles(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
 
+    login_url = constants.LOGIN_URL
     template = "legislationManageArticles.html"
 
     def get(self, request):
@@ -218,7 +230,7 @@ class LegislationManagerArticles(django.views.View):
         })
 
 
-class LegislationView(django.views.View):
+class LegislationView(UserPatchMixin, django.views.View):
 
     template = "legislationView.html"
 
