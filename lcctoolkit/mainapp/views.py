@@ -154,16 +154,20 @@ class LegislationAdd(django.views.View):
         def add_legislation_page(law):
             if settings.DEBUG:
                 time_to_load_pdf = time.time()
-            with open(os.path.join(settings.MEDIA_ROOT, law.pdf_file.name), "rb") as fd:
+            pdf_path = os.path.join(settings.MEDIA_ROOT, law.pdf_file.name) 
+            with open(pdf_path, "rb") as fd:
                 pdf = pdftotext.PDF(fd)
             if settings.DEBUG:
-                print("INFO: FS pdf file load time: %fs" % (time.time()-time_to_load_pdf))
+                print("INFO: FS pdf file load time: %fs" % \
+                      (time.time()-time_to_load_pdf))
                 time_begin_transaction = time.time()
             with django.db.transaction.atomic():
                 for idx, page in enumerate(pdf):
-                    models.LegislationPage(page_text="<pre>%s</pre>" % page, page_number=idx+1, legislation=law).save()
+                    models.LegislationPage(page_text="<pre>%s</pre>" % \
+                            page, page_number=idx+1, legislation=law).save()
             if settings.DEBUG:
-                print("INFO: ORM models.LegislationPages save time: %fs" % (time.time()-time_begin_transaction))
+                print("INFO: ORM models.LegislationPages save time: %fs" % \
+                        (time.time()-time_begin_transaction))
             
         law_obj = models.Legislation()
         law_obj.law_type = request.POST["law_type"]
