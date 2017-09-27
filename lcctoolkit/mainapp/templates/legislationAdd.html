@@ -58,8 +58,8 @@
 									<select name="country" required id="id_country" class="law-meta-data-combobox">  
 											{% for country in countries %}
 												<option value="{{country.iso}}"
-														{% if forloop.first %} 
-															selected 
+														{% if country.name == user_country %} 
+															selected
 														{% endif %}>
 													{{country.name}} 
 												</option>

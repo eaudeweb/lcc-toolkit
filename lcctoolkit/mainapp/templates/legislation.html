@@ -6,8 +6,11 @@
   <script src="{% static "js/legislation_filter.js" %}"> </script>
 {% endblock %}
 
-{% block content-title %}
+{% block menu-top %} 
+  <li> <a href="/#"> Dashboard </a> </li>
+  <li> <a href="/legislation" class="menu-top-active"> Legislation </a> </li>
 {% endblock %}
+
 
 {% block content %}
   <div style="margin-bottom:28px;">
