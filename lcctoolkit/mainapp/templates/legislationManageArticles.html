@@ -11,10 +11,12 @@
 {% endblock %}
 
 {% block hidden_variables %}
+  <input type="numer" id="law_pk" value="{{ law.pk }}">
+  <input type="numer" id="max_page" value="{{ max_page }}">
 {% endblock %}
 
 {% block content %}
-  <div id="title" style="margin-bottom:28px;" pk="{{ law.pk }}">
+  <div id="title" style="margin-bottom:28px;">
   Manage Articles for: {{ law.title }} | {{ law.country.name }}
   </div>
 
@@ -22,7 +24,7 @@
     <button type="button" id="prev">Previous</button>
     <button type="button" id="next">Next</button>
     {% with pages|index:starting_page as current_page %}
-      <h1 id="page_number" max_page="{{ max_page }}">{{ current_page.page_number }}</h1>
+      <h1 id="page_number">{{ current_page.page_number }}</h1>
 
       <div id="raw-text-page">
           {{ current_page.page_text|safe }}
@@ -31,6 +33,117 @@
   {% else %}
     <div>No pages created for this legislation</div>
   {% endif %}
+
+  <form id="addArticle" method="post" action="/legislation/add/articles?law_id={{ law.pk }}">
+    {% csrf_token %}
+
+      <div class='law-meta-data-container'>
+        <div>
+          <label class="label-large" for="id_code">Code</label>
+        </div>
+        <div> 
+          <!-- TODO change classes to code  -->
+          <input class='law-meta-data-text-field' type="text" name="code" maxlength="64" required id="id_code" placeholder="Ex: 3.A.2.c"/>
+        </div>
+      </div>
+    
+    <div class='law-meta-data-container'>
+      <div>         
+        <label class="label-large" for="id_text">Text</label>
+      </div>
+      
+      <div class="clearfix">
+        <!-- TODO change classes to text -->
+        <!-- TODO check text style in textarea -->
+        <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="legislation_text" maxlength="65535" required id="id_text" placeholder="Add article text"></textarea>
+        <!-- TODO change change char limit -->
+        <small class="pull-right" id="rem_char"></small>
+      </div>          
+    </div>
+
+    <div class="legislation-page-container">
+      <div>         
+        <label class="label-large" for="id_page">Page</label>
+      </div>
+      <div>
+        <input type="numer" required id="id_page" name="legislation_page" maxlength="4" value="{{ starting_page|add:'1' }}">
+      </div>
+    </div>
+
+    <div class='law-meta-data-container check-fields'>
+      <div class="tags wrapper">
+        <div>   
+            <label for="id_tags">Tags</label>
+        </div>
+        <div>
+          Select the best areas where the article fits
+        </div>
+        <div class="list-container">
+            <ul name='tags' id='tags'>
+              {% for tag_group in tag_groups %}
+                 <li class="first-level level">
+                   <span class="list-header">
+                     <i class="fa fa-plus-square" aria-hidden="true"></i>
+                     <span name='tagGroup_{{ tag_group.pk }}'> {{ tag_group.name }} </span>
+                   </span>
+                    <ul class="second-level level">
+                     {% for tag in tag_group.tags %}
+                       <li> 
+                        <input id='tag_{{ tag.pk }}' name='tag_{{ tag.pk }}' type='checkbox'>
+                        {{ tag.name }} 
+                        </input>
+                       </li>
+                     {% endfor %}
+                    </ul>
+                 </li>
+              {% endfor %}  
+            </ul>
+        </div>  
+      </div>
+
+      <div class="classificaions wrapper">
+        <div>
+          <label for="id_classifications">Classifications</label>
+        </div>
+        <div>
+          Select the legal areas where the article fits
+        </div>
+        <div class="list-container">
+        <ul>
+        {% for top_class in classifications %}
+        <li class="first-level level">
+          <span class="list-header">
+            <input name='classification_{{ top_class.pk }}' type='checkbox'> {{ top_class.name }} </input>
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+          </span>
+          <ul class="second-level level">
+          {% for second_class in top_class.get_children %}
+            <li> 
+              <span class="list-header">
+                <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox>
+                {{ second_class.name }}
+                </input>
+              <i class="fa fa-plus-square" aria-hidden="true"></i>
+              </span>
+            <ul class="third-level level">                      
+            {% for third_class in second_class.get_children %}
+            <li>
+            <input name='classification_{{ third_class.pk }}' id='classification_'{{ third_class.name }} type=checkbox>
+              {{ third_class.name }}
+            </input>
+            </li>
+            {% endfor %}
+            </ul>
+          {% endfor %}
+          </ul>
+           </li>
+         </li>
+        {% endfor %}
+        </ul>
+        </div>
+      </div>
+    <button type="button" class="btn btn-info" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add another</button>
+  </form>
 
   <script type="text/javascript">
 
