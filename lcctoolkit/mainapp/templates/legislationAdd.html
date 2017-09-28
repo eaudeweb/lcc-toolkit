@@ -176,7 +176,7 @@
 							<ul>
 							{% for top_class in classifications %}
 					        <li class="first-level level">
-								<span class="list-header">
+								<span  class="list-header" {% if not top_class.get_children %} style="pointer-events: none;" {% endif %} >
 
 									{% if top_class.get_children %}
 						        		<input name='classification_{{ top_class.pk }}' type='checkbox'> {{ top_class.name }} </input>
