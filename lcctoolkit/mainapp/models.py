@@ -174,7 +174,7 @@ class Legislation(models.Model):
 class LegislationArticle(models.Model):
 
     text = models.CharField(max_length=65535)
-    legislation = models.ForeignKey(Legislation)
+    legislation = models.ForeignKey(Legislation, related_name="articles")
     tags = models.ManyToManyField(TaxonomyTag)
     classifications = models.ManyToManyField(TaxonomyClassification)
     legislation_page = models.IntegerField()

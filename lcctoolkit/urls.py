@@ -18,5 +18,6 @@ urlpatterns = [
     url(r'^legislation/add/articles.*$', views.LegislationManagerArticles.as_view(), name="add_articles"),
     url(r'^legislation/$', views.LegislationExplorer.as_view(), name="legislation"),
     url(r'^legislation/(?P<legislation_pk>\d+)$', views.LegislationView.as_view(), name="legislation_details"),
+    url(r'^legislation/pages.*$', views.LegislationPagesView.as_view()),
     url(r'^$', views.Index.as_view()),
 ] + OTHER_URLS

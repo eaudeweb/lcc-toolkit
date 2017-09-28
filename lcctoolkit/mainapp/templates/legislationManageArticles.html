@@ -12,7 +12,7 @@
 
 {% block hidden_variables %}
   <input type="numer" id="law_pk" value="{{ law.pk }}">
-  <input type="numer" id="max_page" value="{{ max_page }}">
+  <input type="numer" id="starting_page" value="{{ starting_page }}">
 {% endblock %}
 
 {% block content %}
@@ -20,19 +20,12 @@
   Manage Articles for: {{ law.title }} | {{ law.country.name }}
   </div>
 
-  {% if pages %}
+
     <button type="button" id="prev">Previous</button>
     <button type="button" id="next">Next</button>
-    {% with pages|index:starting_page as current_page %}
-      <h1 id="page_number">{{ current_page.page_number }}</h1>
+    <h1 id="page_number">{{ starting_page }}</h1>
 
-      <div id="raw-text-page">
-          {{ current_page.page_text|safe }}
-      </div>
-    {% endwith %}
-  {% else %}
-    <div>No pages created for this legislation</div>
-  {% endif %}
+    <div id="raw-text-page"></div>
 
   <form id="addArticle" method="post" action="/legislation/add/articles?law_id={{ law.pk }}">
     {% csrf_token %}
@@ -66,7 +59,7 @@
         <label class="label-large" for="id_page">Page</label>
       </div>
       <div>
-        <input type="numer" required id="id_page" name="legislation_page" maxlength="4" value="{{ starting_page|add:'1' }}">
+        <input type="numer" required id="id_page" name="legislation_page" maxlength="4" value="{{ starting_page }}">
       </div>
     </div>
 
@@ -145,7 +138,14 @@
     <button type="button" class="btn btn-info" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add another</button>
   </form>
 
-  <script type="text/javascript">
-
-  </script>
+  <div class="last-article-container">
+    {% if last_article %}
+      <p>{{ last_article.code }}</p>
+      <!-- TODO The text inside that pre tag should be limited to ~200 chars -->
+      <p>Text: <pre>{{ last_article.text }}</pre></p>
+      <p>Page: {{ last_article.legislation_page }}</p>
+    {% else %}
+      <p>This law doesn't have any articles.</p>
+    {% endif %}
+  </div>
 {% endblock %}

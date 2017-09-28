@@ -1,24 +1,28 @@
 $(document).ready(function(){
-  var AjaxSubmit = {}
-  $max_page = parseInt($("#max_page").val());
-  AjaxSubmit["law_id"] = $("#law_pk").val();
 
+  var AjaxSubmit = {};
+  AjaxSubmit["law_id"] = $("#law_pk").val();
+  var page_number = parseInt($("#page_number").text());
+  var pages = null;
+
+  $.ajax({
+    dataType: "json",
+    url: '/legislation/pages',
+    async: false,
+    data: {'law_id': AjaxSubmit["law_id"]},
+    success: function(data) {
+      pages = data;
+    }
+  });
+
+  $max_page = Object.keys(pages).length;
+  document.getElementById("raw-text-page").innerHTML = pages[$("#starting_page").val()];
 
   $("#prev").on('click', function(){
-    $page_number = parseInt($('#page_number').text()) - 2;
-    AjaxSubmit["page_number"] = $page_number;
-    $.ajax({
-      type: 'GET',
-      url: '/legislation/add/articles',
-      data: AjaxSubmit,
-      success : function(data) {
-        $article_page = $(data).find('#raw-text-page');
-        $page_number = $(data).find("#page_number");
-        $("#raw-text-page").html('').append($article_page);
-        $("#page_number").html('').append($page_number);
-        $("#id_page").val(parseInt($page_number.text()));
-      } 
-    });
+    page_number = page_number - 1;
+    document.getElementById("raw-text-page").innerHTML = pages[page_number];
+    document.getElementById("page_number").innerHTML = page_number;
+    document.getElementById("id_page").value = page_number;
     // TODO verify this
     $("#next").prop("disabled", false);
     if( $page_number == 0) 
@@ -28,29 +32,16 @@ $(document).ready(function(){
   });
 
   $("#next").on('click', function(){
-    $page_number = parseInt($('#page_number').text());
-    AjaxSubmit["page_number"] = $page_number; 
-    $.ajax({
-      type: 'GET',
-      url: '/legislation/add/articles',
-      data: AjaxSubmit,
-      success : function(data) {
-        $article_page = $(data).find('#raw-text-page');
-        $page_number = $(data).find("#page_number");
-        $("#raw-text-page").html('').append($article_page);
-        $("#page_number").html('').append($page_number);
-        $("#id_page").val(parseInt($page_number.text()));
-      } 
-    });
-    // TODO verify this
+    page_number = page_number + 1;
+    document.getElementById("raw-text-page").innerHTML = pages[page_number];
+    document.getElementById("page_number").innerHTML = page_number;
+    document.getElementById("id_page").value = page_number;
     $("#prev").prop("disabled", false);
-    if( $page_number == $max_page) 
+    if( page_number == $max_page) 
       $("#next").prop("disabled", true);
     else
       $("#next").prop("disabled", false);
   });
-
-  console.log($("#law_pk").val());
 
   $("#save-and-continue-btn").on('click', function(){
     $page_number = parseInt($('#page_number').text());
