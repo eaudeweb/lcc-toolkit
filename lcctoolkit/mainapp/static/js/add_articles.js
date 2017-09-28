@@ -1,22 +1,29 @@
 $(document).ready(function(){
-  var AjaxSubmit = {}
-  $max_page = parseInt($("#page_number").attr("max_page"));
+
+  var AjaxSubmit = {};
+  AjaxSubmit["law_id"] = $("#law_pk").val();
+  var page_number = parseInt($("#page_number").text());
+  var pages = null;
+
+  $.ajax({
+    dataType: "json",
+    url: '/legislation/pages',
+    async: false,
+    data: {'law_id': AjaxSubmit["law_id"]},
+    success: function(data) {
+      pages = data;
+    }
+  });
+
+  $max_page = Object.keys(pages).length;
+  document.getElementById("raw-text-page").innerHTML = pages[$("#starting_page").val()];
 
   $("#prev").on('click', function(){
-    $page_number = parseInt($('#page_number').text()) - 2;
-    AjaxSubmit["page_number"] = $page_number;
-    AjaxSubmit["law_id"] = $("#title").attr("pk");
-    $.ajax({
-      type: 'GET',
-      url: '/legislation/add/articles',
-      data: AjaxSubmit,
-      success : function(data) {
-        $article_page = $(data).find('#raw-text-page');
-        $page_number = $(data).find("#page_number");
-        $("#raw-text-page").html('').append($article_page)
-        $("#page_number").html('').append($page_number)
-      } 
-    });
+    page_number = page_number - 1;
+    document.getElementById("raw-text-page").innerHTML = pages[page_number];
+    document.getElementById("page_number").innerHTML = page_number;
+    document.getElementById("id_page").value = page_number;
+    // TODO verify this
     $("#next").prop("disabled", false);
     if( $page_number == 0) 
       $("#prev").prop("disabled", true);
@@ -24,28 +31,39 @@ $(document).ready(function(){
       $("#prev").prop("disabled", false);
   });
 
-
   $("#next").on('click', function(){
-    $page_number = parseInt($('#page_number').text());
-    AjaxSubmit["page_number"] = $page_number; 
-    AjaxSubmit["law_id"] = $("#title").attr("pk");
-    $.ajax({
-      type: 'GET',
-      url: '/legislation/add/articles',
-      data: AjaxSubmit,
-      success : function(data) {
-        $article_page = $(data).find('#raw-text-page');
-        $page_number = $(data).find("#page_number");
-        $("#raw-text-page").html('').append($article_page)
-        $("#page_number").html('').append($page_number)
-      } 
-    });
+    page_number = page_number + 1;
+    document.getElementById("raw-text-page").innerHTML = pages[page_number];
+    document.getElementById("page_number").innerHTML = page_number;
+    document.getElementById("id_page").value = page_number;
     $("#prev").prop("disabled", false);
-    if( $page_number == $max_page) 
+    if( page_number == $max_page) 
       $("#next").prop("disabled", true);
     else
       $("#next").prop("disabled", false);
-  })
+  });
+
+  $("#save-and-continue-btn").on('click', function(){
+    $page_number = parseInt($('#page_number').text());
+    AjaxSubmit["page_number"] = $page_number;
+    AjaxSubmit["code"] = $("#id_code").val();
+    AjaxSubmit["legislation_text"] = $("#id_text").val();
+    AjaxSubmit["page"] = $("#id_page").val();
+    AjaxSubmit["csrfmiddlewaretoken"] = $("[name=csrfmiddlewaretoken]").val()
+    AjaxSubmit["save-and-continue-btn"] = "";
+    $('input:checkbox:checked').each(function(){
+      AjaxSubmit[$(this).attr("name")] = 'on';
+    });
+    $.ajax({
+      type: 'POST',
+      url: '/legislation/add/articles',
+      data: AjaxSubmit,
+      success : function(data) {
+        $article_form = $(data).find('#addArticle');
+        $("#addArticle").html('').append($article_form);
+      }
+    });
+  });
 
 
  });
