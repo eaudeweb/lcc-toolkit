@@ -1,11 +1,5 @@
 {% extends "legislation.html" %}
 
-{% load static %}
-
-{% block hidden_variables %}
-  <input type="file" name="pdf_file_original" id="pdf_file_original"> {{selected_pdf_file}} </input>
-{% endblock %}
-
 {% block content %}
 
 <div class="row addLeg">
@@ -32,7 +26,7 @@
               </div>
               
               <div class="clearfix">            
-                <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract">  </textarea>
+                <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract"></textarea>
                 <small class="pull-right" id="rem_char"></small>
               </div>          
             </div>
@@ -62,8 +56,8 @@
                   <select name="country" required id="id_country" class="law-meta-data-combobox">  
                       {% for country in countries %}
                         <option value="{{country.iso}}"
-                            {% if forloop.first %} 
-                              selected 
+                            {% if country.name == user_country %} 
+                              selected
                             {% endif %}>
                           {{country.name}} 
                         </option>

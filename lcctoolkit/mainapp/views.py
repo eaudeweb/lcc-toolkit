@@ -5,6 +5,7 @@ import time
 
 import django.db
 import django.contrib.auth as auth
+import django.contrib.auth.mixins as mixins
 import django.shortcuts
 import django.http
 import django.views
@@ -16,12 +17,20 @@ import lcctoolkit.settings as settings
 LEGISLATION_YEAR_RANGE = range(1945, constants.LEGISLATION_DEFAULT_YEAR + 1)
 
 
-class Index(django.views.View):
+class UserPatchMixin():
 
-    template = "index.html"
+    def dispatch(self, request, *args, **kwargs):
+        self.user_profile = None
+        if request.user.is_authenticated:
+            self.user_profile = models.UserProfile.objects.get(user=request.user)
+            request.user_profile = self.user_profile
+        return super(UserPatchMixin, self).dispatch(request, *args, **kwargs)
+
+
+class Index(UserPatchMixin, django.views.View):
 
     def get(self, request):
-        return django.shortcuts.render(request, self.template)
+        return django.http.HttpResponseRedirect("/legislation/")
 
 
 class Login(django.views.View):
@@ -53,7 +62,7 @@ class Logout(django.views.View):
         return django.http.HttpResponseRedirect("/")
 
 
-class LegislationExplorer(django.views.View):
+class LegislationExplorer(UserPatchMixin, django.views.View):
 
     template = "legislation.html"
 
@@ -122,7 +131,7 @@ def selected_taxonomy(request, is_tags=False):
             pk__in=selected_ids)
 
 
-class LegislationAdd(django.views.View):
+class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
 
     template = "legislationAdd.html"
     taxonomy_classifications = models.TaxonomyClassification.\
@@ -157,7 +166,8 @@ class LegislationAdd(django.views.View):
         def add_legislation_page(law):
             if settings.DEBUG:
                 time_to_load_pdf = time.time()
-            with open(os.path.join(settings.MEDIA_ROOT, law.pdf_file.name), "rb") as fd:
+            pdf_path = os.path.join(settings.MEDIA_ROOT, law.pdf_file.name)
+            with open(pdf_path, "rb") as fd:
                 pdf = pdftotext.PDF(fd)
             if settings.DEBUG:
                 print("INFO: FS pdf file load time: %fs" %
@@ -166,7 +176,10 @@ class LegislationAdd(django.views.View):
             with django.db.transaction.atomic():
                 for idx, page in enumerate(pdf):
                     models.LegislationPage(
-                        page_text="<pre>%s</pre>" % page, page_number=idx + 1, legislation=law).save()
+                        page_text="<pre>%s</pre>" % page,
+                        page_number=idx + 1,
+                        legislation=law
+                    ).save()
             if settings.DEBUG:
                 print("INFO: ORM models.LegislationPages save time: %fs" %
                       (time.time() - time_begin_transaction))
@@ -198,7 +211,7 @@ class LegislationAdd(django.views.View):
             return django.http.HttpResponseRedirect("/legislation/")
 
 
-class LegislationManagerArticles(django.views.View):
+class LegislationManagerArticles(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
 
     template = "legislationManageArticles.html"
 
@@ -249,7 +262,7 @@ class LegislationManagerArticles(django.views.View):
             return django.http.HttpResponseRedirect("/legislation/")
 
 
-class LegislationView(django.views.View):
+class LegislationView(UserPatchMixin, django.views.View):
 
     template = "legislationView.html"
 
