@@ -133,6 +133,7 @@ def selected_taxonomy(request, is_tags=False):
 
 class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
 
+    login_url = constants.LOGIN_URL
     template = "legislationAdd.html"
     taxonomy_classifications = models.TaxonomyClassification.\
         objects.filter(level=0).order_by('code')
@@ -150,6 +151,7 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.Vie
         countries = sorted(models.Country.objects.all(), key=lambda c: c.name)
         return django.shortcuts.render(request, self.template, {
             "countries": countries,
+            "user_country": request.user_profile.country,
             "legislation_type": constants.LEGISLATION_TYPE,
             "tag_groups": [
                 LegislationAdd.TagGroupRender(tag_group)
@@ -213,6 +215,7 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.Vie
 
 class LegislationManagerArticles(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
 
+    login_url = constants.LOGIN_URL
     template = "legislationManageArticles.html"
 
     def get(self, request):
