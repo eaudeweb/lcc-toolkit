@@ -16,9 +16,20 @@
 {% endblock %}
 
 {% block content %}
+<div class="pdf-container half">
+    <div class="PDF">
+   <object data="{{ law.pdf_file.url }}" type="application/pdf" width="100%" height="600">
+       alt : <a href="your.pdf">your.pdf</a>
+   </object>
+</div>
+</div>
+<div class="page-container half">
   <div id="title" style="margin-bottom:28px;">
   Manage Articles for: {{ law.title }} | {{ law.country.name }}
   </div>
+
+
+
 
 
     <button type="button" id="prev">Previous</button>
@@ -34,28 +45,28 @@
         <div>
           <label class="label-large" for="id_code">Code</label>
         </div>
-        <div> 
+        <div>
           <!-- TODO change classes to code  -->
           <input class='law-meta-data-text-field' type="text" name="code" maxlength="64" required id="id_code" placeholder="Ex: 3.A.2.c"/>
         </div>
       </div>
-    
+
     <div class='law-meta-data-container'>
-      <div>         
+      <div>
         <label class="label-large" for="id_text">Text</label>
       </div>
-      
+
       <div class="clearfix">
         <!-- TODO change classes to text -->
         <!-- TODO check text style in textarea -->
         <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="legislation_text" maxlength="65535" required id="id_text" placeholder="Add article text"></textarea>
         <!-- TODO change change char limit -->
         <small class="pull-right" id="rem_char"></small>
-      </div>          
+      </div>
     </div>
 
     <div class="legislation-page-container">
-      <div>         
+      <div>
         <label class="label-large" for="id_page">Page</label>
       </div>
       <div>
@@ -65,7 +76,7 @@
 
     <div class='law-meta-data-container check-fields'>
       <div class="tags wrapper">
-        <div>   
+        <div>
             <label for="id_tags">Tags</label>
         </div>
         <div>
@@ -81,17 +92,17 @@
                    </span>
                     <ul class="second-level level">
                      {% for tag in tag_group.tags %}
-                       <li> 
+                       <li>
                         <input id='tag_{{ tag.pk }}' name='tag_{{ tag.pk }}' type='checkbox'>
-                        {{ tag.name }} 
+                        {{ tag.name }}
                         </input>
                        </li>
                      {% endfor %}
                     </ul>
                  </li>
-              {% endfor %}  
+              {% endfor %}
             </ul>
-        </div>  
+        </div>
       </div>
 
       <div class="classificaions wrapper">
@@ -111,14 +122,14 @@
           </span>
           <ul class="second-level level">
           {% for second_class in top_class.get_children %}
-            <li> 
+            <li>
               <span class="list-header">
                 <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox>
                 {{ second_class.name }}
                 </input>
               <i class="fa fa-plus-square" aria-hidden="true"></i>
               </span>
-            <ul class="third-level level">                      
+            <ul class="third-level level">
             {% for third_class in second_class.get_children %}
             <li>
             <input name='classification_{{ third_class.pk }}' id='classification_'{{ third_class.name }} type=checkbox>
@@ -147,5 +158,6 @@
     {% else %}
       <p>This law doesn't have any articles.</p>
     {% endif %}
+  </div>
   </div>
 {% endblock %}
