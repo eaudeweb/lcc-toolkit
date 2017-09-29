@@ -42,7 +42,10 @@ module.exports = function(grunt) {
         uglify: {
             my_target: {
                 files: {
-                    'static/js/main.js': ['static/js/main.js']
+                    'static/js/main.js': ['static/js/main.js'],
+                    'lcctoolkit/mainapp/static/js/add_articles.js' : ['lcctoolkit/mainapp/static/js/add_articles.js'],
+                    'lcctoolkit/mainapp/static/js/legislation_filter.js' : ['lcctoolkit/mainapp/static/js/legislation_filter.js'],
+                    'lcctoolkit/mainapp/static/js/login.js' : ['lcctoolkit/mainapp/static/js/login.js']
                 }
             }
         }
