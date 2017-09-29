@@ -163,9 +163,6 @@ class Legislation(models.Model):
     tags = models.ManyToManyField(TaxonomyTag)
     classifications = models.ManyToManyField(TaxonomyClassification)
 
-    title = models.CharField(max_length=256)
-    abstract = models.CharField(max_length=1024)
-
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Legislation: " + ' | '.join([self.country.name, self.law_type])

@@ -16,7 +16,7 @@
           <label class="label-large" for="id_title">Title</label>
         </div>
         <div>
-          <input class='law-meta-data-text-field' type="text" name="title" maxlength="256" required id="id_title"/>
+          <input class='law-meta-data-text-field' type="text" name="title" maxlength="256" required id="id_title" value="{{ title }}"/>
         </div>
       </div>
 
@@ -26,7 +26,7 @@
         </div>
 
         <div class="clearfix">
-          <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract"></textarea>
+          <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract">{{ abstract }}</textarea>
         <small class="pull-right" id="rem_char"></small>
         </div>
       </div>
@@ -42,10 +42,18 @@
             Document extension .pdf allowed
           </div>
 
-            <div class="custom-file-upload">
-              <input type="file" name="pdf_file" name="myfiles[]" required id="id_pdf_file" accept=".pdf, .Pdf, .PDF, .PDf">
-            </div>
+          <div class="custom-file-upload">
+            <input type="file" name="pdf_file" name="myfiles[]" required id="id_pdf_file" accept=".pdf, .Pdf, .PDF, .PDf">
           </div>
+          <!-- TODO Style this for error type; Should disapear once a pdf have been reuploaded  -->
+          {% if errors %}
+            {% if errors.pdf %}
+              <span class="pdf-error">{{ errors.pdf }}</span>
+            {% else %}
+              <span class="pdf-error">This form have errors. Please reupload file.</span>
+            {% endif %}
+          {% endif %}
+        </div>
       </div>
 
 
@@ -57,8 +65,12 @@
           <div>
             <select name="country" required id="id_country" class="law-meta-data-combobox">
               {% for country in countries %}
-              <option value="{{country.iso}}"
-                {% if country.name == user_country %}
+              <option value="{{ country.iso }}"
+                {% if selected_country %}
+                  {% if selected_country.name == country.name %}
+                    selected
+                  {% endif %}
+                {% elif country.name == user_country %}
                   selected
                 {% endif %}>
                 {{country.name}}
@@ -74,12 +86,17 @@
           </div>
           <div>
             <select name="language" id="id_law_language" class="law-meta-data-combobox">
-            <!-- <option selected="selected">Select Language</option> -->
             {% for iso, language in available_languages %}
-              <option value="{{iso}}"
-                {% if forloop.first %}
-                selected
-                {% endif %}>
+              <option value="{{ iso }}"
+                {% if selected_language %}
+                  {% if selected_language == iso %}
+                    selected
+                  {% endif %}
+                {% else %} 
+                  {% if forloop.first %} 
+                    selected 
+                  {% endif %}
+                {% endif %}> 
               {{language}}
               </option>
             {% endfor %}
@@ -94,10 +111,16 @@
           <div>
             <select name="law_type" id="id_law_type" class="law-meta-data-combobox">
             {% for law_type_key, law_value_key in legislation_type %}
-              <option value="{{law_type_key}}"
-                {% if forloop.first %}
-                selected
-                {% endif %}>
+              <option value="{{ law_type_key }}"
+                {% if selected_law_type %}
+                  {% if selected_law_type == law_type_key %}
+                    selected
+                  {% endif %}
+                {% else %} 
+                  {% if forloop.first %} 
+                    selected 
+                  {% endif %}
+                {% endif %}> 
               {{law_value_key}}
               </option>
             {% endfor %}
@@ -107,28 +130,36 @@
 
         <div class="selector">
           <div>
-            <label class="label-medium" for="id_law_year">Year of adoption </label>
+            <label class="label-medium" for="id_law_year">Year law passed</label>
           </div>
           <div>
             <select name="law_year" id="id_law_year" class="law-meta-data-combobox">
-            {% for year in adoption_years %}
-              <option value="{{year}}"
-                {% if forloop.last %}
-                selected
-                {% endif %}>
-              {{year}}
-              </option>
-            {% endfor %}
+              {% for year in adoption_years %}
+                <option value="{{ year }}"
+                    {% if selected_year_of_adoption %}
+                      {% if selected_year_of_adoption == year %}
+                        selected
+                      {% endif %}
+                    {% elif forloop.last %} 
+                      selected
+                    {% endif %}> 
+                  {{ year }} 
+                </option>
+              {% endfor %}
             </select>
           </div>
         </div>
 
         <div>
           <div>
-            <label for="id_law_year">Year of adoption mention </label>
+            <label for="id_law_year">Additional date details</label>
           </div>
           <div>
-            <input class='law-meta-data-text-field' type="text" name="year_of_adoption_mention" maxlength="256"/>
+            <input class='law-meta-data-text-field' type="text" name="year_of_adoption_mention" maxlength="256" value="{{ selected_year_details }}"/>
+            <!-- TODO: this checks if the field have a 4 digit string. Could be done in js. -->
+            {% if errors.year_details %}
+              <span class="year-details">{{ errors.year_details }}</span>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -153,8 +184,13 @@
                 <ul class="second-level level">
                  {% for tag in tag_group.tags %}
                  <li>
-                  <input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'>
-                  {{tag.name}}
+                  <input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
+                      {% if selected_tags %}
+                        {% if tag.name in selected_tags %}
+                          checked
+                        {% endif %}
+                      {% endif %}>
+                    {{tag.name}}
                   </input>
                  </li>
                  {% endfor %}
@@ -169,46 +205,57 @@
           <div>
             <label for="id_classifications">Classifications</label>
           </div>
+
           <div>
             Select the legal areas where the legislation fits
           </div>
+
           <div class="list-container">
             <ul>
-            {% for top_class in classifications %}
-              <li class="first-level level">
-            <span  class="list-header" {% if not top_class.get_children %} style="pointer-events: none;" {% endif %} >
-
-              {% if top_class.get_children %}
-                <input name='classification_{{ top_class.pk }}' type='checkbox'> {{ top_class.name }} </input>
-              <i class="fa fa-plus-square" aria-hidden="true"></i>
-              {% else %}
-              <span>
-                {{ top_class.name }}
-              </span>
-              {% endif %}
-              </span>
-              <ul class="second-level level">
-              {% for second_class in top_class.get_children %}
-                <li>
-              <span class="list-header">
-                  <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox>
-                  {{ second_class.name }}
-                  </input>
-                <i class="fa fa-plus-square" aria-hidden="true"></i>
-                </span>
-              <ul class="third-level level">
-                {% for third_class in second_class.get_children %}
-                <li>
-                <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox>
-                  {{ third_class.name }}
-                </input>
+              {% for top_class in classifications %}
+                <li class="first-level level">
+                  <span  class="list-header" {% if not top_class.get_children %} style="pointer-events: none;" {% endif %} >
+                    {% if top_class.get_children %}
+                      <input name='classification_{{ top_class.pk }}' type='checkbox'
+                          {% if top_class.name in selected_classifications %}
+                            checked
+                          {% endif %}>
+                        {{ top_class.name }}
+                      </input>
+                      <i class="fa fa-plus-square" aria-hidden="true"></i>
+                    {% else %}
+                      <span>{{ top_class.name }}</span>
+                    {% endif %}
+                  </span>
+                  
+                  <ul class="second-level level">
+                    {% for second_class in top_class.get_children %}
+                      <li>
+                        <span class="list-header">
+                          <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox
+                              {% if second_class.name in selected_classifications %}
+                                checked
+                              {% endif %}>
+                            {{ second_class.name }}
+                          </input>
+                          <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        </span>
+                        <ul class="third-level level">
+                          {% for third_class in second_class.get_children %}
+                            <li>
+                              <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
+                                  {% if third_class.name in selected_classifications %}
+                                    checked
+                                  {% endif %}> 
+                                {{ third_class.name }}
+                              </input>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {% endfor %}
+                  </ul>
                 </li>
-                {% endfor %}
-                </ul>
-              {% endfor %}
-              </ul>
-               </li>
-             </li>
               {% endfor %}
             </ul>
           </div>
