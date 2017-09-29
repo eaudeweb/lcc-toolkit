@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         concat: {
             scripts: {
                 src: [
-                    'src/js/lib/jquery.min.js','src/js/lib/bootstrap.js', 'src/js/*js'
+                    'src/js/lib/jquery.min.js','src/js/lib/tether.min.js','src/js/lib/bootstrap.js', 'src/js/*js'
                 ],
                 dest: 'static/js/main.js'
             }

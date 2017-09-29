@@ -1,20 +1,98 @@
-
 .pdf-container {
+    .btn-link {
+        color: white;
+        font-weight: bold;
+    }
+    .pdf-nav-buttons {
+        span {
+            color: white;
+        }
+        float: right;
+        margin-right: 2rem;
+    }
     &.half {
-        width: 30%;
-    float: right;
+        border: 1px solid black;
+        width: 40%;
+        float: right;
+    }
+    background: #74c5dc;
+    .title {
+        color: white;
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .tab-content {
+        background: white;
+        padding: 1rem;
+        padding-bottom: 0;
+    }
+    .nav-tabs {
+        margin-top: .5rem;
+        padding: 0;
+        >li {
+            margin-bottom: -2px;
+        }
+        .presentation {
+
+            &:hover {
+                a {
+                    border-color: white!important;
+                    background: white!important;
+                }
+            }
+            &.active,
+            &:hover {
+
+                a {
+                    color: #74c5dc;
+                    border-color: white;
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        width: 30px;
+                        background: white;
+                        top: -1px;
+                        bottom: 0;
+                        left: 100%;
+                        -webkit-clip-path: polygon(0 0, 0 0, 100% 100%, 0% 100%);
+                        clip-path: polygon(0 0, 0 0, 100% 100%, 0% 100%);
+                    }
+                }
+            }
+        }
+        a {
+            font-weight: 600;
+            color: white;
+            border-radius: 0;
+            margin: 0;
+            position: relative;
+            min-width: 100px;
+            padding: 0;
+            padding-left: 3rem;
+            border: none;
+            margin-bottom: -1px;
+            padding-bottom: 4px;
+        }
     }
 }
 
 .page-container {
     &.half {
-        width: 70%;
-    float: left;
+        width: 60%;
+        float: left;
     }
+    padding: 1rem;
 }
 
 
 .manageLeg {
+
+    margin-top: 0;
+    .row.pad-botm {
+        display: none;
+    }
     .container {
         width: 100%!important;
     }
