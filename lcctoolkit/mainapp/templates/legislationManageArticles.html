@@ -10,6 +10,8 @@
 {% block content-title %}
 {% endblock %}
 
+{% block content-wrapper-class %}manageLeg{% endblock %}
+
 {% block hidden_variables %}
   <input type="numer" id="law_pk" value="{{ law.pk }}">
   <input type="numer" id="starting_page" value="{{ starting_page }}">
@@ -18,8 +20,8 @@
 {% block content %}
 <div class="pdf-container half">
     <div class="PDF">
-   <object data="{{ law.pdf_file.url }}" type="application/pdf" width="100%" height="600">
-       alt : <a href="your.pdf">your.pdf</a>
+   <object class="pdf" data="{{ law.pdf_file.url }}#page={{starting_page}}" type="application/pdf" width="100%" height="600">
+       <a href="{{ law.pdf_file.url }}">pdf file</a>
    </object>
 </div>
 </div>
