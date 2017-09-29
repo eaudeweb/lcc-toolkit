@@ -165,26 +165,26 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.Vie
 
     def post(self, request):
 
-        errors = {}
+        def check_year_details(year_details, errors):
+            years_in_year_details = [
+                int(year)
+                for year in re.findall('\d\d\d\d', year_details)
+            ]
 
-        def check_year_details(year_details):
-            years_in_year_details = re.findall('\d\d\d\d', year_details)
-            if not years_in_year_details:
-                errors["year_details"] = "'Additional date details' field needs a 4 digit year."
+            if years_in_year_details:
+                if not any(year in LEGISLATION_YEAR_RANGE
+                           for year in years_in_year_details):
+                    errors["year_details"] = "Please add a year in %d-%d range." % (
+                        LEGISLATION_YEAR_RANGE[0], LEGISLATION_YEAR_RANGE[-1]
+                    )
             else:
-                for year in years_in_year_details:
-                    if not int(year) in LEGISLATION_YEAR_RANGE:
-                        errors["year_details"] = "Please add a year in %d-%d range." % (
-                            LEGISLATION_YEAR_RANGE[0], LEGISLATION_YEAR_RANGE[-1]
-                        )
+                errors["year_details"] = "'Additional date details' field needs a 4 digit year."
 
-        def get_text_from_pdf(file):
+        def get_text_from_pdf(file, errors):
             try:
-                pdf = pdftotext.PDF(file)
+                return pdftotext.PDF(file)
             except pdftotext.Error:
                 errors["pdf"] = "The .pdf file is corrupted. Please reupload it."
-                return None
-            return pdf
 
         def add_legislation_page(law, pdf):
             if settings.DEBUG:
@@ -221,8 +221,9 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.Vie
             for classification in selected_taxonomy(request)
         ]
 
-        check_year_details(year_details)
-        pdf = get_text_from_pdf(uploaded_file)
+        errors = {}
+        check_year_details(year_details, errors)
+        pdf = get_text_from_pdf(uploaded_file, errors)
 
         if errors:
             return django.shortcuts.render(request, self.template, {
@@ -261,9 +262,9 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.Vie
         law_obj.pdf_file.save(uploaded_file.name, uploaded_file.file)
         law_obj.save()
 
-        for tag in selected_taxonomy(request, is_tags=True):
+        for tag in tags:
             law_obj.tags.add(tag)
-        for classification in selected_taxonomy(request):
+        for classification in classifications:
             law_obj.classifications.add(classification)
 
         add_legislation_page(law_obj, pdf)
