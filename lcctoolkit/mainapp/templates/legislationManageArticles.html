@@ -7,10 +7,10 @@
   <script src="{% static "js/add_articles.js" %}"> </script>
 
   <script>
-$('.nav-tabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
+    $('.nav-tabs a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
   </script>
 {% endblock %}
 
@@ -25,35 +25,9 @@ $('.nav-tabs a').click(function (e) {
 {% endblock %}
 
 {% block content %}
-<div class="pdf-container half">
-  <div class="title">
-    Preview Legislations Full Text
-  </div>
-  <div class="pdf-nav-buttons">
-  <span>page navigation: </span>
-      <button class="btn btn-link" type="button" id="prev">Previous</button>
-      <button class="btn btn-link" type="button" id="next">Next</button>
-  </div>
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="presentation active">
-      <a href="#pdf" aria-controls="pdf" role="tab" data-toggle="tab">Original</a>
-    </li>
-    <li class="presentation">
-      <a href="#text" aria-controls="text" role="tab" data-toggle="tab">Text</a>
-    </li>
-  </ul>
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="pdf">
-       <object class="pdf" data="{{ law.pdf_file.url }}#page={{starting_page}}" type="application/pdf" width="100%" height="600">
-           <a href="{{ law.pdf_file.url }}">pdf file</a>
-       </object>
-      </div>
-    <div role="tabpanel" class="tab-pane" id="text">
-      <h1 id="page_number">{{ starting_page }}</h1>
-      <div id="raw-text-page"></div>
-    </div>
-  </div>
-</div>
+
+{% include 'addArticlePDF-half.html' %}
+
 <div class="page-container half">
   <div id="title" style="margin-bottom:28px;">
   Manage Articles for: {{ law.title }} | {{ law.country.name }}
@@ -67,7 +41,7 @@ $('.nav-tabs a').click(function (e) {
         </div>
         <div>
           <!-- TODO change classes to code  -->
-          <input class='law-meta-data-text-field' type="text" name="code" maxlength="64" required id="id_code" placeholder="Ex: 3.A.2.c"/>
+          <input class='law-meta-data-text-field' type="text" name="code" maxlength="64" required id="id_code" placeholder="Ex: 1.2.3.4"/>
         </div>
       </div>
 
@@ -166,6 +140,7 @@ $('.nav-tabs a').click(function (e) {
         </ul>
         </div>
       </div>
+    <button type="submit" class="btn btn-info" id='save-btn' name='save-btn'> Save & View articles</button>
     <button type="button" class="btn btn-info" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add another</button>
   </form>
 
@@ -179,5 +154,5 @@ $('.nav-tabs a').click(function (e) {
       <p>This law doesn't have any articles.</p>
     {% endif %}
   </div>
-  </div>
+</div>
 {% endblock %}

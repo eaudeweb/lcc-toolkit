@@ -17,9 +17,78 @@ import lcctoolkit.settings as settings
 LEGISLATION_YEAR_RANGE = range(1945, constants.LEGISLATION_DEFAULT_YEAR + 1)
 
 
+def selected_taxonomy(request, is_tags=False):
+    selector = "classification"
+    if is_tags:
+        selector = "tag"
+    selected_ids = [int(el.split('_')[1])
+                    for el in request.POST.keys()
+                    if el.startswith(selector + "_")]
+    if is_tags:
+        return models.TaxonomyTag.objects.filter(pk__in=selected_ids)
+    else:
+        return models.TaxonomyClassification.objects.filter(
+            pk__in=selected_ids)
+
+
+def taxonomy_to_string(legislation, tags=False, classification=False):
+
+    if tags:
+        return ", ".join(list(legislation.tags.values_list('name', flat=True)))
+
+    if classification:
+        return ", ".join(
+            list(legislation.classifications.values_list('name', flat=True))
+        )
+
+
 def response_error(request, errors, template="message.html"):
 
     return django.shortcuts.render(request, template, {"errors": errors})
+
+
+def legislation_form_check_year_details(year_details, errors):
+    years_in_year_details = [
+        int(year)
+        for year in re.findall('\d\d\d\d', year_details)
+    ]
+
+    if years_in_year_details:
+        if not any(year in LEGISLATION_YEAR_RANGE
+                   for year in years_in_year_details):
+            errors["year_details"] = "Please add a year in %d-%d range." % (
+                LEGISLATION_YEAR_RANGE[0], LEGISLATION_YEAR_RANGE[-1]
+            )
+    else:
+        errors["year_details"] = "'Additional date details' field needs a 4 digit year."
+
+
+def legislation_form_get_pdf_file(file, errors):
+    try:
+        return pdftotext.PDF(file)
+    except pdftotext.Error:
+        errors["pdf"] = "The .pdf file is corrupted. Please reupload it."
+
+
+def legislation_save_pdf_pages(law, pdf):
+    if settings.DEBUG:
+        time_to_load_pdf = time.time()
+    if settings.DEBUG:
+        print("INFO: FS pdf file load time: %fs" %
+              (time.time() - time_to_load_pdf))
+        time_begin_transaction = time.time()
+
+    with django.db.transaction.atomic():
+        for idx, page in enumerate(pdf):
+            models.LegislationPage(
+                page_text="<pre>%s</pre>" % page,
+                page_number=idx + 1,
+                legislation=law
+            ).save()
+
+    if settings.DEBUG:
+        print("INFO: ORM models.LegislationPages save time: %fs" %
+              (time.time() - time_begin_transaction))
 
 
 class UserPatchMixin():
@@ -27,7 +96,9 @@ class UserPatchMixin():
     def dispatch(self, request, *args, **kwargs):
         self.user_profile = None
         if request.user.is_authenticated:
-            self.user_profile = models.UserProfile.objects.get(user=request.user)
+            self.user_profile = models.UserProfile.objects.get(
+                user=request.user
+            )
             request.user_profile = self.user_profile
         return super(UserPatchMixin, self).dispatch(request, *args, **kwargs)
 
@@ -100,10 +171,10 @@ class LegislationExplorer(UserPatchMixin, django.views.View):
         # For now, tags and classifications are displayed as a string
         # @TODO find a better approach
         for law in laws:
-            law.all_tags = ", ".join(
-                list(law.tags.values_list('name', flat=True)))
-            law.all_classifications = ", ".join(
-                list(law.classifications.values_list('name', flat=True)))
+            law.all_tags = taxonomy_to_string(law, tags=True)
+            law.all_classifications = taxonomy_to_string(
+                law, classification=True
+            )
 
         legislation_year = (
             LEGISLATION_YEAR_RANGE[0],
@@ -120,64 +191,6 @@ class LegislationExplorer(UserPatchMixin, django.views.View):
         }
 
         return django.shortcuts.render(request, self.template, context)
-
-
-def selected_taxonomy(request, is_tags=False):
-    selector = "classification"
-    if is_tags:
-        selector = "tag"
-    selected_ids = [int(el.split('_')[1])
-                    for el in request.POST.keys()
-                    if el.startswith(selector + "_")]
-    if is_tags:
-        return models.TaxonomyTag.objects.filter(pk__in=selected_ids)
-    else:
-        return models.TaxonomyClassification.objects.filter(
-            pk__in=selected_ids)
-
-
-def legislation_form_check_year_details(year_details, errors):
-    years_in_year_details = [
-        int(year)
-        for year in re.findall('\d\d\d\d', year_details)
-    ]
-
-    if years_in_year_details:
-        if not any(year in LEGISLATION_YEAR_RANGE
-                   for year in years_in_year_details):
-            errors["year_details"] = "Please add a year in %d-%d range." % (
-                LEGISLATION_YEAR_RANGE[0], LEGISLATION_YEAR_RANGE[-1]
-            )
-    else:
-        errors["year_details"] = "'Additional date details' field needs a 4 digit year."
-
-
-def legislation_form_get_pdf_file(file, errors):
-    try:
-        return pdftotext.PDF(file)
-    except pdftotext.Error:
-        errors["pdf"] = "The .pdf file is corrupted. Please reupload it."
-
-
-def legislation_save_pdf_pages(law, pdf):
-    if settings.DEBUG:
-        time_to_load_pdf = time.time()
-    if settings.DEBUG:
-        print("INFO: FS pdf file load time: %fs" %
-              (time.time() - time_to_load_pdf))
-        time_begin_transaction = time.time()
-
-    with django.db.transaction.atomic():
-        for idx, page in enumerate(pdf):
-            models.LegislationPage(
-                page_text="<pre>%s</pre>" % page,
-                page_number=idx + 1,
-                legislation=law
-            ).save()
-
-    if settings.DEBUG:
-        print("INFO: ORM models.LegislationPages save time: %fs" %
-              (time.time() - time_begin_transaction))
 
 
 class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
@@ -328,6 +341,7 @@ class LegislationManagerArticles(UserPatchMixin, mixins.LoginRequiredMixin, djan
             "law": law,
             "starting_page": starting_page,
             "last_article": last_article,
+            "add_article": True,
             "tag_groups": [
                 LegislationAdd.TagGroupRender(tag_group)
                 for tag_group in models.TaxonomyTagGroup.objects.all()
@@ -354,8 +368,10 @@ class LegislationManagerArticles(UserPatchMixin, mixins.LoginRequiredMixin, djan
             return django.http.HttpResponseRedirect(
                 "/legislation/add/articles?law_id=%s" % law_id
             )
-        else:
-            return django.http.HttpResponseRedirect("/legislation/")
+        if "save-btn" in request.POST:
+            return django.http.HttpResponseRedirect(
+                "/legislation/articles?law_id=%s" % law_id
+            )
 
 
 class LegislationView(UserPatchMixin, django.views.View):
@@ -365,14 +381,12 @@ class LegislationView(UserPatchMixin, django.views.View):
     def get(self, request, legislation_pk):
         law = django.shortcuts.get_object_or_404(
             models.Legislation, pk=legislation_pk)
-        law.all_tags = ", ".join(
-            list(law.tags.values_list('name', flat=True)))
-        law.all_classifications = ", ".join(
-            list(law.classifications.values_list('name', flat=True)))
+        law.all_tags = taxonomy_to_string(law, tags=True)
+        law.all_classifications = taxonomy_to_string(law, classification=True)
         return django.shortcuts.render(request, self.template, {"law": law})
 
 
-class LegislationPagesView(django.views.View):
+class LegislationPagesView(UserPatchMixin, django.views.View):
 
     def get(self, request):
         law = models.Legislation.objects.get(pk=request.GET.get("law_id"))
@@ -382,6 +396,73 @@ class LegislationPagesView(django.views.View):
             content[page.page_number] = page.page_text
 
         return django.http.JsonResponse(content)
+
+
+class ArticlesList(UserPatchMixin, django.views.View):
+
+    template = "articlesList.html"
+
+    def get(self, request):
+        articles = models.Legislation.objects.get(
+            pk=request.GET.get("law_id")
+        ).articles.all()
+
+        for article in articles:
+            article.all_tags = taxonomy_to_string(article, tags=True)
+            article.all_classifications = taxonomy_to_string(
+                article, classification=True
+            )
+
+        return django.shortcuts.render(
+            request, self.template,
+            {"articles": articles}
+        )
+
+
+class EditArticles(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
+
+    login_url = constants.LOGIN_URL
+    template = "editArticle.html"
+
+    def get(self, request):
+        article = models.LegislationArticle.objects.get(
+            pk=request.GET.get("article_id")
+        )
+
+        return django.shortcuts.render(request, self.template, {
+            "article": article,
+            "starting_page": article.legislation_page,
+            "law": article.legislation,
+            "selected_tags": [tag.name for tag in article.tags.all()],
+            "selected_classifications": [
+                classification.name
+                for classification in article.classifications.all()
+            ],
+            "tag_groups": [
+                LegislationAdd.TagGroupRender(tag_group)
+                for tag_group in models.TaxonomyTagGroup.objects.all()
+            ],
+            "classifications": LegislationAdd.taxonomy_classifications
+        })
+
+    def post(self, request):
+        article_id = request.POST.get("article_id")
+        models.LegislationArticle.objects.filter(pk=article_id).update(
+            text=request.POST.get("legislation_text"),
+            code=request.POST.get("code"),
+            legislation_page=request.POST.get("legislation_page")
+        )
+
+        article = models.LegislationArticle.objects.get(pk=article_id)
+        article.tags.clear()
+        article.classifications.clear()
+        article.tags = selected_taxonomy(request, is_tags=True)
+        article.classifications = selected_taxonomy(request)
+        article.save()
+
+        return django.http.HttpResponseRedirect(
+            "/legislation/articles?law_id=%s" % request.POST.get("law_id")
+        )
 
 
 class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
