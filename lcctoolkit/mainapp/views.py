@@ -312,6 +312,7 @@ class LegislationManagerArticles(UserPatchMixin, mixins.LoginRequiredMixin, djan
             "law": law,
             "starting_page": starting_page,
             "last_article": last_article,
+            "add_article": True,
             "tag_groups": [
                 LegislationAdd.TagGroupRender(tag_group)
                 for tag_group in models.TaxonomyTagGroup.objects.all()
@@ -356,7 +357,7 @@ class LegislationView(UserPatchMixin, django.views.View):
         return django.shortcuts.render(request, self.template, {"law": law})
 
 
-class LegislationPagesView(django.views.View):
+class LegislationPagesView(UserPatchMixin, django.views.View):
 
     def get(self, request):
         law = models.Legislation.objects.get(pk=request.GET.get("law_id"))
@@ -368,7 +369,7 @@ class LegislationPagesView(django.views.View):
         return django.http.JsonResponse(content)
 
 
-class ArticlesList(django.views.View):
+class ArticlesList(UserPatchMixin, django.views.View):
 
     template = "articlesList.html"
 
@@ -386,4 +387,50 @@ class ArticlesList(django.views.View):
         return django.shortcuts.render(
             request, self.template,
             {"articles": articles}
+        )
+
+
+class EditArticles(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
+
+    login_url = constants.LOGIN_URL
+    template = "editArticle.html"
+
+    def get(self, request):
+        article = models.LegislationArticle.objects.get(
+            pk=request.GET.get("article_id")
+        )
+
+        return django.shortcuts.render(request, self.template, {
+            "article": article,
+            "starting_page": article.legislation_page,
+            "law": article.legislation,
+            "selected_tags": [tag.name for tag in article.tags.all()],
+            "selected_classifications": [
+                classification.name
+                for classification in article.classifications.all()
+            ],
+            "tag_groups": [
+                LegislationAdd.TagGroupRender(tag_group)
+                for tag_group in models.TaxonomyTagGroup.objects.all()
+            ],
+            "classifications": LegislationAdd.taxonomy_classifications
+        })
+
+    def post(self, request):
+        article_id = request.POST.get("article_id")
+        models.LegislationArticle.objects.filter(pk=article_id).update(
+            text=request.POST.get("legislation_text"),
+            code=request.POST.get("code"),
+            legislation_page=request.POST.get("legislation_page")
+        )
+
+        article = models.LegislationArticle.objects.get(pk=article_id)
+        article.tags.clear()
+        article.classifications.clear()
+        article.tags = selected_taxonomy(request, is_tags=True)
+        article.classifications = selected_taxonomy(request)
+        article.save()
+
+        return django.http.HttpResponseRedirect(
+            "/legislation/articles?law_id=%s" % request.POST.get("law_id")
         )

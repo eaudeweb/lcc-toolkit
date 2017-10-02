@@ -25,35 +25,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="pdf-container half">
-  <div class="title">
-    Preview Legislations Full Text
-  </div>
-  <div class="pdf-nav-buttons">
-  <span>Page navigation: </span>
-      <button class="btn btn-link" type="button" id="prev">Previous</button>
-      <button class="btn btn-link" type="button" id="next">Next</button>
-  </div>
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="presentation active">
-      <a href="#pdf" aria-controls="pdf" role="tab" data-toggle="tab">Original</a>
-    </li>
-    <li class="presentation">
-      <a href="#text" aria-controls="text" role="tab" data-toggle="tab">Text</a>
-    </li>
-  </ul>
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="pdf">
-       <object class="pdf" data="{{ law.pdf_file.url }}#page={{starting_page}}" type="application/pdf" width="100%" height="600">
-           <a href="{{ law.pdf_file.url }}">pdf file</a>
-       </object>
-      </div>
-    <div role="tabpanel" class="tab-pane" id="text">
-      <h1 id="page_number">{{ starting_page }}</h1>
-      <div id="raw-text-page"></div>
-    </div>
-  </div>
-</div>
+
+{% include 'addArticlePDF-half.html' %}
+
 <div class="page-container half">
   <div id="title" style="margin-bottom:28px;">
   Manage Articles for: {{ law.title }} | {{ law.country.name }}
@@ -180,5 +154,5 @@
       <p>This law doesn't have any articles.</p>
     {% endif %}
   </div>
-  </div>
+</div>
 {% endblock %}

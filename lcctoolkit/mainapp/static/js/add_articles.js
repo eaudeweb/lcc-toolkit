@@ -27,8 +27,13 @@ $(document).ready(function(){
                  .attr("type", "hidden")
                  .attr("id", "form_page_id")
                  .attr("name", "page").val(page_number);
+  var input_article = $("<input>")
+                 .attr("type", "hidden")
+                 .attr("name", "article_id").val(parseInt($("#article_pk").val()));
   $('#addArticle').append($(input_law_id));
   $('#addArticle').append($(input_page));
+  $('#editArticle').append($(input_article));
+  $('#editArticle').append($(input_law_id));
 
   $max_page = Object.keys(pages).length;
   document.getElementById("raw-text-page").innerHTML = pages[$("#starting_page").val()];

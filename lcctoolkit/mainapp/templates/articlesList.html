@@ -10,6 +10,7 @@
       <p>{{ article.text }}</p>
       <p>Tags: {{ article.all_tags }}</p>
       <p>Classifications: {{ article.all_classifications }}</p>
+      <a href="/legislation/edit/articles?article_id={{ article.pk }}">Edit</a>
     </div>
   {% endfor %}
   </div>
