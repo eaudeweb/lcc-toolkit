@@ -7,10 +7,10 @@
   <script src="{% static "js/add_articles.js" %}"> </script>
 
   <script>
-$('.nav-tabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
+    $('.nav-tabs a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
   </script>
 {% endblock %}
 
@@ -30,7 +30,7 @@ $('.nav-tabs a').click(function (e) {
     Preview Legislations Full Text
   </div>
   <div class="pdf-nav-buttons">
-  <span>page navigation: </span>
+  <span>Page navigation: </span>
       <button class="btn btn-link" type="button" id="prev">Previous</button>
       <button class="btn btn-link" type="button" id="next">Next</button>
   </div>
@@ -166,6 +166,7 @@ $('.nav-tabs a').click(function (e) {
         </ul>
         </div>
       </div>
+    <button type="submit" class="btn btn-info" id='save-btn' name='save-btn'> Save & View articles</button>
     <button type="button" class="btn btn-info" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add another</button>
   </form>
 
