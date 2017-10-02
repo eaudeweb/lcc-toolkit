@@ -1,0 +1,18 @@
+{% extends "legislation.html" %}
+
+
+{% block content %}
+  <div class="articles-container">
+  {% for article in articles %}
+    <div class="">
+      <h2>{{ article.code }}</h2>
+      <p>{{ article.legislation }}</p>
+      <p>{{ article.text }}</p>
+      <p>Tags: {{ article.all_tags }}</p>
+      <p>Classifications: {{ article.all_classifications }}</p>
+    </div>
+  {% endfor %}
+  </div>
+  <!-- TODO button? -->
+  <a href="/legislation">View all legislations</a>
+{% endblock %}

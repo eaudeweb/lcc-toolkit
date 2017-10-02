@@ -17,12 +17,39 @@ import lcctoolkit.settings as settings
 LEGISLATION_YEAR_RANGE = range(1945, constants.LEGISLATION_DEFAULT_YEAR + 1)
 
 
+def selected_taxonomy(request, is_tags=False):
+    selector = "classification"
+    if is_tags:
+        selector = "tag"
+    selected_ids = [int(el.split('_')[1])
+                    for el in request.POST.keys()
+                    if el.startswith(selector + "_")]
+    if is_tags:
+        return models.TaxonomyTag.objects.filter(pk__in=selected_ids)
+    else:
+        return models.TaxonomyClassification.objects.filter(
+            pk__in=selected_ids)
+
+
+def taxonomy_to_string(legislation, tags=False, classification=False):
+
+    if tags:
+        return ", ".join(list(legislation.tags.values_list('name', flat=True)))
+
+    if classification:
+        return ", ".join(
+            list(legislation.classifications.values_list('name', flat=True))
+        )
+
+
 class UserPatchMixin():
 
     def dispatch(self, request, *args, **kwargs):
         self.user_profile = None
         if request.user.is_authenticated:
-            self.user_profile = models.UserProfile.objects.get(user=request.user)
+            self.user_profile = models.UserProfile.objects.get(
+                user=request.user
+            )
             request.user_profile = self.user_profile
         return super(UserPatchMixin, self).dispatch(request, *args, **kwargs)
 
@@ -95,10 +122,10 @@ class LegislationExplorer(UserPatchMixin, django.views.View):
         # For now, tags and classifications are displayed as a string
         # @TODO find a better approach
         for law in laws:
-            law.all_tags = ", ".join(
-                list(law.tags.values_list('name', flat=True)))
-            law.all_classifications = ", ".join(
-                list(law.classifications.values_list('name', flat=True)))
+            law.all_tags = taxonomy_to_string(law, tags=True)
+            law.all_classifications = taxonomy_to_string(
+                law, classification=True
+            )
 
         legislation_year = (
             LEGISLATION_YEAR_RANGE[0],
@@ -115,20 +142,6 @@ class LegislationExplorer(UserPatchMixin, django.views.View):
         }
 
         return django.shortcuts.render(request, self.template, context)
-
-
-def selected_taxonomy(request, is_tags=False):
-    selector = "classification"
-    if is_tags:
-        selector = "tag"
-    selected_ids = [int(el.split('_')[1])
-                    for el in request.POST.keys()
-                    if el.startswith(selector + "_")]
-    if is_tags:
-        return models.TaxonomyTag.objects.filter(pk__in=selected_ids)
-    else:
-        return models.TaxonomyClassification.objects.filter(
-            pk__in=selected_ids)
 
 
 class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
@@ -325,8 +338,10 @@ class LegislationManagerArticles(UserPatchMixin, mixins.LoginRequiredMixin, djan
             return django.http.HttpResponseRedirect(
                 "/legislation/add/articles?law_id=%s" % law_id
             )
-        else:
-            return django.http.HttpResponseRedirect("/legislation/")
+        if "save-btn" in request.POST:
+            return django.http.HttpResponseRedirect(
+                "/legislation/articles?law_id=%s" % law_id
+            )
 
 
 class LegislationView(UserPatchMixin, django.views.View):
@@ -336,10 +351,8 @@ class LegislationView(UserPatchMixin, django.views.View):
     def get(self, request, legislation_pk):
         law = django.shortcuts.get_object_or_404(
             models.Legislation, pk=legislation_pk)
-        law.all_tags = ", ".join(
-            list(law.tags.values_list('name', flat=True)))
-        law.all_classifications = ", ".join(
-            list(law.classifications.values_list('name', flat=True)))
+        law.all_tags = taxonomy_to_string(law, tags=True)
+        law.all_classifications = taxonomy_to_string(law, classification=True)
         return django.shortcuts.render(request, self.template, {"law": law})
 
 
@@ -353,3 +366,24 @@ class LegislationPagesView(django.views.View):
             content[page.page_number] = page.page_text
 
         return django.http.JsonResponse(content)
+
+
+class ArticlesList(django.views.View):
+
+    template = "articlesList.html"
+
+    def get(self, request):
+        articles = models.Legislation.objects.get(
+            pk=request.GET.get("law_id")
+        ).articles.all()
+
+        for article in articles:
+            article.all_tags = taxonomy_to_string(article, tags=True)
+            article.all_classifications = taxonomy_to_string(
+                article, classification=True
+            )
+
+        return django.shortcuts.render(
+            request, self.template,
+            {"articles": articles}
+        )

@@ -4,10 +4,13 @@
 {% block content %}
   <p><b>Country</b>: {{ law.country.name }}</p>
   <p><b>Year</b>: {{ law.year }}</p>
+  <p><b>Date details</b>: {{ law.year_mention }}</p>
   <p><b>Full Text</b>: {{ law.pdf_file_name }}</p>
   <p><b>Abstract</b>: {{ law.abstract }}</p>
   {% if request.user.is_authenticated %}
-    <a href="">Visualize the articles</a>
+    {% if law.articles.all %}
+      <a href="/legislation/articles?law_id={{ law.pk }}">Visualize the articles</a>
+    {% endif %}
     <a href="/legislation/add/articles?law_id={{ law.pk }}">Add articles</a>
   {% endif %}
   <p><b>Classification</b>: {{ law.all_classifications }}</p>
