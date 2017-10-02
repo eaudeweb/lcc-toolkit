@@ -48,6 +48,10 @@ class UserProfile(models.Model):
 
     @property
     def country(self):
+        if self.home_country is None:
+            #@TODO  Please remove this when User management is added
+            #      in the frontend.
+            return "User without a country"
         return self.home_country.name
 
     def __str__(self):
