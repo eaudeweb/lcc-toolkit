@@ -11,6 +11,7 @@
     {% if law.articles.all %}
       <a href="/legislation/articles?law_id={{ law.pk }}">Visualize the articles</a>
     {% endif %}
+    <a href="/legislation/edit/?law_id={{law.pk}}">Edit</a>
     <a href="/legislation/add/articles?law_id={{ law.pk }}">Add articles</a>
   {% endif %}
   <p><b>Classification</b>: {{ law.all_classifications }}</p>
