@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^login/', views.Login.as_view()),
     url(r'^logout/', views.Logout.as_view()),
     url(r'^legislation/add/$', views.LegislationAdd.as_view()),
+    url(r'^legislation/edit/.*', views.LegislationEditView.as_view()),
     url(r'^legislation/add/articles.*$', views.LegislationManagerArticles.as_view(), name="add_articles"),
     url(r'^legislation/$', views.LegislationExplorer.as_view(), name="legislation"),
     url(r'^legislation/(?P<legislation_pk>\d+)$', views.LegislationView.as_view(), name="legislation_details"),
