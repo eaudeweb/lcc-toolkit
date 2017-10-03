@@ -15,27 +15,30 @@
 
 
 {% block content %}
+  <div id="title" class="heading">
+    Legislation Explorer
+  </div>
   <div style="margin-left: -1px">
     <div style="margin-top:28px;">
       <a href="/legislation/add/" class="btn btn-info">Add legislation</a>
     </div>
   </div>
   <div id="laws">
-      {% for law in laws %}
-        <div class="law-container">
-          <a href="{% url 'legislation_details' law.pk %}"><h3>{{ law }} - {{ law.title }}</h3></a>
+    {% for law in laws %}
+      <div class="law-container">
+        <a href="{% url 'legislation_details' law.pk %}"><h3>{{ law }} - {{ law.title }}</h3></a>
 
-          <h4 class="country_year law-country">
-              {% static "" as baseUrl %}
-              <img  src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.png" >
-            <span>{{ law.country.name }}</span>
-          <span> | {{ law.year }}</span>
-          </h4>
+        <h4 class="country_year law-country">
+            {% static "" as baseUrl %}
+            <img  src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.png" >
+          <span>{{ law.country.name }}</span>
+        <span> | {{ law.year }}</span>
+        </h4>
 
-          <small class="law-tag"><b>Taxonomy Tags</b>: {{ law.all_tags }}</small> <br>
-          <small class="law-classification"><b>Taxonomy Classification</b>: {{ law.all_classifications }}</small>
-        </div>
-      {% endfor %}
+        <small class="law-tag"><b>Taxonomy Tags</b>: {{ law.all_tags }}</small> <br>
+        <small class="law-classification"><b>Taxonomy Classification</b>: {{ law.all_classifications }}</small>
+      </div>
+    {% endfor %}
   </div>
 
   <div class="filters">

@@ -31,7 +31,7 @@
 {% include 'addArticlePDF-half.html' %}
 
 <div class="page-container half">
-  <div id="title" style="margin-bottom:28px;">
+  <div id="title" class="heading" style="margin-bottom:28px;">
   Manage Articles for: {{ law.title }} | {{ law.country.name }}
   </div>
   <form id="addArticle" method="post" action="/legislation/add/articles?law_id={{ law.pk }}">

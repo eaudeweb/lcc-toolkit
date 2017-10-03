@@ -404,9 +404,10 @@ class ArticlesList(UserPatchMixin, django.views.View):
     template = "articlesList.html"
 
     def get(self, request):
-        articles = models.Legislation.objects.get(
+        law = models.Legislation.objects.get(
             pk=request.GET.get("law_id")
-        ).articles.all()
+        )
+        articles = law.articles.all()
 
         for article in articles:
             article.all_tags = taxonomy_to_string(article, tags=True)
@@ -414,10 +415,10 @@ class ArticlesList(UserPatchMixin, django.views.View):
                 article, classification=True
             )
 
-        return django.shortcuts.render(
-            request, self.template,
-            {"articles": articles}
-        )
+        return django.shortcuts.render(request, self.template, {
+            "articles": articles,
+            "law": law
+        })
 
 
 class EditArticles(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):

@@ -33,7 +33,7 @@
   <div id="title" style="margin-bottom:28px;">
   Manage Articles for: {{ law.title }} | {{ law.country.name }}
   </div>
-  <form id="editArticle" method="post" action="/legislation/edit/articles?article_id={{ article.pk }}">
+  <form id="editArticle" method="post" action="/legislation/articles/edit?article_id={{ article.pk }}">
     {% csrf_token %}
 
       <div class='law-meta-data-container'>
