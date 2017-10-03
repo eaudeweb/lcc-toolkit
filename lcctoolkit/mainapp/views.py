@@ -493,7 +493,7 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, django.view
         countries = sorted(models.Country.objects.all(), key=lambda c: c.name)
         if is_post:
             selected_tags = [tag.name for tag in selected_taxonomy(request, is_tags=True)]
-            selected_class = [ _cls.name for _cls in selected_taxonomy(request)]
+            selected_class = [_cls.name for _cls in selected_taxonomy(request)]
         else:
             selected_tags = [tag.name for tag in law.tags.all()]
             selected_class = [_cls.name for _cls in law.classifications.all()]
@@ -502,26 +502,25 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, django.view
             "countries": countries,
             "available_languages": constants.ALL_LANGUAGES,
             "legislation_type": constants.LEGISLATION_TYPE,
-            "tag_groups": [LegislationAdd.TagGroupRender(tag_group) 
+            "tag_groups": [LegislationAdd.TagGroupRender(tag_group)
                             for tag_group in models.TaxonomyTagGroup.objects.all()],
             "classifications": LegislationAdd.taxonomy_classifications,
             "adoption_years": LEGISLATION_YEAR_RANGE,
             "selected_tags": selected_tags,
-            "selected_classifications": selected_class, 
+            "selected_classifications": selected_class,
             "errors": errors
         }
 
     def get(self, request):
         law_id = request.GET.get("law_id", None)
-        if law_id is None  or law_id == '':
+        if law_id is None or law_id == '':
             return response_error(
                 request, ["Internal error: No legislation id was provided!"])
         try:
             law = models.Legislation.objects.get(pk=int(law_id))
-            countries = sorted(models.Country.objects.all(), key=lambda c: c.name)
-        except models.Legislation.DoesNotExist as e:
+        except models.Legislation.DoesNotExist:
                     return response_error(
-                request, ["Internal error: No legislation found for id %s!" % law_id])
+                        request, ["Internal error: No legislation found for id %s!" % law_id])
         return django.shortcuts.render(request, self.template, self.get_render_context(request, law))
 
     def post(self, request):
@@ -541,8 +540,8 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, django.view
         legislation_form_check_year_details(request.POST["year_of_adoption_mention"], errors)
         law = self.get_law_patched_with_request(request, law)
         if errors:
-            return django.shortcuts.render(request, self.template, 
-                    self.get_render_context(request, law, errors=errors, is_post=True))
+            context = self.get_render_context(request, law, errors=errors, is_post=True)
+            return django.shortcuts.render(request, self.template, context)
         if has_pdf:
             law.pdf_file_name = request.FILES['pdf_file'].name
             law.pdf_file.save(
