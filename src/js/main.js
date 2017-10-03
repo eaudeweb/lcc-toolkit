@@ -25,6 +25,44 @@ function removeHighlight(item) {
 }
 
 
+function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+        text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+        text = document.selection.createRange().text;
+    }
+    return text;
+}
+
+
+var functionality = ['Append', 'Replace'];
+
+
+function thisRespondHightlightText(thisDiv, statebutton){
+   $('body').on("mouseup", thisDiv , function () {
+        var selectedText = getSelectionText();
+        if(statebutton.html() == functionality[0]){
+            $('#id_text').val(function(i, text) {
+                if(selectedText.length == 0)
+                    return text
+                if($(this).val().length == 0){
+                    return selectedText;
+                }
+                else
+                    return text + '\n' + selectedText;
+            });
+        }
+        else{
+            $('#id_text').val(function(i, text){
+                if(selectedText.length == 0)
+                    return text
+                else
+                    return selectedText
+            });
+        }
+    });
+}
 
 $(document).ready(function() {
     $('body').on('click','.list-header', function(e) {
@@ -42,7 +80,7 @@ $(document).ready(function() {
 
     $("#rem_char").html("1024 characters left");
 
-    $('textarea').keyup(function() {
+    $('body').on("change keyup input", "textarea" , function() {
         $("#rem_char").html((1024 - this.value.length) + " characters left");
     })
 
@@ -57,6 +95,19 @@ $(document).ready(function() {
 
         }
     });
+
+    $('.state button').html(functionality[0])
+
+    thisRespondHightlightText('#raw-text-page', $('.state button'))
+
+
+    $('body').on('click','.state button', function(){
+        if($(this).html() == functionality[0])
+            $(this).html(functionality[1])
+        else
+            $(this).html(functionality[0])
+    })
+
 
     $lastestClass = $('.classificaions').find('input:checked')
     $lastestClass.each(function(){

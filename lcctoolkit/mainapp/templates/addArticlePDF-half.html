@@ -22,7 +22,11 @@
        </object>
       </div>
     <div role="tabpanel" class="tab-pane" id="text">
-      <h1 id="page_number">{{ starting_page }}</h1>
+      <h1 style="display: inline;">Page </h1><h1 style="display: inline;" id="page_number">{{ starting_page }}</h1>
+      <div class="state">
+        <span>Chose the selection functionality</span>
+        <button type="button" class="btn btn-info"></button>
+    </div>
       <div id="raw-text-page"></div>
     </div>
   </div>
