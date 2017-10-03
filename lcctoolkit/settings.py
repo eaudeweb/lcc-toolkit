@@ -145,6 +145,9 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-MEDIA_ROOT = os.path.join(STATIC_ROOT, "upload")
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "uploadfiles")
+if DEBUG and not os.path.exists(MEDIA_ROOT):
+    os.makedirs(MEDIA_ROOT)
+
 
 MEDIA_URL = "/files/"
