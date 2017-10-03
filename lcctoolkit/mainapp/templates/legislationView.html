@@ -2,20 +2,33 @@
 
 
 {% block content %}
-  <p><b>Country</b>: {{ law.country.name }}</p>
-  <p><b>Year</b>: {{ law.year }}</p>
-  <p><b>Date details</b>: {{ law.year_mention }}</p>
-  <p><b>Full Text</b>: {{ law.pdf_file_name }}</p>
-  <p><b>Abstract</b>: {{ law.abstract }}</p>
+<div class="viz-container">
+  <h3>Country</h3>
+  <p>{{ law.country.name }}</p>
+  <h3>Year</h3>
+  <p>{{ law.year }}</p>
+  <h3>Date details</h3>
+  <p>{{ law.year_mention }}</p>
+  <h3>Full Text</h3>
+  <p>{{ law.pdf_file_name }}</p>
+  <h3>Abstract</h3>
+  <p>{{ law.abstract }}</p>
+  <h3>Classification</h3>
+  <p>{{ law.all_classifications }}</p>
+  <h3>Tags</h3>
+  <p>{{ law.all_tags }}</p>
+  <h3>Language</h3>
+  <p><{{ law.language }}</p>
+  <h3>Document type</h3>
+  <p>{{ law.law_type }}</p>
   {% if request.user.is_authenticated %}
+  <div class="button-wrapper">
     {% if law.articles.all %}
     <a class="btn btn-info" href="/legislation/articles?law_id={{ law.pk }}">Visualize the articles</a>
     {% endif %}
     <a class="btn btn-info" href="/legislation/edit/?law_id={{law.pk}}">Edit</a>
     <a class="btn btn-info" href="/legislation/add/articles?law_id={{ law.pk }}">Add articles</a>
+  </div>
   {% endif %}
-  <p><b>Classification</b>: {{ law.all_classifications }}</p>
-  <p><b>Tags</b>: {{ law.all_tags }}</p>
-  <p><b>Language</b>: {{ law.language }}</p>
-  <p><b>Document type</b>: {{ law.law_type }}</p>
+</div>
 {% endblock %}
