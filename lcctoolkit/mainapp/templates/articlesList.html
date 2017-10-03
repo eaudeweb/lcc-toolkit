@@ -4,7 +4,7 @@
 {% block content %}
   <div class="articles-container">
   {% for article in articles %}
-    <div class="viz-container ">
+    <div class="viz-container">
       <a class="btn btn-info pull-right" href="/legislation/edit/articles?article_id={{ article.pk }}">Edit</a>
       {% if article.code %}
       <h3>{{ article.code }}</h3>

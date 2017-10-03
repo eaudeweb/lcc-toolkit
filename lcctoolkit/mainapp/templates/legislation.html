@@ -20,9 +20,16 @@
       {% for law in laws %}
         <div class="law-container">
           <a href="{% url 'legislation_details' law.pk %}"><h3>{{ law }} - {{ law.title }}</h3></a>
-          <p class="law-country"><b>Country</b>: {{ law.country.name }}</p>
-          <p class="law-tag"><b>Taxonomy Tags</b>: {{ law.all_tags }}</p>
-          <p class="law-classification"><b>Taxonomy Classification</b>: {{ law.all_classifications }}</p>
+
+          <h4 class="country_year law-country">
+              {% static "" as baseUrl %}
+              <img  src="{{ baseUrl }}/img/flags/{{ law.country.iso |lower }}.png" >
+            <span>{{ law.country.name }}</span>
+          <span> | {{ law.year }}</span>
+          </h4>
+
+          <small class="law-tag"><b>Taxonomy Tags</b>: {{ law.all_tags }}</small> <br>
+          <small class="law-classification"><b>Taxonomy Classification</b>: {{ law.all_classifications }}</small>
         </div>
       {% endfor %}
   </div>
