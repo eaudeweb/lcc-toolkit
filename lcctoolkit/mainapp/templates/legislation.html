@@ -15,9 +15,6 @@
 
 
 {% block content %}
-  <div style="margin-bottom:28px;">
-    <a href="/legislation/add/" class="btn btn-info">Add legislation</a>
-  </div>
 
   <div id="laws">
       {% for law in laws %}
@@ -81,5 +78,10 @@
       <button type="button" class="btn btn-primary" id="submitButton">Apply filters</button>
     </div>
 
+  </div>
+  <div class="button-wrapper">
+    <div style="margin-top:28px;">
+      <a href="/legislation/add/" class="btn btn-info">Add legislation</a>
+    </div>
   </div>
 {% endblock %}

@@ -26,7 +26,7 @@ function removeHighlight(item) {
 
 
 $(document).ready(function() {
-    $('.list-header').on('click', function(e) {
+    $('body').on('click','.list-header', function(e) {
         if ($(e.target).attr('type') == "checkbox") {
             return
         }

@@ -66,7 +66,7 @@ $(document).ready(function(){
       $("#next").prop("disabled", false);
   });
 
-  $("#save-and-continue-btn").on('click', function(){
+  $("body").on('click','#save-and-continue-btn', function(){
     $page_number = parseInt($('#page_number').text());
     AjaxSubmit["page_number"] = $page_number;
     AjaxSubmit["code"] = $("#id_code").val();

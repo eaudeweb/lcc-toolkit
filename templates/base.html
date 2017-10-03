@@ -48,8 +48,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
-                    <img src="{% static "img/logo.png" %}" />
+                <a class="brand" href="/legislation">
+                    <img style="width: 170px;" src="{% static "img/peace.jpg" %}" />
+                    <img style="width: 79px;" src="{% static "img/unep.png" %}" />
+                    <img style="width: 103px;margin-left: 3rem;" src="{% static "img/unfccc.jpg" %}" />
+
+                    <!-- <span>Legislation Explorer</span> -->
                 </a>
             </div>
 
@@ -59,23 +63,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Header menu & horizontal elements -->
-    <section id="nav-header" class="menu-section">
-        <div class="container">
-            <div class="row ">
-                <div class="col-md-12">
-                    <div class="navbar-collapse collapse ">
-                        <ul id="menu-top" class="nav navbar-nav navbar-right">
-						{% block menu-top %}
-						{% endblock %}
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 
 	<!-- Content-middle  -->
     <div class="content-wrapper {% block content-wrapper-class %}{% endblock %}">
