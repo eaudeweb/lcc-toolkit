@@ -24,6 +24,8 @@ $(document).ready(function(){
     }
   });
 
+  $('#addArticle').validate({});
+
   var input_law_id = $("<input>")
                  .attr("type", "hidden")
                  .attr("name", "law_id").val(AjaxSubmit["law_id"]);
@@ -71,25 +73,27 @@ $(document).ready(function(){
   });
 
   $("body").on('click','#save-and-continue-btn', function(){
-    $page_number = parseInt($('#page_number').text());
-    AjaxSubmit["page_number"] = $page_number;
-    AjaxSubmit["code"] = $("#id_code").val();
-    AjaxSubmit["legislation_text"] = $("#id_text").val();
-    AjaxSubmit["page"] = $("#id_page").val();
-    AjaxSubmit["csrfmiddlewaretoken"] = $("[name=csrfmiddlewaretoken]").val()
-    AjaxSubmit["save-and-continue-btn"] = "";
-    $('input:checkbox:checked').each(function(){
-      AjaxSubmit[$(this).attr("name")] = 'on';
-    });
-    $.ajax({
-      type: 'POST',
-      url: '/legislation/add/articles',
-      data: AjaxSubmit,
-      success : function(data) {
-        $page_container_half = $(data).find('.page-container').html();
-        $(".page-container").html('').append($page_container_half);
-      }
-    });
+    if ($("#addArticle").valid()) {
+      $page_number = parseInt($('#page_number').text());
+      AjaxSubmit["page_number"] = $page_number;
+      AjaxSubmit["code"] = $("#id_code").val();
+      AjaxSubmit["legislation_text"] = $("#id_text").val();
+      AjaxSubmit["page"] = $("#id_page").val();
+      AjaxSubmit["csrfmiddlewaretoken"] = $("[name=csrfmiddlewaretoken]").val()
+      AjaxSubmit["save-and-continue-btn"] = "";
+      $('input:checkbox:checked').each(function(){
+        AjaxSubmit[$(this).attr("name")] = 'on';
+      });
+      $.ajax({
+        type: 'POST',
+        url: '/legislation/add/articles',
+        data: AjaxSubmit,
+        success : function(data) {
+          $page_container_half = $(data).find('.page-container').html();
+          $(".page-container").html('').append($page_container_half);
+        }
+      });
+    }
   });
 
  });

@@ -49,17 +49,17 @@ $(document).ready(function() {
     $(".check-fields input").change(function() {
         if (this.checked) {
             highlightChecked($(this))
-            $(this).parent().addClass('selected')
+            // $(this).parent().addClass('selected')
         } else {
             removeHighlight($(this))
-            $(this).parent().removeClass('selected')
+            // $(this).parent().removeClass('selected')
 
         }
     });
 
-    $lastestest = $('.classificaions').find('input:last')
-   highlightChecked($lastestest)
-   console.log($lastestest)
-
+    $lastestClass = $('.classificaions').find('input:last')
+    highlightChecked($lastestClass)
+    $lastestTag = $('.tags').find('input:last')
+    highlightChecked($lastestTag)
 
 })

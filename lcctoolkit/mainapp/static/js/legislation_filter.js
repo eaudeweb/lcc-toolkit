@@ -26,7 +26,7 @@ $(document).ready(function(){
       success : function(data) {
         $laws = $(data).find('#laws');
         $laws_container = $laws.find('.law-container').html()
-        $("#laws").html('').append($laws)
+        $("#laws").html('').append($laws_container)
         if($laws_container.length == 0) {
           $('#laws').html('<span class="error">No legislation found</span>')
         }

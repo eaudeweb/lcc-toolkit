@@ -5,6 +5,7 @@
 
 {% block extra-scripts %}
   <script src="{% static "js/add_articles.js" %}"> </script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
 
   <script>
     $('.nav-tabs a').click(function (e) {
@@ -37,7 +38,7 @@
 
       <div class='law-meta-data-container'>
         <div>
-          <label class="label-large" for="id_code">Code</label>
+          <label class="label-large" for="id_code">Code {{ law.pdf_file.url }}</label>
         </div>
         <div>
           <!-- TODO change classes to code  -->
