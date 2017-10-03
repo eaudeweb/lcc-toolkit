@@ -12,7 +12,7 @@
 
 {% block content %}
   <div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12 login-wrapper">
      <div class="panel panel-info">
       <div class="panel-heading">
         Log in
@@ -28,7 +28,7 @@
             <label>Enter password</label>
             <input class="form-control" type="password" name="password" id="form-password-input"/>
             <p id='auth-failed-error-msg' class="help-block form-field-error hidden">Authentication failed!</p>
-            <p id='user-empty-error-msg' class="help-block form-field-error hidden">User name, or password field empty!</p>                                            
+            <p id='user-empty-error-msg' class="help-block form-field-error hidden">User name, or password field empty!</p>
          </div>
          <button type="submit" class="btn btn-info" id="login-btn"> Log in </button>
          </form>
