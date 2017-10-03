@@ -4,14 +4,12 @@
 
 {% block content %}
 <div class="viz-container">
-  <div class="country">
+  <h4 class="country_year">
       {% static "" as baseUrl %}
       <img  src="{{ baseUrl }}/img/flags/{{ law.country.iso |lower }}.png" >
-    <h3>Country</h3>
-    <p>{{ law.country.name }}</p>
-  </div>
-  <h3>Year</h3>
-  <p>{{ law.year }}</p>
+    <span>{{ law.country.name }}</span>
+  <span> | {{ law.year }}</span>
+  </h4>
   <h3>Date details</h3>
   <p>{{ law.year_mention }}</p>
   <h3>Full Text</h3>
