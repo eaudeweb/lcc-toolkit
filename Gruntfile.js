@@ -45,7 +45,8 @@ module.exports = function(grunt) {
                     'static/js/main.js': ['static/js/main.js'],
                     'lcctoolkit/mainapp/static/js/add_articles.js' : ['lcctoolkit/mainapp/static/js/add_articles.js'],
                     'lcctoolkit/mainapp/static/js/legislation_filter.js' : ['lcctoolkit/mainapp/static/js/legislation_filter.js'],
-                    'lcctoolkit/mainapp/static/js/login.js' : ['lcctoolkit/mainapp/static/js/login.js']
+                    'lcctoolkit/mainapp/static/js/login.js' : ['lcctoolkit/mainapp/static/js/login.js'],
+                    'lcctoolkit/mainapp/static/js/jquery.validate.js' : ['lcctoolkit/mainapp/static/js/jquery.validate.js']
                 }
             }
         }
