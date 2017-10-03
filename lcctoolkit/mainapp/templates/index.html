@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block menu-top %}
 	<li> <a href="/#" class="menu-top-active"> Dashboard </a> </li>
@@ -8,11 +7,7 @@
 
 {% block header-top-right %}
 	{% if request.user.is_authenticated %}
-		{% static "" as baseUrl %}
-        <img  src="{{ baseUrl }}/img/flags/{{ request.user_profile.country.iso |lower }}.png" >
-		{{request.user_profile.country}} |
-
-		{{request.user.get_full_name}}
+		{{request.user_profile.country}} | {{request.user.get_full_name}}
 		<strong> {{request.user.full_name }} </strong> |
 		<a href="/logout/" id='login-link'>Logout</a>
 	{% else %}
