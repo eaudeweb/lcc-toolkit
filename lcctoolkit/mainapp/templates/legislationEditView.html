@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block extra-scripts %} 
+{% block extra-scripts %}
   <script src="{% static "js/legislation_edit.js" %}"></script>
 {% endblock %}
 
@@ -59,7 +59,7 @@
               </div>
 
               <div class="label-description">
-                Please take note that all your articles that you might have added will be lost. <span style="font-weight: bold; cursor:pointer;" id="renounce-upload"> Cancel!</a> 
+                Please take note that all your articles that you might have added will be lost. <span style="font-weight: bold; cursor:pointer;" id="renounce-upload"> Cancel!</a>
               </div>
 
               <div class="custom-file-upload">
@@ -195,12 +195,14 @@
                         <ul class="second-level level">
                           {% for tag in tag_group.tags %}
                             <li>
-                              <input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
-                                {% if tag.name in selected_tags %}
-                                  checked
-                                {% endif %}>
-                              {{tag.name}}
-                              </input>
+                              <span class="list-header">
+                                <input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
+                                  {% if tag.name in selected_tags %}
+                                    checked
+                                  {% endif %}>
+                                {{tag.name}}
+                                </input>
+                              </span>
                             </li>
                           {% endfor %}
                         </ul>
@@ -251,12 +253,14 @@
                             <ul class="third-level level">
                               {% for third_class in second_class.get_children %}
                                 <li>
-                                  <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
-                                      {% if third_class.name in selected_classifications %}
-                                        checked
-                                      {% endif %}> 
-                                    {{ third_class.name }}
-                                  </input>
+                                  <span class="list-header">
+                                    <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
+                                        {% if third_class.name in selected_classifications %}
+                                          checked
+                                        {% endif %}>
+                                      {{ third_class.name }}
+                                    </input>
+                                  </span>
                                 </li>
                               {% endfor %}
                             </ul>

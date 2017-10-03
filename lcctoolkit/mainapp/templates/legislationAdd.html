@@ -243,12 +243,14 @@
                         <ul class="third-level level">
                           {% for third_class in second_class.get_children %}
                             <li>
+                              <span class="list-header">
                               <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
                                   {% if third_class.name in selected_classifications %}
                                     checked
                                   {% endif %}>
                                 {{ third_class.name }}
                               </input>
+                            </span>
                             </li>
                           {% endfor %}
                         </ul>

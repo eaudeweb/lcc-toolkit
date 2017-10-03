@@ -2,6 +2,7 @@ function highlightChecked(item) {
     $parent = item.parent().parent().parent().parent('li').find('.list-header').first();
     if($parent.length == 0)
         return
+
     $parent.addClass('selected')
 
     if (!$parent.parent().hasClass('first-level')) {
@@ -57,9 +58,13 @@ $(document).ready(function() {
         }
     });
 
-    $lastestClass = $('.classificaions').find('input:last')
-    highlightChecked($lastestClass)
-    $lastestTag = $('.tags').find('input:last')
-    highlightChecked($lastestTag)
+    $lastestClass = $('.classificaions').find('input:checked')
+    $lastestClass.each(function(){
+        highlightChecked($(this))
+    })
 
+    $lastestTag = $('.tags').find('input:checked')
+    $lastestTag.each(function(){
+        highlightChecked($(this))
+    })
 })
