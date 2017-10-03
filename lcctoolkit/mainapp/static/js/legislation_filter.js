@@ -25,7 +25,7 @@ $(document).ready(function(){
       data: AjaxSubmit,
       success : function(data) {
         $laws = $(data).find('#laws');
-        $laws_container = $laws.find('.law-container')
+        $laws_container = $laws.find('.law-container').html()
         $("#laws").html('').append($laws)
         if($laws_container.length == 0) {
           $('#laws').html('<span class="error">No legislation found</span>')
