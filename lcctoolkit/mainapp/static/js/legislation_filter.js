@@ -21,17 +21,17 @@ $(document).ready(function(){
     console.log(AjaxSubmit)
     $.ajax({
       type: 'GET',
-      url: 'legislation/',
+      url: '/legislation',
       data: AjaxSubmit,
       success : function(data) {
         $laws = $(data).find('#laws');
         $laws_container = $laws.find('.law-container')
         $("#laws").html('').append($laws)
         if($laws_container.length == 0) {
-          $('#laws').html('<span cass="error">No bla bla found </span>')
+          $('#laws').html('<span class="error">No legislation found</span>')
         }
-      } 
+      }
     });
-  })
+  });
 
  });

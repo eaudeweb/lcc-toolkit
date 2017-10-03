@@ -161,7 +161,7 @@ class LegislationExplorer(UserPatchMixin, django.views.View):
                     laws = laws.filter(classifications=classification)
 
             if req_dict.get('country'):
-                laws = laws.filter(country=req_dict.get('country')[0])
+                laws = laws.filter(country__iso=req_dict.get('country')[0])
 
             if req_dict.get('type'):
                 laws = laws.filter(law_type=req_dict.get('type')[0])

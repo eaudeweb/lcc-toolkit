@@ -48,9 +48,9 @@
           <!-- TODO Style this for error type; Should disapear once a pdf have been reuploaded  -->
           {% if errors %}
             {% if errors.pdf %}
-              <span class="pdf-error">{{ errors.pdf }}</span>
+              <span class="pdf-error error">{{ errors.pdf }}</span>
             {% else %}
-              <span class="pdf-error">This form have errors. Please reupload file.</span>
+              <span class="pdf-error error">This form has errors. Please reupload file.</span>
             {% endif %}
           {% endif %}
         </div>
@@ -158,7 +158,7 @@
             <input class='law-meta-data-text-field' type="text" name="year_of_adoption_mention" maxlength="256" value="{{ selected_year_details }}"/>
             <!-- TODO: this checks if the field have a 4 digit string. Could be done in js. -->
             {% if errors.year_details %}
-              <span class="year-details">{{ errors.year_details }}</span>
+              <span class="year-details error">{{ errors.year_details }}</span>
             {% endif %}
           </div>
         </div>

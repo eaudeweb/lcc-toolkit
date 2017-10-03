@@ -56,4 +56,10 @@ $(document).ready(function() {
 
         }
     });
+
+    $lastestest = $('.classificaions').find('input:last')
+   highlightChecked($lastestest)
+   console.log($lastestest)
+
+
 })

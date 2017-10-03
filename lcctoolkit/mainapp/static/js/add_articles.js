@@ -86,8 +86,8 @@ $(document).ready(function(){
       url: '/legislation/add/articles',
       data: AjaxSubmit,
       success : function(data) {
-        $article_form = $(data).find('#addArticle');
-        $("#addArticle").html('').append($article_form);
+        $page_container_half = $(data).find('.page-container').html();
+        $(".page-container").html('').append($page_container_half);
       }
     });
   });
