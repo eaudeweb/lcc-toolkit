@@ -80,6 +80,7 @@ def legislation_save_pdf_pages(law, pdf):
 
     with django.db.transaction.atomic():
         for idx, page in enumerate(pdf):
+            page = page.replace('\x00', '')
             models.LegislationPage(
                 page_text="<pre>%s</pre>" % page,
                 page_number=idx + 1,
