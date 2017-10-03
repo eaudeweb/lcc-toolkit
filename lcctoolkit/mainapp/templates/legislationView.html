@@ -1,10 +1,15 @@
 {% extends "legislation.html" %}
+{% load static %}
 
 
 {% block content %}
 <div class="viz-container">
-  <h3>Country</h3>
-  <p>{{ law.country.name }}</p>
+  <div class="country">
+      {% static "" as baseUrl %}
+      <img  src="{{ baseUrl }}/img/flags/{{ law.country.iso |lower }}.png" >
+    <h3>Country</h3>
+    <p>{{ law.country.name }}</p>
+  </div>
   <h3>Year</h3>
   <p>{{ law.year }}</p>
   <h3>Date details</h3>
