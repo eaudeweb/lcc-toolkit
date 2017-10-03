@@ -6,7 +6,9 @@
   <script src="{% static "js/legislation_filter.js" %}"> </script>
 {% endblock %}
 
-{% block menu-top %} 
+{% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
+
+{% block menu-top %}
   <li> <a href="/#"> Dashboard </a> </li>
   <li> <a href="/legislation" class="menu-top-active"> Legislation </a> </li>
 {% endblock %}
@@ -29,8 +31,9 @@
   </div>
 
   <div class="filters">
-    
+  <button type="button" class="btn btn-default open-sidebar"><span class="more active">MORE FILTERS</span> <span class="less">LESS FILTERS</span></button>
     <div class="filter-tags">
+    <label for="TagDropDown">Tags</label>
       <select name="tags[]" id="TagDropDown" multiple="multiple">
         {% for group_tag in group_tags %}
           <optgroup label="{{group_tag.name}}">
@@ -43,6 +46,7 @@
     </div>
 
     <div class="filter-classifications">
+    <label for="classificationsDropDown">Classifications</label>
       <select name="classifications[]" id="classificationsDropDown" multiple="multiple">
         {% for top_class in top_classifications %}
           <option value="{{top_class.pk}}" class="option-group">{{ top_class.name }}</option>
@@ -55,8 +59,9 @@
         {% endfor %}
       </select>
     </div>
-    
+
     <div class="filter-countries">
+    <label for="countriesDropDown">Country</label>
       <select name="countries" id="countriesDropDown">
         {% for country in countries %}
           <option value="{{country.iso}}">{{ country.name }}</option>
@@ -65,14 +70,16 @@
     </div>
 
     <div class="filter-type">
+    <label for="typeDropDown">Type</label>
       <select name="type" id="typeDropDown">
         {% for key, value in legislation_type %}
           <option value="{{key}}">{{ value }}</option>
         {% endfor %}
       </select>
     </div>
-
-    <button type="button" id="submitButton">Apply filters</button>
+    <div class="button-wrapper">
+      <button type="button" class="btn btn-primary" id="submitButton">Apply filters</button>
+    </div>
 
   </div>
 {% endblock %}

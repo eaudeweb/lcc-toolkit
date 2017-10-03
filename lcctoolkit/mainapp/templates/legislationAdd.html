@@ -92,11 +92,11 @@
                   {% if selected_language == iso %}
                     selected
                   {% endif %}
-                {% else %} 
-                  {% if forloop.first %} 
-                    selected 
+                {% else %}
+                  {% if forloop.first %}
+                    selected
                   {% endif %}
-                {% endif %}> 
+                {% endif %}>
               {{language}}
               </option>
             {% endfor %}
@@ -116,11 +116,11 @@
                   {% if selected_law_type == law_type_key %}
                     selected
                   {% endif %}
-                {% else %} 
-                  {% if forloop.first %} 
-                    selected 
+                {% else %}
+                  {% if forloop.first %}
+                    selected
                   {% endif %}
-                {% endif %}> 
+                {% endif %}>
               {{law_value_key}}
               </option>
             {% endfor %}
@@ -140,10 +140,10 @@
                       {% if selected_year_of_adoption == year %}
                         selected
                       {% endif %}
-                    {% elif forloop.last %} 
+                    {% elif forloop.last %}
                       selected
-                    {% endif %}> 
-                  {{ year }} 
+                    {% endif %}>
+                  {{ year }}
                 </option>
               {% endfor %}
             </select>
@@ -227,7 +227,7 @@
                       <span>{{ top_class.name }}</span>
                     {% endif %}
                   </span>
-                  
+
                   <ul class="second-level level">
                     {% for second_class in top_class.get_children %}
                       <li>
@@ -246,7 +246,7 @@
                               <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
                                   {% if third_class.name in selected_classifications %}
                                     checked
-                                  {% endif %}> 
+                                  {% endif %}>
                                 {{ third_class.name }}
                               </input>
                             </li>
@@ -261,8 +261,10 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-info" id='save-btn' name='save-btn'> Save </button>
-      <button type="submit" class="btn btn-info" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add articles</button>
+      <div class="button-wrapper">
+        <button type="submit" class="btn btn-success" id='save-btn' name='save-btn'> Save </button>
+        <button type="submit" class="btn btn-primary" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add articles</button>
+      </div>
       </form>
       </div>
     </div>

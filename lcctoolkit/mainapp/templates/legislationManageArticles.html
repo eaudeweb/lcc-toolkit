@@ -140,16 +140,18 @@
         </ul>
         </div>
       </div>
-    <button type="submit" class="btn btn-info" id='save-btn' name='save-btn'> Save & View articles</button>
-    <button type="button" class="btn btn-info" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add another</button>
+      <div class="button-wrapper">
+        <button type="submit" class="btn btn-success" id='save-btn' name='save-btn'> Save & View articles</button>
+        <button type="button" class="btn btn-primary" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add another</button>
+      </div>
   </form>
 
   <div class="last-article-container">
     {% if last_article %}
-      <p>{{ last_article.code }}</p>
+      <p><strong>Article code: </strong>{{ last_article.code }}</p>
       <!-- TODO The text inside that pre tag should be limited to ~200 chars -->
-      <p>Text: <pre>{{ last_article.text }}</pre></p>
-      <p>Page: {{ last_article.legislation_page }}</p>
+      <p><strong>Text:</strong> <pre>{{ last_article.text }}</pre></p>
+      <p><strong>Page:</strong> {{ last_article.legislation_page }}</p>
     {% else %}
       <p>This law doesn't have any articles.</p>
     {% endif %}
