@@ -27,7 +27,7 @@ SECRET_KEY = 'k=j3-au*))c#04hkcc)9=tp+rh#cqr%r@a0m@vcz_&ak^nvw@q'
 # This will be automatically set to False by the production deploymeny scripts
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
