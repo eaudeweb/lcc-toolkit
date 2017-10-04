@@ -57,7 +57,7 @@
     </div>
 
     <div class="filter-classifications">
-    <label for="classificationsDropDown">Classifications</label>
+    <label for="classificationsDropDown">Classification</label>
       <select name="classifications[]" id="classificationsDropDown" multiple="multiple">
         {% for top_class in top_classifications %}
           <option value="{{top_class.pk}}" class="option-group">{{ top_class.name }}</option>
