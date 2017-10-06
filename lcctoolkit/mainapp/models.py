@@ -160,12 +160,17 @@ class Legislation(models.Model):
                                 default=constants.LEGISLATION_TYPE_DEFAULT,
                                 max_length=64)
     year = models.IntegerField(default=constants.LEGISLATION_DEFAULT_YEAR)
-    year_amendment = models.IntegerField(default=constants.LEGISLATION_DEFAULT_YEAR,
-                                         null=True)
+    year_amendment = models.IntegerField(
+        default=constants.LEGISLATION_DEFAULT_YEAR,
+        null=True
+    )
     year_mention = models.CharField(max_length=1024, blank=True, null=True)
-    geo_coverage = models.CharField(choices=constants.GEOGRAPHICAL_COVERAGE,
-                                    default=constants.GEOGRAPHICAL_COVERAGE_DEFAULT,
-                                    max_length=64, null=True)
+    geo_coverage = models.CharField(
+        choices=constants.GEOGRAPHICAL_COVERAGE,
+        default=constants.GEOGRAPHICAL_COVERAGE_DEFAULT,
+        max_length=64,
+        null=True
+    )
     source = models.CharField(max_length=256, null=True)
     source_type = models.CharField(choices=constants.SOURCE_TYPE,
                                    default=constants.SOURCE_TYPE_DEFAULT,

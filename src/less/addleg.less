@@ -87,9 +87,33 @@
   padding-left: 0;
 }
 
+div[class*='selector-inline'] {
+  display:inline-block;
+}
+
 .selector-inline {
   display: inline-block;
-  width: 33%;
+  &--full {
+   width: 100%;
+  }
+  &--0 {
+    width: 74.5%; 
+  }
+  &--6 {
+    width: 12.5%;
+  }
+  &--5 {
+    width: 19%;
+  }
+  &--4 {
+    width: 24.755%;
+  }
+  &--3 {
+    width: 33%;
+  }
+  &--2 {
+    width: 49.8%;
+  }
 }
 
 .selected {
