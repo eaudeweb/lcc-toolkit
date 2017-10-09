@@ -6,9 +6,10 @@ import time
 import django.db
 import django.contrib.auth as auth
 import django.contrib.auth.mixins as mixins
+import django.core as core
 import django.shortcuts
 import django.http
-import django.views
+import django.views as views
 
 import lcctoolkit.mainapp.constants as constants
 import lcctoolkit.mainapp.models as models
@@ -47,51 +48,6 @@ def response_error(request, errors, template="message.html"):
     return django.shortcuts.render(request, template, {"errors": errors})
 
 
-def legislation_form_check_year_details(year_details, errors):
-    years_in_year_details = [
-        int(year)
-        for year in re.findall('\d\d\d\d', year_details)
-    ]
-
-    if years_in_year_details:
-        if not any(year in LEGISLATION_YEAR_RANGE
-                   for year in years_in_year_details):
-            errors["year_details"] = "Please add a year in %d-%d range." % (
-                LEGISLATION_YEAR_RANGE[0], LEGISLATION_YEAR_RANGE[-1]
-            )
-    else:
-        errors["year_details"] = "'Additional date details' field needs a 4 digit year."
-
-
-def legislation_form_get_pdf_file(file, errors):
-    try:
-        return pdftotext.PDF(file)
-    except pdftotext.Error:
-        errors["pdf"] = "The .pdf file is corrupted. Please reupload it."
-
-
-def legislation_save_pdf_pages(law, pdf):
-    if settings.DEBUG:
-        time_to_load_pdf = time.time()
-    if settings.DEBUG:
-        print("INFO: FS pdf file load time: %fs" %
-              (time.time() - time_to_load_pdf))
-        time_begin_transaction = time.time()
-
-    with django.db.transaction.atomic():
-        for idx, page in enumerate(pdf):
-            page = page.replace('\x00', '')
-            models.LegislationPage(
-                page_text="<pre>%s</pre>" % page,
-                page_number=idx + 1,
-                legislation=law
-            ).save()
-
-    if settings.DEBUG:
-        print("INFO: ORM models.LegislationPages save time: %fs" %
-              (time.time() - time_begin_transaction))
-
-
 class UserPatchMixin():
 
     def dispatch(self, request, *args, **kwargs):
@@ -104,13 +60,13 @@ class UserPatchMixin():
         return super(UserPatchMixin, self).dispatch(request, *args, **kwargs)
 
 
-class Index(UserPatchMixin, django.views.View):
+class Index(UserPatchMixin, views.View):
 
     def get(self, request):
         return django.http.HttpResponseRedirect("/legislation/")
 
 
-class Login(django.views.View):
+class Login(views.View):
 
     template = "login.html"
 
@@ -132,14 +88,14 @@ class Login(django.views.View):
                 json.dumps({'msg': constants.AJAX_RETURN_FAILURE}))
 
 
-class Logout(django.views.View):
+class Logout(views.View):
 
     def get(self, request):
         auth.logout(request)
         return django.http.HttpResponseRedirect("/")
 
 
-class LegislationExplorer(UserPatchMixin, django.views.View):
+class LegislationExplorer(UserPatchMixin, views.View):
 
     template = "legislation.html"
 
@@ -194,12 +150,63 @@ class LegislationExplorer(UserPatchMixin, django.views.View):
         return django.shortcuts.render(request, self.template, context)
 
 
-class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
+class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, views.View):
 
     login_url = constants.LOGIN_URL
     template = "legislationAdd.html"
     taxonomy_classifications = models.TaxonomyClassification.\
         objects.filter(level=0).order_by('code')
+
+    def legislation_form_check_year_details(year_details, errors):
+        years_in_year_details = [
+            int(year)
+            for year in re.findall('\d\d\d\d', year_details)
+        ]
+
+        if years_in_year_details:
+            if not any(year in LEGISLATION_YEAR_RANGE
+                       for year in years_in_year_details):
+                errors["year_details"] = "Please add a year in %d-%d range" % (
+                    LEGISLATION_YEAR_RANGE[0], LEGISLATION_YEAR_RANGE[-1]
+                )
+        else:
+            errors["year_details"] = (
+                "'Additional date details' field needs a 4 digit year."
+            )
+
+    def legislation_form_get_pdf_file(file, errors):
+        try:
+            return pdftotext.PDF(file)
+        except pdftotext.Error:
+            errors["pdf"] = "The .pdf file is corrupted. Please reupload it."
+
+    def legislation_form_check_website(website, errors):
+        url = core.validators.URLValidator()
+        try:
+            url(website)
+        except core.exceptions.ValidationError:
+            errors["website"] = "Please enter a valid website."
+
+    def legislation_save_pdf_pages(law, pdf):
+        if settings.DEBUG:
+            time_to_load_pdf = time.time()
+        if settings.DEBUG:
+            print("INFO: FS pdf file load time: %fs" %
+                  (time.time() - time_to_load_pdf))
+            time_begin_transaction = time.time()
+
+        with django.db.transaction.atomic():
+            for idx, page in enumerate(pdf):
+                page = page.replace('\x00', '')
+                models.LegislationPage(
+                    page_text="<pre>%s</pre>" % page,
+                    page_number=idx + 1,
+                    legislation=law
+                ).save()
+
+        if settings.DEBUG:
+            print("INFO: ORM models.LegislationPages save time: %fs" %
+                  (time.time() - time_begin_transaction))
 
     class TagGroupRender():
 
@@ -222,64 +229,72 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.Vie
             ],
             "classifications": LegislationAdd.taxonomy_classifications,
             "available_languages": constants.ALL_LANGUAGES,
+            "source_types": constants.SOURCE_TYPE,
+            "geo_coverage": constants.GEOGRAPHICAL_COVERAGE,
             "adoption_years": LEGISLATION_YEAR_RANGE,
             "classifications": LegislationAdd.taxonomy_classifications
         })
 
     def post(self, request):
 
-        def check_year_details(year_details, errors):
-            years_in_year_details = [
-                int(year)
-                for year in re.findall('\d\d\d\d', year_details)
-            ]
-
-            if years_in_year_details:
-                if not any(year in LEGISLATION_YEAR_RANGE
-                           for year in years_in_year_details):
-                    errors["year_details"] = "Please add a year in %d-%d range." % (
-                        LEGISLATION_YEAR_RANGE[0], LEGISLATION_YEAR_RANGE[-1]
-                    )
-            else:
-                errors["year_details"] = "'Additional date details' field needs a 4 digit year."
-
-        def get_text_from_pdf(file, errors):
-            try:
-                return pdftotext.PDF(file)
-            except pdftotext.Error:
-                errors["pdf"] = "The .pdf file is corrupted. Please reupload it."
-
         title = request.POST["title"]
         abstract = request.POST["abstract"]
+        uploaded_file = request.FILES['pdf_file']
+
         country = models.Country.objects.filter(
             iso=request.POST["country"])[0]
         language = request.POST["language"]
         law_type = request.POST["law_type"]
+        geo_coverage = request.POST["geo"]
+
+        website = request.POST["website"]
+        source = request.POST["source"]
+        source_type = request.POST["source_type"]
+
         year = int(request.POST["law_year"])
+        amendment = int(request.POST["amendment_year"])
         year_details = request.POST["year_of_adoption_mention"]
-        uploaded_file = request.FILES['pdf_file']
+
         tags = [tag for tag in selected_taxonomy(request, is_tags=True)]
         classifications = [
             classification
             for classification in selected_taxonomy(request)
         ]
 
+        # import ipdb; ipdb.set_trace()
         errors = {}
-        check_year_details(year_details, errors)
-        pdf = legislation_form_get_pdf_file(uploaded_file, errors)
+        self.legislation_form_check_year_details(year_details, errors)
+        self.legislation_form_check_website(website, errors)
+        pdf = self.legislation_form_get_pdf_file(uploaded_file, errors)
 
         if errors:
             return django.shortcuts.render(request, self.template, {
                 "title": title,
                 "abstract": abstract,
+
                 "selected_country": country,
                 "selected_language": language,
                 "selected_law_type": law_type,
+                "selected_geo": geo_coverage,
+
+                "selected_website": website,
+                "selected_source": source,
+                "selected_source_type": source_type,
+
                 "selected_year_of_adoption": year,
+                "selected_year_of_amendment": amendment,
                 "selected_year_details": year_details,
+
                 "selected_tags": [tag.name for tag in tags],
-                "selected_classifications": [cl.name for cl in classifications],
-                "countries": sorted(models.Country.objects.all(), key=lambda c: c.name),
+                "selected_classifications": [
+                    cl.name
+                    for cl in classifications
+                ],
+
+                "countries": sorted(
+                    models.Country.objects.all(),
+                    key=lambda c: c.name
+                ),
                 "legislation_type": constants.LEGISLATION_TYPE,
                 "tag_groups": [
                     LegislationAdd.TagGroupRender(tag_group)
@@ -288,6 +303,8 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.Vie
                 "available_languages": constants.ALL_LANGUAGES,
                 "adoption_years": LEGISLATION_YEAR_RANGE,
                 "classifications": LegislationAdd.taxonomy_classifications,
+                "source_types": constants.SOURCE_TYPE,
+                "geo_coverage": constants.GEOGRAPHICAL_COVERAGE,
                 "errors": errors
             })
 
@@ -298,7 +315,12 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.Vie
             language=language,
             law_type=law_type,
             year=year,
+            year_amendment=amendment,
             year_mention=year_details,
+            geo_coverage=geo_coverage,
+            source=source,
+            source_type=source_type,
+            website=website,
             pdf_file_name=uploaded_file.name
         )
 
@@ -310,7 +332,7 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.Vie
         for classification in classifications:
             law_obj.classifications.add(classification)
 
-        legislation_save_pdf_pages(law_obj, pdf)
+        self.legislation_save_pdf_pages(law_obj, pdf)
 
         if "save-and-continue-btn" in request.POST:
             return django.http.HttpResponseRedirect(
@@ -320,7 +342,7 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, django.views.Vie
             return django.http.HttpResponseRedirect("/legislation/")
 
 
-class LegislationManagerArticles(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
+class AddArticles(UserPatchMixin, mixins.LoginRequiredMixin, views.View):
 
     login_url = constants.LOGIN_URL
     template = "legislationManageArticles.html"
@@ -375,7 +397,7 @@ class LegislationManagerArticles(UserPatchMixin, mixins.LoginRequiredMixin, djan
             )
 
 
-class LegislationView(UserPatchMixin, django.views.View):
+class LegislationView(UserPatchMixin, views.View):
 
     template = "legislationView.html"
 
@@ -387,7 +409,7 @@ class LegislationView(UserPatchMixin, django.views.View):
         return django.shortcuts.render(request, self.template, {"law": law})
 
 
-class LegislationPagesView(UserPatchMixin, django.views.View):
+class LegislationPagesView(UserPatchMixin, views.View):
 
     def get(self, request):
         law = models.Legislation.objects.get(pk=request.GET.get("law_id"))
@@ -399,7 +421,7 @@ class LegislationPagesView(UserPatchMixin, django.views.View):
         return django.http.JsonResponse(content)
 
 
-class ArticlesList(UserPatchMixin, django.views.View):
+class ArticlesList(UserPatchMixin, views.View):
 
     template = "articlesList.html"
 
@@ -421,7 +443,7 @@ class ArticlesList(UserPatchMixin, django.views.View):
         })
 
 
-class EditArticles(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
+class EditArticles(UserPatchMixin, mixins.LoginRequiredMixin, views.View):
 
     login_url = constants.LOGIN_URL
     template = "editArticle.html"
@@ -467,7 +489,7 @@ class EditArticles(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View)
         )
 
 
-class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, django.views.View):
+class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, views.View):
 
     login_url = constants.LOGIN_URL
     template = "legislationEditView.html"
@@ -477,16 +499,29 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, django.view
             law.title = request.POST["title"]
         if request.POST["abstract"] != law.abstract:
             law.abstract = request.POST["abstract"]
-        if request.POST["law_type"] != law.law_type:
-            law.law_type = request.POST["law_type"]
+
         country = models.Country.objects.filter(
             iso=request.POST["country"])[0]
         if law.country != country:
             law.country = country
         if request.POST["language"] != law.language:
             law.language = request.POST["language"]
+        if request.POST["law_type"] != law.law_type:
+            law.law_type = request.POST["law_type"]
+        if request.POST["geo"] != law.geo_coverage:
+            law.geo_coverage = request.POST["geo"]
+
+        if request.POST["website"] != law.website:
+            law.website = request.POST["website"]
+        if request.POST["source"] != law.source:
+            law.source = request.POST["source"]
+        if request.POST["source_type"] != law.source_type:
+            law.source_type = request.POST["source_type"]
+
         if int(request.POST["law_year"]) != law.year:
             law.year = int(request.POST["law_year"])
+        if int(request.POST["amendment_year"]) != law.year_amendment:
+            law.year_amendment = request.POST["amendment_year"]
         if request.POST["year_of_adoption_mention"] != law.year_mention:
             law.year_mention = request.POST["year_of_adoption_mention"]
         return law
@@ -494,7 +529,8 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, django.view
     def get_render_context(self, request, law, errors=None, is_post=False):
         countries = sorted(models.Country.objects.all(), key=lambda c: c.name)
         if is_post:
-            selected_tags = [tag.name for tag in selected_taxonomy(request, is_tags=True)]
+            selected_tags = [
+                tag.name for tag in selected_taxonomy(request, is_tags=True)]
             selected_class = [_cls.name for _cls in selected_taxonomy(request)]
         else:
             selected_tags = [tag.name for tag in law.tags.all()]
@@ -504,12 +540,16 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, django.view
             "countries": countries,
             "available_languages": constants.ALL_LANGUAGES,
             "legislation_type": constants.LEGISLATION_TYPE,
-            "tag_groups": [LegislationAdd.TagGroupRender(tag_group)
-                            for tag_group in models.TaxonomyTagGroup.objects.all()],
+            "tag_groups": [
+                LegislationAdd.TagGroupRender(tag_group)
+                for tag_group in models.TaxonomyTagGroup.objects.all()
+            ],
             "classifications": LegislationAdd.taxonomy_classifications,
             "adoption_years": LEGISLATION_YEAR_RANGE,
             "selected_tags": selected_tags,
             "selected_classifications": selected_class,
+            "source_types": constants.SOURCE_TYPE,
+            "geo_coverage": constants.GEOGRAPHICAL_COVERAGE,
             "errors": errors
         }
 
@@ -521,13 +561,20 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, django.view
         try:
             law = models.Legislation.objects.get(pk=int(law_id))
         except models.Legislation.DoesNotExist:
-                    return response_error(
-                        request, ["Internal error: No legislation found for id %s!" % law_id])
-        return django.shortcuts.render(request, self.template, self.get_render_context(request, law))
+            return response_error(
+                request,
+                ["Internal error: No legislation found for id %s!" % law_id]
+            )
+        return django.shortcuts.render(
+            request,
+            self.template,
+            self.get_render_context(request, law)
+        )
 
     def post(self, request):
         has_pdf = "pdf_file" in request.FILES
         law_id = request.POST.get("save-law-id-btn", None)
+
         if law_id is None:
             return response_error(
                 request, ["Internal error: No legislation id was provided!"])
@@ -535,26 +582,34 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, django.view
             law = models.Legislation.objects.get(pk=int(law_id))
         except models.Legislation.DoesNotExist:
             return response_error(
-                request, ["Internal error: No legislation found for id %s!" % law_id])
+                request,
+                ["Internal error: No legislation found for id %s!" % law_id]
+            )
+
         errors = {}
+
         if has_pdf:
-            pdf = legislation_form_get_pdf_file(request.FILES['pdf_file'], errors)
-        legislation_form_check_year_details(request.POST["year_of_adoption_mention"], errors)
+            pdf = LegislationAdd.legislation_form_get_pdf_file(
+                request.FILES['pdf_file'], errors)
+        LegislationAdd.legislation_form_check_year_details(
+            request.POST["year_of_adoption_mention"], errors)
         law = self.get_law_patched_with_request(request, law)
+
         if errors:
-            context = self.get_render_context(request, law, errors=errors, is_post=True)
+            context = self.get_render_context(
+                request, law, errors=errors, is_post=True)
             return django.shortcuts.render(request, self.template, context)
+
         if has_pdf:
             law.pdf_file_name = request.FILES['pdf_file'].name
             law.pdf_file.save(
                 request.FILES['pdf_file'].name, request.FILES['pdf_file'].file)
             models.LegislationPage.objects.filter(legislation=law).delete()
-            legislation_save_pdf_pages(law, pdf)
+            LegislationAdd.legislation_save_pdf_pages(law, pdf)
         law.tags.clear()
         law.classifications.clear()
+        law.tags = selected_taxonomy(request, is_tags=True)
+        law.classifications = selected_taxonomy(request)
         law.save()
-        for tag in selected_taxonomy(request, is_tags=True):
-            law.tags.add(tag)
-        for classification in selected_taxonomy(request):
-            law.classifications.add(classification)
+
         return django.http.HttpResponseRedirect("/legislation/")
