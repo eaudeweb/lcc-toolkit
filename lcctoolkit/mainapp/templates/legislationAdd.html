@@ -311,41 +311,10 @@
                           {% endif %}>
                         {{ top_class.name }}
                       </input>
-                      <i class="fa fa-plus-square" aria-hidden="true"></i>
                     {% else %}
                       <span>{{ top_class.name }}</span>
                     {% endif %}
                   </span>
-
-                  <ul class="second-level level">
-                    {% for second_class in top_class.get_children %}
-                      <li>
-                        <span class="list-header">
-                          <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox
-                              {% if second_class.name in selected_classifications %}
-                                checked
-                              {% endif %}>
-                            {{ second_class.name }}
-                          </input>
-                          <i class="fa fa-plus-square" aria-hidden="true"></i>
-                        </span>
-                        <ul class="third-level level">
-                          {% for third_class in second_class.get_children %}
-                            <li>
-                              <span class="list-header">
-                              <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
-                                  {% if third_class.name in selected_classifications %}
-                                    checked
-                                  {% endif %}>
-                                {{ third_class.name }}
-                              </input>
-                            </span>
-                            </li>
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% endfor %}
-                  </ul>
                 </li>
               {% endfor %}
             </ul>
