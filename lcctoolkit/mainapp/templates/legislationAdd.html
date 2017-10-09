@@ -303,18 +303,20 @@
             <ul>
               {% for top_class in classifications %}
                 <li class="first-level level">
-                  <span  class="list-header" {% if not top_class.get_children %} style="pointer-events: none;" {% endif %} >
-                    {% if top_class.get_children %}
+                  {% if top_class.get_children %}
+                    <span class="list-header">
                       <input name='classification_{{ top_class.pk }}' type='checkbox'
                           {% if top_class.name in selected_classifications %}
                             checked
                           {% endif %}>
                         {{ top_class.name }}
                       </input>
-                    {% else %}
+                    </span>
+                  {% else %}
+                    <span class="list-header" style="pointer-events: none;">
                       <span>{{ top_class.name }}</span>
-                    {% endif %}
-                  </span>
+                    </span>
+                  {% endif %}
                 </li>
               {% endfor %}
             </ul>

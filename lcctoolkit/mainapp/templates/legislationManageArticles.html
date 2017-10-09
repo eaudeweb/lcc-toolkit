@@ -112,12 +112,15 @@
         <ul>
         {% for top_class in classifications %}
         <li class="first-level level">
-          <span class="list-header">
+          {% with top_class.get_children as second_classifications %}
+          <span class="list-header" {% if not second_classifications %} style="pointer-events: none;" {% endif %}>
             <span name='topClass_{{ top_class.pk }}'>{{ top_class.name }}</span>
-            <i class="fa fa-plus-square" aria-hidden="true"></i>
+            {% if second_classifications %}
+              <i class="fa fa-plus-square" aria-hidden="true"></i>
+            {% endif %}
           </span>
           <ul class="second-level level">
-          {% for second_class in top_class.get_children %}
+          {% for second_class in second_classifications %}
             <li>
               <span class="list-header">
                 <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox>
@@ -137,6 +140,7 @@
           {% endfor %}
           </ul>
            </li>
+           {% endwith %}
          </li>
         {% endfor %}
         </ul>
