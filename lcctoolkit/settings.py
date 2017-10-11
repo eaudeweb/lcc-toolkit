@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': 'lcct',
         'USER': 'postgres',
         'PASSWORD': 'Admin123',  # Will be changed by the deployment script
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
