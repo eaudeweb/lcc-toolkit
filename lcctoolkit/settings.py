@@ -15,21 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-
-# This will be automatically changed by the production deployment scripts
-SECRET_KEY = 'k=j3-au*))c#04hkcc)9=tp+rh#cqr%r@a0m@vcz_&ak^nvw@q'
-
-# This will be automatically set to False by the production deploymeny scripts
-DEBUG = True
-
-ALLOWED_HOSTS = ["*"]
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -77,30 +62,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lcctoolkit.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lcct',
-        'USER': 'postgres',
-        'PASSWORD': 'Admin123',  # Will be changed by the deployment script
-        'HOST': 'db',
-        'PORT': '5432',
-    }
-}
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -133,21 +94,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "uploadfiles")
-if DEBUG and not os.path.exists(MEDIA_ROOT):
-    os.makedirs(MEDIA_ROOT)
-
-
-MEDIA_URL = "/files/"
+try:
+    from lcctoolkit.localsettings import *
+except ImportError:
+    pass
