@@ -1,23 +1,51 @@
 version: '3'
 
 services:
-  db:
-    image: postgres
+
+  nginx:
+    image: nginx:alpine
     environment:
-        POSTGRES_DB: lcct
-        POSTGRES_PASSWORD: Admin123
-  grunt:
-    build: .
-    command: grunt
+      NGINX_CONF: |-
+        server {
+          listen 80;
+
+          access_log /var/log/nginx/access.log main;
+
+          location /static {
+            sendfile on;
+            tcp_nopush on;
+            gzip on;
+            gzip_types text/plain application/x-javascript text/css;
+            expires 1d;
+            root /opt/lcct;
+          }
+        }
+    depends_on:
+      - web
     volumes:
-      - .:/code
+      - static-files:/opt/lcct/static:ro
+    command: /bin/sh -c 'echo "$$NGINX_CONF" > /etc/nginx/conf.d/default.conf && exec nginx -g "daemon off;"'
+
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
-    ports:
-      - "8000:8000"
+    env_file:
+      - ./docker/web.env
     depends_on:
       - db
-      - grunt
+    volumes:
+      - static-files:/opt/lcct/static
+
+  db:
+    image: postgres:9-alpine
+    env_file:
+      - ./docker/postgres.env
+    volumes:
+      - data:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+
+  data:
+    driver: local
+  static-files:
+    driver: local

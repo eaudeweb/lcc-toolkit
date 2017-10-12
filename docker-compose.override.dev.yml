@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+  nginx:
+    image: eeacms/hello
+    container_name: lcct.hello
+    command: python hello.py
+
+  web:
+    build: .
+    container_name: lcct.web
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_MANAGEPY_MIGRATE=on
+      - DJANGO_MANAGEPY_COLLECTSTATIC=off
+      - DJANGO_MANAGEPY_LOADFIXTURES=on
+    depends_on:
+      - db
+      - grunt
+    volumes:
+      - ./lcctoolkit:/opt/lcc/lcctoolkit
+      - ./assets:/opt/lcc/assets
+
+  grunt:
+    build: .
+    container_name: lcct.grunt
+    environment:
+      - NODE_ENV=dev
+    entrypoint: ["grunt"]
+    volumes:
+      - ./lcctoolkit:/opt/lcc/lcctoolkit
+      - ./assets:/opt/lcc/assets
+
+  db:
+    container_name: lcct.db

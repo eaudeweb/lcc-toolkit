@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  nginx:
+    container_name: lcct.nginx
+
+  web:
+    build: .
+    container_name: lcct.web
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      - DJANGO_MANAGEPY_MIGRATE=on
+      - DJANGO_MANAGEPY_COLLECTSTATIC=on
+      - DJANGO_MANAGEPY_LOADFIXTURES=on
+    depends_on:
+      - db
+
+  db:
+    container_name: lcct.db
+
+volumes:
+  data:
+    driver: local
+  static-files:
+    driver: local
