@@ -12,3 +12,7 @@ admin.site.register(models.Country)
 admin.site.register(models.TaxonomyTagGroup)
 admin.site.register(models.TaxonomyTag)
 admin.site.register(models.TaxonomyClassification)
+
+admin.site.register(models.Question)
+admin.site.register(models.Assessment)
+admin.site.register(models.Answer)
