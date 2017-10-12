@@ -10,9 +10,11 @@ import django.core as core
 import django.shortcuts
 import django.http
 import django.views as views
+from rest_framework import viewsets
 
 import lcctoolkit.mainapp.constants as constants
 import lcctoolkit.mainapp.models as models
+import lcctoolkit.mainapp.serializers as serializers
 import lcctoolkit.settings as settings
 
 LEGISLATION_YEAR_RANGE = range(1945, constants.LEGISLATION_DEFAULT_YEAR + 1)
@@ -613,3 +615,8 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, views.View)
         law.save()
 
         return django.http.HttpResponseRedirect("/legislation/")
+
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    queryset = models.Question.objects.all()
+    serializer_class = serializers.QuestionSerializer

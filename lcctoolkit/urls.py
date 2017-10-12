@@ -1,12 +1,15 @@
 import lcctoolkit.views as project_views
 import lcctoolkit.mainapp.views as views
 
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
+from rest_framework import routers
 
 from django.conf import settings
 
+router = routers.DefaultRouter()
+router.register(r'question', views.QuestionViewSet)
 
 OTHER_URLS = (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +
               static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
@@ -14,6 +17,7 @@ OTHER_URLS = (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +
 handler500 = 'lcctoolkit.views.handler500'
 
 urlpatterns = [
+
     url(r'^admin/', admin.site.urls),
     url(r'^login/', views.Login.as_view()),
     url(r'^logout/', views.Logout.as_view()),
@@ -29,4 +33,6 @@ urlpatterns = [
     url(r'^legislation/articles/edit.*$', views.EditArticles.as_view()),
     url(r'^legislation/articles.*$', views.ArticlesList.as_view()),
     url(r'^$', views.Index.as_view()),
+    url(r'^', include(router.urls)),
+    url(r'^api/', include('rest_framework.urls', namespace='api')),
 ] + OTHER_URLS
