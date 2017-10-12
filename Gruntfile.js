@@ -11,28 +11,28 @@ module.exports = function(grunt) {
                     optimization: 2
                 },
                 files: {
-                    "static/css/main.css": "src/less/main.less" // destination file and source file
+                    "static/css/main.css": "assets/less/main.less" // destination file and source file
                 }
             }
         },
         concat: {
             scripts: {
                 src: [
-                    'src/js/lib/jquery.min.js', 'src/js/lib/tether.min.js', 'src/js/lib/bootstrap.js', 'src/js/*js'
+                    'assets/js/lib/jquery.min.js', 'assets/js/lib/tether.min.js', 'assets/js/lib/bootstrap.js', 'assets/js/*js'
                 ],
                 dest: 'static/js/main.js'
             }
         },
         watch: {
             styles: {
-                files: ['src/less/**/*.less'], // which files to watch
+                files: ['assets/less/**/*.less'], // which files to watch
                 tasks: ['less'],
                 options: {
                     nospawn: true
                 }
             },
             scripts: {
-                files: ['src/js/**/*.js'],
+                files: ['assets/js/**/*.js'],
                 tasks: ['concat'],
                 options: {
                     nospawn: true
