@@ -1,11 +1,11 @@
-FROM python:3
+FROM python:3-slim
 MAINTAINER "Eau de Web" <office@eaudeweb.ro>
 
 ENV PYTHONUNBUFFERED=1 \
     WORK_DIR=/opt/lcct \
     NODE_ENV=prod
 
-RUN runDeps="build-essential libpoppler-cpp-dev pkg-config postgresql-client" \
+RUN runDeps="curl build-essential libpoppler-cpp-dev pkg-config postgresql-client" \
     && apt-get update \
     && apt-get install -y --no-install-recommends $runDeps \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
