@@ -1,4 +1,6 @@
 import environ
+from lcctoolkit.settings import INSTALLED_APPS
+
 
 root = environ.Path(__file__) - 2
 env = environ.Env(DEBUG=(bool, False),)
@@ -24,9 +26,13 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/files/'
 MEDIA_ROOT = root.path('media/uploadfiles/')()
 
-# sentry configuration
-SENTRY_PUBLIC_DSN = env('SENTRY_PUBLIC_DSN', default='')
-SENTRY_DSN = env('SENTRY_DSN', default='')
+if not DEBUG:
 
-if not DEBUG and SENTRY_DSN:
+    # sentry configuration
+    SENTRY_PUBLIC_DSN = env('SENTRY_PUBLIC_DSN', default='')
+    SENTRY_DSN = env('SENTRY_DSN', default='')
     RAVEN_CONFIG = {'dsn': SENTRY_DSN}
+    INSTALLED_APPS += ('raven.contrib.django.raven_compat',)
+
+    # google analytics
+    GA_TRACKING_ID = env('GA_TRACKING_ID', default='')

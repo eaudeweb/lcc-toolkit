@@ -6,7 +6,6 @@
       <script>
       Raven.showReportDialog({
         eventId: '{{ sentry_id }}',
-        // use the public DSN (dont include your secret!)
         dsn: '{{ sentry_public_id }}'
       });
       </script>
