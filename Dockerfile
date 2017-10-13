@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1 \
     WORK_DIR=/opt/lcct \
     NODE_ENV=prod
 
-RUN runDeps="build-essential libpoppler-cpp-dev pkg-config python-dev netcat-traditional postgresql-client" \
+RUN runDeps="build-essential libpoppler-cpp-dev pkg-config postgresql-client" \
     && apt-get update \
     && apt-get install -y --no-install-recommends $runDeps \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \

@@ -37,7 +37,7 @@ A web application which stands as a toolkit for climate change law assessment.
         $ docker-compose up -d
         $ docker-compose logs
 
-4. Create a superuser:
+4. Create a superuser (for Ansible see https://gist.github.com/elleryq/9c70e08b1b2cecc636d6):
 
         $ docker exec -it lcct.web bash
         $ python manage.py createsuperuser
