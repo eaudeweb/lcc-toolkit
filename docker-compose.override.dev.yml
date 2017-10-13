@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
 
@@ -22,6 +22,11 @@ services:
     volumes:
       - ./lcctoolkit:/opt/lcct/lcctoolkit
       - ./assets:/opt/lcct/assets
+
+  elasticsearch:
+    container_name: lcct.elastic
+    ports:
+      - "9200:9200"
 
   grunt:
     build: .

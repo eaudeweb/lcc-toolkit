@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
 
@@ -14,8 +14,11 @@ services:
       - DJANGO_MANAGEPY_MIGRATE=on
       - DJANGO_MANAGEPY_COLLECTSTATIC=on
       - DJANGO_MANAGEPY_LOADFIXTURES=on
-    depends_on:
-      - db
+
+  elasticsearch:
+    container_name: lcct.elastic
+    ports:
+      - "127.0.0.1:9200:9200"
 
   db:
     container_name: lcct.db
