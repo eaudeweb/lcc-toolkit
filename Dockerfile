@@ -29,3 +29,4 @@ ADD . $WORK_DIR
 RUN grunt $NODE_ENV
 
 ENTRYPOINT ["entrypoint.sh"]
+CMD ["run"]

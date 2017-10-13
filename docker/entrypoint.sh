@@ -21,6 +21,17 @@ if [ "x$DJANGO_MANAGEPY_LOADFIXTURES" = 'xon' ]; then
     python manage.py load_fixtures
 fi
 
-python manage.py runserver 0.0.0.0:8000
-
-exec "$@"
+case "$1" in
+    manage)
+        exec python manage.py "$1"
+        ;;
+    run)
+        exec gunicorn lcctoolkit.wsgi:application \
+            --name lcct \
+            --bind 0.0.0.0:80 \
+            --workers 3 \
+            --access-logfile - \
+            --error-logfile -
+        ;;
+    *)
+esac
