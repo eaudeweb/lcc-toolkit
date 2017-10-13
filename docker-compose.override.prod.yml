@@ -23,6 +23,16 @@ services:
   db:
     container_name: lcct.db
 
+  logspout:
+    image: gliderlabs/logspout:v3.2.3
+    container_name: lcct.logs
+    environment:
+      - HOST=logsN.papertrailapp.com
+      - PORT=XXXXX
+    volumes:
+      - '/var/run/docker.sock:/tmp/docker.sock'
+    command: 'syslog://$${HOST}:$${PORT}?filter.name=lcct.*'
+
 volumes:
   data:
     driver: local
