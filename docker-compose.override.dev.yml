@@ -20,8 +20,8 @@ services:
       - db
       - grunt
     volumes:
-      - ./lcctoolkit:/opt/lcc/lcctoolkit
-      - ./assets:/opt/lcc/assets
+      - ./lcctoolkit:/opt/lcct/lcctoolkit
+      - ./assets:/opt/lcct/assets
 
   grunt:
     build: .
@@ -30,8 +30,8 @@ services:
       - NODE_ENV=dev
     entrypoint: ["grunt"]
     volumes:
-      - ./lcctoolkit:/opt/lcc/lcctoolkit
-      - ./assets:/opt/lcc/assets
+      - ./lcctoolkit:/opt/lcct/lcctoolkit
+      - ./assets:/opt/lcct/assets
 
   db:
     container_name: lcct.db

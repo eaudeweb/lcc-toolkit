@@ -2,7 +2,7 @@ FROM python:3
 MAINTAINER "Eau de Web" <office@eaudeweb.ro>
 
 ENV PYTHONUNBUFFERED=1 \
-    WORK_DIR=/opt/lcc \
+    WORK_DIR=/opt/lcct \
     NODE_ENV=prod
 
 RUN runDeps="build-essential libpoppler-cpp-dev pkg-config python-dev netcat-traditional postgresql-client" \

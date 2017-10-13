@@ -27,7 +27,7 @@ services:
     command: /bin/sh -c 'echo "$$NGINX_CONF" > /etc/nginx/conf.d/default.conf && exec nginx -g "daemon off;"'
 
   web:
-    build: .
+    image: eaudeweb/lcc-toolkit:latest
     env_file:
       - ./docker/web.env
     depends_on:
