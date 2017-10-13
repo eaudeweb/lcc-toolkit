@@ -44,6 +44,26 @@ A web application which stands as a toolkit for climate change law assessment.
 
 That's it. You should now be able to access the app at http://localhost:8000.
 
+## Debugging the application
+
+* Set `DEBUG=on` in `web.env` file.
+
+* Update docker-compose.override.yml file `web` section with the following so that `docker-entrypoint.sh`
+is not executed:
+
+        entrypoint: ["/usr/bin/tail", "-f", "/dev/null"]
+
+* Attach to the web service:
+
+        $ docker exec -it lcct.web bash
+
+    and run the following:
+
+        $ ./manage.py migrate
+        $ ./manage.py load_fixtures
+        $ ./manage.py createsuperuser
+        # ./manage.py runserver 0.0.0.0:8000
+
 ## Testing
 
 To execute the test suite, attach to the web service:
