@@ -26,7 +26,7 @@ A web application which stands as a toolkit for climate change law assessment.
         $ vim docker/web.env
         $ cp docker/init.sql.example docker/init.sql
         $ vim docker/init.sql
-    
+
     Depending on the installation type, create the docker-compose.override.yml file:
 
          $ cp docker-compose.override.[prod|dev].yml docker-compose.override.yml
@@ -94,6 +94,9 @@ The application expects configuration via environment variables:
 
 ``SENTRY_DSN``, ``SENTRY_PUBLIC_DSN``
     URL of Sentry server to report errors. Optional.
+
+``GA_TRACKING_ID``
+    Google Analytics tracking code. Optional.
 
 ``POSTGRES_PASSWORD``
     PostgreSQL superuser password.

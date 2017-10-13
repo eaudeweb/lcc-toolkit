@@ -26,8 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lcctoolkit.mainapp',
     'django_webtest',
-    'mptt',
-    'raven.contrib.django.raven_compat'
+    'mptt'
 ]
 
 MIDDLEWARE = [
@@ -54,6 +53,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'lcctoolkit.context_processors.sentry',
+                'lcctoolkit.context_processors.ga_tracking_id',
             ],
             'libraries':{
                 'utils': 'lcctoolkit.mainapp.templatetags.utils',

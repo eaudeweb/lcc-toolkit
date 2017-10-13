@@ -9,3 +9,6 @@ def sentry(request):
         'sentry_id': sentry_id,
         'sentry_public_id': getattr(settings, 'SENTRY_PUBLIC_DSN', ''),
     }
+
+def ga_tracking_id(request):
+    return {'ga_tracking_id': getattr(settings, 'GA_TRACKING_ID', '')}
