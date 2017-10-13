@@ -6,7 +6,7 @@ services:
     container_name: lcct.nginx
 
   web:
-    build: .
+    image: eaudeweb/lcc-toolkit:develop
     container_name: lcct.web
     ports:
       - "127.0.0.1:8000:8000"
