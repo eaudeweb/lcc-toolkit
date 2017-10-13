@@ -92,7 +92,7 @@ The application expects configuration via environment variables:
 ``ALLOWED_HOSTS``
     A list of host/domain names that this Django site can serve.
 
-``SENTRY_DSN``
+``SENTRY_DSN``, ``SENTRY_PUBLIC_DSN``
     URL of Sentry server to report errors. Optional.
 
 ``POSTGRES_PASSWORD``

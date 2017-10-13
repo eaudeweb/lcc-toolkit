@@ -23,3 +23,10 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/files/'
 MEDIA_ROOT = root.path('media/uploadfiles/')()
+
+# sentry configuration
+SENTRY_PUBLIC_DSN = env('SENTRY_PUBLIC_DSN', default='')
+SENTRY_DSN = env('SENTRY_DSN', default='')
+
+if not DEBUG and SENTRY_DSN:
+    RAVEN_CONFIG = {'dsn': SENTRY_DSN}

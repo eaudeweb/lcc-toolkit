@@ -14,6 +14,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/', views.Login.as_view()),
     url(r'^logout/', views.Logout.as_view()),
+
+    url(r'^crashme$', views.crashme, name='crashme'),
+
     url(r'^legislation/add/$', views.LegislationAdd.as_view()),
     url(r'^legislation/edit/.*$', views.LegislationEditView.as_view()),
     url(r'^legislation/add/articles.*$', views.AddArticles.as_view(), name="add_articles"),

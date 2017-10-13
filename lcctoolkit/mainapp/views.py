@@ -18,6 +18,13 @@ import lcctoolkit.settings as settings
 LEGISLATION_YEAR_RANGE = range(1945, constants.LEGISLATION_DEFAULT_YEAR + 1)
 
 
+def crashme(request):
+    if request.user.is_superuser:
+        raise RuntimeError("Crashing as requested")
+    else:
+        return django.http.HttpResponse("Must be administrator")
+
+
 def selected_taxonomy(request, is_tags=False):
     selector = "classification"
     if is_tags:

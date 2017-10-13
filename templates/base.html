@@ -17,6 +17,17 @@
 	 {% block scripts %}
         <script src="https://use.fontawesome.com/cd3dcc527f.js"></script>
         <script src="{% static "js/main.js"%}"></script>
+        {% if sentry_public_id %}
+        <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
+        <script>
+          Raven.config('{{ sentry_public_id }}').install()
+          Raven.setUserContext({
+            email: '{{ request.user.email }}',
+            username: '{{ request.user.username }}',
+            id: '{{ request.user.id }}',
+          })
+        </script>
+        {% endif %}
 	 {% endblock %}
 
 	 {% block extra-scripts %} {% endblock %}
