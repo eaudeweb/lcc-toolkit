@@ -1,5 +1,4 @@
 import json
-import mptt
 import pdftotext
 import re
 import time
@@ -11,8 +10,7 @@ import django.core as core
 import django.shortcuts
 import django.http
 import django.views as views
-from rest_framework import viewsets
-from rest_framework.response import Response
+from rest_framework import generics
 
 import lcctoolkit.mainapp.constants as constants
 import lcctoolkit.mainapp.models as models
@@ -619,8 +617,7 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, views.View)
         return django.http.HttpResponseRedirect("/legislation/")
 
 
-class QuestionViewSet(viewsets.ModelViewSet):
-    # queryset = models.Question.objects.filter(level=0)
+class QuestionViewSet(generics.ListAPIView):
     serializer_class = serializers.QuestionSerializer
 
     def get_queryset(self):

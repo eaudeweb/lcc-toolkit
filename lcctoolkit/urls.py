@@ -8,8 +8,9 @@ from rest_framework import routers
 
 from django.conf import settings
 
-router = routers.DefaultRouter()
-router.register(r'question_category/(?P<category_pk>\d+)$', views.QuestionViewSet)
+rest_framework_urls = [
+    url(r'question-category/(?P<category_pk>\d+)/$', views.QuestionViewSet.as_view()),
+]
 
 OTHER_URLS = (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +
               static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
@@ -33,6 +34,5 @@ urlpatterns = [
     url(r'^legislation/articles/edit.*$', views.EditArticles.as_view()),
     url(r'^legislation/articles.*$', views.ArticlesList.as_view()),
     url(r'^$', views.Index.as_view()),
-    url(r'^', include(router.urls)),
-    url(r'^api/', include('rest_framework.urls', namespace='api')),
+    url(r'^api/', include(rest_framework_urls, namespace='api')),
 ] + OTHER_URLS
