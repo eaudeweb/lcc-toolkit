@@ -1,8 +1,12 @@
 language: python
 python:
   - "3.6"
-install: sudo apt-get install libpoppler-cpp-dev && pip install -r requirements-dev.txt
-script:  ./manage.py test lcctoolkit
+before_install:
+  - sudo apt-get install libpoppler-cpp-dev
+install:
+  - pip install -r requirements-dev.txt
+script:
+  - coverage run --source='.' ./manage.py test lcctoolkit
 after_success: coveralls
 notifications:
   email:
