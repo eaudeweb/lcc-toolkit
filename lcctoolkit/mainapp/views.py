@@ -1,4 +1,5 @@
 import json
+import mptt
 import pdftotext
 import re
 import time
@@ -11,6 +12,7 @@ import django.shortcuts
 import django.http
 import django.views as views
 from rest_framework import viewsets
+from rest_framework.response import Response
 
 import lcctoolkit.mainapp.constants as constants
 import lcctoolkit.mainapp.models as models
@@ -618,5 +620,9 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, views.View)
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
-    queryset = models.Question.objects.all()
+    # queryset = models.Question.objects.filter(level=0)
     serializer_class = serializers.QuestionSerializer
+
+    def get_queryset(self):
+        category = self.kwargs['category_pk']
+        return models.Question.objects.filter(level=0, classification=category)

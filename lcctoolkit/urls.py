@@ -9,7 +9,7 @@ from rest_framework import routers
 from django.conf import settings
 
 router = routers.DefaultRouter()
-router.register(r'question', views.QuestionViewSet)
+router.register(r'question_category/(?P<category_pk>\d+)$', views.QuestionViewSet)
 
 OTHER_URLS = (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +
               static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))

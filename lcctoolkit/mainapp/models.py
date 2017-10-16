@@ -245,12 +245,22 @@ class Question(mptt.models.MPTTModel):
     def gap(self):
         return self.gap_on if self.gap_on else None
 
+    @property
+    def full_order(self):
+        return ".".join([
+            str(question.order)
+            for question in self.get_ancestors(include_self=True)
+        ])
+
     def __str__(self):
         if self.parent:
-            return "Question: " + ".".join([
-                str(question.order)
-                for question in self.get_ancestors(include_self=True)
-            ]) + " ans: " + str(self.parent_answer)
+            # return "Question: " + ".".join([
+            #     str(question.order)
+            #     for question in self.get_ancestors(include_self=True)
+            # ]) + " ans: " + str(self.parent_answer)
+            return "Question: %s with parent answer: %s" % (
+                self.full_order, self.parent_answer
+            )
         else:
             return "Question: %s" % self.order
 
