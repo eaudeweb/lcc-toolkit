@@ -17,7 +17,7 @@ DATABASES = {
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/var/www/'
+STATIC_ROOT = env('STATIC_ROOT', default='static/')
 
 STATICFILES_DIRS = [
     root.path('static/')()

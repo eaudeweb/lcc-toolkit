@@ -2,16 +2,11 @@ version: '2'
 
 services:
 
-  nginx:
-    image: eeacms/hello
-    container_name: lcct.hello
-    command: python hello.py
-
   web:
     build: .
     container_name: lcct.web
     ports:
-      - "8000:8000"
+      - "8000:80"
     environment:
       - DJANGO_MANAGEPY_MIGRATE=on
       - DJANGO_MANAGEPY_COLLECTSTATIC=off
