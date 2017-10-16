@@ -2,30 +2,6 @@ version: '2'
 
 services:
 
-  nginx:
-    image: nginx:alpine
-    environment:
-      NGINX_CONF: |-
-        server {
-          listen 80;
-
-          access_log /var/log/nginx/access.log main;
-
-          location /static {
-            sendfile on;
-            tcp_nopush on;
-            gzip on;
-            gzip_types text/plain application/x-javascript text/css;
-            expires 1d;
-            root /opt/lcct;
-          }
-        }
-    depends_on:
-      - web
-    volumes:
-      - static-files:/opt/lcct/static:ro
-    command: /bin/sh -c 'echo "$$NGINX_CONF" > /etc/nginx/conf.d/default.conf && exec nginx -g "daemon off;"'
-
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
     environment:
@@ -46,8 +22,6 @@ services:
       - ./docker/web.env
     depends_on:
       - db
-    volumes:
-      - static-files:/opt/lcct/static
 
   db:
     image: postgres:9-alpine
@@ -62,6 +36,4 @@ volumes:
   elastic:
     driver: local
   data:
-    driver: local
-  static-files:
     driver: local
