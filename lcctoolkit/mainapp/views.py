@@ -2,6 +2,7 @@ import json
 import pdftotext
 import re
 import time
+from functools import partial
 
 import django.db
 import django.contrib.auth as auth
@@ -11,9 +12,13 @@ import django.shortcuts
 import django.http
 import django.views as views
 
+from rolepermissions.roles import RolesManager
+
 import lcctoolkit.mainapp.constants as constants
 import lcctoolkit.mainapp.models as models
 import lcctoolkit.settings as settings
+import lcctoolkit.roles as roles
+
 
 LEGISLATION_YEAR_RANGE = range(1945, constants.LEGISLATION_DEFAULT_YEAR + 1)
 
@@ -613,3 +618,48 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, views.View)
         law.save()
 
         return django.http.HttpResponseRedirect("/legislation/")
+
+
+class Register(views.View):
+    """ Registration form.
+    """
+
+    template = "register.html"
+
+    @staticmethod
+    def _context(**kwargs):
+        def _skip_admin(name):
+            return name != roles.SiteAdministrator.get_name()
+
+        default = (
+            ('countries', models.Country.objects.order_by('name')),
+            ('roles', filter(_skip_admin, RolesManager.get_roles_names()))
+        )
+
+        return dict(default + tuple(kwargs.items()))
+
+    def get(self, request):
+        context = self._context()
+        return django.shortcuts.render(request, self.template, context)
+
+    def post(self, request):
+        def _validate(request, field, msg):
+            return field, msg if not request.POST.get(field) else None
+
+        validate = partial(_validate, request)
+        validate_email = partial(validate, 'email', 'Email is required!')
+        validate_country = partial(validate, 'country', 'Country is required!')
+        validate_role = partial(validate, 'role', 'You must choose a role!')
+
+        errors = dict(filter(bool, (
+            validate_email(), validate_country(), validate_role())))
+
+        default = dict(
+            email=request.POST.get('email'),
+            country=request.POST.get('country'),
+            role=request.POST.get('role'),
+        )
+
+        context = self._context(errors=errors, default=default)
+        print(context)
+        return django.shortcuts.render(request, self.template, context)

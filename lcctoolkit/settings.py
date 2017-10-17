@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lcctoolkit.mainapp',
     'django_webtest',
-    'mptt'
+    'mptt',
+    'rolepermissions',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'lcctoolkit.wsgi.application'
+ROLEPERMISSIONS_MODULE = 'lcctoolkit.roles'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

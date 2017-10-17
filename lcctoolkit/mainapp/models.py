@@ -1,4 +1,5 @@
 import mptt.models
+from rolepermissions.roles import get_user_roles
 import lcctoolkit.mainapp.utils as utils
 import lcctoolkit.mainapp.constants as constants
 
@@ -22,29 +23,17 @@ class Country(models.Model):
         return self.name
 
 
-class UserRole(models.Model):
-
-    name = models.CharField(max_length=32)
-
-    def __str__(self):
-        return self.name
-
-
 class UserProfile(models.Model):
 
     user = models.OneToOneField(auth.models.User, on_delete=models.CASCADE)
-
-    current_role = models.ForeignKey(
-        UserRole, related_name="current_role", null=True)
-    roles = models.ManyToManyField(UserRole)
 
     home_country = models.ForeignKey(
         Country, related_name="home_country", null=True)
     countries = models.ManyToManyField(Country)
 
     @property
-    def role(self):
-        return self.current_role.name
+    def roles(self):
+        return get_user_roles(self.user)
 
     @property
     def country(self):

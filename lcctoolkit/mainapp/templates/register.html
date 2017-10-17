@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block content-title %}
+  <!-- <h4 class="header-line"> Register </h4> -->
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12 login-wrapper">
+     <div class="panel panel-info">
+      <div class="panel-heading">
+        Register
+      </div>
+      <div class="panel-body">
+        <form role="form" id="register-form" method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <label>Email</label>
+            <input class="form-control" type="email" name="email" id="form-email-input" value="{{ default.email }}" />
+            {% if errors and errors.email %}
+              <p class="help-block form-field-error">{{ errors.email }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <select class="form-control" name="country" id="form-country-input">
+              <!-- TODO: use model -->
+              <option value="">-</option>
+              {% for country in countries %}
+                <option value="{{ country.iso }}" {% if default.country == country.iso %} selected="selected" {% endif %}>{{ country.name }}</option>
+              {% endfor %}
+            </select>
+            {% if errors and errors.country %}
+              <p class="help-block form-field-error">{{ errors.country }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label>Desired role</label>
+            <select class="form-control" name="role" id="form-role-input">
+              <!-- TODO: use model -->
+              <option value="">-</option>
+              {% for role in roles %}
+                <option value="{{ role }}" {% if default.role == role %} selected="selected" {% endif %}>{{ role }}</option>
+              {% endfor %}
+            </select>
+            {% if errors and errors.role %}
+              <p class="help-block form-field-error">{{ errors.role }}</p>
+            {% endif %}
+          </div>
+         <button type="submit" class="btn btn-info" id="login-btn">Register</button>
+         </form>
+       </div>
+    </div>
+    </div>
+   </div>
+{% endblock %}

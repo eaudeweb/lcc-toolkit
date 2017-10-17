@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/', views.Login.as_view()),
     url(r'^logout/', views.Logout.as_view()),
+    url(r'^register/', views.Register.as_view()),
 
     url(r'^crashme$', project_views.crashme, name='crashme'),
 

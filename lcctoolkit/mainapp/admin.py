@@ -6,7 +6,6 @@ from lcctoolkit.mainapp import models
 admin.site.register(models.Legislation)
 admin.site.register(models.LegislationArticle)
 admin.site.register(models.LegislationPage)
-admin.site.register(models.UserRole)
 admin.site.register(models.UserProfile)
 admin.site.register(models.Country)
 admin.site.register(models.TaxonomyTagGroup)
