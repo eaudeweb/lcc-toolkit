@@ -32,6 +32,3 @@ services:
     volumes:
       - ./lcctoolkit:/opt/lcct/lcctoolkit
       - ./assets:/opt/lcct/assets
-
-  db:
-    container_name: lcct.db
