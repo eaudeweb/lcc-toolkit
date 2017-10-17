@@ -254,10 +254,6 @@ class Question(mptt.models.MPTTModel):
 
     def __str__(self):
         if self.parent:
-            # return "Question: " + ".".join([
-            #     str(question.order)
-            #     for question in self.get_ancestors(include_self=True)
-            # ]) + " ans: " + str(self.parent_answer)
             return "Question: %s with parent answer: %s" % (
                 self.full_order, self.parent_answer
             )
