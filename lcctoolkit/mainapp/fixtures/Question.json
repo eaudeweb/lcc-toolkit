@@ -1,0 +1,162 @@
+[
+  {
+    "model": "mainapp.question",
+    "pk": 2,
+    "fields": {
+      "text": "Does this legislation include the specification of grid standards?",
+	    "parent_answer": true,
+	    "order": 1,
+	    "lft": 2,
+	    "rght": 3,
+	    "tree_id": 1,
+	    "level": 1,
+	    "classification_id": 97,
+	    "parent": 1,
+	    "gap_on": false
+  	}
+  },
+  {
+    "model": "mainapp.question",
+    "pk": 5,
+    "fields": {
+      "text": "Are there other legal measures concerning the integration of renewable energy projects into the energy system?",
+	    "parent_answer": false,
+	    "order": 1,
+	    "lft": 5,
+	    "rght": 6,
+	    "tree_id": 1,
+	    "level": 2,
+	    "classification_id": 100,
+	    "parent": 3,
+	    "gap_on": false
+  	}
+  },
+  {
+    "model": "mainapp.question",
+    "pk": 4,
+    "fields": {
+      "text": "Does this regulation provide access for electricity generated from renewables to transmission and distribution lines?",
+	    "parent_answer": true,
+	    "order": 2,
+	    "lft": 7,
+	    "rght": 8,
+	    "tree_id": 1,
+	    "level": 2,
+	    "classification_id": 99,
+	    "parent": 3,
+	    "gap_on": false
+ 		}
+  },
+  {
+    "model": "mainapp.question",
+    "pk": 1,
+    "fields": {
+      "text": "Does your country have legislation (or other formal law) regulating electricity grids to support the provision of low carbon energy?",
+	    "parent_answer": null,
+	    "order": 1,
+	    "lft": 1,
+	    "rght": 12,
+	    "tree_id": 1,
+	    "level": 0,
+	    "classification_id": 96,
+	    "parent": null,
+	    "gap_on": false
+  	}
+  },
+  {
+    "model": "mainapp.question",
+    "pk": 8,
+    "fields": {
+      "text": "Are there special provisions for rural electrification in your national legislation (or other formal law)?",
+	    "parent_answer": null,
+	    "order": 2,
+	    "lft": 1,
+	    "rght": 6,
+	    "tree_id": 2,
+	    "level": 0,
+	    "classification_id": 96,
+	    "parent": null,
+	    "gap_on": false
+  	}
+  },
+  {
+    "model": "mainapp.question",
+    "pk": 9,
+    "fields": {
+      "text": "Do these provisions include an obligation to prepare a policy on a standalone system for rural electrification?",
+		  "parent_answer": true,
+		  "order": 1,
+		  "lft": 2,
+		  "rght": 3,
+		  "tree_id": 2,
+		  "level": 1,
+		  "classification_id": 101,
+		  "parent": 8,
+		  "gap_on": false
+  	}
+  },
+  {
+    "model": "mainapp.question",
+    "pk": 10,
+    "fields": {
+      "text": "Do these provisions include measures relating to micro-grid or renewable energy provision in rural environments?",
+	    "parent_answer": true,
+	    "order": 2,
+	    "lft": 4,
+	    "rght": 5,
+	    "tree_id": 2,
+	    "level": 1,
+	    "classification_id": 102,
+	    "parent": 8,
+	    "gap_on": false
+  	}
+  },
+  {
+    "model": "mainapp.question",
+    "pk": 11,
+    "fields": {
+      "text": "Are there special provisions regulating nano-, micro- and\/or mini-grids (e.g. establishing licensing or concession processes) in your national legislation (or other formal law)?",
+	    "parent_answer": null,
+	    "order": 3,
+	    "lft": 1,
+	    "rght": 2,
+	    "tree_id": 3,
+	    "level": 0,
+	    "classification_id": 96,
+	    "parent": null,
+	    "gap_on": false
+  	}
+  },
+  {
+    "model": "mainapp.question",
+    "pk": 6,
+    "fields": {
+      "text": "Does your country have legislation (or other formal law) regulating distributed or off-grid energy?",
+	    "parent_answer": false,
+	    "order": 3,
+	    "lft": 10,
+	    "rght": 11,
+	    "tree_id": 1,
+	    "level": 1,
+	    "classification_id": 104,
+	    "parent": 1,
+	    "gap_on": null
+  	}
+  },
+  {
+    "model": "mainapp.question",
+    "pk": 3,
+    "fields": {
+      "text": "Does this legislation include grid access measures?",
+	    "parent_answer": true,
+	    "order": 2,
+	    "lft": 4,
+	    "rght": 9,
+	    "tree_id": 1,
+	    "level": 1,
+	    "classification_id": 98,
+	    "parent": 1,
+	    "gap_on": null
+	  }
+  }
+]

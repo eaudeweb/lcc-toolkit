@@ -1,3 +1,6 @@
+from lcctoolkit.mainapp import models
+
+
 def generate_code(model, instance):
     code = None
     if instance.parent:
@@ -23,3 +26,20 @@ def generate_code(model, instance):
         code = '{0}'.format(int(last_code) + 1)
 
     return code
+
+
+# @TODO change for edit
+def set_order(parent=None):
+    if parent:
+        last_children = parent.get_children().last()
+        if last_children:
+            return last_children.order + 1
+        else:
+            return 1
+
+    last_question = models.Question.objects.filter(parent=None).last()
+
+    if last_question:
+        return last_question.order + 1
+    else:
+        return 1
