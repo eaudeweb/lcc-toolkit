@@ -5,6 +5,8 @@ import time
 from functools import partial
 
 import django.db
+from django.db import transaction
+from django.db.models import Q
 import django.contrib.auth as auth
 import django.contrib.auth.mixins as mixins
 import django.core as core
@@ -638,27 +640,68 @@ class Register(views.View):
 
         return dict(default + tuple(kwargs.items()))
 
+    def _validate_post(self, request):
+        def _validate(request, field, msg, must_pass=lambda val: val):
+            """ accepts an "extra" validator function """
+            valid = must_pass(request.POST.get(field))
+            return (field, msg) if not valid else None
+
+        validate = partial(_validate, request)
+        validate_email = (
+            validate('email', 'Email is required!') or
+            validate(
+                'email', 'Email already registered!',
+                must_pass=lambda email: len(
+                    auth.models.User.objects.filter(
+                        Q(email=email) | Q(username=email))) == 0
+            )
+        )
+        validate_country = validate('country', 'Country is required!')
+        validate_role = validate(
+            'role', 'You must choose a role!',
+            must_pass=RolesManager.retrieve_role
+        )
+
+        return dict(
+            filter(bool, (validate_email, validate_country, validate_role)))
+
     def get(self, request):
         context = self._context()
         return django.shortcuts.render(request, self.template, context)
 
+    def _respond_with_errors(self, errors, request):
+        # preserve input data
+        default = {
+            fname: request.POST.get(fname) for
+            fname in ('email', 'country', 'role')
+        }
+
+        return self._context(errors=errors, default=default)
+
+    def _respond_with_success(self, request):
+        email = request.POST.get('email')
+        country = request.POST.get('country')
+        role = RolesManager.retrieve_role(request.POST.get('role'))
+
+        # add user, mark as inactive
+        user = auth.models.User.objects.create_user(email, email=email)
+        user.is_active = False
+        user.save()
+
+        # set country
+        user.userprofile.home_country = models.Country.objects.get(iso=country)
+        user.userprofile.save()
+
+        # grant role
+        role.assign_role_to_user(user)
+
+        return self._context(success=True)
+
+    @transaction.atomic
     def post(self, request):
-        def _validate(request, field, msg):
-            return field, msg if not request.POST.get(field) else None
-
-        validate = partial(_validate, request)
-        validate_email = validate('email', 'Email is required!')
-        validate_country = validate('country', 'Country is required!')
-        validate_role = validate('role', 'You must choose a role!')
-
-        errors = dict(
-            filter(bool, (validate_email, validate_country, validate_role)))
-
-        default = dict(
-            email=request.POST.get('email'),
-            country=request.POST.get('country'),
-            role=request.POST.get('role'),
+        errors = self._validate_post(request)
+        context = (
+            self._respond_with_errors(errors, request) if errors
+            else self._respond_with_success(request)
         )
-
-        context = self._context(errors=errors, default=default)
         return django.shortcuts.render(request, self.template, context)
