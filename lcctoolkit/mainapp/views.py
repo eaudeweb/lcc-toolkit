@@ -647,12 +647,12 @@ class Register(views.View):
             return field, msg if not request.POST.get(field) else None
 
         validate = partial(_validate, request)
-        validate_email = partial(validate, 'email', 'Email is required!')
-        validate_country = partial(validate, 'country', 'Country is required!')
-        validate_role = partial(validate, 'role', 'You must choose a role!')
+        validate_email = validate('email', 'Email is required!')
+        validate_country = validate('country', 'Country is required!')
+        validate_role = validate('role', 'You must choose a role!')
 
-        errors = dict(filter(bool, (
-            validate_email(), validate_country(), validate_role())))
+        errors = dict(
+            filter(bool, (validate_email, validate_country, validate_role)))
 
         default = dict(
             email=request.POST.get('email'),
@@ -661,5 +661,4 @@ class Register(views.View):
         )
 
         context = self._context(errors=errors, default=default)
-        print(context)
         return django.shortcuts.render(request, self.template, context)
