@@ -39,6 +39,9 @@ urlpatterns = [
     url(r'^legislation/pages.*$', views.LegislationPagesView.as_view()),
     url(r'^legislation/articles/edit.*$', views.EditArticles.as_view()),
     url(r'^legislation/articles.*$', views.ArticlesList.as_view()),
+
+    url(r'^legal-assessment/$', views.LegalAssessment.as_view(), name="legal_assessment"),
+
     url(r'^$', views.Index.as_view()),
     url(r'^api/', include(rest_framework_urls, namespace='api')),
 ] + OTHER_URLS

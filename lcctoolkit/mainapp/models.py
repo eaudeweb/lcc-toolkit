@@ -262,7 +262,7 @@ class Question(mptt.models.MPTTModel):
 
 
 class Assessment(models.Model):
-    user = models.ForeignKey(auth.models.User)
+    user = models.ForeignKey(auth.models.User, related_name="assessment")
     country = models.ForeignKey(Country)
 
     class Meta:

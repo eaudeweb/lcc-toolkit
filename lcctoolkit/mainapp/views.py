@@ -638,3 +638,11 @@ class AnswerList(generics.ListCreateAPIView):
 class AnswerDetail(generics.RetrieveUpdateAPIView):
     queryset = models.Answer.objects.all()
     serializer_class = serializers.AnswerSerializer
+
+
+class LegalAssessment(mixins.LoginRequiredMixin, views.View):
+    login_url = constants.LOGIN_URL
+    template = "legalAssessment.html"
+
+    def get(self, request):
+        return django.shortcuts.render(request, self.template)
