@@ -26,6 +26,8 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/files/'
 MEDIA_ROOT = root.path('media/uploadfiles/')()
 
+EMAIL_HOST = 'mailtrap'
+EMAIL_FROM = 'lcc-toolkit@eaudeweb.ro'
 if not DEBUG:
 
     # sentry configuration

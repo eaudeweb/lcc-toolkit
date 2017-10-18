@@ -7,9 +7,15 @@ from functools import partial
 import django.db
 from django.db import transaction
 from django.db.models import Q
+
 import django.contrib.auth as auth
 import django.contrib.auth.mixins as mixins
 import django.core as core
+
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+
+from django.template.loader import get_template
 import django.shortcuts
 import django.http
 import django.views as views
@@ -652,7 +658,7 @@ class Register(views.View):
             validate(
                 'email', 'Email already registered!',
                 must_pass=lambda email: len(
-                    auth.models.User.objects.filter(
+                    User.objects.filter(
                         Q(email=email) | Q(username=email))) == 0
             )
         )
@@ -679,21 +685,38 @@ class Register(views.View):
         return self._context(errors=errors, default=default)
 
     def _respond_with_success(self, request):
-        email = request.POST.get('email')
-        country = request.POST.get('country')
         role = RolesManager.retrieve_role(request.POST.get('role'))
 
         # add user, mark as inactive
-        user = auth.models.User.objects.create_user(email, email=email)
+        email = request.POST.get('email')
+        user = User.objects.create_user(email, email=email)
         user.is_active = False
         user.save()
 
         # set country
+        country = request.POST.get('country')
         user.userprofile.home_country = models.Country.objects.get(iso=country)
         user.userprofile.save()
 
         # grant role
         role.assign_role_to_user(user)
+
+        # send email to admins
+        admin_emails = (
+            User.objects
+            .filter(is_staff=True)
+            .values_list('email', flat=True)
+        )
+        mail_template = get_template('mail/new_registration.html').render()
+        mail_subject = 'New user registration'
+        send_mail(
+            mail_subject,
+            mail_template,
+            settings.EMAIL_FROM,
+            admin_emails,
+            html_message=mail_template,
+            fail_silently=False
+        )
 
         return self._context(success=True)
 
