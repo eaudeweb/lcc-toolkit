@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lcctoolkit.mainapp',
     'django_webtest',
-    'mptt'
+    'mptt',
+    'django_elasticsearch_dsl',
 ]
 
 MIDDLEWARE = [
