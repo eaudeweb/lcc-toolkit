@@ -4,14 +4,27 @@ from lcctoolkit.mainapp.models import (
 from rest_framework import serializers
 
 
+class QuestionAnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ("id", "value")
+
+
 class QuestionSerializer(serializers.ModelSerializer):
     children_yes = serializers.SerializerMethodField('_get_children_yes')
     children_no = serializers.SerializerMethodField('_get_children_no')
+    answer = serializers.SerializerMethodField('_get_answer')
 
     class Meta:
         model = Question
-        fields = ("id", "text", "order",
+        fields = ("id", "text", "order", "answer",
                   "children_yes", "children_no")
+
+    def _get_answer(self, obj):
+        query = Answer.objects.filter(question=obj).first()
+        if query:
+            serializer = QuestionAnswerSerializer(query)
+            return serializer.data
 
     def _get_children_yes(self, obj):
         query = obj.get_children().filter(parent_answer=True)
