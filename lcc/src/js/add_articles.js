@@ -10,15 +10,14 @@ $(document).ready(function(){
   $('.footer-section').remove();
 
   var AjaxSubmit = {};
-  AjaxSubmit["law_id"] = parseInt($("#law_pk").val());
+  var law_id = parseInt($("#law_pk").val());
   var page_number = parseInt($("#page_number").text());
   var pages = null;
 
   $.ajax({
     dataType: "json",
-    url: '/legislation/pages',
+    url: '/legislation/' + law_id + '/pages',
     async: false,
-    data: {'law_id': AjaxSubmit["law_id"]},
     success: function(data) {
       pages = data;
     }
@@ -84,9 +83,10 @@ $(document).ready(function(){
       $('input:checkbox:checked').each(function(){
         AjaxSubmit[$(this).attr("name")] = 'on';
       });
+      var law_id = parseInt($("#law_pk").val());
       $.ajax({
         type: 'POST',
-        url: '/legislation/add/articles',
+        url: '/legislation/' + law_id + '/articles/add/',
         data: AjaxSubmit,
         success : function(data) {
           $page_container_half = $(data).find('.page-container').html();

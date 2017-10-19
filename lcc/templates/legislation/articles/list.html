@@ -1,4 +1,4 @@
-{% extends "legislation.html" %}
+{% extends "legislation/explorer.html" %}
 
 
 {% block content %}
@@ -8,7 +8,7 @@
 <div class="articles-container">
 {% for article in articles %}
   <div class="viz-container">
-    <a class="btn btn-info pull-right" href="/legislation/articles/edit?article_id={{ article.pk }}">Edit</a>
+    <a class="btn btn-info pull-right" href="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">Edit</a>
     {% if article.code %}
     <h3>{{ article.code }}</h3>
     {% endif %}
@@ -28,6 +28,6 @@
 {% endfor %}
 </div>
 <div class="button-wrapper" style="margin:1rem 0;">
-  <a class="btn btn-primary" href="/legislation">View all legislations</a>
+  <a class="btn btn-primary" href="{% url 'lcc:legislation:explorer' %}">View all legislations</a>
 </div>
 {% endblock %}

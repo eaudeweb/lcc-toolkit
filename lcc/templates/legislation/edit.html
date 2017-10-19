@@ -21,7 +21,8 @@
               <label class="label-large" for="id_title">Title</label>
             </div>
             <div>
-              <input class='law-meta-data-text-field' type="text" name="title" maxlength="256" required id="id_title" value="{{ law.title }}"/>
+              <input class='law-meta-data-text-field' type="text" name="title"
+                     maxlength="256" required id="id_title" value="{{ form.title.value|default_if_none:'' }}"/>
             </div>
           </div>
 
@@ -31,7 +32,7 @@
             </div>
 
             <div class="clearfix">
-              <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract">{{ law.abstract }}</textarea>
+              <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract">{{ form.abstract.value|default_if_none:'' }}</textarea>
             <small class="pull-right" id="rem_char"></small>
             </div>
           </div>
@@ -81,7 +82,7 @@
                 <select name="country" required id="id_country" class="law-meta-data-combobox">
                   {% for country in countries %}
                     <option value="{{country.iso}}"
-                        {% if law.country.name == country.name %}
+                        {% if form.country.value == country.iso %}
                           selected
                         {% endif %}>
                       {{ country.name }}
@@ -99,7 +100,7 @@
                 <select name="language" id="id_law_language" class="law-meta-data-combobox">
                   {% for iso, language in available_languages %}
                     <option value="{{iso}}"
-                        {% if iso == law.language %}
+                        {% if iso == form.language.value %}
                           selected
                         {% endif %}>
                       {{ language }}
@@ -117,7 +118,7 @@
                 <select name="law_type" id="id_law_type" class="law-meta-data-combobox">
                 {% for law_type_key, law_value_key in legislation_type %}
                     <option value="{{law_type_key}}"
-                        {% if law.law_type == law_value_key %}
+                        {% if form.law_type.value == law_value_key %}
                           selected
                         {% endif %}>
                       {{ law_value_key }}
@@ -129,13 +130,13 @@
 
             <div class="selector selector-inline--4">
               <div>
-                <label class="label-medium" for="id_geo">Geographical Coverage:</label>
+                <label class="label-medium" for="id_geo_coverage">Geographical Coverage:</label>
               </div>
               <div>
-                <select name="geo" id="id_geo" class="law-meta-data-combobox">
+                <select name="geo_coverage" id="id_geo_coverage" class="law-meta-data-combobox">
                 {% for geo_type_key, geo_value_key in geo_coverage %}
-                  <option value="{{ geo_value_key }}"
-                      {% if law.geo_coverage == geo_type_key %}
+                  <option value="{{ geo_type_key }}"
+                      {% if form.geo_coverage.value == geo_type_key %}
                         selected
                       {% endif %}>
                     {{ geo_value_key }}
@@ -150,7 +151,8 @@
                 <label class="label-medium" for="id_website">Website:</label>
               </div>
               <div>
-                <input class='law-meta-data-text-field' type="text" id="id_website" name="website" maxlength="256" value="{{ law.website }}"/>
+                <input class='law-meta-data-text-field' type="text" id="id_website" required
+                       name="website" maxlength="256" value="{{ form.website.value|default_if_none:'' }}"/>
                 {% if errors.website %}
                   <span class="year-details error">{{ errors.website }}</span>
                 {% endif %}
@@ -162,7 +164,8 @@
                 <label class="label-medium" for="id_source">Source:</label>
               </div>
               <div>
-                <input class='law-meta-data-text-field' type="text" id="id_source" name="source" maxlength="256" value="{{ law.source }}"/>
+                <input class='law-meta-data-text-field' type="text" id="id_source" required
+                       name="source" maxlength="256" value="{{ form.source.value|default_if_none:'' }}"/>
               </div>
             </div>
 
@@ -174,7 +177,7 @@
                 <select name="source_type" id="id_source_type" class="law-meta-data-combobox">
                   {% for source_type_key, source_type_value in source_types %}
                     <option value="{{ source_type_key }}"
-                        {% if law.source_type == source_type_key %}
+                        {% if form.source_type.value == source_type_key %}
                           selected
                         {% endif %}>
                       {{ source_type_value }}
@@ -186,13 +189,13 @@
 
             <div class="selector selector-inline--4">
               <div>
-                <label class="label-medium" for="id_law_year">Promulgation of the law (year):</label>
+                <label class="label-medium" for="id_year">Promulgation of the law (year):</label>
               </div>
               <div>
-                <select name="law_year" id="id_law_year" class="law-meta-data-combobox">
+                <select name="year" id="id_year" class="law-meta-data-combobox">
                   {% for year in adoption_years %}
                     <option value="{{ year }}"
-                        {% if law.year == year %}
+                        {% if form.year.value == year|slugify %}
                           selected
                         {% endif %}>
                       {{ year }}
@@ -204,13 +207,13 @@
 
             <div class="selector selector-inline--4">
               <div>
-                <label class="label-medium" for="id_amendment_year">Latest known amendment (year):</label>
+                <label class="label-medium" for="id_year_amendment">Latest known amendment (year):</label>
               </div>
               <div>
-                <select name="amendment_year" id="id_amendment_year" class="law-meta-data-combobox">
+                <select name="year_amendment" id="id_year_amendment" class="law-meta-data-combobox">
                   {% for year in adoption_years %}
                     <option value="{{ year }}"
-                        {% if law.year_amendment == year %}
+                        {% if form.year_amendment.value == year|slugify %}
                           selected
                         {% endif %}}>
                       {{ year }}
@@ -222,13 +225,15 @@
 
             <div class="selector selector-inline--2">
               <div>
-                <label class="label-medium" for="id_year_of_adoption_mention">Additional date details:</label>
+                <label class="label-medium" for="id_year_mention">Additional date details:</label>
               </div>
               <div>
-                <input class='law-meta-data-text-field' type="text" id="id_year_of_adoption_mention" name="year_of_adoption_mention" maxlength="256" value="{{ law.year_mention }}"/>
+                <input class='law-meta-data-text-field' type="text"
+                       id="id_year_mention" required
+                       name="year_mention" maxlength="256" value="{{ form.year_mention.value|default_if_none:'' }}"/>
                 <!-- TODO: this checks if the field have a 4 digit string. Could be done in js. -->
-                {% if errors.year_details %}
-                  <span class="year-details error">{{ errors.year_details }}</span>
+                {% if form.errors.year_mention %}
+                  <span class="year-details error">{{ form.errors.year_mention.0 }}</span>
                 {% endif %}
               </div>
             </div>
@@ -255,7 +260,7 @@
                             <li>
                               <span class="list-header">
                                 <input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
-                                  {% if tag.name in selected_tags %}
+                                  {% if tag.pk in form.tags.value %}
                                     checked
                                   {% endif %}>
                                 {{tag.name}}
@@ -285,7 +290,7 @@
                       <span  class="list-header" {% if not top_class.get_children %} style="pointer-events: none;" {% endif %} >
                         {% if top_class.get_children %}
                           <input name='classification_{{ top_class.pk }}' type='checkbox'
-                              {% if top_class.name in selected_classifications %}
+                              {% if top_class.pk in form.classifications.value %}
                                 checked
                               {% endif %}>
                             {{ top_class.name }}
@@ -301,7 +306,7 @@
                           <li>
                             <span class="list-header">
                               <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox
-                                  {% if second_class.name in selected_classifications %}
+                                  {% if second_class.pk in form.classifications.value %}
                                     checked
                                   {% endif %}>
                                 {{ second_class.name }}
@@ -313,7 +318,7 @@
                                 <li>
                                   <span class="list-header">
                                     <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
-                                        {% if third_class.name in selected_classifications %}
+                                        {% if third_class.pk in form.classifications.value %}
                                           checked
                                         {% endif %}>
                                       {{ third_class.name }}

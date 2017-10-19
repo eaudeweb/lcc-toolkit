@@ -6,11 +6,11 @@ from lcc import views
 from lcc.context import sentry
 
 auth_patterns = [
-    url(r'^login/',
+    url(r'^login/$',
         views.Login.as_view(),
         name='login'),
 
-    url(r'^logout/',
+    url(r'^logout/$',
         views.Logout.as_view(),
         name='logout'),
 ]
@@ -61,6 +61,7 @@ api_urls = [
     url(r'answers/$', views.AnswerList.as_view(), name='answers_list_create'),
     url(r'answers/(?P<pk>[0-9]+)/$', views.AnswerDetail.as_view(), name='answers_get_update')
 ]
+
 
 def handler500(request, template_name='errors/500.html'):
     try:

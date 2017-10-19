@@ -1,4 +1,4 @@
-{% extends "legislation.html" %}
+{% extends "legislation/explorer.html" %}
 
 {% load static %}
 {% load utils %}
@@ -33,8 +33,9 @@
   <div id="title" style="margin-bottom:28px;">
   Manage Articles for: {{ law.title }} | {{ law.country.name }}
   </div>
-  <form id="editArticle" method="post" action="/legislation/articles/edit?article_id={{ article.pk }}">
+  <form id="editArticle" method="post" action="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">
     {% csrf_token %}
+      <input name="legislation" value="{{ law.pk }}" hidden>
 
       <div class='law-meta-data-container'>
         <div>
@@ -54,7 +55,9 @@
       <div class="clearfix">
         <!-- TODO change classes to text -->
         <!-- TODO check text style in textarea -->
-        <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="legislation_text" maxlength="65535" required id="id_text" placeholder="Add article text">{{ article.text }}</textarea>
+        <textarea class='law-meta-data-text-field law-meta-data-abstract-field'
+                  name="text" maxlength="65535" required id="id_text" placeholder="Add
+                  article text">{{ article.text }}</textarea>
         <!-- TODO change change char limit -->
         <small class="pull-right" id="rem_char"></small>
       </div>

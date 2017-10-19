@@ -37,6 +37,8 @@
   <form id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
     {% csrf_token %}
 
+      <input name="legislation" value="{{ law.pk }}" hidden>
+
       <div class='law-meta-data-container'>
         <div>
           <label class="label-large" for="id_code">Code</label>
@@ -55,7 +57,7 @@
       <div class="clearfix">
         <!-- TODO change classes to text -->
         <!-- TODO check text style in textarea -->
-        <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="legislation_text" maxlength="65535" required id="id_text" placeholder="Add article text"></textarea>
+        <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="text" maxlength="65535" required id="id_text" placeholder="Add article text"></textarea>
         <!-- TODO change change char limit -->
         <small class="pull-right" id="rem_char"></small>
       </div>
@@ -63,10 +65,10 @@
 
     <div class="legislation-page-container">
       <div>
-        <label class="label-large" for="id_page">Page</label>
+        <label class="label-large" for="id_legistlation_page">Page</label>
       </div>
       <div>
-        <input type="number" required id="id_page" name="legislation_page" maxlength="4" value="{{ starting_page }}">
+        <input type="number" required id="id_legistlation_page" name="legislation_page" maxlength="4" value="{{ starting_page }}">
       </div>
     </div>
 
