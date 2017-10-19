@@ -27,6 +27,20 @@
             {% endif %}
           </div>
           <div class="form-group">
+            <label>Institutional affiliation</label>
+            <input class="form-control" type="text" name="affiliation" id="form-affiliation-input" value="{{ default.affiliation }}" />
+            {% if errors and errors.affiliation %}
+            <p class="help-block form-field-error">{{ errors.affiliation }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label>Position</label>
+            <input class="form-control" type="text" name="position" id="form-position-input" value="{{ default.position }}" />
+            {% if errors and errors.position %}
+            <p class="help-block form-field-error">{{ errors.position }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
             <label>Country</label>
             <select class="form-control" name="country" id="form-country-input" required>
               <option value="">-</option>

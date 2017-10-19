@@ -31,6 +31,20 @@ class UserProfile(models.Model):
         Country, related_name="home_country", null=True)
     countries = models.ManyToManyField(Country)
 
+    affiliation = models.CharField(
+        'Institutional affiliation',
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
+    position = models.CharField(
+        'Postition',
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
     @property
     def roles(self):
         return get_user_roles(self.user)

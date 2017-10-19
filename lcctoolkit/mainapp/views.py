@@ -696,6 +696,8 @@ class Register(views.View):
         # set country
         country = request.POST.get('country')
         user.userprofile.home_country = models.Country.objects.get(iso=country)
+        user.userprofile.affiliation = request.POST.get('affiliation')
+        user.userprofile.position = request.POST.get('position')
         user.userprofile.save()
 
         # grant role
