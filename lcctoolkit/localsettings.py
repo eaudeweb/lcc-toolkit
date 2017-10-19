@@ -11,7 +11,7 @@ SECRET_KEY = env('SECRET_KEY', default='secret')
 DEBUG = env('DEBUG')
 
 DATABASES = {
-    'default': env.db(default='sqlite:////tmp/my-tmp-sqlite.db'),
+    'default': env.db(),
 }
 
 ELASTICSEARCH_DSL = {
