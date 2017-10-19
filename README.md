@@ -18,7 +18,7 @@ A web application which stands as a toolkit for climate change law assessment.
         $ git clone https://github.com/eaudeweb/lcc-toolkit
         $ cd lcc-toolkit
 
-2. Customize the environment files:
+1. Customize the environment files:
 
         $ cp docker/postgres.env.example docker/postgres.env
         $ vim docker/postgres.env
@@ -32,14 +32,18 @@ A web application which stands as a toolkit for climate change law assessment.
          $ cp docker-compose.override.[prod|dev].yml docker-compose.override.yml
          $ vim docker-compose.override.yml
 
-3. Start the application stack:
+1. Start the application stack:
 
         $ docker-compose up -d
         $ docker-compose logs
 
-4. Create a superuser (for Ansible see https://gist.github.com/elleryq/9c70e08b1b2cecc636d6):
+1. Attach to the web service:
 
-        $ docker exec -it lcct.web bash
+        $ docker-compose run --entrypoint bash web
+
+1. Create a superuser (for Ansible see https://gist.github.com/elleryq/9c70e08b1b2cecc636d6):
+
+        $ docker-compose run --entrypoint bash web
         $ python manage.py createsuperuser
 
 That's it. You should now be able to access the app at http://localhost:8000.
@@ -53,11 +57,7 @@ is not executed:
 
         entrypoint: ["/usr/bin/tail", "-f", "/dev/null"]
 
-* Attach to the web service:
-
-        $ docker exec -it lcct.web bash
-
-    and run the following:
+* Attach to the web service and run the following:
 
         $ ./manage.py migrate
         $ ./manage.py load_fixtures
@@ -66,11 +66,7 @@ is not executed:
 
 ## Testing
 
-To execute the test suite, attach to the web service:
-
-    $ docker exec -it lcct.web bash
-
-and run the following:
+To execute the test suite, attach to the web service and run the following:
 
     $ pip install -r requirements-dev.txt
     $ python manage.py test
