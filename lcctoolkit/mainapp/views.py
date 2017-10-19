@@ -10,9 +10,11 @@ import django.core as core
 import django.shortcuts
 import django.http
 import django.views as views
+from rest_framework import generics
 
 import lcctoolkit.mainapp.constants as constants
 import lcctoolkit.mainapp.models as models
+import lcctoolkit.mainapp.serializers as serializers
 import lcctoolkit.settings as settings
 
 LEGISLATION_YEAR_RANGE = range(1945, constants.LEGISLATION_DEFAULT_YEAR + 1)
@@ -613,3 +615,34 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, views.View)
         law.save()
 
         return django.http.HttpResponseRedirect("/legislation/")
+
+
+class QuestionViewSet(generics.ListAPIView):
+    serializer_class = serializers.QuestionSerializer
+
+    def get_queryset(self):
+        category = self.kwargs['category_pk']
+        return models.Question.objects.filter(level=0, classification=category)
+
+
+class ClassificationViewSet(generics.ListAPIView):
+    queryset = models.TaxonomyClassification.objects.filter(level=0).order_by('code')
+    serializer_class = serializers.ClassificationSerializer
+
+
+class AnswerList(generics.ListCreateAPIView):
+    queryset = models.Answer.objects.all()
+    serializer_class = serializers.AnswerSerializer
+
+
+class AnswerDetail(generics.RetrieveUpdateAPIView):
+    queryset = models.Answer.objects.all()
+    serializer_class = serializers.AnswerSerializer
+
+
+class LegalAssessment(mixins.LoginRequiredMixin, views.View):
+    login_url = constants.LOGIN_URL
+    template = "legalAssessment.html"
+
+    def get(self, request):
+        return django.shortcuts.render(request, self.template)

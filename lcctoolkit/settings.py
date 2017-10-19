@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django_webtest',
     'mptt',
     'django_elasticsearch_dsl',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +84,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    )
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
