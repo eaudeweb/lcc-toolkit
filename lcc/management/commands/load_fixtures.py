@@ -9,8 +9,8 @@ class Command(BaseCommand):
 
     help = "Load initial data"
 
-    FIXTURES = ("TaxonomyTagGroup", "TaxonomyTag",
-                "TaxonomyClassification", "Countries", "Legislation")
+    FIXTURES = ("TaxonomyTagGroup", "TaxonomyTag", "TaxonomyClassification",
+                "Question", "Countries", "Legislation")
 
     def load_user_profile_roles(self):
         for user_role_name in lcc_constants.USER_PROFILE_ROLES:

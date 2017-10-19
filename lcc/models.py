@@ -208,3 +208,68 @@ class LegislationPage(models.Model):
 
     def __str__(self):
         return "Page %d of Legislation %s" % (self.page_number, str(self.legislation.title))
+
+
+class Question(mptt.models.MPTTModel):
+
+    text = models.CharField(max_length=1024)
+    parent = mptt.models.TreeForeignKey(
+        'self',
+        null=True,
+        blank=True,
+        related_name='children')
+    parent_answer = models.NullBooleanField(default=None)
+    order = models.IntegerField(blank=True)
+
+    classification = models.ForeignKey(TaxonomyClassification)
+    tags = models.ManyToManyField(TaxonomyTag)
+
+    gap_on = models.NullBooleanField(default=None)
+
+    class Meta:
+        verbose_name = 'Question'
+        verbose_name_plural = 'Questions'
+
+    class MPTTMeta:
+        order_insertion_by = ['order']
+
+    def save(self, *args, **kwargs):
+        if not self.order:
+            self.order = utils.set_order(self.parent)
+        super(Question, self).save(*args, **kwargs)
+
+    @property
+    def gap(self):
+        return self.gap_on if self.gap_on else None
+
+    @property
+    def full_order(self):
+        return ".".join([
+            str(question.order)
+            for question in self.get_ancestors(include_self=True)
+        ])
+
+    def __str__(self):
+        if self.parent:
+            return "Question: %s with parent answer: %s" % (
+                self.full_order, self.parent_answer
+            )
+        else:
+            return "Question: %s" % self.order
+
+
+class Assessment(models.Model):
+    user = models.ForeignKey(User, related_name="assessment")
+    country = models.ForeignKey(Country)
+
+    class Meta:
+        unique_together = ("user", "country")
+
+
+class Answer(models.Model):
+    assessment = models.ForeignKey(Assessment)
+    question = models.ForeignKey(Question)
+    value = models.BooleanField()
+
+    class Meta:
+        unique_together = ("question", "value")

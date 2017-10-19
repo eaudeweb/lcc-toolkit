@@ -54,6 +54,13 @@ legislation_patterns = [
         include(article_patterns, namespace='articles')),
 ]
 
+api_urls = [
+    url(r'question-category/(?P<category_pk>\d+)/$',
+        views.QuestionViewSet.as_view()),
+    url(r'classification/$', views.ClassificationViewSet.as_view()),
+    url(r'answers/$', views.AnswerList.as_view(), name='answers_list_create'),
+    url(r'answers/(?P<pk>[0-9]+)/$', views.AnswerDetail.as_view(), name='answers_get_update')
+]
 
 def handler500(request, template_name='errors/500.html'):
     try:
@@ -79,7 +86,14 @@ urlpatterns = [
     url(r'^',
         include(auth_patterns, namespace='auth')),
 
+    url(r'^api/',
+        include(api_urls, namespace='api')),
+
     url(r'^crashme$', crash_me, name='crashme'),
+
+    url(r'^legal-assessment/$',
+        views.LegalAssessment.as_view(),
+        name="legal_assessment"),
 
     url(r'^legislation/',
         include(legislation_patterns, namespace='legislation')),

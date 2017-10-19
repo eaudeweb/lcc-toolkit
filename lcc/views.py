@@ -13,11 +13,68 @@ from django.db import transaction
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from rest_framework import generics
 
 import lcc.constants as constants
 import lcc.models as models
+from lcc import serializers
 
 LEGISLATION_YEAR_RANGE = range(1945, constants.LEGISLATION_DEFAULT_YEAR + 1)
+
+
+def legislation_form_check_year_details(year_details, errors):
+    years_in_year_details = [
+        int(year)
+        for year in re.findall('\d\d\d\d', year_details)
+    ]
+
+    if years_in_year_details:
+        if not any(year in LEGISLATION_YEAR_RANGE
+                   for year in years_in_year_details):
+            errors["year_details"] = "Please add a year in %d-%d range" % (
+                LEGISLATION_YEAR_RANGE[0], LEGISLATION_YEAR_RANGE[-1]
+            )
+    else:
+        errors["year_details"] = (
+            "'Additional date details' field needs a 4 digit year."
+        )
+
+
+def legislation_form_get_pdf_file(file, errors):
+    try:
+        return pdftotext.PDF(file)
+    except pdftotext.Error:
+        errors["pdf"] = "The .pdf file is corrupted. Please reupload it."
+
+
+def legislation_form_check_website(website, errors):
+    url = URLValidator()
+    try:
+        url(website)
+    except ValidationError:
+        errors["website"] = "Please enter a valid website."
+
+
+def legislation_save_pdf_pages(law, pdf):
+    if settings.DEBUG:
+        time_to_load_pdf = time.time()
+    if settings.DEBUG:
+        print("INFO: FS pdf file load time: %fs" %
+              (time.time() - time_to_load_pdf))
+        time_begin_transaction = time.time()
+
+    with transaction.atomic():
+        for idx, page in enumerate(pdf):
+            page = page.replace('\x00', '')
+            models.LegislationPage(
+                page_text="<pre>%s</pre>" % page,
+                page_number=idx + 1,
+                legislation=law
+            ).save()
+
+    if settings.DEBUG:
+        print("INFO: ORM models.LegislationPages save time: %fs" %
+              (time.time() - time_begin_transaction))
 
 
 def selected_taxonomy(request, is_tags=False):
@@ -45,7 +102,7 @@ def taxonomy_to_string(legislation, tags=False, classification=False):
 
 
 def response_error(request, errors, template="message.html"):
-    return django.shortcuts.render(request, template, {"errors": errors})
+    return render(request, template, {"errors": errors})
 
 
 class UserPatchMixin():
@@ -151,61 +208,6 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, views.View):
     taxonomy_classifications = models.TaxonomyClassification. \
         objects.filter(level=0).order_by('code')
 
-    @staticmethod
-    def legislation_form_check_year_details(year_details, errors):
-        years_in_year_details = [
-            int(year)
-            for year in re.findall('\d\d\d\d', year_details)
-        ]
-
-        if years_in_year_details:
-            if not any(year in LEGISLATION_YEAR_RANGE
-                       for year in years_in_year_details):
-                errors["year_details"] = "Please add a year in %d-%d range" % (
-                    LEGISLATION_YEAR_RANGE[0], LEGISLATION_YEAR_RANGE[-1]
-                )
-        else:
-            errors["year_details"] = (
-                "'Additional date details' field needs a 4 digit year."
-            )
-
-    @staticmethod
-    def legislation_form_get_pdf_file(file, errors):
-        try:
-            return pdftotext.PDF(file)
-        except pdftotext.Error:
-            errors["pdf"] = "The .pdf file is corrupted. Please reupload it."
-
-    @staticmethod
-    def legislation_form_check_website(website, errors):
-        url = URLValidator()
-        try:
-            url(website)
-        except ValidationError:
-            errors["website"] = "Please enter a valid website."
-
-    @staticmethod
-    def legislation_save_pdf_pages(law, pdf):
-        if settings.DEBUG:
-            time_to_load_pdf = time.time()
-        if settings.DEBUG:
-            print("INFO: FS pdf file load time: %fs" %
-                  (time.time() - time_to_load_pdf))
-            time_begin_transaction = time.time()
-
-        with transaction.atomic():
-            for idx, page in enumerate(pdf):
-                page = page.replace('\x00', '')
-                models.LegislationPage(
-                    page_text="<pre>%s</pre>" % page,
-                    page_number=idx + 1,
-                    legislation=law
-                ).save()
-
-        if settings.DEBUG:
-            print("INFO: ORM models.LegislationPages save time: %fs" %
-                  (time.time() - time_begin_transaction))
-
     class TagGroupRender():
 
         def __init__(self, tag_group):
@@ -259,9 +261,9 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, views.View):
         ]
 
         errors = {}
-        self.legislation_form_check_year_details(year_details, errors)
-        self.legislation_form_check_website(website, errors)
-        pdf = self.legislation_form_get_pdf_file(uploaded_file, errors)
+        legislation_form_check_year_details(year_details, errors)
+        legislation_form_check_website(website, errors)
+        pdf = legislation_form_get_pdf_file(uploaded_file, errors)
 
         if errors:
             return render(request, self.template, {
@@ -328,7 +330,7 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, views.View):
         for classification in classifications:
             law_obj.classifications.add(classification)
 
-        self.legislation_save_pdf_pages(law_obj, pdf)
+        legislation_save_pdf_pages(law_obj, pdf)
 
         if "save-and-continue-btn" in request.POST:
             return HttpResponseRedirect(
@@ -569,9 +571,9 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, views.View)
         errors = {}
 
         if has_pdf:
-            pdf = LegislationAdd.legislation_form_get_pdf_file(
+            pdf = legislation_form_get_pdf_file(
                 request.FILES['pdf_file'], errors)
-        LegislationAdd.legislation_form_check_year_details(
+        legislation_form_check_year_details(
             request.POST["year_of_adoption_mention"], errors)
         law = self.get_law_patched_with_request(request, law)
 
@@ -585,7 +587,7 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, views.View)
             law.pdf_file.save(
                 request.FILES['pdf_file'].name, request.FILES['pdf_file'].file)
             models.LegislationPage.objects.filter(legislation=law).delete()
-            LegislationAdd.legislation_save_pdf_pages(law, pdf)
+            legislation_save_pdf_pages(law, pdf)
         law.tags.clear()
         law.classifications.clear()
         law.tags = selected_taxonomy(request, is_tags=True)
@@ -593,3 +595,34 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, views.View)
         law.save()
 
         return HttpResponseRedirect(reverse('lcc:legislation:explorer'))
+
+
+class QuestionViewSet(generics.ListAPIView):
+    serializer_class = serializers.QuestionSerializer
+
+    def get_queryset(self):
+        category = self.kwargs['category_pk']
+        return models.Question.objects.filter(level=0, classification=category)
+
+
+class ClassificationViewSet(generics.ListAPIView):
+    queryset = models.TaxonomyClassification.objects.filter(level=0).order_by('code')
+    serializer_class = serializers.ClassificationSerializer
+
+
+class AnswerList(generics.ListCreateAPIView):
+    queryset = models.Answer.objects.all()
+    serializer_class = serializers.AnswerSerializer
+
+
+class AnswerDetail(generics.RetrieveUpdateAPIView):
+    queryset = models.Answer.objects.all()
+    serializer_class = serializers.AnswerSerializer
+
+
+class LegalAssessment(mixins.LoginRequiredMixin, views.View):
+    login_url = constants.LOGIN_URL
+    template = "assessmetn.html"
+
+    def get(self, request):
+        return render(request, self.template)

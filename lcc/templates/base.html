@@ -44,7 +44,6 @@
     {% endblock %}
 
     {% block extra-styles %}{% endblock %}
-
 </head>
 
 <body>
@@ -72,6 +71,7 @@
                 <ul class="menu">
                     <li><a href="{% url 'lcc:legislation:explorer' %}">Home</a></li>
                     <li><a href="{% url 'lcc:legislation:explorer' %}">Legislation</a></li>
+                    <li><a href="{% url 'lcc:legal_assessment' %}">Legal Assessment</a></li>
                 </ul>
                 </a>
             </div>
@@ -102,6 +102,5 @@
             </div>
         </div>
     </section>
-
 </body>
 </html>
