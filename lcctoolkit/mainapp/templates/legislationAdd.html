@@ -257,34 +257,34 @@
       <div class='law-meta-data-container check-fields add'>
         <div class="tags wrapper">
           <div>
-            <label for="id_tags">Tags</label>
+            <label for="id_tags" class="label-medium">Tags</label>
           </div>
-          <div>
+          <div class="list-header">
             Select the best areas where the legislation fits
           </div>
           <div class="list-container">
             <ul name='tags' id='tags'>
             {% for tag_group in tag_groups %}
-               <li class="first-level level">
-               <span class="list-header">
-                 <i class="fa fa-plus-square" aria-hidden="true"></i>
-                <span name='tagGroup_{{tag_group.pk}}'> {{tag_group.name}} </span>
-               </span>
+              <li class="first-level level">
+                <span class="list-header">
+                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                  <span name='tagGroup_{{tag_group.pk}}'> {{tag_group.name}} </span>
+                </span>
                 <ul class="second-level level">
-                 {% for tag in tag_group.tags %}
-                 <li>
-                  <input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
-                      {% if selected_tags %}
-                        {% if tag.name in selected_tags %}
-                          checked
-                        {% endif %}
-                      {% endif %}>
-                    {{tag.name}}
-                  </input>
-                 </li>
-                 {% endfor %}
+                  {% for tag in tag_group.tags %}
+                  <li>
+                    <input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
+                        {% if selected_tags %}
+                          {% if tag.name in selected_tags %}
+                            checked
+                          {% endif %}
+                        {% endif %}>
+                    </input>
+                    <label for="tag_{{tag.pk}}">{{ tag.name }}</label>
+                  </li>
+                  {% endfor %}
                 </ul>
-               </li>
+              </li>
             {% endfor %}
             </ul>
           </div>
@@ -292,10 +292,10 @@
 
         <div class="classificaions wrapper">
           <div>
-            <label for="id_classifications">Classifications</label>
+            <label for="id_classifications" class="label-medium">Classifications</label>
           </div>
 
-          <div>
+          <div class="list-header">
             Select the legal areas where the legislation fits
           </div>
 
@@ -305,15 +305,15 @@
                 <li class="first-level level">
                   {% if top_class.get_children %}
                     <span class="list-header">
-                      <input name='classification_{{ top_class.pk }}' type='checkbox'
+                      <input name='classification_{{ top_class.pk }}' id='classification_{{ top_class.pk }}' type='checkbox'
                           {% if top_class.name in selected_classifications %}
                             checked
                           {% endif %}>
-                        {{ top_class.name }}
                       </input>
+                      <label for="classification_{{ top_class.pk }}">{{ top_class.name }}</label>
                     </span>
                   {% else %}
-                    <span class="list-header" style="pointer-events: none;">
+                    <span class="list-header unusable">
                       <span>{{ top_class.name }}</span>
                     </span>
                   {% endif %}

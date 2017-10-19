@@ -1,12 +1,11 @@
 .list-header {
-    // font-weight: bold;
+    font-weight: bold;
 }
 
 .list-container {
     li {
         cursor: pointer;
         position: relative;
-        color: #aaa;
         &.expanded {
           * {
           color: black;
@@ -18,6 +17,15 @@
     }
     li>ul>li>ul {
         padding-left: 3rem;
+    }
+    .list-header {
+      position: relative;
+      padding-left: 20px;
+      font-weight: normal;
+    }
+    label {
+      cursor: pointer;
+      font-weight: normal;
     }
 }
 
@@ -32,6 +40,10 @@
 
             display: none;
         }
+    }
+    .unusable {
+      pointer-events: none;
+      color: #aaa;
     }
 }
 
@@ -320,10 +332,10 @@ input[type='checkbox']:checked:before {
   }
 }
 
-.list-header {
-  position: relative;
-  padding-left: 20px;
-}
+// .list-header {
+//   position: relative;
+//   padding-left: 20px;
+// }
 
 
 .state {
