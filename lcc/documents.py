@@ -1,5 +1,5 @@
 from django_elasticsearch_dsl import DocType, Index
-from .models import Legislation
+from lcc.models import Legislation
 
 # Name of the Elasticsearch index
 legislation = Index('legislations')
