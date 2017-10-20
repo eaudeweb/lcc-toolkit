@@ -6,7 +6,7 @@ before_install:
 install:
   - pip install -r requirements-dev.txt
 script:
-  - coverage run --source='.' ./manage.py test lcctoolkit
+  - coverage run --source='.' ./manage.py test lcc
 after_success: coveralls
 notifications:
   email:

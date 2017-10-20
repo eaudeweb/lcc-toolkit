@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block header-top-right %}
+	{% if request.user.is_authenticated %}
+	{% static "" as baseUrl %}
+     	{{request.user.get_full_name}}
+		<strong> {{request.user.full_name }} </strong> | <img  src="{{ baseUrl }}img/flags/{{request.user_profile.countries.all.0.iso | lower }}.png" >
+		{{request.user_profile.country}} |
+		<a href="{% url 'lcc:auth:logout' %}" id='login-link'>Logout</a>
+	{% else %}
+		<a class="btn btn-login" href="{% url 'lcc:auth:login' %}" id='register-link'> Login</a>
+		<a class="btn btn-login" href="#" id='register-link'> Register </a>
+	{% endif %}
+{% endblock %}
+

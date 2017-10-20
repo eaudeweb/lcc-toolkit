@@ -1,0 +1,169 @@
+{% extends "legislation/explorer.html" %}
+
+{% load static %}
+{% load utils %}
+
+{% block extra-scripts %}
+  <script src="{% static "js/add_articles.js" %}"> </script>
+  <script src="{% static "js/jquery.validate.js" %}"> </script>
+
+
+  <script>
+    $('.nav-tabs a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
+  </script>
+{% endblock %}
+
+{% block content-title %}
+{% endblock %}
+
+{% block content-wrapper-class %}manageLeg{% endblock %}
+
+{% block hidden_variables %}
+  <input type="number" id="law_pk" value="{{ law.pk }}">
+  <input type="number" id="starting_page" value="{{ starting_page }}">
+{% endblock %}
+
+{% block content %}
+
+{% include 'legislation/articles/pdf.html' %}
+
+<div class="page-container half">
+  <div id="title" class="heading" style="margin-bottom:28px;">
+  Manage Articles for: {{ law.title }} | {{ law.country.name }}
+  </div>
+  <form id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
+    {% csrf_token %}
+
+      <input name="legislation" value="{{ law.pk }}" hidden>
+
+      <div class='law-meta-data-container'>
+        <div>
+          <label class="label-large" for="id_code">Code</label>
+        </div>
+        <div>
+          <!-- TODO change classes to code  -->
+          <input class='law-meta-data-text-field' type="text" name="code" maxlength="64" required id="id_code" placeholder="Ex: 1.2.3.4"/>
+        </div>
+      </div>
+
+    <div class='law-meta-data-container'>
+      <div>
+        <label class="label-large" for="id_text">Text</label>
+      </div>
+
+      <div class="clearfix">
+        <!-- TODO change classes to text -->
+        <!-- TODO check text style in textarea -->
+        <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="text" maxlength="65535" required id="id_text" placeholder="Add article text"></textarea>
+        <!-- TODO change change char limit -->
+        <small class="pull-right" id="rem_char"></small>
+      </div>
+    </div>
+
+    <div class="legislation-page-container">
+      <div>
+        <label class="label-large" for="id_legistlation_page">Page</label>
+      </div>
+      <div>
+        <input type="number" required id="id_legistlation_page" name="legislation_page" maxlength="4" value="{{ starting_page }}">
+      </div>
+    </div>
+
+    <div class='law-meta-data-container check-fields'>
+      <div class="tags wrapper">
+        <div>
+            <label for="id_tags">Tags</label>
+        </div>
+        <div>
+          Select the best areas where the article fits
+        </div>
+        <div class="list-container">
+            <ul name='tags' id='tags'>
+              {% for tag_group in tag_groups %}
+                 <li class="first-level level">
+                   <span class="list-header">
+                     <i class="fa fa-plus-square" aria-hidden="true"></i>
+                     <span name='tagGroup_{{ tag_group.pk }}'> {{ tag_group.name }} </span>
+                   </span>
+                    <ul class="second-level level">
+                     {% for tag in tag_group.tags %}
+                       <li>
+                        <input id='tag_{{ tag.pk }}' name='tag_{{ tag.pk }}' type='checkbox'>
+                        {{ tag.name }}
+                        </input>
+                       </li>
+                     {% endfor %}
+                    </ul>
+                 </li>
+              {% endfor %}
+            </ul>
+        </div>
+      </div>
+
+      <div class="classificaions wrapper">
+        <div>
+          <label for="id_classifications">Classification</label>
+        </div>
+        <div>
+          Select the legal areas where the article fits
+        </div>
+        <div class="list-container">
+        <ul>
+        {% for top_class in classifications %}
+        <li class="first-level level">
+          {% with top_class.get_children as second_classifications %}
+          <span class="list-header" {% if not second_classifications %} style="pointer-events: none;" {% endif %}>
+            <span name='topClass_{{ top_class.pk }}'>{{ top_class.name }}</span>
+            {% if second_classifications %}
+              <i class="fa fa-plus-square" aria-hidden="true"></i>
+            {% endif %}
+          </span>
+          <ul class="second-level level">
+          {% for second_class in second_classifications %}
+            <li>
+              <span class="list-header">
+                <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox>
+                {{ second_class.name }}
+                </input>
+              <i class="fa fa-plus-square" aria-hidden="true"></i>
+              </span>
+            <ul class="third-level level">
+            {% for third_class in second_class.get_children %}
+            <li>
+            <input name='classification_{{ third_class.pk }}' id='classification_'{{ third_class.name }} type=checkbox>
+              {{ third_class.name }}
+            </input>
+            </li>
+            {% endfor %}
+            </ul>
+          {% endfor %}
+          </ul>
+           </li>
+           {% endwith %}
+         </li>
+        {% endfor %}
+        </ul>
+        </div>
+      </div>
+      </div>
+      <div class="button-wrapper">
+        <button type="submit" class="btn btn-success" id='save-btn' name='save-btn'> Save & View articles</button>
+        <button type="button" class="btn btn-primary" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add another</button>
+      </div>
+  </form>
+
+  <div class="last-article-container">
+    {% if last_article %}
+      <p><strong>Article code: </strong>{{ last_article.code }}</p>
+      <!-- TODO The text inside that pre tag should be limited to ~200 chars -->
+      <p><strong>Text:</strong> <pre>{{ last_article.text }}</pre></p>
+      <p><strong>Page:</strong> {{ last_article.legislation_page }}</p>
+    {% else %}
+      <p>This law doesn't have any articles.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

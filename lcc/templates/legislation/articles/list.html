@@ -1,0 +1,33 @@
+{% extends "legislation/explorer.html" %}
+
+
+{% block content %}
+<div id="title" class="heading">
+  {{ law.title }} | Articles
+</div>
+<div class="articles-container">
+{% for article in articles %}
+  <div class="viz-container">
+    <a class="btn btn-info pull-right" href="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">Edit</a>
+    {% if article.code %}
+    <h3>{{ article.code }}</h3>
+    {% endif %}
+    {% if article.legislation %}
+    <p>{{ article.legislation }}</p>
+    {% endif %}
+    {% if article.text %}
+    <p>{{ article.text }}</p>
+    {% endif %}
+    {% if article.all_tags %}
+    <p>Tags: {{ article.all_tags }}</p>
+    {% endif %}
+    {% if article.all_classifications %}
+    <p>Classification: {{ article.all_classifications }}</p>
+    {% endif %}
+  </div>
+{% endfor %}
+</div>
+<div class="button-wrapper" style="margin:1rem 0;">
+  <a class="btn btn-primary" href="{% url 'lcc:legislation:explorer' %}">View all legislations</a>
+</div>
+{% endblock %}
