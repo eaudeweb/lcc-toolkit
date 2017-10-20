@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_webtest',
     'rolepermissions',
+    # 'django_elasticsearch_dsl',
     'rest_framework',
     'mptt',
     'lcc',

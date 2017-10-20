@@ -73,10 +73,20 @@ legislation_patterns = [
 
 api_urls = [
     url(r'question-category/(?P<category_pk>\d+)/$',
-        views.QuestionViewSet.as_view()),
-    url(r'classification/$', views.ClassificationViewSet.as_view()),
-    url(r'answers/$', views.AnswerList.as_view(), name='answers_list_create'),
-    url(r'answers/(?P<pk>[0-9]+)/$', views.AnswerDetail.as_view(), name='answers_get_update')
+        views.QuestionViewSet.as_view(),
+        name="question_category"),
+
+    url(r'classification/$',
+        views.ClassificationViewSet.as_view(),
+        name="classification"),
+
+    url(r'answers/$',
+        views.AnswerList.as_view(),
+        name='answers_list_create'),
+
+    url(r'answers/(?P<pk>[0-9]+)/$',
+        views.AnswerDetail.as_view(),
+        name='answers_get_update')
 ]
 
 
