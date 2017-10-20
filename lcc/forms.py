@@ -27,11 +27,8 @@ class LegislationForm(ModelForm):
             'website', 'pdf_file_name', 'pdf_file', 'tags', 'classifications'
         ]
 
-    def __init__(self, data=None, files=None, auto_id='id_%s', prefix=None,
-                 initial=None, error_class=ErrorList, label_suffix=None,
-                 empty_permitted=False, instance=None, use_required_attribute=None):
-        super().__init__(data, files, auto_id, prefix, initial, error_class,
-                         label_suffix, empty_permitted, instance, use_required_attribute)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         if self.instance:
             self.data['pdf_file_name'] = self.instance.pdf_file_name
 
