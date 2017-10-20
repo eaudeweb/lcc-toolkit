@@ -33,7 +33,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     home_country = models.ForeignKey(
-        Country, related_name="home_country", null=True)
+        Country, related_name='home_country', null=True)
     countries = models.ManyToManyField(Country)
 
     affiliation = models.CharField(
@@ -44,7 +44,7 @@ class UserProfile(models.Model):
     )
 
     position = models.CharField(
-        'Postition',
+        'Position',
         max_length=255,
         null=True,
         blank=True,
@@ -64,17 +64,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-@receiver(models.signals.post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-
-
-@receiver(models.signals.post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()
 
 
 class TaxonomyTagGroup(models.Model):

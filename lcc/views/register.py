@@ -14,6 +14,7 @@ import django.shortcuts
 from django.contrib.sites.shortcuts import get_current_site
 import django.http
 import django.views as views
+from django.views.generic import CreateView
 from django.utils.http import urlsafe_base64_encode
 from django.utils.http import urlsafe_base64_decode
 
@@ -26,6 +27,7 @@ from rolepermissions.mixins import HasRoleMixin
 
 from lcc import roles
 from lcc import models
+from lcc import forms
 from django.conf import settings
 
 
@@ -45,61 +47,20 @@ class PasswordResetComplete(auth.views.PasswordResetCompleteView):
     template_name = "password_reset_complete.html"
 
 
-class Register(views.View):
+class Register(CreateView):
     """ Registration form.
     """
 
-    template = "register.html"
+    template_name = "registration/register.html"
 
-    @staticmethod
-    def _context(**kwargs):
-        def _skip_admin(name):
-            return name != roles.SiteAdministrator.get_name()
+    form_class = forms.RegisterForm
 
-        default = (
-            ('countries', models.Country.objects.order_by('name')),
-            ('roles', filter(_skip_admin, RolesManager.get_roles_names()))
-        )
-
-        return dict(default + tuple(kwargs.items()))
-
-    def _validate_post(self, request):
-        def _validate(request, field, msg, must_pass=lambda val: val):
-            """ accepts an "extra" validator function """
-            valid = must_pass(request.POST.get(field))
-            return (field, msg) if not valid else None
-
-        validate = partial(_validate, request)
-        validate_email = (
-            validate('email', 'Email is required!') or
-            validate(
-                'email', 'Email already registered!',
-                must_pass=lambda email: len(
-                    User.objects.filter(
-                        Q(email=email) | Q(username=email))) == 0
-            )
-        )
-        validate_country = validate('country', 'Country is required!')
-        validate_role = validate(
-            'role', 'You must choose a role!',
-            must_pass=RolesManager.retrieve_role
-        )
-
-        return dict(
-            filter(bool, (validate_email, validate_country, validate_role)))
-
-    def get(self, request):
-        context = self._context()
-        return django.shortcuts.render(request, self.template, context)
-
-    def _respond_with_errors(self, errors, request):
-        # preserve input data
-        default = {
-            fname: request.POST.get(fname) for
-            fname in ('email', 'country', 'role')
-        }
-
-        return self._context(errors=errors, default=default)
+    @transaction.atomic
+    def form_valid(self, form):
+        profile = form.save()
+        self._send_admin_mails(profile.user)
+        return django.shortcuts.render(
+            self.request, self.template_name, dict(success=True))
 
     def _send_admin_mails(self, user):
         uid = urlsafe_base64_encode(force_bytes(user.pk))
@@ -122,39 +83,6 @@ class Register(views.View):
             html_message=body,
             fail_silently=False
         )
-
-    def _respond_with_success(self, request):
-        role = RolesManager.retrieve_role(request.POST.get('role'))
-
-        # add user, mark as inactive
-        email = request.POST.get('email')
-        user = User.objects.create_user(email, email=email)
-        user.is_active = False
-        user.save()
-
-        # set country
-        country = request.POST.get('country')
-        user.userprofile.home_country = models.Country.objects.get(iso=country)
-        user.userprofile.affiliation = request.POST.get('affiliation')
-        user.userprofile.position = request.POST.get('position')
-        user.userprofile.save()
-
-        # grant role
-        role.assign_role_to_user(user)
-
-        # notify admins
-        self._send_admin_mails(user)
-
-        return self._context(success=True)
-
-    @transaction.atomic
-    def post(self, request):
-        errors = self._validate_post(request)
-        context = (
-            self._respond_with_errors(errors, request) if errors
-            else self._respond_with_success(request)
-        )
-        return django.shortcuts.render(request, self.template, context)
 
 
 class ApproveRegistration(HasRoleMixin, views.View):

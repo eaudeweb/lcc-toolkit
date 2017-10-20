@@ -2,6 +2,6 @@
 <p>You have been granted the <strong>{{ profile.role }}</strong> role!</p>
 <p>
   You need to
-  <a href="{{ site_url }}{% url 'password_reset_confirm' uidb64=uid token=token %}">choose a password</a>
+  <a href="{{ site_url }}{% url 'lcc:auth:password_reset_confirm' uidb64=uid token=token %}">choose a password</a>
   before you can login.
 </p>

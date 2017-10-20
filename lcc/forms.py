@@ -3,9 +3,16 @@ import pdftotext
 
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
+
+from django.db.models import Q
+
+from django import forms
 from django.forms import ModelForm
 from django.forms.utils import ErrorList
 
+from rolepermissions.roles import RolesManager
+
+from lcc import roles
 from lcc import models
 from lcc.constants import LEGISLATION_YEAR_RANGE
 
@@ -71,3 +78,55 @@ class LegislationForm(ModelForm):
         except pdftotext.Error:
             self.add_error("pdf_file", "The .pdf file is corrupted. Please reupload it.")
         return file
+
+
+class RegisterForm(ModelForm):
+
+    email = forms.EmailField(label='Email address')
+    role = forms.ChoiceField(
+        label='Desired role',
+        choices=map(lambda x: (x, x), filter(
+            lambda n: n != roles.SiteAdministrator.get_name(),
+            RolesManager.get_roles_names()
+        ))
+    )
+
+    class Meta:
+        model = models.UserProfile
+        exclude = ['user', 'countries']
+        labels = {
+            'home_country': 'Country',
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        widgets = (field.widget for field in self.fields.values())
+        for widget in widgets:
+            widget.attrs['class'] = 'form-control'
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        users_with_email = models.User.objects.filter(
+            Q(email=email) | Q(username=email)
+        )
+
+        if users_with_email:
+            raise ValidationError('That email address is already registered!')
+
+        return email
+
+    def save(self, commit=False):
+        profile = super().save(commit=False)
+
+        email = self.cleaned_data['email']
+
+        # create user
+        user = models.User.objects.create_user(email, email=email)
+        user.is_active = False
+        user.save()
+
+        # assign to profile
+        profile.user = user
+        profile.save()
+
+        return profile

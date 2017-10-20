@@ -13,53 +13,59 @@
         {% if success %}
         <p>Registration submitted for review! You will receive an email once it has been approved or denied.</p>
         {% else %}
-        <form role="form" id="register-form" method="POST">
+        <form role="form" method="POST">
           {% csrf_token %}
+
           <div class="form-group">
-            <label>Email</label>
-            <input class="form-control" type="email" name="email" required id="form-email-input" value="{{ default.email }}" />
-            {% if errors and errors.email %}
-            <p class="help-block form-field-error">{{ errors.email }}</p>
-            {% endif %}
+            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+            {{ form.email }}
+            {% for error in form.email.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
           </div>
+
           <div class="form-group">
-            <label>Institutional affiliation</label>
-            <input class="form-control" type="text" name="affiliation" id="form-affiliation-input" value="{{ default.affiliation }}" />
-            {% if errors and errors.affiliation %}
-            <p class="help-block form-field-error">{{ errors.affiliation }}</p>
-            {% endif %}
+            <label for="{{ form.affiliation.id_for_label }}">{{ form.affiliation.label }}</label>
+            {{ form.affiliation }}
+            {% for error in form.affiliation.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
           </div>
+
           <div class="form-group">
-            <label>Position</label>
-            <input class="form-control" type="text" name="position" id="form-position-input" value="{{ default.position }}" />
-            {% if errors and errors.position %}
-            <p class="help-block form-field-error">{{ errors.position }}</p>
-            {% endif %}
+            <label for="{{ form.position.id_for_label }}">{{ form.position.label }}</label>
+            {{ form.position }}
+            {% for error in form.position.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
           </div>
+
           <div class="form-group">
-            <label>Country</label>
-            <select class="form-control" name="country" id="form-country-input" required>
-              <option value="">-</option>
-              {% for country in countries %}
-              <option value="{{ country.iso }}" {% if default.country == country.iso %} selected="selected" {% endif %}>{{ country.name }}</option>
-              {% endfor %}
-            </select>
-            {% if errors and errors.country %}
-            <p class="help-block form-field-error">{{ errors.country }}</p>
-            {% endif %}
+            <label for="{{ form.home_country.id_for_label }}">{{ form.home_country.label }}</label>
+            {{ form.home_country }}
+            {% for error in form.home_country.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
           </div>
+
           <div class="form-group">
-            <label>Desired role</label>
-            <select class="form-control" name="role" id="form-role-input" required>
-              <option value="">-</option>
-              {% for role in roles %}
-              <option value="{{ role }}" {% if default.role == role %} selected="selected" {% endif %}>{{ role }}</option>
-              {% endfor %}
-            </select>
-            {% if errors and errors.role %}
-            <p class="help-block form-field-error">{{ errors.role }}</p>
-            {% endif %}
+            <label for="{{ form.role.id_for_label }}">{{ form.role.label }}</label>
+            {{ form.role }}
+            {% for error in form.role.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
           </div>
+
           <button type="submit" class="btn btn-info" id="login-btn">Request registration</button>
         </form>
         {% endif %}
