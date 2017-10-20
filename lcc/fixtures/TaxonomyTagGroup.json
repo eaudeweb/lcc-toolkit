@@ -1,0 +1,51 @@
+[
+  {
+    "model": "lcc.taxonomytaggroup",
+    "pk": 1,
+    "fields": {
+      "name": "Policy Approach"
+    }
+  },
+  {
+    "model": "lcc.taxonomytaggroup",
+    "pk": 2,
+    "fields": {
+      "name": "(Cross-Sectoral) Policy Instruments"
+    }
+  },
+  {
+    "model": "lcc.taxonomytaggroup",
+    "pk": 3,
+    "fields": {
+      "name": "Geography"
+    }
+  },
+  {
+    "model": "lcc.taxonomytaggroup",
+    "pk": 4,
+    "fields": {
+      "name": "Paris Agreement Articles"
+    }
+  },
+  {
+    "model": "lcc.taxonomytaggroup",
+    "pk": 5,
+    "fields": {
+      "name": "Relevant International Climate Body"
+    }
+  },
+  {
+    "model": "lcc.taxonomytaggroup",
+    "pk": 6,
+    "fields": {
+      "name": "Actor Subject to Regulation"
+    }
+  },
+  {
+    "model": "lcc.taxonomytaggroup",
+    "pk": 7,
+    "fields": {
+      "name": "Relevant Jurisdiction(s)"
+    }
+  }
+]

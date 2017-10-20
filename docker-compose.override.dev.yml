@@ -6,31 +6,28 @@ services:
     build: .
     container_name: lcct.web
     ports:
-      - "8000:80"
+      - "8000:8000"
     environment:
       - DJANGO_MANAGEPY_MIGRATE=on
       - DJANGO_MANAGEPY_COLLECTSTATIC=off
       - DJANGO_MANAGEPY_LOADFIXTURES=on
+      - GRUNT_TASK=dev
     depends_on:
       - db
-      - grunt
     volumes:
       - ./lcctoolkit:/opt/lcct/lcctoolkit
-      - ./assets:/opt/lcct/assets
-      - ./static:/opt/lcct/static
+      - ./lcc:/opt/lcct/lcc
 
   elasticsearch:
     container_name: lcct.elastic
     ports:
       - "9200:9200"
 
-  grunt:
-    build: .
-    container_name: lcct.grunt
-    environment:
-      - NODE_ENV=dev
-    entrypoint: ["grunt"]
-    volumes:
-      - ./lcctoolkit:/opt/lcct/lcctoolkit
-      - ./assets:/opt/lcct/assets
-      - ./static:/opt/lcct/static
+  db:
+    container_name: lcct.db
+
+  mailtrap:
+    image: eaudeweb/mailtrap:latest
+    container_name: lcct.mail
+    ports:
+    - "8025:80"

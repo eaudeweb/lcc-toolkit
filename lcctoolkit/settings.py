@@ -24,10 +24,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lcctoolkit.mainapp',
     'django_webtest',
-    'mptt',
     'rolepermissions',
+    'rest_framework',
+    'mptt',
+    'lcc',
 ]
 
 MIDDLEWARE = [
@@ -45,7 +46,6 @@ ROOT_URLCONF = 'lcctoolkit.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -53,18 +53,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'lcctoolkit.context_processors.sentry',
-                'lcctoolkit.context_processors.ga_tracking_id',
-            ],
-            'libraries':{
-                'utils': 'lcctoolkit.mainapp.templatetags.utils',
-            }
+                'lcc.context.sentry',
+                'lcc.context.ga_tracking_id',
+            ]
         },
     },
 ]
 
 WSGI_APPLICATION = 'lcctoolkit.wsgi.application'
-ROLEPERMISSIONS_MODULE = 'lcctoolkit.roles'
+ROLEPERMISSIONS_MODULE = 'lcc.roles'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -84,6 +81,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    )
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -99,6 +104,6 @@ USE_L10N = True
 USE_TZ = True
 
 try:
-    from lcctoolkit.localsettings import *
+    from .localsettings import *
 except ImportError:
     pass
