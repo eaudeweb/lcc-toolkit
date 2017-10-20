@@ -23,14 +23,9 @@ class LegislationForm(ModelForm):
         model = models.Legislation
         fields = [
             'title', 'abstract', 'country', 'language', 'law_type', 'year',
-            'year_amendment', 'year_mention', 'geo_coverage', 'source', 'source_type',
-            'website', 'pdf_file_name', 'pdf_file', 'tags', 'classifications'
+            'year_amendment', 'year_mention', 'geo_coverage', 'source',
+            'source_type', 'website', 'pdf_file', 'tags', 'classifications'
         ]
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        if self.instance:
-            self.data['pdf_file_name'] = self.instance.pdf_file_name
 
     def clean_year_mention(self):
         year_mention = self.cleaned_data['year_mention']
@@ -68,3 +63,9 @@ class LegislationForm(ModelForm):
         except pdftotext.Error:
             self.add_error("pdf_file", "The .pdf file is corrupted. Please reupload it.")
         return file
+
+    def save(self, commit=True):
+        instance = super(LegislationForm, self).save(commit=False)
+        instance.pdf_file_name = instance.pdf_file.name
+        instance.save()
+        return instance

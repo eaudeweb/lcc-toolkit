@@ -49,6 +49,7 @@
           </div>
           <!-- TODO Style this for error type; Should disapear once a pdf have been reuploaded  -->
           {% if form.errors %}
+            <h1>{{ form.errors }}</h1>
             {% if form.errors.pdf_file %}
               <span class="pdf-error error">{{ form.errors.pdf_file }}</span>
             {% else %}
