@@ -56,7 +56,7 @@ module.exports = function(grunt) {
                 }
             },
             scripts: {
-                files: ['lcc/src/js/**/*.js'],
+                files: ['lcc/src/js/*.js'],
                 tasks: ['concat', 'copy'],
                 options: {
                     nospawn: true
