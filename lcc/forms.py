@@ -8,8 +8,8 @@ from django.db.models import Q
 
 from django import forms
 from django.forms import ModelForm
-from django.forms.utils import ErrorList
 
+from rolepermissions.roles import get_user_roles
 from rolepermissions.roles import RolesManager
 
 from lcc import roles
@@ -117,9 +117,11 @@ class RegisterForm(ModelForm):
         profile = super().save(commit=False)
 
         email = self.cleaned_data['email']
+        role = RolesManager.retrieve_role(self.cleaned_data['role'])
 
         # create user
         user = models.User.objects.create_user(email, email=email)
+        role.assign_role_to_user(user)
         user.is_active = False
         user.save()
 
@@ -128,3 +130,37 @@ class RegisterForm(ModelForm):
         profile.save()
 
         return profile
+
+
+class ApproveRegistration(ModelForm):
+    role = forms.ChoiceField(
+        label='Desired role',
+        choices=map(
+            lambda x: (x, x),
+            RolesManager.get_roles_names()
+        )
+    )
+
+    class Meta:
+        model = models.UserProfile
+        fields = []
+
+    def save(self, notify):
+        user = self.instance.user
+
+        # remove any existing roles
+        for role in get_user_roles(user):
+            role.remove_role_from_user(user)
+
+        to_assign = RolesManager.retrieve_role(self.cleaned_data['role'])
+        to_assign.assign_role_to_user(user)
+
+        user.is_active = True
+        user.save()
+
+        notify(user, to_assign.get_name())
+
+    def delete(self, notify):
+        email = self.instance.user.email
+        self.instance.user.delete()
+        notify(email)

@@ -27,7 +27,7 @@ auth_patterns = [
         views.PasswordResetConfirm.as_view(),
         name='password_reset_confirm'),
 
-    url(r'^approve/(?P<uidb64>[0-9A-Za-z_\-]+)$',
+    url(r'^approve/(?P<profile_id_b64>[0-9A-Za-z_\-]+)$',
         views.ApproveRegistration.as_view(),
         name='approve'),
 ]

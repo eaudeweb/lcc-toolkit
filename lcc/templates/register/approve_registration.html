@@ -9,27 +9,27 @@
   </div>
   <div class="panel-body">
     {% if not approved and not denied %}
-    <form role="form" id="approval-form" method="POST">
+    <form role="form" method="POST">
+      {% csrf_token %}
       <dl>
         <dt>Email</dt>
-        <dd><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></dd>
+        <dd><a href="mailto:{{ profile.user.email }}">{{ profile.user.email }}</a></dd>
         <dt>Institutional affiliation</dt>
         <dd>{{ profile.affiliation|default:'Not specified' }}</dd>
         <dt>Position</dt>
         <dd>{{ profile.position|default:'Not specified' }}</dd>
         <dt>Country</dt>
-        <dd>{{ profile.country }}</dd>
-        <dt>Desired role (can be changed before approval)</dt>
+        <dd>{{ profile.home_country }}</dd>
+        <dt><label for="{{ form.role.id_for_label }}">Desired role (can be changed before approval)</label></dt>
         <dd>
-        <select name="role" required>
-          <option value="">-</option>
-          {% for role in roles %}
-          <option value="{{ role }}" {% if profile.role == role %} selected="selected" {% endif %}>{{ role }}</option>
+          {{ form.role }}
+          {% for error in form.role.errors %}
+          <p class="help-block form-field-error">
+            {{ error|escape }}
+          </p>
           {% endfor %}
-        </select>
         </dd>
       </dl>
-      {% csrf_token %}
       <input type="submit" name="approve" value="Approve" class="btn btn-success" />
       <input type="submit" name="deny" value="Deny" class="btn btn-danger" />
     </form>
