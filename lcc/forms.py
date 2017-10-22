@@ -4,7 +4,6 @@ import pdftotext
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
 from django.forms import ModelForm
-from django.forms.utils import ErrorList
 
 from lcc import models
 from lcc.constants import LEGISLATION_YEAR_RANGE
@@ -14,7 +13,8 @@ class ArticleForm(ModelForm):
     class Meta:
         model = models.LegislationArticle
         fields = [
-            'code', 'text', 'legislation', 'legislation_page', 'classifications', 'tags'
+            'code', 'text', 'legislation', 'legislation_page',
+            'classifications', 'tags'
         ]
 
 
@@ -43,8 +43,10 @@ class LegislationForm(ModelForm):
                                        LEGISLATION_YEAR_RANGE[0],
                                        LEGISLATION_YEAR_RANGE[-1]))
             else:
-                self.add_error('year_mention', "'Additional date details' field needs "
-                                               "a 4 digit year.")
+                self.add_error(
+                    'year_mention',
+                    "'Additional date details' field needs a 4 digit year."
+                )
         return year_mention
 
     def clean_website(self):
@@ -61,7 +63,8 @@ class LegislationForm(ModelForm):
         try:
             pdftotext.PDF(file)
         except pdftotext.Error:
-            self.add_error("pdf_file", "The .pdf file is corrupted. Please reupload it.")
+            self.add_error(
+                "pdf_file", "The .pdf file is corrupted. Please reupload it.")
         return file
 
     def save(self, commit=True):

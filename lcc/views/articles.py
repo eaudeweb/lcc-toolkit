@@ -28,8 +28,8 @@ class AddArticles(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        last_article = self.law.articles.order_by('pk').last() if self.law.articles \
-            else None
+        last_article = self.law.articles.order_by('pk').last() \
+            if self.law.articles else None
         starting_page = last_article.legislation_page if last_article else 1
 
         context.update(
@@ -42,8 +42,9 @@ class AddArticles(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
                     TagGroupRender(tag_group)
                     for tag_group in models.TaxonomyTagGroup.objects.all()
                 ],
-                "classifications": models.TaxonomyClassification.objects.filter(
-                    level=0).order_by('code')
+                "classifications":
+                    models.TaxonomyClassification.objects.filter(
+                        level=0).order_by('code')
             }
         )
         return context
@@ -83,7 +84,9 @@ class ArticlesList(UserPatchMixin, DetailView):
         return context
 
 
-class EditArticles(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
+class EditArticles(UserPatchMixin,
+                   mixins.LoginRequiredMixin,
+                   TaxonomyFormMixin,
                    ArticleFormMixin,
                    UpdateView):
     login_url = constants.LOGIN_URL
@@ -124,6 +127,7 @@ class EditArticles(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
     def form_valid(self, form):
         article = form.save()
         return HttpResponseRedirect(
-            reverse('lcc:legislation:articles:view',
-                    kwargs={'legislation_pk': article.legislation.pk})
-            )
+            reverse('lcc:legislation:articles:view', kwargs={
+                'legislation_pk': article.legislation.pk
+            })
+        )

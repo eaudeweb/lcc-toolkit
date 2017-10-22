@@ -47,8 +47,7 @@ $(document).ready(function(){
     page_number = page_number - 1;
     $("#raw-text-page").html(pages[page_number]);
     $("#page_number").html(page_number);
-    $("#id_page").val(page_number);
-    $("#form_page_id").val(page_number);
+    $("#id_legistlation_page").val(page_number);
     changePage($('.pdf'), page_number)
     $("#next").prop("disabled", false);
     if( page_number == 1)
@@ -61,8 +60,7 @@ $(document).ready(function(){
     page_number = page_number + 1;
     $("#raw-text-page").html(pages[page_number]);
     $("#page_number").html(page_number);
-    $("#id_page").val(page_number);
-    $("#form_page_id").val(page_number);
+    $("#id_legistlation_page").val(page_number);
     changePage($('.pdf'), page_number)
     $("#prev").prop("disabled", false);
     if( page_number == $max_page)
@@ -74,16 +72,21 @@ $(document).ready(function(){
   $("body").on('click','#save-and-continue-btn', function(){
     if ($("#addArticle").valid()) {
       $page_number = parseInt($('#page_number').text());
-      AjaxSubmit["page_number"] = $page_number;
       AjaxSubmit["code"] = $("#id_code").val();
-      AjaxSubmit["legislation_text"] = $("#id_text").val();
-      AjaxSubmit["page"] = $("#id_page").val();
+      AjaxSubmit["text"] = $("#id_text").val();
+      var law_id = parseInt($("#law_pk").val());
+      AjaxSubmit["legislation"] = law_id;
+      AjaxSubmit["legislation_page"] = $("#id_legistlation_page").val();
+
+      AjaxSubmit["page_number"] = $page_number;
+
       AjaxSubmit["csrfmiddlewaretoken"] = $("[name=csrfmiddlewaretoken]").val()
       AjaxSubmit["save-and-continue-btn"] = "";
+
       $('input:checkbox:checked').each(function(){
         AjaxSubmit[$(this).attr("name")] = 'on';
       });
-      var law_id = parseInt($("#law_pk").val());
+
       $.ajax({
         type: 'POST',
         url: '/legislation/' + law_id + '/articles/add/',
