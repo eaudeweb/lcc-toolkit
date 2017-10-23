@@ -13,6 +13,23 @@ auth_patterns = [
     url(r'^logout/$',
         views.Logout.as_view(),
         name='logout'),
+
+    url(r'^register/',
+        views.Register.as_view(),
+        name='register'),
+
+    url(r'^reset/done/$',
+        views.PasswordResetComplete.as_view(),
+        name='password_reset_complete'),
+
+    url((r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/'
+         r'(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$'),
+        views.PasswordResetConfirm.as_view(),
+        name='password_reset_confirm'),
+
+    url(r'^approve/(?P<profile_id_b64>[0-9A-Za-z_\-]+)$',
+        views.ApproveRegistration.as_view(),
+        name='approve'),
 ]
 
 

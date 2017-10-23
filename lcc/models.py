@@ -1,8 +1,12 @@
 import mptt.models
+
+from rolepermissions.roles import get_user_roles
+
 from django.contrib.auth import get_user_model
 
 import lcc.utils as utils
 import lcc.constants as constants
+
 
 from django.db import models
 from django.dispatch import receiver
@@ -25,27 +29,30 @@ class Country(models.Model):
         return self.name
 
 
-class UserRole(models.Model):
-    name = models.CharField(max_length=32)
-
-    def __str__(self):
-        return self.name
-
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    current_role = models.ForeignKey(
-        UserRole, related_name="current_role", null=True)
-    roles = models.ManyToManyField(UserRole)
-
     home_country = models.ForeignKey(
-        Country, related_name="home_country", null=True)
+        Country, related_name='home_country', null=True)
     countries = models.ManyToManyField(Country)
 
+    affiliation = models.CharField(
+        'Institutional affiliation',
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
+    position = models.CharField(
+        'Position',
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
     @property
-    def role(self):
-        return self.current_role.name
+    def roles(self):
+        return get_user_roles(self.user)
 
     @property
     def country(self):
@@ -57,17 +64,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-@receiver(models.signals.post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-
-
-@receiver(models.signals.post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()
 
 
 class TaxonomyTagGroup(models.Model):

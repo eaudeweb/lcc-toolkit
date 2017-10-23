@@ -2,6 +2,7 @@ from .api import *
 from .articles import *
 from .auth import *
 from .legislation import *
+from .register import *
 
 
 class Index(UserPatchMixin, views.View):

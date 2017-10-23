@@ -9,8 +9,7 @@
 		{{request.user_profile.country}} |
 		<a href="{% url 'lcc:auth:logout' %}" id='login-link'>Logout</a>
 	{% else %}
-		<a class="btn btn-login" href="{% url 'lcc:auth:login' %}" id='register-link'> Login</a>
-		<a class="btn btn-login" href="#" id='register-link'> Register </a>
+		<a class="btn btn-login" href="{% url 'lcc:auth:login' %}" id='login-link'> Login</a>
+		<a class="btn btn-login" href="{% url 'lcc:auth:register' %}" id='register-link'> Register </a>
 	{% endif %}
 {% endblock %}
-

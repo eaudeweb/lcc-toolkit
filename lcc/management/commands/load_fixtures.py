@@ -12,12 +12,6 @@ class Command(BaseCommand):
     FIXTURES = ("TaxonomyTagGroup", "TaxonomyTag", "TaxonomyClassification",
                 "Question", "Countries", "Legislation")
 
-    def load_user_profile_roles(self):
-        for user_role_name in lcc_constants.USER_PROFILE_ROLES:
-            print("Importing user role: %s" % user_role_name)
-            lcc_models.UserRole(name=user_role_name).save()
-
     def handle(self, *args, **options):
         for fixture in Command.FIXTURES:
             call_command('loaddata', fixture)
-        self.load_user_profile_roles()

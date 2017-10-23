@@ -1,0 +1,52 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Registration request
+  </div>
+  <div class="panel-body">
+    {% if not approved and not denied %}
+    <form role="form" method="POST">
+      {% csrf_token %}
+      <dl>
+        <dt>Email</dt>
+        <dd><a href="mailto:{{ profile.user.email }}">{{ profile.user.email }}</a></dd>
+        <dt>Institutional affiliation</dt>
+        <dd>{{ profile.affiliation|default:'Not specified' }}</dd>
+        <dt>Position</dt>
+        <dd>{{ profile.position|default:'Not specified' }}</dd>
+        <dt>Country</dt>
+        <dd>{{ profile.home_country }}</dd>
+        <dt><label for="{{ form.role.id_for_label }}">Desired role (can be changed before approval)</label></dt>
+        <dd>
+          {{ form.role }}
+          {% for error in form.role.errors %}
+          <p class="help-block form-field-error">
+            {{ error|escape }}
+          </p>
+          {% endfor %}
+        </dd>
+      </dl>
+      <input type="submit" name="approve" value="Approve" class="btn btn-success" />
+      <input type="submit" name="deny" value="Deny" class="btn btn-danger" />
+    </form>
+    {% elif approved %}
+    <p>Registration approved!</p>
+    <p>A confirmation email has been sent to the user, including an URL for the user to set their password.</p>
+    {% elif denied %}
+    <p>Registration denied!</p>
+    <p>The request has been deleted and the user informed via email.</p>
+    {% endif %}
+  </div>
+</div>
+{% if not approved and not denied %}
+<p>
+  <strong>NOTE:</strong>
+  denying the request will result in it's deletion.
+  The user will be informed and will need to restart the registration process.
+</p>
+{% endif %}
+{% endblock %}
