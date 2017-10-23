@@ -41,7 +41,7 @@
 
       <div class='law-meta-data-container'>
         <div>
-          <label class="label-large" for="id_code">Code</label>
+          <label class="label-large" for="id_code">Article number</label>
         </div>
         <div>
           <!-- TODO change classes to code  -->
@@ -152,12 +152,13 @@
       <div class="button-wrapper">
         <button type="submit" class="btn btn-success" id='save-btn' name='save-btn'> Save & View articles</button>
         <button type="button" class="btn btn-primary" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add another</button>
+        <a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-danger" id="cancel-btn">Cancel</a>
       </div>
   </form>
 
   <div class="last-article-container">
     {% if last_article %}
-      <p><strong>Article code: </strong>{{ last_article.code }}</p>
+      <p><strong>Article number: </strong>{{ last_article.code }}</p>
       <!-- TODO The text inside that pre tag should be limited to ~200 chars -->
       <p><strong>Text:</strong> <pre>{{ last_article.text }}</pre></p>
       <p><strong>Page:</strong> {{ last_article.legislation_page }}</p>

@@ -32,7 +32,7 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'lcc/src/img',
                 src: '**',
-                dest: 'lcc/static/img/'
+                dest: 'lcc/static/img'
             },
             fonts: {
                 expand: true,
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'lcc/src/js',
                 src: '*.js',
-                dest: 'lcc/static/js/'
+                dest: 'lcc/static/js'
             }
         },
         watch: {

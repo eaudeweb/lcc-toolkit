@@ -1,5 +1,12 @@
 {% extends "legislation/explorer.html" %}
 
+{% load static %}
+
+{% block extra-scripts %}
+  <script src="{% static "js/upload.js" %}"></script>
+{% endblock %}
+
+
 {% block content %}
 
 <div class="row addLeg">
@@ -28,7 +35,7 @@
         </div>
 
         <div class="clearfix">
-          <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract">{{ form.abstract.value|default_if_none:'' }}</textarea>
+          <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" id="id_abstract" placeholder="Add Abstract">{{ form.abstract.value|default_if_none:'' }}</textarea>
         <small class="pull-right" id="rem_char"></small>
         </div>
       </div>
@@ -49,7 +56,6 @@
           </div>
           <!-- TODO Style this for error type; Should disapear once a pdf have been reuploaded  -->
           {% if form.errors %}
-            <h1>{{ form.errors }}</h1>
             {% if form.errors.pdf_file %}
               <span class="pdf-error error">{{ form.errors.pdf_file }}</span>
             {% else %}
@@ -174,8 +180,9 @@
             <label class="label-medium" for="id_source">Source:</label>
           </div>
           <div>
-            <input class='law-meta-data-text-field' type="text" id="id_source" required
-                   name="source" maxlength="256" value="{{ form.source.value|default_if_none:'' }}"/>
+            <input class='law-meta-data-text-field' type="text" id="id_source"
+                   name="source" maxlength="256"
+                   value="{{ form.source.value|default_if_none:'' }}"/>
           </div>
         </div>
 
@@ -252,10 +259,6 @@
           <div>
             <input class='law-meta-data-text-field' type="text" id="id_year_mention"
                    name="year_mention" maxlength="256" value="{{ form.year_mention.value|default_if_none:'' }}"/>
-            <!-- TODO: this checks if the field have a 4 digit string. Could be done in js. -->
-            {% if form.errors.year_mention %}
-              <span class="year-details error">{{ form.errors.year_mention.0 }}</span>
-            {% endif %}
           </div>
         </div>
       </div>

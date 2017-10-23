@@ -151,7 +151,7 @@ models.signals.pre_save.connect(
 
 class Legislation(models.Model):
     title = models.CharField(max_length=256)
-    abstract = models.CharField(max_length=1024)
+    abstract = models.CharField(max_length=1024, blank=True, null=True)
     country = models.ForeignKey(Country)
     language = models.CharField(choices=constants.ALL_LANGUAGES,
                                 default=constants.DEFAULT_LANGUAGE,
@@ -235,7 +235,7 @@ class Question(mptt.models.MPTTModel):
 
     def save(self, *args, **kwargs):
         if not self.order:
-            self.order = utils.set_order(self.parent)
+            self.order = utils.set_order(self.classification, self.parent)
         super(Question, self).save(*args, **kwargs)
 
     @property
@@ -272,4 +272,4 @@ class Answer(models.Model):
     value = models.BooleanField()
 
     class Meta:
-        unique_together = ("question", "value")
+        unique_together = ("question", "value", "assessment")

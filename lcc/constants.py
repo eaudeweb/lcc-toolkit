@@ -26,10 +26,10 @@ ALL_LANGUAGES = (
     ('oth', 'Other')
 )
 
-LEGISLATION_TYPE_DEFAULT = ("Constitution", "Constitution")
+LEGISLATION_TYPE_DEFAULT = ("Law", "Law")
 LEGISLATION_TYPE = (
     LEGISLATION_TYPE_DEFAULT,
-    ("Law", "Law"),
+    ("Constitution", "Constitution"),
     ("Regulation", "Regulation"),
     ('oth', 'Other')
 )
