@@ -27,27 +27,27 @@ class LegislationForm(ModelForm):
             'source_type', 'website', 'pdf_file', 'tags', 'classifications'
         ]
 
-    def clean_year_mention(self):
-        year_mention = self.cleaned_data['year_mention']
-        if year_mention:
-            years_in_year_mention = [
-                int(year)
-                for year in re.findall('\d\d\d\d', year_mention)
-            ]
+    # def clean_year_mention(self):
+    #     year_mention = self.cleaned_data['year_mention']
+    #     if year_mention:
+    #         years_in_year_mention = [
+    #             int(year)
+    #             for year in re.findall('\d\d\d\d', year_mention)
+    #         ]
 
-            if years_in_year_mention:
-                if not any(year in LEGISLATION_YEAR_RANGE
-                           for year in years_in_year_mention):
-                    self.add_error('year_mention',
-                                   "Please add a year in %d-%d range" % (
-                                       LEGISLATION_YEAR_RANGE[0],
-                                       LEGISLATION_YEAR_RANGE[-1]))
-            else:
-                self.add_error(
-                    'year_mention',
-                    "'Additional date details' field needs a 4 digit year."
-                )
-        return year_mention
+    #         if years_in_year_mention:
+    #             if not any(year in LEGISLATION_YEAR_RANGE
+    #                        for year in years_in_year_mention):
+    #                 self.add_error('year_mention',
+    #                                "Please add a year in %d-%d range" % (
+    #                                    LEGISLATION_YEAR_RANGE[0],
+    #                                    LEGISLATION_YEAR_RANGE[-1]))
+    #         else:
+    #             self.add_error(
+    #                 'year_mention',
+    #                 "'Additional date details' field needs a 4 digit year."
+    #             )
+    #     return year_mention
 
     def clean_website(self):
         website = self.cleaned_data['website']

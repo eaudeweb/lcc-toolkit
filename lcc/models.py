@@ -151,7 +151,7 @@ models.signals.pre_save.connect(
 
 class Legislation(models.Model):
     title = models.CharField(max_length=256)
-    abstract = models.CharField(max_length=1024)
+    abstract = models.CharField(max_length=1024, blank=True, null=True)
     country = models.ForeignKey(Country)
     language = models.CharField(choices=constants.ALL_LANGUAGES,
                                 default=constants.DEFAULT_LANGUAGE,
