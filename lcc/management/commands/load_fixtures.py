@@ -7,7 +7,7 @@ class Command(BaseCommand):
     help = "Load initial data"
 
     FIXTURES = ("TaxonomyTagGroup", "TaxonomyTag", "TaxonomyClassification",
-                "Question", "Countries")
+                "Question", "Countries", "CountryMetadata")
 
     def handle(self, *args, **options):
         for fixture in Command.FIXTURES:
