@@ -1,0 +1,71 @@
+[
+  {
+    "model": "lcc.legislation",
+    "pk": 1,
+    "fields": {
+      "country": "AF",
+      "year": 2017,
+      "year_mention": "mention",
+      "language": "en",
+      "law_type": "Constitution",
+      "pdf_file": "",
+      "pdf_file_name": "",
+      "title": "Law 1 testing phase",
+      "abstract": "Proin maximus ut enim eget convallis. Nullam ultrices sagittis nibh, nec dapibus massa luctus vel. Duis rhoncus urna nisi, et facilisis felis laoreet ac. Praesent nec eros non orci congue tincidunt. Nullam consectetur arcu nisl, quis venenatis nisi rutrum sit amet. Sed sagittis magna eget eros consectetur pulvinar. Nunc vestibulum pretium ipsum nec scelerisque. Duis vitae malesuada ex. Maecenas orci augue, posuere a finibus et, congue nec mauris. Proin ullamcorper euismod maximus.",
+      "tags": [
+        23,
+        27,
+        35
+      ],
+      "classifications": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "lcc.legislation",
+    "pk": 2,
+    "fields": {
+      "country": "AL",
+      "year": 2017,
+      "year_mention": "mention",
+      "language": "en",
+      "law_type": "Constitution",
+      "pdf_file": "",
+      "pdf_file_name": "",
+      "title": "Law 2 testing phase",
+      "abstract": "Sed metus purus, eleifend at suscipit id, feugiat sit amet elit. Etiam ut erat at sapien ullamcorper cursus. Sed scelerisque pretium diam sed dapibus. Nullam gravida tortor at lorem hendrerit gravida. Nullam tincidunt ultricies dictum. Phasellus et augue erat. Morbi vel eleifend lacus. Proin congue imperdiet sagittis. Fusce iaculis purus quis dolor maximus, a consequat odio tristique. Aliquam id aliquam odio. Nam pharetra mollis metus nec aliquet.",
+      "tags": [
+        2,
+        5,
+        7
+      ],
+      "classifications": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "lcc.legislation",
+    "pk": 3,
+    "fields": {
+      "country": "DZ",
+      "year": 2015,
+      "year_mention": "mention",
+      "language": "en",
+      "law_type": "Constitution",
+      "pdf_file": "",
+      "pdf_file_name": "",
+      "title": "Law 3 testing phase",
+      "abstract": "Sed eu felis justo. Etiam ornare, nunc eget ornare gravida, tortor nisl iaculis neque, vehicula finibus odio nulla in ex. Duis imperdiet, nibh id dapibus consectetur, lacus sem sollicitudin est, quis imperdiet nulla nunc vitae lacus. Curabitur mollis nunc dolor, ac consequat tellus suscipit a. Sed ornare eros et mi lacinia viverra. Morbi id tortor sagittis lacus tristique sodales. Maecenas ullamcorper mi urna, vitae porta libero bibendum tincidunt.",
+      "tags": [
+        5,
+        17,
+        18
+      ],
+      "classifications": [
+        2
+      ]
+    }
+  }
+]

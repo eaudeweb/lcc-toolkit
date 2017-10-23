@@ -1,0 +1,60 @@
+version: '2'
+
+services:
+
+  nginx:
+    image: nginx:alpine
+    container_name: lcct.nginx
+    environment:
+      NGINX_CONF: |-
+        server {
+          listen 80;
+
+          access_log /var/log/nginx/access.log main;
+
+          location /static {
+            sendfile on;
+            tcp_nopush on;
+            gzip on;
+            gzip_types text/plain application/x-javascript text/css;
+            expires 1d;
+            root /opt/lcct;
+          }
+        }
+    depends_on:
+      - web
+    volumes:
+      - static-files:/opt/lcct/static:ro
+    command: /bin/sh -c 'echo "$$NGINX_CONF" > /etc/nginx/conf.d/default.conf && exec nginx -g "daemon off;"'
+
+  web:
+    image: eaudeweb/lcc-toolkit
+    container_name: lcct.web
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      - DJANGO_MANAGEPY_MIGRATE=on
+      - DJANGO_MANAGEPY_COLLECTSTATIC=on
+      - DJANGO_MANAGEPY_LOADFIXTURES=on
+      - STATIC_ROOT=/var/www/
+    volumes:
+      - static-files:/opt/lcct/static
+
+  elasticsearch:
+    container_name: lcct.elastic
+    ports:
+      - "127.0.0.1:9200:9200"
+
+  logspout:
+    image: gliderlabs/logspout:v3.2.3
+    container_name: lcct.logs
+    environment:
+      - HOST=logsN.papertrailapp.com
+      - PORT=XXXXX
+    volumes:
+      - '/var/run/docker.sock:/tmp/docker.sock'
+    command: 'syslog://$${HOST}:$${PORT}?filter.name=lcct.*'
+
+volumes:
+  static-files:
+    driver: local

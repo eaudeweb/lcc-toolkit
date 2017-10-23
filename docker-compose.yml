@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+    volumes:
+      - elastic:/usr/share/elasticsearch/data
+
+  web:
+    image: eaudeweb/lcc-toolkit:latest
+    env_file:
+      - ./docker/web.env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:9-alpine
+    container_name: lcct.db
+    env_file:
+      - ./docker/postgres.env
+    volumes:
+      - data:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+volumes:
+
+  elastic:
+    driver: local
+  data:
+    driver: local

@@ -1,0 +1,14 @@
+language: python
+python:
+  - "3.6"
+before_install:
+  - sudo apt-get install libpoppler-cpp-dev
+install:
+  - pip install -r requirements-dev.txt
+script:
+  - coverage run --source='.' ./manage.py test lcc
+after_success: coveralls
+notifications:
+  email:
+    recipients:
+      - purepython@eaudeweb.ro

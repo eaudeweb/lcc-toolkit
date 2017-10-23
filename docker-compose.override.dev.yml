@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+
+  web:
+    build: .
+    container_name: lcct.web
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_MANAGEPY_MIGRATE=on
+      - DJANGO_MANAGEPY_COLLECTSTATIC=off
+      - DJANGO_MANAGEPY_LOADFIXTURES=on
+      - GRUNT_TASK=dev
+    depends_on:
+      - db
+    volumes:
+      - ./lcctoolkit:/opt/lcct/lcctoolkit
+      - ./lcc:/opt/lcct/lcc
+
+  elasticsearch:
+    container_name: lcct.elastic
+    ports:
+      - "9200:9200"
+
+  db:
+    container_name: lcct.db

@@ -1,0 +1,435 @@
+[
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 1,
+    "fields": {
+      "name": "Demand measures",
+      "group": 1
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 2,
+    "fields": {
+      "name": "Green transition (or green growth)",
+      "group": 1
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 3,
+    "fields": {
+      "name": "Supply measures",
+      "group": 1
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 4,
+    "fields": {
+      "name": "Nature-based solutions",
+      "group": 1
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 5,
+    "fields": {
+      "name": "Public-private collaboration",
+      "group": 1
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 6,
+    "fields": {
+      "name": "Accessing international support",
+      "group": 1
+    }
+  },  
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 7,
+    "fields": {
+      "name": "South-South and triangular cooperation",
+      "group": 1
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 8,
+    "fields": {
+      "name": "Infrastructure",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 9,
+    "fields": {
+      "name": "Planning",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 10,
+    "fields": {
+      "name": "Feasibility study",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 11,
+    "fields": {
+      "name": "Cost-benefit analysis",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 12,
+    "fields": {
+      "name": "Information provision",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 13,
+    "fields": {
+      "name": "Performance label",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 14,
+    "fields": {
+      "name": "Procurement",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 15,
+    "fields": {
+      "name": "Research, development and deployment",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 16,
+    "fields": {
+      "name": "Taxes",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 17,
+    "fields": {
+      "name": "Tax relief",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 18,
+    "fields": {
+      "name": "Auditing",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 19,
+    "fields": {
+      "name": "Codes and standards",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 20,
+    "fields": {
+      "name": "Subsidies and grants",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 21,
+    "fields": {
+      "name": "Loans",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 22,
+    "fields": {
+      "name": "Conferral of powers on minister or other executive to address climate change",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 23,
+    "fields": {
+      "name": "Voluntary schemes",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 24,
+    "fields": {
+      "name": "Institutional creation",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 25,
+    "fields": {
+      "name": "Professional training/skills",
+      "group": 2
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 26,
+    "fields": {
+      "name": "Coastal and marine",
+      "group": 3
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 27,
+    "fields": {
+      "name": "Rural",
+      "group": 3
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 28,
+    "fields": {
+      "name": "Urban",
+      "group": 3
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 29,
+    "fields": {
+      "name": "Adaptation",
+      "group": 4
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 30,
+    "fields": {
+      "name": "Capacity-building",
+      "group": 4
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 31,
+    "fields": {
+      "name": "Cooperative approaches",
+      "group": 4
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 32,
+    "fields": {
+      "name": "Education/training/public awareness",
+      "group": 4
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 33,
+    "fields": {
+      "name": "Finance",
+      "group": 4
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 34,
+    "fields": {
+      "name": "Implementation and compliance",
+      "group": 4
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 35,
+    "fields": {
+      "name": "Long-term low greenhouse gas emission development strategy",
+      "group": 4
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 36,
+    "fields": {
+      "name": "Loss and damage",
+      "group": 4
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 37,
+    "fields": {
+      "name": "Mitigation",
+      "group": 4
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 38,
+    "fields": {
+      "name": "Technology development and transfer",
+      "group": 4
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 39,
+    "fields": {
+      "name": "Transparency",
+      "group": 4
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 40,
+    "fields": {
+      "name": "Adaptation Fund",
+      "group": 5
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 41,
+    "fields": {
+      "name": "Clean Development Mechanism",
+      "group": 5
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 42,
+    "fields": {
+      "name": "Climate Technology Centre and Network",
+      "group": 5
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 43,
+    "fields": {
+      "name": "Global Environment Facility",
+      "group": 5
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 44,
+    "fields": {
+      "name": "Green Climate Fund",
+      "group": 5
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 45,
+    "fields": {
+      "name": "Government",
+      "group": 6
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 46,
+    "fields": {
+      "name": "Ministry or agency",
+      "group": 6
+    }
+  },
+
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 47,
+    "fields": {
+      "name": "Corporation",
+      "group": 6
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 48,
+    "fields": {
+      "name": "Power installation",
+      "group": 6
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 49,
+    "fields": {
+      "name": "Individual",
+      "group": 6
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 50,
+    "fields": {
+      "name": "International",
+      "group": 7
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 51,
+    "fields": {
+      "name": "Regional",
+      "group": 7
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 52,
+    "fields": {
+      "name": "National",
+      "group": 7
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 53,
+    "fields": {
+      "name": "State/provincial",
+      "group": 7
+    }
+  },
+  {
+    "model": "lcc.taxonomytag",
+    "pk": 54,
+    "fields": {
+      "name": "Municipal",
+      "group": 7
+    }
+  }
+]

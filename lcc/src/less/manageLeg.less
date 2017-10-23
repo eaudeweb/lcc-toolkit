@@ -1,0 +1,129 @@
+.pdf-container {
+    .btn-link {
+        color: white;
+        font-weight: bold;
+    }
+    .pdf-nav-buttons {
+        span {
+            color: white;
+        }
+        float: right;
+        margin-right: 2rem;
+    }
+    &.half {
+        border: 1px solid black;
+        width: 40%;
+        float: right;
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        background: #74c5dc;
+        z-index: 1;
+        // background: white;
+    }
+    .title {
+        color: white;
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .tab-content {
+        background: white;
+        padding: 1rem;
+        padding-bottom: 0;
+        height: calc(~"100% - 29px - 28px")
+    }
+    .nav-tabs {
+        margin-top: .5rem;
+        padding: 0;
+        >li {
+            margin-bottom: -2px;
+        }
+        .presentation {
+
+            &:hover {
+                a {
+                    border-color: white!important;
+                    background: white!important;
+                }
+            }
+            &.active,
+            &:hover {
+
+                a {
+                    color: #74c5dc;
+                    border-color: white;
+                        border: 1px solid white;
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        width: 30px;
+                        background: white;
+                        border-left: 1px solid white;
+                        top: -1px;
+                        bottom: 0;
+                        left: 101%;
+                        -webkit-clip-path: polygon(0 0, 0 0, 100% 100%, 0% 100%);
+                        clip-path: polygon(0 0, 0 0, 100% 100%, 0% 100%);
+                    }
+                }
+            }
+        }
+        a {
+            font-weight: 600;
+            color: white;
+            border-radius: 0;
+            margin: 0;
+            position: relative;
+            min-width: 100px;
+            padding: 0;
+            padding-left: 3rem;
+            border: none;
+            margin-bottom: -1px;
+            padding-bottom: 4px;
+        }
+    }
+}
+
+.page-container {
+    &.half {
+        width: 60%;
+        float: left;
+    }
+    padding: 1rem;
+}
+
+
+.manageLeg {
+
+    margin-top: 0;
+    .row.pad-botm {
+        display: none;
+    }
+    .container {
+        width: 100%!important;
+    }
+}
+
+
+.last-article-container {
+    background: #eee;
+    margin-left: -3rem;
+    margin-right: -1.2rem;
+    margin-bottom: -1rem;
+    padding: 1rem;
+    border-top: 1px solid black;
+    margin-top: 2rem;
+    pre {
+        background: white;
+        box-shadow: 1px 1px 3px #eee;
+    }
+}
+
+.manage-left-header {
+        float: left;
+    margin-top: 1.5rem;
+}

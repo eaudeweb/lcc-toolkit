@@ -1,0 +1,88 @@
+.with-sidebar {
+    z-index: 1;
+    margin-top: 0;
+    position: relative;
+
+    .filters {
+        border-left: 1px solid black;
+        background: #fafbfb;
+        width: 30%;
+        position: fixed;
+        right: 0;
+        top: 0;
+        transform: translateX(100%);
+        bottom: 0;
+        transition: all 300ms;
+        .open-sidebar {
+            position: absolute;
+            right: 100%;
+            top: 8%;
+        }
+        &.active {
+            transform: translateX(0);
+        }
+        label {
+            margin-left: 1rem;
+        }
+        select {
+            width: 100%;
+        }
+        .button-wrapper {
+            margin-top: 1rem;
+        }
+        .open-sidebar {
+            border-right-color: black;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            .more,
+            .less {
+                display: none;
+            }
+
+            span.active {
+                display: block;
+            }
+        }
+    }
+    h3 {
+        color: #00aeef;
+        font-weight: 300;
+        margin-top: 1rem;
+        font-size: 1.8rem;
+    }
+}
+
+
+.viz-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0px 0px 3px #aaa;
+    padding: 2rem;
+    h3 {
+            margin: 1rem 0;
+    margin-bottom: 0;
+    }
+}
+
+
+.articles-container {
+    .viz-container {
+        margin: 1rem;
+    }
+}
+
+
+.law-container {
+    margin: 5rem 0;
+    &:first-of-type {
+        margin-top: 0;
+    }
+     &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+#laws {
+    box-shadow: 0px 0px 3px #aaa;
+    padding: 2rem;
+}
