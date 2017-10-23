@@ -235,7 +235,7 @@ class Question(mptt.models.MPTTModel):
 
     def save(self, *args, **kwargs):
         if not self.order:
-            self.order = utils.set_order(self.parent)
+            self.order = utils.set_order(self.classification, self.parent)
         super(Question, self).save(*args, **kwargs)
 
     @property
@@ -272,4 +272,4 @@ class Answer(models.Model):
     value = models.BooleanField()
 
     class Meta:
-        unique_together = ("question", "value")
+        unique_together = ("question", "value", "assessment")

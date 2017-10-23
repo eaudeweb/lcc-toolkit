@@ -1,5 +1,12 @@
 {% extends "legislation/explorer.html" %}
 
+{% load static %}
+
+{% block extra-scripts %}
+  <script src="{% static "js/upload.js" %}"></script>
+{% endblock %}
+
+
 {% block content %}
 
 <div class="row addLeg">

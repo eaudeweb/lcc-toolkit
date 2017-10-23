@@ -28,7 +28,7 @@ def generate_code(model, instance):
 
 
 # @TODO change for edit
-def set_order(parent=None):
+def set_order(classification, parent=None):
     if parent:
         last_children = parent.get_children().last()
         if last_children:
@@ -36,7 +36,8 @@ def set_order(parent=None):
         else:
             return 1
 
-    last_question = models.Question.objects.filter(parent=None).last()
+    last_question = models.Question.objects.filter(
+        parent=None, classification=classification).last()
 
     if last_question:
         return last_question.order + 1
