@@ -113,9 +113,6 @@ package-lock.json
 
 
 /node_modules/
-static/upload/
-static/css/
-static/js/
 
 docker/init.sql
 docker/postgres.env
