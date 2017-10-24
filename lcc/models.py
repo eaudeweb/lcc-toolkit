@@ -181,8 +181,9 @@ class Legislation(models.Model):
     pdf_file = models.FileField(null=True)
     pdf_file_name = models.CharField(null=True, max_length=256)
 
-    tags = models.ManyToManyField(TaxonomyTag)
-    classifications = models.ManyToManyField(TaxonomyClassification)
+    tags = models.ManyToManyField(TaxonomyTag, blank=True)
+    classifications = models.ManyToManyField(
+        TaxonomyClassification, blank=True)
 
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):

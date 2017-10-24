@@ -14,19 +14,19 @@
       <span> | {{ law.year }}</span>
     </h4>
     <h3>Date details</h3>
-    <p>{{ law.year_mention }}</p>
+    <p>{% if law.year_mention %}{{ law.year_mention }}{% else %} - {% endif %}</p>
     <h3>Full Text</h3>
     <p>{{ law.pdf_file_name }}</p>
     <h3>Abstract</h3>
-    <p>{{ law.abstract }}</p>
+    <p>{% if law.abstract %}{{ law.abstract }}{% else %} - {% endif %}</p>
     <h3>Classification</h3>
-    <p>{{ law.all_classifications }}</p>
+    <p>{% if law.all_classifications %}{{ law.all_classifications }}{% else %} - {% endif %}</p>
     <h3>Tags</h3>
-    <p>{{ law.all_tags }}</p>
+    <p>{% if law.all_tags %}{{ law.all_tags }}{% else %} - {% endif %}</p>
     <h3>Language</h3>
-    <p><{{ law.language }}</p>
+    <p>{% if law.language %}{{ law.language }}{% else %} - {% endif %}</p>
     <h3>Document type</h3>
-    <p>{{ law.law_type }}</p>
+    <p>{% if law.law_type %}{{ law.law_type }}{% else %} - {% endif %}</p>
     {% if request.user.is_authenticated %}
       <div class="button-wrapper">
         {% if law.articles.all %}
