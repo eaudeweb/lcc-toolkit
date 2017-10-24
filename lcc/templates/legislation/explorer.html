@@ -20,32 +20,36 @@
     Legislation Explorer
   </div>
   <div class="search">
-    <form action="{% url 'lcc:legislation:explorer' %}" method="get">
+    <div class="row">
       <div class="input-group search-input-group">
         <div class="input-group search-input-wrapper">
           <input type="text" name="q" placeholder="Search through all legislation database">
         </div>
         <div class="input-group-btn legal-area-btn-wrapper">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button id="classificationsDropDownToggler" type="button" class="btn btn-default" aria-haspopup="true" aria-expanded="false">
             <span style="float: left;">Select Legal Area</span>
             <span style="float: right;">|<span style="padding: 0 4px 0 4px"><span class="caret"></span></span></span>
           </button>
-          <div class="dropdown-menu dropdown-menu-right" style="width: 100%;">
-            <div class="classifications">
-              {% for top in top_classifications %}
-                <div class="checkbox classification">
-                  <input type="checkbox" name="classification" id="{{ top.code }}" value="{{ top.code }}">
-                  {{ top.name }}<small class="count"> ({{ top.get_descendant_count }} results)</small>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
         </div><!-- /btn-group -->
         <div class="input-group-btn search-btn-wrapper">
-          <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+          <button class="btn btn-primary" type="button"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
         </div><!-- /btn-group -->
       </div><!-- /input-group -->
-    </form>
+    </div><!-- /row -->
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+        <div id="classificationsDropDownWrapper">
+          <select name="classifications" id="classificationsDropDown" multiple="multiple">
+            {% for top in top_classifications %}
+              <option value="{{ top.pk }}">
+                {{ top.name }} ({{ top.get_descendant_count }} results)
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div><!-- /row -->
   </div><!-- /search -->
   <div style="margin-left: -1px">
     <div style="margin-top:28px;">
@@ -74,7 +78,7 @@
   <button type="button" class="btn btn-default open-sidebar"><span class="more active">MORE FILTERS</span> <span class="less">LESS FILTERS</span></button>
     <div class="filter-tags">
     <label for="TagDropDown">Tags</label>
-      <select name="tags[]" id="TagDropDown" multiple="multiple">
+      <select name="tags" id="TagDropDown" multiple="multiple">
         {% for group_tag in group_tags %}
           <optgroup label="{{group_tag.name}}">
             {% for tag in group_tag.tags.all %}

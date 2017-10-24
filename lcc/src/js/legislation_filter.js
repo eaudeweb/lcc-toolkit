@@ -17,6 +17,10 @@ $(document).ready(function(){
     AjaxSubmit['type'] = $('#typeDropDown option:selected').val();
   });
 
+  $("#classificationsDropDownToggler").on('click', function(){
+    $("#classificationsDropDownWrapper").toggle();
+  });
+
   $("#submitButton").on('click', function(){
     console.log(AjaxSubmit)
     $.ajax({
@@ -33,5 +37,4 @@ $(document).ready(function(){
       }
     });
   });
-
- });
+});

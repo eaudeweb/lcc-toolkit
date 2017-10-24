@@ -1,5 +1,5 @@
 div.search {
-  z-index: -1!important;
+  // z-index: -1!important;
   margin-top: 20px;
   vertical-align: top;
   button.search-btn {
@@ -14,9 +14,6 @@ div.classifications {
 div.classification {
   input{
     margin: 10px;
-  }
-  .count {
-    color: #989898;
   }
 }
 
@@ -48,4 +45,22 @@ div.legal-area-btn-wrapper {
 div.search-btn-wrapper {
   display: inline-block;
   width: 10%;
+}
+
+div.filter-tags select {
+  min-height: 400px;
+}
+
+div#classificationsDropDownWrapper {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: white;
+}
+
+select#classificationsDropDown {
+  width: 100%;
+  option {
+    min-height: 32px;
+  }
 }
