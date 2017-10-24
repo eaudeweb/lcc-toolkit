@@ -5,6 +5,8 @@ services:
   nginx:
     image: nginx:alpine
     container_name: lcct.nginx
+    ports:
+      - "127.0.0.1:8001:80"
     environment:
       NGINX_CONF: |-
         server {
