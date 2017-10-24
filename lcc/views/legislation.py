@@ -13,6 +13,7 @@ from django.views.generic import (ListView, CreateView, DetailView,
 
 from lcc import models, constants, forms
 from lcc.constants import LEGISLATION_YEAR_RANGE
+from lcc.documents import LegislationDocument
 from lcc.views.base import (
     UserPatchMixin, TagGroupRender,
     taxonomy_to_string,
@@ -44,6 +45,14 @@ def legislation_save_pdf_pages(law, pdf):
 class LegislationExplorer(UserPatchMixin, ListView):
     template_name = "legislation/explorer.html"
     model = models.Legislation
+
+    def get_queryset(self):
+        q = self.request.GET.get('q')
+        if q:
+            return LegislationDocument.search().query(
+                'multi_match', query=q, fields=['title', 'abstract']).to_queryset()
+        else:
+            return super().get_queryset()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_webtest',
-    # 'django_elasticsearch_dsl',
+    'django_elasticsearch_dsl',
     'rest_framework',
     'mptt',
     'lcc',

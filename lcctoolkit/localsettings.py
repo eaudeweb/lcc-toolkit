@@ -14,12 +14,12 @@ DATABASES = {
     'default': env.db(default='sqlite:////tmp/my-tmp-sqlite.db'),
 }
 
-# ELASTICSEARCH_DSL = {
-#     'default': {
-#         'hosts': env(
-#             'ELASTICSEARCH_HOST', default='elastic:changeme@elasticsearch:9200')
-#     },
-# }
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': env(
+            'ELASTICSEARCH_HOST', default='elastic:changeme@elasticsearch:9200')
+    },
+}
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
