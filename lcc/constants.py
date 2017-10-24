@@ -1,6 +1,5 @@
 import datetime
 
-LOGIN_URL = "/login/"
 
 ROLE_CONTENT_MANAGER = "Content Manager"
 ROLE_POLICY_MAKER = "Policy Maker"
@@ -34,8 +33,8 @@ LEGISLATION_TYPE = (
     ('oth', 'Other')
 )
 
-LEGISLATION_DEFAULT_YEAR = datetime.datetime.now().year
-LEGISLATION_YEAR_RANGE = range(1945, LEGISLATION_DEFAULT_YEAR + 1)
+LEGISLATION_DEFAULT_YEAR = None
+LEGISLATION_YEAR_RANGE = range(1945, datetime.datetime.now().year + 1)
 
 GEOGRAPHICAL_COVERAGE_DEFAULT = ("nat", "National")
 GEOGRAPHICAL_COVERAGE = (
@@ -49,5 +48,6 @@ GEOGRAPHICAL_COVERAGE = (
 SOURCE_TYPE_DEFAULT = ('official', 'Official')
 SOURCE_TYPE = (
     SOURCE_TYPE_DEFAULT,
-    ('unofficial', 'Unofficial')
+    ('unofficial', 'Unofficial'),
+    ('', '----')
 )

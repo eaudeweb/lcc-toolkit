@@ -98,7 +98,6 @@ class LegislationExplorer(UserPatchMixin, ListView):
 
 class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
                      CreateView):
-    login_url = constants.LOGIN_URL
     template_name = "legislation/add.html"
     form_class = forms.LegislationForm
 
@@ -164,7 +163,6 @@ class LegislationPagesView(UserPatchMixin, views.View):
 
 class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
                           UpdateView):
-    login_url = constants.LOGIN_URL
     template_name = "legislation/edit.html"
     model = models.Legislation
     form_class = forms.LegislationForm

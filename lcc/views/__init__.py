@@ -9,9 +9,5 @@ class Index(UserPatchMixin, views.View):
         return HttpResponseRedirect(reverse('lcc:legislation:explorer'))
 
 
-class LegalAssessment(mixins.LoginRequiredMixin, views.View):
-    login_url = constants.LOGIN_URL
-    template = "assessmetn.html"
-
-    def get(self, request):
-        return render(request, self.template)
+class LegalAssessment(mixins.LoginRequiredMixin, TemplateView):
+    template_name = "assessment.html"

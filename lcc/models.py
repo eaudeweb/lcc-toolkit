@@ -159,9 +159,10 @@ class Legislation(models.Model):
     law_type = models.CharField(choices=constants.LEGISLATION_TYPE,
                                 default=constants.LEGISLATION_TYPE_DEFAULT,
                                 max_length=64)
-    year = models.IntegerField(default=constants.LEGISLATION_DEFAULT_YEAR)
+    year = models.IntegerField(default=constants.LEGISLATION_YEAR_RANGE[-1])
     year_amendment = models.IntegerField(
         default=constants.LEGISLATION_DEFAULT_YEAR,
+        blank=True,
         null=True
     )
     year_mention = models.CharField(max_length=1024, blank=True, null=True)
@@ -171,11 +172,11 @@ class Legislation(models.Model):
         max_length=64,
         null=True
     )
-    source = models.CharField(max_length=256, null=True)
+    source = models.CharField(max_length=256, blank=True, null=True)
     source_type = models.CharField(choices=constants.SOURCE_TYPE,
                                    default=constants.SOURCE_TYPE_DEFAULT,
-                                   max_length=64, null=True)
-    website = models.URLField(max_length=2000, null=True)
+                                   max_length=64, blank=True, null=True)
+    website = models.URLField(max_length=2000, blank=True, null=True)
 
     pdf_file = models.FileField(null=True)
     pdf_file_name = models.CharField(null=True, max_length=256)
