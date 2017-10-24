@@ -25,7 +25,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
 STATIC_URL = '/static/'
 STATIC_ROOT = env('STATIC_ROOT',
-                  default=environ.os.path.join(BASE_DIR, 'lcc/static'))
+                  default=root.path('lcc/static')())
 
 MEDIA_URL = '/files/'
 MEDIA_ROOT = root.path('media/uploadfiles/')()
