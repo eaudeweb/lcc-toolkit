@@ -20,7 +20,6 @@
             action="{% url 'lcc:legislation:add' %}">
         {% csrf_token %}
 
-      <h1>{{ form.errors }}</h1>
       <div class='law-meta-data-container'>
         <div>
           <label class="label-large" for="id_title">Title <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>

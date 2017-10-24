@@ -4,6 +4,7 @@
 
 {% block extra-scripts %}
   <script src="{% static "js/legislation_edit.js" %}"></script>
+  <script src="{% static "js/upload.js" %}"></script>
 {% endblock %}
 
 
@@ -18,7 +19,7 @@
           {% csrf_token %}
           <div class='law-meta-data-container'>
             <div>
-              <label class="label-large" for="id_title">Title</label>
+              <label class="label-large" for="id_title">Title <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
             </div>
             <div>
               <input class='law-meta-data-text-field' type="text" name="title"
@@ -32,7 +33,7 @@
             </div>
 
             <div class="clearfix">
-              <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract">{{ form.abstract.value|default_if_none:'' }}</textarea>
+              <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" id="id_abstract" placeholder="Add Abstract">{{ form.abstract.value|default_if_none:'' }}</textarea>
             <small class="pull-right" id="rem_char"></small>
             </div>
           </div>
@@ -58,7 +59,7 @@
 
             <div class="container upload-container" style="display:none;" id="upload_container_file">
               <div>
-                <label style="margin-bottom: 0" class="label-large" for="id_pdf_file">Upload file</label>
+                <label style="margin-bottom: 0" class="label-large" for="id_pdf_file">Upload file <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
               </div>
 
               <div class="label-description">
@@ -66,17 +67,16 @@
               </div>
 
               <div class="custom-file-upload">
-                <input type="file" name="pdf_file" name="myfiles[]" id="id_pdf_file" accept=".pdf, .Pdf, .PDF, .PDf">
+                <input type="file" name="pdf_file" required name="myfiles[]" id="id_pdf_file" accept=".pdf, .Pdf, .PDF, .PDf">
               </div>
             </div>
 
           </div>
 
-
           <div class='law-meta-data-container'>
             <div class="selector selector-inline--4">
               <div>
-                <label class="label-medium" for="id_country">Country:</label>
+                <label class="label-medium" for="id_country">Country <p style="display: inline-block; color: red;" title="This field is required.">*</p>:</label>
               </div>
               <div>
                 <select name="country" required id="id_country" class="law-meta-data-combobox">
@@ -151,7 +151,7 @@
                 <label class="label-medium" for="id_website">Website:</label>
               </div>
               <div>
-                <input class='law-meta-data-text-field' type="text" id="id_website" required
+                <input class='law-meta-data-text-field' type="text" id="id_website"
                        name="website" maxlength="256" value="{{ form.website.value|default_if_none:'' }}"/>
                 {% if errors.website %}
                   <span class="year-details error">{{ errors.website }}</span>
@@ -164,7 +164,7 @@
                 <label class="label-medium" for="id_source">Source:</label>
               </div>
               <div>
-                <input class='law-meta-data-text-field' type="text" id="id_source" required
+                <input class='law-meta-data-text-field' type="text" id="id_source"
                        name="source" maxlength="256" value="{{ form.source.value|default_if_none:'' }}"/>
               </div>
             </div>
@@ -229,7 +229,7 @@
               </div>
               <div>
                 <input class='law-meta-data-text-field' type="text"
-                       id="id_year_mention" required
+                       id="id_year_mention"
                        name="year_mention" maxlength="256" value="{{ form.year_mention.value|default_if_none:'' }}"/>
                 <!-- TODO: this checks if the field have a 4 digit string. Could be done in js. -->
                 {% if form.errors.year_mention %}

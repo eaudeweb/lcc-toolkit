@@ -192,7 +192,11 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFor
         legislation = form.save()
         if 'pdf_file' in self.request.FILES:
             pdf = pdftotext.PDF(legislation.pdf_file)
-            models.LegislationPage.objects.filter(legislation=legislation).delete()
+            models.LegislationPage.objects.filter(
+                legislation=legislation).delete()
             legislation_save_pdf_pages(legislation, pdf)
 
-        return HttpResponseRedirect(reverse("lcc:legislation:explorer"))
+        return HttpResponseRedirect(
+            reverse('lcc:legislation:details',
+                    kwargs={'legislation_pk': legislation.pk})
+        )
