@@ -237,7 +237,7 @@
           </div>
           <div>
             <select name="year_amendment" id="id_year_amendment" class="law-meta-data-combobox">
-            <option value="" {% if not form.year_amendment.value %} selected {% endif %}>----</option>
+              <option value="" {% if not form.year_amendment.value %} selected {% endif %}>----</option>
               {% for year in adoption_years %}
                 <option value="{{ year }}"
                     {% if form.year_amendment.value %}
@@ -304,7 +304,7 @@
 
         <div class="classificaions wrapper">
           <div>
-            <label for="id_classifications" class="label-medium">Classifications</label>
+            <label for="id_classifications" class="label-medium">Classification</label>
           </div>
 
           <div class="list-header">

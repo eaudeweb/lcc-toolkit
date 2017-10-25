@@ -77,4 +77,7 @@ class LegislationForm(ModelForm):
         instance = super(LegislationForm, self).save(commit=False)
         instance.pdf_file_name = instance.pdf_file.name
         instance.save()
+        instance.classifications = self.cleaned_data['classifications']
+        instance.tags = self.cleaned_data['tags']
+        instance.save()
         return instance

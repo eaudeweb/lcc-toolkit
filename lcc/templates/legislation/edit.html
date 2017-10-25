@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block extra-scripts %}
-  <script src="{% static "js/legislation_edit.js" %}"></script>
   <script src="{% static "js/upload.js" %}"></script>
 {% endblock %}
 
@@ -14,7 +13,7 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="">
       <div class="panel-body">
-        <form id="legislationAddForm" enctype="multipart/form-data" method="post"
+        <form id="legislationEditForm" enctype="multipart/form-data" method="post"
               action="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
           {% csrf_token %}
           <div class='law-meta-data-container'>
@@ -40,34 +39,18 @@
 
 
           <div class='full-width-bg' id="test">
-            <div class="container upload-container" id="upload_container_question">
-              <div>
-                <label style="margin-bottom: 0" class="label-large" for="id_pdf_file">Upload another PDF file</label>
-              </div>
-
-              <div class="label-description">
-                Uploading another PDF file will remove all articles that you already might have added.
-              </div>
-
-              <div class="custom-file-upload">
-                <ul>
-                  <li> <input id="upload-question" name="upload-question" type="radio" value="Yes"> Yes </input> </li>
-                  <li> <input id="upload-question" name="upload-question" type="radio" value="No" checked> No </input> </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="container upload-container" style="display:none;" id="upload_container_file">
+            <div class="container upload-container" id="upload_container_file">
               <div>
                 <label style="margin-bottom: 0" class="label-large" for="id_pdf_file">Upload file <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
               </div>
 
               <div class="label-description">
-                Attention: all your articles that might have been added to this law will be lost if you upload another file!<span style="font-weight: bold; cursor:pointer;" id="renounce-upload"> Cancel!</a>
+                Attention: all your articles that might have been added to this law will be lost if you upload another file!
+                <p>The current pdf is: <strong>{{ law.pdf_file_name }}</strong></p>
               </div>
 
               <div class="custom-file-upload">
-                <input type="file" name="pdf_file" required name="myfiles[]" id="id_pdf_file" accept=".pdf, .Pdf, .PDF, .PDf">
+                <input type="file" name="pdf_file" name="myfiles[]" id="id_pdf_file" accept=".pdf, .Pdf, .PDF, .PDf">
               </div>
             </div>
 
@@ -193,9 +176,10 @@
               </div>
               <div>
                 <select name="year" id="id_year" class="law-meta-data-combobox">
+                  <option value="" {% if not form.year_amendment.value %} selected {% endif %}>----</option>
                   {% for year in adoption_years %}
                     <option value="{{ year }}"
-                        {% if form.year.value == year|slugify %}
+                        {% if form.year.value == year %}
                           selected
                         {% endif %}>
                       {{ year }}
@@ -213,7 +197,7 @@
                 <select name="year_amendment" id="id_year_amendment" class="law-meta-data-combobox">
                   {% for year in adoption_years %}
                     <option value="{{ year }}"
-                        {% if form.year_amendment.value == year|slugify %}
+                        {% if form.year_amendment.value == year %}
                           selected
                         {% endif %}}>
                       {{ year }}
@@ -295,41 +279,10 @@
                               {% endif %}>
                             {{ top_class.name }}
                           </input>
-                          <i class="fa fa-plus-square" aria-hidden="true"></i>
                         {% else %}
                           <span>{{ top_class.name }}</span>
                         {% endif %}
                       </span>
-
-                      <ul class="second-level level">
-                        {% for second_class in top_class.get_children %}
-                          <li>
-                            <span class="list-header">
-                              <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox
-                                  {% if second_class.pk in form.classifications.value %}
-                                    checked
-                                  {% endif %}>
-                                {{ second_class.name }}
-                              </input>
-                              <i class="fa fa-plus-square" aria-hidden="true"></i>
-                            </span>
-                            <ul class="third-level level">
-                              {% for third_class in second_class.get_children %}
-                                <li>
-                                  <span class="list-header">
-                                    <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
-                                        {% if third_class.pk in form.classifications.value %}
-                                          checked
-                                        {% endif %}>
-                                      {{ third_class.name }}
-                                    </input>
-                                  </span>
-                                </li>
-                              {% endfor %}
-                            </ul>
-                          </li>
-                        {% endfor %}
-                      </ul>
                     </li>
                   {% endfor %}
                 </ul>
