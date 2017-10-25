@@ -3,15 +3,30 @@
 {% load static %}
 
 {% block extra-scripts %}
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="{% static "js/legal_assessment.js" %}"> </script>
 {% endblock %}
 
 {% block hidden_variables %}
-	<input type="number" name="assessment_id" value="{{ request.user.assessment.all.0.pk }}">
+	<input type="number" name="assessment_id" value="{{ request.user.assessment.all.0.pk }}"></input>
 {% endblock %}
 
 {% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
 
 
 {% block content %}
+<div class="container-fluid text-center">    
+	<div class="row content">
+		<div id="questions_container" class="col-sm-8 text-left">
+			<ul class="list-group">
+			</ul>
+		</div>
 
+		<div class="col-sm-4 sidenav">
+			<div id="accordion">
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
