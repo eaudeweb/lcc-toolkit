@@ -21,7 +21,6 @@ class ArticleFormMixin:
 class AddArticles(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
                   ArticleFormMixin,
                   CreateView):
-    login_url = constants.LOGIN_URL
     template_name = "legislation/articles/add.html"
     model = models.LegislationArticle
     form_class = forms.ArticleForm
@@ -89,7 +88,6 @@ class EditArticles(UserPatchMixin,
                    TaxonomyFormMixin,
                    ArticleFormMixin,
                    UpdateView):
-    login_url = constants.LOGIN_URL
     template_name = "legislation/articles/edit.html"
     model = models.LegislationArticle
     context_object_name = 'article'
