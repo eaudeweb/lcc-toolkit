@@ -1,0 +1,81 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 col-sm-6 col-xs-12 login-wrapper">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Register new account
+      </div>
+      <div class="panel-body">
+        {% if success %}
+        <p>Registration submitted for review! You will receive an email once it has been approved or denied.</p>
+        {% else %}
+        <form role="form" method="POST">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+            {{ form.email }}
+            {% for error in form.email.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            <label for="{{ form.affiliation.id_for_label }}">{{ form.affiliation.label }}</label>
+            {{ form.affiliation }}
+            {% for error in form.affiliation.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            <label for="{{ form.position.id_for_label }}">{{ form.position.label }}</label>
+            {{ form.position }}
+            {% for error in form.position.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            <label for="{{ form.home_country.id_for_label }}">{{ form.home_country.label }}</label>
+            {{ form.home_country }}
+            {% for error in form.home_country.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            <label for="{{ form.role.id_for_label }}">{{ form.role.label }}</label>
+            {{ form.role }}
+            {% for error in form.role.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
+          </div>
+
+          <button type="submit" class="btn btn-info" id="login-btn">Request registration</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+    <p>
+      <strong>NOTE:</strong>
+      the account will have to be approved before you will be able to login with it.
+      Upon approval, you will receive a link allowing you to set a password.
+    </p>
+  </div>
+</div>
+{% endblock %}

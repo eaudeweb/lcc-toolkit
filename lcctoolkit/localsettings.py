@@ -14,18 +14,24 @@ DATABASES = {
     'default': env.db(default='sqlite:////tmp/my-tmp-sqlite.db'),
 }
 
+# ELASTICSEARCH_DSL = {
+#     'default': {
+#         'hosts': env(
+#             'ELASTICSEARCH_HOST', default='elastic:changeme@elasticsearch:9200')
+#     },
+# }
+
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
 STATIC_URL = '/static/'
-STATIC_ROOT = env('STATIC_ROOT', default='static/')
-
-STATICFILES_DIRS = [
-    root.path('static/')()
-]
+STATIC_ROOT = env('STATIC_ROOT',
+                  default=environ.os.path.join(BASE_DIR, 'lcc/static'))
 
 MEDIA_URL = '/files/'
 MEDIA_ROOT = root.path('media/uploadfiles/')()
 
+EMAIL_HOST = 'mailtrap'
+EMAIL_FROM = 'lcc-toolkit@eaudeweb.ro'
 if not DEBUG:
 
     # sentry configuration

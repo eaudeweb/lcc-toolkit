@@ -1,0 +1,34 @@
+<div class="pdf-container half">
+  <div class="title">
+    Preview Legislations Full Text
+  </div>
+  <div class="pdf-nav-buttons">
+  <span>Page navigation: </span>
+      <button class="btn btn-link" type="button" id="prev">Previous</button>
+      <button class="btn btn-link" type="button" id="next">Next</button>
+  </div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="presentation active">
+      <a href="#pdf" aria-controls="pdf" role="tab" data-toggle="tab">Original</a>
+    </li>
+    <li class="presentation">
+      <a href="#text" aria-controls="text" role="tab" data-toggle="tab">Text</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="pdf">
+      <object class="pdf" data="{{ law.pdf_file.url }}#page={{starting_page}}" type="application/pdf"
+              width="100%" height="800">
+        <a href="{{ law.pdf_file.url }}">pdf file</a>
+      </object>`
+    </div>
+    <div role="tabpanel" class="tab-pane" id="text">
+      <h1 style="display: inline;">Page </h1><h1 style="display: inline;" id="page_number">{{ starting_page }}</h1>
+      <div class="state">
+        <span>Chose the selection functionality</span>
+        <button type="button" class="btn btn-info"></button>
+    </div>
+      <div id="raw-text-page"></div>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@ MAINTAINER "Eau de Web" <office@eaudeweb.ro>
 
 ENV PYTHONUNBUFFERED=1 \
     WORK_DIR=/opt/lcct \
-    NODE_ENV=prod
+    GRUNT_TASK=prod
 
 RUN runDeps="curl build-essential libpoppler-cpp-dev pkg-config postgresql-client" \
     && apt-get update \
@@ -26,7 +26,7 @@ RUN pip install --no-cache-dir -r requirements-dep.txt \
 
 ADD . $WORK_DIR
 
-RUN grunt $NODE_ENV
+RUN grunt $GRUNT_TASK
 
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["run"]
