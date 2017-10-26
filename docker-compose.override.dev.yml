@@ -17,6 +17,7 @@ services:
     volumes:
       - ./lcctoolkit:/opt/lcct/lcctoolkit
       - ./lcc:/opt/lcct/lcc
+      - ./Gruntfile.js:/opt/lcc/Gruntfile.js
 
   elasticsearch:
     container_name: lcct.elastic

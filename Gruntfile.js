@@ -22,7 +22,10 @@ module.exports = function(grunt) {
                     'lcc/src/js/lib/jquery.min.js',
                     'lcc/src/js/lib/bootstrap.min.js',
                     'lcc/src/js/lib/tether.min.js',
-                    'lcc/src/js/common.js'
+                    'lcc/src/js/common.js',
+                    'lcc/src/js/modules.manager.js',
+                    'lcc/src/js/config.js',
+                    'lcc/src/js/request.service.js',
                 ],
                 dest: 'lcc/static/js/main.js'
             }
