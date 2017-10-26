@@ -1,6 +1,8 @@
 import math
-import pycountry
+from copy import deepcopy
 from operator import itemgetter
+
+import pycountry
 import mptt.models
 
 from rolepermissions.roles import get_user_roles
@@ -11,6 +13,8 @@ import lcc.utils as utils
 import lcc.constants as constants
 
 from django.db import models
+from django.urls import reverse
+
 
 User = get_user_model()
 
@@ -163,20 +167,23 @@ class CountryMetadata(models.Model):
     def __str__(self):
         return f'{self.country.name} ({self.user or "no user"})'
 
+    def get_absolute_url(self):
+        return reverse('lcc:country:view', kwargs={'iso': self.country.iso})
+
     @property
     def population_range(self):
         return _format_range(
             _range_from_value(POP_RANGES, self.population))
 
     @property
-    def hdi_range(self):
+    def hdi2015_range(self):
         return (
             _format_range(_range_from_value(HDI_RANGES, self.hdi2015))
             if self.hdi2015 else 'N/A'
         )
 
     @property
-    def gdp_range(self):
+    def gdp_capita_range(self):
         label = itemgetter(2)
         return (
             label(_range_from_value(GDP_RANGES, self.gdp_capita))
@@ -184,18 +191,43 @@ class CountryMetadata(models.Model):
         )
 
     @property
-    def total_ghg_no_lucf(self):
+    def ghg_no_lucf_range(self):
         return (
             _format_range(_range_from_value(GHG_NO_LUCF, self.ghg_no_lucf))
             if self.ghg_no_lucf else None
         )
 
     @property
-    def total_ghg_lucf(self):
+    def ghg_lucf_range(self):
         return (
             _format_range(_range_from_value(GHG_LUCF, self.ghg_lucf))
             if self.ghg_lucf else None
         )
+
+    def clone_to_profile(self, user_profile):
+        # copy original
+        clone = deepcopy(self)
+        clone.pk = None
+        clone.user = user_profile
+
+        clone.save()
+
+        # copy many to many fields
+        m2m = (
+            f.name for f in self._meta.get_fields()
+            if isinstance(f, models.ManyToManyField)
+        )
+
+        for name in m2m:
+            val = (
+                getattr(self, name).all()
+                if hasattr(self, name) else []
+            )
+            setattr(clone, name, val)
+
+        clone.save()
+
+        return clone
 
 
 class Country(models.Model):

@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+
+{% block content %}
+  <div id="title" class="heading">
+    {{ country.name }}
+  </div>
+
+  <div style="margin-left: -1px">
+    <div style="margin-top:28px;">
+      <a href="{% url 'lcc:country:view' iso=country.iso %}" class="btn btn-info">View original values</a>
+    </div>
+  </div>
+
+  <div>
+    <form role="form" method="POST">
+      {% csrf_token %}
+
+      <div class="form-group">
+        {% for field in form.checkboxes %}
+          {{ field }}
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {% for error in field.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+          {% endfor %}
+        {% endfor %}
+      </div>
+
+      {% for field in form.others %}
+        <div class="form-group">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% for error in field.errors %}
+            <p class="help-block form-field-error">
+              {{ error|escape }}
+            </p>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+      <div class="form-group">
+        <input type="submit" name="save" class="btn btn-success" value="Save customisations" />
+        <a href="{% url 'lcc:country:view' iso=country.iso %}" class="btn btn-warning">Cancel</a>
+        <input type="submit" name="discard" class="btn btn-danger pull-right" value="Discard" />
+      </div>
+
+    </form>
+  </div>
+{% endblock %}

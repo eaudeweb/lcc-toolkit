@@ -73,6 +73,9 @@ legislation_patterns = [
 
 country_patterns = [
     url(r'^(?P<iso>\w+)/$', views.country.Details.as_view(), name="view"),
+    url(r'^(?P<iso>\w+)/customise$',
+        views.country.Customise.as_view(),
+        name="customise"),
 ]
 
 api_urls = [
