@@ -8,7 +8,7 @@ $(document).ready(function(){
   function LegalAssessment(Config, RequestService){
       
     var assessment_id;
-    var classification_id = 96;
+    var classification_id = 96; // we only have data for this classification 
     var all_questions = [];
     var listeners = {};
 
