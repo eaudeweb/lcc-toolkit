@@ -1,5 +1,5 @@
 from lcc.models import (
-    Answer, Question, TaxonomyClassification
+    Answer, Assessment, Country, Question, TaxonomyClassification
 )
 from rest_framework import serializers
 
@@ -21,7 +21,14 @@ class QuestionSerializer(serializers.ModelSerializer):
                   "children_yes", "children_no")
 
     def _get_answer(self, obj):
-        query = Answer.objects.filter(question=obj).first()
+        assessment_pk = self.context.get('assessment_pk')
+        query = None
+
+        if assessment_pk:
+            query = Answer.objects.filter(
+                question=obj, assessment__pk=assessment_pk
+            ).first()
+
         if query:
             serializer = QuestionAnswerSerializer(query)
             return serializer.data
@@ -29,13 +36,15 @@ class QuestionSerializer(serializers.ModelSerializer):
     def _get_children_yes(self, obj):
         query = obj.get_children().filter(parent_answer=True)
         if query:
-            serializer = QuestionSerializer(query, many=True)
+            serializer = QuestionSerializer(
+                query, context=self.context, many=True)
             return serializer.data
 
     def _get_children_no(self, obj):
         query = obj.get_children().filter(parent_answer=False)
         if query:
-            serializer = QuestionSerializer(query, many=True)
+            serializer = QuestionSerializer(
+                query, context=self.context, many=True)
             return serializer.data
 
 
@@ -62,3 +71,15 @@ class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = '__all__'
+
+
+class AssessmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Assessment
+        fields = '__all__'
+
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ("iso", "name")

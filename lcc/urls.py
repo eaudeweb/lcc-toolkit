@@ -72,7 +72,7 @@ legislation_patterns = [
 ]
 
 api_urls = [
-    url(r'question-category/(?P<category_pk>\d+)/$',
+    url(r'question-category/(?P<category_pk>\d+).*$',
         views.QuestionViewSet.as_view(),
         name="question_category"),
 
@@ -86,7 +86,20 @@ api_urls = [
 
     url(r'answers/(?P<pk>[0-9]+)/$',
         views.AnswerDetail.as_view(),
-        name='answers_get_update')
+        name='answers_get_update'),
+
+    url(r'assessment/$',
+        views.AssessmentList.as_view(),
+        name='answers_list_create'),
+
+    url(r'assessment/(?P<user_pk>[0-9]+)/$',
+        views.AssessmentDetail.as_view(),
+        name='answers_get_update'),
+
+    url(r'countries/$',
+        views.CountryViewSet.as_view(),
+        name="countries")
+
 ]
 
 

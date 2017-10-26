@@ -260,6 +260,11 @@ class Assessment(models.Model):
     class Meta:
         unique_together = ("user", "country")
 
+    def __str__(self):
+        return "%s' assessment for %s" % (
+            self.user.username, self.country.name
+        )
+
 
 class Answer(models.Model):
     assessment = models.ForeignKey(Assessment)
@@ -267,4 +272,9 @@ class Answer(models.Model):
     value = models.BooleanField()
 
     class Meta:
-        unique_together = ("question", "value", "assessment")
+        unique_together = ("question", "assessment")
+
+    def __str__(self):
+        return "Question %d for assessment %d" % (
+            self.question.pk, self.assessment.pk
+        )
