@@ -98,7 +98,6 @@ class LegislationExplorer(UserPatchMixin, ListView):
 
 class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
                      CreateView):
-    login_url = constants.LOGIN_URL
     template_name = "legislation/add.html"
     form_class = forms.LegislationForm
 
@@ -164,7 +163,6 @@ class LegislationPagesView(UserPatchMixin, views.View):
 
 class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
                           UpdateView):
-    login_url = constants.LOGIN_URL
     template_name = "legislation/edit.html"
     model = models.Legislation
     form_class = forms.LegislationForm
@@ -194,7 +192,11 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFor
         legislation = form.save()
         if 'pdf_file' in self.request.FILES:
             pdf = pdftotext.PDF(legislation.pdf_file)
-            models.LegislationPage.objects.filter(legislation=legislation).delete()
+            models.LegislationPage.objects.filter(
+                legislation=legislation).delete()
             legislation_save_pdf_pages(legislation, pdf)
 
-        return HttpResponseRedirect(reverse("lcc:legislation:explorer"))
+        return HttpResponseRedirect(
+            reverse('lcc:legislation:details',
+                    kwargs={'legislation_pk': legislation.pk})
+        )

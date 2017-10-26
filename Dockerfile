@@ -5,6 +5,10 @@ ENV PYTHONUNBUFFERED=1 \
     WORK_DIR=/opt/lcct \
     GRUNT_TASK=prod
 
+#https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
+RUN mkdir -p /usr/share/man/man1 \
+    && mkdir -p /usr/share/man/man7
+
 RUN runDeps="curl build-essential libpoppler-cpp-dev pkg-config postgresql-client" \
     && apt-get update \
     && apt-get install -y --no-install-recommends $runDeps \
