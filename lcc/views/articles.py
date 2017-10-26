@@ -6,7 +6,7 @@ from django.views.generic import DetailView, CreateView, UpdateView
 
 from lcc import constants, models, forms
 from lcc.views.base import (
-    UserPatchMixin, TagGroupRender, TaxonomyFormMixin,
+    TagGroupRender, TaxonomyFormMixin,
     taxonomy_to_string,
 )
 
@@ -18,7 +18,7 @@ class ArticleFormMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
-class AddArticles(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
+class AddArticles(mixins.LoginRequiredMixin, TaxonomyFormMixin,
                   ArticleFormMixin,
                   CreateView):
     template_name = "legislation/articles/add.html"
@@ -62,7 +62,7 @@ class AddArticles(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
             )
 
 
-class ArticlesList(UserPatchMixin, DetailView):
+class ArticlesList(DetailView):
     template_name = "legislation/articles/list.html"
     context_object_name = 'law'
     model = models.Legislation
@@ -83,8 +83,7 @@ class ArticlesList(UserPatchMixin, DetailView):
         return context
 
 
-class EditArticles(UserPatchMixin,
-                   mixins.LoginRequiredMixin,
+class EditArticles(mixins.LoginRequiredMixin,
                    TaxonomyFormMixin,
                    ArticleFormMixin,
                    UpdateView):

@@ -1,0 +1,121 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+
+{% block content %}
+<div id="title" class="heading">
+  {{ country.name }}
+</div>
+<div class="viz-container">
+  <dl>
+    <dt>CW</dt>
+    <dd>{{ meta.cw }}</dd>
+
+    <dt>Small CW</dt>
+    <dd>{{ meta.small_cw }}</dd>
+
+    <dt>UN</dt>
+    <dd>{{ meta.un }}</dd>
+
+    <dt>LDC</dt>
+    <dd>{{ meta.ldc }}</dd>
+
+    <dt>LLDC</dt>
+    <dd>{{ meta.lldc }}</dd>
+
+    <dt>SID</dt>
+    <dd>{{ meta.sid }}</dd>
+
+    <dt>ISO3</dt>
+    <dd>{{ country.iso }}</dd>
+
+    <dt>Region</dt>
+    <dd>
+      {% for region in meta.region.all %}
+      {{ region.name }}
+      {% endfor %}
+    </dd>
+
+    <dt>Sub region</dt>
+    <dd>
+      {% for subregion in meta.sub_region.all %}
+      {{ subregion.name }}
+      {% endfor %}
+    </dd>
+
+    <dt>Legal system</dt>
+    <dd>
+      {% for legal in meta.legal_system.all %}
+      {{ legal.name }}
+      {% endfor %}
+    </dd>
+
+    <dt>Population</dt>
+    <dd>{{ meta.population }}</dd>
+
+    <dt>Population range</dt>
+    <dd>{{ meta.population_range }}</dd>
+
+    <dt>HDI2015</dt>
+    <dd>{{ meta.hdi2015 }}</dd>
+
+    <dt>HDI Range</dt>
+    <dd>{{ meta.hdi_range }}</dd>
+
+    <dt>GDP per capita, US$ 2016</dt>
+    <dd>{{ meta.gdp_capita }}</dd>
+
+    <dt>GDP Range</dt>
+    <dd>{{ meta.gdp_range }}</dd>
+
+    <dt>Total GHG Emissions excluding LUCF MtCO2e 2014</dt>
+    <dd>{{ meta.ghg_no_lucf }}</dd>
+
+    <dt>Total GHG Emissions excluding LUCF MtCO2e 2014 ranges</dt>
+    <dd>{{ meta.total_ghg_no_lucf }}</dd>
+
+    <dt>Total GHG Emissions including LUCF MtCO2e 2014</dt>
+    <dd>{{ meta.ghg_lucf }}</dd>
+
+    <dt>Total GHG Emissions including LUCF MtCO2e 2014 ranges</dt>
+    <dd>{{ meta.total_ghg_lucf }}</dd>
+
+    <dt>Climate vulnerability index 2015</dt>
+    <dd>{{ meta.cvi2015 }}</dd>
+
+    {% with meta.mitigation_focus_areas.all as focus_areas %}
+    <dt>Mitigation Focus Areas</dt>
+    <dd>
+      {% if focus_areas %}
+      <ul>
+        {% for area in focus_areas %}
+        <li>{{ area.name }}</li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      None defined.
+      {% endif %}
+    </dd>
+    {% endwith %}
+
+    {% with meta.adaptation_priority_sectors.all as priority_sectors %}
+    <dt>Adaptation Priority Sectors</dt>
+    <dd>
+      {% if priority_sectors %}
+      <ul>
+      {% for sector in priority_sectors %}
+        <li>{{ sector.name }}</li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      None defined.
+      {% endif %}
+    </dd>
+
+    {% endwith %}
+
+  </dl>
+
+</div>
+{% endblock %}

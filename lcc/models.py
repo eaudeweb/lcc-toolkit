@@ -1,3 +1,6 @@
+import math
+import pycountry
+from operator import itemgetter
 import mptt.models
 
 from rolepermissions.roles import get_user_roles
@@ -12,8 +15,191 @@ from django.db import models
 User = get_user_model()
 
 
+POP_RANGES = (
+    (0, 299),
+    (300, 1499),
+    (1500, 3999),
+    (4000, 5999),
+    (6000, 9999),
+    (10000, 19999),
+    (20000, 39999),
+    (40000, 99999),
+    (100000, math.inf),
+)
+
+HDI_RANGES = (
+    (0.350, 0.470),
+    (0.471, 0.501),
+    (0.502, 0.563),
+    (0.564, 0.607),
+    (0.608, 0.649),
+    (0.650, 0.693),
+    (0.694, 0.730),
+    (0.731, 0.754),
+    (0.755, 0.782),
+    (0.783, 0.807),
+    (0.808, 0.848),
+    (0.849, 0.884),
+    (0.885, 0.915),
+    (0.916, 0.949),
+)
+
+GDP_RANGES = (
+    (0, 1005, 'Low'),
+    (1006, 3955, 'Lower-middle'),
+    (3956, 12235, 'Upper-middle'),
+    (12236, math.inf, 'High'),
+)
+
+
+GHG_NO_LUCF = (
+    (0, 0.99),
+    (1, 9.99),
+    (10, 24.99),
+    (25, 49.99),
+    (50, 99.99),
+    (100, 299.99),
+    (300, 999.99),
+    (1000, math.inf)
+)
+
+GHG_LUCF = (
+    (-math.inf, 0),
+    (0, 0.99),
+    (1, 9.99),
+    (10, 24.99),
+    (25, 49.99),
+    (50, 99.99),
+    (100, 299.99),
+    (300, 999.99),
+    (1000, math.inf)
+)
+
+
+def _format_range(range):
+    min, max = range
+    formatter = f'{min} - {max}'
+    if max == math.inf:
+        formatter = f'> {min}'
+    if min == -math.inf:
+        formatter = f'< {max}'
+    return formatter
+
+
+def _range_from_value(range, value):
+    min, max = map(itemgetter, (0, 1))
+    return next(
+        val for val in range
+        if min(val) <= value <= max(val)
+    )
+
+
+class Region(models.Model):
+    name = models.CharField('Name', max_length=128)
+
+    def __str__(self):
+        return self.name
+
+
+class SubRegion(models.Model):
+    name = models.CharField('Name', max_length=128)
+
+    def __str__(self):
+        return self.name
+
+
+class LegalSystem(models.Model):
+    name = models.CharField('Name', max_length=128)
+
+    def __str__(self):
+        return self.name
+
+
+class FocusArea(models.Model):
+    name = models.CharField('Name', max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class PrioritySector(models.Model):
+    name = models.CharField('Name', max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class CountryMetadata(models.Model):
+    country = models.ForeignKey('Country', related_name='metadata')
+    user = models.ForeignKey('UserProfile', null=True)
+
+    cw = models.BooleanField('CW', default=False)
+    small_cw = models.BooleanField('Small CW', default=False)
+    un = models.BooleanField('UN', default=False)
+    ldc = models.BooleanField('LDC', default=False)
+    lldc = models.BooleanField('LLDC', default=False)
+    sid = models.BooleanField('SID', default=False)
+
+    region = models.ManyToManyField(Region)
+    sub_region = models.ManyToManyField(SubRegion)
+    legal_system = models.ManyToManyField(LegalSystem)
+
+    population = models.FloatField("Population ('000s) 2018", null=True)
+    hdi2015 = models.FloatField('HDI2015', null=True)
+
+    gdp_capita = models.FloatField('GDP per capita, US$ 2016', null=True)
+    ghg_no_lucf = models.FloatField(
+        'Total GHG Emissions excluding LUCF MtCO2e 2014', null=True)
+    ghg_lucf = models.FloatField(
+        'Total GHG Emissions including LUCF MtCO2e 2014', null=True)
+    cvi2015 = models.FloatField('Climate vulnerability index 2015', null=True)
+
+    mitigation_focus_areas = models.ManyToManyField(
+        FocusArea, blank=True)
+
+    adaptation_priority_sectors = models.ManyToManyField(
+        PrioritySector, blank=True)
+
+    def __str__(self):
+        return f'{self.country.name} ({self.user or "no user"})'
+
+    @property
+    def population_range(self):
+        return _format_range(
+            _range_from_value(POP_RANGES, self.population))
+
+    @property
+    def hdi_range(self):
+        return (
+            _format_range(_range_from_value(HDI_RANGES, self.hdi2015))
+            if self.hdi2015 else 'N/A'
+        )
+
+    @property
+    def gdp_range(self):
+        label = itemgetter(2)
+        return (
+            label(_range_from_value(GDP_RANGES, self.gdp_capita))
+            if self.gdp_capita else 'N/A'
+        )
+
+    @property
+    def total_ghg_no_lucf(self):
+        return (
+            _format_range(_range_from_value(GHG_NO_LUCF, self.ghg_no_lucf))
+            if self.ghg_no_lucf else None
+        )
+
+    @property
+    def total_ghg_lucf(self):
+        return (
+            _format_range(_range_from_value(GHG_LUCF, self.ghg_lucf))
+            if self.ghg_lucf else None
+        )
+
+
 class Country(models.Model):
-    iso = models.CharField('ISO', max_length=2, primary_key=True)
+    iso = models.CharField('ISO', max_length=3, primary_key=True)
     name = models.CharField('Name', max_length=128)
 
     class Meta:
@@ -50,6 +236,12 @@ class UserProfile(models.Model):
     @property
     def roles(self):
         return get_user_roles(self.user)
+
+    @property
+    def flag(self):
+        """ Returns alpha2 from iso3.
+        """
+        return pycountry.countries.get(alpha_3=self.home_country.iso).alpha_2
 
     @property
     def country(self):
