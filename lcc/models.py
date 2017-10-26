@@ -149,16 +149,36 @@ models.signals.pre_save.connect(
 )
 
 
-class Legislation(models.Model):
+class Taxonomized(models.Model):
+
+    class Meta:
+        abstract = True
+
+    classifications = models.ManyToManyField(TaxonomyClassification)
+    tags = models.ManyToManyField(TaxonomyTag)
+
+    def classifications_as_string(self):
+        return ", ".join(
+            list(self.classifications.values_list('name', flat=True)))
+
+    def tags_as_string(self):
+        return ", ".join(list(self.tags.values_list('name', flat=True)))
+
+
+class Legislation(Taxonomized):
     title = models.CharField(max_length=256)
     abstract = models.CharField(max_length=1024)
     country = models.ForeignKey(Country)
-    language = models.CharField(choices=constants.ALL_LANGUAGES,
-                                default=constants.DEFAULT_LANGUAGE,
-                                max_length=64)
-    law_type = models.CharField(choices=constants.LEGISLATION_TYPE,
-                                default=constants.LEGISLATION_TYPE_DEFAULT,
-                                max_length=64)
+    language = models.CharField(
+        choices=constants.ALL_LANGUAGES,
+        default=constants.DEFAULT_LANGUAGE,
+        max_length=64
+    )
+    law_type = models.CharField(
+        choices=constants.LEGISLATION_TYPE,
+        default=constants.LEGISLATION_TYPE_DEFAULT,
+        max_length=64
+    )
     year = models.IntegerField(default=constants.LEGISLATION_DEFAULT_YEAR)
     year_amendment = models.IntegerField(
         default=constants.LEGISLATION_DEFAULT_YEAR,
@@ -172,23 +192,22 @@ class Legislation(models.Model):
         null=True
     )
     source = models.CharField(max_length=256, null=True)
-    source_type = models.CharField(choices=constants.SOURCE_TYPE,
-                                   default=constants.SOURCE_TYPE_DEFAULT,
-                                   max_length=64, null=True)
+    source_type = models.CharField(
+        choices=constants.SOURCE_TYPE,
+        default=constants.SOURCE_TYPE_DEFAULT,
+        max_length=64, null=True
+    )
     website = models.URLField(max_length=2000, null=True)
 
     pdf_file = models.FileField(null=True)
     pdf_file_name = models.CharField(null=True, max_length=256)
-
-    tags = models.ManyToManyField(TaxonomyTag)
-    classifications = models.ManyToManyField(TaxonomyClassification)
 
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Legislation: " + ' | '.join([self.country.name, self.law_type])
 
 
-class LegislationArticle(models.Model):
+class LegislationArticle(Taxonomized):
     text = models.CharField(max_length=65535)
     legislation = models.ForeignKey(Legislation, related_name="articles")
     tags = models.ManyToManyField(TaxonomyTag)

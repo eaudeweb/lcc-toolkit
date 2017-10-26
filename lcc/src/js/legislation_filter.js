@@ -1,39 +1,50 @@
 $(document).ready(function(){
-  var AjaxSubmit = {}
+  var payload = {'partial': true};
 
-  $('#TagDropDown').on('change',function(e){
-    AjaxSubmit['tags'] = $(this).val();
+  $('#textSearchInput').on('change', function() {
+    payload['q'] = $(this).val();
   });
 
   $('#classificationsDropDown').on('change', function() {
-    AjaxSubmit['classification'] = $(this).val();
+    payload['classification'] = $(this).val();
   });
 
-  $('#countriesDropDown').on('click', function() {
-    AjaxSubmit['country'] = $('#countriesDropDown option:selected').val();
+  $('#TagDropDown').on('change',function(e){
+    payload['tags'] = $(this).val();
   });
 
-  $('#typeDropDown').on('click', function() {
-    AjaxSubmit['type'] = $('#typeDropDown option:selected').val();
+  $('#countryDropDown').on('change', function() {
+    payload['country'] = $('#countryDropDown option:selected').val();
   });
 
-  $("#classificationsDropDownToggler").on('click', function(){
+  $('#typeDropDown').on('change', function() {
+    payload['type'] = $('#typeDropDown option:selected').val();
+  });
+
+  $('html').on('click', function(){
+    // Clicking outside the classification dropdown closes it
+    $("#classificationsDropDownWrapper").hide();
+  })
+
+  $('#classificationsDropDownWrapper').on('click', function(event){
+    // Clicking inside the classification dropdown doesn't close it
+    event.stopPropagation();
+  })
+
+  $("#classificationsDropDownToggler").on('click', function(event){
+    // Toggle the dropdown on click
+    event.stopPropagation();
     $("#classificationsDropDownWrapper").toggle();
   });
 
-  $("#submitButton").on('click', function(){
-    console.log(AjaxSubmit)
+  $(".submitBtn").on('click', function(){
+    console.log(payload);
     $.ajax({
       type: 'GET',
       url: '/legislation',
-      data: AjaxSubmit,
+      data: payload,
       success : function(data) {
-        $laws = $(data).find('#laws');
-        $laws_container = $laws.find('.law-container').html()
-        $("#laws").html('').append($laws_container)
-        if($laws_container.length == 0) {
-          $('#laws').html('<span class="error">No legislation found</span>')
-        }
+        $("#laws").html(data);
       }
     });
   });

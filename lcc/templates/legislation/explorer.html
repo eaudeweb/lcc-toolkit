@@ -21,25 +21,25 @@
   </div>
   <div class="search">
     <div class="row">
-      <div class="input-group search-input-group">
-        <div class="input-group search-input-wrapper">
-          <input type="text" name="q" placeholder="Search through all legislation database">
+      <div class="input-group searchInputGroup">
+        <div class="input-group searchInputWrapper">
+          <input id="textSearchInput" type="text" name="q" placeholder="Search through all legislation database">
         </div>
-        <div class="input-group-btn legal-area-btn-wrapper">
+        <div class="input-group-btn legalAreaBtnWrapper">
           <button id="classificationsDropDownToggler" type="button" class="btn btn-default" aria-haspopup="true" aria-expanded="false">
             <span style="float: left;">Select Legal Area</span>
             <span style="float: right;">|<span style="padding: 0 4px 0 4px"><span class="caret"></span></span></span>
           </button>
         </div><!-- /btn-group -->
-        <div class="input-group-btn search-btn-wrapper">
-          <button class="btn btn-primary" type="button"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+        <div class="input-group-btn searchBtnWrapper">
+          <button class="btn btn-primary submitBtn" type="button"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
         </div><!-- /btn-group -->
       </div><!-- /input-group -->
     </div><!-- /row -->
     <div class="row">
       <div class="col-md-6"></div>
       <div class="col-md-6">
-        <div id="classificationsDropDownWrapper">
+        <div id="classificationsDropDownWrapper" style="display: none;">
           <select name="classifications" id="classificationsDropDown" multiple="multiple">
             {% for top in top_classifications %}
               <option value="{{ top.pk }}">
@@ -57,26 +57,12 @@
     </div>
   </div>
   <div id="laws">
-    {% for law in laws %}
-      <div class="law-container">
-        <a href="{% url 'lcc:legislation:details' law.pk %}"><h3>{{ law }} - {{ law.title }}</h3></a>
-
-        <h4 class="country_year law-country">
-            {% static "" as baseUrl %}
-            <img  src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.png" >
-          <span>{{ law.country.name }}</span>
-        <span> | {{ law.year }}</span>
-        </h4>
-
-        <small class="law-tag"><b>Taxonomy Tags</b>: {{ law.all_tags }}</small> <br>
-        <small class="law-classification"><b>Taxonomy Classification</b>: {{ law.all_classifications }}</small>
-      </div>
-    {% endfor %}
+    {% include "./_laws.html" %}
   </div>
 
   <div class="filters">
   <button type="button" class="btn btn-default open-sidebar"><span class="more active">MORE FILTERS</span> <span class="less">LESS FILTERS</span></button>
-    <div class="filter-tags">
+    <div class="filterTags">
     <label for="TagDropDown">Tags</label>
       <select name="tags" id="TagDropDown" multiple="multiple">
         {% for group_tag in group_tags %}
@@ -90,8 +76,9 @@
     </div>
 
     <div class="filter-countries">
-    <label for="countriesDropDown">Country</label>
-      <select name="countries" id="countriesDropDown">
+    <label for="countryDropDown">Country</label>
+      <select name="country" id="countryDropDown">
+        <option value="" selected>Select Country</option>
         {% for country in countries %}
           <option value="{{country.iso}}">{{ country.name }}</option>
         {% endfor %}
@@ -101,13 +88,14 @@
     <div class="filter-type">
     <label for="typeDropDown">Type</label>
       <select name="type" id="typeDropDown">
+        <option value="" selected>Select type</option>
         {% for key, value in legislation_type %}
           <option value="{{key}}">{{ value }}</option>
         {% endfor %}
       </select>
     </div>
     <div class="button-wrapper">
-      <button type="button" class="btn btn-primary" id="submitButton">Apply filters</button>
+      <button type="button" class="btn btn-primary submitBtn">Apply filters</button>
     </div>
 
   </div>

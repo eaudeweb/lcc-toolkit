@@ -1,0 +1,18 @@
+{% load static %}
+{% for law in laws %}
+  <div class="law-container">
+    <a href="{% url 'lcc:legislation:details' law.pk %}"><h3>{{ law }} - {{ law.title }}</h3></a>
+
+    <h4 class="country_year law-country">
+        {% static "" as baseUrl %}
+        <img  src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.png" >
+      <span>{{ law.country.name }}</span>
+    <span> | {{ law.year }}</span>
+    </h4>
+
+    <small class="law-tag"><b>Taxonomy Tags</b>: {{ law.tags_as_string }}</small> <br>
+    <small class="law-classification"><b>Taxonomy Classification</b>: {{ law.classifications_as_string }}</small>
+  </div>
+{% empty %}
+  <span class="error">No legislation found</span>
+{% endfor %}

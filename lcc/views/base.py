@@ -46,13 +46,3 @@ class TaxonomyFormMixin:
         if hasattr(self, 'object'):
             kwargs.update({'instance': self.object})
         return kwargs
-
-
-def taxonomy_to_string(legislation, tags=False, classification=False):
-    if tags:
-        return ", ".join(list(legislation.tags.values_list('name', flat=True)))
-
-    if classification:
-        return ", ".join(
-            list(legislation.classifications.values_list('name', flat=True))
-        )

@@ -5,10 +5,7 @@ from django.urls import reverse
 from django.views.generic import DetailView, CreateView, UpdateView
 
 from lcc import constants, models, forms
-from lcc.views.base import (
-    UserPatchMixin, TagGroupRender, TaxonomyFormMixin,
-    taxonomy_to_string,
-)
+from lcc.views.base import UserPatchMixin, TagGroupRender, TaxonomyFormMixin
 
 
 class ArticleFormMixin:
@@ -67,20 +64,6 @@ class ArticlesList(UserPatchMixin, DetailView):
     context_object_name = 'law'
     model = models.Legislation
     pk_url_kwarg = 'legislation_pk'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        articles = self.get_object().articles.all()
-
-        for article in articles:
-            article.all_tags = taxonomy_to_string(article, tags=True)
-            article.all_classifications = taxonomy_to_string(
-                article, classification=True
-            )
-        context.update({
-            "articles": articles,
-        })
-        return context
 
 
 class EditArticles(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
