@@ -54,35 +54,44 @@
     </div>
 
     <!-- Top Header -->
-    <div id="top-header" class="navbar navbar-inverse set-radius-zero" >
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="brand" href="{% url 'lcc:legislation:explorer' %}">
-                {% block header-top-left %}
-                    <img style="width: 170px;" src="{% static "img/peace.jpg" %}" />
-                    <img style="width: 79px;" src="{% static "img/unep.png" %}" />
-                    <img style="width: 103px;margin-left: 3rem;" src="{% static "img/unfccc.jpg" %}" />
-                {% endblock %}
-                <ul class="menu">
-                    <li><a href="{% url 'lcc:legislation:explorer' %}">Home</a></li>
-                    <li><a href="{% url 'lcc:legislation:explorer' %}">Legislation</a></li>
-                    <li><a>Legal Assessment</a></li>
-                </ul>
-                </a>
-            </div>
-
-            <div class="right-div">
-                {% block header-top-right %}
-                {% endblock %}
-            </div>
+    <div id="top-header">
+        <div class="header-wrapper">
+                <div class="navbar-header">
+                    <a class="brand" href="{% url 'lcc:legislation:explorer' %}">
+                        <h4>Law and climate toolkit</h4>
+                    </a>
+                </div>
+          
+                <div class="right-div">
+                    {% block header-top-right %}
+                    {% endblock %}
+                </div>
         </div>
     </div>
-
+          <div class="menu">
+                <ul>
+                    <!-- <li><a href="{% url 'lcc:legislation:explorer' %}">Home</a></li> -->
+                    <li><a href="{% url 'lcc:legislation:explorer' %}">Legislation Explorer</a></li>
+                    <li><a>Legal Assessment</a></li>
+                    <li><a href="{% url 'lcc:legislation:explorer' %}">Assessment Profile</a></li>
+                    <li><a href="{% url 'lcc:legislation:explorer' %}">Lessons learned</a></li>
+                </ul>
+                 <div class="breadcrumbs">
+                        <span>Home</span>
+                        <span> <i class="icon-right-open-mini"></i> Blabla</span>
+                        <span> <i class="icon-right-open-mini"></i> Blabla</span>
+                </div>
+                </div>
+    <div class="page-menu">
+        <div class="container">
+            <h2 id="title" class="heading">
+            {% block page-title %}
+            {% endblock %}
+            </h2>
+            {% block page-menu %}
+            {% endblock %}
+        </div>
+    </div>
     <!-- Content-middle  -->
     <div class="content-wrapper {% block content-wrapper-class %}{% endblock %}">
          <div class="container">
@@ -96,8 +105,13 @@
     <section class="footer-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                   <strong> Legislation and Climate Change Assessment Toolkit </strong>| &copy; 2017
+                <div class="footer-logos">
+                    <img style="width: 170px;" src="{% static "img/peace.jpg" %}" />
+                    <img style="width: 79px;" src="{% static "img/unep.png" %}" />
+                    <img style="width: 103px;margin-left: 3rem;" src="{% static "img/unfccc.jpg" %}" />
+                </div>
+                <div>
+                    <strong> Legislation and Climate Change Assessment Toolkit </strong>| &copy; 2017
                 </div>
             </div>
         </div>

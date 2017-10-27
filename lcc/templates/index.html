@@ -5,10 +5,10 @@
 {% block header-top-right %}
   {% if request.user.is_authenticated %}
     {% static "" as baseUrl %}
-    <strong> {{ request.user.get_full_name|default:request.user.username }} </strong>
+    {{ request.user.get_full_name|default:request.user.username }}
     {% if request.user_profile %}
-      | <img  src="{{ baseUrl }}img/flags/{{request.user_profile.flag | lower }}.png" >
-      <a href="{% url 'lcc:country:view' iso=request.user_profile.home_country.iso %}">{{request.user_profile.country}}</a>
+      <!--  <img  src="{{ baseUrl }}img/flags/{{request.user_profile.flag | lower }}.png" > -->
+     | <a href="{% url 'lcc:country:view' iso=request.user_profile.home_country.iso %}">{{request.user_profile.country}}</a>
     {% endif %}
     | <a href="{% url 'lcc:auth:logout' %}" id='login-link'>Logout</a>
   {% else %}

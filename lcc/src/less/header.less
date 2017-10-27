@@ -1,32 +1,85 @@
 #top-header {
-        box-shadow: 0px 1px 3px #eee;
-    padding-bottom: 5px;
     border: none;
-    .container {
-        width: 100%;
-        max-width: 1800px;
-        .right-div {
-            margin-top: 1rem;
-            font-weight: 300;
+    overflow: hidden;
+    background: @brand-primary;
+    position: relative;
+    margin-bottom: 0;
+    .header-wrapper {
+        display: block;
+        .clearfix;    
+        padding: 0 2rem;    
+    }
+
+
+
+    .right-div {
+        font-weight: 300;
+        color: white;
+        font-size: 12px;
+
+        a {
+            color: inherit;
+        font-size: inherit;
+        font-weight: 400;
+
         }
     }
-    .menu {
+    h4 {
+        color: white;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-top: 1rem;
+        font-size: 12px;
+    }
+}
+
+.menu {
+    .clearfix;
+        padding: 0 2rem;    
+    
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px; // background: rgba(0, 0, 0, 0.8);
+    ul {
+        margin-bottom: 0;
+        float: left;
+    }
+    li {
+        transition: all 150ms;
         display: inline-block;
-        margin-left: 2rem;
-        font-family: Open Sans;
-        font-weight: 300;
-        font-style: normal;
-        font-size: 19px;
-        line-height: 1.2em;
-        li {
-            display: inline-block;
+
+        &:hover {
+            // background: white;
+            // color: @brand-primary; // color: @grey;
             a {
-                color: #aaa;
-                padding: 1rem;
-                &:hover {
-                    color: #00aeef;
-                }
+                opacity: 0.65;
             }
         }
+        a {
+            display: block;
+            color: inherit;
+            padding: .5rem;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+    }
+}
+
+.breadcrumbs {
+    color: inherit;
+    float: right;
+    font-size: 12px;
+    display: block;
+    // background: darken(@brand-primary, 4%);
+    // color: white;
+    span {
+        display: inline-block;
+        // padding: .5rem;
+        &:first-of-type {
+            padding-right: 0;
+        }
+    }
+    i {
+        vertical-align: middle;
     }
 }

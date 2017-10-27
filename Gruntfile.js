@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             fonts: {
                 expand: true,
                 cwd: 'lcc/src/fonts',
-                src: '**',
+                src: '**/**',
                 dest: 'lcc/static/fonts'
             },
             js: {

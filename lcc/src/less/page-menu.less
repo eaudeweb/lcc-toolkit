@@ -1,0 +1,42 @@
+.page-menu {
+        position: sticky;
+    top: 0;
+    z-index: 2;
+    background: white;
+    .clearfix;
+    .heading {
+        font-size: 24px;
+        line-height: 2.125;
+        font-weight: 500;
+        letter-spacing: .015em;
+        cursor: default;
+        display: block;
+        float: left;
+        margin: 0;
+        padding: 0;
+        height: 52px;
+        white-space: nowrap;
+    }
+    ul {
+        margin-top: 1.5rem;
+        float: right;
+        margin-bottom: -3rem;
+        margin-right: -15px;;
+        li {
+            display: inline-block;
+            &:first-of-type {
+                a {
+                    border-top-left-radius: 1rem;
+                }
+            }
+            &:last-of-type {
+                a {
+                    border-top-right-radius: 1rem;
+                }
+            }
+        }
+    }
+    .container {
+        border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+    }
+}

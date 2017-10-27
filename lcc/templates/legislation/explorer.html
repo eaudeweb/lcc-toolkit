@@ -8,16 +8,21 @@
 
 {% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
 
-{% block menu-top %}
-  <li> <a href="/#"> Dashboard </a> </li>
-  <li> <a href="{% url 'lcc:legislation:explorer' %}" class="menu-top-active"> Legislation</a></li>
+
+
+
+{% block page-title %}
+  Legislation Explorer
+{% endblock %}
+{% block page-menu %}
+  <ul>
+    <li><a href="" class="btn btn-navigation">Metadata</a></li>
+    <li><a href="" class="btn btn-navigation">Body</a></li>
+    <li><a href="" class="btn btn-navigation">Articles</a></li>
+  </ul>
 {% endblock %}
 
-
 {% block content %}
-  <div id="title" class="heading">
-    Legislation Explorer
-  </div>
   <div style="margin-left: -1px">
     <div style="margin-top:28px;">
       <a href="{% url 'lcc:legislation:add' %}" class="btn btn-info">Add legislation</a>

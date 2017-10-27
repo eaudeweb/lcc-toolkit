@@ -19,7 +19,8 @@
 body {
     font-family: 'Open Sans', sans-serif;
     line-height:28px;
-
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 .set-radius-zero {
     border-radius:0px;
@@ -31,6 +32,7 @@ body {
     min-height:800px;
     // padding-bottom:90px;
     overflow: hidden;
+     background: linear-gradient(to bottom, #fff 0, #f6f6f6 150px); 
 }
 .header-line {
     font-weight:900;
@@ -49,7 +51,6 @@ body {
 
 .right-div {
     float: right;
-    padding: 20px;
 }
 #menu-top a {
     color:#000;
@@ -73,11 +74,7 @@ border-color: rgba(155, 153, 153, 0.23);
 
 }
 
-.navbar {
-    min-height: 90px;
-    margin-bottom: 0px;
 
-}
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color:transparent;
 }
@@ -233,3 +230,14 @@ height: 60px;
         outline: none;
     }
 }
+
+// .btn-primary {
+    // background-color: @blue;
+// }
+
+.btn-navigation {
+    // color: white;
+    color: @text-color;
+    // border: 1px solid #ddd;
+    padding: .4rem!important;
+} 
