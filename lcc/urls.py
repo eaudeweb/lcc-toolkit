@@ -7,86 +7,103 @@ from lcc.context import sentry
 
 auth_patterns = [
     url(r'^login/$',
-        views.Login.as_view(),
+        views.auth.Login.as_view(),
         name='login'),
 
     url(r'^logout/$',
-        views.Logout.as_view(),
+        views.auth.Logout.as_view(),
         name='logout'),
 
     url(r'^register/',
-        views.Register.as_view(),
+        views.register.Register.as_view(),
         name='register'),
 
     url(r'^reset/done/$',
-        views.PasswordResetComplete.as_view(),
+        views.register.PasswordResetComplete.as_view(),
         name='password_reset_complete'),
 
     url((r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/'
          r'(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$'),
-        views.PasswordResetConfirm.as_view(),
+        views.register.PasswordResetConfirm.as_view(),
         name='password_reset_confirm'),
 
     url(r'^approve/(?P<profile_id_b64>[0-9A-Za-z_\-]+)$',
-        views.ApproveRegistration.as_view(),
+        views.register.ApproveRegistration.as_view(),
         name='approve'),
 ]
 
 
 article_patterns = [
     url(r'^add/$',
-        views.AddArticles.as_view(),
+        views.articles.AddArticles.as_view(),
         name="add"),
 
     url(r'^$',
-        views.ArticlesList.as_view(),
+        views.articles.ArticlesList.as_view(),
         name='view'),
 
     url(r'^(?P<article_pk>\d+)edit/$',
-        views.EditArticles.as_view(),
+        views.articles.EditArticles.as_view(),
         name='edit'),
 ]
 
 legislation_patterns = [
     url(r'^$',
-        views.LegislationExplorer.as_view(),
+        views.legislation.LegislationExplorer.as_view(),
         name="explorer"),
 
     url(r'^add/$',
-        views.LegislationAdd.as_view(),
+        views.legislation.LegislationAdd.as_view(),
         name='add'),
 
     url(r'^(?P<legislation_pk>\d+)/$',
-        views.LegislationView.as_view(),
+        views.legislation.LegislationView.as_view(),
         name="details"),
 
     url(r'^(?P<legislation_pk>\d+)/edit/$',
-        views.LegislationEditView.as_view(),
+        views.legislation.LegislationEditView.as_view(),
         name='edit'),
 
     url(r'^(?P<legislation_pk>\d+)/pages/$',
-        views.LegislationPagesView.as_view()),
+        views.legislation.LegislationPagesView.as_view()),
 
     url(r'^(?P<legislation_pk>\d+)/articles/',
         include(article_patterns, namespace='articles')),
 ]
 
+country_patterns = [
+    url(r'^(?P<iso>\w+)/$', views.country.Details.as_view(), name="view"),
+]
+
 api_urls = [
-    url(r'question-category/(?P<category_pk>\d+)/$',
-        views.QuestionViewSet.as_view(),
+    url(r'question-category/(?P<category_pk>\d+).*$',
+        views.api.QuestionViewSet.as_view(),
         name="question_category"),
 
     url(r'classification/$',
-        views.ClassificationViewSet.as_view(),
+        views.api.ClassificationViewSet.as_view(),
         name="classification"),
 
     url(r'answers/$',
-        views.AnswerList.as_view(),
+        views.api.AnswerList.as_view(),
         name='answers_list_create'),
 
     url(r'answers/(?P<pk>[0-9]+)/$',
-        views.AnswerDetail.as_view(),
-        name='answers_get_update')
+        views.api.AnswerDetail.as_view(),
+        name='answers_get_update'),
+
+    url(r'assessment/$',
+        views.api.AssessmentList.as_view(),
+        name='answers_list_create'),
+
+    url(r'assessment/(?P<user_pk>[0-9]+)/$',
+        views.api.AssessmentDetail.as_view(),
+        name='answers_get_update'),
+
+    url(r'countries/$',
+        views.api.CountryViewSet.as_view(),
+        name="countries")
+
 ]
 
 
@@ -108,7 +125,7 @@ def crash_me(request):
 
 urlpatterns = [
     url(r'^$',
-        views.Index.as_view(),
+        views.base.Index.as_view(),
         name='index'),
 
     url(r'^',
@@ -120,9 +137,13 @@ urlpatterns = [
     url(r'^crashme$', crash_me, name='crashme'),
 
     url(r'^legal-assessment/$',
-        views.LegalAssessment.as_view(),
+        views.assessment.LegalAssessment.as_view(),
         name="legal_assessment"),
 
     url(r'^legislation/',
         include(legislation_patterns, namespace='legislation')),
+
+    url(r'^country/',
+        include(country_patterns, namespace='country')),
+
 ]

@@ -10,7 +10,7 @@
 	    "rght": 3,
 	    "tree_id": 1,
 	    "level": 1,
-	    "classification_id": 97,
+	    "classification_id": 16,
 	    "parent": 1,
 	    "gap_on": false
   	}
@@ -26,7 +26,7 @@
 	    "rght": 6,
 	    "tree_id": 1,
 	    "level": 2,
-	    "classification_id": 100,
+	    "classification_id": 17,
 	    "parent": 3,
 	    "gap_on": false
   	}
@@ -42,7 +42,7 @@
 	    "rght": 8,
 	    "tree_id": 1,
 	    "level": 2,
-	    "classification_id": 99,
+	    "classification_id": 18,
 	    "parent": 3,
 	    "gap_on": false
  		}
@@ -58,7 +58,7 @@
 	    "rght": 12,
 	    "tree_id": 1,
 	    "level": 0,
-	    "classification_id": 96,
+	    "classification_id": 15,
 	    "parent": null,
 	    "gap_on": false
   	}
@@ -74,7 +74,7 @@
 	    "rght": 6,
 	    "tree_id": 2,
 	    "level": 0,
-	    "classification_id": 96,
+	    "classification_id": 15,
 	    "parent": null,
 	    "gap_on": false
   	}
@@ -90,7 +90,7 @@
 		  "rght": 3,
 		  "tree_id": 2,
 		  "level": 1,
-		  "classification_id": 101,
+		  "classification_id": 19,
 		  "parent": 8,
 		  "gap_on": false
   	}
@@ -106,7 +106,7 @@
 	    "rght": 5,
 	    "tree_id": 2,
 	    "level": 1,
-	    "classification_id": 102,
+	    "classification_id": 20,
 	    "parent": 8,
 	    "gap_on": false
   	}
@@ -122,7 +122,7 @@
 	    "rght": 2,
 	    "tree_id": 3,
 	    "level": 0,
-	    "classification_id": 96,
+	    "classification_id": 15,
 	    "parent": null,
 	    "gap_on": false
   	}
@@ -138,7 +138,7 @@
 	    "rght": 11,
 	    "tree_id": 1,
 	    "level": 1,
-	    "classification_id": 104,
+	    "classification_id": 21,
 	    "parent": 1,
 	    "gap_on": null
   	}
@@ -154,7 +154,7 @@
 	    "rght": 9,
 	    "tree_id": 1,
 	    "level": 1,
-	    "classification_id": 98,
+	    "classification_id": 22,
 	    "parent": 1,
 	    "gap_on": null
 	  }

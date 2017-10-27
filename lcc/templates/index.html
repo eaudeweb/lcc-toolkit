@@ -4,10 +4,13 @@
 
 {% block header-top-right %}
   {% if request.user.is_authenticated %}
-  {% static "" as baseUrl %}
-    <strong> {% if request.user.get_full_name %} {{ request.user.get_full_name }} {% else %} {{ request.user.username }} {% endif %}</strong> {% if request.user_profile.country %}| <img  src="{{ baseUrl }}img/flags/{{request.user_profile.countries.all.0.iso | lower }}.png" >
-    {{ request.user_profile.country }} {% endif %} |
-    <a href="{% url 'lcc:auth:logout' %}" id='login-link'>Logout</a>
+    {% static "" as baseUrl %}
+    <strong> {{ request.user.get_full_name|default:request.user.username }} </strong>
+    {% if request.user_profile %}
+      | <img  src="{{ baseUrl }}img/flags/{{request.user_profile.flag | lower }}.png" >
+      <a href="{% url 'lcc:country:view' iso=request.user_profile.home_country.iso %}">{{request.user_profile.country}}</a>
+    {% endif %}
+    | <a href="{% url 'lcc:auth:logout' %}" id='login-link'>Logout</a>
   {% else %}
     <a class="btn btn-login" href="{% url 'lcc:auth:login' %}" id='login-link'> Login</a>
     <a class="btn btn-login" href="{% url 'lcc:auth:register' %}" id='register-link'> Register </a>
