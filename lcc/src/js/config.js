@@ -10,6 +10,8 @@
      'classifications':'/api/classification',
      'answers':'/api/answers/',
      'questions':'/api/question-category/',
+     'assessment':'/api/assessment/',
+     'countries':'/api/countries/',
     }
 
     var ajax_settings = {

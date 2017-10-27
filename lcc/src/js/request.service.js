@@ -45,11 +45,11 @@
       });
     }
 
-    function getQuestions(category) {
+    function getQuestions(category, assessment_pk) {
 
       var jqxhr = $.ajax({
         'type': 'GET',
-        'url': Config.url.questions + category,
+        'url': Config.url.questions + category + '?assessment_pk=' + assessment_pk,
       });
       return jqxhr;
     }
@@ -62,7 +62,7 @@
       return jqxhr;
     }
 
-    function saveAnswer(data) {
+    function createAnswer(data) {
       
       var jqxhr = $.ajax({
         'url': Config.url.answers,
@@ -73,21 +73,52 @@
     }
   
     function updateAnswer(data, answerId) {
+      
+          var jqxhr = $.ajax({
+            'url': Config.url.answers + answerId + '/',
+            'type': 'PUT',
+            'data': JSON.stringify(data),
+          })
+          return jqxhr;
+        }
   
+    function getAssessments() {
+      
       var jqxhr = $.ajax({
-        'url': Config.url.answers + answerId + '/',
-        'type': 'PUT',
-        'data': JSON.stringify(data),
+        'url': Config.url.assessment,
+        'type': 'GET',
       })
       return jqxhr;
     }
 
+    function createAssessment(data) {
+      
+      var jqxhr = $.ajax({
+        'url': Config.url.assessment,
+        'type': 'POST',
+        'data': JSON.stringify(data),
+      })
+      return jqxhr;
+    }
+  
+    function getCountries() {
+      
+      var jqxhr = $.ajax({
+        'url': Config.url.countries,
+        'type': 'GET',
+      })
+      return jqxhr;
+    }
+                    
 
     return {
       getQuestions: getQuestions,
       getClassifications: getClassifications,
-      saveAnswer: saveAnswer,
+      createAnswer: createAnswer,
       updateAnswer: updateAnswer,
+      getAssessments: getAssessments,
+      createAssessment: createAssessment,
+      getCountries: getCountries,
     }
   });
 })();

@@ -7,21 +7,98 @@ $(document).ready(function(){
   LCCTModules.define('LegalAssessment', ['Config', 'RequestService'], 
   function LegalAssessment(Config, RequestService){
       
-    var assessment_id;
-    var classification_id = 96; // we only have data for this classification 
+    var assessment_id = $('input:hidden[name=assessment_id]').val();
+    var user_id = $('input:hidden[name=user_id]').val();
+    var classification_id = 15; // we only have data for this classification 
     var all_questions = [];
     var listeners = {};
 
-    getClassifications();
-    getQuestions(classification_id);
-      
-    function getClassifications() {
+    $( "#add-assessment" ).click(function() {
       RequestService
-        .getClassifications()
-        .done(function (responseQuestions) {
+        .getCountries()
+        .done(function (all_countries) {
+          var country_list = $('#country-list');
 
-          renderClassifications(responseQuestions);
+          for (var j = 0; j < all_countries.length; j++) {
+            var element = all_countries[j];
+            var li_country = $('<option/>')
+                              .text(element.name)
+                              .attr('value', element.iso)
+                              .appendTo(country_list);
+          }
+          $('#group-country-list').show();
+          $('#country-list').change(handleCreateAssessment);
+      });
+    });
+
+    $( "#continue-assessment" ).click(function() {
+      RequestService
+        .getAssessments()
+        .done(function (all_assessments) {
+          var country_list = $('#country-list');
+          
+          for (var j = 0; j < all_assessments.length; j++) {
+            var element = all_assessments[j];
+            var li_country = $('<option/>')
+                              .text(element.country)
+                              .attr('value', element.id)
+                              .appendTo(country_list);
+          }
+
+          $('#group-country-list').show();
+
+          // $('#assessment-landing').hide();
+          // $('#assessment-edit').show();
+          // getClassifications();
+          $('#country-list').change(handleContinueAssessment);
+      });
+    });
+
+    // $('#country-list').change(function () {
+    //   var selected_country= $(this).find("option:selected").val();
+    //   createAssessment(selected_country)
+    // });
+    
+    function handleCreateAssessment() {
+      var selected_country= $(this).find("option:selected").val();
+      createAssessment(selected_country)
+    }
+    
+    function handleContinueAssessment() {
+      var selected_country= $(this).find("option:selected").val();
+      continueAssessment(selected_country)
+    }
+
+
+    function createAssessment(country) {
+      RequestService
+      .createAssessment({country: country, user: user_id})
+      .done(function (responseAssessment) {
+        assessment_id = responseAssessment.id;
+        $('#assessment-landing').hide();
+        $('#assessment-edit').show();
+        getClassifications(assessment_id);
+      });
+    }
+
+    function continueAssessment(assessment_id) {
+      assessment_id = assessment_id;
+      $('#assessment-landing').hide();
+      $('#assessment-edit').show();
+      getClassifications(assessment_id);
+    }
+
+
+
+
+    function getClassifications(assessment_id) {
+      RequestService
+        .getClassifications(assessment_id)
+        .done(function (responseClassifications) {
+
+          renderClassifications(responseClassifications);
           handleAccordion();
+          getQuestions(responseClassifications[0].second_level[0].id, assessment_id);
         });
     }
   
@@ -74,13 +151,11 @@ $(document).ready(function(){
       listeners[id] = handler;
     }
     
-    function getQuestions(category) {
+    function getQuestions(category, assessment_id) {
       RequestService
-        .getQuestions(category)
+        .getQuestions(category, assessment_id)
         .done(function (responseClassification) {
-
           handleQuestions(responseClassification);
-          assessment_id = $('input:hidden[name=assessment_id]').val();
         });
     }
   
@@ -174,7 +249,7 @@ $(document).ready(function(){
       if(answerId) {
         updateAnswer(data, answerId);
       } else {
-        saveAnswer(data);
+        createAnswer(data);
       }
     }
   
@@ -188,9 +263,9 @@ $(document).ready(function(){
         });
     }
   
-    function saveAnswer(data) {
+    function createAnswer(data) {
       RequestService
-        .saveAnswer(data)
+        .createAnswer(data)
         .done(function (responseAnswer) {
 
           listeners[data.question](data, responseAnswer);
@@ -204,7 +279,7 @@ $(document).ready(function(){
       elem.addClass('iron-selected');
 
       classification_id = elem.attr('data-id');
-      getQuestions(classification_id);
+      getQuestions(classification_id, assessment_id);
     }
   });
 });
