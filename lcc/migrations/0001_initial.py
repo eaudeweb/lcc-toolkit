@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Country',
             fields=[
-                ('iso', models.CharField(max_length=2, primary_key=True, serialize=False, verbose_name='ISO')),
+                ('iso', models.CharField(max_length=3, primary_key=True, serialize=False, verbose_name='ISO')),
                 ('name', models.CharField(max_length=128, verbose_name='Name')),
             ],
             options={
@@ -294,11 +294,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=128, verbose_name='Name')),
             ],
-        ),
-        migrations.AlterField(
-            model_name='country',
-            name='iso',
-            field=models.CharField(max_length=3, primary_key=True, serialize=False, verbose_name='ISO'),
         ),
         migrations.AddField(
             model_name='countrymetadata',
