@@ -31,17 +31,36 @@ $(document).ready(function(){
   
       for (var z = 0; z < responseQuestions.length; z++) {
         var element = responseQuestions[z];
-        var h3 = $('<h3>').text(element.name).appendTo(accordion);
-        var cList = $('<ul>');
-  
+        var h3 = $('<h3>')
+                  .text(element.name)
+                  .appendTo(accordion);
+        var classification_menu = $('<classification-menu/>')
+                                  .addClass('flex lcct-list classification-menu')
+                                  .attr('role', 'menu')
+                                  .attr('tabindex', '0');
+
         for (var j = 0; element.second_level && j < element.second_level.length; j++) {
           var subcat = element.second_level[j];
-          var li = $('<li/>')
-                    .text(subcat.name).attr('data-id', subcat.id)
-                    .on('click', getQuestionsForCategory)
-                    .appendTo(cList);
+          var classification_item = $('<classification-item/>')
+                                    .addClass('toc-item lcct-list classification-item')
+                                    .attr('role', 'option')
+                                    .attr('tabindex', '0')
+                                    .attr('aria-disabled', 'false')
+                                    .attr('aria-selected', 'true')
+                                    .attr('data-id', subcat.id)
+                                    .on('click', getQuestionsForCategory)
+                                    .appendTo(classification_menu);
+          var i_comp = $('<i/>')
+                        .text(j+1)
+                        .addClass('lcct-list')
+                        .appendTo(classification_item);
+          var p = $('<span/>')
+                    .text(subcat.name)
+                    .addClass('lcct-list')
+                    .appendTo(classification_item);
         }
-        cList.appendTo(accordion);
+
+        classification_menu.appendTo(accordion);
       }
     }
   
@@ -180,7 +199,11 @@ $(document).ready(function(){
     }
 
     function getQuestionsForCategory(val) {
-      classification_id = $(this).attr('data-id');
+      var elem = $(this);
+      var all_elems = $('classification-item').removeClass('iron-selected')
+      elem.addClass('iron-selected');
+
+      classification_id = elem.attr('data-id');
       getQuestions(classification_id);
     }
   });
