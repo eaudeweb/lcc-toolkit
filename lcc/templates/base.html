@@ -39,6 +39,7 @@
     {% block styles %}
         <link rel="shortcut icon" href="#" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Vollkorn:400,600,700" rel="stylesheet">
         <link href="{% static "css/main.css" %}" rel="stylesheet" />
     {% endblock %}
@@ -58,30 +59,30 @@
         <div class="header-wrapper">
                 <div class="navbar-header">
                     <a class="brand" href="{% url 'lcc:legislation:explorer' %}">
-                        <h4>Law and climate toolkit</h4>
+                        <h2>Law and climate toolkit</h2>
                     </a>
                 </div>
           
                 <div class="right-div">
+                    <div class="menu">
+                        <ul>
+                            <!-- <li><a href="{% url 'lcc:legislation:explorer' %}">Home</a></li> -->
+                            <li><a href="{% url 'lcc:legislation:explorer' %}">Legislation Explorer</a></li>
+                            <li><a>Legal Assessment</a></li>
+                            <li><a href="{% url 'lcc:legislation:explorer' %}">Assessment Profile</a></li>
+                            <li><a href="{% url 'lcc:legislation:explorer' %}">Lessons learned</a></li>
+                        </ul>
+                    </div>
                     {% block header-top-right %}
                     {% endblock %}
                 </div>
         </div>
     </div>
-          <div class="menu">
-                <ul>
-                    <!-- <li><a href="{% url 'lcc:legislation:explorer' %}">Home</a></li> -->
-                    <li><a href="{% url 'lcc:legislation:explorer' %}">Legislation Explorer</a></li>
-                    <li><a>Legal Assessment</a></li>
-                    <li><a href="{% url 'lcc:legislation:explorer' %}">Assessment Profile</a></li>
-                    <li><a href="{% url 'lcc:legislation:explorer' %}">Lessons learned</a></li>
-                </ul>
-                 <div class="breadcrumbs">
-                        <span>Home</span>
-                        <span> <i class="icon-right-open-mini"></i> Blabla</span>
-                        <span> <i class="icon-right-open-mini"></i> Blabla</span>
-                </div>
-                </div>
+    <div class="breadcrumbs">
+        <span>Home</span>
+        <span> <i class="icon-right-open-mini"></i> Blabla</span>
+        <span> <i class="icon-right-open-mini"></i> Blabla</span>
+    </div>                
     <div class="page-menu">
         <div class="container">
             <h2 id="title" class="heading">

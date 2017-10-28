@@ -1,43 +1,76 @@
 #top-header {
+    font-family: @Roboto;
+    * {
+        font-family: inherit;
+    }
     border: none;
-    overflow: hidden;
     background: @brand-primary;
     position: relative;
     margin-bottom: 0;
     .header-wrapper {
         display: block;
-        .clearfix;    
-        padding: 0 2rem;    
+        .clearfix;
+        padding: 0 2rem;
     }
 
-
-
     .right-div {
-        font-weight: 300;
         color: white;
         font-size: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         a {
             color: inherit;
-        font-size: inherit;
-        font-weight: 400;
+            font-size: inherit;
+            font-weight: 300;
+        }
 
+        .actions-wrapper {
+            display: none;
+            position: absolute;
+            top: 3.8rem;
+            background: #00aeef;
+            color: white;
+            z-index: 4;
+            padding: 1rem;
+            border-bottom-left-radius: 1rem;
+            right: -20px;
+            min-width: 175px;
+            text-align: center;
+            border-top: 1px solid white;
+            .action {
+                margin-top: 1rem;
+            }
+            .username {
+                font-size: 1.7rem;
+                margin-left: 1rem;
+            }
+        }
+
+        .authenticated {
+            position: relative;
+            >span {
+                font-size: 2rem;
+                padding-top: .5rem;
+                display: block;
+                cursor: pointer;
+            }
         }
     }
-    h4 {
+    h2 {
         color: white;
         text-transform: uppercase;
-        font-weight: 600;
+        font-weight: 300;
         margin-top: 1rem;
-        font-size: 12px;
+        font-size: 2rem;
     }
 }
 
 .menu {
     .clearfix;
-        padding: 0 2rem;    
-    
-    font-weight: 400;
+    padding: 0 2rem;
+
     font-style: normal;
     font-size: 14px; // background: rgba(0, 0, 0, 0.8);
     ul {
@@ -69,12 +102,10 @@
     color: inherit;
     float: right;
     font-size: 12px;
-    display: block;
-    // background: darken(@brand-primary, 4%);
+    display: block; // background: darken(@brand-primary, 4%);
     // color: white;
     span {
-        display: inline-block;
-        // padding: .5rem;
+        display: inline-block; // padding: .5rem;
         &:first-of-type {
             padding-right: 0;
         }

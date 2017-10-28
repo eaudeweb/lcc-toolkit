@@ -118,4 +118,10 @@ $(document).ready(function() {
     $lastestTag.each(function(){
         highlightChecked($(this))
     })
+
+    $('.authenticated > span').click(function(){
+        $('.actions-wrapper').animate({
+            'height': 'toggle'
+        })
+    })
 })
