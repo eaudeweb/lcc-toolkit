@@ -14,12 +14,12 @@
 {% block content %}
 
 <div class="row addLeg">
-<h3>
-{{ law.title }}
-</h3>
-  <div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="">
     <div class="">
       <div class="panel-body">
+        <h3>
+          {{ law.title }}
+        </h3>
         <form id="legislationEditForm" enctype="multipart/form-data" method="post"
               action="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
           {% csrf_token %}

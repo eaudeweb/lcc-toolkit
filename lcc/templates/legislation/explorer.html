@@ -26,7 +26,7 @@
 
         <h4 class="country_year law-country">
           {% static "" as baseUrl %}
-          <img  src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.png" >
+          <img class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" >
           <span>{{ law.country.name }}</span>
           <span> | {{ law.year }}</span>
         </h4>

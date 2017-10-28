@@ -11,7 +11,7 @@
           {% static "" as baseUrl %}
           {% if request.user_profile %}
            <span class="country">
-            <a href="{% url 'lcc:country:view' iso=request.user_profile.home_country.iso %}"><img title="{{request.user_profile.country}}" src="{{ baseUrl }}img/flags/{{request.user_profile.flag | lower }}.png" ></a> 
+            <a href="{% url 'lcc:country:view' iso=request.user_profile.home_country.iso %}"><img class="flag" title="{{request.user_profile.country}}" src="{{ baseUrl }}img/flags/{{request.user_profile.flag | lower }}.svg" ></a> 
            </span>
           {% endif %}
           <span class="username">
