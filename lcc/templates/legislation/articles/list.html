@@ -1,10 +1,12 @@
 {% extends "legislation/explorer.html" %}
 
+{% block page-title %}Articles{% endblock %}
+
 
 {% block content %}
-<div id="title" class="heading">
-  {{ law.title }} | Articles
-</div>
+<h3>
+  {{ law.title }}
+</h3>
 <div class="articles-container">
 {% for article in articles %}
   <div class="viz-container">

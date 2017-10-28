@@ -19,6 +19,8 @@
 {% block content-title %}
 {% endblock %}
 
+{% block page-title %}Manage Articles{% endblock %}
+
 {% block content-wrapper-class %}manageLeg{% endblock %}
 
 {% block hidden_variables %}
@@ -31,9 +33,7 @@
 {% include 'legislation/articles/pdf.html' %}
 
 <div class="page-container half">
-  <div id="title" class="heading" style="margin-bottom:28px;">
-  Manage Articles for: {{ law.title }} | {{ law.country.name }}
-  </div>
+ <h3>{{ law.title }} | {{ law.country.name }}</h3>
   <form id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
     {% csrf_token %}
 

@@ -6,10 +6,15 @@
   <script src="{% static "js/upload.js" %}"></script>
 {% endblock %}
 
+{% block page-title %}Edit Law{% endblock %}
+
 
 {% block content %}
 
 <div class="row addLeg">
+<h3>
+{{ law.title }}
+</h3>
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="">
       <div class="panel-body">

@@ -14,8 +14,10 @@
   </script>
 {% endblock %}
 
-{% block content-title %}
-{% endblock %}
+{% block content-title %}{% endblock %}
+
+{% block page-title %}Edit Articles{% endblock %}
+
 
 {% block content-wrapper-class %}manageLeg{% endblock %}
 
@@ -30,9 +32,10 @@
 {% include 'legislation/articles/pdf.html' %}
 
 <div class="page-container half">
-  <div id="title" style="margin-bottom:28px;">
-  Manage Articles for: {{ law.title }} | {{ law.country.name }}
-  </div>
+<h3>
+    {{ law.title }} | {{ law.country.name }}
+</h3>
+
   <form id="editArticle" method="post" action="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">
     {% csrf_token %}
       <input name="legislation" value="{{ law.pk }}" hidden>

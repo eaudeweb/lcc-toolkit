@@ -119,10 +119,16 @@ $(document).ready(function() {
         highlightChecked($(this))
     })
 
+    console.log($("#title").text().length)
+    if($('#title').text().length > 49){
+    	$('#title').css('font-size', 16+'px').css('line-height', '1.4')
+    }
+
     $('.authenticated > span').click(function(){
         $('.actions-wrapper').animate({
             'width': 'toggle'
         })
     })
     $(".page-menu").sticky({topSpacing:0});
+
 })
