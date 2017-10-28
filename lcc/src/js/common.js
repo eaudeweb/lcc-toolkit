@@ -121,7 +121,7 @@ $(document).ready(function() {
 
     $('.authenticated > span').click(function(){
         $('.actions-wrapper').animate({
-            'height': 'toggle'
+            'width': 'toggle'
         })
     })
     $(".page-menu").sticky({topSpacing:0});

@@ -209,11 +209,13 @@ height: 60px;
 .footer-section {
     padding:25px 50px 25px 50px;
     color:#000;
+    background: white;
     font-size:13px;
-      background-color: #f7f7f7;
+      // background-color: #f7f7f7;
       text-align:right;
        border-top:5px solid #9170E4;
-
+       min-height: 300px;
+       position: relative;
 }
 
     .footer-section a, .footer-section a:hover {
@@ -244,3 +246,36 @@ height: 60px;
     // border: 1px solid #ddd;
     padding: .4rem!important;
 } 
+
+
+.footer-logos {
+    float: left;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.footer-desc {
+    text-align: left;
+    &.right-div {
+    width: 50%;
+    }
+    &:not(.right-div) {
+            border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-top: 2rem;
+    }
+}
+
+.footer-section {
+    .flex {
+            display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+}

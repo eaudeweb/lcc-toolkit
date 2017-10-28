@@ -67,10 +67,10 @@
                     <div class="menu">
                         <ul>
                             <!-- <li><a href="{% url 'lcc:legislation:explorer' %}">Home</a></li> -->
-                            <li><a href="{% url 'lcc:legislation:explorer' %}">Legislation Explorer</a></li>
-                            <li><a>Legal Assessment</a></li>
-                            <li><a href="{% url 'lcc:legislation:explorer' %}">Assessment Profile</a></li>
-                            <li><a href="{% url 'lcc:legislation:explorer' %}">Lessons learned</a></li>
+                            <li><a href="{% url 'lcc:legislation:explorer' %}"><img src="{% static "img/legislation-explorer.svg" %}" />Legislation Explorer</a></li>
+                            <li><a><img src="{% static "img/legal-ass.svg" %}" />Legal Assessment</a></li>
+                            <li><a href="{% url 'lcc:legislation:explorer' %}"><img src="{% static "img/context-control.svg" %}" />Context Control</a></li>
+                            <li><a href="{% url 'lcc:legislation:explorer' %}"><img src="{% static "img/lessons-learned.svg" %}" />Lessons learned</a></li>
                         </ul>
                     </div>
                     {% block header-top-right %}
@@ -107,15 +107,23 @@
 
     <section class="footer-section">
         <div class="container">
-            <div class="row">
+            <div class="row flex">
+                <div class="footer-desc right-div">
+                    <h3><b>Powder ice cream topping. Toffee biscuit candy tiramisu oat cake wafer. Toffee </b></h3>
+                </div>
                 <div class="footer-logos">
                     <img style="width: 170px;" src="{% static "img/peace.jpg" %}" />
                     <img style="width: 79px;" src="{% static "img/unep.png" %}" />
                     <img style="width: 103px;margin-left: 3rem;" src="{% static "img/unfccc.jpg" %}" />
                 </div>
-                <div>
-                    <strong> Legislation and Climate Change Assessment Toolkit </strong>| &copy; 2017
+            </div>
+            <div class="row">
+                <div class="footer-desc">
+                    <p> Cupcake marzipan marshmallow muffin bear claw wafer pudding. Cake marshmallow sweet roll caramels candy canes oat cake jelly beans. Soufflé liquorice donut topping cupcake dessert pie carrot cake caramels.uffin bear claw wafer pudding. Cake marshmallow sweet roll caramels candy canes oat cake jelly beans. Soufflé liquorice donut topping cupcake dessert pie carrot cake</p>
                 </div>
+            </div>
+            <div class="copyright">
+                <strong> Legislation and Climate Change Assessment Toolkit </strong>| &copy; 2017
             </div>
         </div>
     </section>
