@@ -429,6 +429,13 @@ class LegislationPage(models.Model):
         return "Page %d of Legislation %s" % (self.page_number, str(self.legislation.title))
 
 
+class Gap(models.Model):
+    on = models.BooleanField()
+    classifications = models.ManyToManyField(
+        TaxonomyClassification, blank=True)
+    tags = models.ManyToManyField(TaxonomyTag, blank=True)
+
+
 class Question(mptt.models.MPTTModel):
 
     text = models.CharField(max_length=1024)
@@ -440,10 +447,9 @@ class Question(mptt.models.MPTTModel):
     parent_answer = models.NullBooleanField(default=None)
     order = models.IntegerField(blank=True)
 
-    classification = models.ForeignKey(TaxonomyClassification)
-    tags = models.ManyToManyField(TaxonomyTag)
-
-    gap_on = models.NullBooleanField(default=None)
+    classification = models.ForeignKey(
+        TaxonomyClassification, null=True, blank=True)
+    gaps = models.ManyToManyField(Gap, blank=True)
 
     class Meta:
         verbose_name = 'Question'
