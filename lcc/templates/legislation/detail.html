@@ -2,6 +2,9 @@
 {% load static %}
 
 {% block page-title %}{{ law.title }}{% endblock %}
+{% block page-menu %} 
+  {% include 'legislation/navigation.html' %}
+{% endblock %}
 
 {% block content %}
   <div class="viz-container">

@@ -11,13 +11,14 @@
         margin-right: 2rem;
     }
     &.half {
-     border: 1px solid black;
+    margin-top: 1rem;
+    border: 1px solid black;
     width: 40%;
     float: right;
-    position: fixed;
-    right: 0;
-    top: 126px;
-    height: calc(~"100vh - 126px");
+    /* position: fixed; */
+    /* right: 0; */
+    /* top: 126px; */
+    /* height: calc(100vh - 126px); */
     overflow: auto;
     background: #74c5dc;
     z-index: 1;
@@ -33,7 +34,6 @@
         background: white;
         padding: 1rem;
         padding-bottom: 0;
-        height: calc(~"100% - 29px - 28px")
     }
     .nav-tabs {
         margin-top: .5rem;
@@ -91,6 +91,8 @@
     &.half {
         width: 60%;
         float: left;
+
+     min-height: 800px;
     }
     padding: 1rem;
 }
@@ -104,12 +106,12 @@
     }
     .container {
         width: 100%!important;
+        max-width: 1700px;
     }
 }
 
 
 .last-article-container {
-    background: #eee;
     margin-left: -3rem;
     margin-right: -1.2rem;
     margin-bottom: -1rem;
@@ -120,9 +122,4 @@
         background: white;
         box-shadow: 1px 1px 3px #eee;
     }
-}
-
-.manage-left-header {
-        float: left;
-    margin-top: 1.5rem;
 }

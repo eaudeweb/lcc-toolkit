@@ -47,7 +47,7 @@
     {% block extra-styles %}{% endblock %}
 </head>
 
-<body>
+<body class="{% block content-wrapper-class %}{% endblock %}">
     <div class='hidden'>
         {% block hidden_variables %}
 
@@ -93,7 +93,7 @@
         </div>
     </div>
     <!-- Content-middle  -->
-    <div class="content-wrapper {% block content-wrapper-class %}{% endblock %}">
+    <div class="content-wrapper">
          <div class="container">
          {% block content %}
 

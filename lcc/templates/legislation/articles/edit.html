@@ -17,6 +17,9 @@
 {% block content-title %}{% endblock %}
 
 {% block page-title %}Edit Articles{% endblock %}
+{% block page-menu %} 
+  {% include 'legislation/navigation.html' %}
+{% endblock %}
 
 
 {% block content-wrapper-class %}manageLeg{% endblock %}
@@ -33,7 +36,7 @@
 
 <div class="page-container half">
 <h3>
-    {{ law.title }} | {{ law.country.name }}
+    {{ law.title }}
 </h3>
 
   <form id="editArticle" method="post" action="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">

@@ -5,10 +5,6 @@ function changePage(item, page_number) {
 
 $(document).ready(function(){
 
-
-  $('#top-header .right-div').addClass('manage-left-header');
-  $('.footer-section').remove();
-
   var AjaxSubmit = {};
   var law_id = parseInt($("#law_pk").val());
   var page_number = parseInt($("#page_number").text());

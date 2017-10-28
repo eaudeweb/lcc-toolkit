@@ -16,10 +16,10 @@
   </script>
 {% endblock %}
 
-{% block content-title %}
-{% endblock %}
-
 {% block page-title %}Manage Articles{% endblock %}
+{% block page-menu %} 
+  {% include 'legislation/navigation.html' %}
+{% endblock %}
 
 {% block content-wrapper-class %}manageLeg{% endblock %}
 
@@ -30,10 +30,9 @@
 
 {% block content %}
 
-{% include 'legislation/articles/pdf.html' %}
 
 <div class="page-container half">
- <h3>{{ law.title }} | {{ law.country.name }}</h3>
+ <h3>{{ law.title }}</h3>
   <form id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
     {% csrf_token %}
 
@@ -167,4 +166,6 @@
     {% endif %}
   </div>
 </div>
+{% include 'legislation/articles/pdf.html' %}
+
 {% endblock %}
