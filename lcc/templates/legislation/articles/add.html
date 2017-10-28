@@ -41,7 +41,7 @@
 
       <div class='law-meta-data-container'>
         <div>
-          <label class="label-large" for="id_code">Article number</label>
+          <label class="label-large" for="id_code">Article number <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
         </div>
         <div>
           <!-- TODO change classes to code  -->
@@ -51,7 +51,7 @@
 
     <div class='law-meta-data-container'>
       <div>
-        <label class="label-large" for="id_text">Text</label>
+        <label class="label-large" for="id_text">Text <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
       </div>
 
       <div class="clearfix">
@@ -65,7 +65,7 @@
 
     <div class="legislation-page-container">
       <div>
-        <label class="label-large" for="id_legistlation_page">Page</label>
+        <label class="label-large" for="id_legistlation_page">Page <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
       </div>
       <div>
         <input type="number" required id="id_legistlation_page" name="legislation_page" maxlength="4" value="{{ starting_page }}">
@@ -75,7 +75,7 @@
     <div class='law-meta-data-container check-fields'>
       <div class="tags wrapper">
         <div>
-            <label for="id_tags">Tags</label>
+            <label class="label-large" for="id_tags">Tags</label>
         </div>
         <div>
           Select the best areas where the article fits
@@ -105,7 +105,7 @@
 
       <div class="classificaions wrapper">
         <div>
-          <label for="id_classifications">Classification</label>
+          <label class="label-large" for="id_classifications">Classification <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
         </div>
         <div>
           Select the legal areas where the article fits

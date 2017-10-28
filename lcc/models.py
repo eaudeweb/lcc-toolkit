@@ -410,7 +410,7 @@ class Legislation(models.Model):
 class LegislationArticle(models.Model):
     text = models.CharField(max_length=65535)
     legislation = models.ForeignKey(Legislation, related_name="articles")
-    tags = models.ManyToManyField(TaxonomyTag)
+    tags = models.ManyToManyField(TaxonomyTag, blank=True)
     classifications = models.ManyToManyField(TaxonomyClassification)
     legislation_page = models.IntegerField()
     code = models.CharField(max_length=64)
@@ -426,7 +426,9 @@ class LegislationPage(models.Model):
     legislation = models.ForeignKey(Legislation, related_name="page")
 
     def __str__(self):
-        return "Page %d of Legislation %s" % (self.page_number, str(self.legislation.title))
+        return "Page %d of Legislation %s" % (
+            self.page_number, str(self.legislation.title)
+        )
 
 
 class Gap(models.Model):

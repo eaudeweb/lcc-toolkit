@@ -42,9 +42,13 @@ article_patterns = [
         views.articles.ArticlesList.as_view(),
         name='view'),
 
-    url(r'^(?P<article_pk>\d+)edit/$',
+    url(r'^(?P<article_pk>\d+)/edit/$',
         views.articles.EditArticles.as_view(),
         name='edit'),
+
+    url(r'^(?P<article_pk>\d+)/delete/$',
+        views.articles.DeleteArticle.as_view(),
+        name='delete'),
 ]
 
 legislation_patterns = [
