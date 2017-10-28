@@ -97,11 +97,11 @@ api_urls = [
 
     url(r'assessment/$',
         views.api.AssessmentList.as_view(),
-        name='answers_list_create'),
+        name='assessment_list_create'),
 
     url(r'assessment/(?P<user_pk>[0-9]+)/$',
         views.api.AssessmentDetail.as_view(),
-        name='answers_get_update'),
+        name='assessment_get_update'),
 
     url(r'countries/$',
         views.api.CountryViewSet.as_view(),
