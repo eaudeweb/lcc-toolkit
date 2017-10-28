@@ -84,13 +84,15 @@
         <span> <i class="icon-right-open-mini"></i> Blabla</span>
     </div>                
     <div class="page-menu">
-        <div class="container">
-            <h2 id="title" class="heading">
-            {% block page-title %}
-            {% endblock %}
-            </h2>
-            {% block page-menu %}
-            {% endblock %}
+        <div class="page-menu-wrapper">   
+            <div class="container">
+                <h2 id="title" class="heading">
+                {% block page-title %}
+                {% endblock %}
+                </h2>
+                {% block page-menu %}
+                {% endblock %}
+            </div>
         </div>
     </div>
     <!-- Content-middle  -->

@@ -124,4 +124,5 @@ $(document).ready(function() {
             'height': 'toggle'
         })
     })
+    $(".page-menu").sticky({topSpacing:0});
 })
