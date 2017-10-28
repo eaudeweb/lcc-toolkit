@@ -5,7 +5,9 @@
 {% block extra-scripts %}
   <script src="{% static "js/upload.js" %}"></script>
 {% endblock %}
-
+{% block page-title %}
+   Add new legislation
+{% endblock %}
 
 {% block content %}
 
@@ -13,9 +15,6 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="">
       <div class="panel-body">
-        <div id="title" class="heading">
-          Add new legislation
-        </div>
       <form id="legislationAddForm" enctype="multipart/form-data" method="post"
             action="{% url 'lcc:legislation:add' %}">
         {% csrf_token %}
