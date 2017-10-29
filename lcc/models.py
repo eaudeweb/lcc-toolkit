@@ -271,9 +271,9 @@ class UserProfile(models.Model):
 
     @property
     def flag(self):
-        """ Returns alpha2 from iso3.
+        """ Returns alpha3 from iso3.
         """
-        return pycountry.countries.get(alpha_3=self.home_country.iso).alpha_2
+        return pycountry.countries.get(alpha_3=self.home_country.iso).alpha_3
 
     @property
     def country(self):

@@ -83,7 +83,7 @@
                   {% if form.country.value == country.iso %}
                     selected
                   {% endif %}
-                {% elif country.name == user_country %}
+                {% elif country.name == request.user_profile.country %}
                   selected
                 {% endif %}>
                 {{country.name}}
