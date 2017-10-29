@@ -303,6 +303,8 @@
             </div>
           </div>
           <button type="submit" class="btn btn-info" id='save-btn' name='save-law-id-btn' value="{{law.pk}}"> Save </button>
+          <a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-danger" id="cancel-btn">Cancel</a>
+          <a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-success" id="cancel-btn">Manage articles</a>
         </form>
       </div>
     </div>

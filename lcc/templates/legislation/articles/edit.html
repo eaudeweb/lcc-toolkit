@@ -184,6 +184,6 @@
       </div>
     </div>
     <button type="submit" class="btn btn-info" id='save-btn' name='save-btn'> Save & View articles</button>
-    <a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-danger" id="cancel-btn">Cancel</a>
+    <a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-danger" id="cancel-btn">Cancel</a>
   </form>
 {% endblock %}
