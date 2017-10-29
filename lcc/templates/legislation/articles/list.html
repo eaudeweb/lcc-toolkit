@@ -1,5 +1,7 @@
 {% extends "legislation/explorer.html" %}
 
+{% load static %}
+
 {% block page-title %}Articles{% endblock %}
 {% block page-menu %} 
   {% include 'legislation/navigation.html' %}
@@ -13,12 +15,16 @@
 
 {% block content %}
 <h3>
-  {{ law.title }}
+  {% static "" as baseUrl %}
+  <img style="margin-right: .5rem;
+    margin-top: -.5rem;
+    width: 31px;" 
+    class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" >{{ law.title }}
 </h3>
 <div class="articles-container">
 {% if articles %}
   {% for article in articles %}
-    <div class="viz-container">
+    <div class="viz-container multiple">
       <a class="btn btn-info pull-right" href="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">Edit</a>
       {% if request.user.is_authenticated %}
         <a class="btn btn-danger pull-right" href="{% url 'lcc:legislation:articles:delete' legislation_pk=law.pk article_pk=article.pk %}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
@@ -26,25 +32,34 @@
 
       {% if article.code %}
       <a href="#{{article.code}}">
-        <h3 id="{{article.code}}">{{ article.code }}</h3>
+        <h4 id="{{article.code}}">{{ article.code }}</h4>
       </a>
       {% endif %}
 
-      {% if article.legislation %}
-        <p>{{ article.legislation }}</p>
-      {% endif %}
-   
       {% if article.text %}
         <p><pre>{{ article.text }}</pre></p>
       {% endif %}
 
-      {% if article.all_tags %}
-        <p>Tags: {{ article.all_tags }}</p>
-      {% endif %}
+      <div class="dl">
+          <div class="dd"><span>Classification</span></div>
+          <div class="dt">
+          {% if article.all_classifications %}
+            {% for classification in article.classifications.all %}
+             <span class="classification">{{ classification.name }}</span>
+            {% endfor %}
+          {% else %} - {% endif %}</div>
+        </div>
 
-      {% if article.all_classifications %}
-        <p>Classification: {{ article.all_classifications }}</p>
-      {% endif %}
+        <div class="dl">
+          <div class="dd"><span>Tags</span></div>
+          <div class="dt">
+          {% if article.all_tags %}
+            {% for tag in article.tags.all%}
+             <span class="tag">{{ tag.name }}</span>
+            {% endfor %}
+          {% else %} - {% endif %}</div>
+        </div>
+
     </div>
   {% endfor %}
 {% else %}
