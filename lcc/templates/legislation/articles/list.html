@@ -8,7 +8,7 @@
 {% block breadcrumbs %}
   {{ block.super }} 
   <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>
-  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">Articles</a></span>
+  <span> <i class="icon-right-open-mini"></i>Articles</span>
 {% endblock %}
 
 {% block content %}
