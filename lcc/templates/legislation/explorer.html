@@ -21,22 +21,41 @@
       <a href="{% url 'lcc:legislation:add' %}" class="btn btn-info">Add legislation</a>
     </div>
   </div>
-  <div id="laws">
+  <div class="page-container viz-container">
     {% for law in laws %}
       <div class="law-container">
-        <a href="{% url 'lcc:legislation:details' law.pk %}"><h3>{{ law }} - {{ law.title }}</h3></a>
+      <hr>
+        <a href="{% url 'lcc:legislation:details' law.pk %}"><h5>{{ law }} - {{ law.title }}</h5></a>
 
-        <h4 class="country_year law-country">
+        <h6 class="country_year law-country">
           {% static "" as baseUrl %}
           <img class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" >
           <span>{{ law.country.name }}</span>
           <span> | {{ law.year }}</span>
-        </h4>
+        </h6>
 
-        <small class="law-tag"><b>Taxonomy Tags</b>: {{ law.all_tags }}</small> <br>
-        <small class="law-classification"><b>Taxonomy Classification</b>: {{ law.all_classifications }}</small>
+        <div class="dl">
+          <div class="dd"><span>Classification</span></div>
+          <div class="dt">
+          {% if law.all_classifications %}
+            {% for classification in law.classifications.all %}
+             <span class="tag">{{ classification.name }}</span>
+            {% endfor %}
+          {% else %} - {% endif %}</div>
+        </div>
+
+        <div class="dl">
+          <div class="dd"><span>Tags</span></div>
+          <div class="dt">
+          {% if law.all_tags %}
+            {% for tag in law.tags.all%}
+             <span class="tag">{{ tag.name }}</span>
+            {% endfor %}
+          {% else %} - {% endif %}</div>
+        </div>
       </div>
     {% endfor %}
+    <hr>
   </div>
 
   <div class="filters">
