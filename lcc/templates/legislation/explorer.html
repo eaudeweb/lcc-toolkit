@@ -10,17 +10,19 @@
 
 {% block page-title %}Legislation Explorer{% endblock %}
 
+{% block page-menu %} 
+<ul>
+    <li><a href="{% url 'lcc:legislation:add' %}" class="btn btn-info">Add legislation</a></li>
+</ul>
+{% endblock %}
+
+
 {% block breadcrumbs %}
   {{ block.super }}
   <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:explorer' %}">Legislation</a></span>
 {% endblock %}
 
 {% block content %}
-  <div style="margin-left: -1px">
-    <div style="margin-top:28px;">
-      <a href="{% url 'lcc:legislation:add' %}" class="btn btn-info">Add legislation</a>
-    </div>
-  </div>
   <div class="page-container viz-container">
     {% for law in laws %}
       <div class="law-container">

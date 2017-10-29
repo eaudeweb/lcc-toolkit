@@ -119,9 +119,12 @@ $(document).ready(function() {
         highlightChecked($(this))
     })
 
-    console.log($("#title").text().length)
-    if($('#title').text().length > 49){
-    	$('#title').css('font-size', 16+'px').css('line-height', '1.4')
+
+    if(($('#title').text().length > 49) && ($('#title').text().length < 73)) {
+    	$('#title').css('font-size', 16+'px').css('line-height', '1.4').css('padding-top', 1.3 +"rem")
+    }
+    else if ( $('#title').text().length > 73) {
+        $('#title').css('padding-top', '0')
     }
 
     $('.authenticated > span').click(function(){
