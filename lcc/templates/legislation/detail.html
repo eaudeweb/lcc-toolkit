@@ -118,6 +118,14 @@
     {% endif %}
   </div>
   <div class="page-container half right viz-container">
-      RIGHT SIDE HERE
+    {% for classification, legislations in law.other_legislations.items %}
+      {% if legislations %}
+        <ul>Other results in <span>{{ classification.name }}</span>
+          {% for legislation in legislations %}
+            <li>{{ legislation.title }} | {{ legislation.country }} | {{ legislation.year }} </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endfor %}
   </div>
 {% endblock %}

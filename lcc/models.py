@@ -402,6 +402,14 @@ class Legislation(models.Model):
     classifications = models.ManyToManyField(
         TaxonomyClassification, blank=True)
 
+    @property
+    def other_legislations(self):
+        other = {}
+        for classification in self.classifications.all():
+            other[classification] = Legislation.objects.filter(
+                classifications__id__exact=classification.pk).exclude(pk=self.pk).all()[:3]
+        return other
+
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Legislation: " + ' | '.join([self.country.name, self.law_type])
