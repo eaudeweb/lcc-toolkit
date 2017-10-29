@@ -37,17 +37,27 @@
       <div class="dd"><span>Abstract</span></div>
       <div class="dt">{% if law.abstract %}<pre>{{ law.abstract }}</pre>{% else %} - {% endif %}</div>
     </div>
-
+<hr>
     <div class="dl">
       <div class="dd"><span>Classification</span></div>
-      <div class="dt">{% if law.all_classifications %}{{ law.all_classifications }}{% else %} - {% endif %}</div>
+      <div class="dt">
+      {% if law.all_classifications %}
+        {% for classification in law.classifications.all %}
+         <span class="classification">{{ classification.name }}</span>
+        {% endfor %}
+      {% else %} - {% endif %}</div>
     </div>
-
+<hr>
     <div class="dl">
       <div class="dd"><span>Tags</span></div>
-      <div class="dt">{% if law.all_tags %}{{ law.all_tags }}{% else %} - {% endif %}</div>
+      <div class="dt">
+      {% if law.all_tags %}
+        {% for tag in law.tags.all%}
+         <span class="tag">{{ tag.name }}</span>
+        {% endfor %}
+      {% else %} - {% endif %}</div>
     </div>
-
+<hr>
     <div class="dl">
       <div class="dd"><span>Language</span></div>
       <div class="dt">{% if law.language %}{{ law.get_language_display }}{% else %} - {% endif %}</div>
@@ -75,7 +85,7 @@
 
     <div class="dl">
       <div class="dd"><span>Website</span></div>
-      <div class="dt">{% if law.website %}{{ law.website }}{% else %} - {% endif %}</div>
+      <div class="dt">{% if law.website %}<a href="{{ law.website }}">{{ law.website }}</a>{% else %} - {% endif %}</div>
     </div>
 
     <div class="dl">

@@ -81,6 +81,31 @@
             font-size: 13px;
             line-height: 1.7;
 
+            .classification {
+                margin-right: .5rem;
+                margin-bottom: .5rem;
+                background: @white-dark;
+                padding: .3rem;
+                color: @black;
+                display: inline-block;
+                font-size: 12px;
+                box-shadow: 1px 1px 3px #aaa;
+                padding-left: .6rem;
+                padding-right: .6rem;
+            }
+
+            .tag {
+                font-size: 12px;
+                display: inline-block;
+                color: @black;
+                margin-right: .5rem;
+                &:before {
+                    content: '•';
+                    display: inline-block;
+                    padding-right: .3rem;
+                }
+            }   
+
         }
     @media @tabletDown {
         .dd,.dt {
