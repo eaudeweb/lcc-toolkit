@@ -2,11 +2,12 @@ from django.contrib.auth import mixins
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
-from django.views.generic import DetailView, CreateView, UpdateView
-
-from lcc import constants, models, forms
+from django.views.generic import (
+    DetailView, CreateView, UpdateView, DeleteView
+)
+from lcc import models, forms
 from lcc.views.base import (
-    UserPatchMixin, TagGroupRender, TaxonomyFormMixin,
+    TagGroupRender, TaxonomyFormMixin,
     taxonomy_to_string,
 )
 
@@ -18,7 +19,7 @@ class ArticleFormMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
-class AddArticles(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
+class AddArticles(mixins.LoginRequiredMixin, TaxonomyFormMixin,
                   ArticleFormMixin,
                   CreateView):
     template_name = "legislation/articles/add.html"
@@ -62,7 +63,7 @@ class AddArticles(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
             )
 
 
-class ArticlesList(UserPatchMixin, DetailView):
+class ArticlesList(DetailView):
     template_name = "legislation/articles/list.html"
     context_object_name = 'law'
     model = models.Legislation
@@ -83,8 +84,7 @@ class ArticlesList(UserPatchMixin, DetailView):
         return context
 
 
-class EditArticles(UserPatchMixin,
-                   mixins.LoginRequiredMixin,
+class EditArticles(mixins.LoginRequiredMixin,
                    TaxonomyFormMixin,
                    ArticleFormMixin,
                    UpdateView):
@@ -129,3 +129,17 @@ class EditArticles(UserPatchMixin,
                 'legislation_pk': article.legislation.pk
             })
         )
+
+
+class DeleteArticle(mixins.LoginRequiredMixin, DeleteView):
+    model = models.LegislationArticle
+    pk_url_kwarg = 'article_pk'
+
+    def get_success_url(self, **kwargs):
+        legislation_pk = self.kwargs['legislation_pk']
+        return reverse('lcc:legislation:articles:view', kwargs={
+            'legislation_pk': legislation_pk
+        })
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)

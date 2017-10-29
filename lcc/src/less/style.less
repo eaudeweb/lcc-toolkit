@@ -19,7 +19,10 @@
 body {
     font-family: 'Open Sans', sans-serif;
     line-height:28px;
-
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 .set-radius-zero {
     border-radius:0px;
@@ -27,10 +30,14 @@ body {
     -webkit-border-radius:0px;
 }
 .content-wrapper {
-    margin-top: 40px;
+    .clearfix;
+    width: 100%;
+    margin-top: 2rem;
     min-height:800px;
     // padding-bottom:90px;
     overflow: hidden;
+         background: linear-gradient(to bottom, #fff 0, rgb(253, 253, 253) 150px);
+     // background: linear-gradient(to bottom, #fff 0, #f6f6f6 150px); 
 }
 .header-line {
     font-weight:900;
@@ -49,7 +56,6 @@ body {
 
 .right-div {
     float: right;
-    padding: 20px;
 }
 #menu-top a {
     color:#000;
@@ -73,11 +79,7 @@ border-color: rgba(155, 153, 153, 0.23);
 
 }
 
-.navbar {
-    min-height: 90px;
-    margin-bottom: 0px;
 
-}
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color:transparent;
 }
@@ -209,11 +211,13 @@ height: 60px;
 .footer-section {
     padding:25px 50px 25px 50px;
     color:#000;
+    background: white;
     font-size:13px;
-      background-color: #f7f7f7;
+      // background-color: #f7f7f7;
       text-align:right;
        border-top:5px solid #9170E4;
-
+       min-height: 300px;
+       position: relative;
 }
 
     .footer-section a, .footer-section a:hover {
@@ -232,4 +236,53 @@ height: 60px;
         text-decoration: none;
         outline: none;
     }
+}
+
+// .btn-primary {
+    // background-color: @blue;
+// }
+
+.btn-navigation {
+    // color: white;
+    color: @text-color;
+    // border: 1px solid #ddd;
+    padding: .4rem!important;
+} 
+
+
+.footer-logos {
+    float: left;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.footer-desc {
+    text-align: left;
+    &.right-div {
+    width: 50%;
+    }
+    &:not(.right-div) {
+            border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-top: 2rem;
+    }
+}
+
+.footer-section {
+    .flex {
+            display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+}
+
+
+.flag {
+    width: 25px;
 }

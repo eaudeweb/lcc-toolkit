@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+
+{% block content %}
+  <div id="title" class="heading">
+    {{ country.name }}
+  </div>
+
+  <div style="margin-left: -1px">
+    <div style="margin-top:28px;">
+      <a href="{% url 'lcc:country:customise' iso=country.iso %}" class="btn btn-info">Customise values</a>
+    </div>
+  </div>
+
+  <div>
+    <dl>
+      {% for prop in meta %}
+        <dt>{{ prop.label }} {% if prop.modified %}*{% endif %}</dt>
+        <dd><p>
+        {% if prop.value or prop.value is False %}
+          {% if prop.type == 'select' %}
+            {{ prop.value|join:'; ' }}
+            {% if prop.modified %}
+              (Original: {% if prop.orig %}{{ prop.orig|join:'; ' }}{% else %}&mdash;{% endif %})
+            {% endif %}
+          {% else %}
+            {{ prop.value }}
+          {% endif %}
+        {% else %}
+          &mdash;
+        {% endif %}
+        </p></dd>
+    {% endfor %}
+    </dl>
+  </div>
+{% endblock %}

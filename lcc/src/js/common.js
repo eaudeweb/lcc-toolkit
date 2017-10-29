@@ -118,4 +118,22 @@ $(document).ready(function() {
     $lastestTag.each(function(){
         highlightChecked($(this))
     })
+
+
+    if(($('#title').text().length > 49) && ($('#title').text().length < 73)) {
+    	$('#title').css('font-size', 16+'px').css('line-height', '1.4').css('padding-top', 1.3 +"rem")
+    }
+    else if ( $('#title').text().length > 73) {
+        $('#title').css('padding-top', '0')
+    }
+
+    $('.authenticated > span').click(function(){
+        $('.actions-wrapper').animate({
+            'width': 'toggle'
+        })
+    })
+    $(".page-menu").sticky({topSpacing:0});
+    $('.disabled').click(function(e){
+        e.preventDefault();
+    })
 })

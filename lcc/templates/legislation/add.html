@@ -5,7 +5,12 @@
 {% block extra-scripts %}
   <script src="{% static "js/upload.js" %}"></script>
 {% endblock %}
+{% block page-title %}Add new legislation{% endblock %}
 
+{% block breadcrumbs %}
+  {{ block.super }}
+  <span> <i class="icon-right-open-mini"></i>Add</span>
+{% endblock %}
 
 {% block content %}
 
@@ -13,9 +18,6 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="">
       <div class="panel-body">
-        <div id="title" class="heading">
-          Add new legislation
-        </div>
       <form id="legislationAddForm" enctype="multipart/form-data" method="post"
             action="{% url 'lcc:legislation:add' %}">
         {% csrf_token %}
@@ -81,7 +83,7 @@
                   {% if form.country.value == country.iso %}
                     selected
                   {% endif %}
-                {% elif country.name == user_country %}
+                {% elif country.name == request.user_profile.country %}
                   selected
                 {% endif %}>
                 {{country.name}}
@@ -290,7 +292,6 @@
                                checked
                                   {% endif %}
                                 {% endif %}>
-                        {{ tag.name }}
                         </input>
                         <label for="tag_{{ tag.pk }}">{{ tag.name }}</label>
                       </li>

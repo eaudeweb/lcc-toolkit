@@ -1,16 +1,15 @@
 from collections import defaultdict
+
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django import views
+
 from lcc import models
 
 
-class UserPatchMixin():
-    def dispatch(self, request, *args, **kwargs):
-        self.user_profile = None
-        if request.user.is_authenticated:
-            self.user_profile = models.UserProfile.objects.get(
-                user=request.user
-            )
-            request.user_profile = self.user_profile
-        return super(UserPatchMixin, self).dispatch(request, *args, **kwargs)
+class Index(views.View):
+    def get(self, request):
+        return HttpResponseRedirect(reverse('lcc:legislation:explorer'))
 
 
 class TagGroupRender():

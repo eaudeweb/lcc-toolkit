@@ -6,13 +6,26 @@
   <script src="{% static "js/upload.js" %}"></script>
 {% endblock %}
 
+{% block page-title %}Edit Legislation{% endblock %}
+{% block page-menu %} 
+  {% include 'legislation/navigation.html' %}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>
+  <span> <i class="icon-right-open-mini"></i>Edit</span>
+{% endblock %}
 
 {% block content %}
 
 <div class="row addLeg">
-  <div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="">
     <div class="">
       <div class="panel-body">
+        <h3>
+          {{ law.title }}
+        </h3>
         <form id="legislationEditForm" enctype="multipart/form-data" method="post"
               action="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
           {% csrf_token %}

@@ -14,8 +14,13 @@
   </script>
 {% endblock %}
 
-{% block content-title %}
+{% block content-title %}{% endblock %}
+
+{% block page-title %}Edit Articles{% endblock %}
+{% block page-menu %} 
+  {% include 'legislation/navigation.html' %}
 {% endblock %}
+
 
 {% block content-wrapper-class %}manageLeg{% endblock %}
 
@@ -25,21 +30,31 @@
   <input type="nume" id="article_pk" value="{{ article.pk }}">
 {% endblock %}
 
+{% block breadcrumbs %}
+  {{ block.super }}
+  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>
+  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">Articles</a></span>
+  <span> <i class="icon-right-open-mini"></i>Article {{ article.code }}</span>
+  <span> <i class="icon-right-open-mini"></i>Edit</span>
+{% endblock %}
+
+
 {% block content %}
 
 {% include 'legislation/articles/pdf.html' %}
 
 <div class="page-container half">
-  <div id="title" style="margin-bottom:28px;">
-  Manage Articles for: {{ law.title }} | {{ law.country.name }}
-  </div>
+<h3>
+    {{ law.title }}
+</h3>
+
   <form id="editArticle" method="post" action="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">
     {% csrf_token %}
       <input name="legislation" value="{{ law.pk }}" hidden>
 
       <div class='law-meta-data-container'>
         <div>
-          <label class="label-large" for="id_code">Code</label>
+          <label class="label-large" for="id_code">Article number <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
         </div>
         <div>
           <!-- TODO change classes to code  -->
@@ -49,7 +64,7 @@
 
     <div class='law-meta-data-container'>
       <div>
-        <label class="label-large" for="id_text">Text</label>
+        <label class="label-large" for="id_text">Text <p style="display: inline-block; color: red;" title="This field is required.">*</label>
       </div>
 
       <div class="clearfix">
@@ -65,7 +80,7 @@
 
     <div class="legislation-page-container">
       <div>
-        <label class="label-large" for="id_page">Page</label>
+        <label class="label-large" for="id_page">Page <p style="display: inline-block; color: red;" title="This field is required.">*</label>
       </div>
       <div>
         <input type="numer" required id="id_page" name="legislation_page" maxlength="4" value="{{ article.legislation_page }}">
@@ -75,7 +90,7 @@
     <div class='law-meta-data-container check-fields'>
       <div class="tags wrapper">
         <div>
-          <label for="id_tags">Tags</label>
+          <label class="label-large" for="id_tags">Tags</label>
         </div>
         <div>
           Select the best areas where the article fits
@@ -110,7 +125,7 @@
 
       <div class="classificaions wrapper">
         <div>
-          <label for="id_classifications">Classification</label>
+          <label class="label-large" for="id_classifications">Classification <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
         </div>
 
         <div>
@@ -169,5 +184,6 @@
       </div>
     </div>
     <button type="submit" class="btn btn-info" id='save-btn' name='save-btn'> Save & View articles</button>
+    <a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-danger" id="cancel-btn">Cancel</a>
   </form>
 {% endblock %}

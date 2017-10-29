@@ -1,0 +1,128 @@
+//== Fonts:
+@emBase: 10px;
+@font-family-sans-serif:  'Roboto', sans-serif;
+@font-size-base:          10px;
+@line-height-base:        1.4285; // 1.428571429; // 20/14
+
+
+@link-color     : #6fa7da;
+// @text-color     : #2d2d2d;
+@text-color		: #4c4c4c;
+// @brand-primary  : #00aeef;
+@brand-primary  : #3c98dd;
+@grey           : #939598;
+@grey-light     : #BDBDBD;
+@grey-dark      : #3C3C3C;
+@grey-dark-2    : #7D7D7D;
+@white-dark     : #f1f2f2;
+@white-light    : #E6E6E6;
+@black          : #000000;
+@red            : #d9534f;
+@green    		: #5cb85c;
+@blue 			: #4c70b5;
+@blue-light		: #00aeef;
+
+@alto: #d2d2d2;
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+//** Number of columns in the grid.
+@grid-columns:              12;
+//** Padding between columns. Gets divided in half for the left and right.
+@grid-gutter-width:         20px;
+@grid-gutter-mobile-width:  10px;
+
+
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Extra small screen / phone
+// Note: Deprecated @screen-xs and @screen-phone as of v3.0.1
+@screen-xs:                  480px;
+@screen-xs-min:              @screen-xs;
+@screen-phone:               @screen-xs-min;
+
+// Extra small screen / phone
+// Note: Deprecated @screen-xs-2 and @screen-phone as of v3.0.1
+@screen-xs-2:                  640px;
+@screen-xs-2-min:              @screen-xs-2;
+@screen-phone:               @screen-xs-2-min;
+
+// Small screen / tablet
+// Note: Deprecated @screen-sm and @screen-tablet as of v3.0.1
+@screen-sm:                  768px;
+@screen-sm-min:              @screen-sm;
+@screen-tablet:              @screen-sm-min;
+
+// Medium screen / desktop
+// Note: Deprecated @screen-md and @screen-desktop as of v3.0.1
+@screen-md:                  1024px;
+@screen-md-min:              @screen-md;
+@screen-desktop:             @screen-md-min;
+
+// Large screen / wide desktop
+// Note: Deprecated @screen-lg and @screen-lg-desktop as of v3.0.1
+@screen-lg:                  1200px;
+@screen-lg-min:              @screen-lg;
+@screen-lg-desktop:          @screen-lg-min;
+
+// Extra Large screen / wide desktop
+@screen-xl:                  1600px;
+@screen-xl-min:              @screen-xl;
+@screen-xl-desktop:          @screen-xl-min;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xxs-max:              (@screen-xs-min - 1);
+@screen-xs-max:              (@screen-sm-min - 1);
+@screen-sm-max:              (@screen-md-min - 1);
+@screen-md-max:              (@screen-lg-min - 1);
+@screen-lg-max:              (@screen-xl-min - 1);
+
+
+
+// CUSTOM VARIABLES
+
+// Media queries
+@xSmall: ~"(min-width: @{screen-xs-min})";
+@xSmall2: ~"(min-width: @{screen-xs-2-min})";
+@small: ~"(min-width: @{screen-sm-min})";
+@medium: ~"(min-width: @{screen-md-min})";
+@large: ~"(min-width: @{screen-lg-min})";
+@xLarge: ~"(min-width: @{screen-xl-min})";
+@smallDown: ~"(max-width: @{screen-sm-max})";
+@xSmallDown: ~"(max-width: @{screen-xs-max})";
+@xxSmallDown: ~"(max-width: @{screen-xxs-max})";
+@landscape: ~"(orientation: landscape)";
+@portrait: ~"(orientation: portrait)";
+
+// Media queries by name
+@mobileOnly: ~"(max-width: @{screen-xs-max})"; // < 768
+@tabletOnly: ~"(min-width: @{screen-sm-min}) and (max-width: @{screen-sm-max})"; // 768 <= width < 1024
+@tabletDown: ~"(max-width: @{screen-sm-max})"; // < 1024
+@tabletUp: ~"(min-width: @{screen-xs-max})"; // >= 768
+@desktopUp: ~"(min-width: @{screen-md-min})"; // >= 1024
+@desktopLargeUp: ~"(min-width: @{screen-lg-min})"; // >= 1200
+@mobileUp: ~"(min-width: @{screen-sm-max})"; // >= 768
+
+
+// Fonts
+@font-path:   "../fonts/";
+@FontAwesome: 'FontAwesome';
+@Volkron: 'Vollkorn';
+@Roboto: 'Roboto';
+@BaseFont: @font-family-sans-serif;
+@bodyFontSize: 16px;
+@bodyLineHeight: 20px;
+@bodyFontSizeDesktop: 18px;
+@bodyLineHeightDesktop: 22px;
+@font-weight-bold: bold;
+
+
+// Misc
+@sidePadding: 20px;
+@sidePaddingDesktop: 24px;
+@searchHeight: 75px;
+@searchHeightDesktop: 80px;

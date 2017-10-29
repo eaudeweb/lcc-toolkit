@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_webtest',
+    'rolepermissions',
     # 'django_elasticsearch_dsl',
     'rest_framework',
     'mptt',
@@ -39,6 +40,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'lcc.middleware.user_profile'
 ]
 
 ROOT_URLCONF = 'lcctoolkit.urls'
@@ -61,6 +63,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'lcctoolkit.wsgi.application'
+ROLEPERMISSIONS_MODULE = 'lcc.roles'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

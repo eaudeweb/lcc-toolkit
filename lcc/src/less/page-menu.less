@@ -1,0 +1,57 @@
+.page-menu {
+    background: white;
+    .page-menu-wrapper {
+        height: 0;
+        transition: all 200ms ease-in;
+    }
+    .clearfix;
+    .heading {
+        font-size: 24px;
+        line-height: 2.125;
+        font-weight: 500;
+        letter-spacing: .015em;
+        cursor: default;
+        display: block;
+        float: left;
+        margin: 0;
+        padding: 0;
+        height: 52px;
+        max-width: 50%;
+    }
+    ul {
+        margin-top: 1rem;
+        float: right;
+        margin-bottom: -3rem;
+        li {
+            display: inline-block; 
+            a {
+                transition: all 200ms;
+            }
+        }
+    }
+    .container {
+        // border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+        border-bottom: 1px solid @white-dark;
+    }
+}
+
+
+.sticky-wrapper {
+    z-index: 4;
+    position: relative;
+}
+
+.is-sticky {
+    .page-menu-wrapper {
+            // background: linear-gradient(to bottom, #3c98dd 0, #4c70b5 99%);
+            background: @brand-primary;
+            color: white;
+            height: 53px;
+            a {
+                color: white;
+            }
+    }
+    .container {
+        border-bottom: none;
+    }
+}

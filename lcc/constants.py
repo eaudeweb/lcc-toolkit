@@ -1,5 +1,6 @@
 import datetime
 
+LOGIN_URL = "/login/"
 
 ROLE_CONTENT_MANAGER = "Content Manager"
 ROLE_POLICY_MAKER = "Policy Maker"
