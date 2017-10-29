@@ -97,35 +97,45 @@
       <div class="dd"><span>Type of source</span></div>
       <div class="dt">{% if law.source_type %}{{ law.get_source_type_display }}{% else %} - {% endif %}</div>
     </div>
-
-    {% if request.user.is_authenticated %}
-      <div class="button-wrapper">
-        {% if law.articles.all %}
-          <a class="btn btn-info"
-             href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">
-            Visualize the articles
-          </a>
-        {% endif %}
-        <a class="btn btn-info"
-           href="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
-          Edit
-        </a>
-        <a class="btn btn-info"
-           href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
-          Add articles
-        </a>
-      </div>
-    {% endif %}
   </div>
   <div class="page-container half right viz-container">
     {% for classification, legislations in law.other_legislations.items %}
       {% if legislations %}
-        <ul>Other results in <span>{{ classification.name }}</span>
-          {% for legislation in legislations %}
-            <li><a href="{% url 'lcc:legislation:details' legislation_pk=legislation.pk %}">{{ legislation.title }} | {{ legislation.country }} | {{ legislation.year }}</a></li>
-          {% endfor %}
-        </ul>
+        <div class="other-results-wrapper">
+          <div class="section-header">
+            <span class="icon-level-down"></span><span>Other results in </span><span class="result">{{ classification.name }}</span>
+          </div>
+          <ul>
+            {% for legislation in legislations %}
+              <li>
+                <a href="{% url 'lcc:legislation:details' legislation_pk=legislation.pk %}">
+                 {{ legislation.title }}
+                </a>
+                <div>{{ legislation.country }} | {{ legislation.year }}</div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
       {% endif %}
     {% endfor %}
   </div>
+
+  {% if request.user.is_authenticated %}
+    <div class="button-wrapper no-container">
+      {% if law.articles.all %}
+        <a class="btn btn-info"
+           href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">
+          Visualize the articles
+        </a>
+      {% endif %}
+      <a class="btn btn-info"
+         href="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
+        Edit
+      </a>
+      <a class="btn btn-info"
+         href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
+        Add articles
+      </a>
+    </div>
+  {% endif %}
 {% endblock %}
