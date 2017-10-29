@@ -8,10 +8,12 @@
 
 {% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
 
-
-
-
 {% block page-title %}Legislation Explorer{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:explorer' %}">Legislation</a></span>
+{% endblock %}
 
 {% block content %}
   <div style="margin-left: -1px">

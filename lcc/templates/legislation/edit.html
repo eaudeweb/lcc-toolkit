@@ -11,6 +11,12 @@
   {% include 'legislation/navigation.html' %}
 {% endblock %}
 
+{% block breadcrumbs %}
+  {{ block.super }}
+  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>
+  <span> <i class="icon-right-open-mini"></i>Edit</span>
+{% endblock %}
+
 {% block content %}
 
 <div class="row addLeg">

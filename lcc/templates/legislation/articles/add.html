@@ -28,9 +28,15 @@
   <input type="number" id="starting_page" value="{{ starting_page }}">
 {% endblock %}
 
+{% block breadcrumbs %}
+  {{ block.super }} 
+  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>
+  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">Articles</a></span>
+  <span> <i class="icon-right-open-mini"></i>Add</span>
+{% endblock %}
+
+
 {% block content %}
-
-
 <div class="page-container half">
  <h3>{{ law.title }}</h3>
   <form id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
