@@ -13,49 +13,81 @@
 
 {% block content %}
   <div class="page-container half viz-container">
-    <h4 class="country_year">
+
+    <div class="dl">
+      <div class="dd"><span>Country</span></div>
+      <div class="dt">
       {% static "" as baseUrl %}
-      <img class="flag" src="{{ baseUrl }}/img/flags/{{ law.country.iso |lower }}.svg">
-      <span>{{ law.country.name }}</span>
-      <span> | {{ law.year }}</span>
-    </h4>
+        <img class="flag" src="{{ baseUrl }}/img/flags/{{ law.country.iso |lower }}.svg">
+        <span>{{ law.country.name }}</span>
+      </div>
+    </div>
 
-    <h3>Abstract</h3>
-    <p>{% if law.abstract %}<pre>{{ law.abstract }}</pre>{% else %} - {% endif %}</p>
+    <div class="dl">
+      <div class="dd"><span>Date</span></div>
+      <div class="dt">{% if law.year %}{{ law.year }}{% else %} - {% endif %}</div>
+    </div>
 
-    <h3>Full Text</h3>
-    <p><a href="{{ law.pdf_file.url }}" target="_blank">{{ law.pdf_file_name }}</a></p>
+    <div class="dl">
+      <div class="dd"><span>Full Text</span></div>
+      <div class="dt"><a href="{{ law.pdf_file.url }}" target="_blank">{{ law.pdf_file_name }}</a></div>
+    </div>
 
-    <h3>Language</h3>
-    <p>{% if law.language %}{{ law.get_language_display }}{% else %} - {% endif %}</p>
+    <div class="dl">
+      <div class="dd"><span>Abstract</span></div>
+      <div class="dt">{% if law.abstract %}<pre>{{ law.abstract }}</pre>{% else %} - {% endif %}</div>
+    </div>
 
-    <h3>Document type</h3>
-    <p>{% if law.law_type %}{{ law.law_type }}{% else %} - {% endif %}</p>
+    <div class="dl">
+      <div class="dd"><span>Classification</span></div>
+      <div class="dt">{% if law.all_classifications %}{{ law.all_classifications }}{% else %} - {% endif %}</div>
+    </div>
 
-    <h3>Latest known amendment (year)</h3>
-    <p>{% if law.year_amendment %}{{ law.year_amendment }}{% else %} - {% endif %}</p>
+    <div class="dl">
+      <div class="dd"><span>Tags</span></div>
+      <div class="dt">{% if law.all_tags %}{{ law.all_tags }}{% else %} - {% endif %}</div>
+    </div>
 
-    <h3>Additional date details</h3>
-    <p>{% if law.year_mention %}{{ law.year_mention }}{% else %} - {% endif %}</p>
+    <div class="dl">
+      <div class="dd"><span>Language</span></div>
+      <div class="dt">{% if law.language %}{{ law.get_language_display }}{% else %} - {% endif %}</div>
+    </div>
 
-    <h3>Geographical Coverage</h3>
-    <p>{% if law.geo_coverage %}{{ law.get_geo_coverage_display }}{% else %} - {% endif %}</p>
+    <div class="dl">
+      <div class="dd"><span>Document type</span></div>
+      <div class="dt">{% if law.law_type %}{{ law.law_type }}{% else %} - {% endif %}</div>
+    </div>
 
-    <h3>Website</h3>
-    <p>{% if law.website %}{{ law.website }}{% else %} - {% endif %}</p>
+    <div class="dl">
+      <div class="dd"><span>Latest known amendment (year)</span></div>
+      <div class="dt">{% if law.year_amendment %}{{ law.year_amendment }}{% else %} - {% endif %}</div>
+    </div>
 
-    <h3>Source</h3>
-    <p>{% if law.source %}{{ law.source }}{% else %} - {% endif %}</p>
+    <div class="dl">
+      <div class="dd"><span>Additional date details</span></div>
+      <div class="dt">{% if law.year_mention %}{{ law.year_mention }}{% else %} - {% endif %}</div>
+    </div>
 
-    <h3>Type of source</h3>
-    <p>{% if law.source_type %}{{ law.get_source_type_display }}{% else %} - {% endif %}</p>
+    <div class="dl">
+      <div class="dd"><span>Geographical Coverage</span></div>
+      <div class="dt">{% if law.geo_coverage %}{{ law.get_geo_coverage_display }}{% else %} - {% endif %}</div>
+    </div>
 
-    <h3>Classification</h3>
-    <p>{% if law.all_classifications %}{{ law.all_classifications }}{% else %} - {% endif %}</p>
+    <div class="dl">
+      <div class="dd"><span>Website</span></div>
+      <div class="dt">{% if law.website %}{{ law.website }}{% else %} - {% endif %}</div>
+    </div>
 
-    <h3>Tags</h3>
-    <p>{% if law.all_tags %}{{ law.all_tags }}{% else %} - {% endif %}</p>
-  
+    <div class="dl">
+      <div class="dd"><span>Source</span></div>
+      <div class="dt">{% if law.source %}{{ law.source }}{% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Type of source</span></div>
+      <div class="dt">{% if law.source_type %}{{ law.get_source_type_display }}{% else %} - {% endif %}</div>
+    </div>
+
     {% if request.user.is_authenticated %}
       <div class="button-wrapper">
         {% if law.articles.all %}

@@ -25,7 +25,9 @@
       {% endif %}
 
       {% if article.code %}
-        <h3>{{ article.code }}</h3>
+      <a href="#{{article.code}}">
+        <h3 id="{{article.code}}">{{ article.code }}</h3>
+      </a>
       {% endif %}
 
       {% if article.legislation %}

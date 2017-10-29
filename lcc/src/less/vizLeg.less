@@ -45,7 +45,6 @@
             }
         }
     }
-
 }
 
 
@@ -54,11 +53,41 @@
     margin-bottom: 1rem;
     padding: 1rem 0;
     h3 {
-            margin: 1rem 0;
-    margin-bottom: 0;
+        margin: 1rem 0;
+        margin-bottom: 0;
     }
     &.half {
         padding-right: 1rem;
+    }
+
+    .dl {
+        margin-bottom: 1rem;
+        .dd {
+            display: inline-block;
+            width: 95px;
+            color: @grey;
+            margin-right: 1rem;
+            font-size: 10px;
+            line-height: 1.7;
+            vertical-align: top;
+            text-transform: uppercase;
+        }
+
+        .dt {
+            display: inline-block;
+            vertical-align: top;
+            width: calc(~"100% - 109px");
+            color: @text-color;
+            font-size: 13px;
+            line-height: 1.7;
+
+        }
+    @media @tabletDown {
+        .dd,.dt {
+            width: 100%;
+            display: block;
+        }
+    }
     }
 }
 
@@ -75,7 +104,7 @@
     &:first-of-type {
         margin-top: 0;
     }
-     &:last-of-type {
+    &:last-of-type {
         margin-bottom: 0;
     }
 }
