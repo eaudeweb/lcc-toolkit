@@ -122,7 +122,7 @@
       {% if legislations %}
         <ul>Other results in <span>{{ classification.name }}</span>
           {% for legislation in legislations %}
-            <li>{{ legislation.title }} | {{ legislation.country }} | {{ legislation.year }} </li>
+            <li><a href="{% url 'lcc:legislation:details' legislation_pk=legislation.pk %}">{{ legislation.title }} | {{ legislation.country }} | {{ legislation.year }}</a></li>
           {% endfor %}
         </ul>
       {% endif %}
