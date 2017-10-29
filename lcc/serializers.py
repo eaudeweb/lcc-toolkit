@@ -13,12 +13,13 @@ class QuestionAnswerSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
     children_yes = serializers.SerializerMethodField('_get_children_yes')
     children_no = serializers.SerializerMethodField('_get_children_no')
+    children = serializers.SerializerMethodField('_get_children')
     answer = serializers.SerializerMethodField('_get_answer')
 
     class Meta:
         model = Question
         fields = ("id", "text", "order", "answer",
-                  "children_yes", "children_no")
+                  "children_yes", "children_no", "children")
 
     def _get_answer(self, obj):
         assessment_pk = self.context.get('assessment_pk')
@@ -42,6 +43,13 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     def _get_children_no(self, obj):
         query = obj.get_children().filter(parent_answer=False)
+        if query:
+            serializer = QuestionSerializer(
+                query, context=self.context, many=True)
+            return serializer.data
+
+    def _get_children(self, obj):
+        query = obj.get_children().filter(parent_answer=None)
         if query:
             serializer = QuestionSerializer(
                 query, context=self.context, many=True)
