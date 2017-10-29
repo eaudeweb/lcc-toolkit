@@ -1,28 +1,3 @@
-function highlightChecked(item) {
-    $parent = item.parent().parent().parent().parent('li').find('.list-header').first();
-    if($parent.length == 0)
-        return
-
-    $parent.addClass('selected')
-
-    if (!$parent.parent().hasClass('first-level')) {
-        $recursion_item = $parent.find('input')
-        highlightChecked($recursion_item)
-    }
-}
-
-function removeHighlight(item) {
-    $parent = item.parent().parent().parent().parent('li').find('.list-header').first();
-    if($parent.length == 0)
-        return
-    $checked = item.closest('ul').first().find("input:checked").length;
-    if ($checked == 0)
-        $parent.removeClass('selected')
-    if (!$parent.parent().hasClass('first-level')) {
-        $recursion_item = $parent.find('input')
-        removeHighlight($recursion_item)
-    }
-}
 
 
 function getSelectionText() {
@@ -42,7 +17,7 @@ var functionality = ['Append', 'Replace'];
 function thisRespondHightlightText(thisDiv, statebutton){
    $('body').on("mouseup", thisDiv , function () {
         var selectedText = getSelectionText();
-        if(statebutton.html() == functionality[0]){
+        if(statebutton.attr('functionality') == functionality[0]){
             $('#id_text').val(function(i, text) {
                 if(selectedText.length == 0){
                     return text
@@ -81,6 +56,9 @@ $(document).ready(function() {
         if ($(e.target).attr('type') == "checkbox") {
             return
         }
+        if ($(e.target).is('label')) {
+            return
+        }
         $(this).parent().toggleClass('expanded');
         $checkbox = $(this).find('i').first();
         $sub_level = $(this).parent().find('ul').first();
@@ -102,40 +80,16 @@ $(document).ready(function() {
     }
 
 
-    $(".check-fields input").change(function() {
-        if (this.checked) {
-            highlightChecked($(this))
-            // $(this).parent().addClass('selected')
-        } else {
-            removeHighlight($(this))
-            // $(this).parent().removeClass('selected')
 
-        }
-    });
 
-    $('.state button').html(functionality[0])
 
-    thisRespondHightlightText('#raw-text-page', $('.state button'))
+    thisRespondHightlightText('#raw-text-page', $('.state button.active'))
 
 
     $('body').on('click','.state button', function(){
-        if($(this).html() == functionality[0])
-            $(this).html(functionality[1])
-        else
-            $(this).html(functionality[0])
+        $('.state button').removeClass('active')
+        $(this).addClass('active')
     })
-
-
-    $lastestClass = $('.classificaions').find('input:checked')
-    $lastestClass.each(function(){
-        highlightChecked($(this))
-    })
-
-    $lastestTag = $('.tags').find('input:checked')
-    $lastestTag.each(function(){
-        highlightChecked($(this))
-    })
-
 
     if(($('#title').text().length > 49) && ($('#title').text().length < 73)) {
     	$('#title').css('font-size', 16+'px').css('line-height', '1.4').css('padding-top', 1.3 +"rem")
@@ -152,5 +106,21 @@ $(document).ready(function() {
     $(".page-menu").sticky({topSpacing:0});
     $('.disabled').click(function(e){
         e.preventDefault();
+    })
+    var edited = false;
+     $('input, textarea, select').on('change', function(){
+        edited = true;
+
+     })
+
+
+    $('#special-button').click(function(e){
+        if( edited == true ){
+            if (confirm("Leaving the page will result in losing your modifications. \nPress ok if you want to leave") == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     })
 })

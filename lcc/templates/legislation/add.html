@@ -271,9 +271,9 @@
           <div>
             <label for="id_tags" class="label-medium">Tags</label>
           </div>
-          <div class="list-header">
-            Select the best areas where the legislation fits
-          </div>
+          <h5>
+            <b>Select the best areas where the legislation fits</b>
+          </h5>
           <div class="list-container">
             <ul name='tags' id='tags'>
               {% for tag_group in tag_groups %}
@@ -308,28 +308,22 @@
             <label for="id_classifications" class="label-medium">Classification</label>
           </div>
 
-          <div class="list-header">
-            Select the legal areas where the legislation fits
-          </div>
+          <h5>
+            <b>Select the legal areas where the legislation fits</b>
+          </h5>
 
           <div class="list-container">
             <ul>
               {% for top_class in classifications %}
                 <li class="first-level level">
-                  {% if top_class.get_children %}
-                    <span class="list-header">
-                      <input name='classification_{{ top_class.pk }}' type='checkbox'
-                          {% if top_class.pk in form.tags.value %}
-                            checked
-                          {% endif %}>
-                      </input>
-                      <label for="classification_{{ top_class.pk }}">{{ top_class.name }}</label>
-                    </span>
-                  {% else %}
-                    <span class="list-header unusable">
-                      <span>{{ top_class.name }}</span>
-                    </span>
-                  {% endif %}
+                  <span style="padding: 0;" class="list-header">
+                    <input name='classification_{{ top_class.pk }}' id='classification_{{ top_class.name }}' type='checkbox'
+                        {% if top_class.pk in form.tags.value %}
+                          checked
+                        {% endif %}>
+                    </input>
+                    <label for="classification_{{ top_class.name }}">{{ top_class.name }}</label>
+                  </span>
                 </li>
               {% endfor %}
             </ul>

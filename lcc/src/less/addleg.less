@@ -242,6 +242,17 @@ input[type='checkbox']:checked:before {
     top: -1px;
 }
 
+  input[type='checkbox']:checked:after {
+
+    background: black;
+    border: 1px solid transparent;
+
+}
+input[type='checkbox']:checked:before {
+    color: #fff;
+    top: -1px;
+}
+
 .expanded {
   input[type='checkbox']:checked:after {
 
@@ -354,9 +365,8 @@ input[type='checkbox']:checked:before {
     border-color: #74c5dc;
     color: #74c5dc;
     margin-right: -4px;
-    border-bottom-left-radius: 1rem;
-    border-top-left-radius: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    margin-right: 1rem;
   }
 }

@@ -4,6 +4,7 @@
 {% load utils %}
 
 {% block extra-scripts %}
+  <script src="{% static "js/jquery.validate.js" %}"> </script>
   <script src="{% static "js/add_articles.js" %}"> </script>
 
   <script>
@@ -48,7 +49,7 @@
     {{ law.title }}
 </h3>
 
-  <form id="editArticle" method="post" action="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">
+  <form class="validate_this" id="editArticle" method="post" action="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">
     {% csrf_token %}
       <input name="legislation" value="{{ law.pk }}" hidden>
 
@@ -92,9 +93,9 @@
         <div>
           <label class="label-large" for="id_tags">Tags</label>
         </div>
-        <div>
-          Select the best areas where the article fits
-        </div>
+        <h5>
+          <b>Select the best areas where the article fits</b>
+        </h5>
         <div class="list-container">
           <ul name='tags' id='tags'>
             {% for tag_group in tag_groups %}
@@ -128,55 +129,50 @@
           <label class="label-large" for="id_classifications">Classification <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
         </div>
 
-        <div>
-          Select the legal areas where the article fits
-        </div>
+        <h5>
+          <b>Select the legal areas where the article fits</b>
+        </h5>
 
         <div class="list-container">
           <ul>
             {% for top_class in classifications %}
               <li class="first-level level">
+                {% with top_class.get_children as second_classifications %}
                 <span  class="list-header" {% if not top_class.get_children %} style="pointer-events: none;" {% endif %} >
-                  {% if top_class.get_children %}
-                    <input name='classification_{{ top_class.pk }}' type='checkbox'
-                        {% if top_class.name in selected_classifications %}
-                          checked
-                        {% endif %}>
-                      {{ top_class.name }}
-                    </input>
-                    <i class="fa fa-plus-square" aria-hidden="true"></i>
-                  {% else %}
-                    <span>{{ top_class.name }}</span>
-                  {% endif %}
+                    <span name='topClass_{{ top_class.pk }}'>{{ top_class.name }}</span>
+                    {% if second_classifications %}
+                      <i class="fa fa-plus-square" aria-hidden="true"></i>
+                    {% endif %}
                 </span>
                   
                 <ul class="second-level level">
-                  {% for second_class in top_class.get_children %}
+                  {% for second_class in second_classifications %}
                     <li>
                       <span class="list-header">
                         <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox
                             {% if second_class.name in selected_classifications %}
                               checked
                             {% endif %}>
-                          {{ second_class.name }}
                         </input>
+                        <label for="classification_{{ second_class.name }}">{{ second_class.name }}</label>
                         <i class="fa fa-plus-square" aria-hidden="true"></i>
                       </span>
                       <ul class="third-level level">
                         {% for third_class in second_class.get_children %}
                           <li>
-                            <input name='classification_{{third_class.pk}}' id='classification_'{{ third_class.name }} type=checkbox
+                            <input name='classification_{{third_class.pk}}' id='classification_{{ third_class.name }}' type=checkbox
                                 {% if third_class.name in selected_classifications %}
                                   checked
                                 {% endif %}> 
-                              {{ third_class.name }}
                             </input>
+                            <label for="classification_{{ third_class.name }}">{{ third_class.name }}</label>
                           </li>
                         {% endfor %}
                       </ul>
                     </li>
                   {% endfor %}
                 </ul>
+                {% endwith %}
               </li>
             {% endfor %}
           </ul>
