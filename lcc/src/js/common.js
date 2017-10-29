@@ -44,24 +44,36 @@ function thisRespondHightlightText(thisDiv, statebutton){
         var selectedText = getSelectionText();
         if(statebutton.html() == functionality[0]){
             $('#id_text').val(function(i, text) {
-                if(selectedText.length == 0)
+                if(selectedText.length == 0){
                     return text
+                }
                 if($(this).val().length == 0){
                     return selectedText;
                 }
-                else
+                else{
                     return text + '\n' + selectedText;
+                }
             });
         }
         else{
             $('#id_text').val(function(i, text){
-                if(selectedText.length == 0)
+                if(selectedText.length == 0){
                     return text
-                else
+                }
+                else{
                     return selectedText
+                }
             });
         }
+    $('textarea').focus()
     });
+}
+
+function updateTextarea() {
+    var textarea = $('textarea')
+    var max_length = textarea.attr('maxlength');
+    var current_length = textarea.val().length
+    $("#rem_char").html((max_length - current_length) + " characters left");
 }
 
 $(document).ready(function() {
@@ -78,11 +90,16 @@ $(document).ready(function() {
         $checkbox.toggleClass('fa-minus-square')
     })
 
-    $("#rem_char").html("1024 characters left");
+    var textarea = $('textarea')
+    if(textarea.length > 0){    
+        var max_length = textarea.attr('maxlength');
+        var current_length = textarea.val().length
+         $("#rem_char").html((max_length - current_length) + " characters left");
 
-    $('body').on("change keyup input", "textarea" , function() {
-        $("#rem_char").html((1024 - this.value.length) + " characters left");
-    })
+        $('body').on("onchange keyup focus input", "textarea" , function() {
+            updateTextarea()
+        })
+    }
 
 
     $(".check-fields input").change(function() {
