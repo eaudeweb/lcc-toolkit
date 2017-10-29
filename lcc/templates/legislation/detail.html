@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-  <div class="viz-container">
+  <div class="page-container half viz-container">
     <h4 class="country_year">
       {% static "" as baseUrl %}
       <img class="flag" src="{{ baseUrl }}/img/flags/{{ law.country.iso |lower }}.svg">
@@ -74,5 +74,8 @@
         </a>
       </div>
     {% endif %}
+  </div>
+  <div class="page-container half right viz-container">
+      RIGHT SIDE HERE
   </div>
 {% endblock %}
