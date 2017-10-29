@@ -14,20 +14,43 @@
       <span>{{ law.country.name }}</span>
       <span> | {{ law.year }}</span>
     </h4>
-    <h4>Date details</h4>
-    <p>{% if law.year_mention %}{{ law.year_mention }}{% else %} - {% endif %}</p>
-    <h4>Full Text</h4>
-    <p>{{ law.pdf_file_name }}</p>
-    <h4>Abstract</h4>
-    <p>{% if law.abstract %}{{ law.abstract }}{% else %} - {% endif %}</p>
-    <h4>Classification</h4>
-    <p>{% if law.all_classifications %}{{ law.all_classifications }}{% else %} - {% endif %}</p>
-    <h4>Tags</h4>
-    <p>{% if law.all_tags %}{{ law.all_tags }}{% else %} - {% endif %}</p>
-    <h4>Language</h4>
-    <p>{% if law.language %}{{ law.language }}{% else %} - {% endif %}</p>
-    <h4>Document type</h4>
+
+    <h3>Abstract</h3>
+    <p>{% if law.abstract %}<pre>{{ law.abstract }}</pre>{% else %} - {% endif %}</p>
+
+    <h3>Full Text</h3>
+    <p><a href="{{ law.pdf_file.url }}" target="_blank">{{ law.pdf_file_name }}</a></p>
+
+    <h3>Language</h3>
+    <p>{% if law.language %}{{ law.get_language_display }}{% else %} - {% endif %}</p>
+
+    <h3>Document type</h3>
     <p>{% if law.law_type %}{{ law.law_type }}{% else %} - {% endif %}</p>
+
+    <h3>Latest known amendment (year)</h3>
+    <p>{% if law.year_amendment %}{{ law.year_amendment }}{% else %} - {% endif %}</p>
+
+    <h3>Additional date details</h3>
+    <p>{% if law.year_mention %}{{ law.year_mention }}{% else %} - {% endif %}</p>
+
+    <h3>Geographical Coverage</h3>
+    <p>{% if law.geo_coverage %}{{ law.get_geo_coverage_display }}{% else %} - {% endif %}</p>
+
+    <h3>Website</h3>
+    <p>{% if law.website %}{{ law.website }}{% else %} - {% endif %}</p>
+
+    <h3>Source</h3>
+    <p>{% if law.source %}{{ law.source }}{% else %} - {% endif %}</p>
+
+    <h3>Type of source</h3>
+    <p>{% if law.source_type %}{{ law.get_source_type_display }}{% else %} - {% endif %}</p>
+
+    <h3>Classification</h3>
+    <p>{% if law.all_classifications %}{{ law.all_classifications }}{% else %} - {% endif %}</p>
+
+    <h3>Tags</h3>
+    <p>{% if law.all_tags %}{{ law.all_tags }}{% else %} - {% endif %}</p>
+  
     {% if request.user.is_authenticated %}
       <div class="button-wrapper">
         {% if law.articles.all %}
