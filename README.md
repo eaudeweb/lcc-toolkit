@@ -15,61 +15,60 @@ A web application which stands as a toolkit for climate change law assessment.
 
 1. Get the source code:
 
-        $ git clone https://github.com/eaudeweb/lcc-toolkit
-        $ cd lcc-toolkit
+        git clone https://github.com/eaudeweb/lcc-toolkit
+        cd lcc-toolkit
 
 1. Customize the environment files:
 
-        $ cp docker/postgres.env.example docker/postgres.env
-        $ vim docker/postgres.env
-        $ cp docker/web.env.example docker/web.env
-        $ vim docker/web.env
-        $ cp docker/init.sql.example docker/init.sql
-        $ vim docker/init.sql
+        cp docker/postgres.env.example docker/postgres.env
+        vim docker/postgres.env
+        cp docker/web.env.example docker/web.env
+        vim docker/web.env
+        cp docker/init.sql.example docker/init.sql
+        vim docker/init.sql
 
     Depending on the installation type, create the docker-compose.override.yml file:
 
-         $ cp docker-compose.override.[prod|dev].yml docker-compose.override.yml
-         $ vim docker-compose.override.yml
+         cp docker-compose.override.[prod|dev].yml docker-compose.override.yml
+         vim docker-compose.override.yml
 
 1. Start the application stack:
 
-        $ docker-compose up -d
-        $ docker-compose logs
+        docker-compose up -d
+        docker-compose logs
 
 1. Attach to the web service:
 
-        $ docker-compose run --entrypoint bash web
+        docker-compose run --entrypoint bash web
 
-1. Create a superuser (for Ansible see https://gist.github.com/elleryq/9c70e08b1b2cecc636d6):
+1. Create a superuser (for Ansible see <https://gist.github.com/elleryq/9c70e08b1b2cecc636d6):>
 
-        $ docker-compose run --entrypoint bash web
-        $ python manage.py createsuperuser
+        docker-compose run --entrypoint bash web
+        python manage.py createsuperuser
 
-That's it. You should now be able to access the app at http://localhost:8000.
+That's it. You should now be able to access the app at <http://localhost:8000.>
 
 ## Debugging the application
 
 * Set `DEBUG=on` in `web.env` file.
 
-* Update docker-compose.override.yml file `web` section with the following so that `docker-entrypoint.sh`
-is not executed:
+* Update docker-compose.override.yml file `web` section with the following so that `docker-entrypoint.sh` is not executed:
 
         entrypoint: ["/usr/bin/tail", "-f", "/dev/null"]
 
 * Attach to the web service and run the following:
 
-        $ ./manage.py migrate
-        $ ./manage.py load_fixtures
-        $ ./manage.py createsuperuser
-        # ./manage.py runserver 0.0.0.0:8000
+        python manage.py migrate
+        python manage.py load_fixtures
+        python manage.py createsuperuser
+        python manage.py runserver 0.0.0.0:8000
 
 ## Testing
 
 To execute the test suite, attach to the web service and run the following:
 
-    $ pip install -r requirements-dev.txt
-    $ python manage.py test
+    pip install -r requirements-dev.txt
+    python manage.py test
 
 ## Configuration variables
 
