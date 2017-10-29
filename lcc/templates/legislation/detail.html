@@ -12,7 +12,10 @@
 {% endblock %}
 
 {% block content %}
-  <div class="page-container half viz-container">
+
+{% with law.other_legislations as other_legislations %}
+
+  <div class="page-container {% if other_legislations %}half{% endif %} viz-container">
 
     <div class="dl">
       <div class="dd"><span>Country</span></div>
@@ -98,27 +101,30 @@
       <div class="dt">{% if law.source_type %}{{ law.get_source_type_display }}{% else %} - {% endif %}</div>
     </div>
   </div>
-  <div class="page-container half right viz-container">
-    {% for classification, legislations in law.other_legislations.items %}
-      {% if legislations %}
-        <div class="other-results-wrapper">
-          <div class="section-header">
-            <span class="icon-level-down"></span><span>Other results in </span><span class="result">{{ classification.name }}</span>
+
+  {% if other_legislations %}
+    <div class="page-container half right viz-container">
+      {% for classification, legislations in other_legislations.items %}
+        {% if legislations %}
+          <div class="other-results-wrapper">
+            <div class="section-header">
+              <span class="icon-level-down"></span><span>Other results in </span><span class="result">{{ classification.name }}</span>
+            </div>
+            <ul>
+              {% for legislation in legislations %}
+                <li>
+                  <a href="{% url 'lcc:legislation:details' legislation_pk=legislation.pk %}">
+                   {{ legislation.title }}
+                  </a>
+                  <div>{{ legislation.country }} | {{ legislation.year }}</div>
+                </li>
+              {% endfor %}
+            </ul>
           </div>
-          <ul>
-            {% for legislation in legislations %}
-              <li>
-                <a href="{% url 'lcc:legislation:details' legislation_pk=legislation.pk %}">
-                 {{ legislation.title }}
-                </a>
-                <div>{{ legislation.country }} | {{ legislation.year }}</div>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 
   {% if request.user.is_authenticated %}
     <div class="button-wrapper no-container">
@@ -138,4 +144,5 @@
       </a>
     </div>
   {% endif %}
+{% endwith %}
 {% endblock %}
