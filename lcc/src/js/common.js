@@ -14,9 +14,11 @@ function getSelectionText() {
 var functionality = ['Append', 'Replace'];
 
 
-function thisRespondHightlightText(thisDiv, statebutton){
+function thisRespondHightlightText(thisDiv){
    $('body').on("mouseup", thisDiv , function () {
+        var statebutton = $('.state .active')
         var selectedText = getSelectionText();
+        console.log(statebutton.attr('functionality'))
         if(statebutton.attr('functionality') == functionality[0]){
             $('#id_text').val(function(i, text) {
                 if(selectedText.length == 0){
@@ -83,7 +85,7 @@ $(document).ready(function() {
 
 
 
-    thisRespondHightlightText('#raw-text-page', $('.state button.active'))
+    thisRespondHightlightText('#raw-text-page')
 
 
     $('body').on('click','.state button', function(){
