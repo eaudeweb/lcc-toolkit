@@ -21,8 +21,8 @@
     width: 31px;" 
     class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" >{{ law.title }}
 </h3>
-<div class="articles-container page-container half">
 {% if articles %}
+<div class="articles-container page-container half">
   {% for article in articles %}
     <div class="viz-container multiple">
       <a class="btn btn-info pull-right" href="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">Edit</a>
@@ -62,13 +62,14 @@
 
     </div>
   {% endfor %}
-{% else %}
-  <p>This law does not have articles.</p>
-{% endif %}
 </div>
 {% include 'legislation/articles/pdf_view.html' %}
+{% else %}
+<div class="articles-container page-container">
+  <p>This law does not have articles.</p>
+{% endif %}
 
-<div class="button-wrapper" style="margin:1rem 0;width: 100%;float: left;">
+<div class="button-wrapper clearfix" style="text-align:left;margin:1rem 0;width: 100%;float: left;">
   <a class="btn btn-primary" href="{% url 'lcc:legislation:explorer' %}">View all legislations</a>
   <a class="btn btn-primary" href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">Add articles</a>
 </div>
