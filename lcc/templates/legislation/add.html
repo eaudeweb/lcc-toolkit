@@ -86,7 +86,7 @@
                 {% elif country.name == request.user_profile.country %}
                   selected
                 {% endif %}>
-                {{country.name}}
+                {{ country.name }}
               </option>
               {% endfor %}
             </select>
@@ -317,12 +317,12 @@
               {% for top_class in classifications %}
                 <li class="first-level level">
                   <span style="padding: 0;" class="list-header">
-                    <input name='classification_{{ top_class.pk }}' id='classification_{{ top_class.name }}' type='checkbox'
+                    <input name='classification_{{ top_class.pk }}' id='classification_{{ top_class.pk }}' type='checkbox'
                         {% if top_class.pk in form.tags.value %}
                           checked
                         {% endif %}>
                     </input>
-                    <label for="classification_{{ top_class.name }}">{{ top_class.name }}</label>
+                    <label for="classification_{{ top_class.pk }}">{{ top_class.name }}</label>
                   </span>
                 </li>
               {% endfor %}

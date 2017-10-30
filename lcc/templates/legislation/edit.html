@@ -242,9 +242,9 @@
               <div>
                 <label for="id_tags">Tags</label>
               </div>
-              <div>
-                Select the best areas where the legislation fits
-              </div>
+              <h5>
+                <b>Select the best areas where the legislation fits</b>
+              </h5>
               <div class="list-container">
                 <ul name='tags' id='tags'>
                   {% for tag_group in tag_groups %}
@@ -275,9 +275,9 @@
                 <label for="id_classifications">Classification</label>
               </div>
 
-              <div>
-                Select the legal areas where the legislation fits
-              </div>
+              <h5>
+                <b>Select the legal areas where the legislation fits</b>
+              </h5>
 
               <div class="list-container">
                 <ul>
@@ -311,7 +311,7 @@
           <div class="button-wrapper">
             <button type="submit" class="btn btn-info" id='save-btn' name='save-law-id-btn' value="{{law.pk}}"> Save </button>
             <a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-danger" id="special-button">Cancel</a>
-            <a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-success" id="cancel-btn">Manage articles</a>
+            <a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-success" id="special-button">Manage articles</a>
           </div>
         </form>
       </div>
