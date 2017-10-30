@@ -153,4 +153,10 @@ $(document).ready(function() {
         changePage($('.pdf'), page_number)
     })
 
+    var equalize = $('.equalize')
+
+    if(equalize.length > 0 ){
+        $('.content-wrapper').css('overflow', 'initial');
+    }
+
 })
