@@ -1,20 +1,30 @@
 {% extends "legislation/explorer.html" %}
 
+{% load static %}
+
+{% block extra-scripts %}
+  <script src="{% static "js/upload.js" %}"></script>
+{% endblock %}
+{% block page-title %}Add new legislation{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <span> <i class="icon-right-open-mini"></i>Add</span>
+{% endblock %}
+
 {% block content %}
 
 <div class="row addLeg">
   <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="">
       <div class="panel-body">
-        <div id="title" class="heading">
-          Add new legislation
-        </div>
       <form id="legislationAddForm" enctype="multipart/form-data" method="post"
             action="{% url 'lcc:legislation:add' %}">
         {% csrf_token %}
+
       <div class='law-meta-data-container'>
         <div>
-          <label class="label-large" for="id_title">Title</label>
+          <label class="label-large" for="id_title">Title <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
         </div>
         <div>
           <input class='law-meta-data-text-field' type="text" name="title"
@@ -28,7 +38,7 @@
         </div>
 
         <div class="clearfix">
-          <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" required id="id_abstract" placeholder="Add Abstract">{{ form.abstract.value|default_if_none:'' }}</textarea>
+          <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="abstract" maxlength="1024" id="id_abstract" placeholder="Add Abstract">{{ form.abstract.value|default_if_none:'' }}</textarea>
         <small class="pull-right" id="rem_char"></small>
         </div>
       </div>
@@ -37,7 +47,7 @@
       <div class='full-width-bg'>
         <div class="container upload-container">
           <div>
-            <label style="margin-bottom: 0" class="label-large" for="id_pdf_file">Upload file</label>
+            <label style="margin-bottom: 0" class="label-large" for="id_pdf_file">Upload file <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
           </div>
 
           <div class="label-description">
@@ -49,7 +59,6 @@
           </div>
           <!-- TODO Style this for error type; Should disapear once a pdf have been reuploaded  -->
           {% if form.errors %}
-            <h1>{{ form.errors }}</h1>
             {% if form.errors.pdf_file %}
               <span class="pdf-error error">{{ form.errors.pdf_file }}</span>
             {% else %}
@@ -63,7 +72,7 @@
       <div class='law-meta-data-container'>
         <div class="selector selector-inline--4">
           <div>
-            <label class="label-medium" for="id_country">Country:</label>
+            <label class="label-medium" for="id_country">Country <p style="display: inline-block; color: red;" title="This field is required.">*</p>:</label>
           </div>
           <div>
             <select name="country" required id="id_country"
@@ -74,10 +83,10 @@
                   {% if form.country.value == country.iso %}
                     selected
                   {% endif %}
-                {% elif country.name == user_country %}
+                {% elif country.name == request.user_profile.country %}
                   selected
                 {% endif %}>
-                {{country.name}}
+                {{ country.name }}
               </option>
               {% endfor %}
             </select>
@@ -161,7 +170,7 @@
             <label class="label-medium" for="id_website">Website:</label>
           </div>
           <div>
-            <input class='law-meta-data-text-field' type="text" required id="id_website"
+            <input class='law-meta-data-text-field' type="text" id="id_website"
                    name="website" maxlength="256" value="{{ form.website.value|default_if_none:'' }}"/>
             {% if form.errors.website %}
               <span class="year-details error">{{ form.errors.website }}</span>
@@ -174,8 +183,9 @@
             <label class="label-medium" for="id_source">Source:</label>
           </div>
           <div>
-            <input class='law-meta-data-text-field' type="text" id="id_source" required
-                   name="source" maxlength="256" value="{{ form.source.value|default_if_none:'' }}"/>
+            <input class='law-meta-data-text-field' type="text" id="id_source"
+                   name="source" maxlength="256"
+                   value="{{ form.source.value|default_if_none:'' }}"/>
           </div>
         </div>
 
@@ -229,14 +239,13 @@
           </div>
           <div>
             <select name="year_amendment" id="id_year_amendment" class="law-meta-data-combobox">
+              <option value="" {% if not form.year_amendment.value %} selected {% endif %}>----</option>
               {% for year in adoption_years %}
                 <option value="{{ year }}"
                     {% if form.year_amendment.value %}
                       {% if form.year_amendment.value == year|slugify %}
                         selected
                       {% endif %}
-                    {% elif forloop.last %}
-                      selected
                     {% endif %}>
                   {{ year }}
                 </option>
@@ -252,10 +261,6 @@
           <div>
             <input class='law-meta-data-text-field' type="text" id="id_year_mention"
                    name="year_mention" maxlength="256" value="{{ form.year_mention.value|default_if_none:'' }}"/>
-            <!-- TODO: this checks if the field have a 4 digit string. Could be done in js. -->
-            {% if form.errors.year_mention %}
-              <span class="year-details error">{{ form.errors.year_mention.0 }}</span>
-            {% endif %}
           </div>
         </div>
       </div>
@@ -266,9 +271,9 @@
           <div>
             <label for="id_tags" class="label-medium">Tags</label>
           </div>
-          <div class="list-header">
-            Select the best areas where the legislation fits
-          </div>
+          <h5>
+            <b>Select the best areas where the legislation fits</b>
+          </h5>
           <div class="list-container">
             <ul name='tags' id='tags'>
               {% for tag_group in tag_groups %}
@@ -287,7 +292,6 @@
                                checked
                                   {% endif %}
                                 {% endif %}>
-                        {{ tag.name }}
                         </input>
                         <label for="tag_{{ tag.pk }}">{{ tag.name }}</label>
                       </li>
@@ -301,31 +305,25 @@
 
         <div class="classificaions wrapper">
           <div>
-            <label for="id_classifications" class="label-medium">Classifications</label>
+            <label for="id_classifications" class="label-medium">Classification</label>
           </div>
 
-          <div class="list-header">
-            Select the legal areas where the legislation fits
-          </div>
+          <h5>
+            <b>Select the legal areas where the legislation fits</b>
+          </h5>
 
           <div class="list-container">
             <ul>
               {% for top_class in classifications %}
                 <li class="first-level level">
-                  {% if top_class.get_children %}
-                    <span class="list-header">
-                      <input name='classification_{{ top_class.pk }}' type='checkbox'
-                          {% if top_class.pk in form.tags.value %}
-                            checked
-                          {% endif %}>
-                      </input>
-                      <label for="classification_{{ top_class.pk }}">{{ top_class.name }}</label>
-                    </span>
-                  {% else %}
-                    <span class="list-header unusable">
-                      <span>{{ top_class.name }}</span>
-                    </span>
-                  {% endif %}
+                  <span style="padding: 0;" class="list-header">
+                    <input name='classification_{{ top_class.pk }}' id='classification_{{ top_class.pk }}' type='checkbox'
+                        {% if top_class.pk in form.tags.value %}
+                          checked
+                        {% endif %}>
+                    </input>
+                    <label for="classification_{{ top_class.pk }}">{{ top_class.name }}</label>
+                  </span>
                 </li>
               {% endfor %}
             </ul>

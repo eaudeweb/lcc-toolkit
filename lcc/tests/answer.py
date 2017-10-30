@@ -18,7 +18,7 @@ class GetAnswersTest(APITestCase):
         self.user = User.objects.create_user(
             'testuser', 'user@test.com', 'test1234')
         self.client.login(username='testuser', password='test1234')
-        self.country = Country.objects.create(iso='ro', name='Romania')
+        self.country = Country.objects.create(iso='ROU', name='Romania')
         self.assessment = Assessment.objects.create(
             user=self.user, country=self.country)
         self.classification = create_taxonomy_classication()
@@ -121,7 +121,7 @@ class UpdateSingleAnswer(APITestCase):
         self.user = User.objects.create_user(
             'testuser', 'user@test.com', 'test1234')
         self.client.login(username='testuser', password='test1234')
-        self.country = Country.objects.create(iso='ro', name='Romania')
+        self.country = Country.objects.create(iso='ROU', name='Romania')
         self.assessment = Assessment.objects.create(
             user=self.user, country=self.country)
         self.classification = create_taxonomy_classication()

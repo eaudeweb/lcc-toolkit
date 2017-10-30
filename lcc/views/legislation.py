@@ -13,7 +13,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from lcc import models, constants, forms
 from lcc.constants import LEGISLATION_YEAR_RANGE
 from lcc.documents import LegislationDocument
-from lcc.views.base import UserPatchMixin, TagGroupRender, TaxonomyFormMixin
+from lcc.views.base import TagGroupRender, TaxonomyFormMixin
 
 
 def legislation_save_pdf_pages(law, pdf):
@@ -38,7 +38,7 @@ def legislation_save_pdf_pages(law, pdf):
               (time.time() - time_begin_transaction))
 
 
-class LegislationExplorer(UserPatchMixin, ListView):
+class LegislationExplorer(ListView):
     template_name = "legislation/explorer.html"
     model = models.Legislation
 
@@ -119,9 +119,8 @@ class LegislationExplorer(UserPatchMixin, ListView):
         return context
 
 
-class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
+class LegislationAdd(mixins.LoginRequiredMixin, TaxonomyFormMixin,
                      CreateView):
-    login_url = constants.LOGIN_URL
     template_name = "legislation/add.html"
     form_class = forms.LegislationForm
 
@@ -130,7 +129,6 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixi
         countries = sorted(models.Country.objects.all(), key=lambda c: c.name)
         context.update({
             "countries": countries,
-            "user_country": self.request.user_profile.country,
             "legislation_type": constants.LEGISLATION_TYPE,
             "tag_groups": [
                 TagGroupRender(tag_group)
@@ -159,14 +157,14 @@ class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixi
             return HttpResponseRedirect(reverse("lcc:legislation:explorer"))
 
 
-class LegislationView(UserPatchMixin, DetailView):
+class LegislationView(DetailView):
     template_name = "legislation/detail.html"
     pk_url_kwarg = 'legislation_pk'
     model = models.Legislation
     context_object_name = 'law'
 
 
-class LegislationPagesView(UserPatchMixin, views.View):
+class LegislationPagesView(views.View):
 
     def get(self, request, *args, **kwargs):
         law = get_object_or_404(models.Legislation,
@@ -179,9 +177,8 @@ class LegislationPagesView(UserPatchMixin, views.View):
         return JsonResponse(content)
 
 
-class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,
+class LegislationEditView(mixins.LoginRequiredMixin, TaxonomyFormMixin,
                           UpdateView):
-    login_url = constants.LOGIN_URL
     template_name = "legislation/edit.html"
     model = models.Legislation
     form_class = forms.LegislationForm
@@ -211,7 +208,11 @@ class LegislationEditView(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFor
         legislation = form.save()
         if 'pdf_file' in self.request.FILES:
             pdf = pdftotext.PDF(legislation.pdf_file)
-            models.LegislationPage.objects.filter(legislation=legislation).delete()
+            models.LegislationPage.objects.filter(
+                legislation=legislation).delete()
             legislation_save_pdf_pages(legislation, pdf)
 
-        return HttpResponseRedirect(reverse("lcc:legislation:explorer"))
+        return HttpResponseRedirect(
+            reverse('lcc:legislation:details',
+                    kwargs={'legislation_pk': legislation.pk})
+        )

@@ -26,3 +26,9 @@ services:
 
   db:
     container_name: lcct.db
+
+  mailtrap:
+    image: eaudeweb/mailtrap:latest
+    container_name: lcct.mail
+    ports:
+    - "8025:80"

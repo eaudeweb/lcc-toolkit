@@ -3,17 +3,28 @@
 
 
 {% block header-top-right %}
-	{% if request.user.is_authenticated %}
-	{% static "" as baseUrl %}
-     	{{request.user.get_full_name}}
-		<strong> {{request.user.full_name }} </strong> |
-		{% if request.user_profile.countries.all.0.iso %}
-			<img src="{{ baseUrl }}img/flags/{{request.user_profile.countries.all.0.iso | lower }}.png" >
-			{{request.user_profile.country}} |
-		{% endif %}
-		<a href="{% url 'lcc:auth:logout' %}" id='login-link'>Logout</a>
-	{% else %}
-		<a class="btn btn-login" href="{% url 'lcc:auth:login' %}" id='register-link'> Login</a>
-		<a class="btn btn-login" href="#" id='register-link'> Register </a>
-	{% endif %}
+<div class="user-actions">
+  {% if request.user.is_authenticated %}
+    <div class="authenticated">
+      <span class="icon-user-outline"></span>
+      <div class="actions-wrapper">
+          {% static "" as baseUrl %}
+          {% if request.user_profile %}
+           <span class="country">
+            <a href="{% url 'lcc:country:view' iso=request.user_profile.home_country.iso %}"><img class="flag" title="{{request.user_profile.country}}" src="{{ baseUrl }}img/flags/{{request.user_profile.flag | lower }}.svg" ></a>
+           </span>
+          {% endif %}
+          <span class="username">
+            {{ request.user.get_full_name|default:request.user.username }}
+          </span>
+            <div class="action">
+              <a class="btn btn-login" href="{% url 'lcc:auth:logout' %}" id='login-link'>Logout</a>
+            </div>
+      </div>
+    </div>
+  {% else %}
+    <a class="btn btn-login" href="{% url 'lcc:auth:login' %}" id='login-link'> Login</a>
+    <a class="btn btn-login" href="{% url 'lcc:auth:register' %}" id='register-link'> Register </a>
+  {% endif %}
+</div>
 {% endblock %}

@@ -1,32 +1,139 @@
 #top-header {
-        box-shadow: 0px 1px 3px #eee;
-    padding-bottom: 5px;
+    font-family: @Roboto;
+    * {
+        font-family: inherit;
+    }
     border: none;
-    .container {
-        width: 100%;
-        max-width: 1800px;
-        .right-div {
-            margin-top: 1rem;
+    //  // background: @brand-primary;
+    // /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3c98dd+0,4c70b5+99 */
+    // background: #3c98dd;
+    // /* Old browsers */
+    // background: -moz-linear-gradient(top, #3c98dd 0%, #4c70b5 99%);
+    // /* FF3.6-15 */
+    // background: -webkit-linear-gradient(top, #3c98dd 0%, #4c70b5 99%);
+    // /* Chrome10-25,Safari5.1-6 */
+    // background: linear-gradient(to bottom, #3c98dd 0%, #4c70b5 99%);
+    // /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3c98dd', endColorstr='#4c70b5', GradientType=0);
+    // /* IE6-9 */
+    background: white;
+    position: relative;
+    margin-bottom: 0;
+    border-bottom: 1px solid @grey-light;
+    color: @grey;
+    .header-wrapper {
+        display: block;
+        .clearfix;
+        padding: 1.5rem 2rem;
+    }
+
+    .right-div {
+        color: @grey;
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            color: inherit;
+            font-size: inherit;
             font-weight: 300;
         }
-    }
-    .menu {
-        display: inline-block;
-        margin-left: 2rem;
-        font-family: Open Sans;
-        font-weight: 300;
-        font-style: normal;
-        font-size: 19px;
-        line-height: 1.2em;
-        li {
-            display: inline-block;
-            a {
-                color: #aaa;
-                padding: 1rem;
-                &:hover {
-                    color: #00aeef;
-                }
+
+        .actions-wrapper {
+            display: none;
+            position: absolute;
+            top: -1.3rem;
+            background: white;
+            color: @grey;
+            z-index: 5;
+            padding-left: 2rem;
+            border-left: 1px solid @grey-light;
+            height: 61px;
+            width: 300px;
+            white-space: nowrap;
+            padding: 0;
+            /* border-bottom-left-radius: 1rem; */
+            right: 34px; // min-width: 313px;
+            text-align: center;
+            border-top: 1px solid white;
+            .action {
+                display: inline-block;
+                margin-top: 1rem;
+            }
+            .username {
+                font-size: 1.7rem;
+                margin-left: 1rem;
             }
         }
+
+        .authenticated {
+            position: relative;
+            >span {
+                font-size: 2rem;
+                padding-top: .5rem;
+                display: block;
+                cursor: pointer;
+            }
+        }
+    }
+    h2 {
+        color: @grey;
+        text-transform: uppercase;
+        font-weight: 300;
+        margin-top: 1rem;
+        font-size: 2rem;
+    }
+}
+
+.menu {
+    .clearfix;
+    padding: 0 2rem;
+    font-style: normal;
+    font-size: 14px; // background: rgba(0, 0, 0, 0.8);
+    img {
+          width: 20px;
+    margin-right: .5rem;
+    }
+    ul {
+        margin-bottom: 0;
+        float: left;
+    }
+    li {
+        transition: all 150ms;
+        display: inline-block;
+
+        &:hover {
+            // background: white;
+            // color: @brand-primary; // color: @grey;
+            a {
+                opacity: 0.65;
+            }
+        }
+        a {
+            display: block;
+            color: inherit;
+            padding: .5rem;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+    }
+}
+
+.breadcrumbs {
+    color: inherit;
+    float: right;
+    font-size: 12px;
+    display: block; // background: darken(@brand-primary, 4%);
+    color: @grey;
+    width: 100%;
+    span {
+        display: inline-block; // padding: .5rem;
+        &:first-of-type {
+            padding-right: 0;
+        }
+    }
+    i {
+        vertical-align: middle;
     }
 }

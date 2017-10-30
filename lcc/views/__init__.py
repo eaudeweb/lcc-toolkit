@@ -1,17 +1,22 @@
-from .api import *
-from .articles import *
-from .auth import *
-from .legislation import *
+from lcc.views import api
+from lcc.views import auth
+from lcc.views import base
+
+from lcc.views import register
+
+from lcc.views import articles
+from lcc.views import assessment
+from lcc.views import country
+from lcc.views import legislation
 
 
-class Index(UserPatchMixin, views.View):
-    def get(self, request):
-        return HttpResponseRedirect(reverse('lcc:legislation:explorer'))
-
-
-class LegalAssessment(mixins.LoginRequiredMixin, views.View):
-    login_url = constants.LOGIN_URL
-    template = "assessmetn.html"
-
-    def get(self, request):
-        return render(request, self.template)
+__ALL__ = (
+    api,
+    auth,
+    base,
+    register,
+    articles,
+    assessment,
+    country,
+    legislation,
+)

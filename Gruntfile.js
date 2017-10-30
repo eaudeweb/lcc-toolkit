@@ -22,6 +22,7 @@ module.exports = function(grunt) {
                     'lcc/src/js/lib/jquery.min.js',
                     'lcc/src/js/lib/bootstrap.min.js',
                     'lcc/src/js/lib/tether.min.js',
+                    'lcc/src/js/lib/jquery.sticky.js',
                     'lcc/src/js/common.js'
                 ],
                 dest: 'lcc/static/js/main.js'
@@ -32,19 +33,19 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'lcc/src/img',
                 src: '**',
-                dest: 'lcc/static/img/'
+                dest: 'lcc/static/img'
             },
             fonts: {
                 expand: true,
                 cwd: 'lcc/src/fonts',
-                src: '**',
+                src: '**/**',
                 dest: 'lcc/static/fonts'
             },
             js: {
                 expand: true,
                 cwd: 'lcc/src/js',
                 src: '*.js',
-                dest: 'lcc/static/js/'
+                dest: 'lcc/static/js'
             }
         },
         watch: {

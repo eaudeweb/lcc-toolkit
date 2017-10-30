@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_webtest',
     'django_elasticsearch_dsl',
+    'rolepermissions',
     'rest_framework',
     'mptt',
     'lcc',
@@ -39,6 +40,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'lcc.middleware.user_profile'
 ]
 
 ROOT_URLCONF = 'lcctoolkit.urls'
@@ -61,6 +63,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'lcctoolkit.wsgi.application'
+ROLEPERMISSIONS_MODULE = 'lcc.roles'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -101,6 +104,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LOGIN_URL = "/login/"
 
 try:
     from .localsettings import *

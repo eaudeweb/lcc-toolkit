@@ -1,18 +1,237 @@
+import math
+from copy import deepcopy
+from operator import itemgetter
+
+import pycountry
 import mptt.models
+
+from rolepermissions.roles import get_user_roles
+
 from django.contrib.auth import get_user_model
 
 import lcc.utils as utils
 import lcc.constants as constants
 
 from django.db import models
-from django.dispatch import receiver
+from django.urls import reverse
 
 
 User = get_user_model()
 
 
+POP_RANGES = (
+    (0, 299),
+    (300, 1499),
+    (1500, 3999),
+    (4000, 5999),
+    (6000, 9999),
+    (10000, 19999),
+    (20000, 39999),
+    (40000, 99999),
+    (100000, math.inf),
+)
+
+HDI_RANGES = (
+    (0.350, 0.470),
+    (0.471, 0.501),
+    (0.502, 0.563),
+    (0.564, 0.607),
+    (0.608, 0.649),
+    (0.650, 0.693),
+    (0.694, 0.730),
+    (0.731, 0.754),
+    (0.755, 0.782),
+    (0.783, 0.807),
+    (0.808, 0.848),
+    (0.849, 0.884),
+    (0.885, 0.915),
+    (0.916, 0.949),
+)
+
+GDP_RANGES = (
+    (0, 1005, 'Low'),
+    (1006, 3955, 'Lower-middle'),
+    (3956, 12235, 'Upper-middle'),
+    (12236, math.inf, 'High'),
+)
+
+
+GHG_NO_LUCF = (
+    (0, 0.99),
+    (1, 9.99),
+    (10, 24.99),
+    (25, 49.99),
+    (50, 99.99),
+    (100, 299.99),
+    (300, 999.99),
+    (1000, math.inf)
+)
+
+GHG_LUCF = (
+    (-math.inf, 0),
+    (0, 0.99),
+    (1, 9.99),
+    (10, 24.99),
+    (25, 49.99),
+    (50, 99.99),
+    (100, 299.99),
+    (300, 999.99),
+    (1000, math.inf)
+)
+
+
+def _format_range(range):
+    min, max = range
+    formatter = f'{min} - {max}'
+    if max == math.inf:
+        formatter = f'> {min}'
+    if min == -math.inf:
+        formatter = f'< {max}'
+    return formatter
+
+
+def _range_from_value(range, value):
+    min, max = map(itemgetter, (0, 1))
+    return next(
+        val for val in range
+        if min(val) <= value <= max(val)
+    )
+
+
+class Region(models.Model):
+    name = models.CharField('Name', max_length=128)
+
+    def __str__(self):
+        return self.name
+
+
+class SubRegion(models.Model):
+    name = models.CharField('Name', max_length=128)
+
+    def __str__(self):
+        return self.name
+
+
+class LegalSystem(models.Model):
+    name = models.CharField('Name', max_length=128)
+
+    def __str__(self):
+        return self.name
+
+
+class FocusArea(models.Model):
+    name = models.CharField('Name', max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class PrioritySector(models.Model):
+    name = models.CharField('Name', max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class CountryMetadata(models.Model):
+    country = models.ForeignKey('Country', related_name='metadata')
+    user = models.ForeignKey('UserProfile', null=True)
+
+    cw = models.BooleanField('CW', default=False)
+    small_cw = models.BooleanField('Small CW', default=False)
+    un = models.BooleanField('UN', default=False)
+    ldc = models.BooleanField('LDC', default=False)
+    lldc = models.BooleanField('LLDC', default=False)
+    sid = models.BooleanField('SID', default=False)
+
+    region = models.ManyToManyField(Region)
+    sub_region = models.ManyToManyField(SubRegion)
+    legal_system = models.ManyToManyField(LegalSystem)
+
+    population = models.FloatField("Population ('000s) 2018", null=True)
+    hdi2015 = models.FloatField('HDI2015', null=True)
+
+    gdp_capita = models.FloatField('GDP per capita, US$ 2016', null=True)
+    ghg_no_lucf = models.FloatField(
+        'Total GHG Emissions excluding LUCF MtCO2e 2014', null=True)
+    ghg_lucf = models.FloatField(
+        'Total GHG Emissions including LUCF MtCO2e 2014', null=True)
+    cvi2015 = models.FloatField('Climate vulnerability index 2015', null=True)
+
+    mitigation_focus_areas = models.ManyToManyField(
+        FocusArea, blank=True)
+
+    adaptation_priority_sectors = models.ManyToManyField(
+        PrioritySector, blank=True)
+
+    def __str__(self):
+        return f'{self.country.name} ({self.user or "no user"})'
+
+    def get_absolute_url(self):
+        return reverse('lcc:country:view', kwargs={'iso': self.country.iso})
+
+    @property
+    def population_range(self):
+        return _format_range(
+            _range_from_value(POP_RANGES, self.population))
+
+    @property
+    def hdi2015_range(self):
+        return (
+            _format_range(_range_from_value(HDI_RANGES, self.hdi2015))
+            if self.hdi2015 else 'N/A'
+        )
+
+    @property
+    def gdp_capita_range(self):
+        label = itemgetter(2)
+        return (
+            label(_range_from_value(GDP_RANGES, self.gdp_capita))
+            if self.gdp_capita else 'N/A'
+        )
+
+    @property
+    def ghg_no_lucf_range(self):
+        return (
+            _format_range(_range_from_value(GHG_NO_LUCF, self.ghg_no_lucf))
+            if self.ghg_no_lucf else None
+        )
+
+    @property
+    def ghg_lucf_range(self):
+        return (
+            _format_range(_range_from_value(GHG_LUCF, self.ghg_lucf))
+            if self.ghg_lucf else None
+        )
+
+    def clone_to_profile(self, user_profile):
+        # copy original
+        clone = deepcopy(self)
+        clone.pk = None
+        clone.user = user_profile
+
+        clone.save()
+
+        # copy many to many fields
+        m2m = (
+            f.name for f in self._meta.get_fields()
+            if isinstance(f, models.ManyToManyField)
+        )
+
+        for name in m2m:
+            val = (
+                getattr(self, name).all()
+                if hasattr(self, name) else []
+            )
+            setattr(clone, name, val)
+
+        clone.save()
+
+        return clone
+
+
 class Country(models.Model):
-    iso = models.CharField('ISO', max_length=2, primary_key=True)
+    iso = models.CharField('ISO', max_length=3, primary_key=True)
     name = models.CharField('Name', max_length=128)
 
     class Meta:
@@ -25,27 +244,36 @@ class Country(models.Model):
         return self.name
 
 
-class UserRole(models.Model):
-    name = models.CharField(max_length=32)
-
-    def __str__(self):
-        return self.name
-
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    current_role = models.ForeignKey(
-        UserRole, related_name="current_role", null=True)
-    roles = models.ManyToManyField(UserRole)
-
     home_country = models.ForeignKey(
-        Country, related_name="home_country", null=True)
+        Country, related_name='home_country', null=True)
     countries = models.ManyToManyField(Country)
 
+    affiliation = models.CharField(
+        'Institutional affiliation',
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
+    position = models.CharField(
+        'Position',
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
     @property
-    def role(self):
-        return self.current_role.name
+    def roles(self):
+        return get_user_roles(self.user)
+
+    @property
+    def flag(self):
+        """ Returns alpha3 from iso3.
+        """
+        return pycountry.countries.get(alpha_3=self.home_country.iso).alpha_3
 
     @property
     def country(self):
@@ -57,17 +285,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-@receiver(models.signals.post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-
-
-@receiver(models.signals.post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()
 
 
 class TaxonomyTagGroup(models.Model):
@@ -164,10 +381,18 @@ class Taxonomized(models.Model):
     def tags_as_string(self):
         return ", ".join(list(self.tags.values_list('name', flat=True)))
 
+    @property
+    def other_legislations(self):
+        other = {}
+        for classification in self.classifications.all():
+            other[classification] = Legislation.objects.filter(
+                classifications__id__exact=classification.pk).exclude(pk=self.pk).all()[:3]
+        return other
+
 
 class Legislation(Taxonomized):
     title = models.CharField(max_length=256)
-    abstract = models.CharField(max_length=1024)
+    abstract = models.CharField(max_length=1024, blank=True, null=True)
     country = models.ForeignKey(Country)
     language = models.CharField(
         choices=constants.ALL_LANGUAGES,
@@ -179,9 +404,10 @@ class Legislation(Taxonomized):
         default=constants.LEGISLATION_TYPE_DEFAULT,
         max_length=64
     )
-    year = models.IntegerField(default=constants.LEGISLATION_DEFAULT_YEAR)
+    year = models.IntegerField(default=constants.LEGISLATION_YEAR_RANGE[-1])
     year_amendment = models.IntegerField(
         default=constants.LEGISLATION_DEFAULT_YEAR,
+        blank=True,
         null=True
     )
     year_mention = models.CharField(max_length=1024, blank=True, null=True)
@@ -191,11 +417,11 @@ class Legislation(Taxonomized):
         max_length=64,
         null=True
     )
-    source = models.CharField(max_length=256, null=True)
+    source = models.CharField(max_length=256, blank=True, null=True)
     source_type = models.CharField(
         choices=constants.SOURCE_TYPE,
         default=constants.SOURCE_TYPE_DEFAULT,
-        max_length=64, null=True
+        max_length=64, blank=True, null=True
     )
     website = models.URLField(max_length=2000, null=True)
 
@@ -210,7 +436,7 @@ class Legislation(Taxonomized):
 class LegislationArticle(Taxonomized):
     text = models.CharField(max_length=65535)
     legislation = models.ForeignKey(Legislation, related_name="articles")
-    tags = models.ManyToManyField(TaxonomyTag)
+    tags = models.ManyToManyField(TaxonomyTag, blank=True)
     classifications = models.ManyToManyField(TaxonomyClassification)
     legislation_page = models.IntegerField()
     code = models.CharField(max_length=64)
@@ -226,7 +452,16 @@ class LegislationPage(models.Model):
     legislation = models.ForeignKey(Legislation, related_name="page")
 
     def __str__(self):
-        return "Page %d of Legislation %s" % (self.page_number, str(self.legislation.title))
+        return "Page %d of Legislation %s" % (
+            self.page_number, str(self.legislation.title)
+        )
+
+
+class Gap(models.Model):
+    on = models.BooleanField()
+    classifications = models.ManyToManyField(
+        TaxonomyClassification, blank=True)
+    tags = models.ManyToManyField(TaxonomyTag, blank=True)
 
 
 class Question(mptt.models.MPTTModel):
@@ -240,10 +475,9 @@ class Question(mptt.models.MPTTModel):
     parent_answer = models.NullBooleanField(default=None)
     order = models.IntegerField(blank=True)
 
-    classification = models.ForeignKey(TaxonomyClassification)
-    tags = models.ManyToManyField(TaxonomyTag)
-
-    gap_on = models.NullBooleanField(default=None)
+    classification = models.ForeignKey(
+        TaxonomyClassification, null=True, blank=True)
+    gaps = models.ManyToManyField(Gap, blank=True)
 
     class Meta:
         verbose_name = 'Question'
@@ -254,7 +488,7 @@ class Question(mptt.models.MPTTModel):
 
     def save(self, *args, **kwargs):
         if not self.order:
-            self.order = utils.set_order(self.parent)
+            self.order = utils.set_order(self.classification, self.parent)
         super(Question, self).save(*args, **kwargs)
 
     @property
@@ -284,6 +518,11 @@ class Assessment(models.Model):
     class Meta:
         unique_together = ("user", "country")
 
+    def __str__(self):
+        return "%s' assessment for %s" % (
+            self.user.username, self.country.name
+        )
+
 
 class Answer(models.Model):
     assessment = models.ForeignKey(Assessment)
@@ -291,4 +530,9 @@ class Answer(models.Model):
     value = models.BooleanField()
 
     class Meta:
-        unique_together = ("question", "value")
+        unique_together = ("question", "assessment")
+
+    def __str__(self):
+        return "Question %d for assessment %d" % (
+            self.question.pk, self.assessment.pk
+        )

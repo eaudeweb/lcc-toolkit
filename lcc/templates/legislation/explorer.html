@@ -9,11 +9,19 @@
 
 {% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
 
-{% block menu-top %}
-  <li> <a href="/#"> Dashboard </a> </li>
-  <li> <a href="{% url 'lcc:legislation:explorer' %}" class="menu-top-active"> Legislation</a></li>
+{% block page-title %}Legislation Explorer{% endblock %}
+
+{% block page-menu %}
+<ul>
+    <li><a href="{% url 'lcc:legislation:add' %}" class="btn btn-info">Add legislation</a></li>
+</ul>
 {% endblock %}
 
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:explorer' %}">Legislation</a></span>
+{% endblock %}
 
 {% block content %}
   <div id="title" class="heading">
@@ -56,7 +64,7 @@
       <a href="{% url 'lcc:legislation:add' %}" class="btn btn-info">Add legislation</a>
     </div>
   </div>
-  <div id="laws">
+  <div id="laws" class="page-container viz-container">
     {% include "./_laws.html" %}
   </div>
 

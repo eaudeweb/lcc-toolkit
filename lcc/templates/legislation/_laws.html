@@ -1,18 +1,36 @@
 {% load static %}
 {% for law in laws %}
-  <div class="law-container">
-    <a href="{% url 'lcc:legislation:details' law.pk %}"><h3>{{ law }} - {{ law.title }}</h3></a>
+<div class="law-container">
+<hr>
+  <a href="{% url 'lcc:legislation:details' law.pk %}"><h5>{{ law }} - {{ law.title }}</h5></a>
 
-    <h4 class="country_year law-country">
-        {% static "" as baseUrl %}
-        <img  src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.png" >
-      <span>{{ law.country.name }}</span>
+  <h6 class="country_year law-country">
+    {% static "" as baseUrl %}
+    <img class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" >
+    <span>{{ law.country.name }}</span>
     <span> | {{ law.year }}</span>
-    </h4>
+  </h6>
 
-    <small class="law-tag"><b>Taxonomy Tags</b>: {{ law.tags_as_string }}</small> <br>
-    <small class="law-classification"><b>Taxonomy Classification</b>: {{ law.classifications_as_string }}</small>
+  <div class="dl">
+    <div class="dd"><span>Classification</span></div>
+    <div class="dt">
+    {% if law.all_classifications %}
+      {% for classification in law.classifications.all %}
+       <span class="tag">{{ classification.name }}</span>
+      {% endfor %}
+    {% else %} - {% endif %}</div>
   </div>
+
+  <div class="dl">
+    <div class="dd"><span>Tags</span></div>
+    <div class="dt">
+    {% if law.all_tags %}
+      {% for tag in law.tags.all%}
+       <span class="tag">{{ tag.name }}</span>
+      {% endfor %}
+    {% else %} - {% endif %}</div>
+  </div>
+</div>
 {% empty %}
   <span class="error">No legislation found</span>
 {% endfor %}

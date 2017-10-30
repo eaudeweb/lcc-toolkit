@@ -1,49 +1,148 @@
 {% extends "legislation/explorer.html" %}
 {% load static %}
 
+{% block page-title %}{{ law.title }}{% endblock %}
+{% block page-menu %}
+  {% include 'legislation/navigation.html' %}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <span> <i class="icon-right-open-mini"></i>{{ law.title }}</span>
+{% endblock %}
 
 {% block content %}
-  <div id="title" class="heading">
-    {{ law.title }}
-  </div>
-  <div class="viz-container">
-    <h4 class="country_year">
+
+{% with law.other_legislations as other_legislations %}
+
+  <div class="page-container {% if other_legislations %}half{% endif %} viz-container">
+
+    <div class="dl">
+      <div class="dd"><span>Country</span></div>
+      <div class="dt">
       {% static "" as baseUrl %}
-      <img src="{{ baseUrl }}/img/flags/{{ law.country.iso |lower }}.png">
-      <span>{{ law.country.name }}</span>
-      <span> | {{ law.year }}</span>
-    </h4>
-    <h3>Date details</h3>
-    <p>{{ law.year_mention }}</p>
-    <h3>Full Text</h3>
-    <p>{{ law.pdf_file_name }}</p>
-    <h3>Abstract</h3>
-    <p>{{ law.abstract }}</p>
-    <h3>Classification</h3>
-    <p>{{ law.classifications_as_string }}</p>
-    <h3>Tags</h3>
-    <p>{{ law.tags_as_string }}</p>
-    <h3>Language</h3>
-    <p><{{ law.language }}</p>
-    <h3>Document type</h3>
-    <p>{{ law.law_type }}</p>
-    {% if request.user.is_authenticated %}
-      <div class="button-wrapper">
-        {% if law.articles.all %}
-          <a class="btn btn-info"
-             href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">
-            Visualize the articles
-          </a>
-        {% endif %}
-        <a class="btn btn-info"
-           href="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
-          Edit
-        </a>
-        <a class="btn btn-info"
-           href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
-          Add articles
-        </a>
+        <img class="flag" src="{{ baseUrl }}/img/flags/{{ law.country.iso |lower }}.svg">
+        <span>{{ law.country.name }}</span>
       </div>
-    {% endif %}
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Date</span></div>
+      <div class="dt">{% if law.year %}{{ law.year }}{% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Full Text</span></div>
+      <div class="dt"><a href="{{ law.pdf_file.url }}" target="_blank">{{ law.pdf_file_name }}</a></div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Abstract</span></div>
+      <div class="dt">{% if law.abstract %}<pre>{{ law.abstract }}</pre>{% else %} - {% endif %}</div>
+    </div>
+<hr>
+    <div class="dl">
+      <div class="dd"><span>Classification</span></div>
+      <div class="dt">
+      {% if law.all_classifications %}
+        {% for classification in law.classifications.all %}
+         <span class="classification">{{ classification.name }}</span>
+        {% endfor %}
+      {% else %} - {% endif %}</div>
+    </div>
+<hr>
+    <div class="dl">
+      <div class="dd"><span>Tags</span></div>
+      <div class="dt">
+      {% if law.all_tags %}
+        {% for tag in law.tags.all%}
+         <span class="tag">{{ tag.name }}</span>
+        {% endfor %}
+      {% else %} - {% endif %}</div>
+    </div>
+<hr>
+    <div class="dl">
+      <div class="dd"><span>Language</span></div>
+      <div class="dt">{% if law.language %}{{ law.get_language_display }}{% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Document type</span></div>
+      <div class="dt">{% if law.law_type %}{{ law.law_type }}{% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Latest known amendment (year)</span></div>
+      <div class="dt">{% if law.year_amendment %}{{ law.year_amendment }}{% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Additional date details</span></div>
+      <div class="dt">{% if law.year_mention %}{{ law.year_mention }}{% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Geographical Coverage</span></div>
+      <div class="dt">{% if law.geo_coverage %}{{ law.get_geo_coverage_display }}{% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Website</span></div>
+      <div class="dt">{% if law.website %}<a href="{{ law.website }}">{{ law.website }}</a>{% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Source</span></div>
+      <div class="dt">{% if law.source %}{{ law.source }}{% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Type of source</span></div>
+      <div class="dt">{% if law.source_type %}{{ law.get_source_type_display }}{% else %} - {% endif %}</div>
+    </div>
   </div>
+
+  {% if other_legislations %}
+    <div class="page-container half right viz-container">
+      {% for classification, legislations in other_legislations.items %}
+        {% if legislations %}
+          <div class="other-results-wrapper">
+            <div class="section-header">
+              <span class="icon-level-down"></span><span>Other results in </span><span class="result">{{ classification.name }}</span>
+            </div>
+            <ul>
+              {% for legislation in legislations %}
+                <li>
+                  <a href="{% url 'lcc:legislation:details' legislation_pk=legislation.pk %}">
+                   {{ legislation.title }}
+                  </a>
+                  <div>{{ legislation.country }} | {{ legislation.year }}</div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if request.user.is_authenticated %}
+    <div class="button-wrapper no-container">
+      {% if law.articles.all %}
+        <a class="btn btn-info"
+           href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">
+          Visualize the articles
+        </a>
+      {% endif %}
+      <a class="btn btn-info"
+         href="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
+        Edit
+      </a>
+      <a class="btn btn-info"
+         href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
+        Add articles
+      </a>
+    </div>
+  {% endif %}
+{% endwith %}
 {% endblock %}

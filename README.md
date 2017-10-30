@@ -1,9 +1,9 @@
-# LawClimateChangeToolkit
+# Law Climate Change Toolkit
 
 A web application which stands as a toolkit for climate change law assessment.
 
-[![Travis](https://travis-ci.org/eaudeweb/lcc-toolkit.svg?branch=develop)](https://travis-ci.org/eaudeweb/lcc-toolkit)
-[![Coverage](https://coveralls.io/repos/github/eaudeweb/lcc-toolkit/badge.svg?branch=develop)](https://coveralls.io/github/eaudeweb/lcc-toolkit?branch=develop)
+[![Travis](https://travis-ci.org/eaudeweb/lcc-toolkit.svg)](https://travis-ci.org/eaudeweb/lcc-toolkit)
+[![Coverage](https://coveralls.io/repos/github/eaudeweb/lcc-toolkit/badge.svg)](https://coveralls.io/github/eaudeweb/lcc-toolkit)
 [![Docker](https://dockerbuildbadges.quelltext.eu/status.svg?organization=eaudeweb&repository=lcc-toolkit&tag=dev)](https://hub.docker.com/r/eaudeweb/lcc-toolkit/builds)
 
 ## Prerequisites
@@ -15,8 +15,8 @@ A web application which stands as a toolkit for climate change law assessment.
 
 1. Get the source code:
 
-        $ git clone https://github.com/eaudeweb/lcc-toolkit
-        $ cd lcc-toolkit
+        git clone https://github.com/eaudeweb/lcc-toolkit
+        cd lcc-toolkit
 
 1. Customize the environment files:
 
@@ -30,16 +30,15 @@ A web application which stands as a toolkit for climate change law assessment.
 
 1. Start the application stack:
 
-        $ docker-compose up -d
-        $ docker-compose logs
+        docker-compose up -d
+        docker-compose logs
 
 1. Attach to the web service:
 
         $ docker-compose run web
 
-1. Create a superuser (for Ansible see https://gist.github.com/elleryq/9c70e08b1b2cecc636d6):
+1. Create a superuser (for Ansible see <https://gist.github.com/elleryq/9c70e08b1b2cecc636d6):>
 
-        $ docker-compose run --entrypoint bash web
         $ python manage.py createsuperuser
 
 That's it. If you installed in production mode, you should be able to access the
@@ -61,10 +60,10 @@ Then run the web service
 
 and run the following:
 
-        $ ./manage.py migrate
-        $ ./manage.py load_fixtures
-        $ ./manage.py createsuperuser
-        # ./manage.py runserver 0.0.0.0:8000
+        $ python manage.py migrate
+        $ python manage.py load_fixtures
+        $ python manage.py createsuperuser
+        $ python manage.py runserver 0.0.0.0:8000
 
 ## Testing
 

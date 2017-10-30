@@ -26,16 +26,16 @@ ALL_LANGUAGES = (
     ('oth', 'Other')
 )
 
-LEGISLATION_TYPE_DEFAULT = ("Constitution", "Constitution")
+LEGISLATION_TYPE_DEFAULT = ("Law", "Law")
 LEGISLATION_TYPE = (
     LEGISLATION_TYPE_DEFAULT,
-    ("Law", "Law"),
+    ("Constitution", "Constitution"),
     ("Regulation", "Regulation"),
     ('oth', 'Other')
 )
 
-LEGISLATION_DEFAULT_YEAR = datetime.datetime.now().year
-LEGISLATION_YEAR_RANGE = range(1945, LEGISLATION_DEFAULT_YEAR + 1)
+LEGISLATION_DEFAULT_YEAR = None
+LEGISLATION_YEAR_RANGE = range(1945, datetime.datetime.now().year + 1)
 
 GEOGRAPHICAL_COVERAGE_DEFAULT = ("nat", "National")
 GEOGRAPHICAL_COVERAGE = (
@@ -49,5 +49,6 @@ GEOGRAPHICAL_COVERAGE = (
 SOURCE_TYPE_DEFAULT = ('official', 'Official')
 SOURCE_TYPE = (
     SOURCE_TYPE_DEFAULT,
-    ('unofficial', 'Unofficial')
+    ('unofficial', 'Unofficial'),
+    ('', '----')
 )
