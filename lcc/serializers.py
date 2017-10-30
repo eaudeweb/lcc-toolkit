@@ -84,7 +84,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 class AssessmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assessment
-        fields = '__all__'
+        fields = ("user", "country", "country_name")
 
 
 class CountrySerializer(serializers.ModelSerializer):

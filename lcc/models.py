@@ -500,6 +500,10 @@ class Assessment(models.Model):
     class Meta:
         unique_together = ("user", "country")
 
+    @property
+    def country_name(self):
+        return self.country.name
+
     def __str__(self):
         return "%s' assessment for %s" % (
             self.user.username, self.country.name
