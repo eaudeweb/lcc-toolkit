@@ -6,7 +6,7 @@
 {% block page-menu %} 
   {% include 'legislation/navigation.html' %}
 {% endblock %}
-
+{% block content-wrapper-class %}manageLeg{% endblock %}
 {% block breadcrumbs %}
   {{ block.super }} 
   <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>
@@ -21,7 +21,7 @@
     width: 31px;" 
     class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" >{{ law.title }}
 </h3>
-<div class="articles-container">
+<div class="articles-container page-container half">
 {% if articles %}
   {% for article in articles %}
     <div class="viz-container multiple">
@@ -32,10 +32,10 @@
 
       {% if article.code %}
       <a href="#{{article.code}}">
-        <h4 id="{{article.code}}">{{ article.code }}</h4>
+        <h4 id="{{article.code}}">{{ article.code }}</h4> 
       </a>
       {% endif %}
-
+       <button type="button" class="btn btn-default page-number-wrapper"> Go to page <span class="pdf-page-number">{{article.legislation_page}}</span></button>
       {% if article.text %}
         <p><pre>{{ article.text }}</pre></p>
       {% endif %}
@@ -66,7 +66,9 @@
   <p>This law does not have articles.</p>
 {% endif %}
 </div>
-<div class="button-wrapper" style="margin:1rem 0;">
+{% include 'legislation/articles/pdf_view.html' %}
+
+<div class="button-wrapper" style="margin:1rem 0;width: 100%;float: left;">
   <a class="btn btn-primary" href="{% url 'lcc:legislation:explorer' %}">View all legislations</a>
   <a class="btn btn-primary" href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">Add articles</a>
 </div>

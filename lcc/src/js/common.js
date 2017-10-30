@@ -1,4 +1,8 @@
 
+function changePage(item, page_number) {
+    var pdf_page = item.attr('data').replace(/#page=\d+/, '#page='+page_number)
+    item.attr("data", pdf_page);
+}
 
 function getSelectionText() {
     var text = "";
@@ -141,4 +145,12 @@ $(document).ready(function() {
     $('.disabled').click(function(e){
         e.preventDefault();
     })
+
+
+    $('.page-number-wrapper').click(function(){
+        var page_number = parseInt($(this).find('.pdf-page-number').text());
+        console.log(page_number)
+        changePage($('.pdf'), page_number)
+    })
+
 })
