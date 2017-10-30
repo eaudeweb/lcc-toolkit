@@ -6,9 +6,24 @@
     .pdf-nav-buttons {
         span {
             color: white;
+            vertical-align: middle;
         }
+
         float: right;
         margin-right: 2rem;
+        .btn-link {
+            &[disabled] {
+                &:hover {
+                    span {
+                        color: #777;
+                    }
+                }
+            }
+            font-size: 2rem;
+            &:active {
+                outline: none;
+            }
+        }
     }
     &.half {
         margin-top: 1rem;

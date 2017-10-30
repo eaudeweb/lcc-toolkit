@@ -4,8 +4,8 @@
 {% load utils %}
 
 {% block extra-scripts %}
-  <script src="{% static "js/add_articles.js" %}"> </script>
   <script src="{% static "js/jquery.validate.js" %}"> </script>
+  <script src="{% static "js/add_articles.js" %}"> </script>
 
 
   <script>
@@ -39,7 +39,7 @@
 {% block content %}
 <div class="page-container half">
  <h3>{{ law.title }}</h3>
-  <form id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
+  <form class="validate_this" id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
     {% csrf_token %}
 
       <input name="legislation" value="{{ law.pk }}" hidden>
@@ -82,9 +82,9 @@
         <div>
             <label class="label-large" for="id_tags">Tags</label>
         </div>
-        <div>
-          Select the best areas where the article fits
-        </div>
+        <h5>
+          <b>Select the best areas where the article fits</b>
+        </h5>
         <div class="list-container">
             <ul name='tags' id='tags'>
               {% for tag_group in tag_groups %}
@@ -97,8 +97,8 @@
                      {% for tag in tag_group.tags %}
                        <li>
                         <input id='tag_{{ tag.pk }}' name='tag_{{ tag.pk }}' type='checkbox'>
-                        {{ tag.name }}
                         </input>
+                        <label for="tag_{{ tag.pk }}">{{ tag.name }}</label>
                        </li>
                      {% endfor %}
                     </ul>
@@ -112,45 +112,45 @@
         <div>
           <label class="label-large" for="id_classifications">Classification <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
         </div>
-        <div>
-          Select the legal areas where the article fits
-        </div>
+        <h5>
+          <b>Select the legal areas where the article fits</b>
+        </h5>
         <div class="list-container">
-        <ul>
-        {% for top_class in classifications %}
-        <li class="first-level level">
-          {% with top_class.get_children as second_classifications %}
-          <span class="list-header" {% if not second_classifications %} style="pointer-events: none;" {% endif %}>
-            <span name='topClass_{{ top_class.pk }}'>{{ top_class.name }}</span>
-            {% if second_classifications %}
-              <i class="fa fa-plus-square" aria-hidden="true"></i>
-            {% endif %}
-          </span>
-          <ul class="second-level level">
-          {% for second_class in second_classifications %}
-            <li>
-              <span class="list-header">
-                <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.name }}' type=checkbox>
-                {{ second_class.name }}
-                </input>
-              <i class="fa fa-plus-square" aria-hidden="true"></i>
-              </span>
-            <ul class="third-level level">
-            {% for third_class in second_class.get_children %}
-            <li>
-            <input name='classification_{{ third_class.pk }}' id='classification_'{{ third_class.name }} type=checkbox>
-              {{ third_class.name }}
-            </input>
-            </li>
+          <ul>
+            {% for top_class in classifications %}
+              <li class="first-level level">
+                {% with top_class.get_children as second_classifications %}
+                  <span class="list-header" {% if not second_classifications %} style="pointer-events: none;" {% endif %}>
+                    <span name='classification_{{ top_class.pk }}'>{{ top_class.name }}</span>
+                    {% if second_classifications %}
+                      <i class="fa fa-plus-square" aria-hidden="true"></i>
+                    {% endif %}
+                  </span>
+                  <ul class="second-level level">
+                    {% for second_class in second_classifications %}
+                      <li>
+                        <span class="list-header">
+                          <input name='classification_{{ second_class.pk }}' id='classification_{{ second_class.pk }}' type=checkbox>
+                          </input>
+                          <label for="classification_{{ second_class.pk }}">{{ second_class.name }}</label>
+                          <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        </span>
+                        <ul class="third-level level">
+                          {% for third_class in second_class.get_children %}
+                            <li>
+                              <input name='classification_{{ third_class.pk }}' id='classification_{{ third_class.pk }}' type=checkbox>
+                              </input>
+                              <label for="classification_{{ third_class.pk }}">{{ third_class.name }}</label>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endwith %}
+              </li>
             {% endfor %}
-            </ul>
-          {% endfor %}
           </ul>
-           </li>
-           {% endwith %}
-         </li>
-        {% endfor %}
-        </ul>
         </div>
       </div>
       </div>
