@@ -43,11 +43,20 @@ class LegislationExplorer(UserPatchMixin, ListView):
     model = models.Legislation
 
     def dispatch(self, request, *args, **kwargs):
+        """
+        If the `partial` parameter is set, return only the list of laws,
+        don't render the whole page again.
+        """
+
         if self.request.GET.get('partial'):
             self.template_name = "legislation/_laws.html"
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
+        """
+        Perform filtering using ElasticSearch instead of Postgres.
+        """
+
         search = LegislationDocument.search()
 
         # jQuery's ajax function ads `[]` to duplicated querystring parameters
@@ -83,8 +92,8 @@ class LegislationExplorer(UserPatchMixin, ListView):
         if q:
             search = search.query(
                 'multi_match', query=q, fields=['title', 'abstract'])
-
-        return search.to_queryset()
+        # TODO: Implement proper pagination!
+        return search[0:10000].to_queryset()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -108,8 +117,6 @@ class LegislationExplorer(UserPatchMixin, ListView):
             'legislation_year': legislation_year
         })
         return context
-
-    # def get_template_names(self)
 
 
 class LegislationAdd(UserPatchMixin, mixins.LoginRequiredMixin, TaxonomyFormMixin,

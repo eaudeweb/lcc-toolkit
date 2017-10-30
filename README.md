@@ -21,16 +21,12 @@ A web application which stands as a toolkit for climate change law assessment.
 1. Customize the environment files:
 
         $ cp docker/postgres.env.example docker/postgres.env
-        $ vim docker/postgres.env
         $ cp docker/web.env.example docker/web.env
-        $ vim docker/web.env
         $ cp docker/init.sql.example docker/init.sql
-        $ vim docker/init.sql
 
-    Depending on the installation type, create the docker-compose.override.yml file:
+    Depending on the installation mode, create the docker-compose.override.yml file:
 
          $ cp docker-compose.override.[prod|dev].yml docker-compose.override.yml
-         $ vim docker-compose.override.yml
 
 1. Start the application stack:
 
@@ -39,25 +35,31 @@ A web application which stands as a toolkit for climate change law assessment.
 
 1. Attach to the web service:
 
-        $ docker-compose run --entrypoint bash web
+        $ docker-compose run web
 
 1. Create a superuser (for Ansible see https://gist.github.com/elleryq/9c70e08b1b2cecc636d6):
 
         $ docker-compose run --entrypoint bash web
         $ python manage.py createsuperuser
 
-That's it. You should now be able to access the app at http://localhost:8000.
+That's it. If you installed in production mode, you should be able to access the
+app at http://localhost:8000. If you installed in development mode, follow the
+next steps.
 
-## Debugging the application
+## Development setup
 
-* Set `DEBUG=on` in `web.env` file.
+Make sure you have the following settings configured correctly (these are the
+default values in the .example files, so you shouldn't have to change anything).
 
-* Update docker-compose.override.yml file `web` section with the following so that `docker-entrypoint.sh`
-is not executed:
+* `DEBUG=on` in `web.env` file.
 
-        entrypoint: ["/usr/bin/tail", "-f", "/dev/null"]
+* `entrypoint: bash` in the `docker-compose.override.yml` file's `web` section
 
-* Attach to the web service and run the following:
+Then run the web service
+
+    $ docker-compose run web
+
+and run the following:
 
         $ ./manage.py migrate
         $ ./manage.py load_fixtures

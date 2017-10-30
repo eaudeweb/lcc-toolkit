@@ -5,6 +5,7 @@ services:
   web:
     build: .
     container_name: lcct.web
+    entrypoint: bash
     ports:
       - "8000:8000"
     environment:
