@@ -25,7 +25,6 @@ services:
 
   db:
     image: postgres:9-alpine
-    container_name: lcct.db
     env_file:
       - ./docker/postgres.env
     volumes:

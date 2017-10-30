@@ -5,6 +5,7 @@ services:
   nginx:
     image: nginx:alpine
     container_name: lcct.nginx
+    hostname: lcct.nginx
     ports:
       - "127.0.0.1:8001:80"
     environment:
@@ -40,8 +41,9 @@ services:
     command: /bin/sh -c 'echo "$$NGINX_CONF" > /etc/nginx/conf.d/default.conf && exec nginx -g "daemon off;"'
 
   web:
-    image: eaudeweb/lcc-toolkit:1.0.0
+    image: eaudeweb/lcc-toolkit:1.0.7
     container_name: lcct.web
+    hostname: lcct.web
     ports:
       - "127.0.0.1:8000:8000"
     environment:
@@ -49,18 +51,25 @@ services:
       - DJANGO_MANAGEPY_COLLECTSTATIC=on
       - DJANGO_MANAGEPY_LOADFIXTURES=on
       - STATIC_ROOT=/var/www/lcct/static
+
     volumes:
       - static-files:/var/www/lcct/static
       - media-files:/opt/lcct/media/uploadfiles
 
+  db:
+    container_name: lcct.db
+    hostname: lcct.db
+
   elasticsearch:
     container_name: lcct.elastic
+    hostname: lcct.web
     ports:
       - "127.0.0.1:9200:9200"
 
   logspout:
     image: gliderlabs/logspout:v3.2.3
     container_name: lcct.logs
+    hostname: lcct.logs
     environment:
       - HOST=logsN.papertrailapp.com
       - PORT=XXXXX
