@@ -1,6 +1,8 @@
 <ul>
     <li><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-login">Metadata</a></li>
-    <li><a href="{{ law.pdf_file.url }}" target="_blank" class="btn btn-login">Body</a></li>
+    {% if law.pdf_file %}
+      <li><a href="{{ law.pdf_file.url }}" target="_blank" class="btn btn-login">Body</a></li>
+    {% endif %}
     {% with law.articles.all as articles %}
     <li><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-login {% if not articles %}disabled{% endif %}" title="{% if not articles %}This legislation does not have any articles defined.{% endif %}">Articles</a></li>
     {% endwith %}

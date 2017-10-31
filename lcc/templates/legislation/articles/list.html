@@ -42,7 +42,7 @@
     <div class="dl">
         <div class="dd"><span>Classification</span></div>
         <div class="dt">
-        {% if article.all_classifications %}
+        {% if article.classifications.exists %}
           {% for classification in article.classifications.all %}
            <span class="classification">{{ classification.name }}</span>
           {% endfor %}

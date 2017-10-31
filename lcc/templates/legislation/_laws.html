@@ -14,7 +14,7 @@
   <div class="dl">
     <div class="dd"><span>Classification</span></div>
     <div class="dt">
-    {% if law.all_classifications %}
+    {% if law.classifications.exists %}
       {% for classification in law.classifications.all %}
        <span class="tag">{{ classification.name }}</span>
       {% endfor %}
@@ -24,7 +24,7 @@
   <div class="dl">
     <div class="dd"><span>Tags</span></div>
     <div class="dt">
-    {% if law.all_tags %}
+    {% if law.tags.exists %}
       {% for tag in law.tags.all%}
        <span class="tag">{{ tag.name }}</span>
       {% endfor %}

@@ -31,10 +31,12 @@
       <div class="dt">{% if law.year %}{{ law.year }}{% else %} - {% endif %}</div>
     </div>
 
+    {% if law.pdf_file %}
     <div class="dl">
       <div class="dd"><span>Full Text</span></div>
       <div class="dt"><a href="{{ law.pdf_file.url }}" target="_blank">{{ law.pdf_file_name }}</a></div>
     </div>
+    {% endif %}
 
     <div class="dl">
       <div class="dd"><span>Abstract</span></div>
@@ -44,7 +46,7 @@
     <div class="dl">
       <div class="dd"><span>Classification</span></div>
       <div class="dt">
-      {% if law.all_classifications %}
+      {% if law.classifications.exists %}
         {% for classification in law.classifications.all %}
          <span class="classification">{{ classification.name }}</span>
         {% endfor %}
@@ -54,7 +56,7 @@
     <div class="dl">
       <div class="dd"><span>Tags</span></div>
       <div class="dt">
-      {% if law.all_tags %}
+      {% if law.tags.exists %}
         {% for tag in law.tags.all%}
          <span class="tag">{{ tag.name }}</span>
         {% endfor %}
