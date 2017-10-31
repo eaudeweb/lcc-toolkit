@@ -7,105 +7,108 @@ $(document).ready(function(){
   LCCTModules.define('LegalAssessment', ['Config', 'RequestService'], 
   function LegalAssessment(Config, RequestService){
       
-    var assessment_id = $('input:hidden[name=assessment_id]').val();
+    this.assessment_id = null;
     var user_id = $('input:hidden[name=user_id]').val();
-    var classification_id = 15; // we only have data for this classification 
+    var classification_id;
     var all_questions = [];
     var listeners = {};
 
-    $( "#add-assessment" ).click(function() {
-      RequestService
-        .getCountries()
-        .done(function (all_countries) {
-          var country_list = $('#country-list');
+    // requests need the assessment_id, to have this available, we need to make sure
+    // that functions have this as their context, which normally will be changed when:
+    // - binding to $ elements
+    // - calling inside promises from other modules
+    renderCreateAssessment.call(this);
+    renderContinueAssessment.call(this);
+    renderQuestions.bind(this);
 
-          for (var j = 0; j < all_countries.length; j++) {
-            var element = all_countries[j];
-            var li_country = $('<option/>')
-                              .text(element.name)
-                              .attr('value', element.iso)
-                              .appendTo(country_list);
-          }
-          $('#group-country-list').show();
-          $('#country-list').change(handleCreateAssessment);
+    function renderCreateAssessment() {
+      var self = this;
+      $('#add-assessment').click(function() {
+        RequestService
+          .getCountries()
+          .done(function (all_countries) {
+            var country_list = $('#country-list');
+
+            for (var j = 0; j < all_countries.length; j++) {
+              var element = all_countries[j];
+              var li_country = $('<option/>')
+                                .text(element.name)
+                                .attr('value', element.iso)
+                                .appendTo(country_list);
+            }
+            $('#group-country-list').show();
+            $('#country-list').change(handleCreateAssessment.bind(self));
+        });
       });
-    });
-
-    $( "#continue-assessment" ).click(function() {
-      RequestService
-        .getAssessments()
-        .done(function (all_assessments) {
-          var country_list = $('#country-list');
-          
-          for (var j = 0; j < all_assessments.length; j++) {
-            var element = all_assessments[j];
-            var li_country = $('<option/>')
-                              .text(element.country)
-                              .attr('value', element.id)
-                              .appendTo(country_list);
-          }
-
-          $('#group-country-list').show();
-
-          // $('#assessment-landing').hide();
-          // $('#assessment-edit').show();
-          // getClassifications();
-          $('#country-list').change(handleContinueAssessment);
-      });
-    });
-
-    // $('#country-list').change(function () {
-    //   var selected_country= $(this).find("option:selected").val();
-    //   createAssessment(selected_country)
-    // });
-    
-    function handleCreateAssessment() {
-      var selected_country= $(this).find("option:selected").val();
-      createAssessment(selected_country)
     }
-    
-    function handleContinueAssessment() {
-      var selected_country= $(this).find("option:selected").val();
-      continueAssessment(selected_country)
+
+    function renderContinueAssessment() {
+      var self = this;
+      $('#continue-assessment').click(function() {
+        RequestService
+          .getAssessments()
+          .done(function (all_assessments) {
+            var country_list = $('#country-list');
+
+            for (var j = 0; j < all_assessments.length; j++) {
+              var element = all_assessments[j];
+              var li_country = $('<option/>')
+                                .text(element.country)
+                                .attr('value', element.id)
+                                .appendTo(country_list);
+            }
+
+            $('#group-country-list').show();
+            $('#country-list').change(handleContinueAssessment.bind(self));
+        });
+      });
+    }
+
+    function handleCreateAssessment(event) {
+      var selected_country= $(event.currentTarget).find('option:selected').val();
+      createAssessment.call(this, selected_country)
+    }
+
+    function handleContinueAssessment(event) {
+      this.assessment_id= $(event.currentTarget).find('option:selected').val();
+      continueAssessment.call(this);
     }
 
 
     function createAssessment(country) {
+      var self = this;
       RequestService
       .createAssessment({country: country, user: user_id})
       .done(function (responseAssessment) {
-        assessment_id = responseAssessment.id;
+        self.assessment_id = responseAssessment.id;
         $('#assessment-landing').hide();
         $('#assessment-edit').show();
-        getClassifications(assessment_id);
+        getClassifications.call(self);
       });
     }
 
-    function continueAssessment(assessment_id) {
-      assessment_id = assessment_id;
+    function continueAssessment() {
       $('#assessment-landing').hide();
       $('#assessment-edit').show();
-      getClassifications(assessment_id);
+      getClassifications.call(this);
     }
 
-
-
-
-    function getClassifications(assessment_id) {
+    function getClassifications() {
+      var self = this;
       RequestService
-        .getClassifications(assessment_id)
+        .getClassifications(self.assessment_id)
         .done(function (responseClassifications) {
 
-          renderClassifications(responseClassifications);
+          renderClassifications.call(self, responseClassifications);
           handleAccordion();
-          getQuestions(responseClassifications[0].second_level[0].id, assessment_id);
+          getQuestions.call(self, responseClassifications[0].second_level[0].id);
         });
     }
-  
+
     function renderClassifications(responseQuestions) {
       var accordion = $('#accordion')[0];
       accordion.innerHTML = '';
-  
+
       for (var z = 0; z < responseQuestions.length; z++) {
         var element = responseQuestions[z];
         var h3 = $('<h3>')
@@ -125,7 +128,7 @@ $(document).ready(function(){
                                     .attr('aria-disabled', 'false')
                                     .attr('aria-selected', 'true')
                                     .attr('data-id', subcat.id)
-                                    .on('click', getQuestionsForCategory)
+                                    .on('click', getQuestionsForCategory.bind(this))
                                     .appendTo(classification_menu);
           var i_comp = $('<i/>')
                         .text(j+1)
@@ -140,7 +143,7 @@ $(document).ready(function(){
         classification_menu.appendTo(accordion);
       }
     }
-  
+
     function handleAccordion() {
       $('#accordion').accordion({
         collapsible: true
@@ -150,29 +153,30 @@ $(document).ready(function(){
     function registerListeners(handler, id) {
       listeners[id] = handler;
     }
-    
-    function getQuestions(category, assessment_id) {
+
+    function getQuestions(classification_id) {
+      var self = this;
       RequestService
-        .getQuestions(category, assessment_id)
+        .getQuestions(classification_id, self.assessment_id)
         .done(function (responseClassification) {
-          handleQuestions(responseClassification);
+          handleQuestions.call(self, responseClassification);
         });
     }
-  
+
     function handleQuestions(questions) {
       var questions_container = $('.list-group')[0];
       questions_container.innerHTML = '';
       all_questions = questions;
-  
-      renderQuestions(questions, false, questions_container)
+
+      renderQuestions.call(this, questions, false, questions_container);
     }
-  
+
     function renderQuestions(my_questions, hide, questions_container) {
-      
+
       for (var index = 0; index < my_questions.length; index++) {
         var element = my_questions[index];
         var answerId = element.answer ? element.answer.id : '';
-  
+
         var li = $('<li/>')
                   .addClass('list-group-item question')
                   .attr('id', element.id)
@@ -191,7 +195,7 @@ $(document).ready(function(){
                         .attr('data-question', element.id)
                         .attr('data-value', 'true')
                         .attr('data-answer-id', answerId)
-                        .on('click', handleAnswer);
+                        .on('click', handleAnswer.bind(this));
         var buttonNo = $('<button/>')
                         .text('No')
                         .addClass('btn ' + getBtnClass(false, element.answer))
@@ -199,22 +203,26 @@ $(document).ready(function(){
                         .attr('data-value', 'false')
                         .attr('data-answer-id', answerId)
                         .appendTo(div)
-                        .on('click', handleAnswer);
-        
+                        .on('click', handleAnswer.bind(this));
+
         hide ? li.hide() : li.show();
-  
+
         if(element.children_yes) {
-          renderQuestions(element.children_yes, !element.answer ? true : !JSON.parse(element.answer.value), questions_container);
+          renderQuestions.call(this, element.children_yes, !element.answer 
+            ? true : !JSON.parse(element.answer.value), questions_container);
         }
 
         if(element.children_no) {
-          renderQuestions(element.children_no, !element.answer ? true : JSON.parse(element.answer.value), questions_container);
+          renderQuestions.call(this, element.children_no, !element.answer 
+            ? true : JSON.parse(element.answer.value), questions_container);
         }  
 
+        // through this closure the each function is aware of the its question as a reference,
+        // updating it will be reflected in the collection of all_questions
         registerListeners(
           (function makeListener(element) {
 
-            return function questionListener(data, d) {
+            return function questionListener(d) {
               element.answer = { 
                 id: d.id, 
                 value: d.value
@@ -223,63 +231,73 @@ $(document).ready(function(){
           })(element)
         , element.id);
       }
-  
+
       if(questions_container.innerHTML === '') {
         questions_container.innerHTML = 'No questions available';
       }
     }
-  
+
+    // btn-success will suggest the exitence of an answer
+    // btn-default: no answer was given
     function getBtnClass(buttonVal, answer) {
       var btn;
       if(buttonVal) {
-        return btn = !answer ? 'btn-default' : (JSON.parse(answer.value) && buttonVal) ? 'btn-success' : 'btn-default';
+        return btn = !answer 
+        ? 'btn-default' : (JSON.parse(answer.value) && buttonVal) 
+        ? 'btn-success' : 'btn-default';
       } else {
-        return btn = !answer ? 'btn-default' :  JSON.parse(answer.value) ? 'btn-default' : 'btn-success';        
+        return btn = !answer 
+        ? 'btn-default' :  JSON.parse(answer.value) 
+        ? 'btn-default' : 'btn-success';        
       }
     }
-  
-    function handleAnswer() {
+
+    function handleAnswer(event) {
       var data = {
-        'assessment': assessment_id,
-        'question': $(this).attr('data-question'),
-        'value': $(this).attr('data-value')
+        'assessment': this.assessment_id,
+        'question': $(event.currentTarget).attr('data-question'),
+        'value': $(event.currentTarget).attr('data-value')
       };
-      var answerId =  $(this).attr('data-answer-id');
-  
+      var answerId =  $(event.currentTarget).attr('data-answer-id');
+
       if(answerId) {
-        updateAnswer(data, answerId);
+        updateAnswer.call(this, data, answerId);
       } else {
-        createAnswer(data);
+        createAnswer.call(this, data);
       }
     }
-  
+
+    // instead of implementing a deep search function to find and update the answer
+    // the listener will be called directly and update through reference the values of the answer
     function updateAnswer(data, answerId) {
+      var self = this;
       RequestService
         .updateAnswer(data, answerId)
         .done(function (responseAnswer) {
 
-          listeners[data.question](data, responseAnswer);
-          handleQuestions(all_questions);
+          listeners[data.question](responseAnswer);
+          handleQuestions.call(self, all_questions);
         });
     }
-  
+
     function createAnswer(data) {
+      var self = this;
       RequestService
         .createAnswer(data)
         .done(function (responseAnswer) {
 
-          listeners[data.question](data, responseAnswer);
-          handleQuestions(all_questions);
+          listeners[data.question](responseAnswer);
+          handleQuestions.call(self, all_questions);
         });
     }
 
-    function getQuestionsForCategory(val) {
-      var elem = $(this);
+    function getQuestionsForCategory(event) {
+      var elem = $(event.currentTarget);
       var all_elems = $('classification-item').removeClass('iron-selected')
       elem.addClass('iron-selected');
 
       classification_id = elem.attr('data-id');
-      getQuestions(classification_id, assessment_id);
+      getQuestions.call(this, classification_id);
     }
   });
 });

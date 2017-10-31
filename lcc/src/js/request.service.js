@@ -46,7 +46,6 @@
     }
 
     function getQuestions(category, assessment_pk) {
-
       var jqxhr = $.ajax({
         'type': 'GET',
         'url': Config.url.questions + category + '?assessment_pk=' + assessment_pk,
@@ -63,7 +62,6 @@
     }
 
     function createAnswer(data) {
-      
       var jqxhr = $.ajax({
         'url': Config.url.answers,
         'type': 'POST',
@@ -73,17 +71,15 @@
     }
   
     function updateAnswer(data, answerId) {
-      
-          var jqxhr = $.ajax({
-            'url': Config.url.answers + answerId + '/',
-            'type': 'PUT',
-            'data': JSON.stringify(data),
-          })
-          return jqxhr;
-        }
-  
+      var jqxhr = $.ajax({
+        'url': Config.url.answers + answerId + '/',
+        'type': 'PUT',
+        'data': JSON.stringify(data),
+      })
+      return jqxhr;
+    }
+
     function getAssessments() {
-      
       var jqxhr = $.ajax({
         'url': Config.url.assessment,
         'type': 'GET',
@@ -92,7 +88,6 @@
     }
 
     function createAssessment(data) {
-      
       var jqxhr = $.ajax({
         'url': Config.url.assessment,
         'type': 'POST',
@@ -100,7 +95,7 @@
       })
       return jqxhr;
     }
-  
+
     function getCountries() {
       
       var jqxhr = $.ajax({
@@ -109,7 +104,7 @@
       })
       return jqxhr;
     }
-                    
+
 
     return {
       getQuestions: getQuestions,
