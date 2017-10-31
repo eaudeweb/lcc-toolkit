@@ -66,12 +66,20 @@ Then run the web service
 
 and run the following:
 
-        $ python manage.py migrate
-        $ python manage.py load_fixtures
-        $ python manage.py createsuperuser
-        $ python manage.py runserver 0.0.0.0:8000
+    $ python manage.py migrate
+    $ python manage.py load_fixtures
+    $ python manage.py createsuperuser
+    $ python manage.py search_index --rebuild
+    $ python manage.py runserver 0.0.0.0:8000
 
 Now you should be able to access the app in development mode at http://localhost:8000.
+By default, there will be no Legislation in the database. In order to generate
+some fake legislation for testing/debugging purposes, you can run the following
+command:
+
+    $ python manage.py generate_fake_legislation <N>
+
+Where <N> is the number of Legislation objects to generate.
 
 ## Testing
 
