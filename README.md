@@ -52,11 +52,17 @@ default values in the .example files, so you shouldn't have to change anything).
 
 * `DEBUG=on` in `web.env` file.
 
-* `entrypoint: bash` in the `docker-compose.override.yml` file's `web` section
+* The `docker-compose.override.yml` file's `web` section includes this:
+
+      build:
+        context: .
+        args:
+          REQFILE: requirements-dev.txt
+      entrypoint: bash
 
 Then run the web service
 
-    $ docker-compose run web
+    $ docker-compose run --service-ports web
 
 and run the following:
 
@@ -65,11 +71,12 @@ and run the following:
         $ python manage.py createsuperuser
         $ python manage.py runserver 0.0.0.0:8000
 
+Now you should be able to access the app in development mode at http://localhost:8000.
+
 ## Testing
 
 To execute the test suite, attach to the web service and run the following:
 
-    $ pip install -r requirements-dev.txt
     $ python manage.py test
 
 ## Configuration variables

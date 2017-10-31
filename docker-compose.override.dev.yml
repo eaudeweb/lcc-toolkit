@@ -3,7 +3,10 @@ version: '2'
 services:
 
   web:
-    build: .
+    build:
+      context: .
+      args:
+        REQFILE: requirements-dev.txt
     container_name: lcct.web
     entrypoint: bash
     ports:
