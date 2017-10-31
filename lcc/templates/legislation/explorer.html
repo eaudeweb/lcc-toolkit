@@ -24,9 +24,6 @@
 {% endblock %}
 
 {% block content %}
-  <div id="title" class="heading">
-    Legislation Explorer
-  </div>
   <div class="search">
     <div class="row">
       <div class="input-group searchInputGroup">
@@ -64,12 +61,11 @@
       <a href="{% url 'lcc:legislation:add' %}" class="btn btn-info">Add legislation</a>
     </div>
   </div>
-  <div id="laws" class="page-container viz-container">
+<div class="page-container half viz-container">
     {% include "./_laws.html" %}
-  </div>
+</div>
 
-  <div class="filters">
-  <button type="button" class="btn btn-default open-sidebar"><span class="more active">MORE FILTERS</span> <span class="less">LESS FILTERS</span></button>
+  <div class="page-container half viz-container right">
     <div class="filterTags">
     <label for="TagDropDown">Tags</label>
       <select name="tags" id="TagDropDown" multiple="multiple">
