@@ -29,7 +29,11 @@ $(document).ready(function(){
           .done(function (all_countries) {
             var country_list = $('#country-list');
             country_list.empty();
-
+            var li_country = $('<option/>')
+                              .text('Select country')
+                              .attr('value', '')
+                              .appendTo(country_list);
+                              
             for (var j = 0; j < all_countries.length; j++) {
               var element = all_countries[j];
               var li_country = $('<option/>')
@@ -51,6 +55,10 @@ $(document).ready(function(){
           .done(function (all_assessments) {
             var country_list = $('#country-list');
             country_list.empty();
+            var li_country = $('<option/>')
+                              .text('Select country')
+                              .attr('value', '')
+                              .appendTo(country_list);
 
             for (var j = 0; j < all_assessments.length; j++) {
               var element = all_assessments[j];
