@@ -107,7 +107,6 @@ USE_TZ = True
 
 LOGIN_URL = "/login/"
 
-try:
-    from .localsettings import *
-except ImportError:
-    pass
+FIXTURE_DIRS = [
+    'lcc/tests/fixtures',
+]

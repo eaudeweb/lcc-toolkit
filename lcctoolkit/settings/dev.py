@@ -1,5 +1,5 @@
 import environ
-from lcctoolkit.settings import INSTALLED_APPS
+from lcctoolkit.settings.base import *  # noqa
 
 
 root = environ.Path(__file__) - 2

@@ -1,0 +1,311 @@
+[
+  {
+    "model": "lcc.legislation",
+    "pk": 1,
+    "fields": {
+      "title": "Visionary systemic model law",
+      "abstract": "Tenetur minus hic vero voluptatem fugiat nisi. Odit quibusdam corporis quae rerum quibusdam ea. Veniam in laboriosam sapiente commodi fugiat est. Ut excepturi vel dicta beatae quasi voluptatum iusto. Odio veritatis et natus. Accusantium necessitatibus facilis amet. Deserunt quia sunt eligendi.",
+      "country": "LCA",
+      "language": "ru",
+      "law_type": "oth",
+      "year": 2016,
+      "year_amendment": 2016,
+      "year_mention": null,
+      "geo_coverage": "nat",
+      "source": null,
+      "source_type": "('official', 'Official')",
+      "website": "http://young-stark.com/",
+      "pdf_file": "",
+      "pdf_file_name": null,
+      "classifications": [
+        22,
+        25,
+        90
+      ],
+      "tags": [
+        1,
+        2,
+        3,
+        4,
+        6
+      ]
+    }
+  },
+  {
+    "model": "lcc.legislation",
+    "pk": 2,
+    "fields": {
+      "title": "De-engineered explicit Local Area Network law",
+      "abstract": "Animi facilis repellat consequatur. Eum nisi architecto placeat aspernatur id. Ut doloremque quia odit sed hic error tempore. Mollitia molestiae nostrum. Quod eligendi dolore molestias soluta ratione. Libero eligendi aliquid. Expedita ex voluptatum exercitationem dignissimos iste. Dolorem nam blanditiis quis. Consequatur quo molestias.",
+      "country": "MKD",
+      "language": "ar",
+      "law_type": "Regulation",
+      "year": 1951,
+      "year_amendment": 1957,
+      "year_mention": null,
+      "geo_coverage": "st-pr",
+      "source": null,
+      "source_type": "('official', 'Official')",
+      "website": "https://www.singh.net/",
+      "pdf_file": "",
+      "pdf_file_name": null,
+      "classifications": [
+        7,
+        9,
+        40
+      ],
+      "tags": [
+        1,
+        6
+      ]
+    }
+  },
+  {
+    "model": "lcc.legislation",
+    "pk": 3,
+    "fields": {
+      "title": "Fully-configurable motivating access law",
+      "abstract": "Animi placeat soluta aliquam. Sed molestias suscipit tempore explicabo magnam animi. Ipsa recusandae inventore enim eum mollitia. Tempore provident repellendus temporibus officia. Incidunt eos autem porro. Tempora repudiandae explicabo unde a ullam. Temporibus saepe minima atque natus quas in. Temporibus magni accusantium laudantium. Doloremque beatae esse voluptatibus. Error doloribus repudiandae molestias error quidem consequuntur possimus. Eligendi sapiente in quas laborum incidunt odit iste. Suscipit consequuntur odio exercitationem deleniti dolorem.",
+      "country": "BGR",
+      "language": "zh",
+      "law_type": "Regulation",
+      "year": 1965,
+      "year_amendment": 1965,
+      "year_mention": null,
+      "geo_coverage": "int-reg",
+      "source": null,
+      "source_type": "('official', 'Official')",
+      "website": "http://www.pitts.com/",
+      "pdf_file": "",
+      "pdf_file_name": null,
+      "classifications": [
+        76,
+        83,
+        87
+      ],
+      "tags": [
+        1,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "lcc.legislation",
+    "pk": 4,
+    "fields": {
+      "title": "Operative background algorithm law",
+      "abstract": "Et consequuntur fugiat est assumenda cum. Accusamus porro dicta reiciendis id recusandae temporibus. Fugiat ipsam reprehenderit doloremque facere delectus iusto. Voluptatibus ad maxime voluptas molestiae veritatis assumenda. Quidem temporibus laborum. Ad debitis aliquid corrupti quidem. Reiciendis veniam quis veritatis labore deleniti similique. Laborum nulla optio molestiae eum repellendus. Quis expedita eaque delectus explicabo odio dignissimos. A pariatur laudantium minima dolorum ducimus. Quisquam fugit quod exercitationem a dolorum pariatur. Odit laborum aliquam eveniet ratione. Perferendis voluptate eum et earum a blanditiis.",
+      "country": "NOR",
+      "language": "zh",
+      "law_type": "oth",
+      "year": 1979,
+      "year_amendment": 1983,
+      "year_mention": null,
+      "geo_coverage": "city-mun",
+      "source": null,
+      "source_type": "('official', 'Official')",
+      "website": "http://www.spencer.info/",
+      "pdf_file": "",
+      "pdf_file_name": null,
+      "classifications": [
+        31,
+        32,
+        42,
+        64,
+        65
+      ],
+      "tags": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "lcc.legislation",
+    "pk": 5,
+    "fields": {
+      "title": "Function-based regional matrix law",
+      "abstract": "Quasi at inventore incidunt corporis. Magnam unde sunt aspernatur reprehenderit. Quis nesciunt porro sit laborum corporis quos expedita. Dolor alias culpa nihil fugit. Quaerat fuga qui. Cumque quos pariatur. Expedita nobis molestias vitae asperiores dolore.",
+      "country": "MHL",
+      "language": "en",
+      "law_type": "Law",
+      "year": 1954,
+      "year_amendment": 1957,
+      "year_mention": null,
+      "geo_coverage": "city-mun",
+      "source": null,
+      "source_type": "('official', 'Official')",
+      "website": "http://www.buckley.com/",
+      "pdf_file": "",
+      "pdf_file_name": null,
+      "classifications": [
+        4,
+        7,
+        45,
+        56,
+        57
+      ],
+      "tags": [
+        2,
+        6
+      ]
+    }
+  },
+  {
+    "model": "lcc.legislation",
+    "pk": 6,
+    "fields": {
+      "title": "Reduced multimedia functionalities law",
+      "abstract": "Neque accusantium velit consequatur facilis voluptatem repellat. Totam harum dicta inventore asperiores a. Est ea accusantium eius fugiat. Veniam incidunt illo tenetur officiis eaque ut. Nobis sint dolorem voluptatum ipsum dolores ipsa quam. Error quis laborum repellendus quas ab omnis. Harum magni dolore nesciunt.",
+      "country": "PNG",
+      "language": "zh",
+      "law_type": "oth",
+      "year": 1981,
+      "year_amendment": 1984,
+      "year_mention": null,
+      "geo_coverage": "city-mun",
+      "source": null,
+      "source_type": "('official', 'Official')",
+      "website": "http://garcia.com/",
+      "pdf_file": "",
+      "pdf_file_name": null,
+      "classifications": [
+        8
+      ],
+      "tags": [
+        1,
+        5
+      ]
+    }
+  },
+  {
+    "model": "lcc.legislation",
+    "pk": 7,
+    "fields": {
+      "title": "Focused zero tolerance conglomeration law",
+      "abstract": "Perferendis aliquid ad fugiat. Necessitatibus harum quia repellendus unde quis. Amet amet labore eveniet laudantium provident. Saepe impedit consequatur. Quod voluptates quod eos officiis. Esse quam ipsam vero quo at quidem.",
+      "country": "EU",
+      "language": "es-es",
+      "law_type": "oth",
+      "year": 1952,
+      "year_amendment": 1955,
+      "year_mention": null,
+      "geo_coverage": "city-mun",
+      "source": null,
+      "source_type": "('official', 'Official')",
+      "website": "https://www.montoya.com/",
+      "pdf_file": "",
+      "pdf_file_name": null,
+      "classifications": [
+        10,
+        84,
+        92
+      ],
+      "tags": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "lcc.legislation",
+    "pk": 8,
+    "fields": {
+      "title": "Synergized background productivity law",
+      "abstract": "Ea esse voluptatum consequatur. Amet nisi ad debitis illum corrupti sunt. Tenetur eveniet facere eveniet magni asperiores. Nesciunt eius accusantium at enim error. Tenetur aspernatur quam atque praesentium fugiat officiis. Quam laboriosam quas iure. Omnis a distinctio velit ea ipsa iure.",
+      "country": "SDN",
+      "language": "en",
+      "law_type": "Law",
+      "year": 1903,
+      "year_amendment": 1907,
+      "year_mention": null,
+      "geo_coverage": "oth",
+      "source": null,
+      "source_type": "('official', 'Official')",
+      "website": "https://delgado-wood.info/",
+      "pdf_file": "",
+      "pdf_file_name": null,
+      "classifications": [
+        8,
+        13,
+        21,
+        89
+      ],
+      "tags": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "lcc.legislation",
+    "pk": 9,
+    "fields": {
+      "title": "Face-to-face systemic complexity law",
+      "abstract": "Accusamus repellendus harum ducimus. Laboriosam voluptas voluptate. Nihil quidem velit culpa ea. Ipsum dicta eum in occaecati iure alias. Tenetur nihil perferendis deserunt aut. Earum aperiam explicabo provident veritatis. Voluptas similique cupiditate excepturi. Facere harum ex modi. Porro quis esse saepe dolore laborum. Numquam dignissimos sed quibusdam incidunt provident. Quam nesciunt quae quos illum. Dolore maiores exercitationem distinctio. Corrupti reiciendis quaerat aliquid.",
+      "country": "LCA",
+      "language": "ar",
+      "law_type": "oth",
+      "year": 1960,
+      "year_amendment": 1969,
+      "year_mention": null,
+      "geo_coverage": "oth",
+      "source": null,
+      "source_type": "('official', 'Official')",
+      "website": "https://alvarado-gilbert.net/",
+      "pdf_file": "",
+      "pdf_file_name": null,
+      "classifications": [
+        45,
+        46,
+        79
+      ],
+      "tags": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "lcc.legislation",
+    "pk": 10,
+    "fields": {
+      "title": "Triple-buffered bifurcated access law",
+      "abstract": "Quod expedita molestias in quasi ad distinctio. Earum facere pariatur molestias omnis. Cum aut molestias eligendi tempora esse nisi. Suscipit eveniet corrupti praesentium veniam. Voluptatum quas vitae consequuntur. Esse eveniet assumenda facere. Optio explicabo voluptas eligendi eaque ullam.",
+      "country": "MNE",
+      "language": "es-es",
+      "law_type": "Law",
+      "year": 2005,
+      "year_amendment": 2005,
+      "year_mention": null,
+      "geo_coverage": "int-reg",
+      "source": null,
+      "source_type": "('official', 'Official')",
+      "website": "http://reyes.com/",
+      "pdf_file": "",
+      "pdf_file_name": null,
+      "classifications": [
+        33,
+        42
+      ],
+      "tags": [
+        1,
+        4
+      ]
+    }
+  }
+]
