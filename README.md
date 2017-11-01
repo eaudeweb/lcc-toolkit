@@ -4,7 +4,7 @@ A web application which stands as a toolkit for climate change law assessment.
 
 [![Travis](https://travis-ci.org/eaudeweb/lcc-toolkit.svg)](https://travis-ci.org/eaudeweb/lcc-toolkit)
 [![Coverage](https://coveralls.io/repos/github/eaudeweb/lcc-toolkit/badge.svg)](https://coveralls.io/github/eaudeweb/lcc-toolkit)
-[![Docker](https://dockerbuildbadges.quelltext.eu/status.svg?organization=eaudeweb&repository=lcc-toolkit&tag=dev)](https://hub.docker.com/r/eaudeweb/lcc-toolkit/builds)
+[![Docker](https://dockerbuildbadges.quelltext.eu/status.svg?organization=eaudeweb&repository=lcc-toolkit)](https://hub.docker.com/r/eaudeweb/lcc-toolkit/builds)
 
 ## Prerequisites
 

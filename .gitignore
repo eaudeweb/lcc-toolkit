@@ -106,6 +106,7 @@ ENV/
 .project
 .pydevproject
 .idea/
+.DS_Store
 
 # Apllication spesific
 db.sqlite3*

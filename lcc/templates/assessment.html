@@ -3,15 +3,58 @@
 {% load static %}
 
 {% block extra-scripts %}
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="{% static "js/assessment.js" %}"> </script>
 {% endblock %}
 
 {% block hidden_variables %}
-	<input type="number" name="assessment_id" value="{{ request.user.assessment.all.0.pk }}">
+<input type="number" name="assessment_id" value="{{ request.user.assessment.all.0.pk }}"></input>
+<input type="number" name="user_id" value="{{ request.user.pk }}"></input>
 {% endblock %}
 
 {% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
 
+{% block page-title %}Legal Assessment{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legal_assessment' %}">Legal Assessment</a></span>
+{% endblock %}
 
 {% block content %}
 
+<div class="container-fluid text-center" id="assessment-landing">   
+	<div class="row">
+		<div class="col-xs-12 col-md-8">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default" id="add-assessment">add assessment</button>
+				<button type="button" class="btn btn-default" id="continue-assessment">continue assessment</button>
+			</div>
+		</div>
+		<div class="col-xs-6 col-md-4">
+			<div class="form-group" id="group-country-list" style="display: none">
+				<div class="col-sm-12 col-md-12">
+					<select id="country-list" class="form-control">
+		
+					</select> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid text-center" id="assessment-edit" style="display: none">    
+	<div class="row content">
+		<div id="questions-container" class="col-sm-8 text-left">
+			<ul class="list-group">
+			</ul>
+		</div>
+
+		<div class="col-sm-4 sidenav google-codelab">
+			<div id="accordion">
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
