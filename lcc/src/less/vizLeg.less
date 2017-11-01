@@ -4,6 +4,7 @@
     position: relative;
 
     .filters {
+        display: none;
         border-left: 1px solid black;
         background: #fafbfb;
         width: 30%;
@@ -81,12 +82,12 @@
         .dt {
             display: inline-block;
             vertical-align: top;
-            width: calc(~"100% - 129px");
+            width: calc(~"100% - 138px");
             color: @text-color;
             font-size: 14px;
             line-height: 1.7;
 
-            .classification {
+            .classification, .tag {
                 margin-right: .5rem;
                 margin-bottom: .5rem;
                 background: @white-dark;
@@ -99,19 +100,19 @@
                 padding-right: .6rem;
             }
 
-            .tag {
-                font-size: 13px;
-                display: inline-block;
-                color: @black;
-                margin-right: .5rem;
-                vertical-align: top;
-                margin-top: -3px;
-                &:before {
-                    content: '•';
-                    display: inline-block;
-                    padding-right: .3rem;
-                }
-            }   
+            // .tag {
+            //     font-size: 13px;
+            //     display: inline-block;
+            //     color: @black;
+            //     margin-right: .5rem;
+            //     vertical-align: top;
+            //     margin-top: -3px;
+            //     &:before {
+            //         content: '•';
+            //         display: inline-block;
+            //         padding-right: .3rem;
+            //     }
+            // }   
 
         }
     @media @tabletDown {

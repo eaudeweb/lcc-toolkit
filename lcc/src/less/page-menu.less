@@ -1,37 +1,29 @@
 .page-menu {
-    background: white;
+    background: @background;
+    border-bottom: 1px solid @border;
+    margin-bottom: 2rem;
     .page-menu-wrapper {
         height: 0;
         transition: all 200ms ease-in;
     }
     .clearfix;
     .heading {
-        font-size: 24px;
-        line-height: 2.125;
-        font-weight: 500;
-        letter-spacing: .015em;
         cursor: default;
         display: block;
         float: left;
         margin: 0;
         padding: 0;
-        height: 52px;
+         line-height: 5rem;
+        margin-top: 2rem;
         max-width: 50%;
+        margin-bottom: 2rem;
     }
     ul {
-        margin-top: 1rem;
+        margin-top: 3rem;
         float: right;
-        margin-bottom: -3rem;
         li {
             display: inline-block; 
-            a {
-                transition: all 200ms;
-            }
         }
-    }
-    .container {
-        // border-bottom: 1px solid rgba(51, 51, 51, 0.2);
-        border-bottom: 1px solid @white-dark;
     }
 }
 
