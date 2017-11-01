@@ -78,13 +78,13 @@ $(document).ready(function(){
     function createAssessment(country) {
       var self = this;
       RequestService
-      .createAssessment({country: country, user: user_id})
-      .done(function (responseAssessment) {
-        self.assessment_id = responseAssessment.id;
-        $('#assessment-landing').hide();
-        $('#assessment-edit').show();
-        getClassifications.call(self);
-      });
+        .createAssessment({country: country, user: user_id})
+        .done(function (responseAssessment) {
+          self.assessment_id = responseAssessment.id;
+          $('#assessment-landing').hide();
+          $('#assessment-edit').show();
+          getClassifications.call(self);
+        });
     }
 
     function continueAssessment() {
@@ -158,8 +158,8 @@ $(document).ready(function(){
       var self = this;
       RequestService
         .getQuestions(classification_id, self.assessment_id)
-        .done(function (responseClassification) {
-          handleQuestions.call(self, responseClassification);
+        .done(function (responseQuestions) {
+          handleQuestions.call(self, responseQuestions);
         });
     }
 
@@ -217,7 +217,7 @@ $(document).ready(function(){
             ? true : JSON.parse(element.answer.value), questions_container);
         }  
 
-        // through this closure the each function is aware of the its question as a reference,
+        // through this closure each function has a reference to its question object,
         // updating it will be reflected in the collection of all_questions
         registerListeners(
           (function makeListener(element) {
@@ -237,7 +237,7 @@ $(document).ready(function(){
       }
     }
 
-    // btn-success will suggest the exitence of an answer
+    // btn-success will suggest the existence of an answer
     // btn-default: no answer was given
     function getBtnClass(buttonVal, answer) {
       var btn;
@@ -267,7 +267,7 @@ $(document).ready(function(){
       }
     }
 
-    // instead of implementing a deep search function to find and update the answer
+    // instead of implementing a deep search function to find and update the answer/question
     // the listener will be called directly and update through reference the values of the answer
     function updateAnswer(data, answerId) {
       var self = this;
