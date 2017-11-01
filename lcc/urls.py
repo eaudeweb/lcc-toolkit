@@ -42,9 +42,13 @@ article_patterns = [
         views.articles.ArticlesList.as_view(),
         name='view'),
 
-    url(r'^(?P<article_pk>\d+)edit/$',
+    url(r'^(?P<article_pk>\d+)/edit/$',
         views.articles.EditArticles.as_view(),
         name='edit'),
+
+    url(r'^(?P<article_pk>\d+)/delete/$',
+        views.articles.DeleteArticle.as_view(),
+        name='delete'),
 ]
 
 legislation_patterns = [
@@ -73,6 +77,9 @@ legislation_patterns = [
 
 country_patterns = [
     url(r'^(?P<iso>\w+)/$', views.country.Details.as_view(), name="view"),
+    url(r'^(?P<iso>\w+)/customise$',
+        views.country.Customise.as_view(),
+        name="customise"),
 ]
 
 api_urls = [
@@ -94,11 +101,11 @@ api_urls = [
 
     url(r'assessment/$',
         views.api.AssessmentList.as_view(),
-        name='answers_list_create'),
+        name='assessment_list_create'),
 
     url(r'assessment/(?P<user_pk>[0-9]+)/$',
         views.api.AssessmentDetail.as_view(),
-        name='answers_get_update'),
+        name='assessment_get_update'),
 
     url(r'countries/$',
         views.api.CountryViewSet.as_view(),

@@ -1,6 +1,8 @@
 import math
-import pycountry
+from copy import deepcopy
 from operator import itemgetter
+
+import pycountry
 import mptt.models
 
 from rolepermissions.roles import get_user_roles
@@ -11,6 +13,8 @@ import lcc.utils as utils
 import lcc.constants as constants
 
 from django.db import models
+from django.urls import reverse
+
 
 User = get_user_model()
 
@@ -163,20 +167,23 @@ class CountryMetadata(models.Model):
     def __str__(self):
         return f'{self.country.name} ({self.user or "no user"})'
 
+    def get_absolute_url(self):
+        return reverse('lcc:country:view', kwargs={'iso': self.country.iso})
+
     @property
     def population_range(self):
         return _format_range(
             _range_from_value(POP_RANGES, self.population))
 
     @property
-    def hdi_range(self):
+    def hdi2015_range(self):
         return (
             _format_range(_range_from_value(HDI_RANGES, self.hdi2015))
             if self.hdi2015 else 'N/A'
         )
 
     @property
-    def gdp_range(self):
+    def gdp_capita_range(self):
         label = itemgetter(2)
         return (
             label(_range_from_value(GDP_RANGES, self.gdp_capita))
@@ -184,18 +191,43 @@ class CountryMetadata(models.Model):
         )
 
     @property
-    def total_ghg_no_lucf(self):
+    def ghg_no_lucf_range(self):
         return (
             _format_range(_range_from_value(GHG_NO_LUCF, self.ghg_no_lucf))
             if self.ghg_no_lucf else None
         )
 
     @property
-    def total_ghg_lucf(self):
+    def ghg_lucf_range(self):
         return (
             _format_range(_range_from_value(GHG_LUCF, self.ghg_lucf))
             if self.ghg_lucf else None
         )
+
+    def clone_to_profile(self, user_profile):
+        # copy original
+        clone = deepcopy(self)
+        clone.pk = None
+        clone.user = user_profile
+
+        clone.save()
+
+        # copy many to many fields
+        m2m = (
+            f.name for f in self._meta.get_fields()
+            if isinstance(f, models.ManyToManyField)
+        )
+
+        for name in m2m:
+            val = (
+                getattr(self, name).all()
+                if hasattr(self, name) else []
+            )
+            setattr(clone, name, val)
+
+        clone.save()
+
+        return clone
 
 
 class Country(models.Model):
@@ -239,9 +271,9 @@ class UserProfile(models.Model):
 
     @property
     def flag(self):
-        """ Returns alpha2 from iso3.
+        """ Returns alpha3 from iso3.
         """
-        return pycountry.countries.get(alpha_3=self.home_country.iso).alpha_2
+        return pycountry.countries.get(alpha_3=self.home_country.iso).alpha_3
 
     @property
     def country(self):
@@ -370,6 +402,14 @@ class Legislation(models.Model):
     classifications = models.ManyToManyField(
         TaxonomyClassification, blank=True)
 
+    @property
+    def other_legislations(self):
+        other = {}
+        for classification in self.classifications.all():
+            other[classification] = Legislation.objects.filter(
+                classifications__id__exact=classification.pk).exclude(pk=self.pk).all()[:3]
+        return other
+
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Legislation: " + ' | '.join([self.country.name, self.law_type])
@@ -378,7 +418,7 @@ class Legislation(models.Model):
 class LegislationArticle(models.Model):
     text = models.CharField(max_length=65535)
     legislation = models.ForeignKey(Legislation, related_name="articles")
-    tags = models.ManyToManyField(TaxonomyTag)
+    tags = models.ManyToManyField(TaxonomyTag, blank=True)
     classifications = models.ManyToManyField(TaxonomyClassification)
     legislation_page = models.IntegerField()
     code = models.CharField(max_length=64)
@@ -394,7 +434,16 @@ class LegislationPage(models.Model):
     legislation = models.ForeignKey(Legislation, related_name="page")
 
     def __str__(self):
-        return "Page %d of Legislation %s" % (self.page_number, str(self.legislation.title))
+        return "Page %d of Legislation %s" % (
+            self.page_number, str(self.legislation.title)
+        )
+
+
+class Gap(models.Model):
+    on = models.BooleanField()
+    classifications = models.ManyToManyField(
+        TaxonomyClassification, blank=True)
+    tags = models.ManyToManyField(TaxonomyTag, blank=True)
 
 
 class Question(mptt.models.MPTTModel):
@@ -408,10 +457,9 @@ class Question(mptt.models.MPTTModel):
     parent_answer = models.NullBooleanField(default=None)
     order = models.IntegerField(blank=True)
 
-    classification = models.ForeignKey(TaxonomyClassification)
-    tags = models.ManyToManyField(TaxonomyTag)
-
-    gap_on = models.NullBooleanField(default=None)
+    classification = models.ForeignKey(
+        TaxonomyClassification, null=True, blank=True)
+    gaps = models.ManyToManyField(Gap, blank=True)
 
     class Meta:
         verbose_name = 'Question'

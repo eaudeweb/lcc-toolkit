@@ -1,0 +1,645 @@
+[
+{
+    "model": "lcc.question",
+    "pk": 1,
+    "fields": {
+        "text": "Does your country have a specific law (or legal provisions that are part of a broader law) dedicated to climate change mitigation, which is/are created by legislation, statute or other form of domestic law?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 2,
+        "lft": 1,
+        "rght": 22,
+        "tree_id": 1,
+        "level": 0,
+        "gaps": []
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 2,
+    "fields": {
+        "text": "Does this law include an economy-wide emissions reduction target that is currently in force?",
+        "parent": 1,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 13,
+        "tree_id": 1,
+        "level": 1,
+        "gaps": []
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 3,
+    "fields": {
+        "text": "Are there clear mechanisms for setting and amending targets, timelines or baselines?",
+        "parent": 2,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 3,
+        "rght": 4,
+        "tree_id": 1,
+        "level": 2,
+        "gaps": [
+            1
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 4,
+    "fields": {
+        "text": "Is there a duty to set emission targets?",
+        "parent": 2,
+        "parent_answer": false,
+        "order": 2,
+        "classification": null,
+        "lft": 5,
+        "rght": 6,
+        "tree_id": 1,
+        "level": 2,
+        "gaps": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 5,
+    "fields": {
+        "text": "Does your mitigation law contain any of the following:",
+        "parent": 2,
+        "parent_answer": false,
+        "order": 3,
+        "classification": null,
+        "lft": 7,
+        "rght": 12,
+        "tree_id": 1,
+        "level": 2,
+        "gaps": []
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 6,
+    "fields": {
+        "text": "Another form of commitment to quantitative emissions reduction, whether in force now or to take effect in the future?",
+        "parent": 5,
+        "parent_answer": null,
+        "order": 1,
+        "classification": null,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 1,
+        "level": 3,
+        "gaps": [
+            4
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 7,
+    "fields": {
+        "text": "Other forms of mitigation measures?",
+        "parent": 5,
+        "parent_answer": null,
+        "order": 2,
+        "classification": null,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 1,
+        "level": 3,
+        "gaps": [
+            5
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 8,
+    "fields": {
+        "text": "Does the law provide for a strategic plan on mitigation or  low GHG emission development strategy?",
+        "parent": 1,
+        "parent_answer": true,
+        "order": 2,
+        "classification": null,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 1,
+        "level": 1,
+        "gaps": [
+            6
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 9,
+    "fields": {
+        "text": "Does the law contain provisions for national carbon budgeting  or  measures for ratcheting up the target in the future?",
+        "parent": 1,
+        "parent_answer": true,
+        "order": 3,
+        "classification": null,
+        "lft": 16,
+        "rght": 17,
+        "tree_id": 1,
+        "level": 1,
+        "gaps": [
+            7
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 10,
+    "fields": {
+        "text": "Is this legislation legally enforceable?",
+        "parent": 1,
+        "parent_answer": true,
+        "order": 4,
+        "classification": null,
+        "lft": 18,
+        "rght": 19,
+        "tree_id": 1,
+        "level": 1,
+        "gaps": [
+            8
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 11,
+    "fields": {
+        "text": "Does your country have other legislation containing emissions reductions targets or carbon budgeting measures?",
+        "parent": 1,
+        "parent_answer": false,
+        "order": 5,
+        "classification": null,
+        "lft": 20,
+        "rght": 21,
+        "tree_id": 1,
+        "level": 1,
+        "gaps": [
+            9
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 12,
+    "fields": {
+        "text": "Does your country have a specific law (or provisions that are part of a broader law) relating to climate change adaptation?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 9,
+        "lft": 1,
+        "rght": 10,
+        "tree_id": 2,
+        "level": 0,
+        "gaps": [
+            14
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 13,
+    "fields": {
+        "text": "Does it contain provisions for climate risk and vulnerability assessments?",
+        "parent": 12,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 2,
+        "level": 1,
+        "gaps": [
+            10
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 14,
+    "fields": {
+        "text": "Does it contain provisions for national strategies or plans for adaptation and climate resilient development?",
+        "parent": 12,
+        "parent_answer": true,
+        "order": 2,
+        "classification": null,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 2,
+        "level": 1,
+        "gaps": [
+            11
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 15,
+    "fields": {
+        "text": "Does it contain a duty on the government or mandate to develop national strategies/plans for adaptation and climate resilient development ?",
+        "parent": 12,
+        "parent_answer": true,
+        "order": 3,
+        "classification": null,
+        "lft": 6,
+        "rght": 9,
+        "tree_id": 2,
+        "level": 1,
+        "gaps": [
+            12
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 16,
+    "fields": {
+        "text": "Are there procedural requirements relating to its creation (such as the requirement to consult)?",
+        "parent": 15,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 7,
+        "rght": 8,
+        "tree_id": 2,
+        "level": 2,
+        "gaps": [
+            13
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 17,
+    "fields": {
+        "text": "Does your country have a specific law (or provisions that are part of a broader law) establishing or designating national bodies or entities with responsibility for climate change matters?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 15,
+        "lft": 1,
+        "rght": 18,
+        "tree_id": 3,
+        "level": 0,
+        "gaps": [
+            15
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 18,
+    "fields": {
+        "text": "Does the law provide for the body or bodies to have coordination functions related to climate change matters?",
+        "parent": 17,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 5,
+        "tree_id": 3,
+        "level": 1,
+        "gaps": [
+            16
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 19,
+    "fields": {
+        "text": "Does the law provide for the body or bodies to have an inter-agency coordination role across government departments/bodies?",
+        "parent": 18,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 3,
+        "rght": 4,
+        "tree_id": 3,
+        "level": 2,
+        "gaps": [
+            17
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 20,
+    "fields": {
+        "text": "Does the law provide for the body or bodies to have planning and/or regulatory powers and functions  (ie powers to develop policies/plans and/or execute laws)?",
+        "parent": 17,
+        "parent_answer": true,
+        "order": 2,
+        "classification": null,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 3,
+        "level": 1,
+        "gaps": [
+            18
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 21,
+    "fields": {
+        "text": "Does the law provide for the body or bodies to have functions related to national greenhouse gas (GHG) inventory preparation processes and reporting?",
+        "parent": 17,
+        "parent_answer": true,
+        "order": 3,
+        "classification": null,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 3,
+        "level": 1,
+        "gaps": [
+            19
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 22,
+    "fields": {
+        "text": "Does the law provide for the body or bodies to have responsibility for administering climate budget/climate finance?",
+        "parent": 17,
+        "parent_answer": true,
+        "order": 4,
+        "classification": null,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 3,
+        "level": 1,
+        "gaps": [
+            20
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 23,
+    "fields": {
+        "text": "Does the law provide for the body or bodies to have a scientific or technical advisory role on climate change matters?",
+        "parent": 17,
+        "parent_answer": true,
+        "order": 5,
+        "classification": null,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 3,
+        "level": 1,
+        "gaps": [
+            21
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 24,
+    "fields": {
+        "text": "Are there provisions for consultation with various relevant stakeholders on climate change matters?",
+        "parent": 17,
+        "parent_answer": false,
+        "order": 6,
+        "classification": null,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 3,
+        "level": 1,
+        "gaps": [
+            22
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 25,
+    "fields": {
+        "text": "Are there provisions concerning delivery of education, information or capacity-building related to climate change matters?",
+        "parent": 17,
+        "parent_answer": false,
+        "order": 7,
+        "classification": null,
+        "lft": 16,
+        "rght": 17,
+        "tree_id": 3,
+        "level": 1,
+        "gaps": [
+            23
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 26,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations establishing provisions for trading in emission allowances or permits or abatement certificates  (emissions trading mechanisms)?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 28,
+        "lft": 1,
+        "rght": 4,
+        "tree_id": 4,
+        "level": 0,
+        "gaps": [
+            24
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 27,
+    "fields": {
+        "text": "Does the law link the country\u2019s emission trading mechanism to an international market mechanism?",
+        "parent": 26,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 4,
+        "level": 1,
+        "gaps": [
+            25
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 28,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations establishing a carbon tax or levies for climate policy purposes?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 2,
+        "classification": 28,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 6,
+        "level": 0,
+        "gaps": [
+            26
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 29,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations establishing incentives for voluntary emissions abatement actions?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 3,
+        "classification": 28,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 8,
+        "level": 0,
+        "gaps": [
+            27
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 30,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations establishing fiscal incentives for mitigation of climate change (reduction or abatement of emissions?)",
+        "parent": null,
+        "parent_answer": null,
+        "order": 4,
+        "classification": 28,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 10,
+        "level": 0,
+        "gaps": [
+            28
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 31,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations designating or establishing a body responsible for administering climate budget/climate finance?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 35,
+        "lft": 1,
+        "rght": 4,
+        "tree_id": 5,
+        "level": 0,
+        "gaps": [
+            29
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 32,
+    "fields": {
+        "text": "Does your country have legislation establishing a national climate fund?",
+        "parent": 31,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 5,
+        "level": 1,
+        "gaps": [
+            30
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 33,
+    "fields": {
+        "text": "Do provisions of laws or regulations specify sources of finance for climate change and/or how the funds will be raised?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 2,
+        "classification": 35,
+        "lft": 1,
+        "rght": 4,
+        "tree_id": 7,
+        "level": 0,
+        "gaps": [
+            31
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 34,
+    "fields": {
+        "text": "Are there provisions for access to international finance?",
+        "parent": 33,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 7,
+        "level": 1,
+        "gaps": [
+            32
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 35,
+    "fields": {
+        "text": "Is procurement of any public goods and services regulated to promote climate change policy?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 3,
+        "classification": 35,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 9,
+        "level": 0,
+        "gaps": [
+            33
+        ]
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 36,
+    "fields": {
+        "text": "Are there regulation of financial markets (e.g. debt and equity markets)  for climate-related risks and investment (e.g. regulation of Green Bonds, disclosure requirements for listed companies)?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 4,
+        "classification": 35,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 11,
+        "level": 0,
+        "gaps": [
+            34
+        ]
+    }
+}
+]

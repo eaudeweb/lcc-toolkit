@@ -2,9 +2,10 @@ from django.contrib.auth import mixins
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
-from django.views.generic import DetailView, CreateView, UpdateView
-
-from lcc import constants, models, forms
+from django.views.generic import (
+    DetailView, CreateView, UpdateView, DeleteView
+)
+from lcc import models, forms
 from lcc.views.base import (
     TagGroupRender, TaxonomyFormMixin,
     taxonomy_to_string,
@@ -128,3 +129,17 @@ class EditArticles(mixins.LoginRequiredMixin,
                 'legislation_pk': article.legislation.pk
             })
         )
+
+
+class DeleteArticle(mixins.LoginRequiredMixin, DeleteView):
+    model = models.LegislationArticle
+    pk_url_kwarg = 'article_pk'
+
+    def get_success_url(self, **kwargs):
+        legislation_pk = self.kwargs['legislation_pk']
+        return reverse('lcc:legislation:articles:view', kwargs={
+            'legislation_pk': legislation_pk
+        })
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)

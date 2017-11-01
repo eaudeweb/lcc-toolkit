@@ -31,6 +31,7 @@
             margin-top: 1rem;
         }
         .open-sidebar {
+            display: none;
             border-right-color: black;
             padding: 1rem 2rem;
             font-size: 1rem;
@@ -44,23 +45,92 @@
             }
         }
     }
-    h3 {
-        color: #00aeef;
-        font-weight: 300;
-        margin-top: 1rem;
-        font-size: 1.8rem;
-    }
 }
 
 
 .viz-container {
+    h5 {
+        color: @blue-light;
+        margin-bottom: 1.5rem;
+        font-weight: 400;
+    }
     margin-top: 1rem;
     margin-bottom: 1rem;
-    box-shadow: 0px 0px 3px #aaa;
-    padding: 2rem;
+    padding: 1rem 0;
     h3 {
-            margin: 1rem 0;
-    margin-bottom: 0;
+        margin: 1rem 0;
+        margin-bottom: 0;
+    }
+    &.half {
+        padding-right: 1rem;
+    }
+
+    .dl {
+        margin-bottom: 1rem;
+        .dd {
+            display: inline-block;
+            width: 115px;
+            color: @grey;
+            margin-right: 1rem;
+            font-size: 12px;
+            line-height: 1.7;
+            vertical-align: top;
+            text-transform: uppercase;
+        }
+
+        .dt {
+            display: inline-block;
+            vertical-align: top;
+            width: calc(~"100% - 129px");
+            color: @text-color;
+            font-size: 14px;
+            line-height: 1.7;
+
+            .classification {
+                margin-right: .5rem;
+                margin-bottom: .5rem;
+                background: @white-dark;
+                padding: .3rem;
+                color: @black;
+                display: inline-block;
+                font-size: 13px;
+                box-shadow: 1px 1px 3px #aaa;
+                padding-left: .6rem;
+                padding-right: .6rem;
+            }
+
+            .tag {
+                font-size: 13px;
+                display: inline-block;
+                color: @black;
+                margin-right: .5rem;
+                vertical-align: top;
+                margin-top: -3px;
+                &:before {
+                    content: '•';
+                    display: inline-block;
+                    padding-right: .3rem;
+                }
+            }   
+
+        }
+    @media @tabletDown {
+        .dd,.dt {
+            width: 100%;
+            display: block;
+        }
+    }
+    }
+
+    &.multiple {
+    padding: 1rem;
+    border: 1px solid #eee;
+    margin: 0!important;
+    margin-bottom: 2rem!important;
+        pre {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
     }
 }
 
@@ -73,11 +143,11 @@
 
 
 .law-container {
-    margin: 5rem 0;
+    margin: 2rem 0;
     &:first-of-type {
         margin-top: 0;
     }
-     &:last-of-type {
+    &:last-of-type {
         margin-bottom: 0;
     }
 }
@@ -85,4 +155,24 @@
 #laws {
     box-shadow: 0px 0px 3px #aaa;
     padding: 2rem;
+}
+
+.other-results-wrapper{
+    .section-header {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: @grey-light;
+        .result {
+            color: @blue-light;
+        }
+    }
+    li {
+        a {
+            color: @blue-light;
+            font-size: 16px;
+        }
+        div {
+            font-size: 12px;
+        }
+    }
 }

@@ -1,6 +1,9 @@
 import re
 import pdftotext
 
+import operator
+from itertools import chain
+
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
@@ -175,3 +178,45 @@ class ApproveRegistration(ModelForm):
         email = self.instance.user.email
         self.instance.user.delete()
         notify(email)
+
+
+class CountryMetadata(ModelForm):
+    """ Used on view. """
+
+    class Meta:
+        model = models.CountryMetadata
+        exclude = ['user', 'country']
+
+    def _filter_on_type(self, type_name, cmp):
+        return (
+            self[name] for name, field in self.fields.items()
+            if cmp(field.widget.input_type, type_name)
+        )
+
+    def checkboxes(self):
+        return self._filter_on_type('checkbox', operator.eq)
+
+    def multiple(self):
+        return self._filter_on_type('select', operator.eq)
+
+    def others(self):
+        return (
+            field for field in (self[name] for name in self.fields)
+            if field not in chain(self.checkboxes(), self.multiple())
+        )
+
+
+class CustomiseCountry(CountryMetadata):
+    """ Used on edit. """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        widgets = (field.widget for field in self.fields.values())
+        for widget in (w for w in widgets if w.input_type != 'checkbox'):
+            widget.attrs['class'] = 'form-control'
+
+    def others(self):
+        return self._filter_on_type('checkbox', operator.ne)
+
+    def delete(self):
+        self.instance.delete()

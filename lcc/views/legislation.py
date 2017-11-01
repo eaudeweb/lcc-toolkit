@@ -106,7 +106,6 @@ class LegislationAdd(mixins.LoginRequiredMixin, TaxonomyFormMixin,
         countries = sorted(models.Country.objects.all(), key=lambda c: c.name)
         context.update({
             "countries": countries,
-            "user_country": self.request.user_profile.country,
             "legislation_type": constants.LEGISLATION_TYPE,
             "tag_groups": [
                 TagGroupRender(tag_group)

@@ -1,5 +1,7 @@
 @import "bootstrap.less";
+@import "variables.less";
 @import "font-awesome.less";
+@import "fonts.less";
 @import "utils.less";
 @import "style.less";
 @import "addleg.less";
@@ -8,6 +10,7 @@
 @import "form-styles.less";
 @import "header.less";
 @import "assessment.less";
+@import "page-menu.less";
 
 .menu-section {
     border-bottom:2px solid #C9C6D1;
@@ -77,6 +80,11 @@ ul {
 }
 .button-wrapper {
 	text-align: center;
+    &.no-container {
+        margin-bottom: 2rem;
+    width: 100%;
+    float: left;
+    }
 }
 
 .remove {
@@ -85,7 +93,8 @@ ul {
 }
 
 .btn-info {
-    background-color: #00aeef;
+    // background-color: #00aeef;
+    background-color: @brand-primary;
 }
 
 a:hover {
@@ -97,15 +106,6 @@ a:hover {
     color: red;
 }
 
-#title {
-    font-weight: 300;
-    font-style: normal;
-    font-size: 3rem;
-    line-height: 1.1em;
-    margin-top: 3rem;
-    color: #444;
-    display: inline-block;
-}
 
 .btn-login {
     border: 1px solid;
@@ -123,3 +123,4 @@ a:hover {
     border-color: #00aeef;
     }
 }
+

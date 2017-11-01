@@ -26,6 +26,7 @@ module.exports = function(grunt) {
                     'lcc/src/js/modules.manager.js',
                     'lcc/src/js/config.js',
                     'lcc/src/js/request.service.js',
+                    'lcc/src/js/lib/jquery.sticky.js',
                 ],
                 dest: 'lcc/static/js/main.js'
             }
@@ -40,7 +41,7 @@ module.exports = function(grunt) {
             fonts: {
                 expand: true,
                 cwd: 'lcc/src/fonts',
-                src: '**',
+                src: '**/**',
                 dest: 'lcc/static/fonts'
             },
             js: {

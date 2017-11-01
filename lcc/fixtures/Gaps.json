@@ -1,0 +1,387 @@
+[
+{
+    "model": "lcc.gap",
+    "pk": 1,
+    "fields": {
+        "on": false,
+        "classifications": [
+            5
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 2,
+    "fields": {
+        "on": true,
+        "classifications": [
+            3
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 3,
+    "fields": {
+        "on": false,
+        "classifications": [
+            3,
+            4
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 4,
+    "fields": {
+        "on": false,
+        "classifications": [
+            3,
+            5,
+            6
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 5,
+    "fields": {
+        "on": false,
+        "classifications": [
+            7
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 6,
+    "fields": {
+        "on": false,
+        "classifications": [
+            8
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 7,
+    "fields": {
+        "on": false,
+        "classifications": [
+            6
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 8,
+    "fields": {
+        "on": false,
+        "classifications": [],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 9,
+    "fields": {
+        "on": false,
+        "classifications": [
+            3,
+            6,
+            7
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 10,
+    "fields": {
+        "on": false,
+        "classifications": [
+            10
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 11,
+    "fields": {
+        "on": false,
+        "classifications": [
+            11
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 12,
+    "fields": {
+        "on": false,
+        "classifications": [
+            11,
+            12
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 13,
+    "fields": {
+        "on": false,
+        "classifications": [
+            13
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 14,
+    "fields": {
+        "on": false,
+        "classifications": [
+            10,
+            11
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 15,
+    "fields": {
+        "on": false,
+        "classifications": [
+            16,
+            18,
+            19,
+            20,
+            21
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 16,
+    "fields": {
+        "on": false,
+        "classifications": [
+            16
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 17,
+    "fields": {
+        "on": false,
+        "classifications": [
+            17
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 18,
+    "fields": {
+        "on": false,
+        "classifications": [
+            19
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 19,
+    "fields": {
+        "on": false,
+        "classifications": [
+            20
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 20,
+    "fields": {
+        "on": false,
+        "classifications": [
+            21
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 21,
+    "fields": {
+        "on": false,
+        "classifications": [
+            18
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 22,
+    "fields": {
+        "on": false,
+        "classifications": [
+            22
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 23,
+    "fields": {
+        "on": false,
+        "classifications": [
+            23
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 24,
+    "fields": {
+        "on": false,
+        "classifications": [
+            30,
+            32
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 25,
+    "fields": {
+        "on": false,
+        "classifications": [
+            32
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 26,
+    "fields": {
+        "on": false,
+        "classifications": [
+            29
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 27,
+    "fields": {
+        "on": false,
+        "classifications": [
+            33
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 28,
+    "fields": {
+        "on": false,
+        "classifications": [
+            34
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 29,
+    "fields": {
+        "on": false,
+        "classifications": [
+            21,
+            40
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 30,
+    "fields": {
+        "on": false,
+        "classifications": [
+            40
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 31,
+    "fields": {
+        "on": false,
+        "classifications": [
+            39
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 32,
+    "fields": {
+        "on": false,
+        "classifications": [
+            37
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 33,
+    "fields": {
+        "on": false,
+        "classifications": [
+            36
+        ],
+        "tags": []
+    }
+},
+{
+    "model": "lcc.gap",
+    "pk": 34,
+    "fields": {
+        "on": false,
+        "classifications": [
+            38
+        ],
+        "tags": []
+    }
+}
+]

@@ -5,10 +5,6 @@ function changePage(item, page_number) {
 
 $(document).ready(function(){
 
-
-  $('#top-header .right-div').addClass('manage-left-header');
-  $('.footer-section').remove();
-
   var AjaxSubmit = {};
   var law_id = parseInt($("#law_pk").val());
   var page_number = parseInt($("#page_number").text());
@@ -23,7 +19,17 @@ $(document).ready(function(){
     }
   });
 
-  $('#addArticle').validate({});
+
+//continue here page change
+  // $('body').on('change keyup', '#id_legistlation_page', function(){
+  //   var page_number = $(this).val();
+  //   changePage($('.pdf'), page_number)
+  //   $('#page_number').html(page_number)
+  // })
+
+if($('.validate_this').length > 0){ 
+  $('.validate_this').validate({});
+}
 
   var input_law_id = $("<input>")
                  .attr("type", "hidden")

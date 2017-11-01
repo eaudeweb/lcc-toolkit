@@ -6,13 +6,26 @@
   <script src="{% static "js/upload.js" %}"></script>
 {% endblock %}
 
+{% block page-title %}Edit Legislation{% endblock %}
+{% block page-menu %} 
+  {% include 'legislation/navigation.html' %}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>
+  <span> <i class="icon-right-open-mini"></i>Edit</span>
+{% endblock %}
 
 {% block content %}
 
 <div class="row addLeg">
-  <div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="">
     <div class="">
       <div class="panel-body">
+        <h3>
+          {{ law.title }}
+        </h3>
         <form id="legislationEditForm" enctype="multipart/form-data" method="post"
               action="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
           {% csrf_token %}
@@ -45,7 +58,7 @@
               </div>
 
               <div class="label-description">
-                Attention: all your articles that might have been added to this law will be lost if you upload another file!
+                <p>Attention: all your articles that might have been added to this law will be lost if you upload another file</p>
                 <p>The current pdf is: <strong>{{ law.pdf_file_name }}</strong></p>
               </div>
 
@@ -195,6 +208,7 @@
               </div>
               <div>
                 <select name="year_amendment" id="id_year_amendment" class="law-meta-data-combobox">
+                  <option value="" {% if not form.year_amendment.value %} selected {% endif %}>----</option>
                   {% for year in adoption_years %}
                     <option value="{{ year }}"
                         {% if form.year_amendment.value == year %}
@@ -228,9 +242,9 @@
               <div>
                 <label for="id_tags">Tags</label>
               </div>
-              <div>
-                Select the best areas where the legislation fits
-              </div>
+              <h5>
+                <b>Select the best areas where the legislation fits</b>
+              </h5>
               <div class="list-container">
                 <ul name='tags' id='tags'>
                   {% for tag_group in tag_groups %}
@@ -242,14 +256,12 @@
                         <ul class="second-level level">
                           {% for tag in tag_group.tags %}
                             <li>
-                              <span class="list-header">
                                 <input id='tag_{{tag.pk}}' name='tag_{{tag.pk}}' type='checkbox'
                                   {% if tag.pk in form.tags.value %}
                                     checked
                                   {% endif %}>
-                                {{tag.name}}
                                 </input>
-                              </span>
+                                <label for='tag_{{tag.pk}}'>{{tag.name}}</label>
                             </li>
                           {% endfor %}
                         </ul>
@@ -263,25 +275,23 @@
                 <label for="id_classifications">Classification</label>
               </div>
 
-              <div>
-                Select the legal areas where the legislation fits
-              </div>
+              <h5>
+                <b>Select the legal areas where the legislation fits</b>
+              </h5>
 
               <div class="list-container">
                 <ul>
                   {% for top_class in classifications %}
                     <li class="first-level level">
-                      <span  class="list-header" {% if not top_class.get_children %} style="pointer-events: none;" {% endif %} >
-                        {% if top_class.get_children %}
-                          <input name='classification_{{ top_class.pk }}' type='checkbox'
+                      <span style="padding: 0" class="list-header">
+                          <input id='classification_{{ top_class.name }}' name='classification_{{ top_class.pk }}' type='checkbox'
                               {% if top_class.pk in form.classifications.value %}
                                 checked
                               {% endif %}>
-                            {{ top_class.name }}
                           </input>
-                        {% else %}
-                          <span>{{ top_class.name }}</span>
-                        {% endif %}
+                          <label for='classification_{{ top_class.name }}'>
+                            {{ top_class.name }}
+                          </label>
                       </span>
                     </li>
                   {% endfor %}
@@ -289,7 +299,20 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-info" id='save-btn' name='save-law-id-btn' value="{{law.pk}}"> Save </button>
+          <div>
+            {% with law.articles.all as articles %}
+              {% if articles %}
+                <p><b>This law has {{ articles|length }} articles.</b></p>
+              {% else %}
+                <p><b>This law has no articles.</b></p>
+              {% endif %}
+            {% endwith %}
+          </div>
+          <div class="button-wrapper">
+            <button type="submit" class="btn btn-info" id='save-btn' name='save-law-id-btn' value="{{law.pk}}"> Save </button>
+            <a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-danger" id="special-button">Cancel</a>
+            <a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-success" id="special-button">Manage articles</a>
+          </div>
         </form>
       </div>
     </div>
