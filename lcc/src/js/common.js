@@ -125,7 +125,7 @@ $(document).ready(function() {
     }
 
 
-    $(".page-menu").sticky({topSpacing:0});
+    $("#top-header").sticky({topSpacing:0});
     $('.disabled').click(function(e){
         e.preventDefault();
     })

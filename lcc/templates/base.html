@@ -15,7 +15,6 @@
   {% load static %}
 
   {% block scripts %}
-    <script src="https://use.fontawesome.com/cd3dcc527f.js"></script>
     <script src="{% static "js/main.js"%}"></script>
     {% if sentry_public_id %}
       <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
@@ -38,9 +37,6 @@
 
   {% block styles %}
     <link rel="shortcut icon" href="#" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Vollkorn:400,600,700" rel="stylesheet">
     <link href="{% static "css/main.css" %}" rel="stylesheet" />
   {% endblock %}
 
@@ -57,20 +53,17 @@
   <!-- Top Header -->
   <div id="top-header">
     <div class="header-wrapper container">
-      <div class="navbar-header">
-        <a class="brand" href="{% url 'lcc:legislation:explorer' %}">
-          <h2>Law and climate toolkit</h2>
-        </a>
-      </div>
+      <a class="brand" href="{% url 'lcc:legislation:explorer' %}">
+        <span>Law and climate toolkit</span>
+      </a>
 
       <div class="right-div">
         <div class="menu">
           <ul>
-            <!-- <li><a href="{% url 'lcc:legislation:explorer' %}">Home</a></li> -->
-            <li><a href="{% url 'lcc:legislation:explorer' %}"><img src="{% static "img/legislation-explorer.svg" %}" />Legislation Explorer</a></li>
-            <li><a><img src="{% static "img/legal-ass.svg" %}" />Legal Assessment</a></li>
-            <li><a href="{% url 'lcc:legislation:explorer' %}"><img src="{% static "img/context-control.svg" %}" />Context Control</a></li>
-            <li><a href="{% url 'lcc:legislation:explorer' %}"><img src="{% static "img/lessons-learned.svg" %}" />Lessons learned</a></li>
+            <li><a class="active" href="{% url 'lcc:legislation:explorer' %}">Legislation Explorer</a></li>
+            <li><a href="{% url 'lcc:legal_assessment' %}">Legal Assessment</a></li>
+            <li><a href="{% url 'lcc:legislation:explorer' %}">Context Control</a></li>
+            <li><a href="{% url 'lcc:legislation:explorer' %}">Lessons learned</a></li>
           </ul>
         </div>
         {% block header-top-right %}
@@ -82,7 +75,7 @@
   <div class="page-menu">
     <div class="page-menu-wrapper">   
       <div class="container">
-        <h4 id="title" class="heading">{% block page-title %}{% endblock %}</h4>
+        <h1 id="title" class="heading">{% block page-title %}{% endblock %}</h1>
         {% block page-menu %}
         {% endblock %}
       </div>
