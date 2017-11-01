@@ -28,6 +28,7 @@ $(document).ready(function(){
           .getCountries()
           .done(function (all_countries) {
             var country_list = $('#country-list');
+            country_list.empty();
 
             for (var j = 0; j < all_countries.length; j++) {
               var element = all_countries[j];
@@ -49,6 +50,7 @@ $(document).ready(function(){
           .getAssessments()
           .done(function (all_assessments) {
             var country_list = $('#country-list');
+            country_list.empty();
 
             for (var j = 0; j < all_assessments.length; j++) {
               var element = all_assessments[j];
