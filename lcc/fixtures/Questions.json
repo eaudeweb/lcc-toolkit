@@ -11,8 +11,7 @@
         "lft": 1,
         "rght": 22,
         "tree_id": 1,
-        "level": 0,
-        "gaps": []
+        "level": 0
     }
 },
 {
@@ -27,8 +26,7 @@
         "lft": 2,
         "rght": 13,
         "tree_id": 1,
-        "level": 1,
-        "gaps": []
+        "level": 1
     }
 },
 {
@@ -39,14 +37,11 @@
         "parent": 2,
         "parent_answer": true,
         "order": 1,
-        "classification": null,
+        "classification": 2,
         "lft": 3,
         "rght": 4,
         "tree_id": 1,
-        "level": 2,
-        "gaps": [
-            1
-        ]
+        "level": 2
     }
 },
 {
@@ -61,11 +56,7 @@
         "lft": 5,
         "rght": 6,
         "tree_id": 1,
-        "level": 2,
-        "gaps": [
-            2,
-            3
-        ]
+        "level": 2
     }
 },
 {
@@ -80,8 +71,7 @@
         "lft": 7,
         "rght": 12,
         "tree_id": 1,
-        "level": 2,
-        "gaps": []
+        "level": 2
     }
 },
 {
@@ -96,10 +86,7 @@
         "lft": 8,
         "rght": 9,
         "tree_id": 1,
-        "level": 3,
-        "gaps": [
-            4
-        ]
+        "level": 3
     }
 },
 {
@@ -114,10 +101,7 @@
         "lft": 10,
         "rght": 11,
         "tree_id": 1,
-        "level": 3,
-        "gaps": [
-            5
-        ]
+        "level": 3
     }
 },
 {
@@ -128,14 +112,11 @@
         "parent": 1,
         "parent_answer": true,
         "order": 2,
-        "classification": null,
+        "classification": 2,
         "lft": 14,
         "rght": 15,
         "tree_id": 1,
-        "level": 1,
-        "gaps": [
-            6
-        ]
+        "level": 1
     }
 },
 {
@@ -146,14 +127,11 @@
         "parent": 1,
         "parent_answer": true,
         "order": 3,
-        "classification": null,
+        "classification": 2,
         "lft": 16,
         "rght": 17,
         "tree_id": 1,
-        "level": 1,
-        "gaps": [
-            7
-        ]
+        "level": 1
     }
 },
 {
@@ -164,14 +142,11 @@
         "parent": 1,
         "parent_answer": true,
         "order": 4,
-        "classification": null,
+        "classification": 2,
         "lft": 18,
         "rght": 19,
         "tree_id": 1,
-        "level": 1,
-        "gaps": [
-            8
-        ]
+        "level": 1
     }
 },
 {
@@ -186,10 +161,7 @@
         "lft": 20,
         "rght": 21,
         "tree_id": 1,
-        "level": 1,
-        "gaps": [
-            9
-        ]
+        "level": 1
     }
 },
 {
@@ -204,10 +176,7 @@
         "lft": 1,
         "rght": 10,
         "tree_id": 2,
-        "level": 0,
-        "gaps": [
-            14
-        ]
+        "level": 0
     }
 },
 {
@@ -222,10 +191,7 @@
         "lft": 2,
         "rght": 3,
         "tree_id": 2,
-        "level": 1,
-        "gaps": [
-            10
-        ]
+        "level": 1
     }
 },
 {
@@ -240,10 +206,7 @@
         "lft": 4,
         "rght": 5,
         "tree_id": 2,
-        "level": 1,
-        "gaps": [
-            11
-        ]
+        "level": 1
     }
 },
 {
@@ -258,10 +221,7 @@
         "lft": 6,
         "rght": 9,
         "tree_id": 2,
-        "level": 1,
-        "gaps": [
-            12
-        ]
+        "level": 1
     }
 },
 {
@@ -276,10 +236,7 @@
         "lft": 7,
         "rght": 8,
         "tree_id": 2,
-        "level": 2,
-        "gaps": [
-            13
-        ]
+        "level": 2
     }
 },
 {
@@ -294,10 +251,7 @@
         "lft": 1,
         "rght": 18,
         "tree_id": 3,
-        "level": 0,
-        "gaps": [
-            15
-        ]
+        "level": 0
     }
 },
 {
@@ -312,10 +266,7 @@
         "lft": 2,
         "rght": 5,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            16
-        ]
+        "level": 1
     }
 },
 {
@@ -330,10 +281,7 @@
         "lft": 3,
         "rght": 4,
         "tree_id": 3,
-        "level": 2,
-        "gaps": [
-            17
-        ]
+        "level": 2
     }
 },
 {
@@ -348,10 +296,7 @@
         "lft": 6,
         "rght": 7,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            18
-        ]
+        "level": 1
     }
 },
 {
@@ -366,10 +311,7 @@
         "lft": 8,
         "rght": 9,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            19
-        ]
+        "level": 1
     }
 },
 {
@@ -384,10 +326,7 @@
         "lft": 10,
         "rght": 11,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            20
-        ]
+        "level": 1
     }
 },
 {
@@ -402,10 +341,7 @@
         "lft": 12,
         "rght": 13,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            21
-        ]
+        "level": 1
     }
 },
 {
@@ -416,14 +352,11 @@
         "parent": 17,
         "parent_answer": false,
         "order": 6,
-        "classification": null,
+        "classification": 15,
         "lft": 14,
         "rght": 15,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            22
-        ]
+        "level": 1
     }
 },
 {
@@ -434,14 +367,11 @@
         "parent": 17,
         "parent_answer": false,
         "order": 7,
-        "classification": null,
+        "classification": 15,
         "lft": 16,
         "rght": 17,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            23
-        ]
+        "level": 1
     }
 },
 {
@@ -456,10 +386,7 @@
         "lft": 1,
         "rght": 4,
         "tree_id": 4,
-        "level": 0,
-        "gaps": [
-            24
-        ]
+        "level": 0
     }
 },
 {
@@ -474,10 +401,7 @@
         "lft": 2,
         "rght": 3,
         "tree_id": 4,
-        "level": 1,
-        "gaps": [
-            25
-        ]
+        "level": 1
     }
 },
 {
@@ -491,11 +415,8 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 6,
-        "level": 0,
-        "gaps": [
-            26
-        ]
+        "tree_id": 7,
+        "level": 0
     }
 },
 {
@@ -509,11 +430,8 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 8,
-        "level": 0,
-        "gaps": [
-            27
-        ]
+        "tree_id": 10,
+        "level": 0
     }
 },
 {
@@ -527,11 +445,8 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 10,
-        "level": 0,
-        "gaps": [
-            28
-        ]
+        "tree_id": 13,
+        "level": 0
     }
 },
 {
@@ -546,10 +461,7 @@
         "lft": 1,
         "rght": 4,
         "tree_id": 5,
-        "level": 0,
-        "gaps": [
-            29
-        ]
+        "level": 0
     }
 },
 {
@@ -564,10 +476,7 @@
         "lft": 2,
         "rght": 3,
         "tree_id": 5,
-        "level": 1,
-        "gaps": [
-            30
-        ]
+        "level": 1
     }
 },
 {
@@ -581,11 +490,8 @@
         "classification": 35,
         "lft": 1,
         "rght": 4,
-        "tree_id": 7,
-        "level": 0,
-        "gaps": [
-            31
-        ]
+        "tree_id": 8,
+        "level": 0
     }
 },
 {
@@ -599,11 +505,8 @@
         "classification": null,
         "lft": 2,
         "rght": 3,
-        "tree_id": 7,
-        "level": 1,
-        "gaps": [
-            32
-        ]
+        "tree_id": 8,
+        "level": 1
     }
 },
 {
@@ -617,11 +520,8 @@
         "classification": 35,
         "lft": 1,
         "rght": 2,
-        "tree_id": 9,
-        "level": 0,
-        "gaps": [
-            33
-        ]
+        "tree_id": 11,
+        "level": 0
     }
 },
 {
@@ -635,11 +535,68 @@
         "classification": 35,
         "lft": 1,
         "rght": 2,
-        "tree_id": 11,
-        "level": 0,
-        "gaps": [
-            34
-        ]
+        "tree_id": 14,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 37,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations requiring domestic reporting of greenhouse gas (GHG) emissions by the government?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 24,
+        "lft": 1,
+        "rght": 4,
+        "tree_id": 6,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 38,
+    "fields": {
+        "text": "Does the law designate an agency to prepare a national inventory and report on national emissions data?",
+        "parent": 37,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 6,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 39,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations requiring reporting of greenhouse gas (GHG) emissions by companies, industrial installations or financial institutions?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 2,
+        "classification": 24,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 9,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 40,
+    "fields": {
+        "text": "Does your country have or provisions of laws or regulations establishing a scheme for the verification of information reported (public or private entities)?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 3,
+        "classification": 24,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 12,
+        "level": 0
     }
 }
 ]
