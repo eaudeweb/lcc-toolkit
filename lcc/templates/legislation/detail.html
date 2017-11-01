@@ -11,6 +11,9 @@
   <span> <i class="icon-right-open-mini"></i>{{ law.title }}</span>
 {% endblock %}
 
+
+{% block body-layout-type %}extended{% endblock %}
+
 {% block content %}
 
 {% with law.other_legislations as other_legislations %}
@@ -27,12 +30,27 @@
     </div>
 
     <div class="dl">
-      <div class="dd"><span>Date</span></div>
-      <div class="dt">{% if law.year %}{{ law.year }}{% else %} - {% endif %}</div>
+      <div class="dd"><span>Document type</span></div>
+      <div class="dt">{% if law.law_type %}{{ law.law_type }}{% else %} - {% endif %}</div>
     </div>
 
     <div class="dl">
-      <div class="dd"><span>Full Text</span></div>
+      <div class="dd"><span>Date</span></div>
+      <div class="dt">{% if law.year %}{{ law.year }}{% else %} - {% endif %} {% if law.year_amendment %}(latest known amendment {{ law.year_amendment}}){% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Geographical Coverage</span></div>
+      <div class="dt">{% if law.geo_coverage %}{{ law.get_geo_coverage_display }}{% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Language</span></div>
+      <div class="dt">{% if law.language %}{{ law.get_language_display }}{% else %} - {% endif %}</div>
+    </div>
+
+    <div class="dl">
+      <div class="dd"><span>Original document</span></div>
       <div class="dt"><a href="{{ law.pdf_file.url }}" target="_blank">{{ law.pdf_file_name }}</a></div>
     </div>
 
@@ -40,17 +58,19 @@
       <div class="dd"><span>Abstract</span></div>
       <div class="dt">{% if law.abstract %}<pre>{{ law.abstract }}</pre>{% else %} - {% endif %}</div>
     </div>
-<hr>
+
+    <span class="large-margin"></span>
+
     <div class="dl">
       <div class="dd"><span>Classification</span></div>
       <div class="dt">
       {% if law.all_classifications %}
         {% for classification in law.classifications.all %}
-         <span class="classification">{{ classification.name }}</span>
+         <span class="tag">{{ classification.name }}</span>
         {% endfor %}
       {% else %} - {% endif %}</div>
     </div>
-<hr>
+
     <div class="dl">
       <div class="dd"><span>Tags</span></div>
       <div class="dt">
@@ -60,30 +80,15 @@
         {% endfor %}
       {% else %} - {% endif %}</div>
     </div>
-<hr>
-    <div class="dl">
-      <div class="dd"><span>Language</span></div>
-      <div class="dt">{% if law.language %}{{ law.get_language_display }}{% else %} - {% endif %}</div>
-    </div>
 
-    <div class="dl">
-      <div class="dd"><span>Document type</span></div>
-      <div class="dt">{% if law.law_type %}{{ law.law_type }}{% else %} - {% endif %}</div>
-    </div>
+    <span class="large-margin large-margin--border"></span>
 
-    <div class="dl">
-      <div class="dd"><span>Latest known amendment (year)</span></div>
-      <div class="dt">{% if law.year_amendment %}{{ law.year_amendment }}{% else %} - {% endif %}</div>
-    </div>
+
+ 
 
     <div class="dl">
       <div class="dd"><span>Additional date details</span></div>
       <div class="dt">{% if law.year_mention %}{{ law.year_mention }}{% else %} - {% endif %}</div>
-    </div>
-
-    <div class="dl">
-      <div class="dd"><span>Geographical Coverage</span></div>
-      <div class="dt">{% if law.geo_coverage %}{{ law.get_geo_coverage_display }}{% else %} - {% endif %}</div>
     </div>
 
     <div class="dl">

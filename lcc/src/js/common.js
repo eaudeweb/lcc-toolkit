@@ -117,15 +117,10 @@ $(document).ready(function() {
     })
 
 
-    if(($('#title').text().length > 49) && ($('#title').text().length < 73)) {
-    	$('#title').css('font-size', 16+'px').css('line-height', '1.4').css('padding-top', 1.3 +"rem")
-    }
-    else if ( $('#title').text().length > 73) {
-        $('#title').css('padding-top', '0')
-    }
+    setTimeout(function(){
+        $("#top-header").sticky({topSpacing:0});
+    },300)
 
-
-    $("#top-header").sticky({topSpacing:0});
     $('.disabled').click(function(e){
         e.preventDefault();
     })

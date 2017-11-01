@@ -47,6 +47,8 @@ if($('.validate_this').length > 0){
   $('#editArticle').append($(input_law_id));
 
   $max_page = Object.keys(pages).length;
+  $('#last_page').html($max_page)
+
   document.getElementById("raw-text-page").innerHTML = pages[$("#starting_page").val()];
 
   $("#prev").on('click', function(){
@@ -54,6 +56,7 @@ if($('.validate_this').length > 0){
     $("#raw-text-page").html(pages[page_number]);
     $("#page_number").html(page_number);
     $("#id_legistlation_page").val(page_number);
+    $('#current_page').html(page_number);
     changePage($('.pdf'), page_number)
     $("#next").prop("disabled", false);
     if( page_number == 1)
@@ -67,6 +70,7 @@ if($('.validate_this').length > 0){
     $("#raw-text-page").html(pages[page_number]);
     $("#page_number").html(page_number);
     $("#id_legistlation_page").val(page_number);
+    $('#current_page').html(page_number);
     changePage($('.pdf'), page_number)
     $("#prev").prop("disabled", false);
     if( page_number == $max_page)
