@@ -65,13 +65,13 @@ class LegislationExplorer(ListView):
         #   - http://api.jquery.com/jQuery.param/
 
         # List of strings representing TaxonomyClassification ids
-        classifications = self.request.GET.getlist('classification[]')
+        classifications = self.request.GET.getlist('classifications[]')
         if classifications:
             search = search.query(
                 'terms', classifications=[int(pk) for pk in classifications])
 
         # List of strings representing TaxonomyTag ids
-        tags = self.request.GET.getlist('tag[]')
+        tags = self.request.GET.getlist('tags[]')
         if tags:
             search = search.query(
                 'terms', tags=[int(pk) for pk in tags])

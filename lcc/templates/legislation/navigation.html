@@ -1,9 +1,9 @@
 <ul>
-    <li><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-login">Metadata</a></li>
+    <li class="wide"><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-link active">Overview</a></li>
     {% if law.pdf_file %}
-      <li><a href="{{ law.pdf_file.url }}" target="_blank" class="btn btn-login">Body</a></li>
+      <li class="wide"><a href="{{ law.pdf_file.url }}" target="_blank" class="btn btn-link">Body</a></li>
     {% endif %}
     {% with law.articles.all as articles %}
-    <li><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-login {% if not articles %}disabled{% endif %}" title="{% if not articles %}This legislation does not have any articles defined.{% endif %}">Articles</a></li>
+    <li class="wide"><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-link {% if not articles %}disabled{% endif %}" title="{% if not articles %}This legislation does not have any articles defined.{% endif %}">Articles</a></li>
     {% endwith %}
 </ul>
