@@ -11,7 +11,7 @@ class Command(BaseCommand):
     help = "Load initial data"
 
     FIXTURES = ("TaxonomyTagGroup", "TaxonomyTag", "TaxonomyClassification",
-                "Countries", "CountryMetadata", "Gaps", "Questions")
+                "Countries", "CountryMetadata", "Questions", "Gaps")
 
     def handle(self, *args, **options):
         TaxonomyTagGroup.objects.all().delete()
