@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block extra-scripts %}
+{% endblock %}
+
+{% block hidden_variables %}
+  <input type="number" name="assessment_id" value="{{ pk }}"></input>
+{% endblock %}
+
+{% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
+
+{% block page-title %}Legal Assessment{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
