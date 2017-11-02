@@ -55,53 +55,56 @@
 <div class="articles-container">
   {% for article in law.articles.all %}
     <div id="{{article.code}}" class="viz-container multiple">
-    <div class="article-wrapper">
-      
-      {% if request.user.is_authenticated %}
-        <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:articles:delete' legislation_pk=law.pk article_pk=article.pk %}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
-        <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">Edit article</a>
-      {% endif %}
-      {% if article.code %}
-      <a class="article-title" href="#{{article.code}}">
-        <h4>Article {{ article.code }}</h4>
-      </a>
-      {% endif %}
+      <div class="article-wrapper">
+        
+        {% if request.user.is_authenticated %}
+          <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:articles:delete' legislation_pk=law.pk article_pk=article.pk %}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+          <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">Edit article</a>
+        {% endif %}
+        {% if article.code %}
+        <a class="article-title" href="#{{article.code}}">
+          <h4>Article {{ article.code }}</h4>
+        </a>
+        {% endif %}
 
-      {% if article.text %}
-        <p><pre>{{ article.text }}</pre></p>
-      {% endif %}
+        {% if article.text %}
+          <p><pre>{{ article.text }}</pre></p>
+        {% endif %}
 
-      <div class="dl">
-        <div class="dd"><span>Classification</span></div>
-        <div class="dt">
-        {% if article.classifications.exists %}
-          {% for classification in article.classifications.all %}
-           <span class="classification">{{ classification.name }}</span>
-          {% endfor %}
-        {% else %} - {% endif %}</div>
-      </div>
-
-      <div class="dl neg_6_margin">
-        <div class="dd"><span>Classification</span></div>
-        <div class="dt">
-          {% for classification in article.classifications.all %}
-            <span class="tag">{{ classification.name }}</span>
-          {% empty %}
-           - 
-          {% endfor %}
+        <div class="dl">
+          <div class="dd"><span>Classification</span></div>
+          <div class="dt">
+            {% for classification in article.classifications.all %}
+              <span class="classification">{{ classification.name }}</span>
+            {% empty %}
+             - 
+            {% endfor %}
+          </div>
         </div>
-      </div>
 
-      <div class="dl neg_6_margin">
-        <div class="dd"><span>Tags</span></div>
-        <div class="dt">
-          {% for tag in article.tags.all%}
-            <span class="tag">{{ tag.name }}</span>
-          {% empty %}
-           - 
-          {% endfor %}
+        <div class="dl neg_6_margin">
+          <div class="dd"><span>Classification</span></div>
+          <div class="dt">
+            {% for classification in article.classifications.all %}
+              <span class="tag">{{ classification.name }}</span>
+            {% empty %}
+             - 
+            {% endfor %}
+          </div>
         </div>
-    </div>
+
+        <div class="dl neg_6_margin">
+          <div class="dd"><span>Tags</span></div>
+          <div class="dt">
+            {% for tag in article.tags.all%}
+              <span class="tag">{{ tag.name }}</span>
+            {% empty %}
+             - 
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
     </div>
   {% empty %}
     <p>This law does not have articles.</p>
