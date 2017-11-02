@@ -28,9 +28,9 @@
           <input id="textSearchInput" type="text" name="q" placeholder="Search through all legislation database">
         </div>
         <div class="input-group-btn legalAreaBtnWrapper">
-          <button id="classificationsDropDownToggler" type="button" class="btn btn-default" aria-haspopup="true" aria-expanded="false">
+          <button id="classificationsDropDownToggler" type="button" class="btn btn-select" aria-haspopup="true" aria-expanded="false">
             <span style="float: left;">Select Legal Area</span>
-            <span style="float: right;">|<span style="padding: 0 4px 0 4px"><span class="caret"></span></span></span>
+            <span style="float: right;">▼<span style="padding: 0 4px 0 4px"><span class="caret"></span></span></span>
           </button>
         </div><!-- /btn-group -->
         <div class="input-group-btn searchBtnWrapper">
@@ -42,7 +42,7 @@
       <div class="col-md-6"></div>
       <div class="col-md-6">
         <div id="classificationsDropDownWrapper" style="display: none;">
-          <select name="classifications" id="classificationsDropDown" multiple="multiple">
+          <select class="round" name="classifications" id="classificationsDropDown" multiple="multiple">
             {% for top in top_classifications %}
               <option value="{{ top.pk }}">
                 {{ top.name }} ({{ top.get_descendant_count }} results)
@@ -53,19 +53,34 @@
       </div>
     </div><!-- /row -->
   </div><!-- /search -->
-  <div style="margin-left: -1px">
-    <div style="margin-top:28px;">
-      <a href="{% url 'lcc:legislation:add' %}" class="btn btn-info">Add legislation</a>
-    </div>
-  </div>
 <div class="page-container half viz-container">
     {% include "./_laws.html" %}
 </div>
+<div class="page-container half viz-container right">
+  <h3>Filter legislation</h3>
+    <div class="filter-countries">
+    <label for="countryDropDown">Country</label>
+      <select class="round" name="country" id="countryDropDown">
+        <option value="" selected>Select Country</option>
+        {% for country in countries %}
+          <option value="{{country.iso}}">{{ country.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
 
-  <div class="page-container half viz-container right">
+    <div class="filter-type">
+    <label for="typeDropDown">Type</label>
+      <select class="round" name="type" id="typeDropDown">
+        <option value="" selected>Select type</option>
+        {% for key, value in legislation_type %}
+          <option value="{{key}}">{{ value }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
     <div class="filterTags">
     <label for="TagDropDown">Tags</label>
-      <select name="tags" id="TagDropDown" multiple="multiple">
+      <select class="round" name="tags" id="TagDropDown" multiple="multiple">
         {% for group_tag in group_tags %}
           <optgroup label="{{group_tag.name}}">
             {% for tag in group_tag.tags.all %}
@@ -76,28 +91,10 @@
       </select>
     </div>
 
-    <div class="filter-countries">
-    <label for="countryDropDown">Country</label>
-      <select name="country" id="countryDropDown">
-        <option value="" selected>Select Country</option>
-        {% for country in countries %}
-          <option value="{{country.iso}}">{{ country.name }}</option>
-        {% endfor %}
-      </select>
-    </div>
-
-    <div class="filter-type">
-    <label for="typeDropDown">Type</label>
-      <select name="type" id="typeDropDown">
-        <option value="" selected>Select type</option>
-        {% for key, value in legislation_type %}
-          <option value="{{key}}">{{ value }}</option>
-        {% endfor %}
-      </select>
-    </div>
     <div class="button-wrapper">
       <button type="button" class="btn btn-primary submitBtn">Apply filters</button>
     </div>
 
   </div>
+
 {% endblock %}
