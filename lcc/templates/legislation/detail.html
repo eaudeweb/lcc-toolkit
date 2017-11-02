@@ -7,8 +7,8 @@
 {% endblock %}
 
 
-{% block page-menu %} 
-  <!-- {% include 'legislation/navigation.html' %} -->
+{% block page-menu %}
+  {# include 'legislation/navigation.html' #}
   <ul>
     <li class="wide"><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-link active">Overview</a></li>
     {% with law.articles.all as articles %}
@@ -77,6 +77,7 @@
       <div class="dt">{% if law.geo_coverage %}{{ law.get_geo_coverage_display }}{% else %} - {% endif %}</div>
     </div>
 
+    {% if law.pdf_file %}
     <div class="dl">
       <div class="dd"><span>Language</span></div>
       <div class="dt">{% if law.language %}{{ law.get_language_display }}{% else %} - {% endif %}</div>
@@ -86,6 +87,7 @@
       <div class="dd"><span>Original document</span></div>
       <div class="dt"><a href="{{ law.pdf_file.url }}" target="_blank">{{ law.pdf_file_name }}</a></div>
     </div>
+    {% endif %}
 
     <div class="dl">
       <div class="dd"><span>Abstract</span></div>
@@ -95,7 +97,7 @@
     <div class="dl">
       <div class="dd"><span>Classification</span></div>
       <div class="dt">
-      {% if law.all_classifications %}
+      {% if law.classifications.exists %}
         {% for classification in law.classifications.all %}
          <span class="tag">{{ classification.name }}</span>
         {% endfor %}
@@ -105,7 +107,7 @@
     <div class="dl">
       <div class="dd"><span>Tags</span></div>
       <div class="dt">
-      {% if law.all_tags %}
+      {% if law.tags.exists %}
         {% for tag in law.tags.all%}
          <span class="tag">{{ tag.name }}</span>
         {% endfor %}

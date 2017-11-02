@@ -20,17 +20,13 @@ A web application which stands as a toolkit for climate change law assessment.
 
 1. Customize the environment files:
 
-        cp docker/postgres.env.example docker/postgres.env
-        vim docker/postgres.env
-        cp docker/web.env.example docker/web.env
-        vim docker/web.env
-        cp docker/init.sql.example docker/init.sql
-        vim docker/init.sql
+        $ cp docker/postgres.env.example docker/postgres.env
+        $ cp docker/web.env.example docker/web.env
+        $ cp docker/init.sql.example docker/init.sql
 
-    Depending on the installation type, create the docker-compose.override.yml file:
+    Depending on the installation mode, create the docker-compose.override.yml file:
 
-         cp docker-compose.override.[prod|dev].yml docker-compose.override.yml
-         vim docker-compose.override.yml
+         $ cp docker-compose.override.[prod|dev].yml docker-compose.override.yml
 
 1. Start the application stack:
 
@@ -39,36 +35,57 @@ A web application which stands as a toolkit for climate change law assessment.
 
 1. Attach to the web service:
 
-        docker-compose run --entrypoint bash web
+        $ docker-compose run web
 
 1. Create a superuser (for Ansible see <https://gist.github.com/elleryq/9c70e08b1b2cecc636d6):>
 
-        docker-compose run --entrypoint bash web
-        python manage.py createsuperuser
+        $ python manage.py createsuperuser
 
-That's it. You should now be able to access the app at <http://localhost:8000.>
+That's it. If you installed in production mode, you should be able to access the
+app at http://localhost:8000. If you installed in development mode, follow the
+next steps.
 
-## Debugging the application
+## Development setup
 
-* Set `DEBUG=on` in `web.env` file.
+Make sure you have the following settings configured correctly (these are the
+default values in the .example files, so you shouldn't have to change anything).
 
-* Update docker-compose.override.yml file `web` section with the following so that `docker-entrypoint.sh` is not executed:
+* `DEBUG=on` in `web.env` file.
 
-        entrypoint: ["/usr/bin/tail", "-f", "/dev/null"]
+* The `docker-compose.override.yml` file's `web` section includes this:
 
-* Attach to the web service and run the following:
+      build:
+        context: .
+        args:
+          REQFILE: requirements-dev.txt
+      entrypoint: bash
 
-        python manage.py migrate
-        python manage.py load_fixtures
-        python manage.py createsuperuser
-        python manage.py runserver 0.0.0.0:8000
+Then run the web service
+
+    $ docker-compose run --service-ports web
+
+and run the following:
+
+    $ python manage.py migrate
+    $ python manage.py load_fixtures
+    $ python manage.py createsuperuser
+    $ python manage.py search_index --rebuild
+    $ python manage.py runserver 0.0.0.0:8000
+
+Now you should be able to access the app in development mode at http://localhost:8000.
+By default, there will be no Legislation in the database. In order to generate
+some fake legislation for testing/debugging purposes, you can run the following
+command:
+
+    $ python manage.py generate_fake_legislation <N>
+
+Where <N> is the number of Legislation objects to generate.
 
 ## Testing
 
 To execute the test suite, attach to the web service and run the following:
 
-    pip install -r requirements-dev.txt
-    python manage.py test
+    $ python manage.py test
 
 ## Configuration variables
 

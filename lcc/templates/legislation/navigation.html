@@ -5,7 +5,7 @@
     {% endwith %}
     {% if request.user.is_authenticated %}
       <span class="separator"></span>
-      {% if law.articles.all %}
+      {% if articles %}
       <li class="wide">
         <a class="btn btn-link"
            href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">

@@ -14,10 +14,8 @@ from django.views.generic import (
 
 from lcc import models, constants, forms
 from lcc.constants import LEGISLATION_YEAR_RANGE
-from lcc.views.base import (
-    TagGroupRender,
-    taxonomy_to_string,
-    TaxonomyFormMixin)
+from lcc.documents import LegislationDocument
+from lcc.views.base import TagGroupRender, TaxonomyFormMixin
 
 
 def legislation_save_pdf_pages(law, pdf):
@@ -46,40 +44,67 @@ class LegislationExplorer(ListView):
     template_name = "legislation/explorer.html"
     model = models.Legislation
 
+    def dispatch(self, request, *args, **kwargs):
+        """
+        If the `partial` parameter is set, return only the list of laws,
+        don't render the whole page again.
+        """
+
+        if self.request.GET.get('partial'):
+            self.template_name = "legislation/_laws.html"
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        """
+        Perform filtering using ElasticSearch instead of Postgres.
+        """
+
+        search = LegislationDocument.search()
+
+        # jQuery's ajax function ads `[]` to duplicated querystring parameters
+        # or parameters whose values are objects, so we have to take that into
+        # account when looking for our values in the querystring. More into at:
+        #   - http://api.jquery.com/jQuery.param/
+
+        # List of strings representing TaxonomyClassification ids
+        classifications = self.request.GET.getlist('classifications[]')
+        if classifications:
+            search = search.query(
+                'terms', classifications=[int(pk) for pk in classifications])
+
+        # List of strings representing TaxonomyTag ids
+        tags = self.request.GET.getlist('tags[]')
+        if tags:
+            search = search.query(
+                'terms', tags=[int(pk) for pk in tags])
+
+        # String representing country iso code
+        country = self.request.GET.get('country')
+        if country:
+            search = search.query('term', country=country)
+
+        # String representing law_type
+        law_type = self.request.GET.get('law_type')
+        if law_type:
+            search = search.query('term', law_type=law_type)
+
+        # String to be searched in all text fields (full-text search using
+        # elasticsearch's default best_fields strategy)
+        q = self.request.GET.get('q')
+        if q:
+            search = search.query(
+                'multi_match', query=q, fields=['title', 'abstract'])
+        # TODO: Implement proper pagination!
+        return search[0:10000].to_queryset()
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         group_tags = models.TaxonomyTagGroup.objects.all()
-        top_classifications = models.TaxonomyClassification.objects \
-            .filter(level=0).order_by('code')
+        top_classifications = models.TaxonomyClassification.objects.filter(
+            level=0).order_by('code')
         countries = models.Country.objects.all()
 
-        req_dict = dict(self.request.GET)
-        laws = self.get_queryset()
-        # @TODO add filter for YEAR and LANGUAGE
-        if bool(req_dict):
-            if req_dict.get('tags[]'):
-                for tag in req_dict['tags[]']:
-                    laws = laws.filter(tags=tag)
-
-            if req_dict.get('classification[]'):
-                for classification in req_dict['classification[]']:
-                    laws = laws.filter(classifications=classification)
-
-            if req_dict.get('country'):
-                laws = laws.filter(country__iso=req_dict.get('country')[0])
-
-            if req_dict.get('type'):
-                laws = laws.filter(law_type=req_dict.get('type')[0])
-
-        laws = laws.order_by('-pk')
-
-        # For now, tags and classifications are displayed as a string
-        # @TODO find a better approach
-        for law in laws:
-            law.all_tags = taxonomy_to_string(law, tags=True)
-            law.all_classifications = taxonomy_to_string(
-                law, classification=True
-            )
+        laws = self.object_list
 
         legislation_year = (
             LEGISLATION_YEAR_RANGE[0],
@@ -139,12 +164,6 @@ class LegislationView(DetailView):
     pk_url_kwarg = 'legislation_pk'
     model = models.Legislation
     context_object_name = 'law'
-
-    def get_object(self, queryset=None):
-        law = super().get_object(queryset)
-        law.all_tags = taxonomy_to_string(law, tags=True)
-        law.all_classifications = taxonomy_to_string(law, classification=True)
-        return law
 
 
 class LegislationPagesView(views.View):
