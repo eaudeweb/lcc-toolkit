@@ -100,9 +100,10 @@
 
     &.multiple {
     padding: 1rem;
-    border: 1px solid #eee;
-    margin: 0!important;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 2rem!important;
+    width: 72%;
         pre {
             padding: 1rem 0;
         }
@@ -110,11 +111,11 @@
 }
 
 
-.articles-container {
-    .viz-container {
-        margin: 1rem;
-    }
-}
+// .articles-container {
+//     .viz-container {
+//         margin: 1rem;
+//     }
+// }
 
 
 .law-container {
@@ -153,5 +154,17 @@
 // }
 
 pre {
-    font-family: @BaseFont;
+    // font-family: @BaseFont;
+}
+
+.article-title {
+    position: relative;
+    &:hover {
+        &:before {
+            content: '#';
+            position: absolute;
+            left: -1.5rem;
+            font-size: 2rem;
+        }
+    }
 }
