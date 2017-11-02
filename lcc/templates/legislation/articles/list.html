@@ -4,16 +4,12 @@
 
 {% block page-title %}{{ law.title }}{% endblock %}
 
-<<<<<<< HEAD
-{% block page-menu %}
-=======
 {% block law_details %}
   {% include 'legislation/law_details.html' %}
 {% endblock %}
 
 {% block page-menu %}
->>>>>>> c0cafc06be4eac834d731a03ed2b62504e763c30
-  <!-- {% include 'legislation/navigation.html' %} -->
+  {# include 'legislation/navigation.html' #}
   <ul>
     <li class="wide"><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-link active">Overview</a></li>
     {% with law.articles.all as articles %}
