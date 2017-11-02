@@ -67,7 +67,11 @@ $(document).ready(function() {
         $sub_level.animate({
             'height': 'toggle'
         })
-        $checkbox.toggleClass('fa-minus-square')
+        $checkbox.toggleClass('fa-caret-up')
+    })
+
+    $('#tags .second-level.level').animate({
+            'height': 'show'
     })
 
     var textarea = $('textarea')
@@ -91,12 +95,6 @@ $(document).ready(function() {
     $('body').on('click','.state button', function(){
         $('.state button').removeClass('active')
         $(this).addClass('active')
-    })
-
-    $('.authenticated .icon-user-outline').click(function(){
-        $('.actions-wrapper').animate({
-            'width': 'toggle'
-        })
     })
 
     var edited = false;

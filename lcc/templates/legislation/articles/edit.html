@@ -105,7 +105,7 @@
             {% for tag_group in tag_groups %}
               <li class="first-level level">
                 <span class="list-header">
-                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
                   <span name='tagGroup_{{tag_group.pk}}'> {{tag_group.name}} </span>
                 </span>
                 <ul class="second-level level">
@@ -145,7 +145,7 @@
                 <span  class="list-header" {% if not top_class.get_children %} style="pointer-events: none;" {% endif %} >
                     <span name='classification_{{ top_class.pk }}'>{{ top_class.name }}</span>
                     {% if second_classifications %}
-                      <i class="fa fa-plus-square" aria-hidden="true"></i>
+                      <i class="fa fa-caret-down" aria-hidden="true"></i>
                     {% endif %}
                 </span>
                   
@@ -159,7 +159,7 @@
                             {% endif %}>
                         </input>
                         <label for="classification_{{ second_class.pk }}">{{ second_class.name }}</label>
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
                       </span>
                       <ul class="third-level level">
                         {% for third_class in second_class.get_children %}
