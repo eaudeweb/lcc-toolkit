@@ -107,7 +107,7 @@ api_urls = [
         views.api.AssessmentList.as_view(),
         name='assessment_list_create'),
 
-    url(r'assessments/results/(?P<pk>[0-9]+)/$',
+    url(r'assessments/(?P<pk>[0-9]+)/results/$',
         views.api.AssessmentResults.as_view(),
         name='assessment_results'),
 
@@ -150,6 +150,10 @@ urlpatterns = [
     url(r'^legal-assessment/$',
         views.assessment.LegalAssessment.as_view(),
         name="legal_assessment"),
+
+    url(r'^legal-assessment/(?P<pk>[0-9]+)/results$',
+        views.assessment.LegalAssessmentResults.as_view(),
+        name="legal_assessment_results"),
 
     url(r'^legislation/',
         include(legislation_patterns, namespace='legislation')),
