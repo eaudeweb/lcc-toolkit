@@ -45,3 +45,11 @@ class TaxonomyFormMixin:
         if hasattr(self, 'object'):
             kwargs.update({'instance': self.object})
         return kwargs
+
+
+class HomePageView(views.generic.TemplateView):
+    template_name = "home.html"
+
+
+class AboutUsView(views.generic.TemplateView):
+    template_name = "about_us.html"

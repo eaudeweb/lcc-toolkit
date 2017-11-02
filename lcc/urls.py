@@ -136,8 +136,12 @@ def crash_me(request):
 
 urlpatterns = [
     url(r'^$',
-        views.base.Index.as_view(),
-        name='index'),
+        views.base.HomePageView.as_view(),
+        name='home_page'),
+
+    url(r'^about-us/$',
+        views.base.AboutUsView.as_view(),
+        name='about_us'),
 
     url(r'^',
         include(auth_patterns, namespace='auth')),
