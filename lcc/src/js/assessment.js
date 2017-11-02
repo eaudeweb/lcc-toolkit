@@ -13,6 +13,8 @@ $(document).ready(function(){
     var all_questions = [];
     var listeners = {};
 
+    // TODO remove ids form questions
+
     // requests need the assessment_id, to have this available, we need to make sure
     // that functions have this as their context, which normally will be changed when:
     // - binding to $ elements
@@ -50,6 +52,7 @@ $(document).ready(function(){
     function renderContinueAssessment() {
       var self = this;
       $('#continue-assessment').click(function() {
+
         RequestService
           .getAssessments()
           .done(function (all_assessments) {
@@ -178,17 +181,17 @@ $(document).ready(function(){
       questions_container.innerHTML = '';
       all_questions = questions;
 
-      renderQuestions.call(this, questions, false, questions_container);
+      renderQuestions.call(this, questions, true, questions_container);
     }
 
-    function renderQuestions(my_questions, hide, questions_container) {
+    function renderQuestions(my_questions, show, questions_container, questionClass) {
 
       for (var index = 0; index < my_questions.length; index++) {
         var element = my_questions[index];
         var answerId = element.answer ? element.answer.id : '';
-
+        questionClass = questionClass ? 'qq' + element.id : questionClass + '_' + element.id;
         var li = $('<li/>')
-                  .addClass('list-group-item question')
+                  .addClass('list-group-item question' + questionClass)
                   .attr('id', element.id)
                   .appendTo(questions_container);
         var p = $('<p/>')
@@ -205,7 +208,10 @@ $(document).ready(function(){
                         .attr('data-question', element.id)
                         .attr('data-value', 'true')
                         .attr('data-answer-id', answerId)
-                        .on('click', handleAnswer.bind(this));
+                        .on('click', handleAnswer.bind(this, 
+                          element.children_yes, element.children_no, 
+                          true, questionClass + 'yes'));
+                          
         var buttonNo = $('<button/>')
                         .text('No')
                         .addClass('btn ' + getBtnClass(false, element.answer))
@@ -213,18 +219,26 @@ $(document).ready(function(){
                         .attr('data-value', 'false')
                         .attr('data-answer-id', answerId)
                         .appendTo(div)
-                        .on('click', handleAnswer.bind(this));
+                        .on('click', handleAnswer.bind(this, 
+                          element.children_yes, element.children_no, 
+                          false, questionClass + 'no'));
 
-        hide ? li.hide() : li.show();
+        show ? li.show() : li.hide();
 
         if(element.children_yes) {
-          renderQuestions.call(this, element.children_yes, !element.answer 
-            ? true : !JSON.parse(element.answer.value), questions_container);
+          renderQuestions.call(this
+                                , element.children_yes
+                                , show ? isShown(element, true) : show // will propagate false to all children
+                                , questions_container
+                                , questionClass + 'yes');
         }
 
         if(element.children_no) {
-          renderQuestions.call(this, element.children_no, !element.answer 
-            ? true : JSON.parse(element.answer.value), questions_container);
+          renderQuestions.call(this
+                                , element.children_no
+                                , show ? isShown(element, false) : show
+                                , questions_container
+                                , questionClass + 'no');
         }  
 
         // through this closure each function has a reference to its question object,
@@ -247,6 +261,20 @@ $(document).ready(function(){
       }
     }
 
+    function isShown(element, buttonValue) {
+      var response = false;
+      console.log('element.answer ', element.answer)
+      console.log('buttonValue ', buttonValue)
+      console.log('======================== ')
+      if(!element.answer) {
+        response = false;
+      } else {
+        response = element.answer.value ? buttonValue : !buttonValue; // this is a !XOR
+      }
+
+      return response;
+    }
+
     // btn-success will suggest the existence of an answer
     // btn-default: no answer was given
     function getBtnClass(buttonVal, answer) {
@@ -262,14 +290,35 @@ $(document).ready(function(){
       }
     }
 
-    function handleAnswer(event) {
+    function handleAnswer(children_yes, children_no, isYesButton, questionClass, event) {
       var data = {
         'assessment': this.assessment_id,
         'question': $(event.currentTarget).attr('data-question'),
         'value': $(event.currentTarget).attr('data-value')
       };
       var answerId =  $(event.currentTarget).attr('data-answer-id');
+      if(children_yes) {
+        for (var index = 0; index < children_yes.length; index++) {
+          var element = children_yes[index];
+          if ( isYesButton ) {
+            $(  "#" + element.id ).slideDown();
+          } else {
+            $(  "#" + element.id ).slideUp();
+          }
+        }
+      }
 
+      if(children_no) {
+        for (var index = 0; index < children_no.length; index++) {
+          var element = children_no[index];
+          if ( isYesButton ) {
+            $(  "#" + element.id ).slideUp();
+          } else {
+            $(  "#" + element.id ).slideDown();
+          }
+        }
+      }
+    
       if(answerId) {
         updateAnswer.call(this, data, answerId);
       } else {
