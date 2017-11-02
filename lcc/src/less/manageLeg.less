@@ -33,18 +33,21 @@
         margin-top: 1rem;
         border: 1px solid black;
         width: 40%;
-        float: right;
         /* position: fixed; */
         /* right: 0; */
         /* top: 126px; */
         /* height: calc(100vh - 126px); */
         overflow: auto;
         background: @dark-background;
-        z-index: 1;
+        height: calc(~"100vh - 83px");
     }
     .tab-content {
         padding-bottom: 0;
         background: white;
+        .tab-pane {
+                height: calc(~"100vh - 228px");
+                overflow: auto;
+        }
     }
     .pdf-header {
         min-height: 4rem;
