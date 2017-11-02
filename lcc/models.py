@@ -8,11 +8,15 @@ import mptt.models
 from rolepermissions.roles import get_user_roles
 
 from django.contrib.auth import get_user_model
+from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.indexes import GinIndex
 
 import lcc.utils as utils
 import lcc.constants as constants
 
 from django.db import models
+from django.db.models import F, Subquery, OuterRef
+from django.db.models.signals import m2m_changed
 from django.urls import reverse
 
 
@@ -96,6 +100,149 @@ def _range_from_value(range, value):
         val for val in range
         if min(val) <= value <= max(val)
     )
+
+
+class TaxonomyTagGroup(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return 'Tagging by ' + self.name
+
+
+class TaxonomyTag(models.Model):
+    name = models.CharField(max_length=255)
+    group = models.ForeignKey(TaxonomyTagGroup, related_name='tags')
+
+    def __str__(self):
+        return "Tag " + self.name
+
+
+class TaxonomyClassification(mptt.models.MPTTModel):
+    name = models.CharField(max_length=255)
+    code = models.CharField(max_length=16, unique=True, blank=True)
+    parent = mptt.models.TreeForeignKey('self',
+                                        null=True,
+                                        blank=True,
+                                        related_name='children')
+
+    class Meta:
+        verbose_name = 'Taxonomy Classification'
+        verbose_name_plural = 'Taxonomy Classifications'
+        ordering = ('code',)
+
+    class MPTTMeta:
+        order_insertion_by = ['code']
+
+    @classmethod
+    def _pre_save_classification_code_on_create(cls, instance):
+        """Logic executed before saving a new TaxonomyClassification instance.
+        Set the next code for the classification.
+        """
+        instance.code = utils.generate_code(cls, instance)
+
+    @staticmethod
+    def _pre_save_classification_code_on_edit(instance):
+        """Logic executed before editing an TaxonomyClassification instance.
+
+        Update the code for every child to match the parent classification.
+        """
+        for classification in instance.children.all():
+            parts = classification.code.split('.')
+            suffix_code = parts[-1]
+            classification.code = '{0}.{1}'.format(instance.code, suffix_code)
+            classification.save()
+
+    @staticmethod
+    def pre_save_classification_code(**kwargs):
+
+        instance = kwargs['instance']
+
+        if instance.code:
+            TaxonomyClassification._pre_save_classification_code_on_edit(
+                instance)
+        else:
+            TaxonomyClassification._pre_save_classification_code_on_create(
+                instance)
+
+    def get_classification_level(self):
+        # The logical classification of taxonomy starts from 1
+        # The tree level of an object starts from 0
+        return self.get_level() + 1
+
+    def __str__(self):
+        return "{} classification: {}".format(
+            self.code, self.name
+        )
+
+
+models.signals.pre_save.connect(
+    TaxonomyClassification.pre_save_classification_code,
+    sender=TaxonomyClassification
+)
+
+
+class _TaxonomyModel(models.Model):
+    classifications = models.ManyToManyField(
+        TaxonomyClassification, blank=True)
+    tags = models.ManyToManyField(
+        TaxonomyTag, blank=True)
+
+    _classification_ids = ArrayField(
+        models.IntegerField(), default=list, blank=True)
+    _tag_ids = ArrayField(
+        models.IntegerField(), default=list, blank=True)
+
+    class Meta:
+        abstract = True
+        indexes = [GinIndex(fields=['_classification_ids']),
+                   GinIndex(fields=['_tag_ids'])]
+
+    """
+    # this is what we'd like to do, but m2m operations don't pass through save
+    def save(self, *args, **kwargs):
+        self._classification_ids = [c.id for c in self.classifications]
+        self._tag_ids = [t.id for t in self.tags]
+
+        super().save(*args, **kwargs)
+    """
+
+
+def cache_taxonomy(sender, **kwargs):
+    # this is hard stuff to code, so avoiding it until really necessary:
+    if kwargs['reverse']:
+        raise RuntimeError("noway, like, really")
+
+    watched = ('post_add', 'post_clear', 'post_remove')
+    m2ms = {
+        TaxonomyClassification: {
+            'source': 'classifications',
+            'target': '_classification_ids',
+        },
+        TaxonomyTag: {
+            'source': 'tags',
+            'target': '_tag_ids',
+        },
+
+    }
+
+    if kwargs['action'] not in watched:
+        return
+
+    try:
+        fields = m2ms[kwargs['model']]
+    except KeyError:
+        return
+
+    instance = kwargs['instance']
+
+    setattr(
+        instance,
+        fields['target'],
+        [item.id for item in getattr(instance, fields['source']).all()])
+    instance.save()
+
+
+m2m_changed.connect(cache_taxonomy)
 
 
 class Region(models.Model):
@@ -287,113 +434,15 @@ class UserProfile(models.Model):
         return self.user.username
 
 
-class TaxonomyTagGroup(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return 'Tagging by ' + self.name
+class LegislationManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().select_related('country')
 
 
-class TaxonomyTag(models.Model):
-    name = models.CharField(max_length=255)
-    group = models.ForeignKey(TaxonomyTagGroup, related_name='tags')
-
-    def __str__(self):
-        return "Tag " + self.name
-
-
-class TaxonomyClassification(mptt.models.MPTTModel):
-    name = models.CharField(max_length=255)
-    code = models.CharField(max_length=16, unique=True, blank=True)
-    parent = mptt.models.TreeForeignKey('self',
-                                        null=True,
-                                        blank=True,
-                                        related_name='children')
-
-    class Meta:
-        verbose_name = 'Taxonomy Classification'
-        verbose_name_plural = 'Taxonomy Classifications'
-        ordering = ('code',)
-
-    class MPTTMeta:
-        order_insertion_by = ['code']
-
-    @classmethod
-    def _pre_save_classification_code_on_create(cls, instance):
-        """Logic executed before saving a new TaxonomyClassification instance.
-        Set the next code for the classification.
-        """
-        instance.code = utils.generate_code(cls, instance)
-
-    @staticmethod
-    def _pre_save_classification_code_on_edit(instance):
-        """Logic executed before editing an TaxonomyClassification instance.
-
-        Update the code for every child to match the parent classification.
-        """
-        for classification in instance.children.all():
-            parts = classification.code.split('.')
-            suffix_code = parts[-1]
-            classification.code = '{0}.{1}'.format(instance.code, suffix_code)
-            classification.save()
-
-    @staticmethod
-    def pre_save_classification_code(**kwargs):
-
-        instance = kwargs['instance']
-
-        if instance.code:
-            TaxonomyClassification._pre_save_classification_code_on_edit(
-                instance)
-        else:
-            TaxonomyClassification._pre_save_classification_code_on_create(
-                instance)
-
-    def get_classification_level(self):
-        # The logical classification of taxonomy starts from 1
-        # The tree level of an object starts from 0
-        return self.get_level() + 1
-
-    def __str__(self):
-        return "Level {} classification: {}".format(
-            self.get_classification_level(), self.name
-        )
-
-
-models.signals.pre_save.connect(
-    TaxonomyClassification.pre_save_classification_code,
-    sender=TaxonomyClassification
-)
-
-
-class Taxonomized(models.Model):
-
-    class Meta:
-        abstract = True
-
-    classifications = models.ManyToManyField(TaxonomyClassification)
-    tags = models.ManyToManyField(TaxonomyTag)
-
-    def classifications_as_string(self):
-        return ", ".join(
-            list(self.classifications.values_list('name', flat=True)))
-
-    def tags_as_string(self):
-        return ", ".join(list(self.tags.values_list('name', flat=True)))
-
-    @property
-    def other_legislations(self):
-        other = {}
-        for classification in self.classifications.all():
-            other[classification] = Legislation.objects.filter(
-                classifications__id__exact=classification.pk).exclude(pk=self.pk).all()[:3]
-        return other
-
-
-class Legislation(Taxonomized):
+class Legislation(_TaxonomyModel):
     title = models.CharField(max_length=256)
     abstract = models.CharField(max_length=1024, blank=True, null=True)
-    country = models.ForeignKey(Country)
+    country = models.ForeignKey(Country, related_name="legislations")
     language = models.CharField(
         choices=constants.ALL_LANGUAGES,
         default=constants.DEFAULT_LANGUAGE,
@@ -423,23 +472,53 @@ class Legislation(Taxonomized):
         default=constants.SOURCE_TYPE_DEFAULT,
         max_length=64, blank=True, null=True
     )
-    website = models.URLField(max_length=2000, null=True)
+    website = models.URLField(max_length=2000, blank=True, null=True)
 
     pdf_file = models.FileField(null=True)
     pdf_file_name = models.CharField(null=True, max_length=256)
+
+    objects = LegislationManager()
+
+    @property
+    def country_name(self):
+        return self.country.name
+
+    @property
+    def other_legislations(self):
+        other = {}
+        for classification in self.classifications.all():
+            other[classification] = Legislation.objects.filter(
+                classifications__id__exact=classification.pk).exclude(pk=self.pk).all()[:3]
+        return other
 
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Legislation: " + ' | '.join([self.country.name, self.law_type])
 
 
-class LegislationArticle(Taxonomized):
+class LegislationArticleManager(models.Manager):
+    def get_articles_for_gaps(self, gap_ids):
+        table = self.model._meta.db_table
+        return self.select_related('legislation').extra(
+            tables=['lcc_gap'],
+            select={
+                'gap_id': 'lcc_gap.id',
+            },
+            where=[
+                "lcc_gap.id IN (%s)" % ','.join(map(str, gap_ids)),
+                "%s._classification_ids @> lcc_gap._classification_ids" % table,
+                "%s._tag_ids @> lcc_gap._tag_ids" % table
+            ]
+        )
+
+
+class LegislationArticle(_TaxonomyModel):
     text = models.CharField(max_length=65535)
     legislation = models.ForeignKey(Legislation, related_name="articles")
-    tags = models.ManyToManyField(TaxonomyTag, blank=True)
-    classifications = models.ManyToManyField(TaxonomyClassification)
     legislation_page = models.IntegerField()
     code = models.CharField(max_length=64)
+
+    objects = LegislationArticleManager()
 
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
@@ -457,13 +536,6 @@ class LegislationPage(models.Model):
         )
 
 
-class Gap(models.Model):
-    on = models.BooleanField()
-    classifications = models.ManyToManyField(
-        TaxonomyClassification, blank=True)
-    tags = models.ManyToManyField(TaxonomyTag, blank=True)
-
-
 class Question(mptt.models.MPTTModel):
 
     text = models.CharField(max_length=1024)
@@ -476,8 +548,8 @@ class Question(mptt.models.MPTTModel):
     order = models.IntegerField(blank=True)
 
     classification = models.ForeignKey(
-        TaxonomyClassification, null=True, blank=True)
-    gaps = models.ManyToManyField(Gap, blank=True)
+        TaxonomyClassification,
+        null=True, blank=True)
 
     class Meta:
         verbose_name = 'Question'
@@ -492,10 +564,6 @@ class Question(mptt.models.MPTTModel):
         super(Question, self).save(*args, **kwargs)
 
     @property
-    def gap(self):
-        return self.gap_on if self.gap_on else None
-
-    @property
     def full_order(self):
         return ".".join([
             str(question.order)
@@ -508,15 +576,30 @@ class Question(mptt.models.MPTTModel):
                 self.full_order, self.parent_answer
             )
         else:
-            return "Question: %s" % self.order
+            return "C: %s Question: %s" % (self.classification.code, self.order)
+
+
+class Gap(_TaxonomyModel):
+    question = models.ForeignKey(Question, related_name="gaps")
+    on = models.BooleanField()
+
+    class Meta(_TaxonomyModel.Meta):
+        unique_together = ('on', 'question')
+
+    def __str__(self):
+        return "Gap for Q %s" % self.question
 
 
 class Assessment(models.Model):
-    user = models.ForeignKey(User, related_name="assessment")
-    country = models.ForeignKey(Country)
+    user = models.ForeignKey(User, related_name="assessments")
+    country = models.ForeignKey(Country, related_name="assessments")
 
     class Meta:
         unique_together = ("user", "country")
+
+    @property
+    def country_name(self):
+        return self.country.name
 
     def __str__(self):
         return "%s' assessment for %s" % (
@@ -524,15 +607,35 @@ class Assessment(models.Model):
         )
 
 
+class AnswerManager(models.Manager):
+    def get_assessment_answers(self, assessment_pk):
+        answers = (
+            self
+            .select_related('question')
+            .filter(assessment__pk=assessment_pk)
+            .filter(value=F('question__gaps__on'))
+            .annotate(gap_id=F('question__gaps__id'))
+            .annotate(category_id=Subquery(
+                Question.objects.filter(tree_id=OuterRef(
+                    'question__tree_id'), parent=None)
+                .values('classification_id')[:1]
+            ))
+        )
+
+        return answers
+
+
 class Answer(models.Model):
     assessment = models.ForeignKey(Assessment)
     question = models.ForeignKey(Question)
     value = models.BooleanField()
 
+    objects = AnswerManager()
+
     class Meta:
         unique_together = ("question", "assessment")
 
     def __str__(self):
-        return "Question %d for assessment %d" % (
-            self.question.pk, self.assessment.pk
+        return "Question %s for assessment %d" % (
+            self.question.full_order, self.assessment.pk
         )

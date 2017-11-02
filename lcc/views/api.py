@@ -1,7 +1,6 @@
 from rest_framework import generics
 
 from lcc import models, serializers
-from django.contrib.auth import get_user_model
 
 
 class QuestionViewSet(generics.ListAPIView):
@@ -42,17 +41,78 @@ class AssessmentList(generics.ListCreateAPIView):
     queryset = models.Assessment.objects.all()
     serializer_class = serializers.AssessmentSerializer
 
-
-class AssessmentDetail(generics.ListAPIView):
-    queryset = models.Assessment.objects.all()
-    serializer_class = serializers.AssessmentSerializer
-
-    def get_quryset(self):
-        user_pk = self.kwargs['user_pk']
-        user = get_user_model().objects.get(pk=user_pk)
-        return models.Assessment.objects.get(user=user)
+    def get_queryset(self):
+        return models.Assessment.objects.filter(user=self.request.user)
 
 
 class CountryViewSet(generics.ListAPIView):
     queryset = models.Country.objects.all()
     serializer_class = serializers.CountrySerializer
+
+
+class AssessmentResults(generics.RetrieveAPIView):
+    serializer_class = serializers.AssessmentResultSerializer
+
+    def get_queryset(self):
+        return models.Assessment.objects.filter(
+            pk=self.kwargs['pk'],
+            user=self.request.user,
+        )
+
+    def get_object(self):
+        # decorate the assessment with... some stuff
+        assessment = super().get_object()
+
+        answers = models.Answer.objects.get_assessment_answers(assessment.pk)
+        category_ids = {a.category_id for a in answers}
+        sub_categories = models.TaxonomyClassification.objects.filter(
+            pk__in=category_ids)
+        root_categories = models.TaxonomyClassification.objects.filter(
+            pk__in=[cat.parent_id for cat in sub_categories])
+
+        for root in root_categories:
+            root.categories = [
+                sub for sub in sub_categories
+                if sub.parent_id == root.id
+            ]
+
+        gap_ids = []
+
+        for a in answers:
+            q = a.question
+            q.answer = a.value
+
+            gap_ids.append(a.gap_id)
+
+            category = next(
+                cat for cat in sub_categories
+                if cat.id == a.category_id
+            )
+            try:
+                cat_qs = category.questions
+            except AttributeError:
+                category.questions = []
+                cat_qs = category.questions
+
+            cat_qs.append(q)
+
+        gaps = models.Gap.objects.filter(id__in=gap_ids).prefetch_related(
+            'classifications', 'tags')
+
+        for a in answers:
+            a.question.gap = next(
+                gap for gap in gaps
+                if gap.id == a.gap_id
+            )
+
+        assessment.categories = root_categories
+        articles = models.LegislationArticle.objects.get_articles_for_gaps(
+            gap_ids)
+
+        for a in answers:
+            a.question.articles = [
+                article for article in articles
+                if a.question.gap.id == article.gap_id
+            ]
+
+        return assessment

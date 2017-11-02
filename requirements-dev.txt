@@ -5,3 +5,4 @@ coveralls==1.2.0
 coverage==4.4.1
 factory-boy==2.9.2
 openpyxl>=2.4
+lorem==0.1.1

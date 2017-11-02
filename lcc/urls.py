@@ -103,13 +103,13 @@ api_urls = [
         views.api.AnswerDetail.as_view(),
         name='answers_get_update'),
 
-    url(r'assessment/$',
+    url(r'assessments/$',
         views.api.AssessmentList.as_view(),
         name='assessment_list_create'),
 
-    url(r'assessment/(?P<user_pk>[0-9]+)/$',
-        views.api.AssessmentDetail.as_view(),
-        name='assessment_get_update'),
+    url(r'assessments/results/(?P<pk>[0-9]+)/$',
+        views.api.AssessmentResults.as_view(),
+        name='assessment_results'),
 
     url(r'countries/$',
         views.api.CountryViewSet.as_view(),

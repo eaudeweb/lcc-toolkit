@@ -86,22 +86,22 @@
       <div class="dl neg_6_margin">
         <div class="dd"><span>Classification</span></div>
         <div class="dt">
-          {% if article.all_classifications %}
-            {% for classification in article.classifications.all %}
-             <span class="tag">{{ classification.name }}</span>
-            {% endfor %}
-          {% else %} - {% endif %}
+          {% for classification in article.classifications.all %}
+            <span class="tag">{{ classification.name }}</span>
+          {% empty %}
+           - 
+          {% endfor %}
         </div>
       </div>
 
       <div class="dl neg_6_margin">
         <div class="dd"><span>Tags</span></div>
         <div class="dt">
-          {% if article.all_tags %}
-            {% for tag in article.tags.all%}
-             <span class="tag">{{ tag.name }}</span>
-            {% endfor %}
-          {% else %} - {% endif %}
+          {% for tag in article.tags.all%}
+            <span class="tag">{{ tag.name }}</span>
+          {% empty %}
+           - 
+          {% endfor %}
         </div>
     </div>
     </div>
