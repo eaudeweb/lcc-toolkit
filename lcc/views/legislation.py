@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import (
-    ListView, CreateView, DetailView, UpdateView
+    ListView, CreateView, DetailView, UpdateView, DeleteView
 )
 
 from lcc import models, constants, forms
@@ -199,3 +199,14 @@ class LegislationEditView(mixins.LoginRequiredMixin, TaxonomyFormMixin,
             reverse('lcc:legislation:details',
                     kwargs={'legislation_pk': legislation.pk})
         )
+
+
+class LegislationDeleteView(mixins.LoginRequiredMixin, DeleteView):
+    model = models.Legislation
+    pk_url_kwarg = 'legislation_pk'
+
+    def get_success_url(self, **kwargs):
+        return reverse("lcc:legislation:explorer")
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
