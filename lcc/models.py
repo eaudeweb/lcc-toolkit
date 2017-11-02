@@ -443,12 +443,16 @@ class Legislation(_TaxonomyModel):
     title = models.CharField(max_length=256)
     abstract = models.CharField(max_length=1024, blank=True, null=True)
     country = models.ForeignKey(Country, related_name="legislations")
-    language = models.CharField(choices=constants.ALL_LANGUAGES,
-                                default=constants.DEFAULT_LANGUAGE,
-                                max_length=64)
-    law_type = models.CharField(choices=constants.LEGISLATION_TYPE,
-                                default=constants.LEGISLATION_TYPE_DEFAULT,
-                                max_length=64)
+    language = models.CharField(
+        choices=constants.ALL_LANGUAGES,
+        default=constants.DEFAULT_LANGUAGE,
+        max_length=64
+    )
+    law_type = models.CharField(
+        choices=constants.LEGISLATION_TYPE,
+        default=constants.LEGISLATION_TYPE_DEFAULT,
+        max_length=64
+    )
     year = models.IntegerField(default=constants.LEGISLATION_YEAR_RANGE[-1])
     year_amendment = models.IntegerField(
         default=constants.LEGISLATION_DEFAULT_YEAR,
@@ -463,9 +467,11 @@ class Legislation(_TaxonomyModel):
         null=True
     )
     source = models.CharField(max_length=256, blank=True, null=True)
-    source_type = models.CharField(choices=constants.SOURCE_TYPE,
-                                   default=constants.SOURCE_TYPE_DEFAULT,
-                                   max_length=64, blank=True, null=True)
+    source_type = models.CharField(
+        choices=constants.SOURCE_TYPE,
+        default=constants.SOURCE_TYPE_DEFAULT,
+        max_length=64, blank=True, null=True
+    )
     website = models.URLField(max_length=2000, blank=True, null=True)
 
     pdf_file = models.FileField(null=True)

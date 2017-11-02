@@ -22,6 +22,7 @@
 {% endblock %}
 
 {% block content-wrapper-class %}manageLeg{% endblock %}
+{% block body-layout-type %}extended no-title{% endblock %}
 
 {% block hidden_variables %}
   <input type="number" id="law_pk" value="{{ law.pk }}">
@@ -29,16 +30,24 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-  {{ block.super }} 
-  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>
-  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">Articles</a></span>
-  <span> <i class="icon-right-open-mini"></i>Add</span>
+   {% static "" as baseUrl %}
+    <div class="breadcrumbs">
+        <div class="container">
+           <span>
+                <a href="{% url 'lcc:legislation:explorer' %}">Home</a></span>
+           <span> 
+            <i class="icon-right-open-mini"></i><img class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" ></span>
+           <span  class="shorten"> <i class="icon-right-open-mini"></i><a title="{{ law.title }}" href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>...
+            <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">Articles</a></span>
+            <span> <i class="icon-right-open-mini"></i><b>Add</b class="text-color"></span>
+        </div>
+      </div>
 {% endblock %}
 
 
 {% block content %}
 <div class="page-container half">
- <h3>{{ law.title }}</h3>
+ <h2><b>Add article</b></h2>
   <form class="validate_this" id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
     {% csrf_token %}
 
@@ -50,7 +59,7 @@
         </div>
         <div>
           <!-- TODO change classes to code  -->
-          <input class='law-meta-data-text-field' type="text" name="code" maxlength="64" required id="id_code" placeholder="Ex: 1.2.3.4"/>
+          <input class='law-meta-data-text-field' type="text" name="code" maxlength="64" required id="id_code" placeholder="Example: 1.2.3.4"/>
         </div>
       </div>
 
@@ -62,7 +71,12 @@
       <div class="clearfix">
         <!-- TODO change classes to text -->
         <!-- TODO check text style in textarea -->
-        <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="text" maxlength="65535" required id="id_text" placeholder="Add article text"></textarea>
+        <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="text" maxlength="65535" required id="id_text" placeholder="(i) The text you select fom the scanned document will automatically appear here.
+          You can:
+          A. Replace any text in this field (default) or
+          B. Append text (useful for articles that span across multiple pages)
+
+          Check the original document whenever you feel like the scan was done incorrectly"></textarea>
         <!-- TODO change change char limit -->
         <small class="pull-right" id="rem_char"></small>
       </div>
@@ -82,9 +96,7 @@
         <div>
             <label class="label-large" for="id_tags">Tags</label>
         </div>
-        <h5>
-          <b>Select the best areas where the article fits</b>
-        </h5>
+        <h5 class="muted">Select the best areas where the article fits</h5>
         <div class="list-container">
             <ul name='tags' id='tags'>
               {% for tag_group in tag_groups %}
@@ -112,8 +124,8 @@
         <div>
           <label class="label-large" for="id_classifications">Classification <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
         </div>
-        <h5>
-          <b>Select the legal areas where the article fits</b>
+        <h5 class="muted">
+          Select the legal areas where the article fits
         </h5>
         <div class="list-container">
           <ul>
@@ -155,18 +167,21 @@
       </div>
       </div>
       <div class="button-wrapper">
-        <button type="submit" class="btn btn-success" id='save-btn' name='save-btn'> Save & View articles</button>
-        <button type="button" class="btn btn-primary" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add another</button>
-        <a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-danger" id="cancel-btn">Cancel</a>
+        <button type="submit" class="btn btn-primary" id='save-btn' name='save-btn'>Save</button>
+        <button type="button" class="btn btn-link" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add another</button>
+        <span class="muted">|</span>
+        <a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-link" id="cancel-btn">Cancel</a>
       </div>
   </form>
 
   <div class="last-article-container">
     {% if last_article %}
-      <p><strong>Article number: </strong>{{ last_article.code }}</p>
-      <!-- TODO The text inside that pre tag should be limited to ~200 chars -->
-      <p><strong>Text:</strong> <pre>{{ last_article.text }}</pre></p>
+      <h3 class="muted">Previous article</h3>
+      <h3><a href="{{article.code}}">Article: {{ last_article.code }}</a></h3>
       <p><strong>Page:</strong> {{ last_article.legislation_page }}</p>
+
+      <!-- TODO The text inside that pre tag should be limited to ~200 chars -->
+      <p><pre>{{ last_article.text }}</pre></p>
     {% else %}
       <p>This law doesn't have any articles.</p>
     {% endif %}

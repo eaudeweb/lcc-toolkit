@@ -1,14 +1,26 @@
 //== Fonts:
 @emBase: 10px;
-@font-family-sans-serif:  'Roboto', sans-serif;
-@font-size-base:          10px;
+@emBaseLarge: 15px;
+@font-family-sans-serif:  'Helvetica Neue', Helvetica, Arial, sans-serif;
+@font-size-base:          @emBase;
+@font-size-base-large:    @emBaseLarge;
 @line-height-base:        1.4285; // 1.428571429; // 20/14
 
 
-@link-color     : #6fa7da;
+@link-color     : #0052CC;
 // @text-color     : #2d2d2d;
-@text-color		: #4c4c4c;
-// @brand-primary  : #00aeef;
+@body 			: rgba(0,0,0,0.8);
+@text-color		: @body;
+@text-muted		: rgba(0,0,0,.54);
+@border-light	: rgba(255,255,255,.3);
+@border			: #d8d8d8;
+// @background 	: rgba(0,0,0,.05);
+@background 	: #f2f2f2;
+@dark-background: #333739;
+
+
+
+
 @brand-primary  : #3c98dd;
 @grey           : #939598;
 @grey-light     : #BDBDBD;
@@ -32,7 +44,7 @@
 //** Padding between columns. Gets divided in half for the left and right.
 @grid-gutter-width:         20px;
 @grid-gutter-mobile-width:  10px;
-
+@input: 					37px;
 
 
 //== Media queries breakpoints
@@ -111,13 +123,9 @@
 // Fonts
 @font-path:   "../fonts/";
 @FontAwesome: 'FontAwesome';
-@Volkron: 'Vollkorn';
-@Roboto: 'Roboto';
 @BaseFont: @font-family-sans-serif;
-@bodyFontSize: 16px;
+@bodyFontSize: 1.5rem;
 @bodyLineHeight: 20px;
-@bodyFontSizeDesktop: 18px;
-@bodyLineHeightDesktop: 22px;
 @font-weight-bold: bold;
 
 

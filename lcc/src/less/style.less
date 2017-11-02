@@ -16,26 +16,22 @@
    GENERAL STYLES
  ============================================================ */
 
-body {
-    font-family: 'Open Sans', sans-serif;
-    line-height:28px;
-    font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+
 .set-radius-zero {
     border-radius:0px;
     -moz-border-radius:0px;
     -webkit-border-radius:0px;
 }
 .content-wrapper {
+    > .container {
+        position: relative;
+    }
     .clearfix;
     width: 100%;
     margin-top: 2rem;
-    min-height:800px;
+    min-height:600px;
     // padding-bottom:90px;
-    overflow: hidden;
+    // overflow: hidden;
          background: linear-gradient(to bottom, #fff 0, rgb(253, 253, 253) 150px);
      // background: linear-gradient(to bottom, #fff 0, #f6f6f6 150px); 
 }
@@ -57,38 +53,9 @@ body {
 .right-div {
     float: right;
 }
-#menu-top a {
-    color:#000;
-    text-decoration:none;
-    font-weight:500;
-    padding: 25px 15px 25px 15px;
-    text-transform:uppercase;
-
-}
-.menu-section {
-    background-color: #f7f7f7;
-    border-bottom:5px solid #9170E4;
-    width:100%
-}
-.menu-top-active {
-    background-color:#eeeeee;
-}
-.navbar-inverse {
-background-color: #FFF;
-border-color: rgba(155, 153, 153, 0.23);
-
-}
 
 
-.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-    border-color:transparent;
-}
-.navbar-toggle {
-background-color: black;
-border: 1px solid black;
-}
-
-    /* =============================================================
+/* =============================================================
    DASHBOARD STYLES
  ============================================================ */
 
@@ -226,30 +193,6 @@ height: 60px;
 
 
 
-.btn-link {
-    padding: 0!important;
-    margin-top: -5px;
-    &:hover,
-    &:active,
-    &:focus {
-        box-shadow: none!important;
-        text-decoration: none;
-        outline: none;
-    }
-}
-
-// .btn-primary {
-    // background-color: @blue;
-// }
-
-.btn-navigation {
-    // color: white;
-    color: @text-color;
-    // border: 1px solid #ddd;
-    padding: .4rem!important;
-} 
-
-
 .footer-logos {
     float: left;
 }
@@ -285,4 +228,67 @@ height: 60px;
 
 .flag {
     width: 25px;
+}
+
+.separator {
+    &:after {
+    content: '|';
+    font-size: 1.4rem;
+    position: relative;
+    top: 3px;
+    color: @border;
+    }
+}
+
+.username {
+    font-weight: bold;
+}
+
+.wide {
+    margin: 0 1rem;
+}
+
+.content-wrapper {
+    font-size: 1.5rem;
+}
+
+.large-margin {
+    display: block;
+    height: 4rem;
+
+    &--border{
+        border-bottom: 1px solid @border;
+        margin-bottom: 2rem;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.neg_6_margin {
+    margin-left: -6rem;
+}
+
+.muted {
+    color: @text-muted;
+}
+
+.shorten {
+    max-width: 157px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: .5rem;
+    vertical-align: middle;
+    position: relative;
+    &:after {
+            content: '...';
+    position: absolute;
+    left: 100%;
+    }
+}
+
+.text-color {
+    color: @text-color;
 }

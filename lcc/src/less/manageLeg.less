@@ -1,15 +1,20 @@
 .pdf-container {
     .btn-link {
         color: white;
-        font-weight: bold;
+        cursor: pointer;
+        &:hover {
+            text-decoration: none;
+        }
     }
     .pdf-nav-buttons {
+            display: flex;
+    align-items: center;
+    justify-content: space-between;
         span {
             color: white;
             vertical-align: middle;
         }
 
-        float: right;
         margin-right: 2rem;
         .btn-link {
             &[disabled] {
@@ -19,7 +24,6 @@
                     }
                 }
             }
-            font-size: 2rem;
             &:active {
                 outline: none;
             }
@@ -29,75 +33,55 @@
         margin-top: 1rem;
         border: 1px solid black;
         width: 40%;
-        float: right;
         /* position: fixed; */
         /* right: 0; */
         /* top: 126px; */
         /* height: calc(100vh - 126px); */
+            margin-top: -2rem;
+        float: right;
         overflow: auto;
-        background: #74c5dc;
-        z-index: 1;
+        background: @dark-background;
+        height: calc(~"100vh - 56px");
     }
-    .title {
-        color: white;
-        font-weight: 600;
-        font-size: 1.5rem;
-        margin: 0 1rem;
-    }
-
     .tab-content {
-        background: white;
-        padding: 1rem;
         padding-bottom: 0;
+        background: white;
+        .tab-pane {
+                height: calc(~"100vh - 198px");
+                overflow: auto;
+        }
     }
-    .nav-tabs {
-        margin-top: .5rem;
-        padding: 0;
-        >li {
-            margin-bottom: -2px;
-        }
-        .presentation {
-
-            &:hover {
-                a {
-                    border-color: white!important;
-                    background: white!important;
-                }
-            }
-            &.active,
-            &:hover {
-
-                a {
-                    color: #74c5dc;
-                    border-color: white;
-                    border: 1px solid white;
-                    &:after {
-                        content: '';
-                        position: absolute;
-                        width: 30px;
-                        background: white;
-                        border-left: 1px solid white;
-                        top: -1px;
-                        bottom: 0;
-                        left: 101%;
-                        -webkit-clip-path: polygon(0 0, 0 0, 100% 100%, 0% 100%);
-                        clip-path: polygon(0 0, 0 0, 100% 100%, 0% 100%);
-                    }
-                }
-            }
-        }
-        a {
-            font-weight: 600;
+    .pdf-header {
+        min-height: 4rem;
+        margin-top: 1rem;
+        border-bottom: 1px solid @border-light;
+        .title {
             color: white;
-            border-radius: 0;
-            margin: 0;
-            position: relative;
-            min-width: 100px;
+            font-weight: 600; // font-size: 1.5rem;
+            margin: 1rem;
+            float: left;
+        }
+
+        .nav-tabs {
+            margin-top: .5rem;
             padding: 0;
-            padding-left: 3rem;
-            border: none;
-            margin-bottom: -1px;
-            padding-bottom: 4px;
+            float: right;
+            padding-right: 2rem;
+            border-bottom: none;
+            a {
+                border-radius: 0;
+                color: white;
+                padding: 1rem 2rem;
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+            .active {
+                a {
+                    border: 1px solid @border-light;
+                    border-bottom: none;
+                }
+            }
         }
     }
 }
@@ -105,9 +89,10 @@
 .page-container {
     &.half {
         width: 60%;
-        float: left;
-
-        min-height: 800px;
+        float: left; // min-height: 800px;
+        h2 {
+            margin-top: 2rem;
+        }
         &.right {
             width: 40%;
             float: right;
@@ -127,19 +112,67 @@
     .container {
         width: 100%!important;
         max-width: 1700px;
+        .clearfix();
+    }
+    .check-fields .wrapper {
+        width: 100%;
+        float: initial;
     }
 }
 
 
 .last-article-container {
-    margin-left: -3rem;
-    margin-right: -1.2rem;
     margin-bottom: -1rem;
     padding: 1rem;
-    border-top: 1px solid black;
+    border-top: 1px solid @border;
     margin-top: 2rem;
-    pre {
-        background: white;
-        box-shadow: 1px 1px 3px #eee;
+    width: calc(~"100vw - 50px");
+    padding-top: 4rem;
+
+}
+
+.state {
+    margin-top: 1rem;
+    border-bottom: 1px solid @border-light;
+    padding-bottom: 1rem;
+    button {
+        border: none;
+        background: none;
+        color: white;
+        &:first-of-type {
+            margin-left: 1rem;
+            padding-left: 0;
+        }
+        &:focus {
+            outline: none;
+        }
+        span {
+            height: 18px;
+            width: 18px;
+            border-radius: 100rem;
+            border: 2px solid white;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            margin-right: 0.5rem;
+            margin-top: -3px;
+        }
+
+        &.active {
+            span {
+                &:after{
+                 content: '';
+                 width: 12px;
+                 height: 12px;
+                 border-radius: 100rem;
+                 background: white;
+                    position: absolute;
+                    top: 1px;
+                    font-size: 4rem;
+                    left: 1px;
+                    line-height: 0;
+                }
+            }
+        }
     }
 }

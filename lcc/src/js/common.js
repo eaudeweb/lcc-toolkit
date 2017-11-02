@@ -14,9 +14,11 @@ function getSelectionText() {
 var functionality = ['Append', 'Replace'];
 
 
-function thisRespondHightlightText(thisDiv, statebutton){
+function thisRespondHightlightText(thisDiv){
    $('body').on("mouseup", thisDiv , function () {
+        var statebutton = $('.state .active')
         var selectedText = getSelectionText();
+        console.log(statebutton.attr('functionality'))
         if(statebutton.attr('functionality') == functionality[0]){
             $('#id_text').val(function(i, text) {
                 if(selectedText.length == 0){
@@ -83,7 +85,7 @@ $(document).ready(function() {
 
 
 
-    thisRespondHightlightText('#raw-text-page', $('.state button.active'))
+    thisRespondHightlightText('#raw-text-page')
 
 
     $('body').on('click','.state button', function(){
@@ -91,22 +93,12 @@ $(document).ready(function() {
         $(this).addClass('active')
     })
 
-    if(($('#title').text().length > 49) && ($('#title').text().length < 73)) {
-    	$('#title').css('font-size', 16+'px').css('line-height', '1.4').css('padding-top', 1.3 +"rem")
-    }
-    else if ( $('#title').text().length > 73) {
-        $('#title').css('padding-top', '0')
-    }
-
-    $('.authenticated > span').click(function(){
+    $('.authenticated .icon-user-outline').click(function(){
         $('.actions-wrapper').animate({
             'width': 'toggle'
         })
     })
-    $(".page-menu").sticky({topSpacing:0});
-    $('.disabled').click(function(e){
-        e.preventDefault();
-    })
+
     var edited = false;
      $('input, textarea, select').on('change', function(){
         edited = true;
@@ -125,19 +117,10 @@ $(document).ready(function() {
     })
 
 
-    if(($('#title').text().length > 49) && ($('#title').text().length < 73)) {
-    	$('#title').css('font-size', 16+'px').css('line-height', '1.4').css('padding-top', 1.3 +"rem")
-    }
-    else if ( $('#title').text().length > 73) {
-        $('#title').css('padding-top', '0')
-    }
+    setTimeout(function(){
+        $("#top-header").sticky({topSpacing:0});
+    },300)
 
-    $('.authenticated > span').click(function(){
-        $('.actions-wrapper').animate({
-            'width': 'toggle'
-        })
-    })
-    $(".page-menu").sticky({topSpacing:0});
     $('.disabled').click(function(e){
         e.preventDefault();
     })

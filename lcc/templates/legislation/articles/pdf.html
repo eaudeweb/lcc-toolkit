@@ -1,20 +1,22 @@
 <div class="pdf-container half">
-  <div class="title">
-    Preview Legislations Full Text
+  <div class="pdf-header clearfix">
+  <h4 class="title">
+    Legislation document
+  </h4>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="presentation active">
+        <a href="#pdf" aria-controls="pdf" role="tab" data-toggle="tab" class="btn">Original</a>
+      </li>
+      <li class="presentation">
+        <a href="#text" aria-controls="text" role="tab" data-toggle="tab" class="btn">Text</a>
+      </li>
+    </ul>
   </div>
-  <div class="pdf-nav-buttons">
-  <!-- <span>Page navigation: </span> -->
-      <button class="btn btn-link" type="button" id="prev"><span class="icon-angle-left"></span>Previous</button>
-      <button class="btn btn-link" type="button" id="next">Next<span class="icon-angle-right"></span></button>
-  </div>
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="presentation active">
-      <a href="#pdf" aria-controls="pdf" role="tab" data-toggle="tab">Original</a>
-    </li>
-    <li class="presentation">
-      <a href="#text" aria-controls="text" role="tab" data-toggle="tab">Text</a>
-    </li>
-  </ul>
+    <div class="state">
+        <button type="button" functionality="Append" class="active"><span></span>Append article text</button>
+        <button type="button" functionality="Replace"><span></span>Replace article text</button>
+    </div>
+
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="pdf">
       <object class="pdf" data="{{ law.pdf_file.url }}#page={{starting_page}}" type="application/pdf"
@@ -24,12 +26,15 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="text">
       <h1 style="display: inline;">Page </h1><h1 style="display: inline;" id="page_number">{{ starting_page }}</h1>
-      <div class="state">
-        <span>Chose the selection functionality</span>
-        <button type="button" functionality="append" class="btn btn-info active">Append</button>
-        <button type="button" functionality="replace" class="btn btn-info">Replace</button>
-    </div>
+
       <div id="raw-text-page"></div>
     </div>
+  </div>
+  <div class="pdf-nav-buttons">
+      <button class="btn btn-link" type="button" id="prev"><span class="icon-angle-left"></span>Previous page</button>
+      <span>
+        Page <span id="current_page">{{ starting_page }}</span> of <span id="last_page"></span>
+      </span>
+      <button class="btn btn-link" type="button" id="next">Next page<span class="icon-angle-right"></span></button>
   </div>
 </div>

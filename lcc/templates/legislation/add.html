@@ -7,10 +7,7 @@
 {% endblock %}
 {% block page-title %}Add new legislation{% endblock %}
 
-{% block breadcrumbs %}
-  {{ block.super }}
-  <span> <i class="icon-right-open-mini"></i>Add</span>
-{% endblock %}
+{% block breadcrumbs %}{% endblock %}
 
 {% block content %}
 
@@ -72,7 +69,7 @@
       <div class='law-meta-data-container'>
         <div class="selector selector-inline--4">
           <div>
-            <label class="label-medium" for="id_country">Country <p style="display: inline-block; color: red;" title="This field is required.">*</p>:</label>
+            <label class="label-medium" for="id_country">Country <span style="display: inline-block; color: red;" title="This field is required.">*</span>:</label>
           </div>
           <div>
             <select name="country" required id="id_country"

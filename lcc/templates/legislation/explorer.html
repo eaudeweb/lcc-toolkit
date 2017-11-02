@@ -4,67 +4,68 @@
 
 {% block extra-scripts %}
   <script src="{% static "js/legislation_filter.js" %}"> </script>
+  <script src="{% static "js/sidebar.js" %}"> </script>
 {% endblock %}
 
 {% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
 
 {% block page-title %}Legislation Explorer{% endblock %}
 
-{% block page-menu %} 
+{% block page-menu %}
 <ul>
-    <li><a href="{% url 'lcc:legislation:add' %}" class="btn btn-info">Add legislation</a></li>
+    <li><a href="{% url 'lcc:legislation:add' %}" class="btn btn-primary">Add legislation</a></li>
 </ul>
 {% endblock %}
 
 
-{% block breadcrumbs %}
-  {{ block.super }}
-  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:explorer' %}">Legislation</a></span>
-{% endblock %}
+{% block breadcrumbs %}{% endblock %}
 
 {% block content %}
-  <div class="page-container viz-container">
-    {% for law in laws %}
-      <div class="law-container">
-      <hr>
-        <a href="{% url 'lcc:legislation:details' law.pk %}"><h5>{{ law }} - {{ law.title }}</h5></a>
-
-        <h6 class="country_year law-country">
-          {% static "" as baseUrl %}
-          <img class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" >
-          <span>{{ law.country.name }}</span>
-          <span> | {{ law.year }}</span>
-        </h6>
-
-        <div class="dl">
-          <div class="dd"><span>Classification</span></div>
-          <div class="dt">
-          {% if law.all_classifications %}
-            {% for classification in law.classifications.all %}
-             <span class="tag">{{ classification.name }}</span>
-            {% endfor %}
-          {% else %} - {% endif %}</div>
+  <div class="search">
+    <div class="row">
+      <div class="input-group searchInputGroup">
+        <div class="input-group searchInputWrapper">
+          <input id="textSearchInput" type="text" name="q" placeholder="Search through all legislation database">
         </div>
-
-        <div class="dl">
-          <div class="dd"><span>Tags</span></div>
-          <div class="dt">
-          {% if law.all_tags %}
-            {% for tag in law.tags.all%}
-             <span class="tag">{{ tag.name }}</span>
+        <div class="input-group-btn legalAreaBtnWrapper">
+          <button id="classificationsDropDownToggler" type="button" class="btn btn-default" aria-haspopup="true" aria-expanded="false">
+            <span style="float: left;">Select Legal Area</span>
+            <span style="float: right;">|<span style="padding: 0 4px 0 4px"><span class="caret"></span></span></span>
+          </button>
+        </div><!-- /btn-group -->
+        <div class="input-group-btn searchBtnWrapper">
+          <button class="btn btn-primary submitBtn" type="button"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+        </div><!-- /btn-group -->
+      </div><!-- /input-group -->
+    </div><!-- /row -->
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+        <div id="classificationsDropDownWrapper" style="display: none;">
+          <select name="classifications" id="classificationsDropDown" multiple="multiple">
+            {% for top in top_classifications %}
+              <option value="{{ top.pk }}">
+                {{ top.name }} ({{ top.get_descendant_count }} results)
+              </option>
             {% endfor %}
-          {% else %} - {% endif %}</div>
+          </select>
         </div>
       </div>
-    {% endfor %}
-    <hr>
+    </div><!-- /row -->
+  </div><!-- /search -->
+  <div style="margin-left: -1px">
+    <div style="margin-top:28px;">
+      <a href="{% url 'lcc:legislation:add' %}" class="btn btn-info">Add legislation</a>
+    </div>
   </div>
+<div class="page-container half viz-container">
+    {% include "./_laws.html" %}
+</div>
 
-  <div class="filters">
-  <button type="button" class="btn btn-default open-sidebar"><span class="more active">MORE FILTERS</span> <span class="less">LESS FILTERS</span></button>
-    <div class="filter-tags">
+  <div class="page-container half viz-container right">
+    <div class="filterTags">
     <label for="TagDropDown">Tags</label>
-      <select name="tags[]" id="TagDropDown" multiple="multiple">
+      <select name="tags" id="TagDropDown" multiple="multiple">
         {% for group_tag in group_tags %}
           <optgroup label="{{group_tag.name}}">
             {% for tag in group_tag.tags.all %}
@@ -75,24 +76,10 @@
       </select>
     </div>
 
-    <div class="filter-classifications">
-    <label for="classificationsDropDown">Classification</label>
-      <select name="classifications[]" id="classificationsDropDown" multiple="multiple">
-        {% for top_class in top_classifications %}
-          <option value="{{top_class.pk}}" class="option-group">{{ top_class.name }}</option>
-          {% for second_class in top_class.get_children %}
-            <option value="{{second_class.pk}}" class="option-child-1">{{ second_class.name }}</option>
-            {% for third_class in second_class.get_children %}
-              <option value="{{third_class.pk}}" class="option-child-2">{{ third_class.name }}</option>
-            {% endfor %}
-          {% endfor %}
-        {% endfor %}
-      </select>
-    </div>
-
     <div class="filter-countries">
-    <label for="countriesDropDown">Country</label>
-      <select name="countries" id="countriesDropDown">
+    <label for="countryDropDown">Country</label>
+      <select name="country" id="countryDropDown">
+        <option value="" selected>Select Country</option>
         {% for country in countries %}
           <option value="{{country.iso}}">{{ country.name }}</option>
         {% endfor %}
@@ -102,13 +89,14 @@
     <div class="filter-type">
     <label for="typeDropDown">Type</label>
       <select name="type" id="typeDropDown">
+        <option value="" selected>Select type</option>
         {% for key, value in legislation_type %}
           <option value="{{key}}">{{ value }}</option>
         {% endfor %}
       </select>
     </div>
     <div class="button-wrapper">
-      <button type="button" class="btn btn-primary" id="submitButton">Apply filters</button>
+      <button type="button" class="btn btn-primary submitBtn">Apply filters</button>
     </div>
 
   </div>

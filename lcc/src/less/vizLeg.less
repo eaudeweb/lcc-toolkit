@@ -4,6 +4,7 @@
     position: relative;
 
     .filters {
+        display: none;
         border-left: 1px solid black;
         background: #fafbfb;
         width: 30%;
@@ -30,37 +31,20 @@
         .button-wrapper {
             margin-top: 1rem;
         }
-        .open-sidebar {
-            display: none;
-            border-right-color: black;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            .more,
-            .less {
-                display: none;
-            }
-
-            span.active {
-                display: block;
-            }
-        }
     }
 }
 
 
 .viz-container {
-    h5 {
-        color: @blue-light;
-        margin-bottom: 1.5rem;
-        font-weight: 400;
+    .extended & {
+        margin-left: auto;
+        margin-right: auto;
+        float: initial;
+        width: 80%;
     }
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 1rem 0;
-    h3 {
-        margin: 1rem 0;
-        margin-bottom: 0;
-    }
     &.half {
         padding-right: 1rem;
     }
@@ -69,22 +53,18 @@
         margin-bottom: 1rem;
         .dd {
             display: inline-block;
-            width: 115px;
-            color: @grey;
+            width: 159px;
+            color: @text-muted;
             margin-right: 1rem;
-            font-size: 12px;
-            line-height: 1.7;
             vertical-align: top;
-            text-transform: uppercase;
+            text-align: right;
         }
 
         .dt {
             display: inline-block;
             vertical-align: top;
-            width: calc(~"100% - 129px");
+            width: calc(~"100% - 174px");
             color: @text-color;
-            font-size: 14px;
-            line-height: 1.7;
 
             .classification {
                 margin-right: .5rem;
@@ -93,55 +73,67 @@
                 padding: .3rem;
                 color: @black;
                 display: inline-block;
-                font-size: 13px;
                 box-shadow: 1px 1px 3px #aaa;
                 padding-left: .6rem;
                 padding-right: .6rem;
             }
-
             .tag {
-                font-size: 13px;
                 display: inline-block;
-                color: @black;
                 margin-right: .5rem;
                 vertical-align: top;
-                margin-top: -3px;
                 &:before {
                     content: '•';
                     display: inline-block;
                     padding-right: .3rem;
                 }
-            }   
-
+            }
         }
-    @media @tabletDown {
-        .dd,.dt {
-            width: 100%;
-            display: block;
+        @media @tabletDown {
+            .dd,
+            .dt {
+                width: 100%;
+                display: block;
+            }
         }
-    }
     }
 
     &.multiple {
-    padding: 1rem;
-    border: 1px solid #eee;
-    margin: 0!important;
-    margin-bottom: 2rem!important;
+        padding: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2rem!important;
+        width: 72%;
+        &:target {
+            .article-wrapper{
+            border: 1px solid @border;
+            border-left: 5px solid @link-color;
+            padding-left: 2rem;
+            padding-top: 1rem;
+            }
+        .article-title {
+            &:before {
+                display: block;
+            }
+        }
+        &:before {
+            display: block; 
+          content: ""; 
+          margin-top: 80px; 
+          visibility: hidden; 
+        }
+        }
         pre {
-            border-bottom: 1px solid #eee;
             padding: 1rem 0;
         }
     }
 }
 
 
-.articles-container {
-    .viz-container {
-        margin: 1rem;
-    }
-}
-
-
+// .articles-container {
+//     .viz-container {
+//         margin: 1rem;
+//     }
+// }
 .law-container {
     margin: 2rem 0;
     &:first-of-type {
@@ -157,22 +149,49 @@
     padding: 2rem;
 }
 
-.other-results-wrapper{
-    .section-header {
-        font-size: 11px;
-        text-transform: uppercase;
-        color: @grey-light;
-        .result {
-            color: @blue-light;
+// .other-results-wrapper{
+//     .section-header {
+//         font-size: 11px;
+//         text-transform: uppercase;
+//         color: @grey-light;
+//         .result {
+//             color: @blue-light;
+//         }
+//     }
+//     li {
+//         a {
+//             color: @blue-light;
+//             font-size: 16px;
+//         }
+//         div {
+//             font-size: 12px;
+//         }
+//     }
+// }
+pre {
+    // font-family: @BaseFont;
+}
+
+.article-title {
+    position: relative;
+    display: inline-block;
+        &:before {
+            content: '#';
+            position: absolute;
+            left: -1.5rem;
+            font-size: 2rem;
+            display: none;
+        }
+    &:hover {
+        &:before {
+            display: block;
         }
     }
-    li {
-        a {
-            color: @blue-light;
-            font-size: 16px;
-        }
-        div {
-            font-size: 12px;
-        }
-    }
+}
+
+.law_details {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: -1rem;
 }
