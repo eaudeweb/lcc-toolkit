@@ -23,12 +23,15 @@
     -webkit-border-radius:0px;
 }
 .content-wrapper {
+    > .container {
+        position: relative;
+    }
     .clearfix;
     width: 100%;
     margin-top: 2rem;
-    min-height:800px;
+    min-height:600px;
     // padding-bottom:90px;
-    overflow: hidden;
+    // overflow: hidden;
          background: linear-gradient(to bottom, #fff 0, rgb(253, 253, 253) 150px);
      // background: linear-gradient(to bottom, #fff 0, #f6f6f6 150px); 
 }
@@ -265,4 +268,27 @@ height: 60px;
 
 .neg_6_margin {
     margin-left: -6rem;
+}
+
+.muted {
+    color: @text-muted;
+}
+
+.shorten {
+    max-width: 157px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: .5rem;
+    vertical-align: middle;
+    position: relative;
+    &:after {
+            content: '...';
+    position: absolute;
+    left: 100%;
+    }
+}
+
+.text-color {
+    color: @text-color;
 }

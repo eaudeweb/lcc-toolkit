@@ -87,17 +87,10 @@
     </div>
   </div>
 
-  <div class="breadcrumbs">
-    <div class="container">
-      {% block breadcrumbs %}
-        <span><a href="{% url 'lcc:legislation:explorer' %}">Home</a></span>
-      {% endblock %}
-    </div>
-  </div>
-
   <!-- Content-middle  -->
   <div class="content-wrapper">
     <div class="container">
+      {% block breadcrumbs %}{% endblock %}
       {% block content %}
 
       {% endblock %}
