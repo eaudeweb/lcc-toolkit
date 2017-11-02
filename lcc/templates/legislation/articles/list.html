@@ -72,17 +72,6 @@
           <p><pre>{{ article.text }}</pre></p>
         {% endif %}
 
-        <div class="dl">
-          <div class="dd"><span>Classification</span></div>
-          <div class="dt">
-            {% for classification in article.classifications.all %}
-              <span class="classification">{{ classification.name }}</span>
-            {% empty %}
-             - 
-            {% endfor %}
-          </div>
-        </div>
-
         <div class="dl neg_6_margin">
           <div class="dd"><span>Classification</span></div>
           <div class="dt">
