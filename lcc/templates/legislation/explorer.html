@@ -42,7 +42,7 @@
       <div class="col-md-6"></div>
       <div class="col-md-6">
         <div id="classificationsDropDownWrapper" style="display: none;">
-          <select name="classifications" id="classificationsDropDown" multiple="multiple">
+          <select class="round" name="classifications" id="classificationsDropDown" multiple="multiple">
             {% for top in top_classifications %}
               <option value="{{ top.pk }}">
                 {{ top.name }} ({{ top.get_descendant_count }} results)
@@ -60,7 +60,7 @@
   <h3>Filter legislation</h3>
     <div class="filter-countries">
     <label for="countryDropDown">Country</label>
-      <select name="country" id="countryDropDown">
+      <select class="round" name="country" id="countryDropDown">
         <option value="" selected>Select Country</option>
         {% for country in countries %}
           <option value="{{country.iso}}">{{ country.name }}</option>
@@ -70,7 +70,7 @@
 
     <div class="filter-type">
     <label for="typeDropDown">Type</label>
-      <select name="type" id="typeDropDown">
+      <select class="round" name="type" id="typeDropDown">
         <option value="" selected>Select type</option>
         {% for key, value in legislation_type %}
           <option value="{{key}}">{{ value }}</option>
@@ -80,7 +80,7 @@
 
     <div class="filterTags">
     <label for="TagDropDown">Tags</label>
-      <select name="tags" id="TagDropDown" multiple="multiple">
+      <select class="round" name="tags" id="TagDropDown" multiple="multiple">
         {% for group_tag in group_tags %}
           <optgroup label="{{group_tag.name}}">
             {% for tag in group_tag.tags.all %}
@@ -96,5 +96,5 @@
     </div>
 
   </div>
-  
+
 {% endblock %}
