@@ -1,7 +1,29 @@
-<ul>
+ <ul>
     <li class="wide"><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-link active">Overview</a></li>
-    <li class="wide"><a href="{{ law.pdf_file.url }}" target="_blank" class="btn btn-link">Body</a></li>
     {% with law.articles.all as articles %}
     <li class="wide"><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-link {% if not articles %}disabled{% endif %}" title="{% if not articles %}This legislation does not have any articles defined.{% endif %}">Articles</a></li>
     {% endwith %}
+    {% if request.user.is_authenticated %}
+      <span class="separator"></span>
+      {% if law.articles.all %}
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">
+          Visualize the articles
+        </a>
+      </li>
+      {% endif %}
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
+          Edit
+        </a>
+      </li>
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
+          Add articles
+        </a>
+      </li>
+  {% endif %}
 </ul>

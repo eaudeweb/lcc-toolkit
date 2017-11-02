@@ -4,6 +4,35 @@
 {% block page-title %}{{ law.title }}{% endblock %}
 {% block page-menu %} 
   {% include 'legislation/navigation.html' %}
+  <ul>
+    <li class="wide"><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-link active">Overview</a></li>
+    {% with law.articles.all as articles %}
+    <li class="wide"><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-link {% if not articles %}disabled{% endif %}" title="{% if not articles %}This legislation does not have any articles defined.{% endif %}">Articles</a></li>
+    {% endwith %}
+    {% if request.user.is_authenticated %}
+      <span class="separator"></span>
+      {% if law.articles.all %}
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">
+          Visualize the articles
+        </a>
+      </li>
+      {% endif %}
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
+          Edit
+        </a>
+      </li>
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
+          Add articles
+        </a>
+      </li>
+  {% endif %}
+</ul>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -59,8 +88,6 @@
       <div class="dt">{% if law.abstract %}<pre>{{ law.abstract }}</pre>{% else %} - {% endif %}</div>
     </div>
 
-    <span class="large-margin"></span>
-
     <div class="dl">
       <div class="dd"><span>Classification</span></div>
       <div class="dt">
@@ -81,10 +108,6 @@
       {% else %} - {% endif %}</div>
     </div>
 
-    <span class="large-margin large-margin--border"></span>
-
-
- 
 
     <div class="dl">
       <div class="dd"><span>Additional date details</span></div>
@@ -131,23 +154,5 @@
     </div>
   {% endif %}
 
-  {% if request.user.is_authenticated %}
-    <div class="button-wrapper no-container">
-      {% if law.articles.all %}
-        <a class="btn btn-info"
-           href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">
-          Visualize the articles
-        </a>
-      {% endif %}
-      <a class="btn btn-info"
-         href="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
-        Edit
-      </a>
-      <a class="btn btn-info"
-         href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
-        Add articles
-      </a>
-    </div>
-  {% endif %}
 {% endwith %}
 {% endblock %}
