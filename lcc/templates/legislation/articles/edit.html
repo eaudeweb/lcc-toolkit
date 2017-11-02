@@ -32,13 +32,19 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-  {{ block.super }}
-  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>
-  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">Articles</a></span>
-  <span> <i class="icon-right-open-mini"></i>Article {{ article.code }}</span>
-  <span> <i class="icon-right-open-mini"></i>Edit</span>
+   {% static "" as baseUrl %}
+    <div class="breadcrumbs">
+        <div class="container">
+           <span>
+                <a href="{% url 'lcc:legislation:explorer' %}">Home</a></span>
+           <span> 
+            <i class="icon-right-open-mini"></i><img class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" ></span>
+           <span  class="shorten"> <i class="icon-right-open-mini"></i><a title="{{ law.title }}" href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>...
+            <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">Articles</a></span>
+            <span> <i class="icon-right-open-mini"></i><b>Edit article {{article.code}}</b class="text-color"></span>
+        </div>
+      </div>
 {% endblock %}
-
 
 {% block content %}
 

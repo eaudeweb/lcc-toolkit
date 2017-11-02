@@ -78,10 +78,15 @@
 .breadcrumbs {
     color: inherit;
     float: right;
-    display: none;
-    
-    color: @grey;
-    width: 100%;
+    color: @text-color;
+    position: absolute;
+    top: -20px;
+    border-top: 1px solid @border;
+    border-bottom: 1px solid @border;
+    padding: .5rem 0;
+    padding-left: 2rem;
+    width: 60%;
+    margin-left: -2rem;
     span {
         display: inline-block; // padding: .5rem;
         &:first-of-type {
