@@ -41,7 +41,7 @@ A web application which stands as a toolkit for climate change law assessment.
 
         docker-compose run --entrypoint bash web
 
-1. Create a superuser (for Ansible see <https://gist.github.com/elleryq/9c70e08b1b2cecc636d6):>
+1. Create a superuser (for Ansible see <https://gist.github.com/elleryq/9c70e08b1b2cecc636d6>)
 
         docker-compose run --entrypoint bash web
         python manage.py createsuperuser
