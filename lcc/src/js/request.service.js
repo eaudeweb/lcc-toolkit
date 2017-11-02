@@ -6,7 +6,7 @@
   'use strict'
   LCCTModules.define('RequestService', ['Config'], function RequestService(Config){
       
-    setTokenAJAX();
+    // setTokenAJAX();
 
     // get cookie using jQuery
     function getCookie(name) {
@@ -30,25 +30,35 @@
       return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
     
-    function setTokenAJAX() {
-      var csrftoken = getCookie('csrftoken');
+    // function setTokenAJAX() {
+    //   var csrftoken = getCookie('csrftoken');
 
-      $.ajaxSetup({
+    //   $.ajaxSetup({
+    //     contentType: Config.ajax_settings.contentType,
+    //     dataType: Config.ajax_settings.dataType,
+    //     beforeSend: function(xhr, settings) {
+
+    //       if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+    //         xhr.setRequestHeader('X-CSRFToken', csrftoken);
+    //       }
+    //     }
+    //   });
+    // }
+
+    var csrftoken = getCookie('csrftoken');
+
+    function getQuestions(category, assessment_pk) {
+
+      var jqxhr = $.ajax({
+        'type': 'GET',
+        'url': Config.url.questions + category + '?assessment_pk=' + assessment_pk,
         contentType: Config.ajax_settings.contentType,
         dataType: Config.ajax_settings.dataType,
         beforeSend: function(xhr, settings) {
-
           if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
             xhr.setRequestHeader('X-CSRFToken', csrftoken);
           }
         }
-      });
-    }
-
-    function getQuestions(category, assessment_pk) {
-      var jqxhr = $.ajax({
-        'type': 'GET',
-        'url': Config.url.questions + category + '?assessment_pk=' + assessment_pk,
       });
       return jqxhr;
     }
@@ -57,6 +67,13 @@
       var jqxhr = $.ajax({
         'type': 'GET',
         'url': Config.url.classifications,
+        contentType: Config.ajax_settings.contentType,
+        dataType: Config.ajax_settings.dataType,
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader('X-CSRFToken', csrftoken);
+          }
+        }
       });
       return jqxhr;
     }
@@ -66,6 +83,13 @@
         'url': Config.url.answers,
         'type': 'POST',
         'data': JSON.stringify(data),
+        contentType: Config.ajax_settings.contentType,
+        dataType: Config.ajax_settings.dataType,
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader('X-CSRFToken', csrftoken);
+          }
+        }
       })
       return jqxhr;
     }
@@ -75,6 +99,13 @@
         'url': Config.url.answers + answerId + '/',
         'type': 'PUT',
         'data': JSON.stringify(data),
+        contentType: Config.ajax_settings.contentType,
+        dataType: Config.ajax_settings.dataType,
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader('X-CSRFToken', csrftoken);
+          }
+        }
       })
       return jqxhr;
     }
@@ -83,6 +114,13 @@
       var jqxhr = $.ajax({
         'url': Config.url.assessment,
         'type': 'GET',
+        contentType: Config.ajax_settings.contentType,
+        dataType: Config.ajax_settings.dataType,
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader('X-CSRFToken', csrftoken);
+          }
+        }
       })
       return jqxhr;
     }
@@ -92,6 +130,13 @@
         'url': Config.url.assessment,
         'type': 'POST',
         'data': JSON.stringify(data),
+        contentType: Config.ajax_settings.contentType,
+        dataType: Config.ajax_settings.dataType,
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader('X-CSRFToken', csrftoken);
+          }
+        }
       })
       return jqxhr;
     }
@@ -101,6 +146,13 @@
       var jqxhr = $.ajax({
         'url': Config.url.countries,
         'type': 'GET',
+        contentType: Config.ajax_settings.contentType,
+        dataType: Config.ajax_settings.dataType,
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader('X-CSRFToken', csrftoken);
+          }
+        }
       })
       return jqxhr;
     }

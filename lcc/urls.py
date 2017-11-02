@@ -68,6 +68,10 @@ legislation_patterns = [
         views.legislation.LegislationEditView.as_view(),
         name='edit'),
 
+    url(r'^(?P<legislation_pk>\d+)/delete/$',
+        views.legislation.LegislationDeleteView.as_view(),
+        name='delete'),
+
     url(r'^(?P<legislation_pk>\d+)/pages/$',
         views.legislation.LegislationPagesView.as_view()),
 
