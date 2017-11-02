@@ -4,6 +4,10 @@
 
 {% block page-title %}{{ law.title }}{% endblock %}
 
+{% block law_details %}
+  {% include 'legislation/law_details.html' %}
+{% endblock %}
+
 {% block page-menu %} 
   <!-- {% include 'legislation/navigation.html' %} -->
   <ul>
@@ -73,17 +77,17 @@
         <p><pre>{{ article.text }}</pre></p>
       {% endif %}
 
-      <div class="dl">
+      <div class="dl neg_6_margin">
           <div class="dd"><span>Classification</span></div>
           <div class="dt">
           {% if article.all_classifications %}
             {% for classification in article.classifications.all %}
-             <span class="classification">{{ classification.name }}</span>
+             <span class="tag">{{ classification.name }}</span>
             {% endfor %}
           {% else %} - {% endif %}</div>
         </div>
 
-        <div class="dl">
+        <div class="dl neg_6_margin">
           <div class="dd"><span>Tags</span></div>
           <div class="dt">
           {% if article.all_tags %}

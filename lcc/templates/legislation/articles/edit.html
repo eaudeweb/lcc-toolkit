@@ -45,9 +45,7 @@
 {% include 'legislation/articles/pdf.html' %}
 
 <div class="page-container half">
-<h3>
-    {{ law.title }}
-</h3>
+<h2>Edit article {{ article.code }}</h2>
 
   <form class="validate_this" id="editArticle" method="post" action="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">
     {% csrf_token %}
