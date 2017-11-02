@@ -28,9 +28,9 @@
           <input id="textSearchInput" type="text" name="q" placeholder="Search through all legislation database">
         </div>
         <div class="input-group-btn legalAreaBtnWrapper">
-          <button id="classificationsDropDownToggler" type="button" class="btn btn-default" aria-haspopup="true" aria-expanded="false">
+          <button id="classificationsDropDownToggler" type="button" class="btn btn-select" aria-haspopup="true" aria-expanded="false">
             <span style="float: left;">Select Legal Area</span>
-            <span style="float: right;">|<span style="padding: 0 4px 0 4px"><span class="caret"></span></span></span>
+            <span style="float: right;">▼<span style="padding: 0 4px 0 4px"><span class="caret"></span></span></span>
           </button>
         </div><!-- /btn-group -->
         <div class="input-group-btn searchBtnWrapper">
@@ -53,29 +53,11 @@
       </div>
     </div><!-- /row -->
   </div><!-- /search -->
-  <div style="margin-left: -1px">
-    <div style="margin-top:28px;">
-      <a href="{% url 'lcc:legislation:add' %}" class="btn btn-info">Add legislation</a>
-    </div>
-  </div>
 <div class="page-container half viz-container">
     {% include "./_laws.html" %}
 </div>
-
-  <div class="page-container half viz-container right">
-    <div class="filterTags">
-    <label for="TagDropDown">Tags</label>
-      <select name="tags" id="TagDropDown" multiple="multiple">
-        {% for group_tag in group_tags %}
-          <optgroup label="{{group_tag.name}}">
-            {% for tag in group_tag.tags.all %}
-              <option value="{{tag.pk}}" class="option-child-1">{{ tag.name }}</option>
-            {% endfor %}
-          </optgroup>
-        {% endfor %}
-      </select>
-    </div>
-
+<div class="page-container half viz-container right">
+  <h3>Filter legislation</h3>
     <div class="filter-countries">
     <label for="countryDropDown">Country</label>
       <select name="country" id="countryDropDown">
@@ -95,9 +77,24 @@
         {% endfor %}
       </select>
     </div>
+
+    <div class="filterTags">
+    <label for="TagDropDown">Tags</label>
+      <select name="tags" id="TagDropDown" multiple="multiple">
+        {% for group_tag in group_tags %}
+          <optgroup label="{{group_tag.name}}">
+            {% for tag in group_tag.tags.all %}
+              <option value="{{tag.pk}}" class="option-child-1">{{ tag.name }}</option>
+            {% endfor %}
+          </optgroup>
+        {% endfor %}
+      </select>
+    </div>
+
     <div class="button-wrapper">
       <button type="button" class="btn btn-primary submitBtn">Apply filters</button>
     </div>
 
   </div>
+  
 {% endblock %}
