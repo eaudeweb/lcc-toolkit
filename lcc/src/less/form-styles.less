@@ -2,12 +2,12 @@
     width: 100%;
     height: @input;
     border-width: 2px;
-    border-color: #ccc;
+    border-color: @border;
 }
 
 .input_style() {
     background-color: white;
-    border: thin solid #ccc;
+    border: thin solid @border;
     display: inline-block;
     font: inherit;
     height: @input;
@@ -40,16 +40,13 @@ select {
     .input_style();
     .special_input();
     /* arrows */
-    background-image: linear-gradient(45deg, transparent 50%, gray 50%),
-    linear-gradient(135deg, gray 50%, transparent 50%),
-    linear-gradient(to right, #ccc, #ccc);
+    background-image: url('../img/caret.png');
     background-position: calc(~"100% - 19px") calc(~"1rem + 2px"),
     calc(~"100% - 15px") calc(~"1rem + 2px"),
     calc(~"100% - 2.5em") 0.5em;
-    background-size: 5px 5px,
-    5px 5px,
-    1px 1.5em;
+    background-size: 10px;
     background-repeat: no-repeat;
+  
     transition: all 100ms;
     &[multiple="multiple"] {
         background: none;
@@ -58,15 +55,11 @@ select {
     }
 
     &:focus {
-        background-image: linear-gradient(45deg, #428bca 50%, transparent 50%),
-        linear-gradient(135deg, transparent 50%, #428bca 50%),
-        linear-gradient(to right, #ccc, #ccc);
+        background-image: url('../img/caretup.png');
         background-position: calc(~"100% - 15px") 1em,
         calc(~"100% - 19px") 1em,
         calc(~"100% - 2.5em") 0.5em;
-        background-size: 5px 5px,
-        5px 5px,
-        1px 1.5em;
+        background-size: 10px;
         background-repeat: no-repeat;
         border-color: #428bca;
         outline: 0;
