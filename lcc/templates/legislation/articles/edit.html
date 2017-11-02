@@ -177,7 +177,7 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-info" id='save-btn' name='save-btn'> Save & View articles</button>
-    <a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-danger" id="cancel-btn">Cancel</a>
+    <button type="submit" class="btn btn-primary" id='save-btn' name='save-btn'> Save & View articles</button>
+    <a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-link" id="cancel-btn">Cancel</a>
   </form>
 {% endblock %}
