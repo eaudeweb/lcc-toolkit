@@ -3,7 +3,7 @@
 
 {% block page-title %}{{ law.title }}{% endblock %}
 {% block page-menu %} 
-  {% include 'legislation/navigation.html' %}
+  <!-- {% include 'legislation/navigation.html' %} -->
   <ul>
     <li class="wide"><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-link active">Overview</a></li>
     {% with law.articles.all as articles %}
@@ -11,18 +11,15 @@
     {% endwith %}
     {% if request.user.is_authenticated %}
       <span class="separator"></span>
-      {% if law.articles.all %}
-      <li class="wide">
-        <a class="btn btn-link"
-           href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">
-          Visualize the articles
-        </a>
-      </li>
-      {% endif %}
       <li class="wide">
         <a class="btn btn-link"
            href="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
-          Edit
+          Edit Legislation
+        </a>
+      </li>
+      <li class="wide">
+        <a class="btn btn-link">
+          Delete Legislation
         </a>
       </li>
       <li class="wide">
