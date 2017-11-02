@@ -66,7 +66,7 @@ $(document).ready(function(){
             for (var j = 0; j < all_assessments.length; j++) {
               var element = all_assessments[j];
               var li_country = $('<option/>')
-                                .text(element.country)
+                                .text(element.country_name)
                                 .attr('value', element.id)
                                 .appendTo(country_list);
             }
