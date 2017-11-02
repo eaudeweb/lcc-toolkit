@@ -5,7 +5,7 @@ env:
   global:
     - ES_VERSION=5.4.1
     - ES_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.tar.gz
-    - ELASTICSEARCH_HOST=127.0.0.1
+    - ELASTICSEARCH_HOST=elastic:changeme@127.0.0.1:9200
 before_install:
   - sudo apt-get install libpoppler-cpp-dev
 install:
