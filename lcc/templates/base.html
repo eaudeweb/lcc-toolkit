@@ -49,7 +49,7 @@
   <!-- Top Header -->
   <div id="top-header">
     <div class="header-wrapper container">
-      <a class="brand" href="{% url 'lcc:legislation:explorer' %}">
+      <a class="brand" href="{% url 'lcc:home_page' %}">
         <span>Law and climate toolkit</span>
       </a>
 
@@ -59,7 +59,7 @@
             <li><a class="active" href="{% url 'lcc:legislation:explorer' %}">Legislation Explorer</a></li>
             <li><a href="{% url 'lcc:legal_assessment' %}">Legal Assessment</a></li>
             <li><a href="{% url 'lcc:legislation:explorer' %}">Context Control</a></li>
-            <li><a href="{% url 'lcc:legislation:explorer' %}">Lessons learned</a></li>
+            <li><a class="disabled" href="">Lessons learned</a></li>
           </ul>
         </div>
         {% block header-top-right %}
@@ -105,8 +105,8 @@
         <div class="footer-desc right-div">
         <h3>LCCT</h3>
           <p>The Toolkit is designed for the use by national governments, international organizational and experts engaging in assisting countries in implementaion, as well as academia and research institutions that are analyzing the growing boddy of climate change-related legislation throughout the world </p>
-          <a style="padding-left: 0;" class="btn btn-link" href="#">About LCCT</a>
-          <a class="btn btn-link" href="#">Legislation Explorer</a>
+          <a style="padding-left: 0;" class="btn btn-link" href="{% url 'lcc:about_us' %}">About LCCT</a>
+          <a class="btn btn-link" href="{% url 'lcc:legislation:explorer' %}">Legislation Explorer</a>
         </div>
         <div class="footer-logos">
           <a href="http://thecommonwealth.org/">
