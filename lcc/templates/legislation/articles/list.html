@@ -61,7 +61,6 @@
     <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:articles:delete' legislation_pk=law.pk article_pk=article.pk %}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
     <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">Edit article</a>
     {% endif %}
-
     {% if article.code %}
     <a class="article-title" href="#{{article.code}}">
       <h4 id="{{article.code}}">Article {{ article.code }}</h4>
