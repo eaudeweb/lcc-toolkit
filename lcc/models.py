@@ -580,6 +580,9 @@ class Gap(_TaxonomyModel):
     class Meta(_TaxonomyModel.Meta):
         unique_together = ('on', 'question')
 
+    def __str__(self):
+        return "Gap for Q %s" % self.question
+
 
 class Assessment(models.Model):
     user = models.ForeignKey(User, related_name="assessments")
