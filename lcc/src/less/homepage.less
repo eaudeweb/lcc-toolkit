@@ -1,0 +1,79 @@
+.homepage {
+    .container {
+        @media @desktopUp {
+            width: 70%;
+        }
+        @media (min-width: 1680px) {
+            width: 60%;
+        }
+    }
+    font-size: 1.5rem;
+    @media (min-width: 1680px){
+    	font-size: 1.9rem;
+    }
+    p {
+        font-size: inherit;
+    }
+    .homepage-header {
+        img {
+            width: 100%;
+        }
+        .header-content {
+            margin-top: -26%;
+            .homepage-actions {
+                text-align: center;
+                margin: 2rem 0;
+            }
+            .homepage-desc {
+                text-align: center;
+                max-width: 600px;
+                margin: auto;
+            }
+        }
+    }
+
+    .homepag-body {
+        section {
+            h2 {
+                text-align: center;
+                margin-top: 2rem;
+            	margin-bottom: 2rem;
+            	font-weight: bold;
+            }
+        }
+        .toolkit {
+            .toolkit-wrapper {
+                display: flex;
+                .item {
+                    &.center {
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+                    }
+                    width: 33.3333%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: center;
+                    text-align: center;
+                }
+            }
+        }
+        .partners {
+            width: 66%;
+            margin: auto;
+            p {
+            	margin-top: 2rem;
+            	margin-bottom: 2rem;
+                text-align: center;
+                max-width: 90%;
+                margin-left: -1rem;
+            }
+            li {
+            	list-style-type: disc;
+            }
+            ul {
+            	line-height: 2;
+            }
+        }
+    }
+}

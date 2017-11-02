@@ -44,12 +44,8 @@
 </head>
 
 <body class="{% block body-layout-type %}{% endblock %} {% block content-wrapper-class %}{% endblock %}">
-  <div class='hidden'>
-    {% block hidden_variables %}
-
-    {% endblock %}
-  </div>
-
+  <div class='hidden'>{% block hidden_variables %}{% endblock %}</div>
+{% block content_page %}
   <!-- Top Header -->
   <div id="top-header">
     <div class="header-wrapper container">
@@ -96,14 +92,21 @@
       {% endblock %}
     </div>
   </div>
+{% endblock %}
+
+{% block homepage %}
+{% endblock %}
+
 
      <!-- CONTENT-WRAPPER SECTION END-->
-
-  <section class="footer-section">
+ <section class="footer-section">
     <div class="container">
       <div class="row flex">
         <div class="footer-desc right-div">
-          <h3><b>Lorem ipsum dolor sit amet, mea tibique recteque an, id sit dicit corpora voluptua. Ea vivendum </b></h3>
+        <h3>LCCT</h3>
+          <p>The Toolkit is designed for the use by national governments, international organizational and experts engaging in assisting countries in implementaion, as well as academia and research institutions that are analyzing the growing boddy of climate change-related legislation throughout the world </p>
+          <a style="padding-left: 0;" class="btn btn-link" href="#">About LCCT</a>
+          <a class="btn btn-link" href="#">Legislation Explorer</a>
         </div>
         <div class="footer-logos">
           <a href="http://thecommonwealth.org/">
@@ -117,15 +120,5 @@
           </a>
         </div>
       </div>
-      <div class="row">
-        <div class="footer-desc">
-          <p>Vide sonet nostrud usu ne, id noster discere insolens mei, eu est duis quaeque constituto. Reformidans disputationi mel ex, has ipsum tibique assentior ad. At mea quem graeci percipit, eam novum prompta sanctus ut. Ad est probo electram, cu per fugitr ad. At mea quem graeci percipit, eam novum prompta sanctus ut. Ad est probo electram, cu per fugit</p>
-        </div>
-      </div>
-      <div class="copyright">
-        <strong> Legislation and Climate Change Assessment Toolkit </strong>| &copy; 2017
-      </div>
     </div>
   </section>
-</body>
-</html>
