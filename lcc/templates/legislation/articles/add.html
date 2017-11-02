@@ -39,7 +39,7 @@
 
 {% block content %}
 <div class="page-container half">
- <h3>{{ law.title }}</h3>
+ <h2><b>Add article</b></h2>
   <form class="validate_this" id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
     {% csrf_token %}
 
