@@ -48,6 +48,7 @@ div.legalAreaBtnWrapper {
         font-size: 1.2rem;
     }
     button {
+        display: flex;
         min-width: initial!important;
         &:focus {
             outline: none;
@@ -89,5 +90,14 @@ select#classificationsDropDown {
     width: 100%;
     option {
         min-height: 32px;
+    }
+}
+
+.filter-item {
+    select[multiple="multiple"] {
+        overflow: hidden;
+        &:hover {
+            overflow: auto;
+        }
     }
 }
