@@ -12,6 +12,10 @@ $(document).ready(function(){
     var classification_id;
     var all_questions = [];
     var listeners = {};
+    var classification_title = $('.classification_title');
+    var current = $('#questions-container .current');
+    var last = $('#questions-container .last');
+    var question_category = $('.question_category')
 
     // requests need the assessment_id, to have this available, we need to make sure
     // that functions have this as their context, which normally will be changed when:
@@ -122,7 +126,11 @@ $(document).ready(function(){
 
           renderClassifications.call(self, responseClassifications);
           handleAccordion();
-          getQuestions.call(self, responseClassifications[0].second_level[0].id);
+          getQuestions.call(self, responseClassifications[0].second_level[0].id)
+                      .done(renderTitleContent(responseClassifications[0].name
+                                              , responseClassifications[0].second_level[0].name
+                                              , responseClassifications[0].second_level.length
+                                              , 0));
         });
     }
 
@@ -149,7 +157,7 @@ $(document).ready(function(){
                                     .attr('aria-disabled', 'false')
                                     .attr('aria-selected', 'true')
                                     .attr('data-id', subcat.id)
-                                    .on('click', getQuestionsForCategory.bind(this))
+                                    .on('click', getQuestionsForCategory.bind(this, element.name, subcat.name, element.second_level.length, j))
                                     .appendTo(classification_menu);
           var i_comp = $('<i/>')
                         .text(j+1)
@@ -177,11 +185,14 @@ $(document).ready(function(){
 
     function getQuestions(classification_id) {
       var self = this;
+      var defer = $.Deferred();
       RequestService
         .getQuestions(classification_id, self.assessment_id)
         .done(function (responseQuestions) {
           handleQuestions.call(self, responseQuestions);
+          defer.resolve();
         });
+        return defer.promise();
     }
 
     function handleQuestions(questions) {
@@ -370,13 +381,21 @@ $(document).ready(function(){
         });
     }
 
-    function getQuestionsForCategory(event) {
+    function getQuestionsForCategory(classification_name, category_name, categories_no, index, event) {
       var elem = $(event.currentTarget);
       var all_elems = $('classification-item').removeClass('iron-selected')
       elem.addClass('iron-selected');
-
       classification_id = elem.attr('data-id');
       getQuestions.call(this, classification_id);
+
+      renderTitleContent(classification_name, category_name, categories_no, index);
+    }
+
+    function renderTitleContent(classification_name, category_name, categories_no, index) {
+      classification_title.html(classification_name);
+      current.html(parseInt(index) + 1);
+      last.html(categories_no);
+      question_category.html(category_name);
     }
   });
 });
