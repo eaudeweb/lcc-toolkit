@@ -13,8 +13,6 @@ $(document).ready(function(){
     var all_questions = [];
     var listeners = {};
 
-    // TODO remove ids form questions
-
     // requests need the assessment_id, to have this available, we need to make sure
     // that functions have this as their context, which normally will be changed when:
     // - binding to $ elements
@@ -203,7 +201,7 @@ $(document).ready(function(){
                   .attr('id', element.id)
                   .appendTo(questions_container);
         var p = $('<p/>')
-                .text(element.id + ' - ' + element.text)
+                .text(element.text)
                 .appendTo(li);
         var div = $('<div/>')
                   .addClass('btn-group question')
