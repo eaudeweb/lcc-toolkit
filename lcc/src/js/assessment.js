@@ -306,18 +306,18 @@ $(document).ready(function(){
       return response;
     }
 
-    // btn-success will suggest the existence of an answer
+    // btn-primary will suggest the existence of an answer
     // btn-default: no answer was given
     function getBtnClass(buttonVal, answer) {
       var btn;
       if(buttonVal) {
         return btn = !answer 
         ? 'btn-default' : (JSON.parse(answer.value) && buttonVal) 
-        ? 'btn-success' : 'btn-default';
+        ? 'btn-primary' : 'btn-default';
       } else {
         return btn = !answer 
         ? 'btn-default' :  JSON.parse(answer.value) 
-        ? 'btn-default' : 'btn-success';        
+        ? 'btn-default' : 'btn-primary';        
       }
     }
 

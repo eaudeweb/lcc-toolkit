@@ -160,14 +160,14 @@ $(document).ready(function(){
       }
     }
                     
-    // btn-success will suggest the existence of an answer
+    // btn-primary will suggest the existence of an answer
     // btn-default: no answer was given
     function getBtnClass(buttonVal, answer) {
       var btn;
       if(buttonVal) {
-        return btn = answer ? 'btn-success' : 'btn-default';
+        return btn = answer ? 'btn-primary' : 'btn-default';
       } else {
-        return btn = answer ? 'btn-default' : 'btn-success';        
+        return btn = answer ? 'btn-default' : 'btn-primary';        
       }
     }
   });

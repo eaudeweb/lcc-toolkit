@@ -13,7 +13,7 @@
 <input type="number" name="user_id" value="{{ request.user.pk }}"></input>
 {% endblock %}
 
-{% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
+{% block content-wrapper-class %}leg-viz assessment-page{% endblock %}
 
 {% block page-title %}Legal Assessment{% endblock %}
 
@@ -54,6 +54,10 @@
 			<h3 class="question_category">Subtitle</h3>
 			<ul class="list-group">
 			</ul>
+			<div id="assessment-results-btn" style="display: none">
+				<button type="button" class="btn btn-primary" id="assessment-results">view results</button>
+			</div>
+
 			<div class="next_question">
 				<div class="next link">Next question <span class="icon-right-thin"></span></div>
 				<div class="next_category muted">Monitoring, reporting and verification obligations</div>
@@ -62,8 +66,5 @@
 	</div>
 </div>
 
-<div class="button-wrapper" id="assessment-results-btn" style="display: none">
-	<button type="button" class="btn btn-primary" id="assessment-results">view results</button>
-</div>
 
 {% endblock %}
