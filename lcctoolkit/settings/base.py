@@ -25,8 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_webtest',
+    'django_elasticsearch_dsl',
     'rolepermissions',
-    # 'django_elasticsearch_dsl',
     'rest_framework',
     'mptt',
     'lcc',
@@ -107,7 +107,6 @@ USE_TZ = True
 
 LOGIN_URL = "/login/"
 
-try:
-    from .localsettings import *
-except ImportError:
-    pass
+FIXTURE_DIRS = [
+    'lcc/tests/fixtures',
+]

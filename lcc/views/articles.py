@@ -1,15 +1,11 @@
+from django.urls import reverse
 from django.contrib.auth import mixins
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.urls import reverse
-from django.views.generic import (
-    DetailView, CreateView, UpdateView, DeleteView
-)
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
+
 from lcc import models, forms
-from lcc.views.base import (
-    TagGroupRender, TaxonomyFormMixin,
-    taxonomy_to_string,
-)
+from lcc.views.base import TagGroupRender, TaxonomyFormMixin
 
 
 class ArticleFormMixin:
@@ -68,20 +64,6 @@ class ArticlesList(DetailView):
     context_object_name = 'law'
     model = models.Legislation
     pk_url_kwarg = 'legislation_pk'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        articles = self.get_object().articles.all()
-
-        for article in articles:
-            article.all_tags = taxonomy_to_string(article, tags=True)
-            article.all_classifications = taxonomy_to_string(
-                article, classification=True
-            )
-        context.update({
-            "articles": articles,
-        })
-        return context
 
 
 class EditArticles(mixins.LoginRequiredMixin,

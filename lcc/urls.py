@@ -68,6 +68,10 @@ legislation_patterns = [
         views.legislation.LegislationEditView.as_view(),
         name='edit'),
 
+    url(r'^(?P<legislation_pk>\d+)/delete/$',
+        views.legislation.LegislationDeleteView.as_view(),
+        name='delete'),
+
     url(r'^(?P<legislation_pk>\d+)/pages/$',
         views.legislation.LegislationPagesView.as_view()),
 
@@ -99,13 +103,13 @@ api_urls = [
         views.api.AnswerDetail.as_view(),
         name='answers_get_update'),
 
-    url(r'assessment/$',
+    url(r'assessments/$',
         views.api.AssessmentList.as_view(),
         name='assessment_list_create'),
 
-    url(r'assessment/(?P<user_pk>[0-9]+)/$',
-        views.api.AssessmentDetail.as_view(),
-        name='assessment_get_update'),
+    url(r'assessments/(?P<pk>[0-9]+)/results/$',
+        views.api.AssessmentResults.as_view(),
+        name='assessment_results'),
 
     url(r'countries/$',
         views.api.CountryViewSet.as_view(),
@@ -132,8 +136,12 @@ def crash_me(request):
 
 urlpatterns = [
     url(r'^$',
-        views.base.Index.as_view(),
-        name='index'),
+        views.base.HomePageView.as_view(),
+        name='home_page'),
+
+    url(r'^about-us/$',
+        views.base.AboutUsView.as_view(),
+        name='about_us'),
 
     url(r'^',
         include(auth_patterns, namespace='auth')),
@@ -146,6 +154,10 @@ urlpatterns = [
     url(r'^legal-assessment/$',
         views.assessment.LegalAssessment.as_view(),
         name="legal_assessment"),
+
+    url(r'^legal-assessment/(?P<pk>[0-9]+)/results$',
+        views.assessment.LegalAssessmentResults.as_view(),
+        name="legal_assessment_results"),
 
     url(r'^legislation/',
         include(legislation_patterns, namespace='legislation')),

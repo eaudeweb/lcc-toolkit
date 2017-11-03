@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content_page %}
+{% endblock %}
+
+{% block homepage %}
+<div class="homepage">
+  <div class="homepage-header">
+    <img src="{% static "img/cover.png" %}" />
+    <div class="header-content container">
+      <div class="homepage-actions">
+        <a href="{% url 'lcc:auth:login' %}" class="btn btn-primary very-wide">Log in</a>
+        <a href="{% url 'lcc:auth:register' %}" class="btn btn-link very-wide">Register</a>
+      </div>
+      <div class="homepage-desc">
+        <p>Global resource to help countries put in place the legal frameworks necessary for effective national implementation of the <br><b>Paris Agreement</b> and their nationally determined contributions - <b>NDCs</b></p>
+        <a href="{% url 'lcc:about_us' %}" class="btn btn-link">Learn more</a>
+      </div>
+    </div>
+  </div>
+  <div class="homepag-body">
+    <div class="body-content container">
+      <section class="toolkit">
+      <hr>
+        <h2>The Toolkit</h2>
+        <div class="toolkit-wrapper">
+          <div class="item">
+            <img src="{% static "img/icon-legislation-explorer.png" %}" />            
+            <h3>Legislation Explorer</h3>
+            <p><small>Legal provisions from accross the world, both within overarching climate change laws and sectoral legislation.</small></p>
+            <a href="{% url 'lcc:legislation:explorer' %}" class="btn btn-link">Explore</a>
+          </div>
+          <div class="item center">
+            <img src="{% static "img/icon-legal-assesment.png" %}" />           
+            <h3>Legal Assesment</h3>
+            <p><small>Identify potential gaps and areas for improvement, priority areas for climate law review and potential areas for reform.</small></p>
+          </div>
+          <div class="item">
+            <img src="{% static "img/icon-lessons-learned.png" %}" />           
+            <h3>Lessons Learned</h3>
+            <p><small>The long term commitment to build a 'comunity of practice' for policy makers.</small></p>
+          </div>
+        </div>
+      <hr>
+      </section>
+      <section class="partners">
+        <h2>Contributing Partners</h2>
+        <p>We would like to thank the following contributing partners for their support in the preparation of the beta version of the Toolkit:</p>
+        <ul>
+          <li>The Food and Agriculture Organization of the United Nations</li>
+          <li>The United Nations High Commissioner for Refugees</li>
+          <li>The United Nations Conference on Trade and Development</li>
+          <li>The United Nations Human Settlements Programme (UN-HABITAT)</li>
+          <li>The European Bank for Reconstruction and Development</li>
+          <li>The Grantham Research Institute, London School of Economics</li>
+          <li>University College London, Faculty of Laws</li>
+          <li>School of Transnational Law, Peking University</li>
+          <li>Legal Atlas</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}

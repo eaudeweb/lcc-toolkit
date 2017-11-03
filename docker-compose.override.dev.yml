@@ -3,8 +3,12 @@ version: '2'
 services:
 
   web:
-    build: .
+    build:
+      context: .
+      args:
+        REQFILE: requirements-dev.txt
     container_name: lcct.web
+    entrypoint: bash
     ports:
       - "8000:8000"
     environment:
@@ -15,13 +19,29 @@ services:
     depends_on:
       - db
     volumes:
-      - ./lcctoolkit:/opt/lcct/lcctoolkit
-      - ./lcc:/opt/lcct/lcc
+      - .:/opt/lcct
 
   elasticsearch:
     container_name: lcct.elastic
     ports:
       - "9200:9200"
+
+  elasticsearch_test:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
+    container_name: lcct.elastic_test
+    ports:
+      - "9201:9200"
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+    volumes:
+      - elastic_test:/usr/share/elasticsearch/data
 
   db:
     container_name: lcct.db
@@ -31,3 +51,8 @@ services:
     container_name: lcct.mail
     ports:
     - "8025:80"
+
+volumes:
+
+  elastic_test:
+    driver: local

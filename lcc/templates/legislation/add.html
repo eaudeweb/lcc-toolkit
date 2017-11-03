@@ -7,10 +7,7 @@
 {% endblock %}
 {% block page-title %}Add new legislation{% endblock %}
 
-{% block breadcrumbs %}
-  {{ block.super }}
-  <span> <i class="icon-right-open-mini"></i>Add</span>
-{% endblock %}
+{% block breadcrumbs %}{% endblock %}
 
 {% block content %}
 
@@ -72,7 +69,7 @@
       <div class='law-meta-data-container'>
         <div class="selector selector-inline--4">
           <div>
-            <label class="label-medium" for="id_country">Country <p style="display: inline-block; color: red;" title="This field is required.">*</p>:</label>
+            <label class="label-medium" for="id_country">Country <span style="display: inline-block; color: red;" title="This field is required.">*</span>:</label>
           </div>
           <div>
             <select name="country" required id="id_country"
@@ -279,7 +276,7 @@
               {% for tag_group in tag_groups %}
                 <li class="first-level level">
                 <span class="list-header">
-                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
                   <span name='tagGroup_{{ tag_group.pk }}'> {{ tag_group.name }} </span>
                 </span>
                   <ul class="second-level level">
@@ -331,8 +328,8 @@
         </div>
       </div>
       <div class="button-wrapper">
-        <button type="submit" class="btn btn-success" id='save-btn' name='save-btn'> Save </button>
-        <button type="submit" class="btn btn-primary" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add articles</button>
+        <button type="submit" class="btn btn-primary" id='save-btn' name='save-btn'> Save </button>
+        <button type="submit" class="btn btn-link" id='save-and-continue-btn' name='save-and-continue-btn'> Save & Add articles</button>
       </div>
       </form>
       </div>

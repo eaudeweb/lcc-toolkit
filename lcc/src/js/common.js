@@ -67,7 +67,11 @@ $(document).ready(function() {
         $sub_level.animate({
             'height': 'toggle'
         })
-        $checkbox.toggleClass('fa-minus-square')
+        $checkbox.toggleClass('fa-caret-up')
+    })
+
+    $('#tags .second-level.level').animate({
+            'height': 'show'
     })
 
     var textarea = $('textarea')
@@ -93,12 +97,6 @@ $(document).ready(function() {
         $(this).addClass('active')
     })
 
-    $('.authenticated .icon-user-outline').click(function(){
-        $('.actions-wrapper').animate({
-            'width': 'toggle'
-        })
-    })
-
     var edited = false;
      $('input, textarea, select').on('change', function(){
         edited = true;
@@ -117,15 +115,10 @@ $(document).ready(function() {
     })
 
 
-    if(($('#title').text().length > 49) && ($('#title').text().length < 73)) {
-    	$('#title').css('font-size', 16+'px').css('line-height', '1.4').css('padding-top', 1.3 +"rem")
-    }
-    else if ( $('#title').text().length > 73) {
-        $('#title').css('padding-top', '0')
-    }
+    setTimeout(function(){
+        $("#top-header").sticky({topSpacing:0});
+    },300)
 
-
-    $(".page-menu").sticky({topSpacing:0});
     $('.disabled').click(function(e){
         e.preventDefault();
     })

@@ -11,8 +11,7 @@
         "lft": 1,
         "rght": 22,
         "tree_id": 1,
-        "level": 0,
-        "gaps": []
+        "level": 0
     }
 },
 {
@@ -27,8 +26,7 @@
         "lft": 2,
         "rght": 13,
         "tree_id": 1,
-        "level": 1,
-        "gaps": []
+        "level": 1
     }
 },
 {
@@ -39,14 +37,11 @@
         "parent": 2,
         "parent_answer": true,
         "order": 1,
-        "classification": null,
+        "classification": 2,
         "lft": 3,
         "rght": 4,
         "tree_id": 1,
-        "level": 2,
-        "gaps": [
-            1
-        ]
+        "level": 2
     }
 },
 {
@@ -61,11 +56,7 @@
         "lft": 5,
         "rght": 6,
         "tree_id": 1,
-        "level": 2,
-        "gaps": [
-            2,
-            3
-        ]
+        "level": 2
     }
 },
 {
@@ -80,8 +71,7 @@
         "lft": 7,
         "rght": 12,
         "tree_id": 1,
-        "level": 2,
-        "gaps": []
+        "level": 2
     }
 },
 {
@@ -96,10 +86,7 @@
         "lft": 8,
         "rght": 9,
         "tree_id": 1,
-        "level": 3,
-        "gaps": [
-            4
-        ]
+        "level": 3
     }
 },
 {
@@ -114,10 +101,7 @@
         "lft": 10,
         "rght": 11,
         "tree_id": 1,
-        "level": 3,
-        "gaps": [
-            5
-        ]
+        "level": 3
     }
 },
 {
@@ -128,14 +112,11 @@
         "parent": 1,
         "parent_answer": true,
         "order": 2,
-        "classification": null,
+        "classification": 2,
         "lft": 14,
         "rght": 15,
         "tree_id": 1,
-        "level": 1,
-        "gaps": [
-            6
-        ]
+        "level": 1
     }
 },
 {
@@ -146,14 +127,11 @@
         "parent": 1,
         "parent_answer": true,
         "order": 3,
-        "classification": null,
+        "classification": 2,
         "lft": 16,
         "rght": 17,
         "tree_id": 1,
-        "level": 1,
-        "gaps": [
-            7
-        ]
+        "level": 1
     }
 },
 {
@@ -164,14 +142,11 @@
         "parent": 1,
         "parent_answer": true,
         "order": 4,
-        "classification": null,
+        "classification": 2,
         "lft": 18,
         "rght": 19,
         "tree_id": 1,
-        "level": 1,
-        "gaps": [
-            8
-        ]
+        "level": 1
     }
 },
 {
@@ -186,10 +161,7 @@
         "lft": 20,
         "rght": 21,
         "tree_id": 1,
-        "level": 1,
-        "gaps": [
-            9
-        ]
+        "level": 1
     }
 },
 {
@@ -204,10 +176,7 @@
         "lft": 1,
         "rght": 10,
         "tree_id": 2,
-        "level": 0,
-        "gaps": [
-            14
-        ]
+        "level": 0
     }
 },
 {
@@ -222,10 +191,7 @@
         "lft": 2,
         "rght": 3,
         "tree_id": 2,
-        "level": 1,
-        "gaps": [
-            10
-        ]
+        "level": 1
     }
 },
 {
@@ -240,10 +206,7 @@
         "lft": 4,
         "rght": 5,
         "tree_id": 2,
-        "level": 1,
-        "gaps": [
-            11
-        ]
+        "level": 1
     }
 },
 {
@@ -258,10 +221,7 @@
         "lft": 6,
         "rght": 9,
         "tree_id": 2,
-        "level": 1,
-        "gaps": [
-            12
-        ]
+        "level": 1
     }
 },
 {
@@ -276,10 +236,7 @@
         "lft": 7,
         "rght": 8,
         "tree_id": 2,
-        "level": 2,
-        "gaps": [
-            13
-        ]
+        "level": 2
     }
 },
 {
@@ -294,10 +251,7 @@
         "lft": 1,
         "rght": 18,
         "tree_id": 3,
-        "level": 0,
-        "gaps": [
-            15
-        ]
+        "level": 0
     }
 },
 {
@@ -312,10 +266,7 @@
         "lft": 2,
         "rght": 5,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            16
-        ]
+        "level": 1
     }
 },
 {
@@ -330,10 +281,7 @@
         "lft": 3,
         "rght": 4,
         "tree_id": 3,
-        "level": 2,
-        "gaps": [
-            17
-        ]
+        "level": 2
     }
 },
 {
@@ -348,10 +296,7 @@
         "lft": 6,
         "rght": 7,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            18
-        ]
+        "level": 1
     }
 },
 {
@@ -366,10 +311,7 @@
         "lft": 8,
         "rght": 9,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            19
-        ]
+        "level": 1
     }
 },
 {
@@ -384,10 +326,7 @@
         "lft": 10,
         "rght": 11,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            20
-        ]
+        "level": 1
     }
 },
 {
@@ -402,10 +341,7 @@
         "lft": 12,
         "rght": 13,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            21
-        ]
+        "level": 1
     }
 },
 {
@@ -416,14 +352,11 @@
         "parent": 17,
         "parent_answer": false,
         "order": 6,
-        "classification": null,
+        "classification": 15,
         "lft": 14,
         "rght": 15,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            22
-        ]
+        "level": 1
     }
 },
 {
@@ -434,14 +367,11 @@
         "parent": 17,
         "parent_answer": false,
         "order": 7,
-        "classification": null,
+        "classification": 15,
         "lft": 16,
         "rght": 17,
         "tree_id": 3,
-        "level": 1,
-        "gaps": [
-            23
-        ]
+        "level": 1
     }
 },
 {
@@ -456,10 +386,7 @@
         "lft": 1,
         "rght": 4,
         "tree_id": 4,
-        "level": 0,
-        "gaps": [
-            24
-        ]
+        "level": 0
     }
 },
 {
@@ -474,10 +401,7 @@
         "lft": 2,
         "rght": 3,
         "tree_id": 4,
-        "level": 1,
-        "gaps": [
-            25
-        ]
+        "level": 1
     }
 },
 {
@@ -491,11 +415,8 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 6,
-        "level": 0,
-        "gaps": [
-            26
-        ]
+        "tree_id": 14,
+        "level": 0
     }
 },
 {
@@ -509,11 +430,8 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 8,
-        "level": 0,
-        "gaps": [
-            27
-        ]
+        "tree_id": 21,
+        "level": 0
     }
 },
 {
@@ -527,11 +445,8 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 10,
-        "level": 0,
-        "gaps": [
-            28
-        ]
+        "tree_id": 26,
+        "level": 0
     }
 },
 {
@@ -546,10 +461,7 @@
         "lft": 1,
         "rght": 4,
         "tree_id": 5,
-        "level": 0,
-        "gaps": [
-            29
-        ]
+        "level": 0
     }
 },
 {
@@ -564,10 +476,7 @@
         "lft": 2,
         "rght": 3,
         "tree_id": 5,
-        "level": 1,
-        "gaps": [
-            30
-        ]
+        "level": 1
     }
 },
 {
@@ -581,11 +490,8 @@
         "classification": 35,
         "lft": 1,
         "rght": 4,
-        "tree_id": 7,
-        "level": 0,
-        "gaps": [
-            31
-        ]
+        "tree_id": 15,
+        "level": 0
     }
 },
 {
@@ -599,11 +505,8 @@
         "classification": null,
         "lft": 2,
         "rght": 3,
-        "tree_id": 7,
-        "level": 1,
-        "gaps": [
-            32
-        ]
+        "tree_id": 15,
+        "level": 1
     }
 },
 {
@@ -617,11 +520,8 @@
         "classification": 35,
         "lft": 1,
         "rght": 2,
-        "tree_id": 9,
-        "level": 0,
-        "gaps": [
-            33
-        ]
+        "tree_id": 22,
+        "level": 0
     }
 },
 {
@@ -635,11 +535,773 @@
         "classification": 35,
         "lft": 1,
         "rght": 2,
+        "tree_id": 27,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 37,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations requiring domestic reporting of greenhouse gas (GHG) emissions by the government?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 24,
+        "lft": 1,
+        "rght": 4,
+        "tree_id": 6,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 38,
+    "fields": {
+        "text": "Does the law designate an agency to prepare a national inventory and report on national emissions data?",
+        "parent": 37,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 6,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 39,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations requiring reporting of greenhouse gas (GHG) emissions by companies, industrial installations or financial institutions?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 2,
+        "classification": 24,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 16,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 40,
+    "fields": {
+        "text": "Does your country have or provisions of laws or regulations establishing a scheme for the verification of information reported (public or private entities)?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 3,
+        "classification": 24,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 23,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 41,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations imposing obligations on government to set targets and promote renewable energy?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 46,
+        "lft": 1,
+        "rght": 10,
+        "tree_id": 7,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 42,
+    "fields": {
+        "text": "Does this include:",
+        "parent": 41,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 9,
+        "tree_id": 7,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 43,
+    "fields": {
+        "text": "A renewable energy target?",
+        "parent": 42,
+        "parent_answer": null,
+        "order": 1,
+        "classification": null,
+        "lft": 3,
+        "rght": 4,
+        "tree_id": 7,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 44,
+    "fields": {
+        "text": "A renewable energy strategy or plan?",
+        "parent": 42,
+        "parent_answer": null,
+        "order": 2,
+        "classification": null,
+        "lft": 5,
+        "rght": 6,
+        "tree_id": 7,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 45,
+    "fields": {
+        "text": "A duty on a government agency to promote renewables?",
+        "parent": 42,
+        "parent_answer": null,
+        "order": 3,
+        "classification": null,
+        "lft": 7,
+        "rght": 8,
+        "tree_id": 7,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 46,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations mandating the production, distribution and/or consumption of one or more specific renewable energy sources (wind, solar etc)?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 2,
+        "classification": 46,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 17,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 47,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations regulating who can provide renewable energy?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 51,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 8,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 48,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations imposing obligations on energy providers (e.g. to produce and supply renewable energy, to maintain equipment, comply with standards etc.) and establishing their corresponding rights?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 2,
+        "classification": 51,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 18,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 49,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) imposing codes and standards  on renewable energy producers ?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 3,
+        "classification": 51,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 24,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 50,
+    "fields": {
+        "text": "Are there provisions for energy audits?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 4,
+        "classification": 51,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 28,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 51,
+    "fields": {
+        "text": "Are there requirements for energy users to source renewable energy?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 5,
+        "classification": 51,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 30,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 52,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations regulating electricity grids to support the provision of low carbon energy?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 58,
+        "lft": 1,
+        "rght": 6,
+        "tree_id": 9,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 53,
+    "fields": {
+        "text": "Does this legislation include the specification of grid standards?",
+        "parent": 52,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 9,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 54,
+    "fields": {
+        "text": "Do these provisions include grid access measures or measures concerning the integration of renewable energy into the energy system?",
+        "parent": 52,
+        "parent_answer": true,
+        "order": 2,
+        "classification": null,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 9,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 55,
+    "fields": {
+        "text": "If relevant to your grid infrastructure, does your country have provisions of laws or regulations that regulate distributed or off-grid energy?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 2,
+        "classification": 58,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 19,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 56,
+    "fields": {
+        "text": "Are there special provisions for rural electrification in your national laws or regulations?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 3,
+        "classification": 58,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 25,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 57,
+    "fields": {
+        "text": "Are there special provisions regulating nano -, micro- and/or mini-grids (e.g. establishing licensing or concession processes) in your national laws or regulations?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 4,
+        "classification": 58,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 29,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 58,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations providing financial incentives, guarantees or support for producers of renewable energy?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 64,
+        "lft": 1,
+        "rght": 22,
+        "tree_id": 10,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 59,
+    "fields": {
+        "text": "Do these measures include:",
+        "parent": 58,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 21,
+        "tree_id": 10,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 60,
+    "fields": {
+        "text": "Fiscal incentives (tax relief/taxes, user charges)",
+        "parent": 59,
+        "parent_answer": null,
+        "order": 1,
+        "classification": null,
+        "lft": 3,
+        "rght": 4,
+        "tree_id": 10,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 61,
+    "fields": {
+        "text": "Feed-in tariffs/premiums?",
+        "parent": 59,
+        "parent_answer": null,
+        "order": 2,
+        "classification": null,
+        "lft": 5,
+        "rght": 6,
+        "tree_id": 10,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 62,
+    "fields": {
+        "text": "Power purchase agreements?",
+        "parent": 59,
+        "parent_answer": null,
+        "order": 3,
+        "classification": null,
+        "lft": 7,
+        "rght": 8,
+        "tree_id": 10,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 63,
+    "fields": {
+        "text": "Grants and compensation mechanisms?",
+        "parent": 59,
+        "parent_answer": null,
+        "order": 4,
+        "classification": null,
+        "lft": 9,
+        "rght": 10,
+        "tree_id": 10,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 64,
+    "fields": {
+        "text": "Loans and debt support for renewable energy projects?Loans and debt support for renewable energy projects?",
+        "parent": 59,
+        "parent_answer": null,
+        "order": 5,
+        "classification": null,
+        "lft": 11,
+        "rght": 12,
+        "tree_id": 10,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 65,
+    "fields": {
+        "text": "Research and development support mechanisms?",
+        "parent": 59,
+        "parent_answer": null,
+        "order": 6,
+        "classification": null,
+        "lft": 13,
+        "rght": 14,
+        "tree_id": 10,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 66,
+    "fields": {
+        "text": "Auctions/pricing mechanisms?",
+        "parent": 59,
+        "parent_answer": null,
+        "order": 7,
+        "classification": null,
+        "lft": 15,
+        "rght": 16,
+        "tree_id": 10,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 67,
+    "fields": {
+        "text": "Power production regimes?",
+        "parent": 59,
+        "parent_answer": null,
+        "order": 8,
+        "classification": null,
+        "lft": 17,
+        "rght": 18,
+        "tree_id": 10,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 68,
+    "fields": {
+        "text": "Concessions?",
+        "parent": 59,
+        "parent_answer": null,
+        "order": 9,
+        "classification": null,
+        "lft": 19,
+        "rght": 20,
+        "tree_id": 10,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 69,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations placing obligations on government to set targets and promote energy efficiency?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 75,
+        "lft": 1,
+        "rght": 10,
         "tree_id": 11,
-        "level": 0,
-        "gaps": [
-            34
-        ]
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 70,
+    "fields": {
+        "text": "Does this include:",
+        "parent": 69,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 9,
+        "tree_id": 11,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 71,
+    "fields": {
+        "text": "Setting energy efficiency targets?",
+        "parent": 70,
+        "parent_answer": null,
+        "order": 1,
+        "classification": null,
+        "lft": 3,
+        "rght": 4,
+        "tree_id": 11,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 72,
+    "fields": {
+        "text": "A national energy efficiency strategy/plan or an obligation for the government to prepare one?",
+        "parent": 70,
+        "parent_answer": null,
+        "order": 2,
+        "classification": null,
+        "lft": 5,
+        "rght": 6,
+        "tree_id": 11,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 73,
+    "fields": {
+        "text": "Compulsory energy audits",
+        "parent": 70,
+        "parent_answer": null,
+        "order": 3,
+        "classification": null,
+        "lft": 7,
+        "rght": 8,
+        "tree_id": 11,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 74,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations imposing codes and standards for energy efficiency?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 78,
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 12,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 75,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations promoting energy efficiency through disclosure requirements?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 2,
+        "classification": 78,
+        "lft": 1,
+        "rght": 10,
+        "tree_id": 20,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 76,
+    "fields": {
+        "text": "Do these provisions include:",
+        "parent": 75,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 9,
+        "tree_id": 20,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 77,
+    "fields": {
+        "text": "Information labelling regulations and energy efficiency ratings?",
+        "parent": 76,
+        "parent_answer": null,
+        "order": 1,
+        "classification": null,
+        "lft": 3,
+        "rght": 4,
+        "tree_id": 20,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 78,
+    "fields": {
+        "text": "Energy efficiency or performance certificates?",
+        "parent": 76,
+        "parent_answer": null,
+        "order": 2,
+        "classification": null,
+        "lft": 5,
+        "rght": 6,
+        "tree_id": 20,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 79,
+    "fields": {
+        "text": "Disclosure requirements of energy efficiency and building regulations?",
+        "parent": 76,
+        "parent_answer": null,
+        "order": 3,
+        "classification": null,
+        "lft": 7,
+        "rght": 8,
+        "tree_id": 20,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 80,
+    "fields": {
+        "text": "Does your country have provisions of laws or regulations that promote energy efficiency through energy efficiency incentive schemes?",
+        "parent": null,
+        "parent_answer": null,
+        "order": 1,
+        "classification": 86,
+        "lft": 1,
+        "rght": 16,
+        "tree_id": 13,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 81,
+    "fields": {
+        "text": "Do these provisions include:",
+        "parent": 80,
+        "parent_answer": true,
+        "order": 1,
+        "classification": null,
+        "lft": 2,
+        "rght": 15,
+        "tree_id": 13,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 82,
+    "fields": {
+        "text": "Fiscal incentives (tax relief/taxes)?",
+        "parent": 81,
+        "parent_answer": null,
+        "order": 1,
+        "classification": null,
+        "lft": 3,
+        "rght": 4,
+        "tree_id": 13,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 83,
+    "fields": {
+        "text": "Grants and compensation mechanisms?",
+        "parent": 81,
+        "parent_answer": null,
+        "order": 2,
+        "classification": null,
+        "lft": 5,
+        "rght": 6,
+        "tree_id": 13,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 84,
+    "fields": {
+        "text": "Loans and debt support for energy efficiency measures?",
+        "parent": 81,
+        "parent_answer": null,
+        "order": 3,
+        "classification": null,
+        "lft": 7,
+        "rght": 8,
+        "tree_id": 13,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 85,
+    "fields": {
+        "text": "Research and development support mechanisms?",
+        "parent": 81,
+        "parent_answer": null,
+        "order": 4,
+        "classification": null,
+        "lft": 9,
+        "rght": 10,
+        "tree_id": 13,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 86,
+    "fields": {
+        "text": "Rebates for consumers?",
+        "parent": 81,
+        "parent_answer": null,
+        "order": 5,
+        "classification": null,
+        "lft": 11,
+        "rght": 12,
+        "tree_id": 13,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 87,
+    "fields": {
+        "text": "Concessions?",
+        "parent": 81,
+        "parent_answer": null,
+        "order": 6,
+        "classification": null,
+        "lft": 13,
+        "rght": 14,
+        "tree_id": 13,
+        "level": 2
     }
 }
 ]

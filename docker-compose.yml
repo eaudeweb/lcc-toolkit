@@ -32,7 +32,6 @@ services:
       - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 
 volumes:
-
   elastic:
     driver: local
   data:

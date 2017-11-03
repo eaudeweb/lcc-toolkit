@@ -15,7 +15,6 @@
   {% load static %}
 
   {% block scripts %}
-    <script src="https://use.fontawesome.com/cd3dcc527f.js"></script>
     <script src="{% static "js/main.js"%}"></script>
     {% if sentry_public_id %}
       <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
@@ -38,39 +37,29 @@
 
   {% block styles %}
     <link rel="shortcut icon" href="#" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Vollkorn:400,600,700" rel="stylesheet">
     <link href="{% static "css/main.css" %}" rel="stylesheet" />
   {% endblock %}
 
   {% block extra-styles %}{% endblock %}
 </head>
 
-<body class="{% block content-wrapper-class %}{% endblock %}">
-  <div class='hidden'>
-    {% block hidden_variables %}
-
-    {% endblock %}
-  </div>
-
+<body class="{% block body-layout-type %}{% endblock %} {% block content-wrapper-class %}{% endblock %}">
+  <div class='hidden'>{% block hidden_variables %}{% endblock %}</div>
+{% block content_page %}
   <!-- Top Header -->
   <div id="top-header">
     <div class="header-wrapper container">
-      <div class="navbar-header">
-        <a class="brand" href="{% url 'lcc:legislation:explorer' %}">
-          <h2>Law and climate toolkit</h2>
-        </a>
-      </div>
+      <a class="brand" href="{% url 'lcc:home_page' %}">
+        <span>Law and climate toolkit</span>
+      </a>
 
       <div class="right-div">
         <div class="menu">
           <ul>
-            <!-- <li><a href="{% url 'lcc:legislation:explorer' %}">Home</a></li> -->
-            <li><a href="{% url 'lcc:legislation:explorer' %}"><img src="{% static "img/legislation-explorer.svg" %}" />Legislation Explorer</a></li>
-            <li><a><img src="{% static "img/legal-ass.svg" %}" />Legal Assessment</a></li>
-            <li><a href="{% url 'lcc:legislation:explorer' %}"><img src="{% static "img/context-control.svg" %}" />Context Control</a></li>
-            <li><a href="{% url 'lcc:legislation:explorer' %}"><img src="{% static "img/lessons-learned.svg" %}" />Lessons learned</a></li>
+            <li><a class="active" href="{% url 'lcc:legislation:explorer' %}">Legislation Explorer</a></li>
+            <li><a href="{% url 'lcc:legal_assessment' %}">Legal Assessment</a></li>
+            <li><a href="{% url 'lcc:legislation:explorer' %}">Context Control</a></li>
+            <li><a class="disabled" href="">Lessons learned</a></li>
           </ul>
         </div>
         {% block header-top-right %}
@@ -80,61 +69,56 @@
   </div>
 
   <div class="page-menu">
-    <div class="page-menu-wrapper">   
+    <div class="page-menu-wrapper">
       <div class="container">
-        <h4 id="title" class="heading">{% block page-title %}{% endblock %}</h4>
+        {% block law_details %}{% endblock %}
+
+        <h2 id="title" class="heading">
+        <!-- The very long law of United Kingdom of Great Britain and Northern Island togheter with New Zealand and the rest of the Commonwhealth -->
+        {% block page-title %}{% endblock %}
+        </h1>
         {% block page-menu %}
         {% endblock %}
       </div>
     </div>
   </div>
 
-  <div class="breadcrumbs">
-    <div class="container">
-      {% block breadcrumbs %}
-        <span><a href="{% url 'lcc:legislation:explorer' %}">Home</a></span>
-      {% endblock %}
-    </div>
-  </div>
-
   <!-- Content-middle  -->
   <div class="content-wrapper">
     <div class="container">
+      {% block breadcrumbs %}{% endblock %}
       {% block content %}
 
       {% endblock %}
     </div>
   </div>
+{% endblock %}
+
+{% block homepage %}
+{% endblock %}
+
 
      <!-- CONTENT-WRAPPER SECTION END-->
-
-  <section class="footer-section">
+ <section class="footer-section">
     <div class="container">
       <div class="row flex">
         <div class="footer-desc right-div">
-          <h3><b>Lorem ipsum dolor sit amet, mea tibique recteque an, id sit dicit corpora voluptua. Ea vivendum </b></h3>
+        <h3>LCCT</h3>
+          <p>The Toolkit is designed for the use by national governments, international organizational and experts engaging in assisting countries in implementaion, as well as academia and research institutions that are analyzing the growing boddy of climate change-related legislation throughout the world </p>
+          <a style="padding-left: 0;" class="btn btn-link" href="{% url 'lcc:about_us' %}">About LCCT</a>
+          <a class="btn btn-link" href="{% url 'lcc:legislation:explorer' %}">Legislation Explorer</a>
         </div>
         <div class="footer-logos">
           <a href="http://thecommonwealth.org/">
-              <img style="width: 252px;" src="{% static "img/peace.jpg" %}" />
+              <img style="width: 201px;" src="{% static "img/peace.png" %}" />
           </a>
           <a href="www.unep.org">
-            <img style="width: 79px;" src="{% static "img/unep.png" %}" />
+            <img style="width: 107px;" src="{% static "img/unep.png" %}" />
           </a>
           <a href="https://unfccc.int">
-            <img style="width: 103px;margin-left: 3rem;" src="{% static "img/unfccc.jpg" %}" />
+            <img style="width: 127px;" src="{% static "img/unfccc.png" %}" />
           </a>
         </div>
-      </div>
-      <div class="row">
-        <div class="footer-desc">
-          <p>Vide sonet nostrud usu ne, id noster discere insolens mei, eu est duis quaeque constituto. Reformidans disputationi mel ex, has ipsum tibique assentior ad. At mea quem graeci percipit, eam novum prompta sanctus ut. Ad est probo electram, cu per fugitr ad. At mea quem graeci percipit, eam novum prompta sanctus ut. Ad est probo electram, cu per fugit</p>
-        </div>
-      </div>
-      <div class="copyright">
-        <strong> Legislation and Climate Change Assessment Toolkit </strong>| &copy; 2017
       </div>
     </div>
   </section>
-</body>
-</html>

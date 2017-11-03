@@ -2,72 +2,102 @@
 
 {% load static %}
 
-{% block page-title %}Articles{% endblock %}
-{% block page-menu %} 
-  {% include 'legislation/navigation.html' %}
+{% block page-title %}{{ law.title }}{% endblock %}
+
+{% block law_details %}
+  {% include 'legislation/law_details.html' %}
 {% endblock %}
 
-{% block breadcrumbs %}
-  {{ block.super }} 
-  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>
-  <span> <i class="icon-right-open-mini"></i>Articles</span>
+{% block page-menu %}
+  {# include 'legislation/navigation.html' #}
+  <ul>
+    <li class="wide"><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-link">Overview</a></li>
+    {% with law.articles.all as articles %}
+    <li class="wide"><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-link {% if not articles %}disabled{% endif %}" title="{% if not articles %}This legislation does not have any articles defined.{% endif %}">Articles</a></li>
+    {% endwith %}
+    {% if request.user.is_authenticated %}
+      <span class="separator"></span>
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
+          Edit legislation
+        </a>
+      </li>
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:delete' legislation_pk=law.pk %}"
+           onclick="return confirm('Are you sure you want to delete this?')">
+          Delete legislation
+        </a>
+      </li>
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
+          Add articles
+        </a>
+      </li>
+  {% endif %}
+</ul>
 {% endblock %}
+
+{% block body-layout-type %}extended{% endblock %}
+
+
+{% block breadcrumbs %}{% endblock %}
 
 {% block content %}
-<h3>
+<!-- <h3>
   {% static "" as baseUrl %}
   <img style="margin-right: .5rem;
     margin-top: -.5rem;
-    width: 31px;" 
+    width: 31px;"
     class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" >{{ law.title }}
-</h3>
+</h3> -->
 <div class="articles-container">
-{% if articles %}
-  {% for article in articles %}
-    <div class="viz-container multiple">
-      <a class="btn btn-info pull-right" href="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">Edit</a>
-      {% if request.user.is_authenticated %}
-        <a class="btn btn-danger pull-right" href="{% url 'lcc:legislation:articles:delete' legislation_pk=law.pk article_pk=article.pk %}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
-      {% endif %}
+  {% for article in law.articles.all %}
+    <div id="{{article.code}}" class="viz-container multiple">
+      <div class="article-wrapper">
+        
+        {% if request.user.is_authenticated %}
+          <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:articles:delete' legislation_pk=law.pk article_pk=article.pk %}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+          <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">Edit article</a>
+        {% endif %}
+        {% if article.code %}
+        <a class="article-title" href="#{{article.code}}">
+          <h4>Article {{ article.code }}</h4>
+        </a>
+        {% endif %}
 
-      {% if article.code %}
-      <a href="#{{article.code}}">
-        <h4 id="{{article.code}}">{{ article.code }}</h4>
-      </a>
-      {% endif %}
+        {% if article.text %}
+          <p><pre>{{ article.text }}</pre></p>
+        {% endif %}
 
-      {% if article.text %}
-        <p><pre>{{ article.text }}</pre></p>
-      {% endif %}
-
-      <div class="dl">
+        <div class="dl neg_6_margin">
           <div class="dd"><span>Classification</span></div>
           <div class="dt">
-          {% if article.all_classifications %}
             {% for classification in article.classifications.all %}
-             <span class="classification">{{ classification.name }}</span>
+              <span class="tag">{{ classification.name }}</span>
+            {% empty %}
+             - 
             {% endfor %}
-          {% else %} - {% endif %}</div>
+          </div>
         </div>
 
-        <div class="dl">
+        <div class="dl neg_6_margin">
           <div class="dd"><span>Tags</span></div>
           <div class="dt">
-          {% if article.all_tags %}
             {% for tag in article.tags.all%}
-             <span class="tag">{{ tag.name }}</span>
+              <span class="tag">{{ tag.name }}</span>
+            {% empty %}
+             - 
             {% endfor %}
-          {% else %} - {% endif %}</div>
+          </div>
         </div>
 
+      </div>
     </div>
+  {% empty %}
+    <p>This law does not have articles.</p>
   {% endfor %}
-{% else %}
-  <p>This law does not have articles.</p>
-{% endif %}
-</div>
-<div class="button-wrapper" style="margin:1rem 0;">
-  <a class="btn btn-primary" href="{% url 'lcc:legislation:explorer' %}">View all legislations</a>
-  <a class="btn btn-primary" href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">Add articles</a>
 </div>
 {% endblock %}

@@ -1,39 +1,56 @@
+.special_input() {
+    width: 100%;
+    height: @input;
+    border-width: 2px;
+    border-color: @border;
+    border-radius: @border-radius;
+}
+
+.input_style() {
+    background-color: white;
+    border: thin solid @border;
+    display: inline-block;
+    font: inherit;
+    height: @input;
+    padding: 0.5em 3.5em 0.5em 1em;
+
+    /* reset */
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: @border-radius;
+    
+}
+
+input {
+    &[type=text] {
+      &:not(.file-upload-input){ 
+        .input_style();
+        .special_input();
+      }
+    }
+}
+
+textarea {
+  .special_input();
+}
+
 select {
-
-      /* styling */
-      background-color: white;
-      border: thin solid #ccc;
-      // border-radius: 4px;
-      display: inline-block;
-      font: inherit;
-      line-height: 1.4;
-      padding: 0.5em 3.5em 0.5em 1em;
-
-      /* reset */
-
-      margin: 0;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-
-
+    /* styling */
+    .input_style();
+    .special_input();
     /* arrows */
-      background-image:
-        linear-gradient(45deg, transparent 50%, gray 50%),
-        linear-gradient(135deg, gray 50%, transparent 50%),
-        linear-gradient(to right, #ccc, #ccc);
-      background-position:
-        calc(~"100% - 19px") calc(~"1rem + 2px"),
-        calc(~"100% - 15px") calc(~"1rem + 2px"),
-        calc(~"100% - 2.5em") 0.5em;
-      background-size:
-        5px 5px,
-        5px 5px,
-        1px 1.5em;
-      background-repeat: no-repeat;
-      transition: all 100ms;
+    background-image: url('../img/caret.png');
+    background-position: calc(~"100% - 19px") calc(~"1rem + 2px"),
+    calc(~"100% - 15px") calc(~"1rem + 2px"),
+    calc(~"100% - 2.5em") 0.5em;
+    background-size: 10px;
+    background-repeat: no-repeat;
+  
+    transition: all 100ms;
     &[multiple="multiple"] {
         background: none;
         min-height: 200px;
@@ -41,21 +58,14 @@ select {
     }
 
     &:focus {
-      background-image:
-        linear-gradient(45deg, #428bca 50%, transparent 50%),
-        linear-gradient(135deg, transparent 50%, #428bca 50%),
-        linear-gradient(to right, #ccc, #ccc);
-      background-position:
-        calc(~"100% - 15px") 1em,
+        background-image: url('../img/caretup.png');
+        background-position: calc(~"100% - 15px") 1em,
         calc(~"100% - 19px") 1em,
         calc(~"100% - 2.5em") 0.5em;
-      background-size:
-        5px 5px,
-        5px 5px,
-        1px 1.5em;
-      background-repeat: no-repeat;
-      border-color: #428bca;
-      outline: 0;
+        background-size: 10px;
+        background-repeat: no-repeat;
+        border-color: #428bca;
+        outline: 0;
         &[multiple="multiple"] {
             background: none;
         }
@@ -63,7 +73,7 @@ select {
 
 
     &:-moz-focusring {
-      color: transparent;
-      text-shadow: 0 0 0 #000;
+        color: transparent;
+        text-shadow: 0 0 0 #000;
     }
 }

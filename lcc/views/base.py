@@ -47,11 +47,9 @@ class TaxonomyFormMixin:
         return kwargs
 
 
-def taxonomy_to_string(legislation, tags=False, classification=False):
-    if tags:
-        return ", ".join(list(legislation.tags.values_list('name', flat=True)))
+class HomePageView(views.generic.TemplateView):
+    template_name = "home.html"
 
-    if classification:
-        return ", ".join(
-            list(legislation.classifications.values_list('name', flat=True))
-        )
+
+class AboutUsView(views.generic.TemplateView):
+    template_name = "about_us.html"

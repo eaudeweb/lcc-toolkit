@@ -32,22 +32,26 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-  {{ block.super }}
-  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>
-  <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">Articles</a></span>
-  <span> <i class="icon-right-open-mini"></i>Article {{ article.code }}</span>
-  <span> <i class="icon-right-open-mini"></i>Edit</span>
+   {% static "" as baseUrl %}
+    <div class="breadcrumbs">
+        <div class="container">
+           <span>
+                <a href="{% url 'lcc:legislation:explorer' %}">Home</a></span>
+           <span> 
+            <i class="icon-right-open-mini"></i><img class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" ></span>
+           <span  class="shorten"> <i class="icon-right-open-mini"></i><a title="{{ law.title }}" href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>...
+            <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">Articles</a></span>
+            <span> <i class="icon-right-open-mini"></i><b>Edit article {{article.code}}</b class="text-color"></span>
+        </div>
+      </div>
 {% endblock %}
-
 
 {% block content %}
 
 {% include 'legislation/articles/pdf.html' %}
 
 <div class="page-container half">
-<h3>
-    {{ law.title }}
-</h3>
+<h2>Edit article {{ article.code }}</h2>
 
   <form class="validate_this" id="editArticle" method="post" action="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">
     {% csrf_token %}
@@ -101,7 +105,7 @@
             {% for tag_group in tag_groups %}
               <li class="first-level level">
                 <span class="list-header">
-                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
                   <span name='tagGroup_{{tag_group.pk}}'> {{tag_group.name}} </span>
                 </span>
                 <ul class="second-level level">
@@ -141,7 +145,7 @@
                 <span  class="list-header" {% if not top_class.get_children %} style="pointer-events: none;" {% endif %} >
                     <span name='classification_{{ top_class.pk }}'>{{ top_class.name }}</span>
                     {% if second_classifications %}
-                      <i class="fa fa-plus-square" aria-hidden="true"></i>
+                      <i class="fa fa-caret-down" aria-hidden="true"></i>
                     {% endif %}
                 </span>
                   
@@ -155,7 +159,7 @@
                             {% endif %}>
                         </input>
                         <label for="classification_{{ second_class.pk }}">{{ second_class.name }}</label>
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
                       </span>
                       <ul class="third-level level">
                         {% for third_class in second_class.get_children %}
@@ -179,7 +183,7 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-info" id='save-btn' name='save-btn'> Save & View articles</button>
-    <a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-danger" id="cancel-btn">Cancel</a>
+    <button type="submit" class="btn btn-primary" id='save-btn' name='save-btn'> Save & View articles</button>
+    <a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-link" id="cancel-btn">Cancel</a>
   </form>
 {% endblock %}

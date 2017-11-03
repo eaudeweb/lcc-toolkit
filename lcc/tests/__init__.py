@@ -1,2 +1,3 @@
-from .taxonomy import *
 from .answer import *
+from .taxonomy import *
+from .legislation import *
