@@ -21,6 +21,10 @@
     .row.content { height: auto; } 
 }
 .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-right: 0;
     &.question {
         display: flex;
         justify-content: space-between;
@@ -29,6 +33,8 @@
     }
 }
 .btn-group {
+    justify-content: center;
+    align-items: center;
     max-height: 31px;
     &.question {
         min-width: 218px;
