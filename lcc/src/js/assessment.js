@@ -193,56 +193,67 @@ $(document).ready(function(){
     function renderQuestions(my_questions, show, questions_container, questionClass) {
 
       for (var index = 0; index < my_questions.length; index++) {
-        var element = my_questions[index];
-        var answerId = element.answer ? element.answer.id : '';
-        questionClass = questionClass ? 'qq' + element.id : questionClass + '_' + element.id;
+        var question = my_questions[index];
+        var answerId = question.answer ? question.answer.id : '';
+        questionClass = questionClass ? 'qq' + question.id : questionClass + '_' + question.id;
         var li = $('<li/>')
                   .addClass('list-group-item question' + questionClass)
-                  .attr('id', element.id)
+                  .attr('id', question.id)
                   .appendTo(questions_container);
         var p = $('<p/>')
-                .text(element.text)
+                .text(question.text)
                 .appendTo(li);
         var div = $('<div/>')
                   .addClass('btn-group question')
                   .attr('role', 'group')
                   .appendTo(li);
-        var buttonYes = $('<button/>')
-                        .text('Yes')
-                        .addClass('btn ' + getBtnClass(true, element.answer))
-                        .appendTo(div)
-                        .attr('data-question', element.id)
-                        .attr('data-value', 'true')
-                        .attr('data-answer-id', answerId)
-                        .on('click', handleAnswer.bind(this, 
-                          element.children_yes, element.children_no, 
-                          true, questionClass + 'yes'));
-                          
-        var buttonNo = $('<button/>')
+
+        if(!question.children) {
+          var buttonYes = $('<button/>')
+                          .text('Yes')
+                          .addClass('btn ' + getBtnClass(true, question.answer))
+                          .appendTo(div)
+                          .attr('data-question', question.id)
+                          .attr('data-value', 'true')
+                          .attr('data-answer-id', answerId)
+                          .on('click', handleAnswer.bind(this, 
+                            question.children_yes, question.children_no, 
+                            true, questionClass + 'yes'));
+          
+          var buttonNo = $('<button/>')
                         .text('No')
-                        .addClass('btn ' + getBtnClass(false, element.answer))
-                        .attr('data-question', element.id)
+                        .addClass('btn ' + getBtnClass(false, question.answer))
+                        .attr('data-question', question.id)
                         .attr('data-value', 'false')
                         .attr('data-answer-id', answerId)
                         .appendTo(div)
                         .on('click', handleAnswer.bind(this, 
-                          element.children_yes, element.children_no, 
+                          question.children_yes, question.children_no, 
                           false, questionClass + 'no'));
+        }
 
         show ? li.show() : li.hide();
 
-        if(element.children_yes) {
+        if(question.children_yes) {
           renderQuestions.call(this
-                                , element.children_yes
-                                , show ? isShown(element, true) : show // will propagate false to all children
+                                , question.children_yes
+                                , show ? isShown(question, true) : show // will propagate false to all children
                                 , questions_container
                                 , questionClass + 'yes');
         }
 
-        if(element.children_no) {
+        if(question.children_no) {
           renderQuestions.call(this
-                                , element.children_no
-                                , show ? isShown(element, false) : show
+                                , question.children_no
+                                , show ? isShown(question, false) : show
+                                , questions_container
+                                , questionClass + 'no');
+        }
+
+        if(question.children) {
+          renderQuestions.call(this
+                                , question.children
+                                , show ? isShown(question, false) : show
                                 , questions_container
                                 , questionClass + 'no');
         }  
@@ -250,16 +261,16 @@ $(document).ready(function(){
         // through this closure each function has a reference to its question object,
         // updating it will be reflected in the collection of all_questions
         registerListeners(
-          (function makeListener(element) {
+          (function makeListener(question) {
 
             return function questionListener(d) {
-              element.answer = { 
+              question.answer = { 
                 id: d.id, 
                 value: d.value
               };
             }
-          })(element)
-        , element.id);
+          })(question)
+        , question.id);
       }
 
       if(questions_container.innerHTML === '') {
@@ -303,10 +314,10 @@ $(document).ready(function(){
       if(children_yes) {
         for (var index = 0; index < children_yes.length; index++) {
           var element = children_yes[index];
-          if ( isYesButton ) {
-            $(  "#" + element.id ).slideDown();
+          if (isYesButton) {
+            $('#' + element.id).slideDown();
           } else {
-            $(  "#" + element.id ).slideUp();
+            $('#' + element.id).slideUp();
           }
         }
       }
@@ -314,10 +325,10 @@ $(document).ready(function(){
       if(children_no) {
         for (var index = 0; index < children_no.length; index++) {
           var element = children_no[index];
-          if ( isYesButton ) {
-            $(  "#" + element.id ).slideUp();
+          if (isYesButton) {
+            $('#' + element.id).slideUp();
           } else {
-            $(  "#" + element.id ).slideDown();
+            $('#' + element.id).slideDown();
           }
         }
       }
