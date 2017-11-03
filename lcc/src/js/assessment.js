@@ -387,8 +387,64 @@ $(document).ready(function(){
       elem.addClass('iron-selected');
       classification_id = elem.attr('data-id');
       getQuestions.call(this, classification_id);
-
       renderTitleContent(classification_name, category_name, categories_no, index);
+      handleNextQuestions(false)
+    }
+
+
+
+
+
+    $('.next_question').click(handleNextQuestions.bind(this, true))
+
+
+    function handleNextQuestions(shouldClick){
+
+      var question_categories = $('.ui-accordion-content-active classification-item');
+      var classifications = $('.ui-accordion-header')
+      var selected_question_category_index;
+      var selected_classifications_index;
+
+      classifications.each(function(index,item){
+        if($(item).hasClass('ui-accordion-header-active')){
+          selected_classifications_index = index;
+        }
+      })
+
+      question_categories.each(function(index,item){
+        if($(item).hasClass('iron-selected')){
+          selected_question_category_index = index
+        }
+      })
+
+        var next_category = question_categories[selected_question_category_index + 1];
+        var click_nextext = question_categories[selected_question_category_index + 2];
+        if(shouldClick == false){
+          click_nextext = next_category
+        }
+      if(selected_question_category_index < question_categories.length - 1){
+        if(shouldClick == true){
+          next_category.click();
+        }
+        next_category = question_categories[selected_question_category_index + 1];
+        var text = $(click_nextext).find('span').text();
+        $('.next_category').html(text)
+      }
+      else {
+        var title = classifications[selected_classifications_index + 1]
+        var controls = $(title).attr('aria-controls'); 
+
+        // TODO remove button for last question
+        try{
+          if(shouldClick == true){
+            title.click();
+            $('classification-menu#'+controls+'').find('classification-item:first-of-type').click();
+          }
+        }catch(e){
+          
+        }
+        // $('.next_question').remove();
+      }
     }
 
     function renderTitleContent(classification_name, category_name, categories_no, index) {
