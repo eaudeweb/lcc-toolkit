@@ -61,17 +61,13 @@ $(document).ready(function() {
         if ($(e.target).is('label')) {
             return
         }
-        $(this).parent().toggleClass('expanded');
+        $(this).parent().toggleClass('collapsed');
         $checkbox = $(this).find('i').first();
         $sub_level = $(this).parent().find('ul').first();
         $sub_level.animate({
             'height': 'toggle'
         })
         $checkbox.toggleClass('fa-caret-up')
-    })
-
-    $('#tags .second-level.level').animate({
-            'height': 'show'
     })
 
     var textarea = $('textarea')
