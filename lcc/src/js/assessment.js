@@ -214,7 +214,7 @@ $(document).ready(function(){
                   .attr('id', question.id)
                   .appendTo(questions_container);
         var p = $('<p/>')
-                .text( question.id + '-' + question.text)
+                .text(question.text)
                 .appendTo(li);
         var div = $('<div/>')
                   .addClass('btn-group question')
