@@ -199,3 +199,28 @@ i, cite, em, var, address, dfn {
     background-color: #e0e0e0;
     font-weight: normal;
 }
+
+
+.row.starting-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .starting-section {
+        margin: 1rem;
+        .card {
+            padding: 1rem 3.5rem;
+            width: 30rem;
+            border-radius: 3px;
+            min-height: 30rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            button, select {
+                width: 100%;
+                margin: 1rem 0;
+                min-height: 36px;
+            }
+        }
+    }
+}

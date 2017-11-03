@@ -21,25 +21,23 @@
 
 {% block content %}
 
-<div class="row">
-	<div class="col-sm-6">
-		<div class="card text-center" style="width: 20rem;">
-			<div class="card-block">
-				<h4 class="card-title">New Assessment</h4>
-				<select id="country-list-new" class="form-control">
-				</select>
-				<button type="button" class="btn btn-primary" id="add-assessment">New Assessment</button>
-			</div>
+<div class="row starting-page">
+	<div class="starting-section">
+		<div class="card text-center">
+			 <img src="{% static "img/start.png" %}" />
+			<h4 class="card-title"><b>New Assessment</b></h4>
+			<select id="country-list-new">
+			</select>
+			<button type="button" class="btn btn-primary" id="add-assessment">New Assessment</button>
 		</div>
 	</div>
-	<div class="col-sm-6">
-		<div class="card text-center" style="width: 20rem;">
-			<div class="card-block">
-				<h4 class="card-title">Continue Assessment</h4>
-				<select id="country-list-continue" class="form-control">
-				</select> 
-				<button type="button" class="btn btn-primary" id="continue-assessment">Continue Assessment</button>				
-			</div>
+	<div class="starting-section">
+		<div class="card text-center">
+		 	<img src="{% static "img/continue.png" %}" />
+			<h4 class="card-title"><b>Continue Assessment</b></h4>
+			<select id="country-list-continue">
+			</select> 
+			<button type="button" class="btn btn-primary" id="continue-assessment">Continue Assessment</button>
 		</div>
 	</div>
 </div>
