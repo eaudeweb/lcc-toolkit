@@ -31,66 +31,66 @@ $(document).ready(function(){
 
     function renderCreateAssessment() {
       var self = this;
-      $('#add-assessment').click(function() {
-        RequestService
-          .getCountries()
-          .done(function (all_countries) {
-            var country_list = $('#country-list');
-            country_list.empty();
+
+      RequestService
+        .getCountries()
+        .done(function (all_countries) {
+          var country_list = $('#country-list-new');
+          country_list.empty();
+          var li_country = $('<option/>')
+                            .text('Select country')
+                            .attr('value', '')
+                            .appendTo(country_list);
+                            
+          for (var j = 0; j < all_countries.length; j++) {
+            var element = all_countries[j];
             var li_country = $('<option/>')
-                              .text('Select country')
-                              .attr('value', '')
+                              .text(element.name)
+                              .attr('value', element.iso)
                               .appendTo(country_list);
-                              
-            for (var j = 0; j < all_countries.length; j++) {
-              var element = all_countries[j];
-              var li_country = $('<option/>')
-                                .text(element.name)
-                                .attr('value', element.iso)
-                                .appendTo(country_list);
-            }
-            $('#group-country-list').show();
-            $('#country-list').change(handleCreateAssessment.bind(self));
-        });
+          }
+          handleCreateAssessment.call(self);
       });
     }
 
     function renderContinueAssessment() {
       var self = this;
-      $('#continue-assessment').click(function() {
+      RequestService
+        .getAssessments()
+        .done(function (all_assessments) {
+          var country_list = $('#country-list-continue');
+          country_list.empty();
+          var li_country = $('<option/>')
+                            .text('Select country')
+                            .attr('value', '')
+                            .appendTo(country_list);
 
-        RequestService
-          .getAssessments()
-          .done(function (all_assessments) {
-            var country_list = $('#country-list');
-            country_list.empty();
+          for (var j = 0; j < all_assessments.length; j++) {
+            var element = all_assessments[j];
             var li_country = $('<option/>')
-                              .text('Select country')
-                              .attr('value', '')
+                              .text(element.country_name)
+                              .attr('value', element.id)
                               .appendTo(country_list);
+          }
 
-            for (var j = 0; j < all_assessments.length; j++) {
-              var element = all_assessments[j];
-              var li_country = $('<option/>')
-                                .text(element.country_name)
-                                .attr('value', element.id)
-                                .appendTo(country_list);
-            }
-
-            $('#group-country-list').show();
-            $('#country-list').change(handleContinueAssessment.bind(self));
-        });
+          handleContinueAssessment.call(self);
       });
     }
 
-    function handleCreateAssessment(event) {
-      var selected_country= $(event.currentTarget).find('option:selected').val();
-      createAssessment.call(this, selected_country)
+    function handleCreateAssessment() {
+      var self = this;
+      $('#add-assessment').click(function(event) {
+        var selected_country= $('#country-list-new').find('option:selected').val();
+        createAssessment.call(self, selected_country)
+      });
     }
 
-    function handleContinueAssessment(event) {
-      this.assessment_id= $(event.currentTarget).find('option:selected').val();
-      continueAssessment.call(this);
+    function handleContinueAssessment() {
+      var self = this;
+      $('#continue-assessment').click(function(event) {
+        self.assessment_id= $('#country-list-continue').find('option:selected').val();
+        continueAssessment.call(self);
+      });
     }
 
 
@@ -101,6 +101,7 @@ $(document).ready(function(){
         .done(function (responseAssessment) {
           self.assessment_id = responseAssessment.id;
           $('#assessment-landing').hide();
+          $('#assessment-results-btn').show();
           $('#assessment-edit').show();
           getClassifications.call(self);
         });
@@ -109,6 +110,7 @@ $(document).ready(function(){
     function continueAssessment() {
       $('#assessment-landing').hide();
       $('#assessment-edit').show();
+      $('#assessment-results-btn').show();
       getClassifications.call(this);
     }
 
