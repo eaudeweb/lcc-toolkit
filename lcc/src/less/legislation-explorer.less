@@ -36,7 +36,7 @@ div.searchInputWrapper {
     input {
         border-right: none!important;
         &:focus {
-          outline: none;
+            outline: none;
         }
     }
 }
@@ -48,9 +48,10 @@ div.legalAreaBtnWrapper {
         font-size: 1.2rem;
     }
     button {
+        min-width: initial!important;
         &:focus {
-          outline: none;
-          box-shadow: none;
+            outline: none;
+            box-shadow: none;
         }
         color: @text-muted;
         &:before {
@@ -66,7 +67,9 @@ div.legalAreaBtnWrapper {
 div.searchBtnWrapper {
     display: inline-block;
     width: 20%;
+
     button {
+        min-width: initial!important;
         height: 37px;
     }
 }
