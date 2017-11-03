@@ -11,7 +11,7 @@
     <div class="header-content container">
       {% if not request.user.is_authenticated %}
         <div class="homepage-actions">
-          <a href="{% url 'lcc:auth:login' %}" class="btn btn-primary very-wide">Log in</a>
+          <a href="{% url 'lcc:auth:login' %}?next=/legislation" class="btn btn-primary very-wide">Log in</a>
           <a href="{% url 'lcc:auth:register' %}" class="btn btn-link very-wide">Register</a>
         </div>
       {% endif %}
