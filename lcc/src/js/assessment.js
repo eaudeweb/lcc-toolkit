@@ -203,7 +203,7 @@ $(document).ready(function(){
                   .attr('id', question.id)
                   .appendTo(questions_container);
         var p = $('<p/>')
-                .text(question.text)
+                .text( question.id + '-' + question.text)
                 .appendTo(li);
         var div = $('<div/>')
                   .addClass('btn-group question')
@@ -255,7 +255,7 @@ $(document).ready(function(){
         if(question.children) {
           renderQuestions.call(this
                                 , question.children
-                                , show ? isShown(question, false) : show
+                                , show ? isShown(question, false, true) : show
                                 , questions_container
                                 , questionClass + 'no');
         }  
@@ -280,12 +280,16 @@ $(document).ready(function(){
       }
     }
 
-    function isShown(element, buttonValue) {
+    function isShown(element, buttonValue, force_show) {
       var response = false;
-      if(!element.answer) {
-        response = false;
+      if(force_show) {
+        response = true;
       } else {
-        response = element.answer.value ? buttonValue : !buttonValue; // this is a !XOR
+        if(!element.answer) {
+          response = false;
+        } else {
+          response = element.answer.value ? buttonValue : !buttonValue; // this is a !XOR
+        }
       }
 
       return response;
