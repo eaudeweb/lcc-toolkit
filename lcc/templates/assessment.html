@@ -21,21 +21,24 @@
 
 {% block content %}
 
-<div class="container-fluid text-center" id="assessment-landing">   
-	<div class="row">
-		<div class="col-xs-12 col-md-8">
-			<div class="btn-group">
-				<button type="button" class="btn btn-default" id="add-assessment">add assessment</button>
-				<button type="button" class="btn btn-default" id="continue-assessment">continue assessment</button>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="card text-center" style="width: 20rem;">
+			<div class="card-block">
+				<h4 class="card-title">New Assessment</h4>
+				<select id="country-list-new" class="form-control">
+				</select>
+				<button type="button" class="btn btn-primary" id="add-assessment">New Assessment</button>
 			</div>
 		</div>
-		<div class="col-xs-6 col-md-4">
-			<div class="form-group" id="group-country-list" style="display: none">
-				<div class="col-sm-12 col-md-12">
-					<select id="country-list" class="form-control">
-		
-					</select> 
-				</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="card text-center" style="width: 20rem;">
+			<div class="card-block">
+				<h4 class="card-title">Continue Assessment</h4>
+				<select id="country-list-continue" class="form-control">
+				</select> 
+				<button type="button" class="btn btn-primary" id="continue-assessment">Continue Assessment</button>				
 			</div>
 		</div>
 	</div>
