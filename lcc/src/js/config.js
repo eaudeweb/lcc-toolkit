@@ -10,8 +10,10 @@
      'classifications':'/api/classification',
      'answers':'/api/answers/',
      'questions':'/api/question-category/',
-     'assessment':'/api/assessment/',
+     'assessment':'/api/assessments/',
      'countries':'/api/countries/',
+     'assessment_results':'/legal-assessment/pk/results',
+     'api_assessment_results':'/api/assessments/pk/results/'
     }
 
     var ajax_settings = {

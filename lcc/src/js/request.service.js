@@ -157,6 +157,14 @@
       return jqxhr;
     }
 
+    function getAssessmentResults(assessment_pk) {
+      var jqxhr = $.ajax({
+        'url': Config.url.api_assessment_results.replace('pk', assessment_pk),
+        'type': 'GET',
+      })
+      return jqxhr;
+    }
+
 
     return {
       getQuestions: getQuestions,
@@ -166,6 +174,7 @@
       getAssessments: getAssessments,
       createAssessment: createAssessment,
       getCountries: getCountries,
+      getAssessmentResults: getAssessmentResults,
     }
   });
 })();

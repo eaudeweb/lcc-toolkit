@@ -22,6 +22,14 @@ $(document).ready(function(){
     renderCreateAssessment.call(this);
     renderContinueAssessment.call(this);
     renderQuestions.bind(this);
+    renderViewResultsButton.call(this);
+
+    function renderViewResultsButton() {
+      var self = this;
+      $('#assessment-results').click(function() {
+        document.location.href = Config.url.assessment_results.replace('pk', self.assessment_id);
+      });
+    }
 
     function renderCreateAssessment() {
       var self = this;
@@ -263,9 +271,6 @@ $(document).ready(function(){
 
     function isShown(element, buttonValue) {
       var response = false;
-      console.log('element.answer ', element.answer)
-      console.log('buttonValue ', buttonValue)
-      console.log('======================== ')
       if(!element.answer) {
         response = false;
       } else {
