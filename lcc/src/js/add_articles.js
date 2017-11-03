@@ -102,6 +102,7 @@ if($('.validate_this').length > 0){
         url: '/legislation/' + law_id + '/articles/add/',
         data: AjaxSubmit,
         success : function(data) {
+          AjaxSubmit = {};
           $page_container_half = $(data).find('.page-container').html();
           $(".page-container").html('').append($page_container_half);
         }
