@@ -14,9 +14,7 @@
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12 login-wrapper">
      <div class="panel panel-info">
-      <div class="panel-heading">
-        Log in
-      </div>
+     <h2>Log in</h2>
       <div class="panel-body">
         <form role="form" id='login-form' method="POST">
           {% csrf_token %}
@@ -30,7 +28,7 @@
             <p id='auth-failed-error-msg' class="help-block form-field-error hidden">Authentication failed!</p>
             <p id='user-empty-error-msg' class="help-block form-field-error hidden">User name, or password field empty!</p>
          </div>
-         <button type="submit" class="btn btn-info" id="login-btn"> Log in </button>
+         <button type="submit" class="btn btn-primary" id="login-btn"> Log in </button>
          </form>
        </div>
     </div>

@@ -25,7 +25,7 @@
             </span>
       </div>
   {% else %}
-    <a class="btn btn-link" href="{% url 'lcc:auth:login' %}" id='login-link'> Login</a> <span class="separator"></span>
+    <a class="btn btn-link" href="{% url 'lcc:auth:login' %}?next={{ request.path }}" id='login-link'> Login</a> <span class="separator"></span>
     <a class="btn btn-link" href="{% url 'lcc:auth:register' %}" id='register-link'> Register </a>
   {% endif %}
 </div>
