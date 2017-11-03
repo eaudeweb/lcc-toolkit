@@ -141,7 +141,7 @@ $(document).ready(function(){
         for (var j = 0; element.second_level && j < element.second_level.length; j++) {
           var subcat = element.second_level[j];
           var classification_item = $('<classification-item/>')
-                                    .addClass('toc-item lcct-list classification-item')
+                                    .addClass('toc-item lcct-list classification-item' + (j == 0 && z == 0 ? ' iron-selected':''))
                                     .attr('role', 'option')
                                     .attr('tabindex', '0')
                                     .attr('aria-disabled', 'false')
