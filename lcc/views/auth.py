@@ -30,4 +30,4 @@ class Login(TemplateView):
 class Logout(View):
     def get(self, request, *args, **kwargs):
         auth.logout(request)
-        return HttpResponseRedirect(reverse('lcc:index'))
+        return HttpResponseRedirect(reverse('lcc:home_page'))
