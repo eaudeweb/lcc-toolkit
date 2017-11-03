@@ -28,6 +28,14 @@ class LegislationExplorer(TestCase):
             country_id="ROU"
         )
 
+    def test_html(self):
+        """
+        Makes sure HTML has minimum elements.
+        """
+        c = Client()
+        response = c.get('/legislation/')
+        self.assertContains(response, '<div id="laws"')
+
     def test_best_fields(self):
         """
         Test that full-text search respects best_fields logic. More info at:
