@@ -97,14 +97,18 @@ if($('.validate_this').length > 0){
         AjaxSubmit[$(this).attr("name")] = 'on';
       });
 
+      console.log(AjaxSubmit)
       $.ajax({
         type: 'POST',
         url: '/legislation/' + law_id + '/articles/add/',
         data: AjaxSubmit,
         success : function(data) {
-          AjaxSubmit = {};
+          AjaxSubmit = {}
           $page_container_half = $(data).find('.page-container').html();
           $(".page-container").html('').append($page_container_half);
+        },
+        error: function(err){
+          console.log(err);
         }
       });
     }
