@@ -9,10 +9,12 @@
   <div class="homepage-header">
     <img src="{% static "img/cover.png" %}" />
     <div class="header-content container">
-      <div class="homepage-actions">
-        <a href="{% url 'lcc:auth:login' %}" class="btn btn-primary very-wide">Log in</a>
-        <a href="{% url 'lcc:auth:register' %}" class="btn btn-link very-wide">Register</a>
-      </div>
+      {% if not request.user.is_authenticated %}
+        <div class="homepage-actions">
+          <a href="{% url 'lcc:auth:login' %}?next=/legislation" class="btn btn-primary very-wide">Log in</a>
+          <a href="{% url 'lcc:auth:register' %}" class="btn btn-link very-wide">Register</a>
+        </div>
+      {% endif %}
       <div class="homepage-desc">
         <p>Global resource to help countries put in place the legal frameworks necessary for effective national implementation of the <br><b>Paris Agreement</b> and their nationally determined contributions - <b>NDCs</b></p>
         <a href="{% url 'lcc:about_us' %}" class="btn btn-link">Learn more</a>

@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 
 //continue here page change
-  // $('body').on('change keyup', '#id_legistlation_page', function(){
+  // $('body').on('change keyup', '#id_page', function(){
   //   var page_number = $(this).val();
   //   changePage($('.pdf'), page_number)
   //   $('#page_number').html(page_number)
@@ -55,7 +55,7 @@ if($('.validate_this').length > 0){
     page_number = page_number - 1;
     $("#raw-text-page").html(pages[page_number]);
     $("#page_number").html(page_number);
-    $("#id_legistlation_page").val(page_number);
+    $("#id_page").val(page_number);
     $('#current_page').html(page_number);
     changePage($('.pdf'), page_number)
     $("#next").prop("disabled", false);
@@ -69,7 +69,7 @@ if($('.validate_this').length > 0){
     page_number = page_number + 1;
     $("#raw-text-page").html(pages[page_number]);
     $("#page_number").html(page_number);
-    $("#id_legistlation_page").val(page_number);
+    $("#id_page").val(page_number);
     $('#current_page').html(page_number);
     changePage($('.pdf'), page_number)
     $("#prev").prop("disabled", false);
@@ -86,7 +86,7 @@ if($('.validate_this').length > 0){
       AjaxSubmit["text"] = $("#id_text").val();
       var law_id = parseInt($("#law_pk").val());
       AjaxSubmit["legislation"] = law_id;
-      AjaxSubmit["legislation_page"] = $("#id_legistlation_page").val();
+      AjaxSubmit["legislation_page"] = $("#id_page").val();
 
       AjaxSubmit["page_number"] = $page_number;
 
@@ -97,13 +97,18 @@ if($('.validate_this').length > 0){
         AjaxSubmit[$(this).attr("name")] = 'on';
       });
 
+      console.log(AjaxSubmit)
       $.ajax({
         type: 'POST',
         url: '/legislation/' + law_id + '/articles/add/',
         data: AjaxSubmit,
         success : function(data) {
+          AjaxSubmit = {};
           $page_container_half = $(data).find('.page-container').html();
           $(".page-container").html('').append($page_container_half);
+        },
+        error: function(err){
+          console.log(err);
         }
       });
     }

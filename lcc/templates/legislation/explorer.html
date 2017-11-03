@@ -53,13 +53,14 @@
       </div>
     </div><!-- /row -->
   </div><!-- /search -->
-<div class="page-container half viz-container">
+<div id="laws" class="page-container half viz-container">
     {% include "./_laws.html" %}
 </div>
 <div class="page-container half viz-container right">
-  <h3>Filter legislation</h3>
-    <div class="filter-countries">
-    <label for="countryDropDown">Country</label>
+  <h4>Filter legislation</h4>
+
+    <div class="filter-item filter-countries">
+    <label for="countryDropDown"><b>Country</b></label>
       <select class="round" name="country" id="countryDropDown">
         <option value="" selected>Select Country</option>
         {% for country in countries %}
@@ -68,8 +69,8 @@
       </select>
     </div>
 
-    <div class="filter-type">
-    <label for="typeDropDown">Type</label>
+    <div class="filter-item filter-type">
+    <label for="typeDropDown"><b>Type</b></label>
       <select class="round" name="type" id="typeDropDown">
         <option value="" selected>Select type</option>
         {% for key, value in legislation_type %}
@@ -78,8 +79,8 @@
       </select>
     </div>
 
-    <div class="filterTags">
-    <label for="TagDropDown">Tags</label>
+    <div class="filter-item filterTags">
+    <label for="TagDropDown"><b>Tags</b></label>
       <select class="round" name="tags" id="TagDropDown" multiple="multiple">
         {% for group_tag in group_tags %}
           <optgroup label="{{group_tag.name}}">
@@ -91,9 +92,7 @@
       </select>
     </div>
 
-    <div class="button-wrapper">
       <button type="button" class="btn btn-primary submitBtn">Apply filters</button>
-    </div>
 
   </div>
 

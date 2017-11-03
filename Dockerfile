@@ -1,7 +1,7 @@
 FROM python:3-slim
 MAINTAINER "Eau de Web" <office@eaudeweb.ro>
 
-ARG REQFILE
+ARG REQFILE=requirements-prod.txt
 
 ENV PYTHONUNBUFFERED=1 \
     WORK_DIR=/opt/lcct \

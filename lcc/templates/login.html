@@ -6,17 +6,16 @@
   <script src="{% static "js/login.js" %}"> </script>
 {% endblock %}
 
-{% block content-title %}
-  <!-- <h4 class="header-line"> Authenticate </h4> -->
+{% block hidden_variables %}
+  <input type="text" name="next" id="next_page" value="{{ request.GET.next }}"></input>
 {% endblock %}
+
 
 {% block content %}
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12 login-wrapper">
      <div class="panel panel-info">
-      <div class="panel-heading">
-        Log in
-      </div>
+     <h2>Log in</h2>
       <div class="panel-body">
         <form role="form" id='login-form' method="POST">
           {% csrf_token %}
@@ -30,7 +29,7 @@
             <p id='auth-failed-error-msg' class="help-block form-field-error hidden">Authentication failed!</p>
             <p id='user-empty-error-msg' class="help-block form-field-error hidden">User name, or password field empty!</p>
          </div>
-         <button type="submit" class="btn btn-info" id="login-btn"> Log in </button>
+         <button type="submit" class="btn btn-primary" id="login-btn"> Log in </button>
          </form>
        </div>
     </div>
