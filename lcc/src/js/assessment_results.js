@@ -30,9 +30,11 @@ $(document).ready(function(){
 
     function handleAccordion() {
       $('#accordion').accordion({
-        collapsible: true
+        collapsible: true,
+        heightStyle: "content"
       });
     }
+
     
     function renderClassifications(categories) {
       var accordion = $('#accordion');
