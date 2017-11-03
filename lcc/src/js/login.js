@@ -30,7 +30,7 @@ $(document).ready(function(){
 	    success: 
 	    	function (data) {                
 				if (data.msg == "success") {
-					window.location.href='/#';
+					window.location.href='/legislation';
 				}
 				else {
 					$('#auth-failed-error-msg').removeClass('hidden');
