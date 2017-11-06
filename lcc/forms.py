@@ -208,13 +208,6 @@ class CountryMetadata(ModelForm):
 
 class CustomiseCountry(CountryMetadata):
     """ Used on edit. """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        widgets = (field.widget for field in self.fields.values())
-        for widget in (w for w in widgets if w.input_type != 'checkbox'):
-            widget.attrs['class'] = 'form-control'
-
     def others(self):
         return self._filter_on_type('checkbox', operator.ne)
 
