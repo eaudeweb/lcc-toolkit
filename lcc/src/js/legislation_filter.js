@@ -1,12 +1,21 @@
 $(document).ready(function(){
   var payload = {'partial': true};
+  var classifications = [];
 
   $('#textSearchInput').on('change', function() {
     payload['q'] = $(this).val();
   });
 
-  $('#classificationsDropDown').on('change', function() {
-    payload['classification'] = $(this).val();
+  $('#classificationsDropDown input').on('change', function() {
+    if($(this).is(':checked')){
+      if($.inArray($(this).val()) == -1){
+        classifications.push($(this).val())
+      }
+    }
+    else {
+      classifications.splice(classifications.indexOf($(this).val(), 1))
+    }
+    payload['classification'] = classifications;
   });
 
   $('#TagDropDown').on('change',function(e){
@@ -21,21 +30,6 @@ $(document).ready(function(){
     payload['type'] = $('#typeDropDown option:selected').val();
   });
 
-  $('html').on('click', function(){
-    // Clicking outside the classification dropdown closes it
-    $("#classificationsDropDownWrapper").hide();
-  })
-
-  $('#classificationsDropDownWrapper').on('click', function(event){
-    // Clicking inside the classification dropdown doesn't close it
-    event.stopPropagation();
-  })
-
-  $("#classificationsDropDownToggler").on('click', function(event){
-    // Toggle the dropdown on click
-    event.stopPropagation();
-    $("#classificationsDropDownWrapper").toggle();
-  });
 
   $(".submitBtn").on('click', function(){
     console.log(payload);

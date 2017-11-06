@@ -1,33 +1,73 @@
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 450px}
-
-/* Set gray background color and 100% height */
-.sidenav {
-    padding-top: 20px;
-    background-color: #f1f1f1;
-    height: 700px;	
-    li {
-        list-style-type: square;
-    }    
+.row.content {
+    margin-bottom: 0;
 }
 
 
+
+
+/* Set gray background color and 100% height */
+
+.sidenav {
+    padding-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    li {
+        list-style-type: square;
+    }
+}
+
+
+
+
+
 /* On small screens, set height to 'auto' for sidenav and grid */
+
 @media screen and (max-width: 767px) {
     .sidenav {
         height: auto;
         padding: 15px;
     }
-    .row.content { height: auto; } 
-}
-.list-group-item {
-    &.question {
-        display: flex;
+    .row.content {
+        height: auto;
     }
 }
-.btn-group {
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-right: 0;
+    border-top: 1px solid @border;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    &:first-of-type {
+        margin-top: -1px;
+    }
     &.question {
-        min-width: 218px;
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        align-items: center;
+    }
+}
+
+.list-group {
+    border: 1px solid @border;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.btn-group {
+    justify-content: center;
+    align-items: center;
+    max-height: 31px;
+    &.question {
+        margin-right: 1rem;
+        margin-left: 1rem;
+        button {
+            min-width: 60px!important;
+        }
     }
 }
 
@@ -39,8 +79,10 @@
     color: #212121;
     cursor: pointer;
     background: inherit;
-    padding: 0;
-    :focus {
+    padding: 0!important;
+    border: none;
+    text-align: left;
+     :focus {
         outline: 0;
     }
 }
@@ -52,6 +94,7 @@
     -webkit-flex-basis: 0.000000001px;
     flex-basis: 0.000000001px;
 }
+
 .lcct-list .toc-item.lcct-list {
     font-size: 14px;
     color: #9e9e9e;
@@ -60,12 +103,15 @@
     padding: 6px 16px;
     box-sizing: content-box;
 }
-.classification-item, .classification-item .classification-item.classification-item {
+
+.classification-item,
+.classification-item .classification-item.classification-item {
     display: block;
     position: relative;
     min-height: 48px;
     padding: 0px 16px;
 }
+
 .classification-item {
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -76,22 +122,24 @@
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
-    font-family: 'Roboto', 'Noto', sans-serif;
+    // font-family: 'Roboto', 'Noto', sans-serif;
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    :focus {
+     :focus {
         outline: 0;
     }
 }
+
 .lcct-list .toc-item.completed.lcct-list i.lcct-list,
- .lcct-list .toc-item.completed.lcct-list i.lcct-list:before, 
- .lcct-list .toc-item.completed.lcct-list i.lcct-list:after, 
- .lcct-list .toc-item.iron-selected.lcct-list i.lcct-list, 
- .lcct-list .toc-item.iron-selected.lcct-list i.lcct-list:before {
+.lcct-list .toc-item.completed.lcct-list i.lcct-list:before,
+.lcct-list .toc-item.completed.lcct-list i.lcct-list:after,
+.lcct-list .toc-item.iron-selected.lcct-list i.lcct-list,
+.lcct-list .toc-item.iron-selected.lcct-list i.lcct-list:before {
     border-color: #2196f3;
 }
+
 .lcct-list .toc-item.lcct-list i.lcct-list {
     display: inline-block;
     font-style: normal;
@@ -107,13 +155,21 @@
     margin-right: 8px;
     font-weight: 400;
 }
-i, cite, em, var, address, dfn {
+
+i,
+cite,
+em,
+var,
+address,
+dfn {
     font-style: italic;
     box-sizing: unset;
 }
+
 .lcct-list .toc-item.completed.lcct-list {
     color: #212121;
 }
+
 .lcct-list .toc-item.lcct-list {
     font-size: 14px;
     color: #9e9e9e;
@@ -123,15 +179,15 @@ i, cite, em, var, address, dfn {
     box-sizing: content-box;
 }
 
-.lcct-list .toc-item.completed.lcct-list i.lcct-list, 
-.lcct-list .toc-item.completed.lcct-list i.lcct-list:before, 
-.lcct-list .toc-item.completed.lcct-list i.lcct-list:after, 
-.lcct-list .toc-item.iron-selected.lcct-list i.lcct-list, 
+.lcct-list .toc-item.completed.lcct-list i.lcct-list,
+.lcct-list .toc-item.completed.lcct-list i.lcct-list:before,
+.lcct-list .toc-item.completed.lcct-list i.lcct-list:after,
+.lcct-list .toc-item.iron-selected.lcct-list i.lcct-list,
 .lcct-list .toc-item.iron-selected.lcct-list i.lcct-list:before {
     border-color: #2196f3;
 }
 
-.lcct-list .toc-item.lcct-list i.lcct-list:before, 
+.lcct-list .toc-item.lcct-list i.lcct-list:before,
 .lcct-list .toc-item.lcct-list i.lcct-list:after {
     content: '';
     display: block;
@@ -151,7 +207,8 @@ i, cite, em, var, address, dfn {
     color: #212121;
 }
 
-.classification-item:focus:before, .classification-item .classification-item.classification-item:focus:before {
+.classification-item:focus:before,
+.classification-item .classification-item.classification-item:focus:before {
     position: absolute;
     top: 0;
     right: 0;
@@ -163,7 +220,7 @@ i, cite, em, var, address, dfn {
     pointer-events: none;
 }
 
-.classification-menu .selectable-content.classification-menu > *:focus:after {
+.classification-menu .selectable-content.classification-menu>*:focus:after {
     position: absolute;
     top: 0;
     right: 0;
@@ -175,7 +232,7 @@ i, cite, em, var, address, dfn {
     pointer-events: none;
 }
 
-.lcct-list .toc-item.lcct-list:first-of-type i.lcct-list:before, 
+.lcct-list .toc-item.lcct-list:first-of-type i.lcct-list:before,
 .lcct-list .toc-item.lcct-list:last-of-type i.lcct-list:after {
     display: none;
 }
@@ -186,6 +243,120 @@ i, cite, em, var, address, dfn {
 
 .lcct-list .toc-item.iron-selected.lcct-list {
     color: #212121;
-    background-color: #e0e0e0;
+    background-color: @background;
     font-weight: normal;
+        border-top-right-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+}
+
+
+.row.starting-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .starting-section {
+        margin: 1rem;
+        .card {
+            padding: 1rem 3.5rem;
+            width: 30rem;
+            border-radius: 3px;
+            min-height: 30rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            button,
+            select {
+                width: 100%;
+                margin: 1rem 0;
+                min-height: 36px;
+            }
+        }
+    }
+}
+
+.question_category {
+    font-weight: bold;
+    margin-bottom: 3rem;
+}
+
+.next_question {
+    width: 35rem;
+    float: right;
+    text-align: right;
+    margin-top: 4rem;
+    margin-right: 2rem;
+    .next {
+        font-size: 2rem;
+        margin-bottom: .5rem;
+        span {
+            margin-right: -2.5rem;
+            vertical-align: middle
+        }
+    }
+}
+
+body:not(.ass-results){
+
+
+.ui-accordion-header {
+        background: none;
+    color: black;
+    border: none;
+    text-align: left;
+    font-size: 2rem!important;
+    margin-bottom: 1rem;
+    &:first-of-type {   
+        padding-top: 0!important;
+        margin-top: -1.7rem;
+    }
+    .ui-accordion-header-icon {
+        display: none!important;
+    }
+}
+
+}
+
+.ass-results {
+    .ui-accordion-header {
+        padding-left: 0;
+    }
+    .list-group-item {
+        padding-left: 0;
+    }
+}
+
+
+#assessment-results-btn {
+    margin-top: 5rem;
+    float: left;
+}
+
+.assessment-page {
+    .page-menu {
+        margin-bottom: 0;
+    }
+
+    .content-wrapper {
+        margin-top: 0;
+            display: flex;
+    justify-content: center;
+    align-items: center
+    }
+}
+
+
+#questions-container {
+    border-left: 1px solid @border;
+       padding-top: 2rem;
+    padding-bottom: 2rem;
+    > small {
+        margin-bottom: .5rem;
+        color: @text-muted;
+    }
+}
+
+.google-codelab {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
 }

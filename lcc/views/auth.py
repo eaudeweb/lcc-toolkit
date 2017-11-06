@@ -20,13 +20,8 @@ class Login(TemplateView):
         )
         if user:
             auth.login(request, user)
-            next_page = request.GET.get('next')
-            if next_page:
-                return HttpResponseRedirect(next_page)
-            else:
-                return HttpResponseRedirect(
-                    reverse('lcc:legislation:explorer')
-                )
+            return HttpResponse(
+                json.dumps({'msg': constants.AJAX_RETURN_SUCCESS}))
         else:
             return HttpResponse(
                 json.dumps({'msg': constants.AJAX_RETURN_FAILURE}))

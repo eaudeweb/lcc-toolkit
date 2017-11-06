@@ -6,9 +6,10 @@
   <script src="{% static "js/login.js" %}"> </script>
 {% endblock %}
 
-{% block content-title %}
-  <!-- <h4 class="header-line"> Authenticate </h4> -->
+{% block hidden_variables %}
+  <input type="text" name="next" id="next_page" value="{{ request.GET.next }}"></input>
 {% endblock %}
+
 
 {% block content %}
   <div class="row">
