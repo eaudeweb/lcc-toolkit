@@ -86,7 +86,7 @@ country_patterns = [
         name="customise"),
 ]
 
-api_urls = [
+api_patterns = [
     url(r'question-category/(?P<category_pk>\d+).*$',
         views.api.QuestionViewSet.as_view(),
         name="question_category"),
@@ -115,6 +115,16 @@ api_urls = [
         views.api.CountryViewSet.as_view(),
         name="countries")
 
+]
+
+assessment_patterns = [
+    url(r'^$',
+        views.assessment.LegalAssessment.as_view(),
+        name="legal_assessment"),
+
+    url(r'^(?P<pk>[0-9]+)/results$',
+        views.assessment.LegalAssessmentResults.as_view(),
+        name="legal_assessment_results"),
 ]
 
 
@@ -147,17 +157,12 @@ urlpatterns = [
         include(auth_patterns, namespace='auth')),
 
     url(r'^api/',
-        include(api_urls, namespace='api')),
+        include(api_patterns, namespace='api')),
 
     url(r'^crashme$', crash_me, name='crashme'),
 
-    url(r'^legal-assessment/$',
-        views.assessment.LegalAssessment.as_view(),
-        name="legal_assessment"),
-
-    url(r'^legal-assessment/(?P<pk>[0-9]+)/results$',
-        views.assessment.LegalAssessmentResults.as_view(),
-        name="legal_assessment_results"),
+    url(r'^legal-assessment/',
+        include(assessment_patterns, namespace='assessment')),
 
     url(r'^legislation/',
         include(legislation_patterns, namespace='legislation')),
