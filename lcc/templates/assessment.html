@@ -13,7 +13,7 @@
 <input type="number" name="user_id" value="{{ request.user.pk }}"></input>
 {% endblock %}
 
-{% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
+{% block content-wrapper-class %}leg-viz assessment-page{% endblock %}
 
 {% block page-title %}Legal Assessment{% endblock %}
 
@@ -21,37 +21,50 @@
 
 {% block content %}
 
-<div class="container-fluid text-center" id="assessment-landing">   
-	<div class="row">
-		<div class="col-xs-12 col-md-8">
-			<div class="btn-group">
-				<button type="button" class="btn btn-default" id="add-assessment">add assessment</button>
-				<button type="button" class="btn btn-default" id="continue-assessment">continue assessment</button>
-			</div>
+<div class="row starting-page" id="assessment-landing">
+	<div class="starting-section">
+		<div class="card text-center">
+			 <img src="{% static "img/start.png" %}" />
+			<h4 class="card-title"><b>New Assessment</b></h4>
+			<select id="country-list-new">
+			</select>
+			<button type="button" class="btn btn-primary" id="add-assessment">New Assessment</button>
 		</div>
-		<div class="col-xs-6 col-md-4">
-			<div class="form-group" id="group-country-list" style="display: none">
-				<div class="col-sm-12 col-md-12">
-					<select id="country-list" class="form-control">
-		
-					</select> 
-				</div>
-			</div>
+	</div>
+	<div class="starting-section">
+		<div class="card text-center">
+		 	<img src="{% static "img/continue.png" %}" />
+			<h4 class="card-title"><b>Continue Assessment</b></h4>
+			<select id="country-list-continue">
+			</select> 
+			<button type="button" class="btn btn-primary" id="continue-assessment">Continue Assessment</button>
 		</div>
 	</div>
 </div>
 
 <div class="container-fluid text-center" id="assessment-edit" style="display: none">    
 	<div class="row content">
-		<div id="questions-container" class="col-sm-8 text-left">
-			<ul class="list-group">
-			</ul>
-		</div>
-
 		<div class="col-sm-4 sidenav google-codelab">
 			<div id="accordion">
 			</div>
 		</div>
+
+		<div id="questions-container" class="col-sm-8 text-left">
+			<small><span class="classification_title">Title</span> <span class="current">0</span>/<span class="last">0</span></small>
+			<h3 class="question_category">Subtitle</h3>
+			<ul class="list-group">
+			</ul>
+			<div id="assessment-results-btn" style="display: none">
+				<button type="button" class="btn btn-primary" id="assessment-results">view results</button>
+			</div>
+
+			<div class="next_question">
+				<div class="next link">Next question <span class="icon-right-thin"></span></div>
+				<div class="next_category muted">Monitoring, reporting and verification obligations</div>
+			</div>
+		</div>
 	</div>
 </div>
+
+
 {% endblock %}
