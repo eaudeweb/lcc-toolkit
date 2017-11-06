@@ -6,15 +6,11 @@
   <script src="{% static "js/assessment_profile.js" %}"> </script>
 {% endblock %}
 
-{% block page-title %}Legal profile{% endblock %}
-
-
-{% block content %}
-<!--   <div id="title" class="heading">
-    {{ country.name }}
-  </div>
- -->
-  <select id="assess_profile_country_list">
+{% block page-title %}Assessment profile{% endblock %}
+{% block page-menu %}
+  <select style="float: right;
+    width: 200px;
+    margin-top: 2.5rem;" id="assess_profile_country_list">
     {% for country_select in countries %}
       <option value="{{ country_select.iso }}"
               {% if country.iso == country_select.iso %}selected{% endif %}>
@@ -23,12 +19,21 @@
     {% endfor %}
   </select>    
 
+{%endblock%}
+
+{% block content %}
+  <h3 id="title" class="heading">
+        {% static "" as baseUrl %}
+        <img style="    width: 32px;
+    margin-top: -2px;" class="flag" src="{{ baseUrl }}/img/flags/{{ country.iso |lower }}.svg">
+        <span><b>{{ country.name }}</b></span>
+  </h3>
+  <hr>
+
   <div style="margin-left: -1px">
     <div style="margin-top:28px;">
-      <a href="{% url 'lcc:country:customise' iso=country.iso %}" class="btn btn-info">Customise values</a>
     </div>
   </div>
-
   <div>
     <dl>
       {% for prop in meta %}
@@ -41,7 +46,7 @@
               (Original: {% if prop.orig %}{{ prop.orig|join:'; ' }}{% else %}&mdash;{% endif %})
             {% endif %}
           {% else %}
-            {{ prop.value }}
+            {{ prop.value }} {{ prop.orig}}
           {% endif %}
         {% else %}
           &mdash;
@@ -50,4 +55,73 @@
     {% endfor %}
     </dl>
   </div>
+
+
+
+
+
+  <table>
+    <thead>
+      <th></th>
+      <th>Original</th>
+      <th>Simulation</th>
+    </thead>
+    <tbody>
+    {% for prop in meta %}
+      <tr>
+        <td>{{ prop.label }} {% if prop.modified %}*{% endif %}</td>
+        <td>
+        {% if prop.value or prop.value is False %}
+          <span class="{{prop.type}}">
+            {% if prop.type == 'select' %}
+              {{ prop.orig|join:'; ' }}
+            {% elif  prop.type == 'checkbox' %}
+               {% if prop.orig == True %}
+                <span class="table_image">✔</span>
+              {% else %}
+                <span class="table_image">X</span>
+              {% endif %}
+            {% else %}
+              {{ prop.orig }}
+            {% endif %}
+          </span>
+        {% else %}
+          &mdash;
+        {% endif %}
+        </td>
+        <td>
+         <span class="{{prop.type}}">
+          {% if prop.modified %}
+           {% if  prop.type == 'checkbox' %}  
+              {% if prop.value == True %}
+                <span class="table_image">✔</span>
+              {% else %}
+                <span class="table_image">X</span>
+              {% endif %}
+            {% else %}
+              {{ prop.value}}
+           {% endif %}
+          {% else %}
+          <span class="muted">
+            {% if not prop.type == 'checkbox' %}
+              {% if prop.type == 'select' %}
+                {{ prop.orig|join:'; ' }}
+              {% else %}
+                {{ prop.orig }}
+              {% endif %}
+            {% endif %}
+          </span>
+          
+          {% endif %}
+          </span>
+        </td>
+      </tr>
+    {% endfor %}
+    <tr class="last">
+      <td></td>
+      <td><a href name="discard" class="btn btn-link"/>Revert to original</a></td>
+      <td><a href="{% url 'lcc:country:customise' iso=country.iso %}" class="btn btn-primary">Edit profile</a> </td>
+    </tr>
+    </tbody>
+  </table>
 {% endblock %}
