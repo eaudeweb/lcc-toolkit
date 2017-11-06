@@ -83,9 +83,9 @@ class LegislationExplorer(ListView):
             search = search.query('term', country=country)
 
         # String representing law_type
-        law_type = self.request.GET.get('law_types[]')
-        if law_type:
-            search = search.query('terms', law_type=[law_type])
+        law_types = self.request.GET.getlist('law_types[]')
+        if law_types:
+            search = search.query('terms', law_type=law_types)
 
         # String to be searched in all text fields (full-text search using
         # elasticsearch's default best_fields strategy)
@@ -94,9 +94,8 @@ class LegislationExplorer(ListView):
             search = search.query(
                 'multi_match', query=q, fields=['title', 'abstract'])
 
-        import ipdb; ipdb.set_trace()
-        if not any([classification_ids, tag_ids, country, law_type, q]):
-            # If there were no search parameters, sort by id
+        if not any([classification_ids, tag_ids, q]):
+            # If there is no score to sort by, sort by id
             search = search.sort('id')
 
         # TODO: Implement proper pagination!

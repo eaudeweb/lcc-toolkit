@@ -1,7 +1,7 @@
 $(document).ready(function(){
   var payload = {'partial': true};
   var classifications = [];
-  var type = [];
+  var law_types = [];
 
   $('#textSearchInput').on('change', function() {
     payload['q'] = $(this).val();
@@ -30,13 +30,13 @@ $(document).ready(function(){
   $('#typeDropDown input').on('change', function() {
     if($(this).is(':checked')){
       if($.inArray($(this).val()) == -1){
-        type.push($(this).val())
+        law_types.push($(this).val())
       }
     }
     else {
-      type.splice(type.indexOf($(this).val(), 1))
+      law_types.splice(law_types.indexOf($(this).val(), 1))
     }
-    payload['law_type'] = type;
+    payload['law_types'] = law_types;
   });
 
 
