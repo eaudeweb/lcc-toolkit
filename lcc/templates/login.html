@@ -9,13 +9,12 @@
 {% block hidden_variables %}
   <input type="text" name="next" id="next_page" value="{{ request.GET.next }}"></input>
 {% endblock %}
-
+{% block page-title %}Log in{% endblock %}
 
 {% block content %}
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12 login-wrapper">
      <div class="panel panel-info">
-     <h2>Log in</h2>
       <div class="panel-body">
         <form role="form" id='login-form' method="POST">
           {% csrf_token %}
