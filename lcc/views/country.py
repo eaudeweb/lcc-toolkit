@@ -1,10 +1,10 @@
 from copy import deepcopy
 
-from django.http import HttpResponseRedirect
 from django.db import transaction
-from django.views.generic import DetailView
-from django.views.generic import UpdateView
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
+from django.views.generic import DetailView, UpdateView, DeleteView
 
 import lcc.models as models
 import lcc.forms as forms
@@ -51,7 +51,14 @@ class Metadata:
 
     def _get_type(self, name):
         field = self.form.fields.get(name, None)
-        return field.widget.input_type if field else None
+
+        if not field:
+            return None
+
+        if getattr(field.widget, 'allow_multiple_selected', None):
+            return 'multiple'
+
+        return field.widget.input_type
 
     def __getattr__(self, name):
         val_orig = self._get_value(self.original, name)
@@ -139,3 +146,24 @@ class Customise(UpdateView):
             form.delete()
 
         return HttpResponseRedirect(self.get_success_url())
+
+
+class DeleteCustomisedProfile(DeleteView):
+    model = models.CountryMetadata
+    pk_url_kwarg = 'iso'
+
+    def get_success_url(self, **kwargs):
+        iso = self.kwargs.get(self.pk_url_kwarg)
+        return reverse('lcc:country:view', kwargs={
+            'iso': iso
+        })
+
+    def get_object(self):
+        iso = self.kwargs.get(self.pk_url_kwarg)
+        return models.CountryMetadata.objects.get(
+            user=self.request.user_profile,
+            country__iso=iso
+        )
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)

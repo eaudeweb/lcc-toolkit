@@ -19,7 +19,7 @@
     {% endfor %}
   </select>    
 
-{%endblock%}
+{% endblock %}
 
 {% block content %}
   <h3 id="title" class="heading">
@@ -29,36 +29,6 @@
         <span><b>{{ country.name }}</b></span>
   </h3>
   <hr>
-
-  <div style="margin-left: -1px">
-    <div style="margin-top:28px;">
-    </div>
-  </div>
-  <div>
-    <dl>
-      {% for prop in meta %}
-        <dt>{{ prop.label }} {% if prop.modified %}*{% endif %}</dt>
-        <dd><p>
-        {% if prop.value or prop.value is False %}
-          {% if prop.type == 'select' %}
-            {{ prop.value|join:'; ' }}
-            {% if prop.modified %}
-              (Original: {% if prop.orig %}{{ prop.orig|join:'; ' }}{% else %}&mdash;{% endif %})
-            {% endif %}
-          {% else %}
-            {{ prop.value }} {{ prop.orig}}
-          {% endif %}
-        {% else %}
-          &mdash;
-        {% endif %}
-        </p></dd>
-    {% endfor %}
-    </dl>
-  </div>
-
-
-
-
 
   <table>
     <thead>
@@ -71,55 +41,64 @@
       <tr>
         <td>{{ prop.label }} {% if prop.modified %}*{% endif %}</td>
         <td>
-        {% if prop.value or prop.value is False %}
-          <span class="{{prop.type}}">
-            {% if prop.type == 'select' %}
-              {{ prop.orig|join:'; ' }}
-            {% elif  prop.type == 'checkbox' %}
-               {% if prop.orig == True %}
-                <span class="table_image">✔</span>
-              {% else %}
-                <span class="table_image">X</span>
-              {% endif %}
-            {% else %}
-              {{ prop.orig }}
-            {% endif %}
-          </span>
-        {% else %}
-          &mdash;
-        {% endif %}
-        </td>
-        <td>
-         <span class="{{prop.type}}">
-          {% if prop.modified %}
-           {% if  prop.type == 'checkbox' %}  
-              {% if prop.value == True %}
-                <span class="table_image">✔</span>
-              {% else %}
-                <span class="table_image">X</span>
-              {% endif %}
-            {% else %}
-              {{ prop.value}}
-           {% endif %}
-          {% else %}
-          <span class="muted">
-            {% if not prop.type == 'checkbox' %}
-              {% if prop.type == 'select' %}
-                {{ prop.orig|join:'; ' }}
+          {% if prop.value or prop.value is False %}
+            <span class="{{ prop.type }}">
+              {% if prop.type == 'multiple' %}
+                <ul>
+                  {% for multiple_prop in prop.orig %}
+                    <li>* {{ multiple_prop }}</li>
+                  {% endfor%}
+                </ul>
+              {% elif  prop.type == 'checkbox' %}
+                {% if prop.orig == True %}
+                  <span class="table_image">✔</span>
+                {% else %}
+                  <span class="table_image">X</span>
+                {% endif %}
               {% else %}
                 {{ prop.orig }}
               {% endif %}
-            {% endif %}
-          </span>
-          
+            </span>
+          {% else %}
+            &mdash;
           {% endif %}
+        </td>
+        <td>
+          <span class="{{ prop.type }}">
+            {% if prop.modified %}
+              {% if prop.type == 'checkbox' %}  
+                {% if prop.value == True %}
+                  <span class="table_image">✔</span>
+                {% else %}
+                  <span class="table_image">X</span>
+                {% endif %}
+              {% else %}
+                {{ prop.value }}
+              {% endif %}
+            {% else %}
+              <span class="muted">
+                {% if prop.value or prop.value is False %}
+                  {% if prop.type == 'multiple' %}
+                    <ul>
+                      {% for multiple_prop in prop.orig %}
+                        <li>* {{ multiple_prop }}</li>
+                      {% endfor%}
+                    </ul>
+                  {% elif not prop.type == 'checkbox' %}
+                    {{ prop.orig }}
+                  {% endif %}
+                {% else %}
+                  &mdash;
+                {% endif %}
+              </span>
+            {% endif %}
           </span>
         </td>
       </tr>
     {% endfor %}
     <tr class="last">
       <td></td>
-      <td><a href name="discard" class="btn btn-link"/>Revert to original</a></td>
+      <td>{% if meta.is_customised %}<a href="{% url 'lcc:country:delete' iso=country.iso %}"  onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-link"/>Revert to original</a>{% endif %}</td>
       <td><a href="{% url 'lcc:country:customise' iso=country.iso %}" class="btn btn-primary">Edit profile</a> </td>
     </tr>
     </tbody>
