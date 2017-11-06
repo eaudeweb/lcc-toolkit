@@ -73,6 +73,7 @@ class Metadata:
         return dict(
             value=val_custom,
             orig=val_orig,
+            name=name,
             label=self._get_label(name),
             type=self._get_type(name),
             modified=val_custom != val_orig
@@ -143,7 +144,14 @@ class Customise(UpdateView):
             )
         except self.model.DoesNotExist:
             metadata_user = None
-        context['meta'] = Metadata(self.object, metadata_user)
+        iso = self.kwargs.get(self.pk_url_kwarg)
+        
+        origin = get_object_or_404(
+            self.model,
+            country__iso=iso,
+            user=None
+        )
+        context['meta'] = Metadata(origin, metadata_user)
         return context
 
     @transaction.atomic

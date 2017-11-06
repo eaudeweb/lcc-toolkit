@@ -8,34 +8,36 @@
   <div id="title" class="heading">
     {{ country.name }}
   </div>
-   
-    {% for prop in meta %}
-      <ul>
-        <li class="original">
-          {% if prop.value or prop.value is False %}
-            <span class="{{ prop.type }}">
-              {% if prop.type == 'multiple' %}
-                <ul>
-                  {% for multiple_prop in prop.orig %}
-                    <li>• {{ multiple_prop }}</li>
-                  {% endfor%}
-                </ul>
-              {% elif  prop.type == 'checkbox' %}
-                {% if prop.orig == True %}
-                  <span class="table_image">✔</span>
+    
+    <div class="hidden_values">
+      {% for prop in meta %}
+        <ul>
+          <li id="{{prop.name}}" class="original">
+            {% if prop.orig or prop.orig is False %}
+              <span class="{{ prop.type }}">
+                {% if prop.type == 'multiple' %}
+                  <ul>
+                    {% for multiple_prop in prop.orig %}
+                      <li>• {{ multiple_prop }}</li>
+                    {% endfor%}
+                  </ul>
+                {% elif  prop.type == 'checkbox' %}
+                  {% if prop.orig == True %}
+                    <span class="table_image">✔</span>
+                  {% else %}
+                    <span class="table_image">🗙</span>
+                  {% endif %}
                 {% else %}
-                  <span class="table_image">🗙</span>
+                  {{ prop.orig }}
                 {% endif %}
-              {% else %}
-                {{ prop.orig }}
-              {% endif %}
-            </span>
-          {% else %}
-            &mdash;
-          {% endif %}
-        </li>
-      </ul>
-    {% endfor %}
+              </span>
+            {% else %}
+              &mdash;
+            {% endif %}
+          </li>
+        </ul>
+      {% endfor %}
+    </div>
 
   <div>
     <form role="form" method="POST">
@@ -51,10 +53,10 @@
           {% for field in form.visible_fields %}
             <tr>
               <td>
-                <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+                {{ field.label_tag }}
               </td>
 
-              <td class="original"></td>
+              <td id="{{field.name}}" class="original"></td>
               <td class="simulation">{{ field }}</td>
             </tr>
           {% endfor %}

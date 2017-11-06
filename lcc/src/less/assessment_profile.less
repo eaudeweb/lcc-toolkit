@@ -69,13 +69,26 @@
     	}
     }
     &.edit {
-    	.original {
-    		* {
-    			background: transparent;
-    			border: none;
-    			padding: 0;
-    			overflow: hidden;
-    		}
+    	input[type=checkbox] {
+    		position: relative;
+    	}
+    	.simulation {
+    		    padding: 0;
+    padding-left: 1rem;
+    text-align: center;
+    *{
+    	vertical-align: middle;
+    }
+    select {
+    	border: none;
+    }
+    	}
+    	.original,
+    	.simulation {
+
+    		display: table-cell;
+    		border-radius: 0;
+
     	}
     }
 }
