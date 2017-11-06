@@ -8,7 +8,7 @@ ELASTICSEARCH_DSL = {
     'default': {
         'hosts': env(
             'ELASTICSEARCH_HOST',
-            default='elastic:changeme@elasticsearch_test:9200'
+            default='elastic:changeme@elasticsearch_test:9201'
         )
     },
 }

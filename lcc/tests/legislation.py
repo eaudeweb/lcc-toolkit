@@ -17,20 +17,12 @@ class LegislationExplorer(TestCase):
     ]
 
     def setUp(self):
-        Legislation.objects.create(
-            title="Quick brown rabbits",
-            abstract="Brown rabbits are commonly seen.",
-            country_id="ROU"
-        )
-        Legislation.objects.create(
-            title="Keeping pets healthy",
-            abstract="My quick brown fox eats rabbits on a regular basis.",
-            country_id="ROU"
-        )
+        import ipdb; ipdb.set_trace()
+        call_command('search_index', '--rebuild', '-f')
 
     def test_html(self):
         """
-        Makes sure HTML has minimum elements.
+        Makes sure HTML has minimum required elements for page to work.
         """
         c = Client()
         response = c.get('/legislation/')
@@ -48,5 +40,16 @@ class LegislationExplorer(TestCase):
         self.assertEqual(
             response.context['laws'][1].title, "Quick brown rabbits")
 
-    def tearDown(self):
-        call_command('search_index', '--delete', '-f')
+    def test_classification_filtering(self):
+        # The following are the ids of all Legislations who are classified with
+        # at least one "Dedicated climate laws and governance" classification.
+        expected_legislation_ids = [1, 2, 4, 5, 6, 7, 8, 10]
+
+        c = Client()
+        response = c.get(
+            '/legislation/', {'partial': True, 'classifications[]': '1'})
+
+        returned_legislation_ids = sorted(
+            [law.id for law in response.context['laws']])
+
+        self.assertEqual(expected_legislation_ids, returned_legislation_ids)

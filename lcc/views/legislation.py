@@ -49,7 +49,6 @@ class LegislationExplorer(ListView):
         If the `partial` parameter is set, return only the list of laws,
         don't render the whole page again.
         """
-
         if self.request.GET.get('partial'):
             self.template_name = "legislation/_laws.html"
         return super().dispatch(request, *args, **kwargs)
@@ -68,6 +67,7 @@ class LegislationExplorer(ListView):
 
         # List of strings representing TaxonomyClassification ids
         classifications = self.request.GET.getlist('classifications[]')
+        import ipdb; ipdb.set_trace()
         if classifications:
             search = search.query(
                 'terms', classifications=[int(pk) for pk in classifications])

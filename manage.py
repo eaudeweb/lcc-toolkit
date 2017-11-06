@@ -3,7 +3,7 @@ import os
 import sys
 
 if __name__ == "__main__":
-    if sys.argv[-1] == 'test':
+    if sys.argv[1] == 'test':
         os.environ.setdefault(
             "DJANGO_SETTINGS_MODULE", "lcctoolkit.settings.test")
     else:
