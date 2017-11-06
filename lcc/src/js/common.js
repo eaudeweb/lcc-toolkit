@@ -118,4 +118,8 @@ $(document).ready(function() {
     $('.disabled').click(function(e){
         e.preventDefault();
     })
+
+        if (window.matchMedia("(max-width: 760px)").matches) {
+             $('meta[name="viewport"]').attr('content', 'width=' + 768);
+        } 
 })

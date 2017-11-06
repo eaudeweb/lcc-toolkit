@@ -73,13 +73,13 @@
                 }
             }
         }
-        @media @tabletDown {
-            .dd,
-            .dt {
-                width: 100%;
-                display: block;
-            }
-        }
+        // @media @tabletDown {
+        //     .dd,
+        //     .dt {
+        //         width: 100%;
+        //         display: block;
+        //     }
+        // }
     }
 
     &.multiple {
@@ -197,7 +197,10 @@ pre {
         > .container {
             width: 80%;
     margin: auto;
+    @media @tablet {
+        width: 100%;
         }
+    }
     }
 }
 
