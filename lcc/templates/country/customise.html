@@ -12,12 +12,12 @@
   <div>
     <form role="form" method="POST">
       {% csrf_token %}
-
-      <table>
+    <div class="table-container">
+      <table class="assessment_table edit">
         <thead>
           <th></th>
-          <th>Original</th>
-          <th>Simulation</th>
+          <th class="original">Original</th>
+          <th class="simulation">Simulation</th>
         </thead>
         <tbody>
           {% for field in form.visible_fields %}
@@ -26,12 +26,13 @@
                 <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
               </td>
 
-              <td>{{ field.as_widget }}</td>
-              <td>{{ field }}</td>
+              <td class="original">{{ field.as_widget }}</td>
+              <td class="simulation">{{ field }}</td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
+    </div>
       <div class="form-group">
         <input type="submit" name="save" class="btn btn-success" value="Save customisations" />
         <a href="{% url 'lcc:country:view' iso=country.iso %}" class="btn btn-warning">Cancel</a>
