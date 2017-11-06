@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import DetailView, UpdateView, DeleteView
+from django.forms import model_to_dict
+
 
 import lcc.models as models
 import lcc.forms as forms
@@ -134,7 +136,14 @@ class Customise(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['country'] = self.object.country
-        context['meta'] = self.object
+        try:
+            metadata_user = self.model.objects.get(
+                country__iso=self.object.country.iso,
+                user=self.request.user_profile
+            )
+        except self.model.DoesNotExist:
+            metadata_user = None
+        context['meta'] = Metadata(self.object, metadata_user)
         return context
 
     @transaction.atomic

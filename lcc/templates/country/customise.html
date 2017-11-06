@@ -8,6 +8,34 @@
   <div id="title" class="heading">
     {{ country.name }}
   </div>
+   
+    {% for prop in meta %}
+      <ul>
+        <li class="original">
+          {% if prop.value or prop.value is False %}
+            <span class="{{ prop.type }}">
+              {% if prop.type == 'multiple' %}
+                <ul>
+                  {% for multiple_prop in prop.orig %}
+                    <li>• {{ multiple_prop }}</li>
+                  {% endfor%}
+                </ul>
+              {% elif  prop.type == 'checkbox' %}
+                {% if prop.orig == True %}
+                  <span class="table_image">✔</span>
+                {% else %}
+                  <span class="table_image">🗙</span>
+                {% endif %}
+              {% else %}
+                {{ prop.orig }}
+              {% endif %}
+            </span>
+          {% else %}
+            &mdash;
+          {% endif %}
+        </li>
+      </ul>
+    {% endfor %}
 
   <div>
     <form role="form" method="POST">
@@ -26,7 +54,7 @@
                 <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
               </td>
 
-              <td class="original">{{ field.as_widget }}</td>
+              <td class="original"></td>
               <td class="simulation">{{ field }}</td>
             </tr>
           {% endfor %}
