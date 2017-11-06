@@ -2,13 +2,17 @@
 
 {% load static %}
 {% block page-title %}Legal profile{% endblock %}
+{% block content-wrapper-class %}assessment_profile{% endblock %}
 
 
 {% block content %}
-  <div id="title" class="heading">
-    {{ country.name }}
-  </div>
-    
+  <h3 style="margin-bottom: 3rem;" id="title" class="heading">
+        {% static "" as baseUrl %}
+        <img style="width: 32px;
+         margin-top: -2px;" class="flag" src="{{ baseUrl }}/img/flags/{{ country.iso |lower }}.svg">
+        <span><b>{{ country.name }}</b></span>
+    <hr>
+  </h3>
     <div class="hidden_values">
       {% for prop in meta %}
         <ul>
@@ -60,14 +64,21 @@
               <td class="simulation">{{ field }}</td>
             </tr>
           {% endfor %}
+          <tr class="last">
+            <td></td>
+            <td class="original"><input type="submit" name="discard" class="btn btn-link" value="Revert to original" /></td>
+            <td class="simulation">
+            <input type="submit" name="save" class="btn btn-primary" value="Save customisations" />
+            <br>
+            <a href="{% url 'lcc:country:view' iso=country.iso %}" class="btn btn-link">Cancel</a>
+            </td>
+          </tr>
         </tbody>
       </table>
+
     </div>
-      <div class="form-group">
-        <input type="submit" name="save" class="btn btn-success" value="Save customisations" />
-        <a href="{% url 'lcc:country:view' iso=country.iso %}" class="btn btn-warning">Cancel</a>
-        <input type="submit" name="discard" class="btn btn-danger pull-right" value="Discard" />
-      </div>
+  
+    
 
     </form>
   </div>

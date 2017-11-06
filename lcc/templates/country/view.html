@@ -25,13 +25,13 @@
 {% endblock %}
 
 {% block content %}
-  <h3 id="title" class="heading">
+  <h3 style="margin-bottom: 3rem;" id="title" class="heading">
         {% static "" as baseUrl %}
-        <img style="    width: 32px;
+        <img style="width: 32px;
     margin-top: -2px;" class="flag" src="{{ baseUrl }}/img/flags/{{ country.iso |lower }}.svg">
         <span><b>{{ country.name }}</b></span>
-  </h3>
   <hr>
+  </h3>
 <div class="table-container">
   <table class="assessment_table">
     <thead>

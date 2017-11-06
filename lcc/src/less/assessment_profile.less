@@ -1,6 +1,8 @@
 .table-container {
-	overflow: auto;
+    overflow: auto;
+    padding-bottom: 4rem;
 }
+
 .assessment_table {
     margin: auto; // border-right: 1px solid @border;
     margin-bottom: 2rem;
@@ -43,53 +45,81 @@
     }
 
     td.simulation {
-    	font-weight: bold;
-    	.muted {
-    		font-weight: normal;
-    	}
+        font-weight: bold;
+        .muted {
+            font-weight: normal;
+        }
     }
 
     tr.last {
-    	border-bottom: none;
-    	text-align: center;
-    	td {
-    		border: none;
-    		border-bottom-left-radius: 6px;
-    		border-bottom-right-radius: 6px;
-    		&:last-of-type {
-    			padding: 0;
-    			.btn-primary {
-    				    border-radius: 6px;
-    width: 100%;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    height: 39px;
-    			}
+        border-bottom: none;
+        text-align: center;
+        td {
+            border: none;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+            &:last-of-type {
+                padding: 0;
+                .btn-primary {
+                    border-radius: 6px;
+                    width: 100%;
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                    height: 39px;
+                }
+            }
+        }
+    }
+    &.edit {
+        input[type=checkbox] {
+            position: relative;
+        }
+        select[multiple=multiple]{
+        	overflow: hidden; 
+        	&:hover {
+        		overflow: auto;
+        	}
+        }
+        input[type=number]{
+        	    height: 35px;
+        	    border: none;
+        	    width: 100%;
+        	    padding-left: 1rem;
+        	    padding-right: 1rem;
+
+        }
+        .simulation {
+            padding: 0;
+            text-align: center;
+            td {
+            	padding: 0;
+            }
+            * {
+                vertical-align: middle;
+            }
+            select {
+                border: none;
+            }
+        }
+        .original,
+        .simulation {
+
+            display: table-cell;
+            border-radius: 0;
+        }
+    }
+    tr.last {
+    	.original {
+    		           border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+    	}
+    	.simulation {
+    		position: relative;
+    		.btn-link {
+    			position: absolute;
+    			    left: 50%;
+    transform: translateX(-50%);
     		}
     	}
     }
-    &.edit {
-    	input[type=checkbox] {
-    		position: relative;
-    	}
-    	.simulation {
-    		    padding: 0;
-    padding-left: 1rem;
-    text-align: center;
-    *{
-    	vertical-align: middle;
-    }
-    select {
-    	border: none;
-    }
-    	}
-    	.original,
-    	.simulation {
-
-    		display: table-cell;
-    		border-radius: 0;
-
-    	}
-    }
 }
-
