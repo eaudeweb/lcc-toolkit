@@ -14,7 +14,7 @@
     {{ country.name }}
   </div>
  -->
-  <select>
+  <select id="assess_profile_country_list">
     {% for country_select in countries %}
       <option value="{{ country_select.iso }}"
               {% if country.iso == country_select.iso %}selected{% endif %}>
