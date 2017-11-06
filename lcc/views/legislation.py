@@ -66,17 +66,16 @@ class LegislationExplorer(ListView):
         #   - http://api.jquery.com/jQuery.param/
 
         # List of strings representing TaxonomyClassification ids
-        classifications = self.request.GET.getlist('classifications[]')
-        import ipdb; ipdb.set_trace()
-        if classifications:
-            search = search.query(
-                'terms', classifications=[int(pk) for pk in classifications])
+        classification_ids = [
+            int(pk) for pk in self.request.GET.getlist('classifications[]')]
+
+        if classification_ids:
+            search = search.query('terms', classifications=classification_ids)
 
         # List of strings representing TaxonomyTag ids
-        tags = self.request.GET.getlist('tags[]')
-        if tags:
-            search = search.query(
-                'terms', tags=[int(pk) for pk in tags])
+        tag_ids = [int(pk) for pk in self.request.GET.getlist('tags[]')]
+        if tag_ids:
+            search = search.query('terms', tags=tag_ids)
 
         # String representing country iso code
         country = self.request.GET.get('country')
@@ -84,9 +83,9 @@ class LegislationExplorer(ListView):
             search = search.query('term', country=country)
 
         # String representing law_type
-        law_type = self.request.GET.get('law_type')
+        law_type = self.request.GET.get('law_types[]')
         if law_type:
-            search = search.query('term', law_type=law_type)
+            search = search.query('terms', law_type=[law_type])
 
         # String to be searched in all text fields (full-text search using
         # elasticsearch's default best_fields strategy)
@@ -94,6 +93,12 @@ class LegislationExplorer(ListView):
         if q:
             search = search.query(
                 'multi_match', query=q, fields=['title', 'abstract'])
+
+        import ipdb; ipdb.set_trace()
+        if not any([classification_ids, tag_ids, country, law_type, q]):
+            # If there were no search parameters, sort by id
+            search = search.sort('id')
+
         # TODO: Implement proper pagination!
         return search[0:10000].to_queryset()
 

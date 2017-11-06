@@ -28,6 +28,7 @@ class LegislationDocument(DocType):
 
         # The fields of the model you want to be indexed in Elasticsearch
         fields = [
+            'id',
             'title',
             'abstract',
             'law_type',

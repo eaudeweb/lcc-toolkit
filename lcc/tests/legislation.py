@@ -17,7 +17,6 @@ class LegislationExplorer(TestCase):
     ]
 
     def setUp(self):
-        import ipdb; ipdb.set_trace()
         call_command('search_index', '--rebuild', '-f')
 
     def test_html(self):
@@ -33,6 +32,16 @@ class LegislationExplorer(TestCase):
         Test that full-text search respects best_fields logic. More info at:
             - https://www.elastic.co/guide/en/elasticsearch/guide/current/_best_fields.html
         """
+        Legislation.objects.create(
+            title="Quick brown rabbits",
+            abstract="Brown rabbits are commonly seen.",
+            country_id="ROU"
+        )
+        Legislation.objects.create(
+            title="Keeping pets healthy",
+            abstract="My quick brown fox eats rabbits on a regular basis.",
+            country_id="ROU"
+        )
         c = Client()
         response = c.get('/legislation/', {'partial': True, 'q': "Brown fox"})
         self.assertEqual(

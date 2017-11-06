@@ -16,7 +16,7 @@ $(document).ready(function(){
     else {
       classifications.splice(classifications.indexOf($(this).val(), 1))
     }
-    payload['classification'] = classifications;
+    payload['classifications'] = classifications;
   });
 
   $('#TagDropDown').on('change',function(e){
@@ -36,9 +36,9 @@ $(document).ready(function(){
     else {
       type.splice(type.indexOf($(this).val(), 1))
     }
-    payload['type'] = type;
+    payload['law_type'] = type;
   });
-  
+
 
 
   $(".submitBtn").on('click', function(){
