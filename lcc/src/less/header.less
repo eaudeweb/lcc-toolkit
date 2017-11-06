@@ -22,6 +22,11 @@
     }
     .header-wrapper {
         display: flex;
+        @media @tablet {
+            display: block;
+            min-height: 125px;
+            position: relative;
+        }
     }
 
     .right-div {
@@ -42,6 +47,14 @@
     flex-grow: 1;
     padding: 0 2rem;
     font-style: normal;
+    @media @tablet {
+            position: absolute;
+    width: 100%;
+    left: 0;
+    top: 7rem;
+    display: flex;
+    align-items: center;
+    }
     img {
         width: 20px;
         margin-right: .5rem;
@@ -64,6 +77,15 @@
             &.active {
                 color: @link-color;
                 border-top: 4px solid;
+                   @media @mobileOnly {
+                    border-bottom: 4px solid;
+                    border-top: none;
+                   }
+            }
+            @media @mobileOnly {
+                            max-width: 92px;
+            line-height: 1.5;
+            text-align: left;
             }
         }
         &:hover {
