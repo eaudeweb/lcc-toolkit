@@ -2,11 +2,24 @@
 
 {% load static %}
 
+{% block extra-scripts %}
+  <script src="{% static "js/assessment_profile.js" %}"> </script>
+{% endblock %}
+
 
 {% block content %}
-  <div id="title" class="heading">
+<!--   <div id="title" class="heading">
     {{ country.name }}
   </div>
+ -->
+  <select>
+    {% for country_select in countries %}
+      <option value="{{ country_select.iso }}"
+              {% if country.iso == country_select.iso %}selected{% endif %}>
+        {{ country_select.name }}
+      </option>
+    {% endfor %}
+  </select>    
 
   <div style="margin-left: -1px">
     <div style="margin-top:28px;">
