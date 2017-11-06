@@ -1,6 +1,7 @@
 $(document).ready(function(){
   var payload = {'partial': true};
   var classifications = [];
+  var type = [];
 
   $('#textSearchInput').on('change', function() {
     payload['q'] = $(this).val();
@@ -26,9 +27,18 @@ $(document).ready(function(){
     payload['country'] = $('#countryDropDown option:selected').val();
   });
 
-  $('#typeDropDown').on('change', function() {
-    payload['type'] = $('#typeDropDown option:selected').val();
+  $('#typeDropDown input').on('change', function() {
+    if($(this).is(':checked')){
+      if($.inArray($(this).val()) == -1){
+        type.push($(this).val())
+      }
+    }
+    else {
+      type.splice(type.indexOf($(this).val(), 1))
+    }
+    payload['type'] = type;
   });
+  
 
 
   $(".submitBtn").on('click', function(){

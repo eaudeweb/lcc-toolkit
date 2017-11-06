@@ -49,14 +49,16 @@
       </select>
     </div>
 
-    <div class="filter-item filter-type">
-    <label for="typeDropDown"><b>Type</b></label>
-      <select class="round" name="type" id="typeDropDown">
-        <option value="" selected>Select type</option>
+    <div class="filter-item list-container filter-type">
+    <label for="typeDropDown"><b>Select type</b></label>
+      <ul class="round" name="type" id="typeDropDown">
         {% for key, value in legislation_type %}
-          <option value="{{key}}">{{ value }}</option>
+          <li class="first-level level">
+            <input type="checkbox" name="{{key}}" id="{{key}}" value="{{key}}"></input>
+            <label for="{{key}}">{{ value }}</label>
+          </li>
         {% endfor %}
-      </select>
+      </ul>
     </div>
 
     <div class="filter-item list-container" id="classificationsDropDownWrapper">
