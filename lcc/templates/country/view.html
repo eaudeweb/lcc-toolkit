@@ -2,37 +2,115 @@
 
 {% load static %}
 
+{% block extra-scripts %}
+  <script src="{% static "js/assessment_profile.js" %}"> </script>
+{% endblock %}
+
+{% block content-wrapper-class %}assessment_profile{% endblock %}
+
+
+{% block page-title %}Assessment profile{% endblock %}
+{% block page-menu %}
+  <select style="float: right;
+    width: 200px;
+    margin-top: 2.5rem;" id="assess_profile_country_list">
+    {% for country_select in countries %}
+      <option value="{{ country_select.iso }}"
+              {% if country.iso == country_select.iso %}selected{% endif %}>
+        {{ country_select.name }}
+      </option>
+    {% endfor %}
+  </select>    
+
+{% endblock %}
 
 {% block content %}
-  <div id="title" class="heading">
-    {{ country.name }}
-  </div>
-
-  <div style="margin-left: -1px">
-    <div style="margin-top:28px;">
-      <a href="{% url 'lcc:country:customise' iso=country.iso %}" class="btn btn-info">Customise values</a>
-    </div>
-  </div>
-
-  <div>
-    <dl>
-      {% for prop in meta %}
-        <dt>{{ prop.label }} {% if prop.modified %}*{% endif %}</dt>
-        <dd><p>
-        {% if prop.value or prop.value is False %}
-          {% if prop.type == 'select' %}
-            {{ prop.value|join:'; ' }}
-            {% if prop.modified %}
-              (Original: {% if prop.orig %}{{ prop.orig|join:'; ' }}{% else %}&mdash;{% endif %})
-            {% endif %}
+  <h3 id="title" class="heading">
+        {% static "" as baseUrl %}
+        <img style="    width: 32px;
+    margin-top: -2px;" class="flag" src="{{ baseUrl }}/img/flags/{{ country.iso |lower }}.svg">
+        <span><b>{{ country.name }}</b></span>
+  </h3>
+  <hr>
+<div class="table-container">
+  <table class="assessment_table">
+    <thead>
+      <th></th>
+      <th class="original">Original</th>
+      <th class="simulation">Simulation</th>
+    </thead>
+    <tbody>
+    {% for prop in meta %}
+      <tr>
+        <td>{{ prop.label }} {% if prop.modified %}*{% endif %}</td>
+        <td class="original">
+          {% if prop.value or prop.value is False %}
+            <span class="{{ prop.type }}">
+              {% if prop.type == 'multiple' %}
+                <ul>
+                  {% for multiple_prop in prop.orig %}
+                    <li>• {{ multiple_prop }}</li>
+                  {% endfor%}
+                </ul>
+              {% elif  prop.type == 'checkbox' %}
+                {% if prop.orig == True %}
+                  <span class="table_image">✔</span>
+                {% else %}
+                  <span class="table_image">🗙</span>
+                {% endif %}
+              {% else %}
+                {{ prop.orig }}
+              {% endif %}
+            </span>
           {% else %}
-            {{ prop.value }}
+            &mdash;
           {% endif %}
-        {% else %}
-          &mdash;
-        {% endif %}
-        </p></dd>
+        </td>
+        <td class="simulation">
+          <span class="{{ prop.type }}">
+            {% if prop.modified %}
+              {% if prop.type == 'checkbox' %}  
+                {% if prop.value == True %}
+                  <span class="table_image">✔</span>
+                {% else %}
+                  <span class="table_image">🗙</span>
+                {% endif %}
+                {% elif prop.type == 'multiple' %}
+                  <ul>
+                    {% for multiple_prop in prop.orig %}
+                      <li>• {{ multiple_prop }}</li>
+                    {% endfor%}
+                  </ul>
+              {% else %}
+                {{ prop.value }}
+              {% endif %}
+            {% else %}
+              <span class="muted">
+                {% if prop.value or prop.value is False %}
+                  {% if prop.type == 'multiple' %}
+                    <ul>
+                      {% for multiple_prop in prop.orig %}
+                        <li>• {{ multiple_prop }}</li>
+                      {% endfor%}
+                    </ul>
+                  {% elif not prop.type == 'checkbox' %}
+                    {{ prop.orig }}
+                  {% endif %}
+                {% else %}
+                  &mdash;
+                {% endif %}
+              </span>
+            {% endif %}
+          </span>
+        </td>
+      </tr>
     {% endfor %}
-    </dl>
-  </div>
+    <tr class="last">
+      <td></td>
+      <td class="original">{% if meta.is_customised %}<a href="{% url 'lcc:country:delete' iso=country.iso %}"  onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-link"/>Revert to original</a>{% endif %}</td>
+      <td class="simulation"><a href="{% url 'lcc:country:customise' iso=country.iso %}" class="btn btn-primary">Edit profile</a> </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 {% endblock %}

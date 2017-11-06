@@ -1,10 +1,12 @@
 from copy import deepcopy
 
-from django.http import HttpResponseRedirect
 from django.db import transaction
-from django.views.generic import DetailView
-from django.views.generic import UpdateView
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
+from django.views.generic import DetailView, UpdateView, DeleteView
+from django.forms import model_to_dict
+
 
 import lcc.models as models
 import lcc.forms as forms
@@ -51,7 +53,14 @@ class Metadata:
 
     def _get_type(self, name):
         field = self.form.fields.get(name, None)
-        return field.widget.input_type if field else None
+
+        if not field:
+            return None
+
+        if getattr(field.widget, 'allow_multiple_selected', None):
+            return 'multiple'
+
+        return field.widget.input_type
 
     def __getattr__(self, name):
         val_orig = self._get_value(self.original, name)
@@ -64,6 +73,7 @@ class Metadata:
         return dict(
             value=val_custom,
             orig=val_orig,
+            name=name,
             label=self._get_label(name),
             type=self._get_type(name),
             modified=val_custom != val_orig
@@ -87,7 +97,9 @@ class Details(DetailView):
         )
 
     def get_context_data(self, **kwargs):
+        countries = models.Country.objects.all()
         context = super().get_context_data(**kwargs)
+        context['countries'] = countries
         context['country'] = self.object.country
         try:
             metadata_user = self.model.objects.get(
@@ -125,7 +137,21 @@ class Customise(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['country'] = self.object.country
-        context['meta'] = self.object
+        try:
+            metadata_user = self.model.objects.get(
+                country__iso=self.object.country.iso,
+                user=self.request.user_profile
+            )
+        except self.model.DoesNotExist:
+            metadata_user = None
+        iso = self.kwargs.get(self.pk_url_kwarg)
+        
+        origin = get_object_or_404(
+            self.model,
+            country__iso=iso,
+            user=None
+        )
+        context['meta'] = Metadata(origin, metadata_user)
         return context
 
     @transaction.atomic
@@ -137,3 +163,24 @@ class Customise(UpdateView):
             form.delete()
 
         return HttpResponseRedirect(self.get_success_url())
+
+
+class DeleteCustomisedProfile(DeleteView):
+    model = models.CountryMetadata
+    pk_url_kwarg = 'iso'
+
+    def get_success_url(self, **kwargs):
+        iso = self.kwargs.get(self.pk_url_kwarg)
+        return reverse('lcc:country:view', kwargs={
+            'iso': iso
+        })
+
+    def get_object(self):
+        iso = self.kwargs.get(self.pk_url_kwarg)
+        return models.CountryMetadata.objects.get(
+            user=self.request.user_profile,
+            country__iso=iso
+        )
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)

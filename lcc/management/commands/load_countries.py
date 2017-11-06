@@ -132,9 +132,9 @@ def import_row(row):
     metadata = create_metadata(country, row)
 
     # assign many to many fields
-    metadata.region = [region] if region else []
-    metadata.sub_region = [sub_region] if sub_region else []
-    metadata.legal_system = [legal_system] if legal_system else []
+    metadata.region = region
+    metadata.sub_region = sub_region
+    metadata.legal_system = legal_system
     metadata.mitigation_focus_areas = (
         focus_areas if focus_areas else []
     )

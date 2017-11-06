@@ -291,9 +291,9 @@ class CountryMetadata(models.Model):
     lldc = models.BooleanField('LLDC', default=False)
     sid = models.BooleanField('SID', default=False)
 
-    region = models.ManyToManyField(Region)
-    sub_region = models.ManyToManyField(SubRegion)
-    legal_system = models.ManyToManyField(LegalSystem)
+    region = models.ForeignKey(Region, null=True)
+    sub_region = models.ForeignKey(SubRegion, null=True)
+    legal_system = models.ForeignKey(LegalSystem, null=True)
 
     population = models.FloatField("Population ('000s) 2018", null=True)
     hdi2015 = models.FloatField('HDI2015', null=True)

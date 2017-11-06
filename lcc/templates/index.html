@@ -7,22 +7,22 @@
   {% if request.user.is_authenticated %}
       <div class="actions-wrapper">
           {% if request.user_profile %}
-           <span class="country">
-              <a href="{% url 'lcc:country:view' iso=request.user_profile.home_country.iso %}">
-                    <span class="username">
-                      {{ request.user.get_full_name|default:request.user.username }}
-                    </span>
-              </a>
-           </span>
-           {% else %}
-            <span class="username">
-              {{ request.user.get_full_name|default:request.user.username }}
-            </span>
+              <span class="country">
+                <a class="disabled" href="" title="User Profile page will be available in the next version">
+                  <span class="username">
+                    {{ request.user.get_full_name|default:request.user.username }}
+                  </span>
+                </a>
+              </span>
+            {% else %}
+              <span class="username">
+                {{ request.user.get_full_name|default:request.user.username }}
+              </span>
           {% endif %}
 
-            <span class="action">
-              <a class="btn btn-link" href="{% url 'lcc:auth:logout' %}">Logout</a>
-            </span>
+          <span class="action">
+            <a class="btn btn-link" href="{% url 'lcc:auth:logout' %}">Logout</a>
+          </span>
       </div>
   {% else %}
     <a class="btn btn-link" href="{% url 'lcc:auth:login' %}?next={{ request.path }}" id='login-link'> Login</a> <span class="separator"></span>
