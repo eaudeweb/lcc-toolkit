@@ -87,7 +87,9 @@ class Details(DetailView):
         )
 
     def get_context_data(self, **kwargs):
+        countries = models.Country.objects.all()
         context = super().get_context_data(**kwargs)
+        context['countries'] = countries
         context['country'] = self.object.country
         try:
             metadata_user = self.model.objects.get(

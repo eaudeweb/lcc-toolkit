@@ -13,7 +13,8 @@
      'assessment':'/api/assessments/',
      'countries':'/api/countries/',
      'assessment_results':'/legal-assessment/pk/results',
-     'api_assessment_results':'/api/assessments/pk/results/'
+     'api_assessment_results':'/api/assessments/pk/results/',
+     'assessment_profile':'/country/pk/'
     }
 
     var ajax_settings = {

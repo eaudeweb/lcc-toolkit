@@ -58,7 +58,12 @@
           <ul>
             <li><a class="active" href="{% url 'lcc:legislation:explorer' %}">Legislation Explorer</a></li>
             <li><a class="{% if not request.user.is_authenticated %}disabled{%endif%}" href="{% url 'lcc:legal_assessment' %}">Legal Assessment</a></li>
-            <li><a class="{% if not request.user.is_authenticated %}disabled{%endif%}" href="{% url 'lcc:legislation:explorer' %}">Context Control</a></li>
+            <li>
+              <a class="{% if not request.user.is_authenticated %}disabled{%endif%}"
+                 href="{% if request.user.is_authenticated %}{% url 'lcc:country:view' iso=request.user_profile.home_country.iso %}{% endif %}">
+                Assessment Profile
+              </a>
+            </li>
             <li><a title="Not implemented in this version." class="disabled" href="">Lessons learned</a></li>
           </ul>
         </div>
