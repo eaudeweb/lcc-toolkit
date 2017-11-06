@@ -5,6 +5,6 @@
         <img class="flag" src="{{ baseUrl }}/img/flags/{{ law.country.iso |lower }}.svg">
         <span>{{ law.country.name }}</span>
     </span>
-    {% if law.law_type %}<span> • {{ law.law_type }}</span>{% endif %}
+    {% if law.law_type %}<span> • {{ law.get_law_type_display }}</span>{% endif %}
     {% if law.year %} • <span>{{ law.year }}</span>{% endif %}
 </div>

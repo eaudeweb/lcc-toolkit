@@ -62,7 +62,7 @@
 
     <div class="dl">
       <div class="dd"><span>Document type</span></div>
-      <div class="dt">{% if law.law_type %}{{ law.law_type }}{% else %} - {% endif %}</div>
+      <div class="dt">{% if law.law_type %}{{ law.get_law_type_display }}{% else %} - {% endif %}</div>
     </div>
 
     <div class="dl">
