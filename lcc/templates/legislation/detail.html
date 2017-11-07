@@ -90,7 +90,7 @@
 
     <div class="dl">
       <div class="dd"><span>Original document</span></div>
-      <div class="dt"><a href="{{ law.pdf_file.url }}" target="_blank">{{ law.pdf_file_name }}</a></div>
+      <div class="dt"><a href="{{ law.pdf_file.url }}" target="_blank">See full text (pdf)</a></div>
     </div>
     {% endif %}
 
@@ -137,7 +137,7 @@
   </div>
 
   {% if other_legislations %}
-    <div class="page-container half right viz-container">
+    <div style="text-align:right;" class="page-container viz-container">
       {% for classification, legislations in other_legislations.items %}
         {% if legislations %}
           <div class="other-results-wrapper">

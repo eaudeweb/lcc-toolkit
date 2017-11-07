@@ -11,9 +11,12 @@
 
 {% block page-title %}Assessment profile{% endblock %}
 {% block page-menu %}
-  <select style="float: right;
+ <div style="float: right;
     width: 200px;
-    margin-top: 2.5rem;" id="assess_profile_country_list">
+    margin-top: 2rem;">
+   
+ <span style="font-size: 1.5rem;
+    padding-left: 2px;">Change country</span> <select  id="assess_profile_country_list">
     {% for country_select in countries %}
       <option value="{{ country_select.iso }}"
               {% if country.iso == country_select.iso %}selected{% endif %}>
@@ -21,6 +24,7 @@
       </option>
     {% endfor %}
   </select>    
+ </div>
 
 {% endblock %}
 

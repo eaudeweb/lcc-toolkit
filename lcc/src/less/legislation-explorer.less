@@ -105,3 +105,21 @@ select#classificationsDropDown {
 .highlights em {
   background-color: yellow;
 }
+
+#classificationsDropDownWrapper {
+    i {
+        position: absolute;
+        left: -2px;
+        top: 0px;
+    }
+    ul.second-level {
+        display: none;
+    }
+    .third-level li {
+        &:before {
+            content: '•';
+            position: absolute;
+            left: -9px;
+        }
+    }
+}

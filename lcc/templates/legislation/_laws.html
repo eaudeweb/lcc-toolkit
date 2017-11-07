@@ -2,7 +2,7 @@
 {% for law in laws %}
 <div class="law-container">
   <a href="{% url 'lcc:legislation:details' law.pk %}">
-    <h5>{{ law.get_law_type_display }}: {{ law.highlighted_title }}</h5>
+    <h5>{{ law.highlighted_title }} ({{ law.get_law_type_display }})</h5>
   </a>
 
   <h6 class="country_year law-country">
