@@ -14,6 +14,8 @@ class LegislationDocument(DocType):
 
     country = fields.KeywordField()
 
+    law_type = fields.KeywordField(attr='law_type')
+
     def prepare_classifications(self, instance):
         return list(instance.classifications.all().values_list('id', flat=True))
 
@@ -28,8 +30,8 @@ class LegislationDocument(DocType):
 
         # The fields of the model you want to be indexed in Elasticsearch
         fields = [
+            'id',
             'title',
             'abstract',
-            'law_type',
             # TODO: 'pdf_file'
         ]

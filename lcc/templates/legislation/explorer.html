@@ -34,10 +34,23 @@
     </div><!-- /row -->
   </div><!-- /search -->
 <div id="laws" class="page-container half viz-container">
-    {% include "./_laws.html" %}
+  {# TODO: add counter! #}
+  {% include "./_laws.html" %}
 </div>
 <div class="page-container half viz-container right">
   <h4>Filter legislation</h4>
+
+    <div class="filter-item list-container" id="classificationsDropDownWrapper">
+     <label><b>Select Legal Area</b></label>
+      <ul class="round" name="classifications" id="classificationsDropDown" multiple="multiple">
+        {% for top in top_classifications %}
+          <li class="first-level level">
+          <input type="checkbox" name="{{ top.pk }}" id="{{ top.pk }}" value="{{ top.pk }}"></input>
+          <label for="{{ top.pk }}">{{ top.name }}</label>
+           </li>
+        {% endfor %}
+      </ul>
+    </div>
 
     <div class="filter-item filter-countries">
     <label for="countryDropDown"><b>Country</b></label>
@@ -57,18 +70,6 @@
             <input type="checkbox" name="{{key}}" id="{{key}}" value="{{key}}"></input>
             <label for="{{key}}">{{ value }}</label>
           </li>
-        {% endfor %}
-      </ul>
-    </div>
-
-    <div class="filter-item list-container" id="classificationsDropDownWrapper">
-     <label><b>Select Legal Area</b></label>
-      <ul class="round" name="classifications" id="classificationsDropDown" multiple="multiple">
-        {% for top in top_classifications %}
-          <li class="first-level level">
-          <input type="checkbox" name="{{ top.pk }}" id="{{ top.pk }}" value="{{ top.pk }}"></input>
-          <label for="{{ top.pk }}">{{ top.name }}</label>
-           </li>
         {% endfor %}
       </ul>
     </div>

@@ -15,12 +15,13 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        classifications = list(TaxonomyClassification.objects.all())
+        # Legislation objects can only be tagged with level 0 classifications
+        classifications = list(TaxonomyClassification.objects.filter(level=0))
         tags = list(TaxonomyTag.objects.all())
 
         for _ in range(options['num']):
 
-            num_class = randint(1, 5)
+            num_class = randint(1, 4)
             num_tags = randint(1, 10)
 
             shuffle(classifications)
