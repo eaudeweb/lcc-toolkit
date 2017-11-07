@@ -300,16 +300,28 @@ class CountryMetadata(models.Model):
 
     gdp_capita = models.FloatField('GDP per capita, US$ 2016', null=True)
     ghg_no_lucf = models.FloatField(
-        'Total GHG Emissions excluding LUCF MtCO2e 2014', null=True)
+        'Total GHG Emissions excluding LUCF MtCO2e 2014',
+        null=True
+    )
     ghg_lucf = models.FloatField(
-        'Total GHG Emissions including LUCF MtCO2e 2014', null=True)
-    cvi2015 = models.FloatField('Climate vulnerability index 2015', null=True, blank=True)
+        'Total GHG Emissions including LUCF MtCO2e 2014',
+        null=True
+    )
+    cvi2015 = models.FloatField(
+        'Climate vulnerability index 2015',
+        null=True,
+        blank=True
+    )
 
     mitigation_focus_areas = models.ManyToManyField(
-        FocusArea, blank=True)
+        FocusArea,
+        blank=True
+    )
 
     adaptation_priority_sectors = models.ManyToManyField(
-        PrioritySector, blank=True)
+        PrioritySector,
+        blank=True
+    )
 
     def __str__(self):
         return f'{self.country.name} ({self.user or "no user"})'

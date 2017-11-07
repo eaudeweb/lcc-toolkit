@@ -47,71 +47,73 @@
     </thead>
     <tbody>
     {% for prop in meta %}
-      <tr>
-        <td>{{ prop.label }} {% if prop.modified %}*{% endif %}</td>
-        <td class="original">
-          {% if prop.value or prop.value is False %}
-            <span class="{{ prop.type }}">
-              {% if prop.type == 'multiple' %}
-                <ul>
-                  {% for multiple_prop in prop.orig %}
-                    <li>• {{ multiple_prop }}</li>
-                  {% endfor%}
-                </ul>
-              {% elif  prop.type == 'checkbox' %}
-                {% if prop.orig == True %}
-                  <span class="table_image">✔</span>
-                {% else %}
-                  <span class="table_image">🗙</span>
-                {% endif %}
-              {% else %}
-                {{ prop.orig }}
-              {% endif %}
-            </span>
-          {% else %}
-            &mdash;
-          {% endif %}
-        </td>
-        {% if meta.is_customised %}
-        <td class="simulation">
-          <span class="{{ prop.type }}">
-            {% if prop.modified %}
-              {% if prop.type == 'checkbox' %}  
-                {% if prop.value == True %}
-                  <span class="table_image">✔</span>
-                {% else %}
-                  <span class="table_image">🗙</span>
-                {% endif %}
-                {% elif prop.type == 'multiple' %}
+      {% if not prop.name == 'cvi2015' %}
+        <tr>
+          <td>{{ prop.label }} {% if prop.modified %}*{% endif %}</td>
+          <td class="original">
+            {% if prop.value or prop.value is False %}
+              <span class="{{ prop.type }}">
+                {% if prop.type == 'multiple' %}
                   <ul>
                     {% for multiple_prop in prop.orig %}
                       <li>• {{ multiple_prop }}</li>
                     {% endfor%}
                   </ul>
-              {% else %}
-                {{ prop.value }}
-              {% endif %}
+                {% elif  prop.type == 'checkbox' %}
+                  {% if prop.orig == True %}
+                    <span class="table_image">✔</span>
+                  {% else %}
+                    <span class="table_image">🗙</span>
+                  {% endif %}
+                {% else %}
+                  {{ prop.orig }}
+                {% endif %}
+              </span>
             {% else %}
-              <span class="muted">
-                {% if prop.value or prop.value is False %}
-                  {% if prop.type == 'multiple' %}
+              &mdash;
+            {% endif %}
+          </td>
+          {% if meta.is_customised %}
+          <td class="simulation">
+            <span class="{{ prop.type }}">
+              {% if prop.modified %}
+                {% if prop.type == 'checkbox' %}  
+                  {% if prop.value == True %}
+                    <span class="table_image">✔</span>
+                  {% else %}
+                    <span class="table_image">🗙</span>
+                  {% endif %}
+                  {% elif prop.type == 'multiple' %}
                     <ul>
                       {% for multiple_prop in prop.orig %}
                         <li>• {{ multiple_prop }}</li>
                       {% endfor%}
                     </ul>
-                  {% elif not prop.type == 'checkbox' %}
-                    {{ prop.orig }}
-                  {% endif %}
                 {% else %}
-                  &mdash;
+                  {{ prop.value }}
                 {% endif %}
-              </span>
-            {% endif %}
-          </span>
-        </td>
-        {% endif %}
-      </tr>
+              {% else %}
+                <span class="muted">
+                  {% if prop.value or prop.value is False %}
+                    {% if prop.type == 'multiple' %}
+                      <ul>
+                        {% for multiple_prop in prop.orig %}
+                          <li>• {{ multiple_prop }}</li>
+                        {% endfor%}
+                      </ul>
+                    {% elif not prop.type == 'checkbox' %}
+                      {{ prop.orig }}
+                    {% endif %}
+                  {% else %}
+                    &mdash;
+                  {% endif %}
+                </span>
+              {% endif %}
+            </span>
+          </td>
+          {% endif %}
+        </tr>
+      {% endif %}
     {% endfor %}
     <tr class="last">
       <td></td>
