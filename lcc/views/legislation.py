@@ -8,6 +8,7 @@ from django.db import transaction
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 from django.views.generic import (
     ListView, CreateView, DetailView, UpdateView, DeleteView
 )
@@ -99,7 +100,29 @@ class LegislationExplorer(ListView):
             search = search.sort('id')
 
         # TODO: Implement proper pagination!
-        return search[0:10000].to_queryset()
+        laws = search[0:10000].to_queryset()
+        if q:
+            # If there was a text search, replace the `laws` queryset with a
+            # list of patched Legislation objects that have the highlighted
+            # text attached to them
+            search = search.highlight('title', 'abstract')
+            patched_laws = []
+            for hit, law in zip(search[0:10000].execute(), laws):
+                highlights = hit.meta.highlight.to_dict()
+                # The highlighted_title attribute is always set. If there were
+                # no highlights, it's set to the original title
+                law.highlighted_title = mark_safe(
+                    ' [...] '.join(highlights.get('title', [law.title]))
+                )
+                # The highlighted_abstract attribute is only set if there were
+                # highlights in the abstract
+                if 'abstract' in highlights:
+                    law.highlighted_abstract = mark_safe(
+                        ' [...] '.join(highlights['abstract'])
+                    )
+                patched_laws.append(law)
+            laws = patched_laws
+        return laws
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

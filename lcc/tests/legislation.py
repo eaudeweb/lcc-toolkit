@@ -27,9 +27,10 @@ class LegislationExplorer(TestCase):
         response = c.get('/legislation/')
         self.assertContains(response, '<div id="laws"')
 
-    def test_best_fields(self):
+    def test_best_fields_and_highlights(self):
         """
-        Test that full-text search respects best_fields logic. More info at:
+        Test that full-text search respects best_fields logic and highlights
+        matched terms. More info at:
             - https://www.elastic.co/guide/en/elasticsearch/guide/current/_best_fields.html
         """
         Legislation.objects.create(
@@ -45,9 +46,17 @@ class LegislationExplorer(TestCase):
         c = Client()
         response = c.get('/legislation/', {'partial': True, 'q': "Brown fox"})
         self.assertEqual(
-            response.context['laws'][0].title, "Keeping pets healthy")
+            response.context['laws'][0].highlighted_title, "Keeping pets healthy")
+        self.assertEqual(
+            response.context['laws'][0].highlighted_abstract,
+            "My quick <em>brown</em> <em>fox</em> eats rabbits on a regular basis."
+        )
         self.assertEqual(
             response.context['laws'][1].title, "Quick brown rabbits")
+        self.assertEqual(
+            response.context['laws'][1].highlighted_abstract,
+            "<em>Brown</em> rabbits are commonly seen."
+        )
 
     def test_classification_filtering(self):
 

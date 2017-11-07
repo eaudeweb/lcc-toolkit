@@ -1,7 +1,9 @@
 {% load static %}
 {% for law in laws %}
 <div class="law-container">
-  <a href="{% url 'lcc:legislation:details' law.pk %}"><h5>{{ law.get_law_type_display }}: {{ law.title }}</h5></a>
+  <a href="{% url 'lcc:legislation:details' law.pk %}">
+    <h5>{{ law.get_law_type_display }}: {{ law.highlighted_title }}</h5>
+  </a>
 
   <h6 class="country_year law-country">
     {% static "" as baseUrl %}
@@ -21,16 +23,27 @@
     {% endif %}
   </div>
 
-    <div class="tag-wrapper">
+  <div class="tag-wrapper">
+    {% if law.tags.exists %}
+    <span><b>Tags:</b></span>
+    <span>
+      {% for tag in law.tags.all%}
+       <span class="tag">{{ tag.name }}</span>
+      {% endfor %}
+    </span>
+    {% endif %}
+  </div>
+
+  {% if law.highlighted_abstract %}
+    <div class="highlights">
       {% if law.tags.exists %}
-      <span><b>Tags:</b></span>
+      <span><b>Abstract:</b></span>
       <span>
-        {% for tag in law.tags.all%}
-         <span class="tag">{{ tag.name }}</span>
-        {% endfor %}
+        {{ law.highlighted_abstract }}
       </span>
       {% endif %}
     </div>
+  {% endif %}
 
 </div>
 {% empty %}
