@@ -156,7 +156,7 @@ $(document).ready(function() {
                     renderSuggestedLegislation(question.articles, dt_suggestion);
 
                     if( question.articles.length > 3 ) {
-                      var button_title = '<span class="show">View all ' + question.articles.length + ' suggestions</span> <span class="hide">Show less articles</span>';                 
+                      var button_title = '<span class="show">View all ' + question.articles.length + ' suggestions</span> <span class="hide">Show less suggestions</span>';                 
                       var toggle_legislation_results = $('<button type="button" class="btn btn-default results_toggle">'+button_title+'</button>')
                                                       .appendTo(container)
                                                       .click(handleToggleShowSugestions);  
