@@ -15,31 +15,33 @@
   </h3>
     <div class="hidden_values">
       {% for prop in meta %}
-        <ul>
-          <li id="{{prop.name}}" class="original">
-            {% if prop.orig or prop.orig is False %}
-              <span class="{{ prop.type }}">
-                {% if prop.type == 'multiple' %}
-                  <ul>
-                    {% for multiple_prop in prop.orig %}
-                      <li>• {{ multiple_prop }}</li>
-                    {% endfor%}
-                  </ul>
-                {% elif  prop.type == 'checkbox' %}
-                  {% if prop.orig == True %}
-                    <span class="table_image">✔</span>
+        {% if not prop.name == 'cvi2015' %}
+          <ul>
+            <li id="{{prop.name}}" class="original">
+              {% if prop.orig or prop.orig is False %}
+                <span class="{{ prop.type }}">
+                  {% if prop.type == 'multiple' %}
+                    <ul>
+                      {% for multiple_prop in prop.orig %}
+                        <li>• {{ multiple_prop }}</li>
+                      {% endfor%}
+                    </ul>
+                  {% elif  prop.type == 'checkbox' %}
+                    {% if prop.orig == True %}
+                      <span class="table_image">✔</span>
+                    {% else %}
+                      <span class="table_image">🗙</span>
+                    {% endif %}
                   {% else %}
-                    <span class="table_image">🗙</span>
+                    {{ prop.orig }}
                   {% endif %}
-                {% else %}
-                  {{ prop.orig }}
-                {% endif %}
-              </span>
-            {% else %}
-              &mdash;
-            {% endif %}
-          </li>
-        </ul>
+                </span>
+              {% else %}
+                &mdash;
+              {% endif %}
+            </li>
+          </ul>
+        {% endif %}
       {% endfor %}
     </div>
 
@@ -55,14 +57,15 @@
         </thead>
         <tbody>
           {% for field in form.visible_fields %}
-            <tr>
-              <td>
-                {{ field.label_tag }}
-              </td>
-
-              <td id="{{field.name}}" class="original"></td>
-              <td class="simulation">{{ field }}</td>
-            </tr>
+            {% if not field.name == 'cvi2015' %}
+              <tr>
+                <td>
+                  {{ field.label_tag }}
+                </td>
+                <td id="{{ field.name }}" class="original"></td>
+                <td class="simulation">{{ field }}</td>
+              </tr>
+            {% endif %}
           {% endfor %}
           <tr class="last">
             <td></td>

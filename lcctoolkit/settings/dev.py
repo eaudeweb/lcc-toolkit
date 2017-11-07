@@ -2,7 +2,7 @@ import environ
 from lcctoolkit.settings.base import *  # noqa
 
 
-root = environ.Path(__file__) - 2
+root = environ.Path(__file__) - 3
 env = environ.Env(DEBUG=(bool, False),)
 
 BASE_DIR = root()
