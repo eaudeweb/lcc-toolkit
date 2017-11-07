@@ -47,8 +47,8 @@
           <li class="first-level level">
             {% with top_class.get_children as second_classifications %}
               <span class="list-header">
-                <input name='classification_{{ top_class.pk }}' id='classification_{{ top_class.pk }}' type='checkbox'/>
-                <label for='classification_{{ top_class.pk }}' name='classification_{{ top_class.pk }}'>{{ top_class.name }}</label>
+                <input name='{{ top_class.pk }}' value='{{ top_class.pk }}' id='{{ top_class.pk }}' type='checkbox'/>
+                <label for='{{ top_class.pk }}' name='{{ top_class.pk }}'>{{ top_class.name }}</label>
                 {% if second_classifications %}
                   <i class="fa fa-caret-down" aria-hidden="true"></i>
                 {% endif %}
