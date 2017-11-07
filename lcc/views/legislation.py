@@ -49,7 +49,6 @@ class LegislationExplorer(ListView):
         If the `partial` parameter is set, return only the list of laws,
         don't render the whole page again.
         """
-
         if self.request.GET.get('partial'):
             self.template_name = "legislation/_laws.html"
         return super().dispatch(request, *args, **kwargs)
@@ -67,16 +66,16 @@ class LegislationExplorer(ListView):
         #   - http://api.jquery.com/jQuery.param/
 
         # List of strings representing TaxonomyClassification ids
-        classifications = self.request.GET.getlist('classifications[]')
-        if classifications:
-            search = search.query(
-                'terms', classifications=[int(pk) for pk in classifications])
+        classification_ids = [
+            int(pk) for pk in self.request.GET.getlist('classifications[]')]
+
+        if classification_ids:
+            search = search.query('terms', classifications=classification_ids)
 
         # List of strings representing TaxonomyTag ids
-        tags = self.request.GET.getlist('tags[]')
-        if tags:
-            search = search.query(
-                'terms', tags=[int(pk) for pk in tags])
+        tag_ids = [int(pk) for pk in self.request.GET.getlist('tags[]')]
+        if tag_ids:
+            search = search.query('terms', tags=tag_ids)
 
         # String representing country iso code
         country = self.request.GET.get('country')
@@ -84,9 +83,9 @@ class LegislationExplorer(ListView):
             search = search.query('term', country=country)
 
         # String representing law_type
-        law_type = self.request.GET.get('law_type')
-        if law_type:
-            search = search.query('term', law_type=law_type)
+        law_types = self.request.GET.getlist('law_types[]')
+        if law_types:
+            search = search.query('terms', law_type=law_types)
 
         # String to be searched in all text fields (full-text search using
         # elasticsearch's default best_fields strategy)
@@ -94,6 +93,11 @@ class LegislationExplorer(ListView):
         if q:
             search = search.query(
                 'multi_match', query=q, fields=['title', 'abstract'])
+
+        if not any([classification_ids, tag_ids, q]):
+            # If there is no score to sort by, sort by id
+            search = search.sort('id')
+
         # TODO: Implement proper pagination!
         return search[0:10000].to_queryset()
 

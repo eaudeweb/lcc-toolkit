@@ -291,9 +291,9 @@ class CountryMetadata(models.Model):
     lldc = models.BooleanField('LLDC', default=False)
     sid = models.BooleanField('SID', default=False)
 
-    region = models.ForeignKey(Region, null=True)
-    sub_region = models.ForeignKey(SubRegion, null=True)
-    legal_system = models.ForeignKey(LegalSystem, null=True)
+    region = models.ForeignKey(Region, null=True, blank=True)
+    sub_region = models.ForeignKey(SubRegion, null=True, blank=True)
+    legal_system = models.ForeignKey(LegalSystem, null=True, blank=True)
 
     population = models.FloatField("Population ('000s) 2018", null=True)
     hdi2015 = models.FloatField('HDI2015', null=True)
@@ -303,7 +303,7 @@ class CountryMetadata(models.Model):
         'Total GHG Emissions excluding LUCF MtCO2e 2014', null=True)
     ghg_lucf = models.FloatField(
         'Total GHG Emissions including LUCF MtCO2e 2014', null=True)
-    cvi2015 = models.FloatField('Climate vulnerability index 2015', null=True)
+    cvi2015 = models.FloatField('Climate vulnerability index 2015', null=True, blank=True)
 
     mitigation_focus_areas = models.ManyToManyField(
         FocusArea, blank=True)

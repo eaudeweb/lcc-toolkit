@@ -1,7 +1,7 @@
 {% load static %}
 {% for law in laws %}
 <div class="law-container">
-  <a href="{% url 'lcc:legislation:details' law.pk %}"><h5>{{ law.get_law_type_display }}: {{ law.title }}</h5></a>
+  <a href="{% url 'lcc:legislation:details' law.pk %}"><h5>{{ law.title }} ({{ law.get_law_type_display }})</h5></a>
 
   <h6 class="country_year law-country">
     {% static "" as baseUrl %}
@@ -34,5 +34,5 @@
 
 </div>
 {% empty %}
-  <span class="error">No legislation found</span>
+  <span class="error">No legislation found for these filters</span>
 {% endfor %}

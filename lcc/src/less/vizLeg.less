@@ -60,7 +60,7 @@
         .dt {
             display: inline-block;
             vertical-align: top;
-            width: calc(~"100% - 174px");
+            width: calc(~"100% - 200px");
             color: @text-color;
             .tag {
                 display: inline-block;
@@ -182,7 +182,12 @@ pre {
 
 .tag-wrapper {
          .tag {
-            margin-right: .5rem;
+            margin-right: 5px;
+                border-left: 1px solid @border;
+    padding-left: 5px;
+            &:first-of-type {
+                border-left: none;
+            }
          }
 }
 
