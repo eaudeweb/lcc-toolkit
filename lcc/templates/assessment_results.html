@@ -16,17 +16,20 @@
 
 {% block page-title %}Legal Assessment{% endblock %}
 
+
 {% block breadcrumbs %}
 {{ block.super }}
 {% endblock %}
 
 {% block content %}
 
+<div class="results-header">
+   <ul id="summary"></ul>
+</div>
 
 <div class="container-fluid text-center" id="assessment-edit">
   <div class="row content">
     <div class="col-sm-12 sidenav google-codelab">
-      <div id="summary"></div>
       <div id="accordion">
       </div>
     </div>
