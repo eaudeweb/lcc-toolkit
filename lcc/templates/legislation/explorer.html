@@ -43,11 +43,39 @@
     <div class="filter-item list-container" id="classificationsDropDownWrapper">
      <label><b>Select Legal Area</b></label>
       <ul class="round" name="classifications" id="classificationsDropDown" multiple="multiple">
-        {% for top in top_classifications %}
+        {% for top_class in top_classifications %}
           <li class="first-level level">
-          <input type="checkbox" name="{{ top.pk }}" id="{{ top.pk }}" value="{{ top.pk }}"></input>
-          <label for="{{ top.pk }}">{{ top.name }}</label>
-           </li>
+            {% with top_class.get_children as second_classifications %}
+              <span class="list-header">
+                <input name='classification_{{ top_class.pk }}' id='classification_{{ top_class.pk }}' type='checkbox'/>
+                <label for='classification_{{ top_class.pk }}' name='classification_{{ top_class.pk }}'>{{ top_class.name }}</label>
+                {% if second_classifications %}
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
+                {% endif %}
+              </span>
+              <ul class="second-level level">
+                {% for second_class in second_classifications %}
+                  {% with second_class.get_children as third_classifications %}
+                    <li>
+                      <span class="list-header">
+                        <label for="classification_{{ second_class.pk }}">{{ second_class.name }}</label>
+                        {% if third_classifications %}
+                          <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        {% endif %}
+                      </span>
+                      <ul class="third-level level">
+                        {% for third_class in third_classifications %}
+                          <li>
+                            <label for="classification_{{ third_class.pk }}">{{ third_class.name }}</label>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% endwith %}
+                {% endfor %}
+              </ul>
+            {% endwith %}
+          </li>
         {% endfor %}
       </ul>
     </div>
