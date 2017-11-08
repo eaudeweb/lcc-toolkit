@@ -46,15 +46,19 @@ class LegislationExplorer(TestCase):
         c = Client()
         response = c.get('/legislation/', {'partial': True, 'q': "Brown fox"})
         self.assertEqual(
-            response.context['laws'][0].highlighted_title, "Keeping pets healthy")
+            response.context['laws'][0].highlighted_title(),
+            "Keeping pets healthy"
+        )
         self.assertEqual(
-            response.context['laws'][0].highlighted_abstract,
+            response.context['laws'][0].highlighted_abstract(),
             "My quick <em>brown</em> <em>fox</em> eats rabbits on a regular basis."
         )
         self.assertEqual(
-            response.context['laws'][1].title, "Quick brown rabbits")
+            response.context['laws'][1].highlighted_title(),
+            "Quick <em>brown</em> rabbits"
+        )
         self.assertEqual(
-            response.context['laws'][1].highlighted_abstract,
+            response.context['laws'][1].highlighted_abstract(),
             "<em>Brown</em> rabbits are commonly seen."
         )
 

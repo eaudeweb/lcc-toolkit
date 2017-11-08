@@ -109,15 +109,12 @@ class LegislationExplorer(ListView):
             patched_laws = []
             for hit, law in zip(search[0:10000].execute(), laws):
                 highlights = hit.meta.highlight.to_dict()
-                # The highlighted_title attribute is always set. If there were
-                # no highlights, it's set to the original title
-                law.highlighted_title = mark_safe(
-                    ' [...] '.join(highlights.get('title', [law.title]))
-                )
-                # The highlighted_abstract attribute is only set if there were
-                # highlights in the abstract
+                if 'title' in highlights:
+                    law._highlighted_title = mark_safe(
+                        ' [...] '.join(highlights['title'])
+                    )
                 if 'abstract' in highlights:
-                    law.highlighted_abstract = mark_safe(
+                    law._highlighted_abstract = mark_safe(
                         ' [...] '.join(highlights['abstract'])
                     )
                 patched_laws.append(law)

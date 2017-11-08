@@ -507,6 +507,22 @@ class Legislation(_TaxonomyModel):
     def __str__(self):
         return "Legislation: " + ' | '.join([self.country.name, self.law_type])
 
+    def highlighted_title(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        the title with the search terms highlighted. If not, return the original
+        title.
+        """
+        return getattr(self, '_highlighted_title', self.title)
+
+    def highlighted_abstract(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        the abstract with the search terms highlighted. If not, return an empty
+        string.
+        """
+        return getattr(self, '_highlighted_abstract', '')
+
 
 class LegislationArticleManager(models.Manager):
     def get_articles_for_gaps(self, gap_ids):
