@@ -91,7 +91,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 class AssessmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assessment
-        fields = ("id", "user", "country", "country_name")
+        fields = ("id", "user", "country", "country_name", "country_iso")
 
 
 class CountrySerializer(serializers.ModelSerializer):

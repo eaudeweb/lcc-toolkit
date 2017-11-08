@@ -8,6 +8,8 @@
 
 
 
+
+
 /* Set gray background color and 100% height */
 
 .sidenav {
@@ -18,6 +20,8 @@
         list-style-type: square;
     }
 }
+
+
 
 
 
@@ -365,24 +369,93 @@ body:not(.ass-results) {
     padding-bottom: 2rem;
 }
 
-#summary {
-    font-size: 1.5rem;
-    text-align: center;
-    li {
-        display: inline-block;
-        margin: 1rem;
+
+.results-header {
+
+    @media @tabletUp {
+        max-width: 800px;
+        margin: auto;
+    }
+
+
+    #summary {
+        font-size: 1.5rem;
+        text-align: center;
+        li {
+            display: inline-block;
+            padding: 0 2rem;
+            margin: 2rem 0;
+            border-right: 1px solid @border;
+            min-width: 190px;
+            &:last-of-type {
+                border-right: none;
+            }
+            span {
+                display: block;
+                font-size: 3.6rem;
+                font-weight: bold;
+            }
+            @media @mobileOnly {
+            width: 123px;
+            min-width: initial;
+            transform: scale(.7);
+            margin: 0;
+            padding: 0;
+            white-space: nowrap;
+            border: none;
+            }
+        }
+        position: relative;
+        padding-bottom: 2rem;
+        &:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 1px solid @border;
+        }
+    }
+
+
+
+    .muted {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    .results-info {
+        max-width: 413px;
+        font-weight: bold;
+        margin: auto;
+        margin-top: 2rem;
+        text-align: center;
+        position: relative;
     }
 }
 
-     .results-header {
-              @media @tabletUp {
-            max-width: 800px;
-            margin: auto;
+.results-header,
+.page-menu {
+        .country {
+        text-align: center;
+        font-weight: bold;
+        img {
+            width: 39px;
+            margin-right: 1rem;
+            margin-top: -9px;
         }
-      }
+    }
+}
+
+.page-menu .country {
+    float: right;
+    margin-top: 3rem;
+    transform: scale(0.6);
+}
 
 
 #assessment-result {
+
     .dl_suggestions {
         dt {
 
@@ -402,7 +475,7 @@ body:not(.ass-results) {
     .results_toggle {
         width: calc(~"100% + 4rem");
         margin-left: -2rem;
-        margin-bottom: -2.3rem;
+        margin-bottom: -2.5rem;
         background: @background;
         cursor: pointer;
     }

@@ -16,6 +16,9 @@
 
 {% block page-title %}Legal Assessment{% endblock %}
 
+{% block page-menu %}<h2 class="country"></h2>
+{% endblock%}
+
 
 {% block breadcrumbs %}
 {{ block.super }}
@@ -24,7 +27,10 @@
 {% block content %}
 
 <div class="results-header">
+	<div class="muted">Legal assessment results</div>
+	<h2 class="country"></h2>
    <ul id="summary"></ul>
+   <div class="results-info">Based on your assessment, the following priority areas are suggested for reform: </div>
 </div>
 
 <div class="container-fluid text-center" id="assessment-result">

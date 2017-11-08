@@ -74,6 +74,7 @@ $(document).ready(function(){
             var li_country = $('<option/>')
                               .text(element.country_name)
                               .attr('value', element.id)
+                              .attr('country_iso', element.country_iso)
                               .appendTo(country_list);
           }
 
@@ -84,39 +85,49 @@ $(document).ready(function(){
     function handleCreateAssessment() {
       var self = this;
       $('#add-assessment').click(function(event) {
-        var selected_country= $('#country-list-new').find('option:selected').val();
-        createAssessment.call(self, selected_country)
+        var selected_country_iso = $('#country-list-new').find('option:selected').val();
+        var selected_country_name = $('#country-list-new').find('option:selected').text();
+        createAssessment.call(self, selected_country_iso, selected_country_name)
       });
     }
 
     function handleContinueAssessment() {
       var self = this;
       $('#continue-assessment').click(function(event) {
-        self.assessment_id= $('#country-list-continue').find('option:selected').val();
-        continueAssessment.call(self);
+        self.assessment_id = $('#country-list-continue').find('option:selected').val();
+        var selected_country_name = $('#country-list-continue').find('option:selected').text();
+        var selected_country_iso = $('#country-list-continue').find('option:selected').attr('country_iso');
+        continueAssessment.call(self,  selected_country_iso, selected_country_name);
       });
     }
 
 
-    function createAssessment(country) {
+    function createAssessment(country_iso, country_name) {
       var self = this;
       RequestService
-        .createAssessment({country: country, user: user_id})
+        .createAssessment({country: country_iso, user: user_id})
         .done(function (responseAssessment) {
           self.assessment_id = responseAssessment.id;
           $('#assessment-landing').hide();
           $('#assessment-results-btn').show();
           $('#assessment-edit').show();
+          setAssessmentTitle(country_iso, country_name);
           getClassifications.call(self);
         });
     }
 
-    function continueAssessment() {
+    function continueAssessment(country_iso, country_name) {
       $('#assessment-landing').hide();
       $('#assessment-edit').show();
       $('#assessment-results-btn').show();
+      setAssessmentTitle(country_iso, country_name);
       getClassifications.call(this);
     }
+
+    function setAssessmentTitle(country_iso, country_name) {
+        var assessment_header =  '<img src="/static/img/flags/'+ country_iso.toLowerCase() +'.svg" />' + country_name
+        $('.page-menu .country').html(assessment_header);
+      }
 
     function getClassifications() {
       var self = this;
