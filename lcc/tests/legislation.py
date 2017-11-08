@@ -1,6 +1,9 @@
+import shutil
+
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.management import call_command
 from django.test import Client, TestCase
+from django.conf import settings
 
 from lcc.models import Legislation
 
@@ -173,3 +176,6 @@ class LegislationExplorer(TestCase):
         returned_law_ids = [law.id for law in response.context['laws']]
 
         self.assertEqual(expected_law_ids, returned_law_ids)
+
+    def tearDown(self):
+        shutil.rmtree(settings.MEDIA_ROOT, ignore_errors=True)
