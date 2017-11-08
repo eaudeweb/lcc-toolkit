@@ -113,7 +113,7 @@ class GapSerializer(serializers.ModelSerializer):
 class LegislationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Legislation
-        fields = ("id", "title", "year", "country_name")
+        fields = ("id", "title", "year", "country_name", "country_iso")
 
 
 class GapArticleSerializer(serializers.ModelSerializer):
