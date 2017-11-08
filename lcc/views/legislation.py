@@ -93,7 +93,8 @@ class LegislationExplorer(ListView):
         q = self.request.GET.get('q')
         if q:
             search = search.query(
-                'multi_match', query=q, fields=['title', 'abstract'])
+                'multi_match', query=q, fields=['title', 'abstract', 'pdf_text']
+            )
 
         if not any([classification_ids, tag_ids, q]):
             # If there is no score to sort by, sort by id
@@ -105,7 +106,7 @@ class LegislationExplorer(ListView):
             # If there was a text search, replace the `laws` queryset with a
             # list of patched Legislation objects that have the highlighted
             # text attached to them
-            search = search.highlight('title', 'abstract')
+            search = search.highlight('title', 'abstract', 'pdf_text')
             patched_laws = []
             for hit, law in zip(search[0:10000].execute(), laws):
                 highlights = hit.meta.highlight.to_dict()
@@ -116,6 +117,10 @@ class LegislationExplorer(ListView):
                 if 'abstract' in highlights:
                     law._highlighted_abstract = mark_safe(
                         ' [...] '.join(highlights['abstract'])
+                    )
+                if 'pdf_text' in highlights:
+                    law._highlighted_pdf_text = mark_safe(
+                        ' [...] '.join(highlights['pdf_text'])
                     )
                 patched_laws.append(law)
             laws = patched_laws
@@ -195,7 +200,7 @@ class LegislationPagesView(views.View):
     def get(self, request, *args, **kwargs):
         law = get_object_or_404(models.Legislation,
                                 pk=kwargs['legislation_pk'])
-        pages = law.page.all()
+        pages = law.pages.all()
         content = {}
         for page in pages:
             content[page.page_number] = page.page_text

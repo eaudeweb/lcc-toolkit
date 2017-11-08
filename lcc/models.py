@@ -523,6 +523,14 @@ class Legislation(_TaxonomyModel):
         """
         return getattr(self, '_highlighted_abstract', '')
 
+    def highlighted_pdf_text(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        the pdf_text with the search terms highlighted. If not, return an empty
+        string.
+        """
+        return getattr(self, '_highlighted_pdf_text', '')
+
 
 class LegislationArticleManager(models.Manager):
     def get_articles_for_gaps(self, gap_ids):
@@ -556,7 +564,7 @@ class LegislationArticle(_TaxonomyModel):
 class LegislationPage(models.Model):
     page_text = models.CharField(max_length=65535)
     page_number = models.IntegerField()
-    legislation = models.ForeignKey(Legislation, related_name="page")
+    legislation = models.ForeignKey(Legislation, related_name="pages")
 
     def __str__(self):
         return "Page %d of Legislation %s" % (

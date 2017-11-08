@@ -16,6 +16,8 @@ class LegislationDocument(DocType):
 
     law_type = fields.KeywordField(attr='law_type')
 
+    pdf_text = fields.TextField()
+
     def prepare_classifications(self, instance):
         return list(instance.classifications.all().values_list('id', flat=True))
 
@@ -25,6 +27,9 @@ class LegislationDocument(DocType):
     def prepare_country(self, instance):
         return instance.country.iso
 
+    def prepare_pdf_text(self, instance):
+        return '\n\n'.join([page.page_text for page in instance.pages.all()])
+
     class Meta:
         model = Legislation  # The model associated with this DocType
 
@@ -32,6 +37,5 @@ class LegislationDocument(DocType):
         fields = [
             'id',
             'title',
-            'abstract',
-            # TODO: 'pdf_file'
+            'abstract'
         ]
