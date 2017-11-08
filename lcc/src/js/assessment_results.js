@@ -13,6 +13,31 @@ $(document).ready(function() {
             var articles_no = 0;
 
             getAssessmentResults.call(this);
+            getAssessments.call(this);
+
+            function getAssessments() {
+              var self = this;
+                RequestService
+                .getAssessments()
+                .done(function (all_assessments) {
+                  var current_assessment;
+                  for(var i=0; i<= all_assessments.length; i++) {
+                    var assesment = all_assessments[i];
+                    if(assesment.id == self.assessment_id){
+                      current_assessment = assesment;
+                      break;
+                    }
+                  }
+                  setAssessmentTitle(current_assessment);
+                })
+            }
+
+            function setAssessmentTitle(assessment) {
+              var assessment_header =  '<img src="/static/img/flags/'+ assessment.country_iso.toLowerCase() +'.svg" />' + assessment.country_name
+              $('.results-header h2').html(assessment_header);
+              $('.page-menu .country').html(assessment_header);
+            }
+
 
             function getAssessmentResults() {
                 var self = this;
@@ -40,7 +65,7 @@ $(document).ready(function() {
                 var accordion = $('#accordion');
                 var summary = $('#summary');
                 var h3 = $('<li>')
-                    .text(categories.length + (categories.length > 1 ? ' Categories' : ' Category'))
+                    .html('<span>' + categories.length + '</span>' + (categories.length > 1 ? 'Categories' : ' Category'))
                     .appendTo(summary);
                 accordion.innerHTML = '';
 
@@ -59,10 +84,10 @@ $(document).ready(function() {
                     classification_menu.appendTo(accordion);
                 }
                 var hgap = $('<li>')
-                    .text(gaps_no + (gaps_no > 1 ? ' Areas of improvement' : ' Area of improvement'))
+                    .html('<span>' + gaps_no + '</span>' + (gaps_no > 1 ? ' Areas of improvement' : ' Area of improvement'))
                     .appendTo(summary);
                 var harticles = $('<li>')
-                    .text(articles_no + (articles_no > 1 ? ' Law Suggestions' : ' Law Suggestion'))
+                    .html('<span>' + articles_no + '</span>' + (articles_no > 1 ? ' Law Suggestions' : ' Law Suggestion'))
                     .appendTo(summary);
             }
 
@@ -166,7 +191,6 @@ $(document).ready(function() {
             }
 
             function makeGapName(gap) {
-              console.log(gap)
                 var gap_name = '• ';
                 for (var i = 0; i < gap.classifications.length; i++) {
                     var classification = gap.classifications[i];
@@ -183,10 +207,8 @@ $(document).ready(function() {
             }
 
             function renderSuggestedLegislation(articles, questions_container) {
-
                 for (var s = 0; s < articles.length; s++) {
                     var article = articles[s];
-                    console.log(article)
                     var article_name =  article.legislation.title + ' - ' + article.code;
 
 

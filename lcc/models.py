@@ -496,6 +496,10 @@ class Legislation(_TaxonomyModel):
         return self.country.name
 
     @property
+    def country_iso(self):
+        return self.country.iso
+
+    @property
     def other_legislations(self):
         other = {}
         for classification in self.classifications.all():
@@ -626,9 +630,16 @@ class Gap(_TaxonomyModel):
         return "Gap for Q %s" % self.question
 
 
+class AssessmentManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().select_related('country')
+
+
 class Assessment(models.Model):
     user = models.ForeignKey(User, related_name="assessments")
     country = models.ForeignKey(Country, related_name="assessments")
+
+    objects = AssessmentManager()
 
     class Meta:
         unique_together = ("user", "country")
@@ -636,6 +647,10 @@ class Assessment(models.Model):
     @property
     def country_name(self):
         return self.country.name
+
+    @property
+    def country_iso(self):
+        return self.country.iso
 
     def __str__(self):
         return "%s' assessment for %s" % (
