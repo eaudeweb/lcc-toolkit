@@ -1,23 +1,24 @@
 import math
-from copy import deepcopy
-from operator import itemgetter
-
+import time
+import pdftotext
 import pycountry
 import mptt.models
 
+from copy import deepcopy
+from operator import itemgetter
 from rolepermissions.roles import get_user_roles
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.indexes import GinIndex
-
-import lcc.utils as utils
-import lcc.constants as constants
-
-from django.db import models
+from django.db import models, transaction
 from django.db.models import F, Subquery, OuterRef
 from django.db.models.signals import m2m_changed
 from django.urls import reverse
+
+import lcc.utils as utils
+import lcc.constants as constants
 
 
 User = get_user_model()
@@ -534,6 +535,32 @@ class Legislation(_TaxonomyModel):
         string.
         """
         return getattr(self, '_highlighted_pdf_text', '')
+
+    def save_pdf_pages(self):
+        if settings.DEBUG:
+            time_to_load_pdf = time.time()
+        if settings.DEBUG:
+            print("INFO: FS pdf file load time: %fs" %
+                  (time.time() - time_to_load_pdf))
+            time_begin_transaction = time.time()
+
+        with transaction.atomic():
+            pdf = pdftotext.PDF(self.pdf_file)
+            for idx, page in enumerate(pdf):
+                page = page.replace('\x00', '')
+                LegislationPage(
+                    page_text="<pre>%s</pre>" % page,
+                    page_number=idx + 1,
+                    legislation=self
+                ).save()
+
+        if settings.DEBUG:
+            print("INFO: ORM models.LegislationPages save time: %fs" %
+                  (time.time() - time_begin_transaction))
+
+        # This is necessary in order to trigger the signal that will update the
+        # ElasticSearch index.
+        self.save()
 
 
 class LegislationArticleManager(models.Manager):

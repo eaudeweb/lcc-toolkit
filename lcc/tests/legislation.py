@@ -1,5 +1,7 @@
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.management import call_command
 from django.test import Client, TestCase
+
 from lcc.models import Legislation
 
 
@@ -60,6 +62,23 @@ class LegislationExplorer(TestCase):
         self.assertEqual(
             response.context['laws'][1].highlighted_abstract(),
             "<em>Brown</em> rabbits are commonly seen."
+        )
+
+    def test_pdf_highlights(self):
+        pdf_file = open('lcc/tests/files/snake.pdf', 'rb')
+        law = Legislation.objects.create(
+            title="Brazilian snakes",
+            abstract="Brazilian snakes must be protected",
+            country_id="BRA",
+            pdf_file=InMemoryUploadedFile(
+                pdf_file, None, 'snake.pdf', 'application/pdf', None, None)
+        )
+        law.save_pdf_pages()
+        c = Client()
+        response = c.get('/legislation/', {'partial': True, 'q': "jararaca"})
+        self.assertIn(
+            '<em>jararaca</em>',
+            response.context['laws'][0].highlighted_pdf_text(),
         )
 
     def test_classification_filtering(self):

@@ -1,10 +1,5 @@
-import pdftotext
-import time
-
 from django import views
-from django.conf import settings
 from django.contrib.auth import mixins
-from django.db import transaction
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
@@ -17,28 +12,6 @@ from lcc import models, constants, forms
 from lcc.constants import LEGISLATION_YEAR_RANGE
 from lcc.documents import LegislationDocument
 from lcc.views.base import TagGroupRender, TaxonomyFormMixin
-
-
-def legislation_save_pdf_pages(law, pdf):
-    if settings.DEBUG:
-        time_to_load_pdf = time.time()
-    if settings.DEBUG:
-        print("INFO: FS pdf file load time: %fs" %
-              (time.time() - time_to_load_pdf))
-        time_begin_transaction = time.time()
-
-    with transaction.atomic():
-        for idx, page in enumerate(pdf):
-            page = page.replace('\x00', '')
-            models.LegislationPage(
-                page_text="<pre>%s</pre>" % page,
-                page_number=idx + 1,
-                legislation=law
-            ).save()
-
-    if settings.DEBUG:
-        print("INFO: ORM models.LegislationPages save time: %fs" %
-              (time.time() - time_begin_transaction))
 
 
 class LegislationExplorer(ListView):
@@ -176,8 +149,7 @@ class LegislationAdd(mixins.LoginRequiredMixin, TaxonomyFormMixin,
 
     def form_valid(self, form):
         legislation = form.save()
-        pdf = pdftotext.PDF(legislation.pdf_file)
-        legislation_save_pdf_pages(legislation, pdf)
+        legislation.save_pdf_pages()
 
         if "save-and-continue-btn" in self.request.POST:
             return HttpResponseRedirect(
@@ -238,10 +210,9 @@ class LegislationEditView(mixins.LoginRequiredMixin, TaxonomyFormMixin,
     def form_valid(self, form):
         legislation = form.save()
         if 'pdf_file' in self.request.FILES:
-            pdf = pdftotext.PDF(legislation.pdf_file)
             models.LegislationPage.objects.filter(
                 legislation=legislation).delete()
-            legislation_save_pdf_pages(legislation, pdf)
+            legislation.save_pdf_pages()
 
         return HttpResponseRedirect(
             reverse('lcc:legislation:details',
