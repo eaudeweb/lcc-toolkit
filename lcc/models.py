@@ -1,23 +1,24 @@
 import math
-from copy import deepcopy
-from operator import itemgetter
-
+import time
+import pdftotext
 import pycountry
 import mptt.models
 
+from copy import deepcopy
+from operator import itemgetter
 from rolepermissions.roles import get_user_roles
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.indexes import GinIndex
-
-import lcc.utils as utils
-import lcc.constants as constants
-
-from django.db import models
+from django.db import models, transaction
 from django.db.models import F, Subquery, OuterRef
 from django.db.models.signals import m2m_changed
 from django.urls import reverse
+
+import lcc.utils as utils
+import lcc.constants as constants
 
 
 User = get_user_model()
@@ -511,6 +512,56 @@ class Legislation(_TaxonomyModel):
     def __str__(self):
         return "Legislation: " + ' | '.join([self.country.name, self.law_type])
 
+    def highlighted_title(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        the title with the search terms highlighted. If not, return the original
+        title.
+        """
+        return getattr(self, '_highlighted_title', self.title)
+
+    def highlighted_abstract(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        the abstract with the search terms highlighted. If not, return an empty
+        string.
+        """
+        return getattr(self, '_highlighted_abstract', '')
+
+    def highlighted_pdf_text(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        the pdf_text with the search terms highlighted. If not, return an empty
+        string.
+        """
+        return getattr(self, '_highlighted_pdf_text', '')
+
+    def save_pdf_pages(self):
+        if settings.DEBUG:
+            time_to_load_pdf = time.time()
+        if settings.DEBUG:
+            print("INFO: FS pdf file load time: %fs" %
+                  (time.time() - time_to_load_pdf))
+            time_begin_transaction = time.time()
+
+        with transaction.atomic():
+            pdf = pdftotext.PDF(self.pdf_file)
+            for idx, page in enumerate(pdf):
+                page = page.replace('\x00', '')
+                LegislationPage(
+                    page_text="<pre>%s</pre>" % page,
+                    page_number=idx + 1,
+                    legislation=self
+                ).save()
+
+        if settings.DEBUG:
+            print("INFO: ORM models.LegislationPages save time: %fs" %
+                  (time.time() - time_begin_transaction))
+
+        # This is necessary in order to trigger the signal that will update the
+        # ElasticSearch index.
+        self.save()
+
 
 class LegislationArticleManager(models.Manager):
     def get_articles_for_gaps(self, gap_ids):
@@ -544,7 +595,7 @@ class LegislationArticle(_TaxonomyModel):
 class LegislationPage(models.Model):
     page_text = models.CharField(max_length=65535)
     page_number = models.IntegerField()
-    legislation = models.ForeignKey(Legislation, related_name="page")
+    legislation = models.ForeignKey(Legislation, related_name="pages")
 
     def __str__(self):
         return "Page %d of Legislation %s" % (

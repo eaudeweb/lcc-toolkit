@@ -1,10 +1,5 @@
-import pdftotext
-import time
-
 from django import views
-from django.conf import settings
 from django.contrib.auth import mixins
-from django.db import transaction
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
@@ -17,28 +12,6 @@ from lcc import models, constants, forms
 from lcc.constants import LEGISLATION_YEAR_RANGE
 from lcc.documents import LegislationDocument
 from lcc.views.base import TagGroupRender, TaxonomyFormMixin
-
-
-def legislation_save_pdf_pages(law, pdf):
-    if settings.DEBUG:
-        time_to_load_pdf = time.time()
-    if settings.DEBUG:
-        print("INFO: FS pdf file load time: %fs" %
-              (time.time() - time_to_load_pdf))
-        time_begin_transaction = time.time()
-
-    with transaction.atomic():
-        for idx, page in enumerate(pdf):
-            page = page.replace('\x00', '')
-            models.LegislationPage(
-                page_text="<pre>%s</pre>" % page,
-                page_number=idx + 1,
-                legislation=law
-            ).save()
-
-    if settings.DEBUG:
-        print("INFO: ORM models.LegislationPages save time: %fs" %
-              (time.time() - time_begin_transaction))
 
 
 class LegislationExplorer(ListView):
@@ -93,7 +66,8 @@ class LegislationExplorer(ListView):
         q = self.request.GET.get('q')
         if q:
             search = search.query(
-                'multi_match', query=q, fields=['title', 'abstract'])
+                'multi_match', query=q, fields=['title', 'abstract', 'pdf_text']
+            )
 
         if not any([classification_ids, tag_ids, q]):
             # If there is no score to sort by, sort by id
@@ -105,20 +79,21 @@ class LegislationExplorer(ListView):
             # If there was a text search, replace the `laws` queryset with a
             # list of patched Legislation objects that have the highlighted
             # text attached to them
-            search = search.highlight('title', 'abstract')
+            search = search.highlight('title', 'abstract', 'pdf_text')
             patched_laws = []
             for hit, law in zip(search[0:10000].execute(), laws):
                 highlights = hit.meta.highlight.to_dict()
-                # The highlighted_title attribute is always set. If there were
-                # no highlights, it's set to the original title
-                law.highlighted_title = mark_safe(
-                    ' [...] '.join(highlights.get('title', [law.title]))
-                )
-                # The highlighted_abstract attribute is only set if there were
-                # highlights in the abstract
+                if 'title' in highlights:
+                    law._highlighted_title = mark_safe(
+                        ' [...] '.join(highlights['title'])
+                    )
                 if 'abstract' in highlights:
-                    law.highlighted_abstract = mark_safe(
+                    law._highlighted_abstract = mark_safe(
                         ' [...] '.join(highlights['abstract'])
+                    )
+                if 'pdf_text' in highlights:
+                    law._highlighted_pdf_text = mark_safe(
+                        ' [...] '.join(highlights['pdf_text'])
                     )
                 patched_laws.append(law)
             laws = patched_laws
@@ -174,8 +149,7 @@ class LegislationAdd(mixins.LoginRequiredMixin, TaxonomyFormMixin,
 
     def form_valid(self, form):
         legislation = form.save()
-        pdf = pdftotext.PDF(legislation.pdf_file)
-        legislation_save_pdf_pages(legislation, pdf)
+        legislation.save_pdf_pages()
 
         if "save-and-continue-btn" in self.request.POST:
             return HttpResponseRedirect(
@@ -198,7 +172,7 @@ class LegislationPagesView(views.View):
     def get(self, request, *args, **kwargs):
         law = get_object_or_404(models.Legislation,
                                 pk=kwargs['legislation_pk'])
-        pages = law.page.all()
+        pages = law.pages.all()
         content = {}
         for page in pages:
             content[page.page_number] = page.page_text
@@ -236,10 +210,9 @@ class LegislationEditView(mixins.LoginRequiredMixin, TaxonomyFormMixin,
     def form_valid(self, form):
         legislation = form.save()
         if 'pdf_file' in self.request.FILES:
-            pdf = pdftotext.PDF(legislation.pdf_file)
             models.LegislationPage.objects.filter(
                 legislation=legislation).delete()
-            legislation_save_pdf_pages(legislation, pdf)
+            legislation.save_pdf_pages()
 
         return HttpResponseRedirect(
             reverse('lcc:legislation:details',

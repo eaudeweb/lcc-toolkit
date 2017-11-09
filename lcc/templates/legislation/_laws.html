@@ -36,12 +36,19 @@
 
   {% if law.highlighted_abstract %}
     <div class="abstract">
-      {% if law.tags.exists %}
       <span><b>Abstract:</b></span>
       <span>
         {{ law.highlighted_abstract }}
       </span>
-      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if law.highlighted_pdf_text %}
+    <div class="pdf_text">
+      <span><b>Legislation text:</b></span>
+      <span>
+        {{ law.highlighted_pdf_text }}
+      </span>
     </div>
   {% endif %}
 
