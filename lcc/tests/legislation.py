@@ -24,6 +24,7 @@ class LegislationExplorer(TestCase):
     def setUp(self):
         call_command('search_index', '--rebuild', '-f')
 
+    @override_settings(LAWS_PER_PAGE=2)
     def test_html(self):
         """
         Makes sure HTML has minimum required elements for page to work.
