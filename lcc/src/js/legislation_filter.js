@@ -1,7 +1,18 @@
+var payload = {'partial': true};
+
+function activatePagination(){
+  $("ul.pagination li a").on('click', function(){
+    payload['page'] = $(this).attr('data-page');
+    $(".submitBtn").click()
+  });
+}
+
 $(document).ready(function(){
-  var payload = {'partial': true};
+
   var classifications = [];
   var law_types = [];
+
+  activatePagination();
 
   $('#textSearchInput').on('change', function() {
     payload['q'] = $(this).val();
@@ -39,8 +50,6 @@ $(document).ready(function(){
     payload['law_types'] = law_types;
   });
 
-
-
   $(".submitBtn").on('click', function(){
     console.log(payload);
     $.ajax({
@@ -49,6 +58,7 @@ $(document).ready(function(){
       data: payload,
       success : function(data) {
         $("#laws").html(data);
+        activatePagination();
       }
     });
   });
