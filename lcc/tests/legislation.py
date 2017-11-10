@@ -152,15 +152,15 @@ class LegislationExplorer(TestCase):
 
     def test_country_filtering(self):
 
-        country_iso = 'MMR'  # Arbitrary country id
+        iso_codes = ['MMR', 'PAN']  # Arbitrary country ids
 
         c = Client()
         response = c.get(
             '/legislation/',
-            {'partial': True, 'country': country_iso}
+            {'partial': True, 'countries[]': iso_codes}
         )
 
-        expected_law_ids = [4]
+        expected_law_ids = [4, 6]
         returned_law_ids = [law.id for law in response.context['laws']]
 
         self.assertEqual(expected_law_ids, returned_law_ids)
@@ -225,7 +225,7 @@ class LegislationExplorer(TestCase):
         country_iso = 'MMR'  # Country id that returns only one result
         response = c.get(
             '/legislation/',
-            {'partial': True, 'country': country_iso}
+            {'partial': True, 'countries[]': [country_iso]}
         )
 
         self.assertEqual(len(response.context['laws']), 1)
@@ -234,7 +234,7 @@ class LegislationExplorer(TestCase):
         # Try to get second page (doesn't exist)
         response = c.get(
             '/legislation/',
-            {'partial': True, 'country': country_iso, 'page': 2}
+            {'partial': True, 'countries[]': [country_iso], 'page': 2}
         )
 
         # Returns last existing page

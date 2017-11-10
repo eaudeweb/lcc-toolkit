@@ -92,9 +92,9 @@ class LegislationExplorer(ListView):
             search = search.query('terms', tags=tag_ids)
 
         # String representing country iso code
-        country = self.request.GET.get('country')
-        if country:
-            search = search.query('term', country=country)
+        countries = self.request.GET.getlist('countries[]')
+        if countries:
+            search = search.query('terms', country=countries)
 
         # String representing law_type
         law_types = self.request.GET.getlist('law_types[]')

@@ -10,6 +10,7 @@ function activatePagination(){
 $(document).ready(function(){
 
   var classifications = [];
+  var countries = [];
   var law_types = [];
 
   activatePagination();
@@ -30,12 +31,8 @@ $(document).ready(function(){
     payload['classifications'] = classifications;
   });
 
-  $('#TagDropDown').on('change',function(e){
-    payload['tags'] = $(this).val();
-  });
-
   $('#countryDropDown').on('change', function() {
-    payload['country'] = $('#countryDropDown option:selected').val();
+    payload['countries'] = $(this).val();
   });
 
   $('#typeDropDown input').on('change', function() {
@@ -48,6 +45,10 @@ $(document).ready(function(){
       law_types.splice(law_types.indexOf($(this).val(), 1))
     }
     payload['law_types'] = law_types;
+  });
+
+  $('#TagDropDown').on('change',function(e){
+    payload['tags'] = $(this).val();
   });
 
   $(".submitBtn").on('click', function(){
