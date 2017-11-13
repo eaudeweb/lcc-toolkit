@@ -2,7 +2,7 @@ import shutil
 
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.management import call_command
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 from django.conf import settings
 
 from lcc.models import Legislation
@@ -24,6 +24,7 @@ class LegislationExplorer(TestCase):
     def setUp(self):
         call_command('search_index', '--rebuild', '-f')
 
+    @override_settings(LAWS_PER_PAGE=2)
     def test_html(self):
         """
         Makes sure HTML has minimum required elements for page to work.
@@ -31,6 +32,8 @@ class LegislationExplorer(TestCase):
         c = Client()
         response = c.get('/legislation/')
         self.assertContains(response, '<div id="laws"')
+        self.assertContains(response, '<ul class="pagination">')
+        self.assertContains(response, '<li class="page-item">')
 
     def test_best_fields_and_highlights(self):
         """
@@ -149,15 +152,15 @@ class LegislationExplorer(TestCase):
 
     def test_country_filtering(self):
 
-        country_iso = 'MMR'  # Arbitrary country id
+        iso_codes = ['MMR', 'PAN']  # Arbitrary country ids
 
         c = Client()
         response = c.get(
             '/legislation/',
-            {'partial': True, 'country': country_iso}
+            {'partial': True, 'countries[]': iso_codes}
         )
 
-        expected_law_ids = [4]
+        expected_law_ids = [4, 6]
         returned_law_ids = [law.id for law in response.context['laws']]
 
         self.assertEqual(expected_law_ids, returned_law_ids)
@@ -176,6 +179,67 @@ class LegislationExplorer(TestCase):
         returned_law_ids = [law.id for law in response.context['laws']]
 
         self.assertEqual(expected_law_ids, returned_law_ids)
+
+    @override_settings(LAWS_PER_PAGE=2)
+    def test_pagination(self):
+
+        c = Client()
+
+        # Get all 10 legislations
+        response = c.get('/legislation/')
+
+        # Defaults to first page
+        self.assertEqual(len(response.context['laws']), 2)
+        self.assertEqual(response.context['laws'].number, 1)
+
+        # Get second page
+        response = c.get(
+            '/legislation/',
+            {'partial': True, 'page': 2}
+        )
+
+        # Returns second page
+        self.assertEqual(len(response.context['laws']), 2)
+        self.assertEqual(response.context['laws'].number, 2)
+
+        # Get 6 filtered legislations
+        law_types = ['Law', 'Constitution']  # Law types that return 6 results
+        response = c.get(
+            '/legislation/',
+            {'partial': True, 'law_types[]': law_types}
+        )
+
+        # Defaults to first page
+        self.assertEqual(len(response.context['laws']), 2)
+        self.assertEqual(response.context['laws'].number, 1)
+
+        # Get second page
+        response = c.get(
+            '/legislation/',
+            {'partial': True, 'law_types[]': law_types, 'page': 2}
+        )
+        self.assertEqual(len(response.context['laws']), 2)
+        self.assertEqual(response.context['laws'].number, 2)
+
+        # Get 1 filtered legislation
+        country_iso = 'MMR'  # Country id that returns only one result
+        response = c.get(
+            '/legislation/',
+            {'partial': True, 'countries[]': [country_iso]}
+        )
+
+        self.assertEqual(len(response.context['laws']), 1)
+        self.assertEqual(response.context['laws'].number, 1)
+
+        # Try to get second page (doesn't exist)
+        response = c.get(
+            '/legislation/',
+            {'partial': True, 'countries[]': [country_iso], 'page': 2}
+        )
+
+        # Returns last existing page
+        self.assertEqual(len(response.context['laws']), 1)
+        self.assertEqual(response.context['laws'].number, 1)
 
     def tearDown(self):
         shutil.rmtree(settings.MEDIA_ROOT, ignore_errors=True)

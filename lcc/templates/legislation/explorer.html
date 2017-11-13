@@ -80,12 +80,11 @@
       </ul>
     </div>
 
-    <div class="filter-item filter-countries">
+    <div class="filter-item filterTags">
     <label for="countryDropDown"><b>Country</b></label>
-      <select class="round" name="country" id="countryDropDown">
-        <option value="" selected>Select Country</option>
+      <select class="round" name="tags" id="countryDropDown" multiple="multiple">
         {% for country in countries %}
-          <option value="{{country.iso}}">{{ country.name }}</option>
+          <option value="{{ country.iso }}" class="option-child-1">{{ country.name }}</option>
         {% endfor %}
       </select>
     </div>

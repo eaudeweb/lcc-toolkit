@@ -110,3 +110,5 @@ LOGIN_URL = "/login/"
 FIXTURE_DIRS = [
     'lcc/tests/fixtures',
 ]
+
+LAWS_PER_PAGE = 10

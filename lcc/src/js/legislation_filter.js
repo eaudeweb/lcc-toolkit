@@ -1,7 +1,19 @@
+var payload = {'partial': true};
+
+function activatePagination(){
+  $("ul.pagination li a").on('click', function(){
+    payload['page'] = $(this).attr('data-page');
+    $(".submitBtn").click()
+  });
+}
+
 $(document).ready(function(){
-  var payload = {'partial': true};
+
   var classifications = [];
+  var countries = [];
   var law_types = [];
+
+  activatePagination();
 
   $('#textSearchInput').on('change', function() {
     payload['q'] = $(this).val();
@@ -19,12 +31,8 @@ $(document).ready(function(){
     payload['classifications'] = classifications;
   });
 
-  $('#TagDropDown').on('change',function(e){
-    payload['tags'] = $(this).val();
-  });
-
   $('#countryDropDown').on('change', function() {
-    payload['country'] = $('#countryDropDown option:selected').val();
+    payload['countries'] = $(this).val();
   });
 
   $('#typeDropDown input').on('change', function() {
@@ -39,7 +47,9 @@ $(document).ready(function(){
     payload['law_types'] = law_types;
   });
 
-
+  $('#TagDropDown').on('change',function(e){
+    payload['tags'] = $(this).val();
+  });
 
   $(".submitBtn").on('click', function(){
     console.log(payload);
@@ -49,6 +59,7 @@ $(document).ready(function(){
       data: payload,
       success : function(data) {
         $("#laws").html(data);
+        activatePagination();
       }
     });
   });
