@@ -14,10 +14,5 @@ class Command(BaseCommand):
                 "Countries", "CountryMetadata", "Questions", "Gaps")
 
     def handle(self, *args, **options):
-        TaxonomyTagGroup.objects.all().delete()
-        TaxonomyTag.objects.all().delete()
-        TaxonomyClassification.objects.all().delete()
-        Gap.objects.all().delete()
-        Question.objects.all().delete()
         for fixture in Command.FIXTURES:
             call_command('loaddata', fixture)
