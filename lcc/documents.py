@@ -34,9 +34,10 @@ class LegislationDocument(DocType):
     class Meta:
         model = Legislation  # The model associated with this DocType
 
-        # The fields of the model you want to be indexed in Elasticsearch
+        # The fields of the model to be indexed in Elasticsearch
         fields = [
             'id',
             'title',
-            'abstract'
+            'abstract',
+            'year',
         ]

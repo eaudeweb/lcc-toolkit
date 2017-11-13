@@ -46,7 +46,7 @@
 
   <div class="tag-wrapper">
     {% if law.classifications.exists %}
-    <span><b>Classification:</b></span>
+    <span>Classification:</span>
     <span>
       {% for classification in law.classifications.all %}
        <span class="tag">{{ classification.name }}</span>
@@ -57,7 +57,7 @@
 
   <div class="tag-wrapper">
     {% if law.tags.exists %}
-    <span><b>Tags:</b></span>
+    <span>Tags:</span>
     <span>
       {% for tag in law.tags.all%}
        <span class="tag">{{ tag.name }}</span>
@@ -68,7 +68,7 @@
 
   {% if law.highlighted_abstract %}
     <div class="abstract">
-      <span><b>Abstract:</b></span>
+      <span>Abstract:</span>
       <span>
         {{ law.highlighted_abstract }}
       </span>
@@ -77,7 +77,7 @@
 
   {% if law.highlighted_pdf_text %}
     <div class="pdf_text">
-      <span><b>Legislation text:</b></span>
+      <span>Legislation text:</span>
       <span>
         {{ law.highlighted_pdf_text }}
       </span>

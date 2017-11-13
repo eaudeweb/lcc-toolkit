@@ -453,23 +453,6 @@ class LegislationManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().select_related('country')
 
-    def with_highlights(self, hits):
-        for hit, law in zip(hits, self):
-            highlights = hit.meta.highlight.to_dict()
-            if 'title' in highlights:
-                law._highlighted_title = mark_safe(
-                    ' [...] '.join(highlights['title'])
-                )
-            if 'abstract' in highlights:
-                law._highlighted_abstract = mark_safe(
-                    ' [...] '.join(highlights['abstract'])
-                )
-            if 'pdf_text' in highlights:
-                law._highlighted_pdf_text = mark_safe(
-                    ' [...] '.join(highlights['pdf_text'])
-                )
-            yield law
-
 
 class Legislation(_TaxonomyModel):
     title = models.CharField(max_length=256)

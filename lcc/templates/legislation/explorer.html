@@ -5,6 +5,11 @@
 {% block extra-scripts %}
   <script src="{% static "js/legislation_filter.js" %}"> </script>
   <script src="{% static "js/sidebar.js" %}"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"> </script>
+{% endblock %}
+
+{% block extra-styles %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" rel="stylesheet" />
 {% endblock %}
 
 {% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
@@ -40,82 +45,91 @@
 <div class="page-container half viz-container right">
   <h4>Filter legislation</h4>
 
-    <div class="filter-item list-container" id="classificationsDropDownWrapper">
-     <label><b>Select Legal Area</b></label>
-      <ul class="round" name="classifications" id="classificationsDropDown" multiple="multiple">
-        {% for top_class in top_classifications %}
-          <li class="first-level level">
-            {% with top_class.get_children as second_classifications %}
-              <span class="list-header">
-                <input name='{{ top_class.pk }}' value='{{ top_class.pk }}' id='{{ top_class.pk }}' type='checkbox'/>
-                <label for='{{ top_class.pk }}' name='{{ top_class.pk }}'>{{ top_class.name }}</label>
-                {% if second_classifications %}
-                  <i class="fa fa-caret-down" aria-hidden="true"></i>
-                {% endif %}
-              </span>
-              <ul class="second-level level">
-                {% for second_class in second_classifications %}
-                  {% with second_class.get_children as third_classifications %}
-                    <li>
-                      <span class="list-header">
-                        <label for="classification_{{ second_class.pk }}">{{ second_class.name }}</label>
-                        {% if third_classifications %}
-                          <i class="fa fa-caret-down" aria-hidden="true"></i>
-                        {% endif %}
-                      </span>
-                      <ul class="third-level level">
-                        {% for third_class in third_classifications %}
-                          <li>
-                            <label for="classification_{{ third_class.pk }}">{{ third_class.name }}</label>
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    </li>
-                  {% endwith %}
-                {% endfor %}
-              </ul>
-            {% endwith %}
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-
-    <div class="filter-item filterTags">
-    <label for="countryDropDown"><b>Country</b></label>
-      <select class="round" name="tags" id="countryDropDown" multiple="multiple">
-        {% for country in countries %}
-          <option value="{{ country.iso }}" class="option-child-1">{{ country.name }}</option>
-        {% endfor %}
-      </select>
-    </div>
-
-    <div class="filter-item list-container filter-type">
-    <label for="typeDropDown"><b>Select type</b></label>
-      <ul class="round" name="type" id="typeDropDown">
-        {% for key, value in legislation_type %}
-          <li class="first-level level">
-            <input type="checkbox" name="{{key}}" id="{{key}}" value="{{key}}"></input>
-            <label for="{{key}}">{{ value }}</label>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-
-    <div class="filter-item filterTags">
-    <label for="TagDropDown"><b>Cross cutting categories</b></label>
-      <select class="round" name="tags" id="TagDropDown" multiple="multiple">
-        {% for group_tag in group_tags %}
-          <optgroup label="{{group_tag.name}}">
-            {% for tag in group_tag.tags.all %}
-              <option value="{{tag.pk}}" class="option-child-1">{{ tag.name }}</option>
-            {% endfor %}
-          </optgroup>
-        {% endfor %}
-      </select>
-    </div>
-
-    <button type="button" class="btn btn-primary submitBtn">Apply filters</button>
-
+  <div class="filter-item list-container" id="classificationsDropDownWrapper">
+    <h5>Select Legal Area</h5>
+    <ul class="round" name="classifications" id="classificationsDropDown" multiple="multiple">
+      {% for top_class in top_classifications %}
+        <li class="first-level level">
+          {% with top_class.get_children as second_classifications %}
+            <span class="list-header">
+              <input name='{{ top_class.pk }}' value='{{ top_class.pk }}' id='{{ top_class.pk }}' type='checkbox'/>
+              <label for='{{ top_class.pk }}' name='{{ top_class.pk }}'>{{ top_class.name }}</label>
+              {% if second_classifications %}
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+              {% endif %}
+            </span>
+            <ul class="second-level level">
+              {% for second_class in second_classifications %}
+                {% with second_class.get_children as third_classifications %}
+                  <li>
+                    <span class="list-header">
+                      <label for="classification_{{ second_class.pk }}">{{ second_class.name }}</label>
+                      {% if third_classifications %}
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                      {% endif %}
+                    </span>
+                    <ul class="third-level level">
+                      {% for third_class in third_classifications %}
+                        <li>
+                          <label for="classification_{{ third_class.pk }}">{{ third_class.name }}</label>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% endwith %}
+              {% endfor %}
+            </ul>
+          {% endwith %}
+        </li>
+      {% endfor %}
+    </ul>
   </div>
+
+  <div class="filter-item">
+    <h5>Country</h5>
+    <select class="round" name="tags" id="countryDropDown" multiple="multiple">
+      {% for country in countries %}
+        <option value="{{ country.iso }}" class="option-child-1">{{ country.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="filter-item list-container filter-type">
+    <h5>Select type</h5>
+    <ul class="round" name="type" id="typeDropDown">
+      {% for key, value in legislation_type %}
+        <li class="first-level level">
+          <input type="checkbox" name="{{key}}" id="{{key}}" value="{{key}}"></input>
+          <label for="{{key}}">{{ value }}</label>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="filter-item filterTags">
+    <h5>Cross cutting categories</h5>
+    <select class="round" name="tags" id="TagDropDown" multiple="multiple">
+      {% for group_tag in group_tags %}
+        <optgroup label="{{group_tag.name}}">
+          {% for tag in group_tag.tags.all %}
+            <option value="{{tag.pk}}" class="option-child-1">{{ tag.name }}</option>
+          {% endfor %}
+        </optgroup>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <h5>Promulgation year</h5>
+    <input type="text" class="span2" name="year_range" id="yearSlider" value="" data-slider-min="1900" data-slider-max="{% now 'Y' %}" data-slider-step="1" data-slider-value="[1900,{% now 'Y' %}]" />
+    <div class="slider-values">
+      <input type="text" name="from_year" value="1990" id="fromYear">
+      <input type="text" name="to_year" value="{% now 'Y' %}" id="toYear">
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-primary submitBtn">Apply filters</button>
+
+</div>
 
 {% endblock %}

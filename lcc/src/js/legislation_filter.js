@@ -15,6 +15,18 @@ $(document).ready(function(){
 
   activatePagination();
 
+  // Activate Slider
+  $("#yearSlider").slider({formatter: function(value) {
+		return value;
+	}});
+
+  $("#yearSlider").on("slide", function(slideEvt) {
+    $("#fromYear").val(slideEvt.value[0]);
+    $("#toYear").val(slideEvt.value[1]);
+    payload['from_year'] = slideEvt.value[0];
+    payload['to_year'] = slideEvt.value[1];
+  });
+
   $('#textSearchInput').on('change', function() {
     payload['q'] = $(this).val();
   });

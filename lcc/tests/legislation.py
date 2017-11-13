@@ -180,6 +180,22 @@ class LegislationExplorer(TestCase):
 
         self.assertEqual(expected_law_ids, returned_law_ids)
 
+    def test_year_range_filtering(self):
+
+        # Arbitrary years
+        from_year = 1950
+        to_year = 2005
+
+        c = Client()
+        response = c.get(
+            '/legislation/',
+            {'partial': True, 'from_year': from_year, 'to_year': to_year}
+        )
+        expected_law_ids = [6, 9, 10]
+        returned_law_ids = [law.id for law in response.context['laws']]
+
+        self.assertEqual(expected_law_ids, returned_law_ids)
+
     @override_settings(LAWS_PER_PAGE=2)
     def test_pagination(self):
 

@@ -101,6 +101,15 @@ class LegislationExplorer(ListView):
         if law_types:
             search = search.query('terms', law_type=law_types)
 
+        # String representing the minimum year allowed in the results
+        from_year = self.request.GET.get('from_year')
+        # String representing the maximum year allowed in the results
+        to_year = self.request.GET.get('to_year')
+
+        if all([from_year, to_year]):
+            search = search.filter(
+                'range', year={'gte': int(from_year), 'lte': int(to_year)})
+
         # String to be searched in all text fields (full-text search using
         # elasticsearch's default best_fields strategy)
         q = self.request.GET.get('q')
