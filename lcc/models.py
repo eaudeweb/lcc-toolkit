@@ -286,12 +286,18 @@ class CountryMetadata(models.Model):
     country = models.ForeignKey('Country', related_name='metadata')
     user = models.ForeignKey('UserProfile', null=True)
 
-    cw = models.BooleanField('CW', default=False)
-    small_cw = models.BooleanField('Small CW', default=False)
-    un = models.BooleanField('UN', default=False)
-    ldc = models.BooleanField('LDC', default=False)
-    lldc = models.BooleanField('LLDC', default=False)
-    sid = models.BooleanField('SID', default=False)
+    cw = models.BooleanField('Commonwealth (Member country)', default=False)
+    small_cw = models.BooleanField('Small commonwealth country', default=False)
+    un = models.BooleanField('United Nations (Member state)', default=False)
+    ldc = models.BooleanField('Least developed country (LDC)', default=False)
+    lldc = models.BooleanField(
+        'Landlocked developing country (LLDC)',
+        default=False
+    )
+    sid = models.BooleanField(
+        'Small island developing state (SID)',
+        default=False
+    )
 
     region = models.ForeignKey(Region, null=True, blank=True)
     sub_region = models.ForeignKey(SubRegion, null=True, blank=True)
