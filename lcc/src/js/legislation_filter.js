@@ -15,6 +15,16 @@ $(document).ready(function(){
 
   activatePagination();
 
+  // Activate multiselect
+  $('#countrySelect').multipleSelect({
+    width: '100%', multiple: true, multipleWidth: 260, filter: true
+  });
+  $('.ms-search').append(
+    '<div class="search-icon">\
+    <i class="fa fa-search" aria-hidden="true"></i>\
+    </div>'
+  );
+
   // Activate Slider
   $("#yearSlider").slider({formatter: function(value) {
 		return value;
@@ -43,7 +53,7 @@ $(document).ready(function(){
     payload['classifications'] = classifications;
   });
 
-  $('#countryDropDown').on('change', function() {
+  $('#countrySelect').on('change', function() {
     payload['countries'] = $(this).val();
   });
 

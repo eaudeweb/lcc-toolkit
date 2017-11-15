@@ -253,6 +253,13 @@ class Region(models.Model):
     def __str__(self):
         return self.name
 
+    def countries(self):
+        return (
+            obj.country for obj in
+            self.countrymetadata_set.filter(
+                user=None).only('country').select_related('country')
+        )
+
 
 class SubRegion(models.Model):
     name = models.CharField('Name', max_length=128)
@@ -283,6 +290,16 @@ class PrioritySector(models.Model):
 
 
 class CountryMetadata(models.Model):
+    """
+    This model provides aditional information about a country.
+
+    NOTE: For the application to work, it is necessary that at any given point
+    there is exactly one CountryMetadata instance with user=None for every
+    Country. However, this is only enforced at the application layer, so any
+    incautious direct interventions (e.g. loading custom data, creating objects
+    via shell, etc.) may leave the application in an inconsistent state.
+    """
+
     country = models.ForeignKey('Country', related_name='metadata')
     user = models.ForeignKey('UserProfile', null=True)
 

@@ -89,6 +89,8 @@ select#classificationsDropDown {
 
 .filter-item {
 
+    width: 100%;
+
     ul {
         padding-left: 5px;
         label {
@@ -158,4 +160,34 @@ select#classificationsDropDown {
 
 .page-item.active .page-link {
   z-index: auto;
+}
+
+.ms-drop {
+
+  width: 600px!important;
+  right: 0!important;
+
+  input {
+    margin-right: 6px;
+
+    &:before {
+        display: none;
+    }
+    &:after {
+        display: none;
+    }
+  }
+
+  input[type="text"] {
+    background: none;
+    height: 2em!important;
+  }
+}
+
+.search-icon {
+  color: #aaaaaa;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  text-align: right;
 }

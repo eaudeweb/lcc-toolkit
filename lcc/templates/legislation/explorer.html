@@ -5,11 +5,6 @@
 {% block extra-scripts %}
   <script src="{% static "js/legislation_filter.js" %}"> </script>
   <script src="{% static "js/sidebar.js" %}"> </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"> </script>
-{% endblock %}
-
-{% block extra-styles %}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" rel="stylesheet" />
 {% endblock %}
 
 {% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
@@ -18,7 +13,7 @@
 
 {% block page-menu %}
 <ul>
-    <li><a href="{% url 'lcc:legislation:add' %}" class="btn btn-primary">Add legislation</a></li>
+  <li><a href="{% url 'lcc:legislation:add' %}" class="btn btn-primary">Add legislation</a></li>
 </ul>
 {% endblock %}
 
@@ -39,7 +34,6 @@
     </div><!-- /row -->
   </div><!-- /search -->
 <div id="laws" class="page-container half viz-container">
-  {# TODO: add counter! #}
   {% include "./_laws.html" %}
 </div>
 <div class="page-container half viz-container right">
@@ -87,9 +81,13 @@
 
   <div class="filter-item">
     <h5>Country</h5>
-    <select class="round" name="tags" id="countryDropDown" multiple="multiple">
-      {% for country in countries %}
-        <option value="{{ country.iso }}" class="option-child-1">{{ country.name }}</option>
+    <select id="countrySelect" name="countries" multiple="multiple">
+      {% for region in regions %}
+        <optgroup label="{{ region }}">
+          {% for country in region.countries %}
+            <option value="{{ country.iso }}" class="option-child-1">{{ country.name }}</option>
+          {% endfor %}
+        </optgroup>
       {% endfor %}
     </select>
   </div>
