@@ -27,6 +27,8 @@ $(document).ready(function(){
   var law_types = [];
   var tags = [];
 
+  var autocomplete = [];
+
   activatePagination();
 
   // Activate multiselect
@@ -51,8 +53,46 @@ $(document).ready(function(){
     payload['to_year'] = slideEvt.value[1];
   });
 
+  // Activate autocomplete
+
+  $("#classificationsSelect > li.first-level > span > label").each(function(){
+    autocomplete.push({
+      id: $(this).attr('for'),
+      name: $(this).html()
+    });
+  });
+
+  $("#tagsSelect > li label").each(function(){
+    autocomplete.push({
+      id: $(this).attr('for'),
+      name: $(this).html()
+    });
+  });
+
+  $('#textSearchInput').easyAutocomplete({
+    data: autocomplete,
+    getValue: 'name',
+    list: {
+      maxNumberOfElements: 5,
+  		match: {
+  			enabled: true
+  		},
+      onChooseEvent: function() {
+        var id = $("#textSearchInput").getSelectedItemData().id;
+	      $("#" + id).click();
+        $("#textSearchInput").val('').change();
+  		}
+  	}
+  });
+  $('div.easy-autocomplete').removeAttr('style');
+
   $('#textSearchInput').on('change', function() {
-    payload['q'] = $(this).val();
+    var val = $(this).val();
+    if(val){
+      payload['q'] = val;
+    } else {
+      delete payload['q'];
+    }
   });
 
   $('#classificationsSelect input').on('change', function() {
@@ -83,7 +123,7 @@ $(document).ready(function(){
     payload['law_types'] = law_types;
   });
 
-  $('#tagSelect input').on('change', function() {
+  $('#tagsSelect input').on('change', function() {
     if($(this).is(':checked')){
       if($.inArray($(this).val()) == -1){
         tags.push($(this).val())

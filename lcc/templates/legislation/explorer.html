@@ -5,6 +5,11 @@
 {% block extra-scripts %}
   <script src="{% static "js/legislation_filter.js" %}"> </script>
   <script src="{% static "js/sidebar.js" %}"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/jquery.easy-autocomplete.min.js"> </script>
+{% endblock %}
+
+{% block extra-styles %}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/easy-autocomplete.min.css" rel="stylesheet" />
 {% endblock %}
 
 {% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
@@ -46,8 +51,8 @@
         <li class="first-level level">
           {% with top_class.get_children as second_classifications %}
             <span class="list-header">
-              <input name='{{ top_class.pk }}' value='{{ top_class.pk }}' id='{{ top_class.pk }}' type='checkbox'/>
-              <label for='{{ top_class.pk }}' name='{{ top_class.pk }}'>{{ top_class.name }}</label>
+              <input id='classification-{{ top_class.pk }}' value='{{ top_class.pk }}' type='checkbox'/>
+              <label for='classification-{{ top_class.pk }}'>{{ top_class.name }}</label>
               {% if second_classifications %}
                 <i class="fa fa-caret-down" aria-hidden="true"></i>
               {% endif %}
@@ -57,7 +62,7 @@
                 {% with second_class.get_children as third_classifications %}
                   <li>
                     <span class="list-header">
-                      <label for="classification_{{ second_class.pk }}">{{ second_class.name }}</label>
+                      <label for="classification-{{ second_class.pk }}">{{ second_class.name }}</label>
                       {% if third_classifications %}
                         <i class="fa fa-caret-down" aria-hidden="true"></i>
                       {% endif %}
@@ -65,7 +70,7 @@
                     <ul class="third-level level">
                       {% for third_class in third_classifications %}
                         <li>
-                          <label for="classification_{{ third_class.pk }}">{{ third_class.name }}</label>
+                          <label for="classification-{{ third_class.pk }}">{{ third_class.name }}</label>
                         </li>
                       {% endfor %}
                     </ul>
@@ -97,8 +102,8 @@
     <ul class="round" id="typeSelect">
       {% for key, value in legislation_type %}
         <li class="first-level level">
-          <input type="checkbox" id="{{key}}" value="{{key}}"></input>
-          <label for="{{key}}">{{ value }}</label>
+          <input type="checkbox" id="law-type-{{key}}" value="{{key}}"></input>
+          <label for="law-type-{{key}}">{{ value }}</label>
         </li>
       {% endfor %}
     </ul>
@@ -106,7 +111,7 @@
 
   <div class="filter-item list-container filter-type">
     <h5>Cross cutting categories</h5>
-    <ul class="round" id="tagSelect">
+    <ul class="round" id="tagsSelect">
       {% for group_tag in group_tags %}
         {% for tag in group_tag.tags.all %}
           <li class="first-level level">
