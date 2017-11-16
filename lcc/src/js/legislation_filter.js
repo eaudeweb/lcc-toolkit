@@ -7,6 +7,19 @@ function activatePagination(){
   });
 }
 
+function send(payload){
+  console.log(payload);
+  $.ajax({
+    type: 'GET',
+    url: '/legislation',
+    data: payload,
+    success : function(data) {
+      $("#laws").html(data);
+      activatePagination();
+    }
+  });
+}
+
 $(document).ready(function(){
 
   var classifications = [];
@@ -82,16 +95,14 @@ $(document).ready(function(){
     payload['tags'] = tags;
   });
 
-  $(".submitBtn").on('click', function(){
-    console.log(payload);
-    $.ajax({
-      type: 'GET',
-      url: '/legislation',
-      data: payload,
-      success : function(data) {
-        $("#laws").html(data);
-        activatePagination();
-      }
-    });
+  $('.submitBtn').on('click', function(){
+    send(payload);
   });
+
+  $('#textSearchInput').on('keyup', function(e){
+    if(e.which == 13) {
+      send(payload);
+    }
+  });
+
 });
