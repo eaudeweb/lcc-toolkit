@@ -112,6 +112,7 @@ class TaxonomyTagGroup(models.Model):
 
 
 class TaxonomyTag(models.Model):
+    # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
     group = models.ForeignKey(TaxonomyTagGroup, related_name='tags')
 
@@ -120,6 +121,7 @@ class TaxonomyTag(models.Model):
 
 
 class TaxonomyClassification(mptt.models.MPTTModel):
+    # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=16, unique=True, blank=True)
     parent = mptt.models.TreeForeignKey('self',
@@ -560,6 +562,28 @@ class Legislation(_TaxonomyModel):
         string.
         """
         return getattr(self, '_highlighted_pdf_text', '')
+
+    def highlighted_classifications(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        a list of classification names with the search terms highlighted. If
+        not, return the original list of classification names.
+        """
+        return getattr(
+            self, '_highlighted_classifications',
+            self.classifications.all().values_list('name', flat=True)
+        )
+
+    def highlighted_tags(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        a list of tag names with the search terms highlighted. If not, return
+        the original list of tag names.
+        """
+        return getattr(
+            self, '_highlighted_tags',
+            self.tags.all().values_list('name', flat=True)
+        )
 
     def save_pdf_pages(self):
         if settings.DEBUG:

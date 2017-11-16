@@ -45,22 +45,22 @@
   </h6>
 
   <div class="tag-wrapper">
-    {% if law.classifications.exists %}
-    <span>Classification:</span>
-    <span>
-      {% for classification in law.classifications.all %}
-       <span class="tag">{{ classification.name }}</span>
-      {% endfor %}
-    </span>
+    {% if law.highlighted_classifications %}
+      <span>Classification:</span>
+      <span>
+        {% for classification in law.highlighted_classifications %}
+         <span class="tag">{{ classification }}</span>
+        {% endfor %}
+      </span>
     {% endif %}
   </div>
 
   <div class="tag-wrapper">
-    {% if law.tags.exists %}
+    {% if law.highlighted_tags %}
     <span>Tags:</span>
     <span>
-      {% for tag in law.tags.all%}
-       <span class="tag">{{ tag.name }}</span>
+      {% for tag in law.highlighted_tags %}
+       <span class="tag">{{ tag }}</span>
       {% endfor %}
     </span>
     {% endif %}

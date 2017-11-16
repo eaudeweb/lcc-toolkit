@@ -118,6 +118,25 @@ class LegislationExplorer(TestCase):
             returned_law_classifications_list
         )
 
+    def test_full_text_classification_search(self):
+
+        q = 'climate renewable'  # Arbitrary words found in classification names
+
+        c = Client()
+        response = c.get('/legislation/', {'partial': True, 'q': q})
+
+        returned_laws = response.context['laws'].object_list
+
+        self.assertEqual(len(returned_laws), 8)
+        self.assertIn(
+            'Dedicated <em>climate</em> laws and governance',
+            returned_laws[0].highlighted_classifications()
+        )
+        self.assertIn(
+            'Energy production and <em>renewable</em> energy laws',
+            returned_laws[0].highlighted_classifications()
+        )
+
     def test_tag_filtering(self):
 
         tag_ids = ['1', '2']  # Arbitrary tags
@@ -148,6 +167,20 @@ class LegislationExplorer(TestCase):
         self.assertEqual(
             expected_law_tag_list,
             returned_law_tag_list
+        )
+
+    def test_full_text_tag_search(self):
+
+        q = 'enforcement'  # Arbitrary word found in one of the tag names
+
+        c = Client()
+        response = c.get('/legislation/', {'partial': True, 'q': q})
+
+        returned_laws = response.context['laws'].object_list
+        self.assertEqual(len(returned_laws), 7)
+        self.assertIn(
+            'Provisions for non-compliance and <em>enforcement</em>',
+            returned_laws[0].highlighted_tags()
         )
 
     def test_country_filtering(self):

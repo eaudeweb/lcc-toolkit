@@ -31,10 +31,6 @@ class HighlightedLaws:
         for hit, law in zip(hits, hits.to_queryset()):
             if hasattr(hit.meta, 'highlight'):
                 highlights = hit.meta.highlight.to_dict()
-                if 'title' in highlights:
-                    law._highlighted_title = mark_safe(
-                        ' [...] '.join(highlights['title'])
-                    )
                 if 'abstract' in highlights:
                     law._highlighted_abstract = mark_safe(
                         ' [...] '.join(highlights['abstract'])
@@ -43,6 +39,19 @@ class HighlightedLaws:
                     law._highlighted_pdf_text = mark_safe(
                         ' [...] '.join(highlights['pdf_text'])
                     )
+                if 'title' in highlights:
+                    law._highlighted_title = mark_safe(highlights['title'][0])
+                if 'classifications_text' in highlights:
+                    law._highlighted_classifications = [
+                        mark_safe(classification)
+                        for classification in (
+                            highlights['classifications_text'][0].split('; '))
+                    ]
+                if 'tags_text' in highlights:
+                    law._highlighted_tags = [
+                        mark_safe(tag)
+                        for tag in highlights['tags_text'][0].split('; ')
+                    ]
             laws.append(law)
         return laws
 
@@ -115,8 +124,14 @@ class LegislationExplorer(ListView):
         q = self.request.GET.get('q')
         if q:
             search = search.query(
-                'multi_match', query=q, fields=['title', 'abstract', 'pdf_text']
-            ).highlight('title', 'abstract', 'pdf_text')
+                'multi_match', query=q, fields=[
+                    'title', 'abstract', 'pdf_text', 'classifications_text',
+                    'tags_text'
+                ]
+            ).highlight('abstract', 'pdf_text').highlight(
+                'title', 'classifications_text', 'tags_text',
+                number_of_fragments=0
+            )
 
         if not any([classification_ids, tag_ids, q]):
             # If there is no score to sort by, sort by id
