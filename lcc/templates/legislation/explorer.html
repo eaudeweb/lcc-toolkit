@@ -39,9 +39,9 @@
 <div class="page-container half viz-container right">
   <h4>Filter legislation</h4>
 
-  <div class="filter-item list-container" id="classificationsDropDownWrapper">
+  <div class="filter-item list-container" id="classificationsSelectWrapper">
     <h5>Select Legal Area</h5>
-    <ul class="round" name="classifications" id="classificationsDropDown" multiple="multiple">
+    <ul class="round" id="classificationsSelect">
       {% for top_class in top_classifications %}
         <li class="first-level level">
           {% with top_class.get_children as second_classifications %}
@@ -94,27 +94,28 @@
 
   <div class="filter-item list-container filter-type">
     <h5>Select type</h5>
-    <ul class="round" name="type" id="typeDropDown">
+    <ul class="round" id="typeSelect">
       {% for key, value in legislation_type %}
         <li class="first-level level">
-          <input type="checkbox" name="{{key}}" id="{{key}}" value="{{key}}"></input>
+          <input type="checkbox" id="{{key}}" value="{{key}}"></input>
           <label for="{{key}}">{{ value }}</label>
         </li>
       {% endfor %}
     </ul>
   </div>
 
-  <div class="filter-item filterTags">
+  <div class="filter-item list-container filter-type">
     <h5>Cross cutting categories</h5>
-    <select class="round" name="tags" id="TagDropDown" multiple="multiple">
+    <ul class="round" id="tagSelect">
       {% for group_tag in group_tags %}
-        <optgroup label="{{group_tag.name}}">
-          {% for tag in group_tag.tags.all %}
-            <option value="{{tag.pk}}" class="option-child-1">{{ tag.name }}</option>
-          {% endfor %}
-        </optgroup>
+        {% for tag in group_tag.tags.all %}
+          <li class="first-level level">
+            <input type="checkbox" id="tag-{{tag.pk}}" value="{{tag.pk}}"></input>
+            <label for="tag-{{tag.pk}}">{{ tag.name }}</label>
+          </li>
+        {% endfor %}
       {% endfor %}
-    </select>
+    </ul>
   </div>
 
   <div class="filter-item">

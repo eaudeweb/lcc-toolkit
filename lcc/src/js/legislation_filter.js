@@ -12,6 +12,7 @@ $(document).ready(function(){
   var classifications = [];
   var countries = [];
   var law_types = [];
+  var tags = [];
 
   activatePagination();
 
@@ -41,7 +42,7 @@ $(document).ready(function(){
     payload['q'] = $(this).val();
   });
 
-  $('#classificationsDropDown input').on('change', function() {
+  $('#classificationsSelect input').on('change', function() {
     if($(this).is(':checked')){
       if($.inArray($(this).val()) == -1){
         classifications.push($(this).val())
@@ -57,7 +58,7 @@ $(document).ready(function(){
     payload['countries'] = $(this).val();
   });
 
-  $('#typeDropDown input').on('change', function() {
+  $('#typeSelect input').on('change', function() {
     if($(this).is(':checked')){
       if($.inArray($(this).val()) == -1){
         law_types.push($(this).val())
@@ -69,8 +70,16 @@ $(document).ready(function(){
     payload['law_types'] = law_types;
   });
 
-  $('#TagDropDown').on('change',function(e){
-    payload['tags'] = $(this).val();
+  $('#tagSelect input').on('change', function() {
+    if($(this).is(':checked')){
+      if($.inArray($(this).val()) == -1){
+        tags.push($(this).val())
+      }
+    }
+    else {
+      tags.splice(tags.indexOf($(this).val(), 1))
+    }
+    payload['tags'] = tags;
   });
 
   $(".submitBtn").on('click', function(){
