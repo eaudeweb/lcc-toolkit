@@ -70,7 +70,7 @@
     <div class="abstract">
       <span>Abstract:</span>
       <span>
-        {{ law.highlighted_abstract }}
+        <pre>{{ law.highlighted_abstract }}</pre>
       </span>
     </div>
   {% endif %}
@@ -83,6 +83,19 @@
       </span>
     </div>
   {% endif %}
+
+  {% for article in law.highlighted_articles %}
+    <div class="article">
+      <span>
+        <a href="{% url 'lcc:legislation:articles:view' law.pk %}#{{ article.pk }}">
+          Article {{ article.pk }}
+        </a>:
+      </span>
+      <span>
+        <pre>{{ article.text }}</pre>
+      </span>
+    </div>
+  {% endfor %}
 
 </div>
 {% empty %}

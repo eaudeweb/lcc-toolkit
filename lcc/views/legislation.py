@@ -9,6 +9,7 @@ from django.utils.safestring import mark_safe
 from django.views.generic import (
     ListView, CreateView, DetailView, UpdateView, DeleteView
 )
+from elasticsearch_dsl import Q
 
 from lcc import models, constants, forms
 from lcc.constants import LEGISLATION_YEAR_RANGE
@@ -33,7 +34,7 @@ class HighlightedLaws:
                 highlights = hit.meta.highlight.to_dict()
                 if 'abstract' in highlights:
                     law._highlighted_abstract = mark_safe(
-                        ' [...] '.join(highlights['abstract'])
+                        '...' + ' [...] '.join(highlights['abstract'])
                     )
                 if 'pdf_text' in highlights:
                     law._highlighted_pdf_text = mark_safe(
@@ -52,6 +53,16 @@ class HighlightedLaws:
                         mark_safe(tag)
                         for tag in highlights['tags_text'][0].split('; ')
                     ]
+            if hasattr(hit.meta, 'inner_hits'):
+                law._highlighted_articles = [
+                    {
+                        'pk': article.pk, 'text': mark_safe(
+                            '...' + ' [...] '.join(
+                                article.meta.highlight['articles.text'])
+                        )
+                    }
+                    for article in hit.meta.inner_hits.articles.hits
+                ]
             laws.append(law)
         return laws
 
@@ -92,8 +103,30 @@ class LegislationExplorer(ListView):
         classification_ids = [
             int(pk) for pk in self.request.GET.getlist('classifications[]')]
 
-        if classification_ids:
-            search = search.query('terms', classifications=classification_ids)
+        classifications = models.TaxonomyClassification.objects.filter(
+            pk__in=classification_ids)
+
+        top_classification_ids = []
+        other_classification_ids = []
+
+        for cl in classifications:
+            if cl.level == 0:
+                top_classification_ids.append(cl.pk)
+            else:
+                other_classification_ids.append(cl.pk)
+
+        if top_classification_ids:
+            search = search.query('terms', classifications=top_classification_ids)
+
+        if other_classification_ids:
+            # Search inside articles
+            search = search.query(
+                'nested', path='articles',
+                query=Q(
+                    'terms',
+                    articles__classification_ids=other_classification_ids
+                )
+            )
 
         # List of strings representing TaxonomyTag ids
         tag_ids = [int(pk) for pk in self.request.GET.getlist('tags[]')]
@@ -123,12 +156,33 @@ class LegislationExplorer(ListView):
         # elasticsearch's default best_fields strategy)
         q = self.request.GET.get('q')
         if q:
-            search = search.query(
+            # Compose root document search
+            root_query = Q(
                 'multi_match', query=q, fields=[
                     'title', 'abstract', 'pdf_text', 'classifications_text',
                     'tags_text'
                 ]
-            ).highlight('abstract', 'pdf_text').highlight(
+            )
+            # Compose nested document search inside articles
+            nested_query = Q(
+                'nested', path='articles',
+                query=Q(
+                    'multi_match',
+                    query=q,
+                    fields=['articles.text']
+                ),
+                inner_hits={
+                    'highlight': {
+                        'fields': {'articles.text': {}}
+                    }
+                }
+            )
+            # Join the searches with OR (either result should suffice)
+            search = search.query(
+                root_query | nested_query
+            ).highlight(
+                'abstract', 'pdf_text'
+            ).highlight(
                 'title', 'classifications_text', 'tags_text',
                 number_of_fragments=0
             )

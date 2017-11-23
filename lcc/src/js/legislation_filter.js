@@ -86,6 +86,18 @@ $(document).ready(function(){
   });
   $('div.easy-autocomplete').removeAttr('style');
 
+  // Activate select/deselect links for classification filters
+
+  $('a.select-all').on('click', function(){
+    $(this).closest('ul').find('input').prop('checked', true);
+  });
+
+  $('a.deselect-all').on('click', function(){
+    $(this).closest('ul').find('input').prop('checked', false);
+  });
+
+  // Handle search and filters
+
   $('#textSearchInput').on('change', function() {
     var val = $(this).val();
     if(val){

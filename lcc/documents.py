@@ -1,5 +1,5 @@
 from django_elasticsearch_dsl import DocType, Index, fields
-from lcc.models import Legislation
+from lcc.models import Legislation, LegislationArticle
 
 
 # Name of the Elasticsearch index
@@ -23,6 +23,12 @@ class LegislationDocument(DocType):
 
     pdf_text = fields.TextField()
 
+    articles = fields.NestedField(properties={
+        'pk': fields.IntegerField(),
+        'text': fields.TextField(),
+        'classification_ids': fields.ListField(fields.IntegerField())
+    })
+
     def prepare_classifications(self, instance):
         return list(instance.classifications.all().values_list('id', flat=True))
 
@@ -42,6 +48,9 @@ class LegislationDocument(DocType):
     def prepare_pdf_text(self, instance):
         return '\n\n'.join([page.page_text for page in instance.pages.all()])
 
+    def get_instances_from_related(self, related_instance):
+        return related_instance.legislation
+
     class Meta:
         model = Legislation  # The model associated with this DocType
 
@@ -52,3 +61,5 @@ class LegislationDocument(DocType):
             'abstract',
             'year',
         ]
+
+        related_models = [LegislationArticle]

@@ -585,6 +585,14 @@ class Legislation(_TaxonomyModel):
             self.tags.all().values_list('name', flat=True)
         )
 
+    def highlighted_articles(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        a list of dictionaries representing articles with the search terms
+        highlighted in the text field. If not, return an empty list.
+        """
+        return getattr(self, '_highlighted_articles', [])
+
     def save_pdf_pages(self):
         if settings.DEBUG:
             time_to_load_pdf = time.time()
@@ -639,6 +647,9 @@ class LegislationArticle(_TaxonomyModel):
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Article: %s" % str(self.legislation)
+
+    def classification_ids(self):
+        return self.classifications.values_list('pk', flat=True)
 
 
 class LegislationPage(models.Model):
