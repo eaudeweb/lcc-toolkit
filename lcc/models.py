@@ -640,7 +640,7 @@ class LegislationArticle(_TaxonomyModel):
     text = models.CharField(max_length=65535)
     legislation = models.ForeignKey(Legislation, related_name="articles")
     legislation_page = models.IntegerField()
-    code = models.CharField(max_length=64)
+    code = models.CharField(max_length=64)  # aka Article number
 
     objects = LegislationArticleManager()
 
@@ -650,6 +650,9 @@ class LegislationArticle(_TaxonomyModel):
 
     def classification_ids(self):
         return self.classifications.values_list('pk', flat=True)
+
+    def tag_ids(self):
+        return self.tags.values_list('pk', flat=True)
 
 
 class LegislationPage(models.Model):

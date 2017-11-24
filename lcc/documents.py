@@ -19,14 +19,16 @@ class LegislationDocument(DocType):
 
     country = fields.KeywordField()
 
-    law_type = fields.KeywordField(attr='law_type')
+    law_type = fields.KeywordField()
 
     pdf_text = fields.TextField()
 
     articles = fields.NestedField(properties={
         'pk': fields.IntegerField(),
+        'code': fields.KeywordField(),
         'text': fields.TextField(),
-        'classification_ids': fields.ListField(fields.IntegerField())
+        'classification_ids': fields.ListField(fields.IntegerField()),
+        'tag_ids': fields.ListField(fields.IntegerField())
     })
 
     def prepare_classifications(self, instance):

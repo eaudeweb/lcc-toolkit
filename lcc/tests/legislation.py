@@ -1,5 +1,7 @@
 import shutil
 
+from random import shuffle
+
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.management import call_command
 from django.test import Client, TestCase, override_settings
@@ -87,6 +89,22 @@ class LegislationExplorer(TestCase):
             response.context['laws'][0].highlighted_pdf_text(),
         )
 
+    def test_article_text_highlights(self):
+
+        Legislation.objects.first().articles.create(
+            text="Brown rabbits are commonly seen.",
+            legislation_page=1,
+            code="Art. I"
+        )
+
+        c = Client()
+        response = c.get('/legislation/', {'partial': True, 'q': "rabbits"})
+
+        self.assertEqual(
+            response.context['laws'][0].highlighted_articles()[0]['text'],
+            "Brown <em>rabbits</em> are commonly seen."
+        )
+
     def test_classification_filtering(self):
 
         classification_ids = ['1', '74']  # Arbitrary level 0 classifications
@@ -118,6 +136,42 @@ class LegislationExplorer(TestCase):
             returned_law_classifications_list
         )
 
+    def test_article_classification_filtering(self):
+
+        classification_ids = ['3', '9']  # Arbitrary non-0 level classifications
+
+        laws = list(Legislation.objects.all())
+        shuffle(laws)
+        law1, law2 = laws[:2]  # Get two arbitrary laws
+
+        article1 = law1.articles.create(
+            text="Some text",
+            legislation_page=1,
+            code="Art. I"
+        )
+
+        article1.classifications.add(3)
+
+        article2 = law2.articles.create(
+            text="Some other text",
+            legislation_page=1,
+            code="Art. I"
+        )
+
+        article2.classifications.add(9)
+
+        c = Client()
+        response = c.get(
+            '/legislation/',
+            {'partial': True, 'classifications[]': classification_ids}
+        )
+
+        expected_laws = [law1, law2]
+
+        returned_laws = response.context['laws'].object_list
+
+        self.assertEqual(expected_laws, returned_laws)
+
     def test_full_text_classification_search(self):
 
         q = 'climate renewable'  # Arbitrary words found in classification names
@@ -148,19 +202,19 @@ class LegislationExplorer(TestCase):
         )
 
         expected_law_tag_list = [
-            [1, 2, 3, 4, 5, 6],
-            [1, 2, 5, 6],
-            [1, 2, 4, 5, 6],
-            [1, 2, 3, 4, 5, 6],
-            [1, 2, 3, 5, 6],
-            [1, 2, 3, 4, 5, 6],
-            [2, 4],
-            [1],
-            [2, 3, 5]
+            (10, [1, 2, 3, 4, 5, 6]),
+            (8, [1, 2, 5, 6]),
+            (5, [1, 2, 4, 5, 6]),
+            (6, [1, 2, 3, 4, 5, 6]),
+            (7, [1, 2, 3, 5, 6]),
+            (1, [1, 2, 3, 4, 5, 6]),
+            (2, [2, 4]),
+            (4, [1]),
+            (3, [2, 3, 5])
         ]  # Note that documents that have both tags score higher
 
         returned_law_tag_list = [
-            list(law.tags.values_list('id', flat=True))
+            (law.id, list(law.tags.values_list('id', flat=True)))
             for law in response.context['laws']
         ]
 
@@ -168,6 +222,56 @@ class LegislationExplorer(TestCase):
             expected_law_tag_list,
             returned_law_tag_list
         )
+
+    def test_article_tag_filtering(self):
+
+        tag_ids = ['3', '4']  # Arbitrary tags
+
+        # Get two laws that are NOT tagged with those tags
+        law1, law2 = Legislation.objects.filter(pk__in=[4, 8])
+
+        # Add articles to them and tag the articles with those tags
+        article1 = law1.articles.create(
+            text="Some text",
+            legislation_page=1,
+            code="Art. I"
+        )
+
+        article1.tags.add(3)
+
+        article2 = law2.articles.create(
+            text="Some other text",
+            legislation_page=1,
+            code="Art. I"
+        )
+
+        article2.tags.add(4)
+
+        c = Client()
+        response = c.get(
+            '/legislation/',
+            {'partial': True, 'tags[]': tag_ids}
+        )
+
+        expected_law_tag_list = [
+            (10, [1, 2, 3, 4, 5, 6]),
+            (6, [1, 2, 3, 4, 5, 6]),
+            (1, [1, 2, 3, 4, 5, 6]),
+            (9, [4]),
+            (5, [1, 2, 4, 5, 6]),
+            (8, [1, 2, 5, 6]),  # Found inside article
+            (2, [2, 4]),
+            (4, [1]),  # Found inside article
+            (7, [1, 2, 3, 5, 6]),
+            (3, [2, 3, 5])
+        ]
+
+        returned_law_tag_list = [
+            (law.id, list(law.tags.values_list('id', flat=True)))
+            for law in response.context['laws']
+        ]
+
+        self.assertEqual(expected_law_tag_list, returned_law_tag_list)
 
     def test_full_text_tag_search(self):
 

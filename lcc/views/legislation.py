@@ -34,11 +34,11 @@ class HighlightedLaws:
                 highlights = hit.meta.highlight.to_dict()
                 if 'abstract' in highlights:
                     law._highlighted_abstract = mark_safe(
-                        '...' + ' [...] '.join(highlights['abstract'])
+                        ' […] '.join(highlights['abstract'])
                     )
                 if 'pdf_text' in highlights:
                     law._highlighted_pdf_text = mark_safe(
-                        ' [...] '.join(highlights['pdf_text'])
+                        ' […] '.join(highlights['pdf_text'])
                     )
                 if 'title' in highlights:
                     law._highlighted_title = mark_safe(highlights['title'][0])
@@ -56,8 +56,10 @@ class HighlightedLaws:
             if hasattr(hit.meta, 'inner_hits'):
                 law._highlighted_articles = [
                     {
-                        'pk': article.pk, 'text': mark_safe(
-                            '...' + ' [...] '.join(
+                        'pk': article.pk,
+                        'code': article.code,
+                        'text': mark_safe(
+                            ' […] '.join(
                                 article.meta.highlight['articles.text'])
                         )
                     }
@@ -103,24 +105,25 @@ class LegislationExplorer(ListView):
         classification_ids = [
             int(pk) for pk in self.request.GET.getlist('classifications[]')]
 
-        classifications = models.TaxonomyClassification.objects.filter(
-            pk__in=classification_ids)
+        if classification_ids:
 
-        top_classification_ids = []
-        other_classification_ids = []
+            classifications = models.TaxonomyClassification.objects.filter(
+                pk__in=classification_ids)
 
-        for cl in classifications:
-            if cl.level == 0:
-                top_classification_ids.append(cl.pk)
-            else:
-                other_classification_ids.append(cl.pk)
+            top_classification_ids = []
+            other_classification_ids = []
 
-        if top_classification_ids:
-            search = search.query('terms', classifications=top_classification_ids)
+            for cl in classifications:
+                if cl.level == 0:
+                    top_classification_ids.append(cl.pk)
+                else:
+                    other_classification_ids.append(cl.pk)
 
-        if other_classification_ids:
+            # Search root document
+            root_query = Q('terms', classifications=top_classification_ids)
+
             # Search inside articles
-            search = search.query(
+            nested_query = Q(
                 'nested', path='articles',
                 query=Q(
                     'terms',
@@ -128,10 +131,24 @@ class LegislationExplorer(ListView):
                 )
             )
 
+            # Join queries
+            search = search.query(root_query | nested_query)
+
         # List of strings representing TaxonomyTag ids
         tag_ids = [int(pk) for pk in self.request.GET.getlist('tags[]')]
         if tag_ids:
-            search = search.query('terms', tags=tag_ids)
+            # Search in root document
+            root_query = Q('terms', tags=tag_ids)
+            # Search inside articles
+            nested_query = Q(
+                'nested', path='articles',
+                query=Q(
+                    'terms',
+                    articles__tag_ids=tag_ids
+                )
+            )
+            # Join queries
+            search = search.query(root_query | nested_query)
 
         # String representing country iso code
         countries = self.request.GET.getlist('countries[]')

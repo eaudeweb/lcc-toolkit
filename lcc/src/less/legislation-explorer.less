@@ -205,11 +205,19 @@ li.select-deselect {
   text-align: right;
 }
 
-.law-container div > span:first-child {
-  font-weight: bold;
-}
+.law-container {
 
-.fragments {
-  padding: 2px;
-  background-color: #efefef;
+  div > span:first-child {
+    font-weight: bold;
+  }
+
+  pre {
+    white-space: pre-wrap; /* CSS3 */
+    white-space: -moz-pre-wrap; /* Mozilla, post millennium */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    padding: 2px;
+    background-color: #f8f8f8;
+  }
 }
