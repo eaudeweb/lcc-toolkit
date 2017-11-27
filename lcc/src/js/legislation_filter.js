@@ -7,19 +7,95 @@ function activatePagination(){
   });
 }
 
+function send(payload){
+  console.log(payload);
+  $.ajax({
+    type: 'GET',
+    url: '/legislation',
+    data: payload,
+    success : function(data) {
+      $("#laws").html(data);
+      activatePagination();
+    }
+  });
+}
+
 $(document).ready(function(){
 
   var classifications = [];
   var countries = [];
   var law_types = [];
+  var tags = [];
+
+  var autocomplete = [];
 
   activatePagination();
 
-  $('#textSearchInput').on('change', function() {
-    payload['q'] = $(this).val();
+  // Activate multiselect
+  $('#countrySelect').multipleSelect({
+    width: '100%', multiple: true, multipleWidth: 260, filter: true
+  });
+  $('.ms-search').append(
+    '<div class="search-icon">\
+    <i class="fa fa-search" aria-hidden="true"></i>\
+    </div>'
+  );
+
+  // Activate Slider
+  $("#yearSlider").slider({formatter: function(value) {
+		return value;
+	}});
+
+  $("#yearSlider").on("slide", function(slideEvt) {
+    $("#fromYear").val(slideEvt.value[0]);
+    $("#toYear").val(slideEvt.value[1]);
+    payload['from_year'] = slideEvt.value[0];
+    payload['to_year'] = slideEvt.value[1];
   });
 
-  $('#classificationsDropDown input').on('change', function() {
+  // Activate autocomplete
+
+  $("#classificationsSelect > li.first-level > span > label").each(function(){
+    autocomplete.push({
+      id: $(this).attr('for'),
+      name: $(this).html()
+    });
+  });
+
+  $("#tagsSelect > li label").each(function(){
+    autocomplete.push({
+      id: $(this).attr('for'),
+      name: $(this).html()
+    });
+  });
+
+  $('#textSearchInput').easyAutocomplete({
+    data: autocomplete,
+    getValue: 'name',
+    list: {
+      maxNumberOfElements: 5,
+  		match: {
+  			enabled: true
+  		},
+      onChooseEvent: function() {
+        var id = $("#textSearchInput").getSelectedItemData().id;
+	      $("#" + id).click();
+        $("#textSearchInput").val('').change();
+  		}
+  	}
+  });
+  $('div.easy-autocomplete').removeAttr('style');
+
+  $('#textSearchInput').on('change', function() {
+    var val = $(this).val();
+    if(val){
+      payload['q'] = val;
+    } else {
+      delete payload['q'];
+    }
+  });
+
+  $('#classificationsSelect input').on('change', function() {
     if($(this).is(':checked')){
       if($.inArray($(this).val()) == -1){
         classifications.push($(this).val())
@@ -31,11 +107,11 @@ $(document).ready(function(){
     payload['classifications'] = classifications;
   });
 
-  $('#countryDropDown').on('change', function() {
+  $('#countrySelect').on('change', function() {
     payload['countries'] = $(this).val();
   });
 
-  $('#typeDropDown input').on('change', function() {
+  $('#typeSelect input').on('change', function() {
     if($(this).is(':checked')){
       if($.inArray($(this).val()) == -1){
         law_types.push($(this).val())
@@ -47,20 +123,26 @@ $(document).ready(function(){
     payload['law_types'] = law_types;
   });
 
-  $('#TagDropDown').on('change',function(e){
-    payload['tags'] = $(this).val();
+  $('#tagsSelect input').on('change', function() {
+    if($(this).is(':checked')){
+      if($.inArray($(this).val()) == -1){
+        tags.push($(this).val())
+      }
+    }
+    else {
+      tags.splice(tags.indexOf($(this).val(), 1))
+    }
+    payload['tags'] = tags;
   });
 
-  $(".submitBtn").on('click', function(){
-    console.log(payload);
-    $.ajax({
-      type: 'GET',
-      url: '/legislation',
-      data: payload,
-      success : function(data) {
-        $("#laws").html(data);
-        activatePagination();
-      }
-    });
+  $('.submitBtn').on('click', function(){
+    send(payload);
   });
+
+  $('#textSearchInput').on('keyup', function(e){
+    if(e.which == 13) {
+      send(payload);
+    }
+  });
+
 });

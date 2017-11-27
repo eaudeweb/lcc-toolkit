@@ -11,7 +11,11 @@ class LegislationDocument(DocType):
 
     classifications = fields.ListField(fields.IntegerField())
 
+    classifications_text = fields.TextField()
+
     tags = fields.ListField(fields.IntegerField())
+
+    tags_text = fields.TextField()
 
     country = fields.KeywordField()
 
@@ -22,8 +26,15 @@ class LegislationDocument(DocType):
     def prepare_classifications(self, instance):
         return list(instance.classifications.all().values_list('id', flat=True))
 
+    def prepare_classifications_text(self, instance):
+        return '; '.join(
+            instance.classifications.all().values_list('name', flat=True))
+
     def prepare_tags(self, instance):
         return list(instance.tags.all().values_list('id', flat=True))
+
+    def prepare_tags_text(self, instance):
+        return '; '.join(instance.tags.all().values_list('name', flat=True))
 
     def prepare_country(self, instance):
         return instance.country.iso
@@ -34,9 +45,10 @@ class LegislationDocument(DocType):
     class Meta:
         model = Legislation  # The model associated with this DocType
 
-        # The fields of the model you want to be indexed in Elasticsearch
+        # The fields of the model to be indexed in Elasticsearch
         fields = [
             'id',
             'title',
-            'abstract'
+            'abstract',
+            'year',
         ]

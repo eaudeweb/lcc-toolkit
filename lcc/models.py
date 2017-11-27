@@ -112,6 +112,7 @@ class TaxonomyTagGroup(models.Model):
 
 
 class TaxonomyTag(models.Model):
+    # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
     group = models.ForeignKey(TaxonomyTagGroup, related_name='tags')
 
@@ -120,6 +121,7 @@ class TaxonomyTag(models.Model):
 
 
 class TaxonomyClassification(mptt.models.MPTTModel):
+    # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=16, unique=True, blank=True)
     parent = mptt.models.TreeForeignKey('self',
@@ -253,6 +255,13 @@ class Region(models.Model):
     def __str__(self):
         return self.name
 
+    def countries(self):
+        return (
+            obj.country for obj in
+            self.countrymetadata_set.filter(
+                user=None).only('country').select_related('country')
+        )
+
 
 class SubRegion(models.Model):
     name = models.CharField('Name', max_length=128)
@@ -283,6 +292,16 @@ class PrioritySector(models.Model):
 
 
 class CountryMetadata(models.Model):
+    """
+    This model provides aditional information about a country.
+
+    NOTE: For the application to work, it is necessary that at any given point
+    there is exactly one CountryMetadata instance with user=None for every
+    Country. However, this is only enforced at the application layer, so any
+    incautious direct interventions (e.g. loading custom data, creating objects
+    via shell, etc.) may leave the application in an inconsistent state.
+    """
+
     country = models.ForeignKey('Country', related_name='metadata')
     user = models.ForeignKey('UserProfile', null=True)
 
@@ -459,23 +478,6 @@ class LegislationManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().select_related('country')
 
-    def with_highlights(self, hits):
-        for hit, law in zip(hits, self):
-            highlights = hit.meta.highlight.to_dict()
-            if 'title' in highlights:
-                law._highlighted_title = mark_safe(
-                    ' [...] '.join(highlights['title'])
-                )
-            if 'abstract' in highlights:
-                law._highlighted_abstract = mark_safe(
-                    ' [...] '.join(highlights['abstract'])
-                )
-            if 'pdf_text' in highlights:
-                law._highlighted_pdf_text = mark_safe(
-                    ' [...] '.join(highlights['pdf_text'])
-                )
-            yield law
-
 
 class Legislation(_TaxonomyModel):
     title = models.CharField(max_length=256)
@@ -560,6 +562,28 @@ class Legislation(_TaxonomyModel):
         string.
         """
         return getattr(self, '_highlighted_pdf_text', '')
+
+    def highlighted_classifications(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        a list of classification names with the search terms highlighted. If
+        not, return the original list of classification names.
+        """
+        return getattr(
+            self, '_highlighted_classifications',
+            self.classifications.all().values_list('name', flat=True)
+        )
+
+    def highlighted_tags(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        a list of tag names with the search terms highlighted. If not, return
+        the original list of tag names.
+        """
+        return getattr(
+            self, '_highlighted_tags',
+            self.tags.all().values_list('name', flat=True)
+        )
 
     def save_pdf_pages(self):
         if settings.DEBUG:

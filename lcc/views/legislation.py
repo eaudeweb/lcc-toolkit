@@ -31,10 +31,6 @@ class HighlightedLaws:
         for hit, law in zip(hits, hits.to_queryset()):
             if hasattr(hit.meta, 'highlight'):
                 highlights = hit.meta.highlight.to_dict()
-                if 'title' in highlights:
-                    law._highlighted_title = mark_safe(
-                        ' [...] '.join(highlights['title'])
-                    )
                 if 'abstract' in highlights:
                     law._highlighted_abstract = mark_safe(
                         ' [...] '.join(highlights['abstract'])
@@ -43,6 +39,19 @@ class HighlightedLaws:
                     law._highlighted_pdf_text = mark_safe(
                         ' [...] '.join(highlights['pdf_text'])
                     )
+                if 'title' in highlights:
+                    law._highlighted_title = mark_safe(highlights['title'][0])
+                if 'classifications_text' in highlights:
+                    law._highlighted_classifications = [
+                        mark_safe(classification)
+                        for classification in (
+                            highlights['classifications_text'][0].split('; '))
+                    ]
+                if 'tags_text' in highlights:
+                    law._highlighted_tags = [
+                        mark_safe(tag)
+                        for tag in highlights['tags_text'][0].split('; ')
+                    ]
             laws.append(law)
         return laws
 
@@ -101,13 +110,28 @@ class LegislationExplorer(ListView):
         if law_types:
             search = search.query('terms', law_type=law_types)
 
+        # String representing the minimum year allowed in the results
+        from_year = self.request.GET.get('from_year')
+        # String representing the maximum year allowed in the results
+        to_year = self.request.GET.get('to_year')
+
+        if all([from_year, to_year]):
+            search = search.filter(
+                'range', year={'gte': int(from_year), 'lte': int(to_year)})
+
         # String to be searched in all text fields (full-text search using
         # elasticsearch's default best_fields strategy)
         q = self.request.GET.get('q')
         if q:
             search = search.query(
-                'multi_match', query=q, fields=['title', 'abstract', 'pdf_text']
-            ).highlight('title', 'abstract', 'pdf_text')
+                'multi_match', query=q, fields=[
+                    'title', 'abstract', 'pdf_text', 'classifications_text',
+                    'tags_text'
+                ]
+            ).highlight('abstract', 'pdf_text').highlight(
+                'title', 'classifications_text', 'tags_text',
+                number_of_fragments=0
+            )
 
         if not any([classification_ids, tag_ids, q]):
             # If there is no score to sort by, sort by id
@@ -134,7 +158,7 @@ class LegislationExplorer(ListView):
         group_tags = models.TaxonomyTagGroup.objects.all()
         top_classifications = models.TaxonomyClassification.objects.filter(
             level=0).order_by('code')
-        countries = models.Country.objects.all()
+        regions = models.Region.objects.all()
 
         laws = self.object_list
 
@@ -146,7 +170,7 @@ class LegislationExplorer(ListView):
             'laws': laws,
             'group_tags': group_tags,
             'top_classifications': top_classifications,
-            'countries': countries,
+            'regions': regions,
             'legislation_type': constants.LEGISLATION_TYPE,
             'legislation_year': legislation_year
         })

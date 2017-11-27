@@ -75,12 +75,7 @@ div.searchBtnWrapper {
     }
 }
 
-div.filterTags select {
-    padding: 0;
-}
-
-
-select#classificationsDropDown {
+select#classificationsSelect {
     width: 100%;
     option {
         min-height: 32px;
@@ -88,6 +83,9 @@ select#classificationsDropDown {
 }
 
 .filter-item {
+
+    width: 100%;
+
     ul {
         padding-left: 5px;
         label {
@@ -106,7 +104,7 @@ select#classificationsDropDown {
   background-color: yellow;
 }
 
-#classificationsDropDownWrapper {
+#classificationsSelectWrapper {
     i {
         position: absolute;
         left: -2px;
@@ -129,4 +127,62 @@ select#classificationsDropDown {
   color: gray;
   font-size: 90%;
   padding-bottom: 10px;
+}
+
+.slider.slider-horizontal {
+  display: block;
+  margin: 20px 0 20px 0;
+  width: 100%!important;
+}
+
+.slider-selection {
+  background-image: none!important;
+  background: #a4c8de;
+}
+
+.slider-values {
+  display: inline-block;
+  width: 100%;
+}
+
+.slider-values input {
+  width: 49%!important;
+  border: 0!important;
+  margin: 6px 0 6px 0;
+  float: left;
+  text-align: center;
+}
+
+.page-item.active .page-link {
+  z-index: auto;
+}
+
+.ms-drop {
+
+  width: 600px!important;
+  right: 0!important;
+
+  input {
+    margin-right: 6px;
+
+    &:before {
+        display: none;
+    }
+    &:after {
+        display: none;
+    }
+  }
+
+  input[type="text"] {
+    background: none;
+    height: 2em!important;
+  }
+}
+
+.search-icon {
+  color: #aaaaaa;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  text-align: right;
 }

@@ -118,6 +118,25 @@ class LegislationExplorer(TestCase):
             returned_law_classifications_list
         )
 
+    def test_full_text_classification_search(self):
+
+        q = 'climate renewable'  # Arbitrary words found in classification names
+
+        c = Client()
+        response = c.get('/legislation/', {'partial': True, 'q': q})
+
+        returned_laws = response.context['laws'].object_list
+
+        self.assertEqual(len(returned_laws), 8)
+        self.assertIn(
+            'Dedicated <em>climate</em> laws and governance',
+            returned_laws[0].highlighted_classifications()
+        )
+        self.assertIn(
+            'Energy production and <em>renewable</em> energy laws',
+            returned_laws[0].highlighted_classifications()
+        )
+
     def test_tag_filtering(self):
 
         tag_ids = ['1', '2']  # Arbitrary tags
@@ -150,6 +169,20 @@ class LegislationExplorer(TestCase):
             returned_law_tag_list
         )
 
+    def test_full_text_tag_search(self):
+
+        q = 'enforcement'  # Arbitrary word found in one of the tag names
+
+        c = Client()
+        response = c.get('/legislation/', {'partial': True, 'q': q})
+
+        returned_laws = response.context['laws'].object_list
+        self.assertEqual(len(returned_laws), 7)
+        self.assertIn(
+            'Provisions for non-compliance and <em>enforcement</em>',
+            returned_laws[0].highlighted_tags()
+        )
+
     def test_country_filtering(self):
 
         iso_codes = ['MMR', 'PAN']  # Arbitrary country ids
@@ -176,6 +209,22 @@ class LegislationExplorer(TestCase):
         )
 
         expected_law_ids = [1, 2, 3, 5, 6, 10]
+        returned_law_ids = [law.id for law in response.context['laws']]
+
+        self.assertEqual(expected_law_ids, returned_law_ids)
+
+    def test_year_range_filtering(self):
+
+        # Arbitrary years
+        from_year = 1950
+        to_year = 2005
+
+        c = Client()
+        response = c.get(
+            '/legislation/',
+            {'partial': True, 'from_year': from_year, 'to_year': to_year}
+        )
+        expected_law_ids = [6, 9, 10]
         returned_law_ids = [law.id for law in response.context['laws']]
 
         self.assertEqual(expected_law_ids, returned_law_ids)
