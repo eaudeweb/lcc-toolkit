@@ -9,10 +9,8 @@ from lcc.models import Legislation
 
 
 class LegislationExplorer(TestCase):
-
     fixtures = [
         'Countries.json',
-        'CountryMetadata.json',
         'Gaps.json',
         'Questions.json',
         'TaxonomyClassification.json',

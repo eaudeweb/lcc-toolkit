@@ -180,11 +180,11 @@ class ApproveRegistration(ModelForm):
         notify(email)
 
 
-class CountryMetadata(ModelForm):
+class CountryBase(ModelForm):
     """ Used on view. """
 
     class Meta:
-        model = models.CountryMetadata
+        model = models.AssessmentProfile
         exclude = ['user', 'country']
 
     def _filter_on_type(self, type_name, cmp):
@@ -206,7 +206,7 @@ class CountryMetadata(ModelForm):
         )
 
 
-class CustomiseCountry(CountryMetadata):
+class CustomiseCountry(CountryBase):
     """ Used on edit. """
     def others(self):
         return self._filter_on_type('checkbox', operator.ne)
