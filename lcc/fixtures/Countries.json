@@ -1,1381 +1,6608 @@
 [
 {
+    "model": "lcc.region",
+    "pk": 1,
+    "fields": {
+        "name": "Asia"
+    }
+},
+{
+    "model": "lcc.region",
+    "pk": 2,
+    "fields": {
+        "name": "Europe"
+    }
+},
+{
+    "model": "lcc.region",
+    "pk": 3,
+    "fields": {
+        "name": "Africa"
+    }
+},
+{
+    "model": "lcc.region",
+    "pk": 4,
+    "fields": {
+        "name": "Americas"
+    }
+},
+{
+    "model": "lcc.region",
+    "pk": 5,
+    "fields": {
+        "name": "Oceania"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 1,
+    "fields": {
+        "name": "Southern Asia"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 2,
+    "fields": {
+        "name": "Southern Europe"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 3,
+    "fields": {
+        "name": "Northern Africa"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 4,
+    "fields": {
+        "name": "Middle Africa"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 5,
+    "fields": {
+        "name": "Caribbean"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 6,
+    "fields": {
+        "name": "South America"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 7,
+    "fields": {
+        "name": "Western Asia"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 8,
+    "fields": {
+        "name": "Australia/New Zealand"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 9,
+    "fields": {
+        "name": "Western Europe"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 10,
+    "fields": {
+        "name": "Eastern Europe"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 11,
+    "fields": {
+        "name": "Central America"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 12,
+    "fields": {
+        "name": "Western Africa"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 13,
+    "fields": {
+        "name": "Southern Africa"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 14,
+    "fields": {
+        "name": "South-Eastern Asia"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 15,
+    "fields": {
+        "name": "Eastern Africa"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 16,
+    "fields": {
+        "name": "Northern America"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 17,
+    "fields": {
+        "name": "Eastern Asia"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 18,
+    "fields": {
+        "name": "Polynesia"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 19,
+    "fields": {
+        "name": "Northern Europe"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 20,
+    "fields": {
+        "name": "N/A"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 21,
+    "fields": {
+        "name": "Melanesia"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 22,
+    "fields": {
+        "name": "Central Asia"
+    }
+},
+{
+    "model": "lcc.subregion",
+    "pk": 23,
+    "fields": {
+        "name": "Micronesia"
+    }
+},
+{
+    "model": "lcc.legalsystem",
+    "pk": 1,
+    "fields": {
+        "name": "Islamic"
+    }
+},
+{
+    "model": "lcc.legalsystem",
+    "pk": 2,
+    "fields": {
+        "name": "Civil law"
+    }
+},
+{
+    "model": "lcc.legalsystem",
+    "pk": 3,
+    "fields": {
+        "name": "Mixed"
+    }
+},
+{
+    "model": "lcc.legalsystem",
+    "pk": 4,
+    "fields": {
+        "name": "Customary"
+    }
+},
+{
+    "model": "lcc.legalsystem",
+    "pk": 5,
+    "fields": {
+        "name": "Common law"
+    }
+},
+{
+    "model": "lcc.focusarea",
+    "pk": 1,
+    "fields": {
+        "name": "Renewable Energy"
+    }
+},
+{
+    "model": "lcc.focusarea",
+    "pk": 2,
+    "fields": {
+        "name": "Energy Efficiency"
+    }
+},
+{
+    "model": "lcc.focusarea",
+    "pk": 3,
+    "fields": {
+        "name": "Transport"
+    }
+},
+{
+    "model": "lcc.focusarea",
+    "pk": 4,
+    "fields": {
+        "name": "Agriculture"
+    }
+},
+{
+    "model": "lcc.focusarea",
+    "pk": 5,
+    "fields": {
+        "name": "Land Use and Forestry"
+    }
+},
+{
+    "model": "lcc.focusarea",
+    "pk": 6,
+    "fields": {
+        "name": "Waste"
+    }
+},
+{
+    "model": "lcc.focusarea",
+    "pk": 7,
+    "fields": {
+        "name": "waste"
+    }
+},
+{
+    "model": "lcc.focusarea",
+    "pk": 8,
+    "fields": {
+        "name": "Carbon Capture and Storage (CCS)"
+    }
+},
+{
+    "model": "lcc.focusarea",
+    "pk": 9,
+    "fields": {
+        "name": "Land Use Forestry"
+    }
+},
+{
+    "model": "lcc.prioritysector",
+    "pk": 1,
+    "fields": {
+        "name": "Agriculture"
+    }
+},
+{
+    "model": "lcc.prioritysector",
+    "pk": 2,
+    "fields": {
+        "name": "Water"
+    }
+},
+{
+    "model": "lcc.prioritysector",
+    "pk": 3,
+    "fields": {
+        "name": "Health"
+    }
+},
+{
+    "model": "lcc.prioritysector",
+    "pk": 4,
+    "fields": {
+        "name": "Ecosystems"
+    }
+},
+{
+    "model": "lcc.prioritysector",
+    "pk": 5,
+    "fields": {
+        "name": "Coastal Zones"
+    }
+},
+{
     "model": "lcc.country",
     "pk": "AFG",
     "fields": {
-        "name": "Afghanistan"
+        "name": "Afghanistan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 1,
+        "legal_system": 1,
+        "population": 36373.176,
+        "hdi2015": 0.479375005926672,
+        "gdp_capita": 561.778746269502,
+        "ghg_no_lucf": 33.36614812,
+        "ghg_lucf": 33.36614812,
+        "cvi2015": 0.633770304232,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "AGO",
     "fields": {
-        "name": "Angola"
+        "name": "Angola",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 4,
+        "legal_system": 2,
+        "population": 30774.205,
+        "hdi2015": 0.533464072895593,
+        "gdp_capita": 3110.80818263013,
+        "ghg_no_lucf": 157.8168291,
+        "ghg_lucf": 252.0929303,
+        "cvi2015": 0.566557420939,
+        "mitigation_focus_areas": [
+            1,
+            3,
+            4,
+            5,
+            7
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            3,
+            4,
+            5
+        ]
+
     }
 },
 {
     "model": "lcc.country",
     "pk": "ALB",
     "fields": {
-        "name": "Albania"
+        "name": "Albania",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 2934.363,
+        "hdi2015": 0.764173728347378,
+        "gdp_capita": 4146.89625046198,
+        "ghg_no_lucf": 9.036455701,
+        "ghg_lucf": 8.678753001,
+        "cvi2015": 0.386406646412,
+        "mitigation_focus_areas": [
+            1
+        ],
+        "adaptation_priority_sectors": [
+            2
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "AND",
     "fields": {
-        "name": "Andorra"
+        "name": "Andorra",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 4,
+        "population": 76.953,
+        "hdi2015": 0.85845165619693,
+        "gdp_capita": 40215.4353174077,
+        "ghg_no_lucf": 0.518129105,
+        "ghg_lucf": 0.496378605,
+        "cvi2015": null,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "ARE",
     "fields": {
-        "name": "United Arab Emirates"
+        "name": "United Arab Emirates",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 9541.615,
+        "hdi2015": 0.839799159479088,
+        "gdp_capita": 37622.2074575932,
+        "ghg_no_lucf": 221.5071534,
+        "ghg_lucf": 221.2944867,
+        "cvi2015": 0.364052993486,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            8
+        ],
+        "adaptation_priority_sectors": [
+            2
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "ARG",
     "fields": {
-        "name": "Argentina"
+        "name": "Argentina",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 2,
+        "population": 44688.864,
+        "hdi2015": 0.827400510092686,
+        "gdp_capita": 12449.2168521177,
+        "ghg_no_lucf": 348.6472472,
+        "ghg_lucf": 443.2556943,
+        "cvi2015": 0.37447954753,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "ARM",
     "fields": {
-        "name": "Armenia"
+        "name": "Armenia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 2,
+        "population": 2934.152,
+        "hdi2015": 0.742849830774667,
+        "gdp_capita": 3606.15205715147,
+        "ghg_no_lucf": 8.626277658,
+        "ghg_lucf": 8.479610958,
+        "cvi2015": 0.384045754989,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "ATG",
     "fields": {
-        "name": "Antigua and Barbuda"
+        "name": "Antigua and Barbuda",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 5,
+        "population": 103.05,
+        "hdi2015": 0.785589002148929,
+        "gdp_capita": 14353.3788138742,
+        "ghg_no_lucf": 1.13462652,
+        "ghg_lucf": 1.14121732,
+        "cvi2015": 0.420977304,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "AUS",
     "fields": {
-        "name": "Australia"
+        "name": "Australia",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 5,
+        "sub_region": 8,
+        "legal_system": 5,
+        "population": 24772.247,
+        "hdi2015": 0.938679535646609,
+        "gdp_capita": 49927.8195094751,
+        "ghg_no_lucf": 589.7345036,
+        "ghg_lucf": 523.2126791,
+        "cvi2015": 0.267742454501,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "AUT",
     "fields": {
-        "name": "Austria"
+        "name": "Austria",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 9,
+        "legal_system": 2,
+        "population": 8751.82,
+        "hdi2015": 0.893405014550365,
+        "gdp_capita": 44176.5152160475,
+        "ghg_no_lucf": 75.14769818,
+        "ghg_lucf": 70.25588108,
+        "cvi2015": 0.303490501764,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "AZE",
     "fields": {
-        "name": "Azerbaijan"
+        "name": "Azerbaijan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 2,
+        "population": 9923.914,
+        "hdi2015": 0.758527581267564,
+        "gdp_capita": 3876.9364326427,
+        "ghg_no_lucf": 72.59776211,
+        "ghg_lucf": 64.13029131,
+        "cvi2015": 0.363142449071,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "BDI",
     "fields": {
-        "name": "Burundi"
+        "name": "Burundi",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 11216.45,
+        "hdi2015": 0.403765414805571,
+        "gdp_capita": 285.727442064713,
+        "ghg_no_lucf": 3.301625677,
+        "ghg_lucf": 5.558832977,
+        "cvi2015": 0.689829287709,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BEL",
     "fields": {
-        "name": "Belgium"
+        "name": "Belgium",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 9,
+        "legal_system": 2,
+        "population": 11498.519,
+        "hdi2015": 0.89551414547819,
+        "gdp_capita": 41096.1573021536,
+        "ghg_no_lucf": 107.5031962,
+        "ghg_lucf": 104.8745004,
+        "cvi2015": 0.289323536673,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "BEN",
     "fields": {
-        "name": "Benin"
+        "name": "Benin",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 2,
+        "population": 11485.674,
+        "hdi2015": 0.485096406004906,
+        "gdp_capita": 789.440410685648,
+        "ghg_no_lucf": 12.71480994,
+        "ghg_lucf": 23.54280994,
+        "cvi2015": 0.572531308699,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BFA",
     "fields": {
-        "name": "Burkina Faso"
+        "name": "Burkina Faso",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 19751.651,
+        "hdi2015": 0.401740104144638,
+        "gdp_capita": 649.730483655835,
+        "ghg_no_lucf": 23.50082589,
+        "ghg_lucf": 32.59782589,
+        "cvi2015": 0.579799933264,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BGD",
     "fields": {
-        "name": "Bangladesh"
+        "name": "Bangladesh",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 1,
+        "legal_system": 3,
+        "population": 166368.149,
+        "hdi2015": 0.578824028441254,
+        "gdp_capita": 1358.7797522498,
+        "ghg_no_lucf": 167.7068168,
+        "ghg_lucf": 196.928683,
+        "cvi2015": 0.506402419333,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BGR",
     "fields": {
-        "name": "Bulgaria"
+        "name": "Bulgaria",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 10,
+        "legal_system": 2,
+        "population": 7036.848,
+        "hdi2015": 0.793641565185201,
+        "gdp_capita": 7350.79580089813,
+        "ghg_no_lucf": 57.80457288,
+        "ghg_lucf": 47.88966918,
+        "cvi2015": 0.318531148914,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "BHR",
     "fields": {
-        "name": "Bahrain"
+        "name": "Bahrain",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 1566.993,
+        "hdi2015": 0.823884095321277,
+        "gdp_capita": 22354.1670706869,
+        "ghg_no_lucf": 35.04475325,
+        "ghg_lucf": 35.03989405,
+        "cvi2015": 0.425169715417,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            8
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BHS",
     "fields": {
-        "name": "Bahamas"
+        "name": "Bahamas",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 5,
+        "population": 399.285,
+        "hdi2015": 0.791622829320128,
+        "gdp_capita": 23124.3865532472,
+        "ghg_no_lucf": 2.714541396,
+        "ghg_lucf": 3.100892796,
+        "cvi2015": 0.421426875688,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BIH",
     "fields": {
-        "name": "Bosnia and Herzegovina"
+        "name": "Bosnia and Herzegovina",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 3503.554,
+        "hdi2015": 0.74983352255894,
+        "gdp_capita": 4708.71826065622,
+        "ghg_no_lucf": 28.64925537,
+        "ghg_lucf": 28.79741477,
+        "cvi2015": 0.341586277724,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "BLR",
     "fields": {
-        "name": "Belarus"
+        "name": "Belarus",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 10,
+        "legal_system": 2,
+        "population": 9452.113,
+        "hdi2015": 0.795827060674917,
+        "gdp_capita": 4989.25461056406,
+        "ghg_no_lucf": 89.58018156,
+        "ghg_lucf": 89.25188686,
+        "cvi2015": 0.311050494598,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "BLZ",
     "fields": {
-        "name": "Belize"
+        "name": "Belize",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 11,
+        "legal_system": 5,
+        "population": 382.444,
+        "hdi2015": 0.706194772255319,
+        "gdp_capita": 4810.56590199317,
+        "ghg_no_lucf": 9.801693593,
+        "ghg_lucf": 12.08198569,
+        "cvi2015": 0.4318174337,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BOL",
     "fields": {
-        "name": "Bolivia (Plurinational State of)"
+        "name": "Bolivia (Plurinational State of)",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 2,
+        "population": 11215.674,
+        "hdi2015": 0.674074431253698,
+        "gdp_capita": 3104.95608914095,
+        "ghg_no_lucf": 48.46665372,
+        "ghg_lucf": 134.1803914,
+        "cvi2015": 0.459177214466,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BRA",
     "fields": {
-        "name": "Brazil"
+        "name": "Brazil",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 2,
+        "population": 210867.954,
+        "hdi2015": 0.754143634269208,
+        "gdp_capita": 8649.94849175062,
+        "ghg_no_lucf": 1051.001312,
+        "ghg_lucf": 1357.1811,
+        "cvi2015": 0.345613858981,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BRB",
     "fields": {
-        "name": "Barbados"
+        "name": "Barbados",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 5,
+        "population": 286.388,
+        "hdi2015": 0.794719157639879,
+        "gdp_capita": 16096.8925879661,
+        "ghg_no_lucf": 3.355357619,
+        "ghg_lucf": 3.359594519,
+        "cvi2015": 0.353888768467,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BRN",
     "fields": {
-        "name": "Brunei Darussalam"
+        "name": "Brunei Darussalam",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 14,
+        "legal_system": 3,
+        "population": 434.076,
+        "hdi2015": 0.864936709580829,
+        "gdp_capita": 26938.5033823025,
+        "ghg_no_lucf": 19.2079731,
+        "ghg_lucf": 19.7563525,
+        "cvi2015": 0.381592399781,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BTN",
     "fields": {
-        "name": "Bhutan"
+        "name": "Bhutan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 1,
+        "legal_system": 3,
+        "population": 817.054,
+        "hdi2015": 0.606533531723596,
+        "gdp_capita": 2804.00022298565,
+        "ghg_no_lucf": 1.527239757,
+        "ghg_lucf": -2.263093543,
+        "cvi2015": 0.498818952117,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "BWA",
     "fields": {
-        "name": "Botswana"
+        "name": "Botswana",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 13,
+        "legal_system": 3,
+        "population": 2333.201,
+        "hdi2015": 0.697687481153662,
+        "gdp_capita": 6788.04274537565,
+        "ghg_no_lucf": 14.18033323,
+        "ghg_lucf": 36.55834123,
+        "cvi2015": 0.510404516035,
+        "mitigation_focus_areas": [
+            1,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "CAF",
     "fields": {
-        "name": "Central African Republic"
+        "name": "Central African Republic",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 4,
+        "legal_system": 2,
+        "population": 4737.423,
+        "hdi2015": 0.352440200154679,
+        "gdp_capita": 382.213174317687,
+        "ghg_no_lucf": 48.56621957,
+        "ghg_lucf": 61.89157457,
+        "cvi2015": 0.676843781527,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "CAN",
     "fields": {
-        "name": "Canada"
+        "name": "Canada",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 16,
+        "legal_system": 3,
+        "population": 36953.765,
+        "hdi2015": 0.92028441365135,
+        "gdp_capita": 42157.9279910146,
+        "ghg_no_lucf": 745.1087321,
+        "ghg_lucf": 866.9965179,
+        "cvi2015": 0.256292315773,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "CHE",
     "fields": {
-        "name": "Switzerland"
+        "name": "Switzerland",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 9,
+        "legal_system": 2,
+        "population": 8544.034,
+        "hdi2015": 0.93913086905938,
+        "gdp_capita": 78812.6506872985,
+        "ghg_no_lucf": 47.70496703,
+        "ghg_lucf": 46.15266943,
+        "cvi2015": 0.254444050335,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "CHL",
     "fields": {
-        "name": "Chile"
+        "name": "Chile",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 2,
+        "population": 18197.209,
+        "hdi2015": 0.846625951356502,
+        "gdp_capita": 13792.9260543892,
+        "ghg_no_lucf": 97.15239014,
+        "ghg_lucf": -7.78630606,
+        "cvi2015": 0.311868884989,
+        "mitigation_focus_areas": [
+            1,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "CHN",
     "fields": {
-        "name": "China"
+        "name": "China",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 17,
+        "legal_system": 3,
+        "population": 1415045.928,
+        "hdi2015": 0.737680590372687,
+        "gdp_capita": 8123.1808725464,
+        "ghg_no_lucf": 11911.71179,
+        "ghg_lucf": 11600.62925,
+        "cvi2015": 0.302288506813,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "CIV",
     "fields": {
-        "name": "C\u00f4te d'Ivoire"
+        "name": "C\u00f4te d'Ivoire",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 24905.843,
+        "hdi2015": 0.473679284991255,
+        "gdp_capita": 1526.19717484252,
+        "ghg_no_lucf": 33.74008182,
+        "ghg_lucf": 39.20827082,
+        "cvi2015": 0.499047230708,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "CMR",
     "fields": {
-        "name": "Cameroon"
+        "name": "Cameroon",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 4,
+        "legal_system": 3,
+        "population": 24678.234,
+        "hdi2015": 0.517547036587028,
+        "gdp_capita": 1032.64872204454,
+        "ghg_no_lucf": 83.13786222,
+        "ghg_lucf": 196.5586219,
+        "cvi2015": 0.483623300037,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "COD",
     "fields": {
-        "name": "Democratic Republic of the Congo"
+        "name": "Democratic Republic of the Congo",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 4,
+        "legal_system": 3,
+        "population": 84004.989,
+        "hdi2015": 0.435464669613531,
+        "gdp_capita": 444.505316815516,
+        "ghg_no_lucf": 41.19865888,
+        "ghg_lucf": 206.7494711,
+        "cvi2015": 0.592444348483,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "COG",
     "fields": {
-        "name": "Congo"
+        "name": "Congo",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 4,
+        "legal_system": 3,
+        "population": 5399.895,
+        "hdi2015": 0.592284049457108,
+        "gdp_capita": 1528.24483012457,
+        "ghg_no_lucf": 6.998261951,
+        "ghg_lucf": 19.29293245,
+        "cvi2015": 0.568493463975,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "COK",
     "fields": {
-        "name": "Cook Islands"
+        "name": "Cook Islands",
+        "cw": false,
+        "small_cw": false,
+        "un": false,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 18,
+        "legal_system": 5,
+        "population": 17.411,
+        "hdi2015": null,
+        "gdp_capita": null,
+        "ghg_no_lucf": 0.108822224,
+        "ghg_lucf": 0.108828324,
+        "cvi2015": null,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "COL",
     "fields": {
-        "name": "Colombia"
+        "name": "Colombia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 2,
+        "population": 49464.683,
+        "hdi2015": 0.727287286964335,
+        "gdp_capita": 5805.60533452459,
+        "ghg_no_lucf": 162.8699032,
+        "ghg_lucf": 182.3851659,
+        "cvi2015": 0.366105184764,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "COM",
     "fields": {
-        "name": "Comoros"
+        "name": "Comoros",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": true,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 832.347,
+        "hdi2015": 0.497496166387042,
+        "gdp_capita": 775.080084704756,
+        "ghg_no_lucf": 0.397841848,
+        "ghg_lucf": 0.464841848,
+        "cvi2015": 0.494606130409,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "CPV",
     "fields": {
-        "name": "Cabo Verde"
+        "name": "Cabo Verde",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 2,
+        "population": 553.335,
+        "hdi2015": 0.648316879200371,
+        "gdp_capita": 2997.75267953531,
+        "ghg_no_lucf": 0.648809183,
+        "ghg_lucf": 0.480142483,
+        "cvi2015": 0.458307817904,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "CRI",
     "fields": {
-        "name": "Costa Rica"
+        "name": "Costa Rica",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 11,
+        "legal_system": 2,
+        "population": 4953.199,
+        "hdi2015": 0.776452942632562,
+        "gdp_capita": 11824.6381020004,
+        "ghg_no_lucf": 13.89755015,
+        "ghg_lucf": 2.534531154,
+        "cvi2015": 0.360793998723,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "CUB",
     "fields": {
-        "name": "Cuba"
+        "name": "Cuba",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 2,
+        "population": 11489.082,
+        "hdi2015": 0.774669358502309,
+        "gdp_capita": 7602.26121831897,
+        "ghg_no_lucf": 46.82767444,
+        "ghg_lucf": 32.86500774,
+        "cvi2015": 0.38000911886,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4
+        ],
+        "adaptation_priority_sectors": [
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "CYP",
     "fields": {
-        "name": "Cyprus"
+        "name": "Cyprus",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 1189.085,
+        "hdi2015": 0.855645845739221,
+        "gdp_capita": 23324.2017353618,
+        "ghg_no_lucf": 7.022166736,
+        "ghg_lucf": 6.717833436,
+        "cvi2015": 0.279119647975,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "CZE",
     "fields": {
-        "name": "Czech Republic"
+        "name": "Czech Republic",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 10,
+        "legal_system": 2,
+        "population": 10625.25,
+        "hdi2015": 0.877841924484264,
+        "gdp_capita": 18266.5496886036,
+        "ghg_no_lucf": 116.7702981,
+        "ghg_lucf": 104.2741718,
+        "cvi2015": 0.263690948918,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "DEU",
     "fields": {
-        "name": "Germany"
+        "name": "Germany",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 9,
+        "legal_system": 2,
+        "population": 82293.457,
+        "hdi2015": 0.925668941071662,
+        "gdp_capita": 41936.0585754956,
+        "ghg_no_lucf": 854.0072929,
+        "ghg_lucf": 816.6402702,
+        "cvi2015": 0.22658014644,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "DJI",
     "fields": {
-        "name": "Djibouti"
+        "name": "Djibouti",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 971.408,
+        "hdi2015": 0.473134228975724,
+        "gdp_capita": 1862.16727373104,
+        "ghg_no_lucf": 1.514306667,
+        "ghg_lucf": 1.514306667,
+        "cvi2015": 0.565632908071,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "DMA",
     "fields": {
-        "name": "Dominica"
+        "name": "Dominica",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 5,
+        "population": 74.308,
+        "hdi2015": 0.726397806069383,
+        "gdp_capita": 7144.45467277647,
+        "ghg_no_lucf": 0.24289671,
+        "ghg_lucf": 0.35915051,
+        "cvi2015": 0.321894629531,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "DNK",
     "fields": {
-        "name": "Denmark"
+        "name": "Denmark",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 19,
+        "legal_system": 2,
+        "population": 5754.356,
+        "hdi2015": 0.92464936963657,
+        "gdp_capita": 53417.6642756422,
+        "ghg_no_lucf": 48.77410378,
+        "ghg_lucf": 48.27929378,
+        "cvi2015": 0.229844549162,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "DOM",
     "fields": {
-        "name": "Dominican Republic"
+        "name": "Dominican Republic",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 2,
+        "population": 10882.996,
+        "hdi2015": 0.721686315917296,
+        "gdp_capita": 6722.22353580612,
+        "ghg_no_lucf": 33.1073147,
+        "ghg_lucf": 24.406648,
+        "cvi2015": 0.420251921285,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "DZA",
     "fields": {
-        "name": "Algeria"
+        "name": "Algeria",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 3,
+        "legal_system": 3,
+        "population": 42008.054,
+        "hdi2015": 0.744805577498479,
+        "gdp_capita": 3843.75232202304,
+        "ghg_no_lucf": 202.0871262,
+        "ghg_lucf": 201.6851262,
+        "cvi2015": 0.403329919356,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "ECU",
     "fields": {
-        "name": "Ecuador"
+        "name": "Ecuador",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 2,
+        "population": 16863.425,
+        "hdi2015": 0.739298831551065,
+        "gdp_capita": 5968.98413848511,
+        "ghg_no_lucf": 60.62941065,
+        "ghg_lucf": 94.52929885,
+        "cvi2015": 0.405388719104,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "EGY",
     "fields": {
-        "name": "Egypt"
+        "name": "Egypt",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 3,
+        "legal_system": 3,
+        "population": 99375.741,
+        "hdi2015": 0.691391634294152,
+        "gdp_capita": 3514.49009688808,
+        "ghg_no_lucf": 272.6850053,
+        "ghg_lucf": 272.466472,
+        "cvi2015": 0.407050453833,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            8
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "ERI",
     "fields": {
-        "name": "Eritrea"
+        "name": "Eritrea",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 5187.948,
+        "hdi2015": 0.420153487347265,
+        "gdp_capita": null,
+        "ghg_no_lucf": 6.755375657,
+        "ghg_lucf": 7.415462557,
+        "cvi2015": 0.660325421454,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "ESP",
     "fields": {
-        "name": "Spain"
+        "name": "Spain",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 46397.452,
+        "hdi2015": 0.884153254627493,
+        "gdp_capita": 26528.4917900799,
+        "ghg_no_lucf": 305.8181305,
+        "ghg_lucf": 272.6651819,
+        "cvi2015": 0.264851525127,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "EST",
     "fields": {
-        "name": "Estonia"
+        "name": "Estonia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 19,
+        "legal_system": 2,
+        "population": 1306.788,
+        "hdi2015": 0.865118379943937,
+        "gdp_capita": 17574.6873552714,
+        "ghg_no_lucf": 22.03626908,
+        "ghg_lucf": 26.42848468,
+        "cvi2015": 0.335205054285,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "ETH",
     "fields": {
-        "name": "Ethiopia"
+        "name": "Ethiopia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 107534.882,
+        "hdi2015": 0.447750459018102,
+        "gdp_capita": 706.757754078087,
+        "ghg_no_lucf": 129.2132076,
+        "ghg_lucf": 147.7270358,
+        "cvi2015": 0.534655062598,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "EU",
     "fields": {
-        "name": "European Union"
+        "name": "European Union",
+        "cw": false,
+        "small_cw": false,
+        "un": false,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 20,
+        "legal_system": 3,
+        "population": 509697.0,
+        "hdi2015": 0.874,
+        "gdp_capita": 32058.77,
+        "ghg_no_lucf": 4053.659358,
+        "ghg_lucf": 3624.815071,
+        "cvi2015": 0.295,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "FIN",
     "fields": {
-        "name": "Finland"
+        "name": "Finland",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 19,
+        "legal_system": 2,
+        "population": 5542.517,
+        "hdi2015": 0.894517443910605,
+        "gdp_capita": 43090.2475062997,
+        "ghg_no_lucf": 59.52761632,
+        "ghg_lucf": 65.24243152,
+        "cvi2015": 0.281238251018,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "FJI",
     "fields": {
-        "name": "Fiji"
+        "name": "Fiji",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 21,
+        "legal_system": 5,
+        "population": 912.241,
+        "hdi2015": 0.736406209646027,
+        "gdp_capita": 5153.35154431659,
+        "ghg_no_lucf": 2.222656367,
+        "ghg_lucf": -0.767753133,
+        "cvi2015": 0.476965627378,
+        "mitigation_focus_areas": [
+            1,
+            2
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            3,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "FRA",
     "fields": {
-        "name": "France"
+        "name": "France",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 9,
+        "legal_system": 2,
+        "population": 65233.271,
+        "hdi2015": 0.897435892476236,
+        "gdp_capita": 36854.9682804756,
+        "ghg_no_lucf": 413.114351,
+        "ghg_lucf": 334.2785837,
+        "cvi2015": 0.256952046951,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "FSM",
     "fields": {
-        "name": "Micronesia (Federated States of)"
+        "name": "Micronesia (Federated States of)",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 23,
+        "legal_system": 3,
+        "population": 106.227,
+        "hdi2015": 0.637783067731326,
+        "gdp_capita": 3068.50777132946,
+        "ghg_no_lucf": 0.180264399,
+        "ghg_lucf": 0.150931099,
+        "cvi2015": null,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "GAB",
     "fields": {
-        "name": "Gabon"
+        "name": "Gabon",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 4,
+        "legal_system": 3,
+        "population": 2067.561,
+        "hdi2015": 0.697123999264401,
+        "gdp_capita": 7179.34066115314,
+        "ghg_no_lucf": 7.258553465,
+        "ghg_lucf": -86.90168633,
+        "cvi2015": 0.461622979462,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "GBR",
     "fields": {
-        "name": "United Kingdom of Great Britan and Northern Ireland"
+        "name": "United Kingdom of Great Britan and Northern Ireland",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 19,
+        "legal_system": 5,
+        "population": 66573.504,
+        "hdi2015": 0.909490905908351,
+        "gdp_capita": 39899.3883948894,
+        "ghg_no_lucf": 506.1108704,
+        "ghg_lucf": 493.8950851,
+        "cvi2015": 0.210974233034,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "GEO",
     "fields": {
-        "name": "Georgia"
+        "name": "Georgia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 2,
+        "population": 3907.131,
+        "hdi2015": 0.769396875235456,
+        "gdp_capita": 3853.64990352915,
+        "ghg_no_lucf": 16.38215571,
+        "ghg_lucf": 16.38915571,
+        "cvi2015": 0.384697765506,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "GHA",
     "fields": {
-        "name": "Ghana"
+        "name": "Ghana",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 29463.643,
+        "hdi2015": 0.57882883239996,
+        "gdp_capita": 1513.46103432745,
+        "ghg_no_lucf": 30.2598771,
+        "ghg_lucf": 38.5688715,
+        "cvi2015": 0.471822999974,
+        "mitigation_focus_areas": [
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "GIN",
     "fields": {
-        "name": "Guinea"
+        "name": "Guinea",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 13052.608,
+        "hdi2015": 0.414186306221596,
+        "gdp_capita": 508.145078427288,
+        "ghg_no_lucf": 16.03513978,
+        "ghg_lucf": 30.17942538,
+        "cvi2015": 0.528955288909,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "GMB",
     "fields": {
-        "name": "Gambia"
+        "name": "Gambia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 2163.765,
+        "hdi2015": 0.451574500557824,
+        "gdp_capita": 473.19043627424,
+        "ghg_no_lucf": 7.685859323,
+        "ghg_lucf": 7.441526023,
+        "cvi2015": 0.590780936253,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "GNB",
     "fields": {
-        "name": "Guinea-Bissau"
+        "name": "Guinea-Bissau",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": true,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 1907.268,
+        "hdi2015": 0.423839922746506,
+        "gdp_capita": 620.214764743552,
+        "ghg_no_lucf": 2.024536489,
+        "ghg_lucf": 3.497203189,
+        "cvi2015": 0.603255354824,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "GNQ",
     "fields": {
-        "name": "Equatorial Guinea"
+        "name": "Equatorial Guinea",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 4,
+        "legal_system": 3,
+        "population": 1313.894,
+        "hdi2015": 0.592436178771294,
+        "gdp_capita": 8333.23826311996,
+        "ghg_no_lucf": 20.57992564,
+        "ghg_lucf": 25.94023834,
+        "cvi2015": 0.458262432472,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "GRC",
     "fields": {
-        "name": "Greece"
+        "name": "Greece",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 11142.161,
+        "hdi2015": 0.86587309619735,
+        "gdp_capita": 18103.9693224025,
+        "ghg_no_lucf": 84.1137412,
+        "ghg_lucf": 83.4366903,
+        "cvi2015": 0.297339050123,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "GRD",
     "fields": {
-        "name": "Grenada"
+        "name": "Grenada",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 5,
+        "population": 108.339,
+        "hdi2015": 0.753555768652488,
+        "gdp_capita": 9469.21918069658,
+        "ghg_no_lucf": 1.949105709,
+        "ghg_lucf": 1.949105709,
+        "cvi2015": 0.39403007733,
+        "mitigation_focus_areas": [
+            3,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "GTM",
     "fields": {
-        "name": "Guatemala"
+        "name": "Guatemala",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 11,
+        "legal_system": 2,
+        "population": 17245.346,
+        "hdi2015": 0.639570414727644,
+        "gdp_capita": 4146.7441286273,
+        "ghg_no_lucf": 30.85801338,
+        "ghg_lucf": 38.40401338,
+        "cvi2015": 0.445972639612,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "GUY",
     "fields": {
-        "name": "Guyana"
+        "name": "Guyana",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 3,
+        "population": 782.225,
+        "hdi2015": 0.638016475627499,
+        "gdp_capita": 4456.55369735494,
+        "ghg_no_lucf": 4.477591453,
+        "ghg_lucf": 24.97427925,
+        "cvi2015": 0.509988179863,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "HND",
     "fields": {
-        "name": "Honduras"
+        "name": "Honduras",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 11,
+        "legal_system": 2,
+        "population": 9417.167,
+        "hdi2015": 0.624731632501262,
+        "gdp_capita": 2361.15761950895,
+        "ghg_no_lucf": 21.4748197,
+        "ghg_lucf": 49.6004864,
+        "cvi2015": 0.446146641105,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "HRV",
     "fields": {
-        "name": "Croatia"
+        "name": "Croatia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 4164.783,
+        "hdi2015": 0.827402942508165,
+        "gdp_capita": 12090.6665635703,
+        "ghg_no_lucf": 22.68560066,
+        "ghg_lucf": 18.84294896,
+        "cvi2015": 0.332373086563,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "HTI",
     "fields": {
-        "name": "Haiti"
+        "name": "Haiti",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 2,
+        "population": 11112.945,
+        "hdi2015": 0.492813351646712,
+        "gdp_capita": 739.595436253749,
+        "ghg_no_lucf": 8.671809245,
+        "ghg_lucf": 8.809675945,
+        "cvi2015": 0.563580252698,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "HUN",
     "fields": {
-        "name": "Hungary"
+        "name": "Hungary",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 10,
+        "legal_system": 2,
+        "population": 9688.847,
+        "hdi2015": 0.836211492808667,
+        "gdp_capita": 12664.8474351203,
+        "ghg_no_lucf": 56.75526889,
+        "ghg_lucf": 61.00260939,
+        "cvi2015": 0.339155254133,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "IDN",
     "fields": {
-        "name": "Indonesia"
+        "name": "Indonesia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 14,
+        "legal_system": 3,
+        "population": 266794.98,
+        "hdi2015": 0.688847030440921,
+        "gdp_capita": 3570.29488811764,
+        "ghg_no_lucf": 789.475178,
+        "ghg_lucf": 2471.642227,
+        "cvi2015": 0.402052871362,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "IND",
     "fields": {
-        "name": "India"
+        "name": "India",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 1,
+        "legal_system": 3,
+        "population": 1354051.854,
+        "hdi2015": 0.623558794484469,
+        "gdp_capita": 1709.38792119802,
+        "ghg_no_lucf": 3079.812738,
+        "ghg_lucf": 3202.30827,
+        "cvi2015": 0.453542032755,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "IRL",
     "fields": {
-        "name": "Ireland"
+        "name": "Ireland",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 19,
+        "legal_system": 5,
+        "population": 4803.748,
+        "hdi2015": 0.922745766584156,
+        "gdp_capita": 61606.482939417,
+        "ghg_no_lucf": 58.70610545,
+        "ghg_lucf": 58.26683305,
+        "cvi2015": 0.276239337841,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "IRN",
     "fields": {
-        "name": "Iran (Islamic Republic of)"
+        "name": "Iran (Islamic Republic of)",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 1,
+        "legal_system": 3,
+        "population": 82011.735,
+        "hdi2015": 0.774063205651432,
+        "gdp_capita": 4957.58127645679,
+        "ghg_no_lucf": 733.6053094,
+        "ghg_lucf": 800.6838894,
+        "cvi2015": 0.363826019866,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            8
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "IRQ",
     "fields": {
-        "name": "Iraq"
+        "name": "Iraq",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 39339.753,
+        "hdi2015": 0.649457090374467,
+        "gdp_capita": 4609.60069352322,
+        "ghg_no_lucf": 294.8999347,
+        "ghg_lucf": 292.8595068,
+        "cvi2015": 0.46687676489,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "ISL",
     "fields": {
-        "name": "Iceland"
+        "name": "Iceland",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 19,
+        "legal_system": 2,
+        "population": 337.78,
+        "hdi2015": 0.921109598079021,
+        "gdp_capita": 59976.9425653312,
+        "ghg_no_lucf": 2.913244964,
+        "ghg_lucf": 2.729911664,
+        "cvi2015": 0.269329943082,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "ISR",
     "fields": {
-        "name": "Israel"
+        "name": "Israel",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 8452.841,
+        "hdi2015": 0.898885927187516,
+        "gdp_capita": 37292.6122172917,
+        "ghg_no_lucf": 87.48169679,
+        "ghg_lucf": 87.40836349,
+        "cvi2015": 0.338408311128,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "ITA",
     "fields": {
-        "name": "Italy"
+        "name": "Italy",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 59290.969,
+        "hdi2015": 0.886552110945566,
+        "gdp_capita": 30527.2682030287,
+        "ghg_no_lucf": 403.1072402,
+        "ghg_lucf": 368.8216554,
+        "cvi2015": 0.283220162702,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "JAM",
     "fields": {
-        "name": "Jamaica"
+        "name": "Jamaica",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 5,
+        "population": 2898.677,
+        "hdi2015": 0.730041143287123,
+        "gdp_capita": 4868.24826260746,
+        "ghg_no_lucf": 9.391017391,
+        "ghg_lucf": 10.16952989,
+        "cvi2015": 0.413266328396,
+        "mitigation_focus_areas": [
+            1,
+            2
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "JOR",
     "fields": {
-        "name": "Jordan"
+        "name": "Jordan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 9903.802,
+        "hdi2015": 0.741498511184512,
+        "gdp_capita": 4087.9375167203,
+        "ghg_no_lucf": 32.4030242,
+        "ghg_lucf": 32.4030242,
+        "cvi2015": 0.426191182414,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "JPN",
     "fields": {
-        "name": "Japan"
+        "name": "Japan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 17,
+        "legal_system": 3,
+        "population": 127185.332,
+        "hdi2015": 0.903462080218309,
+        "gdp_capita": 38894.4677292018,
+        "ghg_no_lucf": 1314.590012,
+        "ghg_lucf": 1322.051352,
+        "cvi2015": 0.288026376328,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "KAZ",
     "fields": {
-        "name": "Kazakhstan"
+        "name": "Kazakhstan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 22,
+        "legal_system": 2,
+        "population": 18403.86,
+        "hdi2015": 0.794123062527118,
+        "gdp_capita": 7510.07720865798,
+        "ghg_no_lucf": 291.6327167,
+        "ghg_lucf": 291.8493165,
+        "cvi2015": 0.335068689775,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "KEN",
     "fields": {
-        "name": "Kenya"
+        "name": "Kenya",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 50950.879,
+        "hdi2015": 0.554678518436028,
+        "gdp_capita": 1455.35976536469,
+        "ghg_no_lucf": 60.52989891,
+        "ghg_lucf": 29.29412171,
+        "cvi2015": 0.533273562234,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "KGZ",
     "fields": {
-        "name": "Kyrgyzstan"
+        "name": "Kyrgyzstan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 22,
+        "legal_system": 2,
+        "population": 6132.932,
+        "hdi2015": 0.663631065520328,
+        "gdp_capita": 1077.0361743348,
+        "ghg_no_lucf": 15.16816388,
+        "ghg_lucf": 14.35247738,
+        "cvi2015": 0.348951073238,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "KHM",
     "fields": {
-        "name": "Cambodia"
+        "name": "Cambodia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 14,
+        "legal_system": 2,
+        "population": 16245.729,
+        "hdi2015": 0.563082193622539,
+        "gdp_capita": 1269.90723818913,
+        "ghg_no_lucf": 28.8387124,
+        "ghg_lucf": 52.6170457,
+        "cvi2015": 0.49498956756,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "KIR",
     "fields": {
-        "name": "Kiribati"
+        "name": "Kiribati",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 23,
+        "legal_system": 5,
+        "population": 118.414,
+        "hdi2015": 0.58812639860141,
+        "gdp_capita": 1449.05823116784,
+        "ghg_no_lucf": 0.084862192,
+        "ghg_lucf": 0.079197792,
+        "cvi2015": null,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "KNA",
     "fields": {
-        "name": "Saint Kitts and Nevis"
+        "name": "Saint Kitts and Nevis",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 5,
+        "population": 55.85,
+        "hdi2015": 0.76505408210635,
+        "gdp_capita": 16725.2796474992,
+        "ghg_no_lucf": 0.383344408,
+        "ghg_lucf": 0.390742208,
+        "cvi2015": 0.379353049867,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "KOR",
     "fields": {
-        "name": "Republic of Korea"
+        "name": "Republic of Korea",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 17,
+        "legal_system": 3,
+        "population": 51164.435,
+        "hdi2015": 0.900992129625148,
+        "gdp_capita": 27538.8061282212,
+        "ghg_no_lucf": 671.1898798,
+        "ghg_lucf": 631.6008798,
+        "cvi2015": 0.311631676448,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "KWT",
     "fields": {
-        "name": "Kuwait"
+        "name": "Kuwait",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 4197.128,
+        "hdi2015": 0.800182931694956,
+        "gdp_capita": 28975.4010764335,
+        "ghg_no_lucf": 198.9700436,
+        "ghg_lucf": 198.9545858,
+        "cvi2015": 0.397272461807,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "LAO",
     "fields": {
-        "name": "Lao People's Democratic Republic"
+        "name": "Lao People's Democratic Republic",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 14,
+        "legal_system": 2,
+        "population": 6961.21,
+        "hdi2015": 0.586044801234356,
+        "gdp_capita": 2353.15287465084,
+        "ghg_no_lucf": 11.55170509,
+        "ghg_lucf": 29.61803839,
+        "cvi2015": 0.488625456822,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "LBN",
     "fields": {
-        "name": "Lebanon"
+        "name": "Lebanon",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 6093.509,
+        "hdi2015": 0.762841180242274,
+        "gdp_capita": 7914.0046774839,
+        "ghg_no_lucf": 28.59537161,
+        "ghg_lucf": 28.59097161,
+        "cvi2015": 0.414538365999,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "LBR",
     "fields": {
-        "name": "Liberia"
+        "name": "Liberia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 4853.516,
+        "hdi2015": 0.426898502082858,
+        "gdp_capita": 455.370741357005,
+        "ghg_no_lucf": 2.150256198,
+        "ghg_lucf": 3.508098298,
+        "cvi2015": 0.605369305781,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            3,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "LBY",
     "fields": {
-        "name": "Libya"
+        "name": "Libya",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 3,
+        "legal_system": 3,
+        "population": 6470.956,
+        "hdi2015": 0.716442669678105,
+        "gdp_capita": null,
+        "ghg_no_lucf": 133.674847,
+        "ghg_lucf": 133.674847,
+        "cvi2015": 0.412185797144,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "LCA",
     "fields": {
-        "name": "Saint Lucia"
+        "name": "Saint Lucia",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 3,
+        "population": 179.667,
+        "hdi2015": 0.735486722869296,
+        "gdp_capita": 7744.44517263943,
+        "ghg_no_lucf": 1.137906883,
+        "ghg_lucf": 1.171208783,
+        "cvi2015": 0.324528186548,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "LIE",
     "fields": {
-        "name": "Liechtenstein"
+        "name": "Liechtenstein",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 9,
+        "legal_system": 2,
+        "population": 38.155,
+        "hdi2015": 0.911517483487661,
+        "gdp_capita": 179478.584827866,
+        "ghg_no_lucf": 0.074310618,
+        "ghg_lucf": 0.074310618,
+        "cvi2015": null,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "LKA",
     "fields": {
-        "name": "Sri Lanka"
+        "name": "Sri Lanka",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 1,
+        "legal_system": 3,
+        "population": 20950.041,
+        "hdi2015": 0.766438081372341,
+        "gdp_capita": 3835.39481711341,
+        "ghg_no_lucf": 40.75358096,
+        "ghg_lucf": 45.24506906,
+        "cvi2015": 0.413104330485,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "LSO",
     "fields": {
-        "name": "Lesotho"
+        "name": "Lesotho",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 13,
+        "legal_system": 3,
+        "population": 2263.01,
+        "hdi2015": 0.497367956227455,
+        "gdp_capita": 998.134371557577,
+        "ghg_no_lucf": 4.358152084,
+        "ghg_lucf": 4.165152084,
+        "cvi2015": 0.608100847446,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "LTU",
     "fields": {
-        "name": "Lithuania"
+        "name": "Lithuania",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 19,
+        "legal_system": 2,
+        "population": 2876.475,
+        "hdi2015": 0.848098562965385,
+        "gdp_capita": 14879.6802989698,
+        "ghg_no_lucf": 19.03523751,
+        "ghg_lucf": 19.47072031,
+        "cvi2015": 0.342861406303,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "LUX",
     "fields": {
-        "name": "Luxembourg"
+        "name": "Luxembourg",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 9,
+        "legal_system": 2,
+        "population": 590.321,
+        "hdi2015": 0.89846472062553,
+        "gdp_capita": 102831.321482811,
+        "ghg_no_lucf": 10.81085911,
+        "ghg_lucf": 10.81450291,
+        "cvi2015": 0.275254656,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "LVA",
     "fields": {
-        "name": "Latvia"
+        "name": "Latvia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 19,
+        "legal_system": 2,
+        "population": 1929.938,
+        "hdi2015": 0.82986228742339,
+        "gdp_capita": 14118.0639067571,
+        "ghg_no_lucf": 12.68592263,
+        "ghg_lucf": 1.843983425,
+        "cvi2015": 0.38080630066,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "MAR",
     "fields": {
-        "name": "Morocco"
+        "name": "Morocco",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 3,
+        "legal_system": 3,
+        "population": 36191.805,
+        "hdi2015": 0.647401853671251,
+        "gdp_capita": 2832.42977713622,
+        "ghg_no_lucf": 81.69060898,
+        "ghg_lucf": 80.22494228,
+        "cvi2015": 0.392805380891,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MCO",
     "fields": {
-        "name": "Monaco"
+        "name": "Monaco",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 9,
+        "legal_system": 2,
+        "population": 38.897,
+        "hdi2015": null,
+        "gdp_capita": null,
+        "ghg_no_lucf": null,
+        "ghg_lucf": null,
+        "cvi2015": null,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "MDA",
     "fields": {
-        "name": "Republic of Moldova"
+        "name": "Republic of Moldova",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 2,
+        "sub_region": 10,
+        "legal_system": 2,
+        "population": 4041.065,
+        "hdi2015": 0.699040531063903,
+        "gdp_capita": 1900.20147934803,
+        "ghg_no_lucf": 12.28276563,
+        "ghg_lucf": 11.19987213,
+        "cvi2015": 0.404597187584,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "MDG",
     "fields": {
-        "name": "Madagascar"
+        "name": "Madagascar",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 26262.81,
+        "hdi2015": 0.512149002634871,
+        "gdp_capita": 401.318870068995,
+        "ghg_no_lucf": 26.81631011,
+        "ghg_lucf": 48.50384851,
+        "cvi2015": 0.591242352147,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MDV",
     "fields": {
-        "name": "Maldives"
+        "name": "Maldives",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 1,
+        "sub_region": 1,
+        "legal_system": 1,
+        "population": 444.259,
+        "hdi2015": 0.701026899949622,
+        "gdp_capita": 8601.63248838154,
+        "ghg_no_lucf": 1.422957153,
+        "ghg_lucf": 1.425356053,
+        "cvi2015": 0.474321258371,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MEX",
     "fields": {
-        "name": "Mexico"
+        "name": "Mexico",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 11,
+        "legal_system": 2,
+        "population": 130759.074,
+        "hdi2015": 0.761682896697458,
+        "gdp_capita": 8201.3062528823,
+        "ghg_no_lucf": 721.6543457,
+        "ghg_lucf": 729.100679,
+        "cvi2015": 0.332931334937,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MHL",
     "fields": {
-        "name": "Marshall Islands"
+        "name": "Marshall Islands",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 23,
+        "legal_system": 5,
+        "population": 53.167,
+        "hdi2015": null,
+        "gdp_capita": 3448.53578562545,
+        "ghg_no_lucf": 0.13949826,
+        "ghg_lucf": 0.13949826,
+        "cvi2015": null,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            3,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MKD",
     "fields": {
-        "name": "The former Yugoslav Republic of Macedonia"
+        "name": "The former Yugoslav Republic of Macedonia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 2085.051,
+        "hdi2015": 0.748094279082394,
+        "gdp_capita": 5237.1476704612,
+        "ghg_no_lucf": 11.71584161,
+        "ghg_lucf": 11.71584161,
+        "cvi2015": 0.341016592588,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "MLI",
     "fields": {
-        "name": "Mali"
+        "name": "Mali",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 19107.706,
+        "hdi2015": 0.44210869299444,
+        "gdp_capita": 780.507110874523,
+        "ghg_no_lucf": 31.53409656,
+        "ghg_lucf": 38.70042986,
+        "cvi2015": 0.591238563665,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MLT",
     "fields": {
-        "name": "Malta"
+        "name": "Malta",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 3,
+        "population": 432.089,
+        "hdi2015": 0.855850774908432,
+        "gdp_capita": 25058.1706055815,
+        "ghg_no_lucf": 2.968434904,
+        "ghg_lucf": 2.968434904,
+        "cvi2015": 0.305648982514,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "MMR",
     "fields": {
-        "name": "Myanmar"
+        "name": "Myanmar",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 14,
+        "legal_system": 3,
+        "population": 53855.735,
+        "hdi2015": 0.555566347354292,
+        "gdp_capita": 1275.01760814834,
+        "ghg_no_lucf": 107.3823902,
+        "ghg_lucf": 212.4902076,
+        "cvi2015": 0.498124567003,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MNE",
     "fields": {
-        "name": "Montenegro"
+        "name": "Montenegro",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 629.219,
+        "hdi2015": 0.80722434610105,
+        "gdp_capita": 6701.00008024241,
+        "ghg_no_lucf": 3.371353904,
+        "ghg_lucf": 3.433250904,
+        "cvi2015": 0.387256687306,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "MNG",
     "fields": {
-        "name": "Mongolia"
+        "name": "Mongolia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 17,
+        "legal_system": 3,
+        "population": 3121.772,
+        "hdi2015": 0.734832003132694,
+        "gdp_capita": 3686.45169810524,
+        "ghg_no_lucf": 40.8634262,
+        "ghg_lucf": 65.4678832,
+        "cvi2015": 0.44152921371,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MOZ",
     "fields": {
-        "name": "Mozambique"
+        "name": "Mozambique",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 30528.673,
+        "hdi2015": 0.417590161343549,
+        "gdp_capita": 382.069330425644,
+        "ghg_no_lucf": 28.42669281,
+        "ghg_lucf": 68.10269281,
+        "cvi2015": 0.551940556581,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MRT",
     "fields": {
-        "name": "Mauritania"
+        "name": "Mauritania",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 4540.068,
+        "hdi2015": 0.513106013991871,
+        "gdp_capita": 1077.55613626163,
+        "ghg_no_lucf": 11.20274475,
+        "ghg_lucf": 9.684744748,
+        "cvi2015": 0.648164310415,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MUS",
     "fields": {
-        "name": "Mauritius"
+        "name": "Mauritius",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 1268.315,
+        "hdi2015": 0.781386251158067,
+        "gdp_capita": 9627.59578522351,
+        "ghg_no_lucf": 5.842724615,
+        "ghg_lucf": 5.828057915,
+        "cvi2015": 0.393750984986,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MWI",
     "fields": {
-        "name": "Malawi"
+        "name": "Malawi",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 19164.728,
+        "hdi2015": 0.475935463052037,
+        "gdp_capita": 300.794825113129,
+        "ghg_no_lucf": 10.19690713,
+        "ghg_lucf": 14.53732113,
+        "cvi2015": 0.531070354015,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            9
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "MYS",
     "fields": {
-        "name": "Malaysia"
+        "name": "Malaysia",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 14,
+        "legal_system": 3,
+        "population": 32042.458,
+        "hdi2015": 0.789449738019399,
+        "gdp_capita": 9502.56839625166,
+        "ghg_no_lucf": 316.9020759,
+        "ghg_lucf": 187.8866859,
+        "cvi2015": 0.334760856511,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            2
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "NAM",
     "fields": {
-        "name": "Namibia"
+        "name": "Namibia",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 13,
+        "legal_system": 3,
+        "population": 2587.801,
+        "hdi2015": 0.640006777749451,
+        "gdp_capita": 4140.46193248801,
+        "ghg_no_lucf": 10.71029779,
+        "ghg_lucf": 19.65996229,
+        "cvi2015": 0.547613480456,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "NER",
     "fields": {
-        "name": "Niger"
+        "name": "Niger",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 22311.375,
+        "hdi2015": 0.352640669602266,
+        "gdp_capita": 363.226973889882,
+        "ghg_no_lucf": 27.97567098,
+        "ghg_lucf": 29.52133768,
+        "cvi2015": 0.615437328767,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "NGA",
     "fields": {
-        "name": "Nigeria"
+        "name": "Nigeria",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 195875.237,
+        "hdi2015": 0.527104538851146,
+        "gdp_capita": 2177.98516981843,
+        "ghg_no_lucf": 304.0866833,
+        "ghg_lucf": 492.4420166,
+        "cvi2015": 0.47997115212,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "NIC",
     "fields": {
-        "name": "Nicaragua"
+        "name": "Nicaragua",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 11,
+        "legal_system": 2,
+        "population": 6284.757,
+        "hdi2015": 0.645202505134484,
+        "gdp_capita": 2151.38204656346,
+        "ghg_no_lucf": 14.51560972,
+        "ghg_lucf": 14.74156972,
+        "cvi2015": 0.415253319916,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "NIU",
     "fields": {
-        "name": "Niue"
+        "name": "Niue",
+        "cw": false,
+        "small_cw": false,
+        "un": false,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 18,
+        "legal_system": 5,
+        "population": 1.624,
+        "hdi2015": null,
+        "gdp_capita": null,
+        "ghg_no_lucf": 0.101229453,
+        "ghg_lucf": 0.149612553,
+        "cvi2015": null,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "NLD",
     "fields": {
-        "name": "Netherlands"
+        "name": "Netherlands",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 9,
+        "legal_system": 2,
+        "population": 17084.459,
+        "hdi2015": 0.924312171221292,
+        "gdp_capita": 45294.7799953866,
+        "ghg_no_lucf": 180.1739624,
+        "ghg_lucf": 181.3339692,
+        "cvi2015": 0.307551204588,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "NOR",
     "fields": {
-        "name": "Norway"
+        "name": "Norway",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 19,
+        "legal_system": 2,
+        "population": 5353.363,
+        "hdi2015": 0.949422834491064,
+        "gdp_capita": 70812.4774226187,
+        "ghg_no_lucf": 46.88553977,
+        "ghg_lucf": 24.93699747,
+        "cvi2015": 0.230662135724,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "NPL",
     "fields": {
-        "name": "Nepal"
+        "name": "Nepal",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 1,
+        "legal_system": 3,
+        "population": 29624.035,
+        "hdi2015": 0.558162138507956,
+        "gdp_capita": 729.532501133179,
+        "ghg_no_lucf": 37.52117614,
+        "ghg_lucf": 44.06325644,
+        "cvi2015": 0.486282233452,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "NRU",
     "fields": {
-        "name": "Nauru"
+        "name": "Nauru",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 23,
+        "legal_system": 5,
+        "population": 11.312,
+        "hdi2015": null,
+        "gdp_capita": 7821.29891769903,
+        "ghg_no_lucf": 0.053592072,
+        "ghg_lucf": 0.053592072,
+        "cvi2015": null,
+        "mitigation_focus_areas": [
+            1,
+            2
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "NZL",
     "fields": {
-        "name": "New Zealand"
+        "name": "New Zealand",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 5,
+        "sub_region": 8,
+        "legal_system": 5,
+        "population": 4749.598,
+        "hdi2015": 0.914900055512101,
+        "gdp_capita": 39426.6234987649,
+        "ghg_no_lucf": 75.74341843,
+        "ghg_lucf": 60.34083833,
+        "cvi2015": 0.272307664831,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "OMN",
     "fields": {
-        "name": "Oman"
+        "name": "Oman",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 4829.946,
+        "hdi2015": 0.795778615284731,
+        "gdp_capita": 14982.3579235229,
+        "ghg_no_lucf": 106.3042741,
+        "ghg_lucf": 106.2993276,
+        "cvi2015": 0.43440198235,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "PAK",
     "fields": {
-        "name": "Pakistan"
+        "name": "Pakistan",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 1,
+        "legal_system": 3,
+        "population": 200813.818,
+        "hdi2015": 0.550354164995684,
+        "gdp_capita": 1468.19294647812,
+        "ghg_no_lucf": 333.3828795,
+        "ghg_lucf": 361.9838795,
+        "cvi2015": 0.453046970175,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "PAN",
     "fields": {
-        "name": "Panama"
+        "name": "Panama",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 11,
+        "legal_system": 2,
+        "population": 4162.618,
+        "hdi2015": 0.787656219704456,
+        "gdp_capita": 13680.23600692,
+        "ghg_no_lucf": 17.7577275,
+        "ghg_lucf": 26.3053025,
+        "cvi2015": 0.394356260412,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            5
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "PER",
     "fields": {
-        "name": "Peru"
+        "name": "Peru",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 2,
+        "population": 32551.815,
+        "hdi2015": 0.739748575563532,
+        "gdp_capita": 6045.6500766247,
+        "ghg_no_lucf": 89.65997074,
+        "ghg_lucf": 161.506207,
+        "cvi2015": 0.410459916553,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "PHL",
     "fields": {
-        "name": "Philippines"
+        "name": "Philippines",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 14,
+        "legal_system": 3,
+        "population": 106512.074,
+        "hdi2015": 0.681798894279309,
+        "gdp_capita": 2951.07192903542,
+        "ghg_no_lucf": 181.6360553,
+        "ghg_lucf": 121.338722,
+        "cvi2015": 0.395607440251,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "PLW",
     "fields": {
-        "name": "Palau"
+        "name": "Palau",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 23,
+        "legal_system": 5,
+        "population": 21.964,
+        "hdi2015": 0.787785225991505,
+        "gdp_capita": 13626.0056736269,
+        "ghg_no_lucf": 0.433433085,
+        "ghg_lucf": 0.433433085,
+        "cvi2015": null,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "PNG",
     "fields": {
-        "name": "Papua New Guinea"
+        "name": "Papua New Guinea",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 21,
+        "legal_system": 3,
+        "population": 8418.346,
+        "hdi2015": 0.516168319355436,
+        "gdp_capita": 2182.71656543065,
+        "ghg_no_lucf": 16.78974922,
+        "ghg_lucf": 76.02590062,
+        "cvi2015": 0.648558517537,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "POL",
     "fields": {
-        "name": "Poland"
+        "name": "Poland",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 10,
+        "legal_system": 2,
+        "population": 38104.832,
+        "hdi2015": 0.855228788716573,
+        "gdp_capita": 12372.4170564311,
+        "ghg_no_lucf": 352.9074681,
+        "ghg_lucf": 327.7982955,
+        "cvi2015": 0.258292915882,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "PRK",
     "fields": {
-        "name": "Democratic People's Republic of Korea"
+        "name": "Democratic People's Republic of Korea",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 17,
+        "legal_system": 3,
+        "population": 25610.672,
+        "hdi2015": null,
+        "gdp_capita": null,
+        "ghg_no_lucf": 68.71678869,
+        "ghg_lucf": 83.01787209,
+        "cvi2015": 0.46117248048,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "PRT",
     "fields": {
-        "name": "Portugal"
+        "name": "Portugal",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 10291.196,
+        "hdi2015": 0.842658097524802,
+        "gdp_capita": 19813.3082485256,
+        "ghg_no_lucf": 61.58518354,
+        "ghg_lucf": 63.34900074,
+        "cvi2015": 0.327013301247,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "PRY",
     "fields": {
-        "name": "Paraguay"
+        "name": "Paraguay",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 2,
+        "population": 6896.908,
+        "hdi2015": 0.692965557257696,
+        "gdp_capita": 4080.20464394436,
+        "ghg_no_lucf": 39.91721768,
+        "ghg_lucf": 183.2327449,
+        "cvi2015": 0.381712845848,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "PSE",
     "fields": {
-        "name": "State of Palestine"
+        "name": "State of Palestine",
+        "cw": false,
+        "small_cw": false,
+        "un": false,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 5052.776,
+        "hdi2015": 0.683960089061899,
+        "gdp_capita": 2943.4045337363,
+        "ghg_no_lucf": null,
+        "ghg_lucf": null,
+        "cvi2015": null,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "QAT",
     "fields": {
-        "name": "Qatar"
+        "name": "Qatar",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 2694.849,
+        "hdi2015": 0.855530726608706,
+        "gdp_capita": 59330.8599872525,
+        "ghg_no_lucf": 88.11294488,
+        "ghg_lucf": 88.11294488,
+        "cvi2015": 0.329814205942,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3
+        ],
+        "adaptation_priority_sectors": [
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "ROU",
     "fields": {
-        "name": "Romania"
+        "name": "Romania",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 10,
+        "legal_system": 2,
+        "population": 19580.634,
+        "hdi2015": 0.80238171382862,
+        "gdp_capita": 9474.13060440536,
+        "ghg_no_lucf": 108.7926928,
+        "ghg_lucf": -54.9759236,
+        "cvi2015": 0.360516287525,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "RUS",
     "fields": {
-        "name": "Russian Federation"
+        "name": "Russian Federation",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 10,
+        "legal_system": 2,
+        "population": 143964.709,
+        "hdi2015": 0.803908285216094,
+        "gdp_capita": 8748.36450405452,
+        "ghg_no_lucf": 2137.826176,
+        "ghg_lucf": 2030.136797,
+        "cvi2015": 0.251345833556,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "RWA",
     "fields": {
-        "name": "Rwanda"
+        "name": "Rwanda",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 12501.156,
+        "hdi2015": 0.497577294727551,
+        "gdp_capita": 702.835601585743,
+        "ghg_no_lucf": 6.728255583,
+        "ghg_lucf": 7.589996783,
+        "cvi2015": 0.614657703624,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SAU",
     "fields": {
-        "name": "Saudi Arabia"
+        "name": "Saudi Arabia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 1,
+        "population": 33554.343,
+        "hdi2015": 0.846601911093778,
+        "gdp_capita": 20028.6482072005,
+        "ghg_no_lucf": 583.3700645,
+        "ghg_lucf": 583.3700645,
+        "cvi2015": 0.399067877377,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            8
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SDN",
     "fields": {
-        "name": "Sudan"
+        "name": "Sudan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 3,
+        "legal_system": 3,
+        "population": 41511.526,
+        "hdi2015": 0.490188347991238,
+        "gdp_capita": 2415.03816212562,
+        "ghg_no_lucf": 114.1944693,
+        "ghg_lucf": 234.5546364,
+        "cvi2015": 0.657022491197,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SEN",
     "fields": {
-        "name": "Senegal"
+        "name": "Senegal",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 16294.27,
+        "hdi2015": 0.493982965211962,
+        "gdp_capita": 958.073737852607,
+        "ghg_no_lucf": 25.31790171,
+        "ghg_lucf": 30.45190171,
+        "cvi2015": 0.518860290111,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "SGP",
     "fields": {
-        "name": "Singapore"
+        "name": "Singapore",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 1,
+        "sub_region": 14,
+        "legal_system": 3,
+        "population": 5791.901,
+        "hdi2015": 0.924865932830033,
+        "gdp_capita": 52960.7141893889,
+        "ghg_no_lucf": 52.38026362,
+        "ghg_lucf": 52.42436052,
+        "cvi2015": 0.300054799076,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            8
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SLB",
     "fields": {
-        "name": "Solomon Islands"
+        "name": "Solomon Islands",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 21,
+        "legal_system": 3,
+        "population": 623.281,
+        "hdi2015": 0.514999307951629,
+        "gdp_capita": 2005.48364332796,
+        "ghg_no_lucf": 0.570559215,
+        "ghg_lucf": 2.550559215,
+        "cvi2015": 0.592024573167,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SLE",
     "fields": {
-        "name": "Sierra Leone"
+        "name": "Sierra Leone",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 7719.729,
+        "hdi2015": 0.420312260411299,
+        "gdp_capita": 496.049463350517,
+        "ghg_no_lucf": 6.731313956,
+        "ghg_lucf": 12.84564726,
+        "cvi2015": 0.573364913079,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SLV",
     "fields": {
-        "name": "El Salvador"
+        "name": "El Salvador",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 11,
+        "legal_system": 2,
+        "population": 6411.558,
+        "hdi2015": 0.679776519482916,
+        "gdp_capita": 4223.58457943469,
+        "ghg_no_lucf": 11.82115395,
+        "ghg_lucf": 12.55398485,
+        "cvi2015": 0.414030279162,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SMR",
     "fields": {
-        "name": "San Marino"
+        "name": "San Marino",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 33.557,
+        "hdi2015": null,
+        "gdp_capita": null,
+        "ghg_no_lucf": null,
+        "ghg_lucf": null,
+        "cvi2015": null,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "SOM",
     "fields": {
-        "name": "Somalia"
+        "name": "Somalia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 15181.925,
+        "hdi2015": null,
+        "gdp_capita": 434.208809668616,
+        "ghg_no_lucf": 23.26127486,
+        "ghg_lucf": 36.46227486,
+        "cvi2015": 0.679834266512,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SRB",
     "fields": {
-        "name": "Serbia"
+        "name": "Serbia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 8762.027,
+        "hdi2015": 0.775733710856063,
+        "gdp_capita": 5348.29406421381,
+        "ghg_no_lucf": 51.41564154,
+        "ghg_lucf": 50.10079274,
+        "cvi2015": 0.391379372317,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SSD",
     "fields": {
-        "name": "South Sudan"
+        "name": "South Sudan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": null,
+        "population": 12919.053,
+        "hdi2015": 0.418303339572638,
+        "gdp_capita": 758.720578206203,
+        "ghg_no_lucf": null,
+        "ghg_lucf": null,
+        "cvi2015": null,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "STP",
     "fields": {
-        "name": "Sao Tome and Principe"
+        "name": "Sao Tome and Principe",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": true,
+        "region": 3,
+        "sub_region": 4,
+        "legal_system": 3,
+        "population": 208.818,
+        "hdi2015": 0.573727338484542,
+        "gdp_capita": 1756.0614700482,
+        "ghg_no_lucf": 0.190326837,
+        "ghg_lucf": 0.190326837,
+        "cvi2015": 0.533306313326,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SUR",
     "fields": {
-        "name": "Suriname"
+        "name": "Suriname",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 2,
+        "population": 568.301,
+        "hdi2015": 0.724957241411062,
+        "gdp_capita": 6484.43273109527,
+        "ghg_no_lucf": 3.420517738,
+        "ghg_lucf": 8.044648438,
+        "cvi2015": 0.392408750396,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "SVK",
     "fields": {
-        "name": "Slovakia"
+        "name": "Slovakia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 10,
+        "legal_system": 2,
+        "population": 5449.816,
+        "hdi2015": 0.844947582167354,
+        "gdp_capita": 16495.9876837228,
+        "ghg_no_lucf": 38.11291961,
+        "ghg_lucf": 33.02284951,
+        "cvi2015": 0.326860862572,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "SVN",
     "fields": {
-        "name": "Slovenia"
+        "name": "Slovenia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 2,
+        "legal_system": 2,
+        "population": 2081.26,
+        "hdi2015": 0.890302824230092,
+        "gdp_capita": 21304.5701619503,
+        "ghg_no_lucf": 16.70896098,
+        "ghg_lucf": 10.46424148,
+        "cvi2015": 0.293899862442,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "SWE",
     "fields": {
-        "name": "Sweden"
+        "name": "Sweden",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 19,
+        "legal_system": 2,
+        "population": 9982.709,
+        "hdi2015": 0.912706100530911,
+        "gdp_capita": 51599.868867777,
+        "ghg_no_lucf": 50.87319453,
+        "ghg_lucf": 46.91287333,
+        "cvi2015": 0.281151913299,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "SWZ",
     "fields": {
-        "name": "Swaziland"
+        "name": "Swaziland",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 13,
+        "legal_system": 3,
+        "population": 1391.385,
+        "hdi2015": 0.541047936400031,
+        "gdp_capita": 2775.15390848176,
+        "ghg_no_lucf": 2.96549676,
+        "ghg_lucf": 3.21052036,
+        "cvi2015": 0.550901231872,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SYC",
     "fields": {
-        "name": "Seychelles"
+        "name": "Seychelles",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 95.235,
+        "hdi2015": 0.782417811550244,
+        "gdp_capita": 15075.7194365696,
+        "ghg_no_lucf": 0.562086684,
+        "ghg_lucf": 0.562086684,
+        "cvi2015": 0.318216139112,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "SYR",
     "fields": {
-        "name": "Syrian Arab Republic"
+        "name": "Syrian Arab Republic",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 18284.407,
+        "hdi2015": 0.53588684380532,
+        "gdp_capita": null,
+        "ghg_no_lucf": 63.4164567,
+        "ghg_lucf": 62.204093,
+        "cvi2015": 0.467399752485,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "TCD",
     "fields": {
-        "name": "Chad"
+        "name": "Chad",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 4,
+        "legal_system": 3,
+        "population": 15353.184,
+        "hdi2015": 0.396073224468533,
+        "gdp_capita": 664.29565189928,
+        "ghg_no_lucf": 27.46620535,
+        "ghg_lucf": 52.67453865,
+        "cvi2015": 0.722483146673,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "TGO",
     "fields": {
-        "name": "Togo"
+        "name": "Togo",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 12,
+        "legal_system": 3,
+        "population": 7990.926,
+        "hdi2015": 0.487358895867444,
+        "gdp_capita": 578.461693648613,
+        "ghg_no_lucf": 6.994443613,
+        "ghg_lucf": 13.56988241,
+        "cvi2015": 0.564653518614,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "THA",
     "fields": {
-        "name": "Thailand"
+        "name": "Thailand",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 14,
+        "legal_system": 2,
+        "population": 69183.173,
+        "hdi2015": 0.739793864775651,
+        "gdp_capita": 5907.91343151532,
+        "ghg_no_lucf": 358.4186222,
+        "ghg_lucf": 374.3848246,
+        "cvi2015": 0.362210591175,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "TJK",
     "fields": {
-        "name": "Tajikistan"
+        "name": "Tajikistan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 22,
+        "legal_system": 2,
+        "population": 9107.211,
+        "hdi2015": 0.627472083769187,
+        "gdp_capita": 795.843864367519,
+        "ghg_no_lucf": 11.95562233,
+        "ghg_lucf": 11.95562233,
+        "cvi2015": 0.390856451305,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "TKM",
     "fields": {
-        "name": "Turkmenistan"
+        "name": "Turkmenistan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 22,
+        "legal_system": 2,
+        "population": 5851.466,
+        "hdi2015": 0.691490342676216,
+        "gdp_capita": 6389.33414279619,
+        "ghg_no_lucf": 114.9934077,
+        "ghg_lucf": 114.9934077,
+        "cvi2015": 0.442103238932,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "TLS",
     "fields": {
-        "name": "Timor-Leste"
+        "name": "Timor-Leste",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": true,
+        "region": 1,
+        "sub_region": 14,
+        "legal_system": 3,
+        "population": 1324.094,
+        "hdi2015": 0.605494766871251,
+        "gdp_capita": 1161.76093513417,
+        "ghg_no_lucf": null,
+        "ghg_lucf": null,
+        "cvi2015": 0.597131080292,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "TON",
     "fields": {
-        "name": "Tonga"
+        "name": "Tonga",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 18,
+        "legal_system": 5,
+        "population": 109.008,
+        "hdi2015": 0.720721177722059,
+        "gdp_capita": 3688.87463594593,
+        "ghg_no_lucf": 0.333243418,
+        "ghg_lucf": 0.333243418,
+        "cvi2015": 0.446281394404,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "TTO",
     "fields": {
-        "name": "Trinidad and Tobago"
+        "name": "Trinidad and Tobago",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 5,
+        "population": 1372.598,
+        "hdi2015": 0.779912427629402,
+        "gdp_capita": 15377.0988055665,
+        "ghg_no_lucf": 25.41970598,
+        "ghg_lucf": 24.91923778,
+        "cvi2015": 0.339195435881,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "TUN",
     "fields": {
-        "name": "Tunisia"
+        "name": "Tunisia",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 3,
+        "legal_system": 3,
+        "population": 11659.174,
+        "hdi2015": 0.724559571999977,
+        "gdp_capita": 3688.64637468078,
+        "ghg_no_lucf": 38.16659724,
+        "ghg_lucf": 37.88026394,
+        "cvi2015": 0.398085699008,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "TUR",
     "fields": {
-        "name": "Turkey"
+        "name": "Turkey",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 2,
+        "population": 81916.871,
+        "hdi2015": 0.766995969541256,
+        "gdp_capita": 10787.609339044,
+        "ghg_no_lucf": 431.4751369,
+        "ghg_lucf": 366.6142521,
+        "cvi2015": 0.330160426493,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "TUV",
     "fields": {
-        "name": "Tuvalu"
+        "name": "Tuvalu",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 18,
+        "legal_system": 5,
+        "population": 11.287,
+        "hdi2015": null,
+        "gdp_capita": 3083.61525088619,
+        "ghg_no_lucf": 0.017970169,
+        "ghg_lucf": 0.017970569,
+        "cvi2015": null,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "TZA",
     "fields": {
-        "name": "United Republic of Tanzania"
+        "name": "United Republic of Tanzania",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 59091.392,
+        "hdi2015": 0.530576615748545,
+        "gdp_capita": 879.193814026315,
+        "ghg_no_lucf": 78.08302683,
+        "ghg_lucf": 286.486,
+        "cvi2015": 0.539638941377,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "UGA",
     "fields": {
-        "name": "Uganda"
+        "name": "Uganda",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 44270.563,
+        "hdi2015": 0.49283418500576,
+        "gdp_capita": 615.308803182525,
+        "ghg_no_lucf": 34.11286595,
+        "ghg_lucf": 59.92499545,
+        "cvi2015": 0.644965487004,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "UKR",
     "fields": {
-        "name": "Ukraine"
+        "name": "Ukraine",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 2,
+        "sub_region": 10,
+        "legal_system": 2,
+        "population": 44009.214,
+        "hdi2015": 0.743049422919864,
+        "gdp_capita": 2185.72803066435,
+        "ghg_no_lucf": 347.5458552,
+        "ghg_lucf": 344.1298641,
+        "cvi2015": 0.320397216728,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "URY",
     "fields": {
-        "name": "Uruguay"
+        "name": "Uruguay",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 2,
+        "population": 3469.551,
+        "hdi2015": 0.794785893009035,
+        "gdp_capita": 15220.5660250684,
+        "ghg_no_lucf": 33.21628247,
+        "ghg_lucf": 22.698,
+        "cvi2015": 0.36513658701,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "USA",
     "fields": {
-        "name": "United States of America"
+        "name": "United States of America",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 16,
+        "legal_system": 5,
+        "population": 326766.748,
+        "hdi2015": 0.919553055741236,
+        "gdp_capita": 57466.7871132348,
+        "ghg_no_lucf": 6371.099931,
+        "ghg_lucf": 6319.024,
+        "cvi2015": 0.24678065446,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "UZB",
     "fields": {
-        "name": "Uzbekistan"
+        "name": "Uzbekistan",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 1,
+        "sub_region": 22,
+        "legal_system": 2,
+        "population": 32364.996,
+        "hdi2015": 0.700668398509061,
+        "gdp_capita": 2110.64787239513,
+        "ghg_no_lucf": 231.0921636,
+        "ghg_lucf": 214.696,
+        "cvi2015": 0.385095925452,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "VCT",
     "fields": {
-        "name": "Saint Vincent and the Grenadines"
+        "name": "Saint Vincent and the Grenadines",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 4,
+        "sub_region": 5,
+        "legal_system": 5,
+        "population": 110.2,
+        "hdi2015": 0.721578041678283,
+        "gdp_capita": 7030.05714505765,
+        "ghg_no_lucf": 0.274881634,
+        "ghg_lucf": 0.293039834,
+        "cvi2015": 0.349051429921,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "VEN",
     "fields": {
-        "name": "Venezuela (Bolivarian Republic of)"
+        "name": "Venezuela (Bolivarian Republic of)",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 4,
+        "sub_region": 6,
+        "legal_system": 2,
+        "population": 32381.221,
+        "hdi2015": 0.766716416892275,
+        "gdp_capita": 12237.2240641963,
+        "ghg_no_lucf": 271.1354157,
+        "ghg_lucf": 337.535,
+        "cvi2015": 0.339515656053,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "VNM",
     "fields": {
-        "name": "Viet Nam"
+        "name": "Viet Nam",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 14,
+        "legal_system": 2,
+        "population": 96491.146,
+        "hdi2015": 0.683277513778421,
+        "gdp_capita": 2185.69028246406,
+        "ghg_no_lucf": 270.298252,
+        "ghg_lucf": 251.945,
+        "cvi2015": 0.401241456591,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "VUT",
     "fields": {
-        "name": "Vanuatu"
+        "name": "Vanuatu",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 21,
+        "legal_system": 3,
+        "population": 282.117,
+        "hdi2015": 0.596713757022763,
+        "gdp_capita": 2860.56647483229,
+        "ghg_no_lucf": 0.729091944,
+        "ghg_lucf": 0.715,
+        "cvi2015": 0.513118135076,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "WSM",
     "fields": {
-        "name": "Samoa"
+        "name": "Samoa",
+        "cw": true,
+        "small_cw": true,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": true,
+        "region": 5,
+        "sub_region": 18,
+        "legal_system": 3,
+        "population": 197.695,
+        "hdi2015": 0.703773334870392,
+        "gdp_capita": 4027.76137034554,
+        "ghg_no_lucf": 0.470861823,
+        "ghg_lucf": 0.470930423,
+        "cvi2015": 0.499091483009,
+        "mitigation_focus_areas": [
+            1,
+            2
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3,
+            5
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "YEM",
     "fields": {
-        "name": "Yemen"
+        "name": "Yemen",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": false,
+        "sid": false,
+        "region": 1,
+        "sub_region": 7,
+        "legal_system": 3,
+        "population": 28915.284,
+        "hdi2015": 0.482402156434618,
+        "gdp_capita": 990.334773954632,
+        "ghg_no_lucf": 34.00820599,
+        "ghg_lucf": 34.008,
+        "cvi2015": 0.639846838169,
+        "mitigation_focus_areas": [],
+        "adaptation_priority_sectors": []
     }
 },
 {
     "model": "lcc.country",
     "pk": "ZAF",
     "fields": {
-        "name": "South Africa"
+        "name": "South Africa",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": false,
+        "sid": false,
+        "region": 3,
+        "sub_region": 13,
+        "legal_system": 3,
+        "population": 57398.421,
+        "hdi2015": 0.66642915115557,
+        "gdp_capita": 5273.59387968462,
+        "ghg_no_lucf": 524.8949968,
+        "ghg_lucf": 527.2168333,
+        "cvi2015": 0.389620964308,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            8
+        ],
+        "adaptation_priority_sectors": [
+            2,
+            3,
+            4
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "ZMB",
     "fields": {
-        "name": "Zambia"
+        "name": "Zambia",
+        "cw": true,
+        "small_cw": false,
+        "un": true,
+        "ldc": true,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 17609.178,
+        "hdi2015": 0.579069985656843,
+        "gdp_capita": 1178.38790501204,
+        "ghg_no_lucf": 51.20099484,
+        "ghg_lucf": 379.89,
+        "cvi2015": 0.537752074602,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            4,
+            5,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2,
+            3
+        ]
     }
 },
 {
     "model": "lcc.country",
     "pk": "ZWE",
     "fields": {
-        "name": "Zimbabwe"
+        "name": "Zimbabwe",
+        "cw": false,
+        "small_cw": false,
+        "un": true,
+        "ldc": false,
+        "lldc": true,
+        "sid": false,
+        "region": 3,
+        "sub_region": 15,
+        "legal_system": 3,
+        "population": 16913.261,
+        "hdi2015": 0.515640183250025,
+        "gdp_capita": 1008.59733051185,
+        "ghg_no_lucf": 27.72439787,
+        "ghg_lucf": 68.79,
+        "cvi2015": 0.515295213684,
+        "mitigation_focus_areas": [
+            1,
+            2,
+            3,
+            6
+        ],
+        "adaptation_priority_sectors": [
+            1,
+            2
+        ]
+
     }
 }
 ]

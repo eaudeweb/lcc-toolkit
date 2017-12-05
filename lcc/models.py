@@ -256,10 +256,8 @@ class Region(models.Model):
         return self.name
 
     def countries(self):
-        return (
-            obj.country for obj in
-            self.countrymetadata_set.filter(
-                user=None).only('country').select_related('country')
+        return ( object for object in
+            self.country_set.all()
         )
 
 
@@ -291,19 +289,10 @@ class PrioritySector(models.Model):
         return self.name
 
 
-class CountryMetadata(models.Model):
-    """
-    This model provides aditional information about a country.
+class CountryBase(models.Model):
 
-    NOTE: For the application to work, it is necessary that at any given point
-    there is exactly one CountryMetadata instance with user=None for every
-    Country. However, this is only enforced at the application layer, so any
-    incautious direct interventions (e.g. loading custom data, creating objects
-    via shell, etc.) may leave the application in an inconsistent state.
-    """
-
-    country = models.ForeignKey('Country', related_name='metadata')
-    user = models.ForeignKey('UserProfile', null=True)
+    class Meta:
+        abstract = True
 
     cw = models.BooleanField('Commonwealth (Member country)', default=False)
     small_cw = models.BooleanField('Small commonwealth country', default=False)
@@ -350,12 +339,6 @@ class CountryMetadata(models.Model):
         blank=True
     )
 
-    def __str__(self):
-        return f'{self.country.name} ({self.user or "no user"})'
-
-    def get_absolute_url(self):
-        return reverse('lcc:country:view', kwargs={'iso': self.country.iso})
-
     @property
     def population_range(self):
         return _format_range(
@@ -391,11 +374,13 @@ class CountryMetadata(models.Model):
         )
 
     def clone_to_profile(self, user_profile):
-        # copy original
-        clone = deepcopy(self)
-        clone.pk = None
-        clone.user = user_profile
-
+        fields = ['cw', 'small_cw', 'un', 'ldc', 'lldc', 'sid', 'region_id',
+                  'sub_region_id', 'legal_system_id', 'population', 'hdi2015',
+                  'gdp_capita', 'ghg_no_lucf', 'ghg_lucf', 'cvi2015']
+        data = {key: getattr(self, key) for key in fields}
+        data['user'] = user_profile
+        data['country'] = self
+        clone = AssessmentProfile.objects.create(**data)
         clone.save()
 
         # copy many to many fields
@@ -411,12 +396,10 @@ class CountryMetadata(models.Model):
             )
             setattr(clone, name, val)
 
-        clone.save()
-
         return clone
 
 
-class Country(models.Model):
+class Country(CountryBase):
     iso = models.CharField('ISO', max_length=3, primary_key=True)
     name = models.CharField('Name', max_length=128)
 
@@ -429,6 +412,16 @@ class Country(models.Model):
     def __str__(self):
         return self.name
 
+
+class AssessmentProfile(CountryBase):
+    country = models.ForeignKey('Country', related_name='assessment_profiles')
+    user = models.ForeignKey('UserProfile')
+
+    def get_absolute_url(self):
+        return reverse('lcc:country:view', kwargs={'iso': self.country.iso})
+
+    def __str__(self):
+        return "{country}({user})".format(country=self.country, user=self.user)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

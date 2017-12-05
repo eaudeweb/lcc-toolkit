@@ -83,12 +83,12 @@
                   {% else %}
                     <span class="table_image">🗙</span>
                   {% endif %}
-                  {% elif prop.type == 'multiple' %}
-                    <ul>
-                      {% for multiple_prop in prop.orig %}
-                        <li>• {{ multiple_prop }}</li>
-                      {% endfor%}
-                    </ul>
+                {% elif prop.type == 'multiple' %}
+                  <ul>
+                    {% for multiple_prop in prop.value %}
+                      <li>• {{ multiple_prop }}</li>
+                    {% endfor%}
+                  </ul>
                 {% else %}
                   {{ prop.value }}
                 {% endif %}
