@@ -53,6 +53,34 @@ $(document).ready(function(){
     payload['to_year'] = slideEvt.value[1];
   });
 
+
+
+var slider_text = document.getElementById('yearSlider');
+
+var slider_values = [1945, 2017]
+
+var observer = new MutationObserver(function(mutations) {
+    slider_values = slider_text.getAttribute('value').split(',');
+    slider_values = [parseInt(slider_values[0]),parseInt(slider_values[1])]
+    $("#fromYear").val(slider_values[0]);
+    $("#toYear").val(slider_values[1]);
+    payload['from_year'] = slider_values[0];
+    payload['to_year'] = slider_values[1];
+
+
+});
+observer.observe(slider_text, { 
+  attributes: true, 
+  attributeFilter: ['value'] });
+
+
+  $("body").on('blur', '#fromYear, #toYear', function(e){
+  var int_slider_values = [parseInt($('#fromYear').val()), parseInt($('#toYear').val())]
+    console.log(int_slider_values)
+    $('#yearSlider').slider('setValue', int_slider_values)
+  })
+
+
   // Activate autocomplete
 
   $("#classificationsSelect > li.first-level > span > label").each(function(){
