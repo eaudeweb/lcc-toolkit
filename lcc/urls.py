@@ -128,6 +128,10 @@ assessment_patterns = [
     url(r'^(?P<pk>[0-9]+)/results$',
         views.assessment.LegalAssessmentResults.as_view(),
         name="legal_assessment_results"),
+
+    url(r'^(?P<pk>[0-9]+)/results/download$',
+        views.assessment.LegalAssessmentResultsPDF.as_view(),
+        name="legal_assessment_results_pdf")
 ]
 
 

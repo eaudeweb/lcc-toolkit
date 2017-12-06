@@ -121,7 +121,7 @@ class GapArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LegislationArticle
-        fields = ("id", "code", "legislation")
+        fields = ("id", "code", "text", "legislation")
 
 
 class ResultQuestionSerializer(serializers.ModelSerializer):
