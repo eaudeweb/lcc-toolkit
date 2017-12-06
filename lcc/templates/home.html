@@ -14,6 +14,10 @@
           <a href="{% url 'lcc:auth:login' %}?next=/legislation" class="btn btn-primary very-wide">Log in</a>
           <a href="{% url 'lcc:auth:register' %}" class="btn btn-link very-wide">Register</a>
         </div>
+      {% else %}
+        <div class="homepage-actions">
+          <p>Logged in as <span class="username">{{ request.user.get_full_name|default:request.user.username }}</span></p>
+        </div>
       {% endif %}
       <div class="homepage-desc">
         <p>A global resource to help countries develop legal frameworks for the effective implementation of the <b>Paris Agreement</b> and their nationally determined contributions</p>
