@@ -12,7 +12,9 @@ module.exports = function(grunt) {
                     optimization: 2
                 },
                 files: {
-                    "lcc/static/css/main.css": "lcc/src/less/main.less"
+                    "lcc/static/css/main.css": "lcc/src/less/main.less",
+                    "lcc/static/css/jquery-ui.css": "lcc/src/less/lib/jquery-ui.less"
+
                 }
             }
         },
