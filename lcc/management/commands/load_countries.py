@@ -63,48 +63,30 @@ def _models_from_value(model, value):
     return [_get_or_create(model, val) for val in split_values if val]
 
 
-def _country_has_metadata(country):
-    try:
-        return models.CountryMetadata.objects.get(country=country)
-    except models.CountryMetadata.DoesNotExist:
-        return None
-
-
-def create_metadata(country, row):
-    metadata = models.CountryMetadata(
-        country=country,
-        cw=bool(CW(row)),
-        small_cw=bool(SMALL_CW(row)),
-        un=bool(UN(row)),
-        ldc=bool(LDC(row)),
-        lldc=bool(LLDC(row)),
-        sid=bool(SID(row)),
-        population=_cast_or_default(float, POPULATION(row)),
-        hdi2015=_cast_or_default(float, HDI2015(row)),
-        gdp_capita=_cast_or_default(float, GDP_CAPITA(row)),
-        ghg_no_lucf=_cast_or_default(float, GHG_NO_LUCF(row)),
-        ghg_lucf=_cast_or_default(float, GHG_LUCF(row)),
-        cvi2015=_cast_or_default(float, CVI2015(row)),
-    )
-    metadata.save()
-    return metadata
-
-
 def import_row(row):
 
     country, created = models.Country.objects.get_or_create(
         iso=ISO3(row),
-        defaults=dict(name=COUNTRY(row).strip()),
+        defaults=dict(name=COUNTRY(row).strip(),
+                      cw=bool(CW(row)),
+                      small_cw=bool(SMALL_CW(row)),
+                      un=bool(UN(row)),
+                      ldc=bool(LDC(row)),
+                      lldc=bool(LLDC(row)),
+                      sid=bool(SID(row)),
+                      population=_cast_or_default(float, POPULATION(row)),
+                      hdi2015=_cast_or_default(float, HDI2015(row)),
+                      gdp_capita=_cast_or_default(float, GDP_CAPITA(row)),
+                      ghg_no_lucf=_cast_or_default(float, GHG_NO_LUCF(row)),
+                      ghg_lucf=_cast_or_default(float, GHG_LUCF(row)),
+                      cvi2015=_cast_or_default(float, CVI2015(row)),
+                      ),
     )
 
     if created:
         LOGGER.info('Created country: %s', country)
     else:
         LOGGER.info('Got country: %s', country)
-
-    existing = _country_has_metadata(country)
-    if existing:
-        LOGGER.warning('Skipping row. Metadata already exists: %s', existing)
         return
 
     region = _get_or_create(models.Region, REGION(row).strip())
@@ -129,22 +111,21 @@ def import_row(row):
         PRIORITY_SECTORS(row),
     )
 
-    metadata = create_metadata(country, row)
 
     # assign many to many fields
-    metadata.region = region
-    metadata.sub_region = sub_region
-    metadata.legal_system = legal_system
-    metadata.mitigation_focus_areas = (
+    country.region = region
+    country.sub_region = sub_region
+    country.legal_system = legal_system
+    country.mitigation_focus_areas = (
         focus_areas if focus_areas else []
     )
-    metadata.adaptation_priority_sectors = (
+    country.adaptation_priority_sectors = (
         priority_sectors if priority_sectors else []
     )
 
-    metadata.save()
+    country.save()
 
-    LOGGER.info('Created: %s', metadata)
+    LOGGER.info('Created: %s', country)
 
 
 class Command(BaseCommand):

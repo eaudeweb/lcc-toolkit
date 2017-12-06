@@ -16,9 +16,10 @@ class TagGroupRender():
     def __init__(self, tag_group):
         self.name = tag_group.name
         self.pk = tag_group.pk
-        self.tags = [{'name': tag.name, 'pk': tag.pk}
-                     for tag in models.TaxonomyTag.objects.filter(
-                group=tag_group)]
+        self.tags = [
+            {'name': tag.name, 'pk': tag.pk}
+            for tag in models.TaxonomyTag.objects.filter(group=tag_group)
+        ]
 
 
 class TaxonomyFormMixin:

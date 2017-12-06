@@ -91,7 +91,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 class AssessmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assessment
-        fields = ("id", "user", "country", "country_name")
+        fields = ("id", "user", "country", "country_name", "country_iso")
 
 
 class CountrySerializer(serializers.ModelSerializer):
@@ -113,7 +113,7 @@ class GapSerializer(serializers.ModelSerializer):
 class LegislationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Legislation
-        fields = ("id", "title", "year", "country_name")
+        fields = ("id", "title", "year", "country_name", "country_iso")
 
 
 class GapArticleSerializer(serializers.ModelSerializer):

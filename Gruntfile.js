@@ -12,7 +12,9 @@ module.exports = function(grunt) {
                     optimization: 2
                 },
                 files: {
-                    "lcc/static/css/main.css": "lcc/src/less/main.less"
+                    "lcc/static/css/main.css": "lcc/src/less/main.less",
+                    "lcc/static/css/jquery-ui.css": "lcc/src/less/lib/jquery-ui.less"
+
                 }
             }
         },
@@ -27,6 +29,8 @@ module.exports = function(grunt) {
                     'lcc/src/js/config.js',
                     'lcc/src/js/request.service.js',
                     'lcc/src/js/lib/jquery.sticky.js',
+                    'lcc/src/js/lib/bootstrap-slider.min.js',
+                    'lcc/src/js/lib/multiple-select.min.js'
                 ],
                 dest: 'lcc/static/js/main.js'
             }

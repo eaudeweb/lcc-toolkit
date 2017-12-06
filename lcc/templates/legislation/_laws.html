@@ -1,4 +1,36 @@
 {% load static %}
+{% if laws %}
+  <div class="counter">
+    {{ laws.start_index }} - {{ laws.end_index }} of {{ laws.paginator.count }} results
+  </div>
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      {% if laws.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="javascript:void(0)" data-page="{{ laws.previous_page_number }}">&laquo;</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+      {% endif %}
+      {% for i in laws.paginator.page_range %}
+        {% if laws.number == i %}
+          <li class="page-item active">
+            <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" data-page="{{ i }}">{{ i }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      {% if laws.has_next %}
+        <li class="page-item"><a class="page-link" href="javascript:void(0)" data-page="{{ laws.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
 {% for law in laws %}
 <div class="law-container">
   <a href="{% url 'lcc:legislation:details' law.pk %}">
@@ -13,22 +45,22 @@
   </h6>
 
   <div class="tag-wrapper">
-    {% if law.classifications.exists %}
-    <span><b>Classification:</b></span>
-    <span>
-      {% for classification in law.classifications.all %}
-       <span class="tag">{{ classification.name }}</span>
-      {% endfor %}
-    </span>
+    {% if law.highlighted_classifications %}
+      <span><b>Classification:</b></span>
+      <span>
+        {% for classification in law.highlighted_classifications %}
+         <span class="tag">{{ classification }}</span>
+        {% endfor %}
+      </span>
     {% endif %}
   </div>
 
   <div class="tag-wrapper">
-    {% if law.tags.exists %}
+    {% if law.highlighted_tags %}
     <span><b>Tags:</b></span>
     <span>
-      {% for tag in law.tags.all%}
-       <span class="tag">{{ tag.name }}</span>
+      {% for tag in law.highlighted_tags %}
+       <span class="tag">{{ tag }}</span>
       {% endfor %}
     </span>
     {% endif %}
@@ -36,12 +68,19 @@
 
   {% if law.highlighted_abstract %}
     <div class="abstract">
-      {% if law.tags.exists %}
-      <span><b>Abstract:</b></span>
+      <span>Abstract:</span>
       <span>
         {{ law.highlighted_abstract }}
       </span>
-      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if law.highlighted_pdf_text %}
+    <div class="pdf_text">
+      <span>Legislation text:</span>
+      <span>
+        {{ law.highlighted_pdf_text }}
+      </span>
     </div>
   {% endif %}
 
@@ -49,3 +88,35 @@
 {% empty %}
   <span class="error">No legislation found for these filters</span>
 {% endfor %}
+{% if laws %}
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      {% if laws.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="javascript:void(0)" data-page="{{ laws.previous_page_number }}">&laquo;</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+      {% endif %}
+      {% for i in laws.paginator.page_range %}
+        {% if laws.number == i %}
+          <li class="page-item active">
+            <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" data-page="{{ i }}">{{ i }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      {% if laws.has_next %}
+        <li class="page-item"><a class="page-link" href="javascript:void(0)" data-page="{{ laws.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+      {% endif %}
+    </ul>
+  </nav>
+  <div class="counter">
+    {{ laws.start_index }} - {{ laws.end_index }} of {{ laws.paginator.count }} results
+  </div>
+{% endif %}

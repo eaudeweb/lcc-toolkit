@@ -11,13 +11,8 @@ class Command(BaseCommand):
     help = "Load initial data"
 
     FIXTURES = ("TaxonomyTagGroup", "TaxonomyTag", "TaxonomyClassification",
-                "Countries", "CountryMetadata", "Questions", "Gaps")
+                "Countries", "Questions", "Gaps")
 
     def handle(self, *args, **options):
-        TaxonomyTagGroup.objects.all().delete()
-        TaxonomyTag.objects.all().delete()
-        TaxonomyClassification.objects.all().delete()
-        Gap.objects.all().delete()
-        Question.objects.all().delete()
         for fixture in Command.FIXTURES:
             call_command('loaddata', fixture)

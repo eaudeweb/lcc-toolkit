@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block extra-scripts %}
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static "css/jquery-ui.css" %}">
+<script src="{% static "js/jquery-ui.js" %}"> </script>
 <script src="{% static "js/assessment_results.js" %}"> </script>
 {% endblock %}
 
@@ -16,17 +16,26 @@
 
 {% block page-title %}Legal Assessment{% endblock %}
 
+{% block page-menu %}<h2 class="country"></h2>
+{% endblock%}
+
+
 {% block breadcrumbs %}
 {{ block.super }}
 {% endblock %}
 
 {% block content %}
 
+<div class="results-header">
+	<div class="muted">Legal assessment results</div>
+	<h2 class="country"></h2>
+   <ul id="summary"></ul>
+   <div class="results-info">Based on your assessment, the following priority areas are suggested for reform: </div>
+</div>
 
-<div class="container-fluid text-center" id="assessment-edit">
+<div class="container-fluid text-center" id="assessment-result">
   <div class="row content">
     <div class="col-sm-12 sidenav google-codelab">
-      <div id="summary"></div>
       <div id="accordion">
       </div>
     </div>

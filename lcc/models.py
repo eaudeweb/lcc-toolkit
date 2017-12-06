@@ -1,23 +1,25 @@
 import math
-from copy import deepcopy
-from operator import itemgetter
-
+import time
+import pdftotext
 import pycountry
 import mptt.models
 
+from copy import deepcopy
+from operator import itemgetter
 from rolepermissions.roles import get_user_roles
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.indexes import GinIndex
-
-import lcc.utils as utils
-import lcc.constants as constants
-
-from django.db import models
+from django.db import models, transaction
 from django.db.models import F, Subquery, OuterRef
 from django.db.models.signals import m2m_changed
 from django.urls import reverse
+from django.utils.safestring import mark_safe
+
+import lcc.utils as utils
+import lcc.constants as constants
 
 
 User = get_user_model()
@@ -110,6 +112,7 @@ class TaxonomyTagGroup(models.Model):
 
 
 class TaxonomyTag(models.Model):
+    # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
     group = models.ForeignKey(TaxonomyTagGroup, related_name='tags')
 
@@ -118,6 +121,7 @@ class TaxonomyTag(models.Model):
 
 
 class TaxonomyClassification(mptt.models.MPTTModel):
+    # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=16, unique=True, blank=True)
     parent = mptt.models.TreeForeignKey('self',
@@ -251,6 +255,11 @@ class Region(models.Model):
     def __str__(self):
         return self.name
 
+    def countries(self):
+        return ( object for object in
+            self.country_set.all()
+        )
+
 
 class SubRegion(models.Model):
     name = models.CharField('Name', max_length=128)
@@ -280,16 +289,23 @@ class PrioritySector(models.Model):
         return self.name
 
 
-class CountryMetadata(models.Model):
-    country = models.ForeignKey('Country', related_name='metadata')
-    user = models.ForeignKey('UserProfile', null=True)
+class CountryBase(models.Model):
 
-    cw = models.BooleanField('CW', default=False)
-    small_cw = models.BooleanField('Small CW', default=False)
-    un = models.BooleanField('UN', default=False)
-    ldc = models.BooleanField('LDC', default=False)
-    lldc = models.BooleanField('LLDC', default=False)
-    sid = models.BooleanField('SID', default=False)
+    class Meta:
+        abstract = True
+
+    cw = models.BooleanField('Commonwealth (Member country)', default=False)
+    small_cw = models.BooleanField('Small commonwealth country', default=False)
+    un = models.BooleanField('United Nations (Member state)', default=False)
+    ldc = models.BooleanField('Least developed country (LDC)', default=False)
+    lldc = models.BooleanField(
+        'Landlocked developing country (LLDC)',
+        default=False
+    )
+    sid = models.BooleanField(
+        'Small island developing state (SID)',
+        default=False
+    )
 
     region = models.ForeignKey(Region, null=True, blank=True)
     sub_region = models.ForeignKey(SubRegion, null=True, blank=True)
@@ -322,12 +338,6 @@ class CountryMetadata(models.Model):
         PrioritySector,
         blank=True
     )
-
-    def __str__(self):
-        return f'{self.country.name} ({self.user or "no user"})'
-
-    def get_absolute_url(self):
-        return reverse('lcc:country:view', kwargs={'iso': self.country.iso})
 
     @property
     def population_range(self):
@@ -364,11 +374,13 @@ class CountryMetadata(models.Model):
         )
 
     def clone_to_profile(self, user_profile):
-        # copy original
-        clone = deepcopy(self)
-        clone.pk = None
-        clone.user = user_profile
-
+        fields = ['cw', 'small_cw', 'un', 'ldc', 'lldc', 'sid', 'region_id',
+                  'sub_region_id', 'legal_system_id', 'population', 'hdi2015',
+                  'gdp_capita', 'ghg_no_lucf', 'ghg_lucf', 'cvi2015']
+        data = {key: getattr(self, key) for key in fields}
+        data['user'] = user_profile
+        data['country'] = self
+        clone = AssessmentProfile.objects.create(**data)
         clone.save()
 
         # copy many to many fields
@@ -384,12 +396,10 @@ class CountryMetadata(models.Model):
             )
             setattr(clone, name, val)
 
-        clone.save()
-
         return clone
 
 
-class Country(models.Model):
+class Country(CountryBase):
     iso = models.CharField('ISO', max_length=3, primary_key=True)
     name = models.CharField('Name', max_length=128)
 
@@ -402,6 +412,16 @@ class Country(models.Model):
     def __str__(self):
         return self.name
 
+
+class AssessmentProfile(CountryBase):
+    country = models.ForeignKey('Country', related_name='assessment_profiles')
+    user = models.ForeignKey('UserProfile')
+
+    def get_absolute_url(self):
+        return reverse('lcc:country:view', kwargs={'iso': self.country.iso})
+
+    def __str__(self):
+        return "{country}({user})".format(country=self.country, user=self.user)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -447,6 +467,7 @@ class UserProfile(models.Model):
 
 
 class LegislationManager(models.Manager):
+
     def get_queryset(self):
         return super().get_queryset().select_related('country')
 
@@ -496,6 +517,10 @@ class Legislation(_TaxonomyModel):
         return self.country.name
 
     @property
+    def country_iso(self):
+        return self.country.iso
+
+    @property
     def other_legislations(self):
         other = {}
         for classification in self.classifications.all():
@@ -506,6 +531,78 @@ class Legislation(_TaxonomyModel):
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Legislation: " + ' | '.join([self.country.name, self.law_type])
+
+    def highlighted_title(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        the title with the search terms highlighted. If not, return the original
+        title.
+        """
+        return getattr(self, '_highlighted_title', self.title)
+
+    def highlighted_abstract(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        the abstract with the search terms highlighted. If not, return an empty
+        string.
+        """
+        return getattr(self, '_highlighted_abstract', '')
+
+    def highlighted_pdf_text(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        the pdf_text with the search terms highlighted. If not, return an empty
+        string.
+        """
+        return getattr(self, '_highlighted_pdf_text', '')
+
+    def highlighted_classifications(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        a list of classification names with the search terms highlighted. If
+        not, return the original list of classification names.
+        """
+        return getattr(
+            self, '_highlighted_classifications',
+            self.classifications.all().values_list('name', flat=True)
+        )
+
+    def highlighted_tags(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        a list of tag names with the search terms highlighted. If not, return
+        the original list of tag names.
+        """
+        return getattr(
+            self, '_highlighted_tags',
+            self.tags.all().values_list('name', flat=True)
+        )
+
+    def save_pdf_pages(self):
+        if settings.DEBUG:
+            time_to_load_pdf = time.time()
+        if settings.DEBUG:
+            print("INFO: FS pdf file load time: %fs" %
+                  (time.time() - time_to_load_pdf))
+            time_begin_transaction = time.time()
+
+        with transaction.atomic():
+            pdf = pdftotext.PDF(self.pdf_file)
+            for idx, page in enumerate(pdf):
+                page = page.replace('\x00', '')
+                LegislationPage(
+                    page_text="<pre>%s</pre>" % page,
+                    page_number=idx + 1,
+                    legislation=self
+                ).save()
+
+        if settings.DEBUG:
+            print("INFO: ORM models.LegislationPages save time: %fs" %
+                  (time.time() - time_begin_transaction))
+
+        # This is necessary in order to trigger the signal that will update the
+        # ElasticSearch index.
+        self.save()
 
 
 class LegislationArticleManager(models.Manager):
@@ -540,7 +637,7 @@ class LegislationArticle(_TaxonomyModel):
 class LegislationPage(models.Model):
     page_text = models.CharField(max_length=65535)
     page_number = models.IntegerField()
-    legislation = models.ForeignKey(Legislation, related_name="page")
+    legislation = models.ForeignKey(Legislation, related_name="pages")
 
     def __str__(self):
         return "Page %d of Legislation %s" % (
@@ -602,9 +699,16 @@ class Gap(_TaxonomyModel):
         return "Gap for Q %s" % self.question
 
 
+class AssessmentManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().select_related('country')
+
+
 class Assessment(models.Model):
     user = models.ForeignKey(User, related_name="assessments")
     country = models.ForeignKey(Country, related_name="assessments")
+
+    objects = AssessmentManager()
 
     class Meta:
         unique_together = ("user", "country")
@@ -612,6 +716,10 @@ class Assessment(models.Model):
     @property
     def country_name(self):
         return self.country.name
+
+    @property
+    def country_iso(self):
+        return self.country.iso
 
     def __str__(self):
         return "%s' assessment for %s" % (

@@ -24,3 +24,5 @@ ELASTICSEARCH_DSL = {
         )
     },
 }
+
+MEDIA_ROOT = MEDIA_ROOT + '/tests/'

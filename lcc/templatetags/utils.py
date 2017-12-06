@@ -9,6 +9,10 @@ def index(items, i):
 
 @register.simple_tag(takes_context=True)
 def active(context, *args):
-    if set(context['request'].resolver_match.namespaces).issubset(args):
+    resolver = context['request'].resolver_match
+    if resolver.url_name == 'about_us':
+        return ''
+
+    if set(resolver.namespaces).issubset(args):
         return 'active'
     return ''
