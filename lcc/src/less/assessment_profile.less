@@ -34,7 +34,7 @@
     .simulation {
         border-left: 1px solid @border;
         border-right: 1px solid @border;
-        display: block;
+        // display: block;
         margin-left: 3rem;
         margin-bottom: -1px;
         margin-right: -1px;
@@ -51,6 +51,9 @@
     }
     th.simulation {
         border-top: 1px solid @border;
+        display: block;
+        width: calc(~"100% + 1px");
+        margin-left: 0;
     }
 
     .checkbox {
