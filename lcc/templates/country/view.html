@@ -95,7 +95,13 @@
               {% else %}
                 <span class="muted">
                   {% if prop.value or prop.value is False %}
-                    {% if prop.type == 'multiple' %}
+                    {% if prop.type == 'checkbox' %}  
+                         {% if prop.value == True %}
+                          <span class="table_image">✔</span>
+                        {% else %}
+                          <span class="table_image">🗙</span>
+                        {% endif %}
+                    {% elif prop.type == 'multiple' %}
                       <ul>
                         {% for multiple_prop in prop.orig %}
                           <li>• {{ multiple_prop }}</li>
