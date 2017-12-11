@@ -53,8 +53,8 @@ class LegalAssessmentResultsPDF(View):
             stylesheets=[CSS(settings.STATIC_ROOT + '/css/download_results.css')])
 
 
-        # http_response = HttpResponse(pdf_file, content_type='application/pdf')
-        # http_response['Content-Disposition'] = 'inline; filename="report.pdf"'
+        http_response = HttpResponse(pdf_file, content_type='application/pdf')
+        http_response['Content-Disposition'] = 'inline; filename="report.pdf"'
 
-        # return http_response
-        return render(request, self.template_name, context)
+        return http_response
+        # return render(request, self.template_name, context)

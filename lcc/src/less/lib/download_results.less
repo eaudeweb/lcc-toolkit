@@ -1,67 +1,197 @@
-    .top-category-name {
-      font-weight: bold;
-      text-align: center;
+@page {
+    size: a4 portrait;
+    margin: 27mm 10mm 27mm 10mm;
+    counter-increment: page;
+    @bottom-center {
+        content: 'Legal assessment result - Page ' counter(page);
+        white-space: pre;
+        color: grey;
     }
-    .sub-category {
-      margin-left: 20px;
-    }
-    .question-wrapper {
-      margin-left: 40px;
-      /*border: solid 1px;*/
-      background-color: #eee;
-    }
+}
+
+body,
+html {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
+
+.muted {
+  color: rgba(0,0,0,.54);
+}
+.top-category-name {
+    font-weight: bold;
+    /* text-align: center; */
+    border-bottom: 1px solid #eee;
+    display: block;
+    padding: 5px;
+    text-align: center;
+}
+
+.sub-category {
+  // border: 1px solid #aaa;
+  page-break-before: always;
+  &:first-of-type {
+    page-break-before: initial;
+  }
+  padding-left: 5px;
+}
+
+.top-category {
+  border-bottom: 8px solid black;
+}
+
+.question-wrapper {
+  padding: 3px;
+
+}
+
+
 
 
 /*header*/
+
 .results-header {
-  display: block;
-  width: 100%;
+    display: block;
+    width: 100%;
+    .country {
+        font-size: 36px;
+        text-align: center;
+        font-weight: bold;
+        img {
+            width: 39px;
+            margin-right: 10px;
+            margin-top: -9px;
+        }
+    }
+    #summary {
+        font-size: 16px;
+        text-align: center;
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 1px solid #eeeeee;
+        }
+        li {
+            display: inline-block;
+            padding: 0 20px;
+            margin: 20px 0;
+            border-left: 1px solid #eee;
+            span {
+                font-size: 18px;
+                font-weight: bold;
+                color: black;
+            }
+        }
+    }
+    .muted {
+        margin-bottom: 10px;
+        text-align: center;
+        color: rgba(0,0,0,0.54);
+    }
+    .results-info {
+        max-width: 413px;
+        margin: auto;
+        margin-top: 20px;
+        text-align: center;
+        position: relative;
+    }
 }
 
-.results-header #summary {
-  font-size: 16px;
-  text-align: center;
-  position: relative;
-}
-.results-header #summary li {
-  display: inline-block;
-  padding: 0 20px;
-  margin: 20px 0;
-  min-width: 190px;
+.results-header #summary li:first-of-type {
+    border-left: none;
 }
 
-.results-header #summary li span {
-  font-size: 36px;
-  font-weight: bold;
+.question-title {
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    color: #0052cc;
+    padding: 5px;
+    position: relative;
+    .question-text {
+    display: block;
+    margin: 4px;
+    margin-right: 80px;
+    }
+    .btn-group {
+          position: absolute;
+    right: 4px;
+    top: 4px;
+      button {
+    border-radius: 6px;
+    min-width: 40px;
+    padding: 5px;
+    border-style: none;
+    color: white;
+    display: inline-block;
+    margin: 0;
+    color: black;
+    background: #aaa;
+    &:first-of-type {
+           border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-right: -4px;
+    }
+    &:last-of-type {
+          border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    }
+        &.answered{
+        background: #f34e2a;
+        border-color: #f34e2a;
+        color: white;
+        }
+      }
+    }
+}
+
+.gap-area {
+      background: rgba(0,0,0,0.6);
+    padding: 5px;
+    border-radius: 6px;
+    color: white;
+        margin: 5px 5px;
+        &:first-of-type {
+          margin: 5px 0;
+        }
+}
+
+.gap-title,
+.suggestions-intro {
+      color: #f34e2a;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+pre {
+  white-space: pre-wrap;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border-left: 3px solid #0052cc;
+  padding-left: 5px;
+  word-wrap: normal;
+}
+
+.article-container {
+  page-break-inside: avoid;
+  &:first-of-type {
+    page-break-inside: initial;
+  }
+  border-top: 4px solid #f34e2a;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  &:first-of-type {
+    border-top: none;
+  }
+}
+
+a {
+  text-decoration: none;
+  font-size: 19px;
   color: black;
-}
-
-.results-header .line {
-  display: inline-block;
-width: 10px;
-height: 10px;
-background-color: black;
-}
-
-/*.results-header #summary:before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  width: 250px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-top: 1px solid #eeeeee;
-}
-.results-header .muted {
-  margin-bottom: 1rem;
-  text-align: center;
-}
-.results-header .results-info {
-  max-width: 413px;
   font-weight: bold;
-  margin: auto;
-  margin-top: 2rem;
-  text-align: center;
-  position: relative;
-}*/
-
+}
