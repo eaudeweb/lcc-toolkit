@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+
+  <style type="text/css">
+    .top-category-name {
+      font-weight: bold;
+    }
+    .sub-category {
+      margin-left: 20px;
+    }
+    .question-wrapper {
+      margin-left: 40px;
+      border: solid 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1>{{ categories }} Categories</h1>
+    <h1>{{ areas }} Areas of improvement</h1>
+    <h1>{{ law_suggestions }} Law suggestions</h1>
+  </div>
+
+  <div class="results-container">
+    {% for category in results.categories %}
+      <div class="top-category">
+        <p class="top-category-name">{{ category.name }}</p>
+        {% for sub_category in category.categories %}
+          <div class="sub-category">
+            <p class="sub-category-name">{{ sub_category.name }}</p>
+            {% for question in sub_category.questions %}
+              <div class="question-wrapper">
+                
+                <div class="question-title">
+                  <p class="question-text">{{ question.text }}</p>
+                  <div class="btn-group">
+                    <button class="{% if question.answer %}answered{% endif %}" data-question="{{ question.id }}" data-value="true" data-answer-id="">Yes</button>
+                    <button class="{% if not question.answer %}answered{% endif %}" data-question="{{ question.id }}" data-value="false" data-answer-id="">No</button>
+                  </div>
+                </div>
+
+                <div class="gap">
+                  <p>Area of improvement</p>
+                  <!-- 
+                  <p>
+                  {% for classification in question.gap.classifications %}
+                    {% if forloop.first %}
+                      • {{ classification.name }}
+                    {% else %}
+                      | {{ classification.name }}
+                    {% endif %}
+                  {% endfor %}
+                  </p> -->                  
+                  <p>{% for classification in question.gap.classifications %}{% if forloop.first %}• {{ classification.name }}{% else %} | {{ classification.name }}{% endif %}{% endfor %}</p>
+                  <!-- <p>
+                  {% for tag in question.gap.tags %}
+                    {% if forloop.first %}
+                      • {{ tag.name }}
+                    {% else %}
+                      | {{ tag.name }}
+                    {% endif %}
+                  {% endfor %}
+                  </p> -->
+                  <p>{% for tag in question.gap.tags %}{% if forloop.first %}• {{ tag.name }}{% else %} | {{ tag.name }}{% endif %}{% endfor %}</p>
+                </div>
+
+                <div class="suggestions-wrapper">
+                  <p>{{ question.articles|length }} suggestions</p>
+                  <div class="suggestions">
+                    {% for article in question.articles %}
+                      <a href="{{ host }}/legislation/{{ article.legislation.id }}/articles#{{ article.code }}">
+                        {{ article.legislation.title }} - {{ article.code }}
+                      </a>
+                      <div class="muted">
+                        <small>{{ article.legislation.country_name }}  {{ article.legislation.year }}</small>
+                      </div>
+                      <p>{{ article.text }}</p>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
