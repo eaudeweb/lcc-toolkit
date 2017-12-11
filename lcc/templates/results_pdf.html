@@ -3,31 +3,21 @@
 <head>
   <meta charset="utf-8" />
 
-  <style type="text/css">
-    .top-category-name {
-      font-weight: bold;
-    }
-    .sub-category {
-      margin-left: 20px;
-    }
-    .question-wrapper {
-      margin-left: 40px;
-      border: solid 1px;
-    }
-  </style>
 </head>
 
 <body>
-  <div class="header">
-    <h1>{{ categories }} Categories</h1>
-    <h1>{{ areas }} Areas of improvement</h1>
-    <h1>{{ law_suggestions }} Law suggestions</h1>
+  <div class="results-header">
+  <ul id="summary">
+    <li><span>{{ categories }}</span> Categories <span class="line"></span></li>
+    <li><span>{{ areas }}</span> Areas of improvement <span class="line"></span></li>
+    <li><span>{{ law_suggestions }}</span> Law suggestions</li>
+  </ul>
   </div>
 
   <div class="results-container">
     {% for category in results.categories %}
       <div class="top-category">
-        <p class="top-category-name">{{ category.name }}</p>
+        <h2 class="top-category-name">{{ category.name }}</h2>
         {% for sub_category in category.categories %}
           <div class="sub-category">
             <p class="sub-category-name">{{ sub_category.name }}</p>
@@ -89,4 +79,74 @@
     {% endfor %}
   </div>
 </body>
+
+  <style type="text/css">
+    .top-category-name {
+      font-weight: bold;
+      text-align: center;
+    }
+    .sub-category {
+      margin-left: 20px;
+    }
+    .question-wrapper {
+      margin-left: 40px;
+      /*border: solid 1px;*/
+      background-color: #eee;
+    }
+
+
+/*header*/
+.results-header {
+  display: block;
+  width: 100%;
+}
+
+.results-header #summary {
+  font-size: 16px;
+  text-align: center;
+  position: relative;
+}
+.results-header #summary li {
+  display: inline-block;
+  padding: 0 20px;
+  margin: 20px 0;
+  min-width: 190px;
+}
+
+.results-header #summary li span {
+  font-size: 36px;
+  font-weight: bold;
+  color: black;
+}
+
+.results-header .line {
+  display: inline-block;
+width: 10px;
+height: 10px;
+background-color: black;
+}
+
+/*.results-header #summary:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top: 1px solid #eeeeee;
+}
+.results-header .muted {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.results-header .results-info {
+  max-width: 413px;
+  font-weight: bold;
+  margin: auto;
+  margin-top: 2rem;
+  text-align: center;
+  position: relative;
+}*/
+
+  </style>
 </html>
