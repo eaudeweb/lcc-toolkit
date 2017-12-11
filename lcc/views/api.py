@@ -3,6 +3,62 @@ from rest_framework import generics
 from lcc import models, serializers
 
 
+def get_assessment_object(assessment):
+    answers = models.Answer.objects.get_assessment_answers(assessment.pk)
+    category_ids = {a.category_id for a in answers}
+    sub_categories = models.TaxonomyClassification.objects.filter(
+        pk__in=category_ids)
+    root_categories = models.TaxonomyClassification.objects.filter(
+        pk__in=[cat.parent_id for cat in sub_categories])
+
+    for root in root_categories:
+        root.categories = [
+            sub for sub in sub_categories
+            if sub.parent_id == root.id
+        ]
+
+    gap_ids = []
+
+    for a in answers:
+        q = a.question
+        q.answer = a.value
+
+        gap_ids.append(a.gap_id)
+
+        category = next(
+            cat for cat in sub_categories
+            if cat.id == a.category_id
+        )
+        try:
+            cat_qs = category.questions
+        except AttributeError:
+            category.questions = []
+            cat_qs = category.questions
+
+        cat_qs.append(q)
+
+    gaps = models.Gap.objects.filter(id__in=gap_ids).prefetch_related(
+        'classifications', 'tags')
+
+    for a in answers:
+        a.question.gap = next(
+            gap for gap in gaps
+            if gap.id == a.gap_id
+        )
+
+    assessment.categories = root_categories
+    articles = models.LegislationArticle.objects.get_articles_for_gaps(
+        gap_ids)
+
+    for a in answers:
+        a.question.articles = [
+            article for article in articles
+            if a.question.gap.id == article.gap_id
+        ]
+
+    return assessment
+
+
 class QuestionViewSet(generics.ListAPIView):
     def get_serializer(self, *args, **kwargs):
         serializer_class = serializers.QuestionSerializer
@@ -63,56 +119,4 @@ class AssessmentResults(generics.RetrieveAPIView):
         # decorate the assessment with... some stuff
         assessment = super().get_object()
 
-        answers = models.Answer.objects.get_assessment_answers(assessment.pk)
-        category_ids = {a.category_id for a in answers}
-        sub_categories = models.TaxonomyClassification.objects.filter(
-            pk__in=category_ids)
-        root_categories = models.TaxonomyClassification.objects.filter(
-            pk__in=[cat.parent_id for cat in sub_categories])
-
-        for root in root_categories:
-            root.categories = [
-                sub for sub in sub_categories
-                if sub.parent_id == root.id
-            ]
-
-        gap_ids = []
-
-        for a in answers:
-            q = a.question
-            q.answer = a.value
-
-            gap_ids.append(a.gap_id)
-
-            category = next(
-                cat for cat in sub_categories
-                if cat.id == a.category_id
-            )
-            try:
-                cat_qs = category.questions
-            except AttributeError:
-                category.questions = []
-                cat_qs = category.questions
-
-            cat_qs.append(q)
-
-        gaps = models.Gap.objects.filter(id__in=gap_ids).prefetch_related(
-            'classifications', 'tags')
-
-        for a in answers:
-            a.question.gap = next(
-                gap for gap in gaps
-                if gap.id == a.gap_id
-            )
-
-        assessment.categories = root_categories
-        articles = models.LegislationArticle.objects.get_articles_for_gaps(
-            gap_ids)
-
-        for a in answers:
-            a.question.articles = [
-                article for article in articles
-                if a.question.gap.id == article.gap_id
-            ]
-
-        return assessment
+        return get_assessment_object(assessment)

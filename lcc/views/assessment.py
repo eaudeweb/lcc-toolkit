@@ -1,10 +1,15 @@
 from django.contrib.auth import mixins
-from django.views.generic import TemplateView
-from lcc.views.api import AssessmentResults
-from rest_framework.response import Response
+from django.views.generic import TemplateView, View
+from lcc.views.api import get_assessment_object
+from lcc import serializers
+from lcc.models import Assessment
+
+from django.template.loader import get_template
+from django.shortcuts import render
 from django.http import HttpResponse
-from rest_framework.renderers import TemplateHTMLRenderer
-from lcc import serializers, utils
+from django.conf import settings
+
+from weasyprint import HTML, CSS
 
 
 class LegalAssessment(mixins.LoginRequiredMixin, TemplateView):
@@ -15,13 +20,13 @@ class LegalAssessmentResults(mixins.LoginRequiredMixin, TemplateView):
     template_name = "assessment_results.html"
 
 
-class LegalAssessmentResultsPDF(AssessmentResults):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'profile_list.html'
+class LegalAssessmentResultsPDF(View):
+    template_name = 'results_pdf.html'
 
     def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        results = serializers.AssessmentResultSerializer(self.object)
+
+        assessment = Assessment.objects.get(pk=kwargs['pk'])
+        results = serializers.AssessmentResultSerializer(get_assessment_object(assessment))
 
         top_categories = len(results.data['categories'])
         areas = 0
@@ -37,10 +42,19 @@ class LegalAssessmentResultsPDF(AssessmentResults):
             'host': request.META['HTTP_HOST'],
             'categories': top_categories,
             'areas': areas,
-            'law_suggestions': suggestions
+            'law_suggestions': suggestions,
+            'assessment_country_iso': assessment.country_iso,
+            'assessment_country_name': assessment.country_name
         }
 
-        # For html version, comment lines 44-45 and uncomment line 46
-        pdf = utils.render_to_pdf('results_pdf.html', context)
-        return HttpResponse(pdf, content_type='application/pdf')
-        # return Response(context, template_name='results_pdf.html')
+        html_template = get_template(self.template_name)
+        rendered_html = html_template.render(context).encode(encoding="UTF-8")
+        pdf_file = HTML(string=rendered_html).write_pdf(
+            stylesheets=[CSS(settings.STATIC_ROOT + '/css/download_results.css')])
+
+
+        # http_response = HttpResponse(pdf_file, content_type='application/pdf')
+        # http_response['Content-Disposition'] = 'inline; filename="report.pdf"'
+
+        # return http_response
+        return render(request, self.template_name, context)

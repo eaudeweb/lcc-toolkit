@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'rolepermissions',
     'rest_framework',
     'mptt',
-    'lcc',
+    'lcc'
 ]
 
 MIDDLEWARE = [
@@ -63,6 +63,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lcctoolkit.wsgi.application'
 ROLEPERMISSIONS_MODULE = 'lcc.roles'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
