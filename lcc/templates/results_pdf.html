@@ -20,10 +20,10 @@
   <div class="results-container">
     {% for category in results.categories %}
       <div class="top-category">
-        <h2 class="top-category-name">{{ category.name }}</h2>
+        <h3 class="top-category-name">{{ category.name }}</h3>
         {% for sub_category in category.categories %}
           <div class="sub-category">
-            <h4 class="sub-category-name">{{ sub_category.name }}</h4>
+            <h5 class="sub-category-name">{{ sub_category.name }}</h5>
             {% for question in sub_category.questions %}
               <div class="question-wrapper">
                 

@@ -1,6 +1,6 @@
 @page {
     size: a4 portrait;
-    margin: 27mm 10mm 27mm 10mm;
+    margin: 15mm 10mm 27mm 10mm;
     counter-increment: page;
     @bottom-center {
         content: 'Legal assessment result - Page ' counter(page);
@@ -25,7 +25,7 @@ html {
     display: block;
     padding: 5px;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 20px;
     // page-break-after: avoid;
     // page-break-before: always;
 }
@@ -62,7 +62,7 @@ html {
     display: block;
     width: 100%;
     .country {
-        font-size: 36px;
+        font-size: 25px;
         text-align: center;
         font-weight: bold;
         img {
@@ -72,7 +72,7 @@ html {
         }
     }
     #summary {
-        font-size: 16px;
+        font-size: 14px;
         text-align: center;
         position: relative;
         &:before {
@@ -90,7 +90,7 @@ html {
             margin: 20px 0;
             border-left: 1px solid #eee;
             span {
-                font-size: 18px;
+                font-size: 15px;
                 font-weight: bold;
                 color: black;
             }
@@ -161,9 +161,9 @@ html {
 
 .gap-area {
     padding: 5px;
-        margin: 5px 5px;
+    margin-right: 5px;
+        font-size: 12px;
         &:first-of-type {
-          margin: 5px 0;
           padding-left: 0;
         }
 }
@@ -172,7 +172,15 @@ html {
 .suggestions-intro {
       color: #f34e2a;
     font-weight: bold;
-    margin-top: 25px;
+    font-size: 13px;
+}
+
+.gap-title {
+    margin-top: 15px;
+}
+
+.suggestions-intro {
+  margin-top: 10px;
 }
 
 pre {
@@ -181,7 +189,7 @@ pre {
   // border-left: 5px solid #0052cc;
   padding-left: 5px;
   word-wrap: normal;
-  font-size: 13px;
+  font-size: 12px;
   margin-top:0;
   padding-left: 5px;
 }
@@ -209,7 +217,7 @@ pre {
 
 a {
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   color: black;
   margin-bottom: 5px;
   font-weight: bold;
