@@ -16,6 +16,7 @@ $(document).ready(function(){
     var current = $('#questions-container .current');
     var last = $('#questions-container .last');
     var question_category = $('.question_category')
+    var continue_countries = [];
 
     // requests need the assessment_id, to have this available, we need to make sure
     // that functions have this as their context, which normally will be changed when:
@@ -68,26 +69,47 @@ $(document).ready(function(){
                             .text('Select country')
                             .attr('value', '')
                             .appendTo(country_list);
-
           for (var j = 0; j < all_assessments.length; j++) {
             var element = all_assessments[j];
             var li_country = $('<option/>')
                               .text(element.country_name)
                               .attr('value', element.id)
-                              .attr('country_iso', element.country_iso)
+                              .attr('country_iso', function(){
+                                continue_countries.push(element.country_iso)
+                                return element.country_iso
+                              })
                               .appendTo(country_list);
           }
-
+          removeStartedAssessments();
           handleContinueAssessment.call(self);
       });
     }
+
+
+    function removeStartedAssessments(){
+      $('#country-list-new').find('option').each(function(index, item){
+        var country_iso = $(item).attr('value');
+        if(continue_countries.indexOf(country_iso) != -1 ) {
+          $(this).remove()
+        }
+      })
+    }
+
+
+
 
     function handleCreateAssessment() {
       var self = this;
       $('#add-assessment').click(function(event) {
         var selected_country_iso = $('#country-list-new').find('option:selected').val();
         var selected_country_name = $('#country-list-new').find('option:selected').text();
-        createAssessment.call(self, selected_country_iso, selected_country_name)
+        if(selected_country_iso !== '' && selected_country_name !== ''){
+          createAssessment.call(self, selected_country_iso, selected_country_name)
+        }
+        else {
+          $('#country-list-new').focus()
+          
+        }
       });
     }
 
@@ -97,7 +119,13 @@ $(document).ready(function(){
         self.assessment_id = $('#country-list-continue').find('option:selected').val();
         var selected_country_name = $('#country-list-continue').find('option:selected').text();
         var selected_country_iso = $('#country-list-continue').find('option:selected').attr('country_iso');
-        continueAssessment.call(self,  selected_country_iso, selected_country_name);
+         if(self.assessment_id !== '') {
+          // return;
+          continueAssessment.call(self,  selected_country_iso, selected_country_name);
+        }
+        else {
+          $('#country-list-continue').focus()
+        }
       });
     }
 
@@ -464,5 +492,7 @@ $(document).ready(function(){
       last.html(categories_no);
       question_category.html(category_name);
     }
+
   });
+
 });

@@ -25,4 +25,9 @@ ELASTICSEARCH_DSL = {
     },
 }
 
+INSTALLED_APPS += [
+    'django_webtest'
+]
+
+
 MEDIA_ROOT = MEDIA_ROOT + '/tests/'

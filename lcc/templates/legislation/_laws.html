@@ -46,7 +46,7 @@
 
   <div class="tag-wrapper">
     {% if law.highlighted_classifications %}
-      <span>Classification:</span>
+      <span><b>Classification:</b></span>
       <span>
         {% for classification in law.highlighted_classifications %}
          <span class="tag">{{ classification }}</span>
@@ -57,7 +57,7 @@
 
   <div class="tag-wrapper">
     {% if law.highlighted_tags %}
-    <span>Tags:</span>
+    <span><b>Tags:</b></span>
     <span>
       {% for tag in law.highlighted_tags %}
        <span class="tag">{{ tag }}</span>

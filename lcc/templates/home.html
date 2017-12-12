@@ -14,6 +14,10 @@
           <a href="{% url 'lcc:auth:login' %}?next=/legislation" class="btn btn-primary very-wide">Log in</a>
           <a href="{% url 'lcc:auth:register' %}" class="btn btn-link very-wide">Register</a>
         </div>
+      {% else %}
+        <div class="homepage-actions">
+          <p>Logged in as <span class="username">{{ request.user.get_full_name|default:request.user.username }}</span></p>
+        </div>
       {% endif %}
       <div class="homepage-desc">
         <p>A global resource to help countries develop legal frameworks for the effective implementation of the <b>Paris Agreement</b> and their nationally determined contributions</p>
@@ -28,15 +32,39 @@
         <h2>The Toolkit</h2>
         <div class="toolkit-wrapper">
           <div class="item">
-            <img src="{% static "img/icon-legislation-explorer.png" %}" />            
+            <a href="{% url 'lcc:legislation:explorer' %}"><img src="{% static "img/icon-legislation-explorer.png" %}" /></a>           
             <h3>Legislation Explorer</h3>
             <p><small>Search legal provisions of climate change laws from across the world.</small></p>
+            <br>
             <a href="{% url 'lcc:legislation:explorer' %}" class="btn btn-link">Explore</a>
           </div>
           <div class="item center">
-            <img src="{% static "img/icon-legal-assesment.png" %}" />           
+            {% if request.user.is_authenticated %}
+              <a href="{% url 'lcc:assessment:legal_assessment' %}"><img src="{% static "img/icon-legal-assesment.png" %}" /></a> 
+            {% else %}
+              <img src="{% static "img/icon-legal-assesment.png" %}" />
+            {%endif%}     
             <h3>Legal Assessment</h3>
             <p><small>Identify potential gaps and areas for improvement, priority areas for climate law review and potential areas for reform.</small></p>
+            {% if request.user.is_authenticated %}
+            <a class="btn btn-link" href="{% url 'lcc:assessment:legal_assessment' %}">
+                Legal Assessment
+            </a>
+            {%endif%}
+          </div>
+          <div class="item">
+            {% if request.user.is_authenticated %}
+              <a href="{% url 'lcc:country:view' iso=request.user_profile.home_country.iso %}"> <img src="{% static "img/icon-assesment-profile.png" %}" /></a>  
+            {% else %}
+              <img src="{% static "img/icon-assesment-profile.png" %}" /> 
+            {%endif%}       
+            <h3>Assessment Profile</h3>
+            <p><small>Customize suggestions from legal assessment by adjusting relevant factors for assessed country, such as type of legal system, population, GDP etc.</small></p>
+            {% if request.user.is_authenticated %}
+            <a class="btn btn-link" href="{% url 'lcc:country:view' iso=request.user_profile.home_country.iso %}">
+                Assessment Profile
+            </a>
+            {%endif%}
           </div>
           <div class="item">
             <img src="{% static "img/icon-lessons-learned.png" %}" />           

@@ -102,7 +102,7 @@ class HighlightedLaws:
                             ]
                         law._highlighted_articles.append(article_dict)
                 elif matched_article_tags:
-                    # NOTE: This is a hack. ElasticSearch won't return
+                    # TODO: Fix this hack. ElasticSearch won't return
                     # highlighted article tags in some cases so this workaround
                     # is necessary. Please fix if you know how. Try searching
                     # for a keyword that is in the title of a law, and filtering

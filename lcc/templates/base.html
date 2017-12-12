@@ -18,7 +18,8 @@
   {% block scripts %}
     <script src="{% static "js/main.js"%}"></script>
     {% if sentry_public_id %}
-      <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
+    <script src="{% static "js/raven.min.js" %}"> </script>
+
       <script>
         Raven.config('{{ sentry_public_id }}').install()
         Raven.setUserContext({
@@ -42,6 +43,18 @@
   {% endblock %}
 
   {% block extra-styles %}{% endblock %}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="http://www.googletagmanager.com/gtag/js"></script> -->
+  <!-- This needs to be updated periodically  -->
+  <script async src="{% static "js/gtag.js" %}"> </script>
+
+  <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+
+   gtag('config', 'UA-110663240-1');
+  </script>
 </head>
 
 <body class="{% block body-layout-type %}{% endblock %} {% block content-wrapper-class %}{% endblock %}">
