@@ -1,6 +1,11 @@
 from django_elasticsearch_dsl import DocType, Index, fields
-from lcc.models import Legislation, LegislationArticle
+from django.conf import settings
+from django.core.exceptions import ValidationError
 
+from lcc.models import (
+    Legislation, LegislationArticle, TaxonomyClassification, TaxonomyTag)
+
+CONN = settings.TAXONOMY_CONNECTOR
 
 # Name of the Elasticsearch index
 legislation = Index('legislations')
@@ -9,13 +14,11 @@ legislation = Index('legislations')
 @legislation.doc_type
 class LegislationDocument(DocType):
 
-    classifications = fields.ListField(fields.IntegerField())
+    classifications = fields.TextField(term_vector='with_positions_offsets')
 
-    classifications_text = fields.TextField()
+    tags = fields.TextField(term_vector='with_positions_offsets')
 
-    tags = fields.ListField(fields.IntegerField())
-
-    tags_text = fields.TextField()
+    article_tags = fields.TextField(term_vector='with_positions_offsets')
 
     country = fields.KeywordField()
 
@@ -27,22 +30,46 @@ class LegislationDocument(DocType):
         'pk': fields.IntegerField(),
         'code': fields.KeywordField(),
         'text': fields.TextField(),
-        'classification_ids': fields.ListField(fields.IntegerField()),
-        'tag_ids': fields.ListField(fields.IntegerField())
+        'classifications_text': fields.TextField(
+            term_vector='with_positions_offsets'),
+        'tags_text': fields.TextField(
+            term_vector='with_positions_offsets'
+        ),
+        'parent_tags': fields.TextField(
+            term_vector='with_positions_offsets'
+        )
     })
 
     def prepare_classifications(self, instance):
-        return list(instance.classifications.all().values_list('id', flat=True))
-
-    def prepare_classifications_text(self, instance):
-        return '; '.join(
-            instance.classifications.all().values_list('name', flat=True))
+        classification_names = instance.classifications.all().values_list(
+            'name', flat=True)
+        if CONN in ''.join(classification_names):
+            raise ValidationError(
+                "Classification names must not include the character "
+                "'{}'.".format(CONN)
+            )
+        return CONN.join(classification_names)
 
     def prepare_tags(self, instance):
-        return list(instance.tags.all().values_list('id', flat=True))
+        tag_names = instance.tags.all().values_list('name', flat=True)
+        if CONN in ''.join(tag_names):
+            raise ValidationError(
+                "Tag names must not include the character '{}'.".format(CONN))
+        return CONN.join(tag_names)
 
-    def prepare_tags_text(self, instance):
-        return '; '.join(instance.tags.all().values_list('name', flat=True))
+    def prepare_article_tags(self, instance):
+        tag_names = {
+            tag.name for tag in
+            [
+                item for sublist in
+                [article.tags.all() for article in instance.articles.all()]
+                for item in sublist
+            ]
+        }
+        if CONN in ''.join(tag_names):
+            raise ValidationError(
+                "Tag names must not include the character '{}'.".format(CONN))
+        return CONN.join(tag_names)
 
     def prepare_country(self, instance):
         return instance.country.iso
@@ -51,7 +78,10 @@ class LegislationDocument(DocType):
         return '\n\n'.join([page.page_text for page in instance.pages.all()])
 
     def get_instances_from_related(self, related_instance):
-        return related_instance.legislation
+        if isinstance(related_instance, LegislationArticle):
+            return related_instance.legislation
+        else:  # it's a TaxonomyClassification or TaxonomyTag
+            return related_instance.legislation_set.all()
 
     class Meta:
         model = Legislation  # The model associated with this DocType
@@ -64,4 +94,5 @@ class LegislationDocument(DocType):
             'year',
         ]
 
-        related_models = [LegislationArticle]
+        related_models = [
+            LegislationArticle, TaxonomyClassification, TaxonomyTag]

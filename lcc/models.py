@@ -648,11 +648,17 @@ class LegislationArticle(_TaxonomyModel):
     def __str__(self):
         return "Article: %s" % str(self.legislation)
 
-    def classification_ids(self):
-        return self.classifications.values_list('pk', flat=True)
+    def classifications_text(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.classifications.values_list('name', flat=True))
 
-    def tag_ids(self):
-        return self.tags.values_list('pk', flat=True)
+    def tags_text(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.tags.values_list('name', flat=True))
+
+    def parent_tags(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.legislation.tags.values_list('name', flat=True))
 
 
 class LegislationPage(models.Model):

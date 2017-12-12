@@ -1,6 +1,5 @@
+import os
 import shutil
-
-from random import shuffle
 
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.management import call_command
@@ -24,7 +23,8 @@ class LegislationExplorer(TestCase):
     ]
 
     def setUp(self):
-        call_command('search_index', '--rebuild', '-f')
+        with open(os.devnull, 'w') as f:
+            call_command('search_index', '--rebuild', '-f', stdout=f)
 
     @override_settings(LAWS_PER_PAGE=2)
     def test_html(self):
@@ -125,6 +125,13 @@ class LegislationExplorer(TestCase):
             [1, 93],
             [45, 74, 93]
         ]  # Note that documents that have both classifications score higher
+        # TODO: Intentionally define an order to be returned. Currently this
+        # order is largely accidental, a result of ES's default scoring
+        # algorithms. The only rule that is respected is that documents that
+        # have both classifications score higher. This should be fixed. Until
+        # then, if this test breaks because the order changed, you can just
+        # change the order of the list above so the test passes because it has
+        # no important meaning (unless of course even the current rule is broken).
 
         returned_law_classifications_list = [
             list(law.classifications.values_list('id', flat=True))
@@ -141,7 +148,6 @@ class LegislationExplorer(TestCase):
         classification_ids = ['3', '9']  # Arbitrary non-0 level classifications
 
         laws = list(Legislation.objects.all())
-        shuffle(laws)
         law1, law2 = laws[:2]  # Get two arbitrary laws
 
         article1 = law1.articles.create(
@@ -212,6 +218,13 @@ class LegislationExplorer(TestCase):
             (4, [1]),
             (3, [2, 3, 5])
         ]  # Note that documents that have both tags score higher
+        # TODO: Intentionally define an order to be returned. Currently this
+        # order is largely accidental, a result of ES's default scoring
+        # algorithms. The only rule that is respected is that documents that
+        # have both tags score higher. This should be fixed. Until then, if
+        # this test breaks because the order changed, you can just change the
+        # order of the list above so the test passes because it has no important
+        # meaning (unless of course even the current rule is broken).
 
         returned_law_tag_list = [
             (law.id, list(law.tags.values_list('id', flat=True)))
@@ -265,12 +278,16 @@ class LegislationExplorer(TestCase):
             (7, [1, 2, 3, 5, 6]),
             (3, [2, 3, 5])
         ]
+        # TODO: Intentionally define an order to be returned. Currently this
+        # order is accidental, a result of ES's default scoring algorithms. This
+        # should be fixed. Until then, if this test breaks because the order
+        # changed, you can just change the order of the list above so the test
+        # passes because it has no important meaning.
 
         returned_law_tag_list = [
             (law.id, list(law.tags.values_list('id', flat=True)))
             for law in response.context['laws']
         ]
-
         self.assertEqual(expected_law_tag_list, returned_law_tag_list)
 
     def test_full_text_tag_search(self):

@@ -91,9 +91,34 @@
           Article {{ article.pk }}
         </a>:
       </span>
-      <span>
-        <pre>{{ article.text }}</pre>
-      </span>
+
+      {% if article.classifications %}
+      <div  class="tag-wrapper">
+        <span>Classification:</span>
+        <span>
+          {% for classification in article.classifications %}
+           <span class="tag">{{ classification }}</span>
+          {% endfor %}
+        </span>
+      </div>
+      {% endif %}
+
+      {% if article.tags %}
+        <div class="tag-wrapper">
+          <span>Tags:</span>
+          <span>
+            {% for tag in article.tags %}
+             <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </span>
+        </div>
+      {% endif %}
+
+      {% if article.text %}
+        <span>
+          <pre>{{ article.text }}</pre>
+        </span>
+      {% endif %}
     </div>
   {% endfor %}
 
