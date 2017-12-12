@@ -125,7 +125,7 @@ assessment_patterns = [
         views.assessment.LegalAssessment.as_view(),
         name="legal_assessment"),
 
-    url(r'^(?P<pk>[0-9]+)/results$',
+    url(r'^(?P<pk>[0-9]+)/results/$',
         views.assessment.LegalAssessmentResults.as_view(),
         name="legal_assessment_results"),
 
