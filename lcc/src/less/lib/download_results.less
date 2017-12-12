@@ -25,13 +25,19 @@ html {
     display: block;
     padding: 5px;
     text-align: center;
+    margin-top: 50px;
+    // page-break-after: avoid;
+    // page-break-before: always;
 }
+
+
+
 
 .sub-category {
   // border: 1px solid #aaa;
-  page-break-before: always;
+  // page-break-before: always;
   &:first-of-type {
-    page-break-before: initial;
+    page-break-before: avoid;
   }
   padding-left: 5px;
 }
@@ -96,7 +102,7 @@ html {
     .results-info {
         max-width: 413px;
         margin: auto;
-        margin-top: 20px;
+        margin-top: 10px;
         text-align: center;
         position: relative;
     }
@@ -107,15 +113,16 @@ html {
 }
 
 .question-title {
-    border: 1px solid #aaa;
-    border-radius: 5px;
+    font-style: italic;
     color: #0052cc;
     padding: 5px;
     position: relative;
     .question-text {
     display: block;
     margin: 4px;
-    margin-right: 80px;
+    padding-left: 0;
+    margin-left: 0;
+    padding-right: 90px;
     }
     .btn-group {
           position: absolute;
@@ -130,11 +137,12 @@ html {
     display: inline-block;
     margin: 0;
     color: black;
-    background: #aaa;
+    background: white;
+    border: 1px solid #aaa;
     &:first-of-type {
            border-top-right-radius: 0;
         border-bottom-right-radius: 0;
-        margin-right: -4px;
+        margin-right: -5px;
     }
     &:last-of-type {
           border-top-left-radius: 0;
@@ -150,13 +158,11 @@ html {
 }
 
 .gap-area {
-      background: rgba(0,0,0,0.6);
     padding: 5px;
-    border-radius: 6px;
-    color: white;
         margin: 5px 5px;
         &:first-of-type {
           margin: 5px 0;
+          padding-left: 0;
         }
 }
 
@@ -170,20 +176,29 @@ html {
 pre {
   white-space: pre-wrap;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  border-left: 3px solid #0052cc;
+  // border-left: 5px solid #0052cc;
   padding-left: 5px;
   word-wrap: normal;
+  font-size: 13px;
+  margin-top:0;
+  padding-left: 5px;
 }
 
 .article-container {
-  page-break-inside: avoid;
-  &:first-of-type {
-    page-break-inside: initial;
-  }
-  border-top: 4px solid #f34e2a;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 50px;
   padding-top: 10px;
+  // &:not(:first-of-type) {
+  //   page-break-inside: avoid;
+  // }
+
+  small {
+  display: block;
+  // border-left: 5px solid  #0052cc;
+  margin-bottom: 0;
+  padding-left: 5px;
+  padding-bottom: 10px;
+}
   &:first-of-type {
     border-top: none;
   }
@@ -194,4 +209,11 @@ a {
   font-size: 19px;
   color: black;
   font-weight: bold;
+    padding-top:10px;
+  display: inline-block;
+  padding-left: 5px;
+  // border-top:1px solid #f34e2a;
+  border-top: 5px solid  #0052cc;
+  // border-left: 5px solid  #0052cc;
+
 }

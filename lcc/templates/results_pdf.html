@@ -47,7 +47,7 @@
                     {% endif %}
                   {% endfor %}
                   </p> -->                  
-                  <p>{% for classification in question.gap.classifications %}<span class="gap-area">{% if forloop.first %}• {{ classification.name }}{% else %} {{ classification.name }}{% endif %}</span>{% endfor %}</p>
+                  <p>{% for classification in question.gap.classifications %}<span class="gap-area">{% if forloop.first %}• {{ classification.name }}{% else %}| {{ classification.name }}{% endif %}</span>{% endfor %}</p>
                   <!-- <p>
                   {% for tag in question.gap.tags %}
                     {% if forloop.first %}
@@ -57,7 +57,7 @@
                     {% endif %}
                   {% endfor %}
                   </p> -->
-                  <p>{% for tag in question.gap.tags %}<span class="gap-area">{% if forloop.first %}• {{ tag.name }}{% else %} {{ tag.name }}{% endif %}</span>{% endfor %}</p>
+                  <p>{% for tag in question.gap.tags %}<span class="gap-area">{% if forloop.first %}• {{ tag.name }}{% else %}| {{ tag.name }}{% endif %}</span>{% endfor %}</p>
                 </div>
 
                 <div class="suggestions-wrapper">
