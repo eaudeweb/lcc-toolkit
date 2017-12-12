@@ -26,7 +26,9 @@ class LegalAssessmentResultsPDF(View):
     def get(self, request, *args, **kwargs):
 
         assessment = Assessment.objects.get(pk=kwargs['pk'])
-        results = serializers.AssessmentResultSerializer(get_assessment_object(assessment))
+        results = serializers.AssessmentResultSerializer(
+            get_assessment_object(assessment)
+        )
 
         top_categories = len(results.data['categories'])
         areas = 0
@@ -44,17 +46,25 @@ class LegalAssessmentResultsPDF(View):
             'areas': areas,
             'law_suggestions': suggestions,
             'assessment_country_iso': assessment.country_iso,
-            'assessment_country_name': assessment.country_name
+            'assessment_country_name': assessment.country_name,
+            'request': request
         }
+
+        pdf_name = 'leagal_assessment_for_{}_by_{}.pdf'.format(
+            assessment.country_name, request.user.username
+        )
 
         html_template = get_template(self.template_name)
         rendered_html = html_template.render(context).encode(encoding="UTF-8")
-        pdf_file = HTML(string=rendered_html).write_pdf(
-            stylesheets=[CSS(settings.STATIC_ROOT + '/css/download_results.css')])
-
+        pdf_file = HTML(
+            string=rendered_html).write_pdf(
+            stylesheets=[
+                CSS(settings.STATIC_ROOT + '/css/download_results.css')
+            ]
+        )
 
         http_response = HttpResponse(pdf_file, content_type='application/pdf')
-        http_response['Content-Disposition'] = 'inline; filename="report.pdf"'
+        http_response['Content-Disposition'] = 'attachment; filename="{}"'.format(pdf_name)
 
         return http_response
         # return render(request, self.template_name, context)

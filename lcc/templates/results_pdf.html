@@ -7,7 +7,7 @@
 
 <body>
   <div class="results-header">
-    <div class="muted">Legal assessment results</div>
+    <div class="muted">Legal assessment results by <b>{{ request.user.get_full_name|default:request.user.username }}</b></div>
     <h2 class="country"><img src="/static/img/flags/{{ assessment_country_iso }}.svg">{{ assessment_country_name }}</h2>
     <ul id="summary">
       <li><span>{{ categories }}</span> Categories <span class="line"></span></li>
@@ -65,7 +65,7 @@
                   <div class="suggestions">
                     {% for article in question.articles %}
                       <div class="article-container">
-                        <a href="{{ host }}/legislation/{{ article.legislation.id }}/articles#{{ article.code }}">
+                        <a href="http://{{ host }}/legislation/{{ article.legislation.id }}/articles#{{ article.code }}" target="_blank">
                           {{ article.legislation.title }} - {{ article.code }}
                         </a>
                         <div class="muted">
