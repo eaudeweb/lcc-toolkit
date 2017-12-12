@@ -48,7 +48,9 @@ html {
 
 .question-wrapper {
   padding: 3px;
-
+  &:not(:first-of-type) {
+    page-break-before: always;
+  }
 }
 
 
@@ -122,7 +124,7 @@ html {
     margin: 4px;
     padding-left: 0;
     margin-left: 0;
-    padding-right: 90px;
+    padding-right: 100px;
     }
     .btn-group {
           position: absolute;
@@ -198,6 +200,7 @@ pre {
   margin-bottom: 0;
   padding-left: 5px;
   padding-bottom: 10px;
+  font-size: 10px;
 }
   &:first-of-type {
     border-top: none;
@@ -206,8 +209,9 @@ pre {
 
 a {
   text-decoration: none;
-  font-size: 19px;
+  font-size: 16px;
   color: black;
+  margin-bottom: 5px;
   font-weight: bold;
     padding-top:10px;
   display: inline-block;
