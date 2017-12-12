@@ -1,0 +1,223 @@
+@page {
+    size: a4 portrait;
+    margin: 27mm 10mm 27mm 10mm;
+    counter-increment: page;
+    @bottom-center {
+        content: 'Legal assessment result - Page ' counter(page);
+        white-space: pre;
+        color: grey;
+    }
+}
+
+body,
+html {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
+
+.muted {
+  color: rgba(0,0,0,.54);
+}
+.top-category-name {
+    font-weight: bold;
+    /* text-align: center; */
+    border-bottom: 1px solid #eee;
+    display: block;
+    padding: 5px;
+    text-align: center;
+    margin-top: 50px;
+    // page-break-after: avoid;
+    // page-break-before: always;
+}
+
+
+
+
+.sub-category {
+  // border: 1px solid #aaa;
+  // page-break-before: always;
+  &:first-of-type {
+    page-break-before: avoid;
+  }
+  padding-left: 5px;
+}
+
+.top-category {
+  border-bottom: 8px solid black;
+}
+
+.question-wrapper {
+  padding: 3px;
+  &:not(:first-of-type) {
+    page-break-before: always;
+  }
+}
+
+
+
+
+/*header*/
+
+.results-header {
+    display: block;
+    width: 100%;
+    .country {
+        font-size: 36px;
+        text-align: center;
+        font-weight: bold;
+        img {
+            width: 39px;
+            margin-right: 10px;
+            margin-top: -9px;
+        }
+    }
+    #summary {
+        font-size: 16px;
+        text-align: center;
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 1px solid #eeeeee;
+        }
+        li {
+            display: inline-block;
+            padding: 0 20px;
+            margin: 20px 0;
+            border-left: 1px solid #eee;
+            span {
+                font-size: 18px;
+                font-weight: bold;
+                color: black;
+            }
+        }
+    }
+    .muted {
+        margin-bottom: 10px;
+        text-align: center;
+        color: rgba(0,0,0,0.54);
+    }
+    .results-info {
+        max-width: 413px;
+        margin: auto;
+        margin-top: 10px;
+        text-align: center;
+        position: relative;
+    }
+}
+
+.results-header #summary li:first-of-type {
+    border-left: none;
+}
+
+.question-title {
+    font-style: italic;
+    color: #0052cc;
+    padding: 5px;
+    position: relative;
+    .question-text {
+    display: block;
+    margin: 4px;
+    padding-left: 0;
+    margin-left: 0;
+    padding-right: 100px;
+    }
+    .btn-group {
+          position: absolute;
+    right: 4px;
+    top: 4px;
+      button {
+    border-radius: 6px;
+    min-width: 40px;
+    padding: 5px;
+    border-style: none;
+    color: white;
+    display: inline-block;
+    margin: 0;
+    color: black;
+    background: white;
+    border: 1px solid #aaa;
+    &:first-of-type {
+           border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-right: -5px;
+    }
+    &:last-of-type {
+          border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    }
+        &.answered{
+        background: #f34e2a;
+        border-color: #f34e2a;
+        color: white;
+        }
+      }
+    }
+}
+
+.gap-area {
+    padding: 5px;
+        margin: 5px 5px;
+        &:first-of-type {
+          margin: 5px 0;
+          padding-left: 0;
+        }
+}
+
+.gap-title,
+.suggestions-intro {
+      color: #f34e2a;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+pre {
+  white-space: pre-wrap;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  // border-left: 5px solid #0052cc;
+  padding-left: 5px;
+  word-wrap: normal;
+  font-size: 13px;
+  margin-top:0;
+  padding-left: 5px;
+}
+
+.article-container {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  padding-top: 10px;
+  // &:not(:first-of-type) {
+  //   page-break-inside: avoid;
+  // }
+
+  small {
+  display: block;
+  // border-left: 5px solid  #0052cc;
+  margin-bottom: 0;
+  padding-left: 5px;
+  padding-bottom: 10px;
+  font-size: 10px;
+}
+  &:first-of-type {
+    border-top: none;
+  }
+}
+
+a {
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+  margin-bottom: 5px;
+  font-weight: bold;
+    padding-top:10px;
+  display: inline-block;
+  padding-left: 5px;
+  // border-top:1px solid #f34e2a;
+  border-top: 5px solid  #0052cc;
+  // border-left: 5px solid  #0052cc;
+
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="/static/css/download_results.css">
+</head>
+
+<body>
+  <div class="results-header">
+    <div class="muted">Legal assessment results by <b>{{ request.user.get_full_name|default:request.user.username }}</b></div>
+    <h2 class="country"><img src="/static/img/flags/{{ assessment_country_iso }}.svg">{{ assessment_country_name }}</h2>
+    <ul id="summary">
+      <li><span>{{ categories }}</span> Categories <span class="line"></span></li>
+      <li><span>{{ areas }}</span> Areas of improvement <span class="line"></span></li>
+      <li><span>{{ law_suggestions }}</span> Law suggestions</li>
+    </ul>
+    <div class="results-info">Based on your assessment, the following priority areas are suggested for reform: </div>
+  </div>
+
+  <div class="results-container">
+    {% for category in results.categories %}
+      <div class="top-category">
+        <h2 class="top-category-name">{{ category.name }}</h2>
+        {% for sub_category in category.categories %}
+          <div class="sub-category">
+            <h4 class="sub-category-name">{{ sub_category.name }}</h4>
+            {% for question in sub_category.questions %}
+              <div class="question-wrapper">
+                
+                <div class="question-title">
+                  <p class="question-text">{{ question.text }}</p>
+                  <div class="btn-group">
+                    <button class="{% if question.answer %}answered{% endif %}" data-question="{{ question.id }}" data-value="true" data-answer-id="">Yes</button>
+                    <button class="{% if not question.answer %}answered{% endif %}" data-question="{{ question.id }}" data-value="false" data-answer-id="">No</button>
+                  </div>
+                </div>
+
+                <div class="gap">
+                  <div class="gap-title">Area of improvement: </div>
+                  <!-- 
+                  <p>
+                  {% for classification in question.gap.classifications %}
+                    {% if forloop.first %}
+                      • {{ classification.name }}
+                    {% else %}
+                      | {{ classification.name }}
+                    {% endif %}
+                  {% endfor %}
+                  </p> -->                  
+                  <p>{% for classification in question.gap.classifications %}<span class="gap-area">{% if forloop.first %}• {{ classification.name }}{% else %}| {{ classification.name }}{% endif %}</span>{% endfor %}</p>
+                  <!-- <p>
+                  {% for tag in question.gap.tags %}
+                    {% if forloop.first %}
+                      • {{ tag.name }}
+                    {% else %}
+                      | {{ tag.name }}
+                    {% endif %}
+                  {% endfor %}
+                  </p> -->
+                  <p>{% for tag in question.gap.tags %}<span class="gap-area">{% if forloop.first %}• {{ tag.name }}{% else %}| {{ tag.name }}{% endif %}</span>{% endfor %}</p>
+                </div>
+
+                <div class="suggestions-wrapper">
+                  <p class="suggestions-intro">{{ question.articles|length }} suggestions: </p>
+                  <div class="suggestions">
+                    {% for article in question.articles %}
+                      <div class="article-container">
+                        <a href="http://{{ host }}/legislation/{{ article.legislation.id }}/articles#{{ article.code }}" target="_blank">
+                          {{ article.legislation.title }} - {{ article.code }}
+                        </a>
+                        <div class="muted">
+                          <small>{{ article.legislation.country_name }}  {{ article.legislation.year }}</small>
+                        </div>
+                        <pre>{{ article.text }}</pre>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

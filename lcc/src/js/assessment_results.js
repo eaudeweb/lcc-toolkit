@@ -150,7 +150,7 @@ $(document).ready(function() {
                         .appendTo(container);
 
                     var dd_gap = $('<dd/>')
-                        .append($('<span>Area of improvement</span>'))
+                        .append($('<span>Taxonomy</span>'))
                         .appendTo(dl_gap);
 
                     var dt_gap = $('<dt/>')
