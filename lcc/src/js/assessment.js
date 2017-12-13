@@ -18,6 +18,12 @@ $(document).ready(function(){
     var question_category = $('.question_category')
     var continue_countries = [];
 
+    var href_content = window.location.href.split('#')
+    var ass_id = parseInt(href_content[1])
+    var country_iso = href_content[2]
+    var country_name = href_content[3]
+
+
     // requests need the assessment_id, to have this available, we need to make sure
     // that functions have this as their context, which normally will be changed when:
     // - binding to $ elements
@@ -26,6 +32,9 @@ $(document).ready(function(){
     renderContinueAssessment.call(this);
     renderQuestions.bind(this);
     renderViewResultsButton.call(this);
+
+
+
 
     function renderViewResultsButton() {
       var self = this;
@@ -82,6 +91,13 @@ $(document).ready(function(){
           }
           removeStartedAssessments();
           handleContinueAssessment.call(self);
+
+          //it's ugly but it works!
+          if(country_iso != undefined && ass_id != undefined && country_name != undefined) {
+            $('#country-list-continue').find('option[value="' + ass_id + '"]').attr("selected", "selected");
+            $('#continue-assessment').click();
+          }
+
       });
     }
 
@@ -443,7 +459,7 @@ $(document).ready(function(){
       var classifications = $('.ui-accordion-header')
       var selected_question_category_index;
       var selected_classifications_index;
-
+      
       classifications.each(function(index,item){
         if($(item).hasClass('ui-accordion-header-active')){
           selected_classifications_index = index;
