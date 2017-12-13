@@ -114,22 +114,20 @@ class LegislationExplorer(TestCase):
         )
 
         expected_law_classifications_list = [
-            [1, 45, 74, 93],
             [1, 74, 93],
             [1, 45, 74, 93],
-            [1, 45, 74, 93],
             [1, 93],
+            [1, 45, 74, 93],
+            [1, 45, 74, 93],
             [74],
             [1, 93],
             [45, 74, 93]
-        ]  # Note that documents that have both classifications score higher
+        ]
         # TODO: Intentionally define an order to be returned. Currently this
-        # order is largely accidental, a result of ES's default scoring
-        # algorithms. The only rule that is respected is that documents that
-        # have both classifications score higher. This should be fixed. Until
-        # then, if this test breaks because the order changed, you can just
-        # change the order of the list above so the test passes because it has
-        # no important meaning (unless of course even the current rule is broken).
+        # order is accidental, a result of ES's default scoring algorithms. This
+        # should be fixed. Until then, if this test breaks because the order
+        # changed, you can just change the order of the list above so the test
+        # passes because it has no important meaning.
 
         returned_law_classifications_list = [
             list(law.classifications.values_list('id', flat=True))
@@ -206,29 +204,26 @@ class LegislationExplorer(TestCase):
         )
 
         expected_law_tag_list = [
-            (10, [1, 2, 3, 4, 5, 6]),
+            (4, [1]),
             (8, [1, 2, 5, 6]),
-            (5, [1, 2, 4, 5, 6]),
             (6, [1, 2, 3, 4, 5, 6]),
+            (10, [1, 2, 3, 4, 5, 6]),
+            (5, [1, 2, 4, 5, 6]),
+            (2, [2, 4]),
             (7, [1, 2, 3, 5, 6]),
             (1, [1, 2, 3, 4, 5, 6]),
-            (2, [2, 4]),
-            (4, [1]),
             (3, [2, 3, 5])
-        ]  # Note that documents that have both tags score higher
+        ]
         # TODO: Intentionally define an order to be returned. Currently this
-        # order is largely accidental, a result of ES's default scoring
-        # algorithms. The only rule that is respected is that documents that
-        # have both tags score higher. This should be fixed. Until then, if
-        # this test breaks because the order changed, you can just change the
-        # order of the list above so the test passes because it has no important
-        # meaning (unless of course even the current rule is broken).
+        # order is accidental, a result of ES's default scoring algorithms. This
+        # should be fixed. Until then, if this test breaks because the order
+        # changed, you can just change the order of the list above so the test
+        # passes because it has no important meaning.
 
         returned_law_tag_list = [
             (law.id, list(law.tags.values_list('id', flat=True)))
             for law in response.context['laws']
         ]
-
         self.assertEqual(
             expected_law_tag_list,
             returned_law_tag_list
@@ -265,16 +260,16 @@ class LegislationExplorer(TestCase):
         )
 
         expected_law_tag_list = [
-            (10, [1, 2, 3, 4, 5, 6]),
             (6, [1, 2, 3, 4, 5, 6]),
+            (2, [2, 4]),
+            (10, [1, 2, 3, 4, 5, 6]),
+            (8, [1, 2, 5, 6]),  # Found inside article
+            (4, [1]),  # Found inside article
             (1, [1, 2, 3, 4, 5, 6]),
             (9, [4]),
+            (3, [2, 3, 5]),
             (5, [1, 2, 4, 5, 6]),
-            (8, [1, 2, 5, 6]),  # Found inside article
-            (2, [2, 4]),
-            (4, [1]),  # Found inside article
-            (7, [1, 2, 3, 5, 6]),
-            (3, [2, 3, 5])
+            (7, [1, 2, 3, 5, 6])
         ]
         # TODO: Intentionally define an order to be returned. Currently this
         # order is accidental, a result of ES's default scoring algorithms. This

@@ -102,7 +102,7 @@ class HighlightedLaws:
                             ]
                         law._highlighted_articles.append(article_dict)
                 elif matched_article_tags:
-                    # TODO: Fix this hack. ElasticSearch won't return
+                    # NOTE: This is a hack. ElasticSearch won't return
                     # highlighted article tags in some cases so this workaround
                     # is necessary. Please fix if you know how. Try searching
                     # for a keyword that is in the title of a law, and filtering
@@ -187,11 +187,7 @@ class LegislationExplorer(ListView):
                 reduce(
                     operator.or_,
                     [
-                        Q(
-                            'constant_score', filter={
-                                'match_phrase': {'classifications': name}},
-                            boost=1
-                        )
+                        Q('match_phrase', classifications=name)
                         for name in top_classification_names
                     ]
                 )
@@ -204,14 +200,9 @@ class LegislationExplorer(ListView):
                         operator.or_,
                         [
                             Q(
-                                'constant_score', filter={
-                                    'match_phrase': {
-                                        'articles.classifications_text': name
-                                    }
-                                },
-                                boost=1
-                            )
-                            for name in other_classification_names
+                                'match_phrase',
+                                articles__classifications_text=name
+                            ) for name in other_classification_names
                         ]
                     )
                 )
@@ -232,24 +223,14 @@ class LegislationExplorer(ListView):
                         reduce(
                             operator.or_,
                             [
-                                Q(
-                                    'constant_score', filter={
-                                        'match_phrase': {'tags': name}
-                                    },
-                                    boost=1
-                                )
+                                Q('match_phrase', tags=name)
                                 for name in tag_names
                             ]
                         ),
                         reduce(
                             operator.or_,
                             [
-                                Q(
-                                    'constant_score', filter={
-                                        'match_phrase': {'article_tags': name}
-                                    },
-                                    boost=1
-                                )
+                                Q('match_phrase', article_tags=name)
                                 for name in tag_names
                             ]
                         )
@@ -265,26 +246,14 @@ class LegislationExplorer(ListView):
                         reduce(
                             operator.or_,
                             [
-                                Q(
-                                    'constant_score', filter={
-                                        'match_phrase': {
-                                            'article.tags_text': name}
-                                    },
-                                    boost=1
-                                )
+                                Q('match_phrase', articles__tags_text=name)
                                 for name in tag_names
                             ]
                         ),
                         reduce(
                             operator.or_,
                             [
-                                Q(
-                                    'constant_score', filter={
-                                        'match_phrase': {
-                                            'article.parent_tags': name}
-                                    },
-                                    boost=1
-                                )
+                                Q('match_phrase', articles__parent_tags=name)
                                 for name in tag_names
                             ]
                         )
@@ -410,6 +379,8 @@ class LegislationExplorer(ListView):
         if not any([classification_ids, tag_ids, q]):
             # If there is no score to sort by, sort by id
             search = search.sort('id')
+
+        # import json; print(json.dumps(search.to_dict(), indent=2))
 
         all_laws = HighlightedLaws(search)
 
