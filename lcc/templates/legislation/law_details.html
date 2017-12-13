@@ -2,7 +2,7 @@
 <div class="law_details">
     <span>
       {% static "" as baseUrl %}
-      <figure style="width: 25px; height: 18.75px; margin: 0">
+      <figure style="display: inline-block;width: 25px; height: 18.75px; margin: 0">
         <img style="max-width: 100%; max-height: 100%;" src="{{ baseUrl }}/img/flags/{{ law.country.iso |lower }}.svg">
       </figure>
         <span>{{ law.country.name }}</span>
