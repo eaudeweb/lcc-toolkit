@@ -8,6 +8,10 @@ function getSelectionText() {
     return text;
 }
 
+ function isIE() {
+    userAgent = navigator.userAgent;
+    return userAgent.indexOf("MSIE ") > -1 || userAgent.indexOf("Trident/") > -1 || userAgent.indexOf("Edge/") > -1;
+  }
 
 var functionality = ['Append', 'Replace'];
 
@@ -49,6 +53,12 @@ function updateTextarea() {
 }
 
 $(document).ready(function() {
+    
+    if(isIE()){
+        $('body').addClass('isIE');
+    }
+
+
     $('body').on('click', '.list-header', function(e) {
         if ($(e.target).attr('type') == "checkbox") {
             return
