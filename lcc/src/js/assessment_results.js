@@ -46,9 +46,9 @@ $(document).ready(function() {
                     console.log(new_href)
             }
 
-
+             
             function setAssessmentTitle(assessment) {
-              var assessment_header =  '<img src="/static/img/flags/'+ assessment.country_iso.toLowerCase() +'.svg" />' + assessment.country_name
+              var assessment_header =  '<figure style="display:inline-block;width: 39px;margin-right: 1rem;" ><img style="margin-top: -10px;max-width: 100%; max-height: 100%;" src="/static/img/flags/'+ assessment.country_iso.toLowerCase() +'.svg" /></figure>' + assessment.country_name
               $('.results-header h2').html(assessment_header);
               $('.page-menu .country').html(assessment_header);
             }

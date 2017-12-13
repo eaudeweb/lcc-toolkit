@@ -169,7 +169,9 @@ $(document).ready(function(){
     }
 
     function setAssessmentTitle(country_iso, country_name) {
-        var assessment_header =  '<img src="/static/img/flags/'+ country_iso.toLowerCase() +'.svg" />' + country_name
+
+        var assessment_header =  '<figure style="display:inline-block;width: 39px;margin-right: 1rem;" ><img style="margin-top: -10px;max-width: 100%; max-height: 100%;" src="/static/img/flags/'+ country_iso.toLowerCase() +'.svg" /></figure>' + country_name
+
         $('.page-menu .country').html(assessment_header);
       }
 
@@ -459,7 +461,7 @@ $(document).ready(function(){
       var classifications = $('.ui-accordion-header')
       var selected_question_category_index;
       var selected_classifications_index;
-      
+
       classifications.each(function(index,item){
         if($(item).hasClass('ui-accordion-header-active')){
           selected_classifications_index = index;

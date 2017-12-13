@@ -31,8 +31,9 @@
 {% block content %}
   <h3 style="margin-bottom: 3rem;" id="title" class="heading">
         {% static "" as baseUrl %}
-        <img style="width: 32px;
-    margin-top: -2px;" class="flag" src="{{ baseUrl }}/img/flags/{{ country.iso |lower }}.svg">
+        <figure style="display: inline-block; width: 32px; height: 24px; margin: 0; margin-top:-2px" >
+          <img style="max-width: 100%; max-height: 100%;"  src="{{ baseUrl }}/img/flags/{{ country.iso |lower }}.svg">
+        </figure>
         <span><b>{{ country.name }}</b></span>
   <hr>
   </h3>
