@@ -78,9 +78,22 @@ class QuestionViewSet(generics.ListAPIView):
 
 
 class ClassificationViewSet(generics.ListAPIView):
-    queryset = models.TaxonomyClassification.objects.filter(
-        level=0).order_by('code')
     serializer_class = serializers.ClassificationSerializer
+
+    def get_queryset(self):
+        queryset = models.TaxonomyClassification.objects.filter(
+            level=0
+        ).order_by('code')
+        new_queryset = queryset
+        for top_level in queryset:
+            flag = False
+            for second_level in top_level.get_children().order_by('code'):
+                if models.Question.objects.filter(classification=second_level):
+                    flag = True
+            if not flag:
+                new_queryset = new_queryset.exclude(pk=top_level.pk)
+
+        return new_queryset
 
 
 class AnswerList(generics.ListCreateAPIView):

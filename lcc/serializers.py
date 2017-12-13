@@ -71,9 +71,15 @@ class ClassificationSerializer(serializers.ModelSerializer):
         fields = ("id", "name", "second_level")
 
     def _get_second_level(self, obj):
+
         query = obj.get_children().order_by('code')
-        if query:
-            return SimpleClassificationSerializer(query, many=True).data
+        new_query = query
+        for second_level in query:
+            if not Question.objects.filter(classification=second_level):
+                new_query = new_query.exclude(pk=second_level.pk)
+
+        if new_query:
+            return SimpleClassificationSerializer(new_query, many=True).data
 
 
 class TagsSerializer(serializers.ModelSerializer):

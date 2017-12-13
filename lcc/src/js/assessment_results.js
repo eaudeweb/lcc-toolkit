@@ -87,7 +87,7 @@ $(document).ready(function() {
                     .html('<span>' + gaps_no + '</span>' + (gaps_no > 1 ? ' Areas of improvement' : ' Area of improvement'))
                     .appendTo(summary);
                 var harticles = $('<li>')
-                    .html('<span>' + articles_no + '</span>' + (articles_no > 1 ? ' Law Suggestions' : ' Law Suggestion'))
+                    .html('<span>' + articles_no + '</span>' + (articles_no > 1 ? ' Suggested examples' : ' Suggested example'))
                     .appendTo(summary);
             }
 
