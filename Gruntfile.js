@@ -14,7 +14,8 @@ module.exports = function(grunt) {
                 files: {
                     "lcc/static/css/main.css": "lcc/src/less/main.less",
                     "lcc/static/css/jquery-ui.css": "lcc/src/less/lib/jquery-ui.less",
-                    "lcc/static/css/download_results.css": "lcc/src/less/lib/download_results.less"
+                    "lcc/static/css/download_results.css": "lcc/src/less/lib/download_results.less",
+                    "lcc/static/css/easy-autocomplete.min.css": "lcc/src/less/lib/easy-autocomplete.min.less"
                 }
             }
         },
