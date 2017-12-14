@@ -84,6 +84,8 @@ class HighlightedLaws:
                             'pk': article.pk,
                             'code': article.code
                         }
+                        if not hasattr(article.meta, 'highlight'):
+                            continue
                         highlights = article.meta.highlight.to_dict()
                         matched_text = highlights.get('articles.text')
                         if matched_text:

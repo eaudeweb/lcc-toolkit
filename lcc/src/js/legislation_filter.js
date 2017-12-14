@@ -40,8 +40,9 @@ $(document).ready(function() {
     });
     $('.ms-search').append(
         '<div class="search-icon">\
-    <i class="fa fa-search" aria-hidden="true"></i>\
-    </div>'
+        <i class="fa fa-search" aria-hidden="true"></i>\
+        </div>'
+    );
 
     // Activate Slider
     $("#yearSlider").slider({formatter: function(value) {
@@ -69,8 +70,8 @@ $(document).ready(function() {
         payload['from_year'] = slider_values[0];
         payload['to_year'] = slider_values[1];
     });
-    observer.observe(slider_text, { 
-      attributes: true, 
+    observer.observe(slider_text, {
+      attributes: true,
       attributeFilter: ['value']
     });
 
@@ -79,7 +80,7 @@ $(document).ready(function() {
       var int_slider_values = [parseInt($('#fromYear').val()), parseInt($('#toYear').val())]
       console.log(int_slider_values)
       $('#yearSlider').slider('setValue', int_slider_values)
-    })
+    });
 
 
     // Activate autocomplete
@@ -179,7 +180,7 @@ $(document).ready(function() {
         var int_slider_values = [parseInt($('#fromYear').val()), parseInt($('#toYear').val())]
         console.log(int_slider_values)
         $('#yearSlider').slider('setValue', int_slider_values)
-    })
+    });
 
 
     // Activate autocomplete
