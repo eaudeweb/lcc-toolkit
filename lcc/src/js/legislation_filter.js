@@ -60,7 +60,10 @@ $(document).ready(function() {
 
     var slider_text = document.getElementById('yearSlider');
 
-    var slider_values = [1945, 2017]
+    var slider_values = [
+        parseInt($('#yearSlider').attr('data-slider-min')),
+        parseInt($('#yearSlider').attr('data-slider-max'))
+    ]
 
     var observer = new MutationObserver(function(mutations) {
         slider_values = slider_text.getAttribute('value').split(',');

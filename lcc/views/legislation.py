@@ -444,7 +444,9 @@ class LegislationExplorer(ListView):
             'top_classifications': top_classifications,
             'regions': regions,
             'legislation_type': constants.LEGISLATION_TYPE,
-            'legislation_year': legislation_year
+            'legislation_year': legislation_year,
+            'min_year': settings.MIN_YEAR,
+            'max_year': settings.MAX_YEAR
         })
         return context
 
