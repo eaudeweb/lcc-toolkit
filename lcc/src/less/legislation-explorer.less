@@ -105,7 +105,7 @@ select#classificationsSelect {
 }
 
 #classificationsSelectWrapper {
-    i {
+    i.caret {
         position: absolute;
         left: -2px;
         top: 0px;
@@ -113,13 +113,32 @@ select#classificationsSelect {
     ul.second-level {
         display: none;
     }
-    .third-level li {
-        &:before {
-            content: '•';
-            position: absolute;
-            left: -9px;
-        }
+
+    li {
+      white-space: nowrap;
+      label {
+        white-space: normal;
+      }
+      span.list-header {
+        display: inline-block;
+      }
     }
+
+    input {
+      vertical-align: top;
+    }
+    // .third-level li {
+    //     &:before {
+    //         content: '•';
+    //         position: absolute;
+    //         left: -9px;
+    //     }
+    // }
+}
+
+li.select-deselect {
+  padding-bottom: 10px;
+  font-size: 75%;
 }
 
 .counter {
@@ -185,4 +204,33 @@ select#classificationsSelect {
   top: 8px;
   right: 10px;
   text-align: right;
+}
+
+.law-container {
+
+  div > span:first-child {
+    font-weight: bold;
+  }
+
+  pre {
+    white-space: pre-wrap; /* CSS3 */
+    white-space: -moz-pre-wrap; /* Mozilla, post millennium */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    padding: 2px;
+    background-color: #f8f8f8;
+  }
+}
+
+.article {
+  margin-left: 20px;
+}
+
+.article > div {
+  margin-left: 20px;
+}
+
+.article pre {
+  margin-left: 20px;
 }

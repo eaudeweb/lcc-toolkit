@@ -40,9 +40,102 @@ $(document).ready(function() {
     });
     $('.ms-search').append(
         '<div class="search-icon">\
-    <i class="fa fa-search" aria-hidden="true"></i>\
-    </div>'
+        <i class="fa fa-search" aria-hidden="true"></i>\
+        </div>'
     );
+
+    // Activate Slider
+    $("#yearSlider").slider({formatter: function(value) {
+      return value;
+    }});
+
+    $("#yearSlider").on("slide", function(slideEvt) {
+      $("#fromYear").val(slideEvt.value[0]);
+      $("#toYear").val(slideEvt.value[1]);
+      payload['from_year'] = slideEvt.value[0];
+      payload['to_year'] = slideEvt.value[1];
+    });
+
+
+
+    var slider_text = document.getElementById('yearSlider');
+
+    var slider_values = [1945, 2017]
+
+    var observer = new MutationObserver(function(mutations) {
+        slider_values = slider_text.getAttribute('value').split(',');
+        slider_values = [parseInt(slider_values[0]),parseInt(slider_values[1])]
+        $("#fromYear").val(slider_values[0]);
+        $("#toYear").val(slider_values[1]);
+        payload['from_year'] = slider_values[0];
+        payload['to_year'] = slider_values[1];
+    });
+    observer.observe(slider_text, {
+      attributes: true,
+      attributeFilter: ['value']
+    });
+
+
+    $("body").on('blur', '#fromYear, #toYear', function(e){
+      var int_slider_values = [parseInt($('#fromYear').val()), parseInt($('#toYear').val())]
+      console.log(int_slider_values)
+      $('#yearSlider').slider('setValue', int_slider_values)
+    });
+
+
+    // Activate autocomplete
+
+    $("#classificationsSelect > li.first-level > span > label").each(function(){
+      autocomplete.push({
+        id: $(this).attr('for'),
+        name: $(this).html()
+      });
+    });
+
+    $("#tagsSelect > li label").each(function(){
+      autocomplete.push({
+        id: $(this).attr('for'),
+        name: $(this).html()
+      });
+    });
+
+    $('#textSearchInput').easyAutocomplete({
+      data: autocomplete,
+      getValue: 'name',
+      list: {
+        maxNumberOfElements: 5,
+        match: {
+          enabled: true
+        },
+        onChooseEvent: function() {
+          var id = $("#textSearchInput").getSelectedItemData().id;
+          $("#" + id).click();
+          $("#textSearchInput").val('').change();
+        }
+      }
+    });
+    $('div.easy-autocomplete').removeAttr('style');
+
+    // Activate select/deselect links for classification filters
+
+    $('a.select-all').on('click', function(){
+      $(this).closest('ul').find('input').prop('checked', true);
+    });
+
+    $('a.deselect-all').on('click', function(){
+      $(this).closest('ul').find('input').prop('checked', false);
+    });
+
+    // Handle search and filters
+
+    $('#textSearchInput').on('change', function() {
+      var val = $(this).val();
+      if(val){
+        payload['q'] = val;
+      } else {
+        delete payload['q'];
+      }
+    });
 
     // Activate Slider
     $("#yearSlider").slider({
@@ -71,15 +164,13 @@ $(document).ready(function() {
         $("#toYear").val(slider_values[1]);
         payload['from_year'] = slider_values[0];
         payload['to_year'] = slider_values[1];
-
-
     });
     try {
       // statements
-    observer.observe(slider_text, {
-        attributes: true,
-        attributeFilter: ['value']
-    });
+      observer.observe(slider_text, {
+          attributes: true,
+          attributeFilter: ['value']
+      });
     } catch(e) {
       console.log(e);
     }
@@ -89,7 +180,7 @@ $(document).ready(function() {
         var int_slider_values = [parseInt($('#fromYear').val()), parseInt($('#toYear').val())]
         console.log(int_slider_values)
         $('#yearSlider').slider('setValue', int_slider_values)
-    })
+    });
 
 
     // Activate autocomplete
@@ -180,5 +271,4 @@ $(document).ready(function() {
             send(payload);
         }
     });
-
 });

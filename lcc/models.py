@@ -578,6 +578,14 @@ class Legislation(_TaxonomyModel):
             self.tags.all().values_list('name', flat=True)
         )
 
+    def highlighted_articles(self):
+        """
+        If this law was returned as a result of an elasticsearch query, return
+        a list of dictionaries representing articles with the search terms
+        highlighted in the text field. If not, return an empty list.
+        """
+        return getattr(self, '_highlighted_articles', [])
+
     def save_pdf_pages(self):
         if settings.DEBUG:
             time_to_load_pdf = time.time()
@@ -625,13 +633,29 @@ class LegislationArticle(_TaxonomyModel):
     text = models.CharField(max_length=65535)
     legislation = models.ForeignKey(Legislation, related_name="articles")
     legislation_page = models.IntegerField()
-    code = models.CharField(max_length=64)
+    code = models.CharField(max_length=64)  # aka Article number
 
     objects = LegislationArticleManager()
 
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
         return "Article: %s" % str(self.legislation)
+
+    def classifications_text(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.classifications.values_list('name', flat=True))
+
+    def tags_text(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.tags.values_list('name', flat=True))
+
+    def parent_tags(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.legislation.tags.values_list('name', flat=True))
+
+    def parent_classifications(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.legislation.classifications.values_list('name', flat=True))
 
 
 class LegislationPage(models.Model):

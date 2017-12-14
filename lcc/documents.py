@@ -1,6 +1,11 @@
 from django_elasticsearch_dsl import DocType, Index, fields
-from lcc.models import Legislation
+from django.conf import settings
+from django.core.exceptions import ValidationError
 
+from lcc.models import (
+    Legislation, LegislationArticle, TaxonomyClassification, TaxonomyTag)
+
+CONN = settings.TAXONOMY_CONNECTOR
 
 # Name of the Elasticsearch index
 legislation = Index('legislations')
@@ -9,38 +14,97 @@ legislation = Index('legislations')
 @legislation.doc_type
 class LegislationDocument(DocType):
 
-    classifications = fields.ListField(fields.IntegerField())
+    classifications = fields.TextField(term_vector='with_positions_offsets')
 
-    classifications_text = fields.TextField()
+    article_classifications = fields.TextField(term_vector='with_positions_offsets')
 
-    tags = fields.ListField(fields.IntegerField())
+    tags = fields.TextField(term_vector='with_positions_offsets')
 
-    tags_text = fields.TextField()
+    article_tags = fields.TextField(term_vector='with_positions_offsets')
 
     country = fields.KeywordField()
 
-    law_type = fields.KeywordField(attr='law_type')
+    law_type = fields.KeywordField()
 
     pdf_text = fields.TextField()
 
-    def prepare_classifications(self, instance):
-        return list(instance.classifications.all().values_list('id', flat=True))
+    articles = fields.NestedField(properties={
+        'pk': fields.IntegerField(),
+        'code': fields.KeywordField(),
+        'text': fields.TextField(),
+        'classifications_text': fields.TextField(
+            term_vector='with_positions_offsets'
+        ),
+        'parent_classifications': fields.TextField(
+            term_vector='with_positions_offsets'
+        ),
+        'tags_text': fields.TextField(
+            term_vector='with_positions_offsets'
+        ),
+        'parent_tags': fields.TextField(
+            term_vector='with_positions_offsets'
+        )
+    })
 
-    def prepare_classifications_text(self, instance):
-        return '; '.join(
-            instance.classifications.all().values_list('name', flat=True))
+    def prepare_classifications(self, instance):
+        classification_names = instance.classifications.all().values_list(
+            'name', flat=True)
+        if CONN in ''.join(classification_names):
+            raise ValidationError(
+                "Classification names must not include the character "
+                "'{}'.".format(CONN)
+            )
+        return CONN.join(classification_names)
+
+    def prepare_article_classifications(self, instance):
+        classification_names = {
+            cl.name for cl in [
+                item for sublist in [
+                    article.classifications.all()
+                    for article in instance.articles.all()
+                ]
+                for item in sublist
+            ]
+        }
+        if CONN in ''.join(classification_names):
+            raise ValidationError(
+                "Classification names must not include the character "
+                "'{}'.".format(CONN)
+            )
+        return CONN.join(classification_names)
 
     def prepare_tags(self, instance):
-        return list(instance.tags.all().values_list('id', flat=True))
+        tag_names = instance.tags.all().values_list('name', flat=True)
+        if CONN in ''.join(tag_names):
+            raise ValidationError(
+                "Tag names must not include the character '{}'.".format(CONN))
+        return CONN.join(tag_names)
 
-    def prepare_tags_text(self, instance):
-        return '; '.join(instance.tags.all().values_list('name', flat=True))
+    def prepare_article_tags(self, instance):
+        tag_names = {
+            tag.name for tag in
+            [
+                item for sublist in
+                [article.tags.all() for article in instance.articles.all()]
+                for item in sublist
+            ]
+        }
+        if CONN in ''.join(tag_names):
+            raise ValidationError(
+                "Tag names must not include the character '{}'.".format(CONN))
+        return CONN.join(tag_names)
 
     def prepare_country(self, instance):
         return instance.country.iso
 
     def prepare_pdf_text(self, instance):
         return '\n\n'.join([page.page_text for page in instance.pages.all()])
+
+    def get_instances_from_related(self, related_instance):
+        if isinstance(related_instance, LegislationArticle):
+            return related_instance.legislation
+        else:  # it's a TaxonomyClassification or TaxonomyTag
+            return related_instance.legislation_set.all()
 
     class Meta:
         model = Legislation  # The model associated with this DocType
@@ -52,3 +116,6 @@ class LegislationDocument(DocType):
             'abstract',
             'year',
         ]
+
+        related_models = [
+            LegislationArticle, TaxonomyClassification, TaxonomyTag]

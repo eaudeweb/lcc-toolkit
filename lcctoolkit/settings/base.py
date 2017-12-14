@@ -112,3 +112,6 @@ FIXTURE_DIRS = [
 ]
 
 LAWS_PER_PAGE = 10
+
+# Used to concatenate classification and tag names in ES indexes
+TAXONOMY_CONNECTOR = '; '
