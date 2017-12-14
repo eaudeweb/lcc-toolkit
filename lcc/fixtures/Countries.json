@@ -2379,7 +2379,7 @@
     "model": "lcc.country",
     "pk": "GBR",
     "fields": {
-        "name": "United Kingdom of Great Britan and Northern Ireland",
+        "name": "United Kingdom of Great Britain and Northern Ireland",
         "cw": true,
         "small_cw": false,
         "un": true,

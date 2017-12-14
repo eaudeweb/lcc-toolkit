@@ -588,7 +588,7 @@
     "model": "lcc.question",
     "pk": 40,
     "fields": {
-        "text": "Does your country have or provisions of laws or regulations establishing a scheme for the verification of information reported (public or private entities)?",
+        "text": "Does your country have provisions of laws or regulations establishing a scheme for the verification of information reported (public or private entities)?",
         "parent": null,
         "parent_answer": null,
         "order": 3,

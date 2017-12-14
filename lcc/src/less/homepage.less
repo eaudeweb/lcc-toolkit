@@ -8,8 +8,8 @@
         }
     }
     font-size: 1.5rem;
-    @media (min-width: 1680px){
-    	font-size: 1.9rem;
+    @media (min-width: 1680px) {
+        font-size: 1.9rem;
     }
     p {
         font-size: inherit;
@@ -40,8 +40,8 @@
             h2 {
                 text-align: center;
                 margin-top: 2rem;
-            	margin-bottom: 2rem;
-            	font-weight: bold;
+                margin-bottom: 2rem;
+                font-weight: bold;
             }
         }
         .toolkit {
@@ -65,17 +65,28 @@
             width: 66%;
             margin: auto;
             p {
-            	margin-top: 2rem;
-            	margin-bottom: 2rem;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
                 text-align: center;
                 max-width: 90%;
                 margin-left: -1rem;
             }
             li {
-            	list-style-type: disc;
+                list-style-type: disc;
             }
             ul {
-            	line-height: 2;
+                line-height: 2;
+            }
+        }
+    }
+}
+
+
+.isIE {
+    .toolkit {
+        .toolkit-wrapper {
+            .item {
+                display: block!important;
             }
         }
     }
