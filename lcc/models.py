@@ -653,6 +653,10 @@ class LegislationArticle(_TaxonomyModel):
         return settings.TAXONOMY_CONNECTOR.join(
             self.legislation.tags.values_list('name', flat=True))
 
+    def parent_classifications(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.legislation.classifications.values_list('name', flat=True))
+
 
 class LegislationPage(models.Model):
     page_text = models.CharField(max_length=65535)

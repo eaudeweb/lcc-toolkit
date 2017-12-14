@@ -283,6 +283,43 @@ class LegislationExplorer(TestCase):
         ]
         self.assertEqual(expected_law_tag_list, returned_law_tag_list)
 
+    def test_classification_and_tag_filtering(self):
+
+        classification_id = 3  # Arbitrary non-top level classification
+        tag_id = 1  # Arbitrary tag
+
+        # Get two laws that are NOT tagged with this tag
+        law1, law2 = Legislation.objects.exclude(tags__id=1)[:2]
+
+        # Add an article to one of the articles and classify it
+        article1 = law1.articles.create(
+            text="Some text",
+            legislation_page=1,
+            code="Art. I"
+        )
+
+        article1.classifications.add(classification_id)
+
+        # Add an article to the other article and tag it
+        article2 = law2.articles.create(
+            text="Some other text",
+            legislation_page=1,
+            code="Art. I"
+        )
+
+        article2.tags.add(tag_id)
+
+        c = Client()
+        response = c.get(
+            '/legislation/',
+            {
+                'partial': True,
+                'classifications[]': [classification_id],
+                'tags[]': [tag_id]
+            }
+        )
+        self.assertEqual(len(response.context['laws']), 0)
+
     def test_full_text_tag_search(self):
 
         q = 'enforcement'  # Arbitrary word found in one of the tag names

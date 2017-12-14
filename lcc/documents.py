@@ -16,6 +16,8 @@ class LegislationDocument(DocType):
 
     classifications = fields.TextField(term_vector='with_positions_offsets')
 
+    article_classifications = fields.TextField(term_vector='with_positions_offsets')
+
     tags = fields.TextField(term_vector='with_positions_offsets')
 
     article_tags = fields.TextField(term_vector='with_positions_offsets')
@@ -31,7 +33,11 @@ class LegislationDocument(DocType):
         'code': fields.KeywordField(),
         'text': fields.TextField(),
         'classifications_text': fields.TextField(
-            term_vector='with_positions_offsets'),
+            term_vector='with_positions_offsets'
+        ),
+        'parent_classifications': fields.TextField(
+            term_vector='with_positions_offsets'
+        ),
         'tags_text': fields.TextField(
             term_vector='with_positions_offsets'
         ),
@@ -43,6 +49,23 @@ class LegislationDocument(DocType):
     def prepare_classifications(self, instance):
         classification_names = instance.classifications.all().values_list(
             'name', flat=True)
+        if CONN in ''.join(classification_names):
+            raise ValidationError(
+                "Classification names must not include the character "
+                "'{}'.".format(CONN)
+            )
+        return CONN.join(classification_names)
+
+    def prepare_article_classifications(self, instance):
+        classification_names = {
+            cl.name for cl in [
+                item for sublist in [
+                    article.classifications.all()
+                    for article in instance.articles.all()
+                ]
+                for item in sublist
+            ]
+        }
         if CONN in ''.join(classification_names):
             raise ValidationError(
                 "Classification names must not include the character "

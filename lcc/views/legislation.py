@@ -6,6 +6,7 @@ from django import views
 from django.conf import settings
 from django.contrib.auth import mixins
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q as DjQ
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
@@ -37,6 +38,7 @@ class HighlightedLaws:
         hits = self.search[key]
         laws = []
         matched_article_tags = []
+        matched_article_classifications = []
         for hit, law in zip(hits, hits.to_queryset()):
             if hasattr(hit.meta, 'highlight'):
                 highlights = hit.meta.highlight.to_dict()
@@ -55,6 +57,12 @@ class HighlightedLaws:
                         mark_safe(classification)
                         for classification in (
                             highlights['classifications'][0].split(CONN))
+                    ]
+                if 'article_classifications' in highlights:
+                    matched_article_classifications += [
+                        tag[4:-5] for tag in (
+                            highlights['article_classifications'][0].split(CONN))
+                        if '<em>' in tag
                     ]
                 if 'tags' in highlights:
                     law._highlighted_tags = [
@@ -101,7 +109,7 @@ class HighlightedLaws:
                                     matched_tags[0].split(CONN))
                             ]
                         law._highlighted_articles.append(article_dict)
-                elif matched_article_tags:
+                elif matched_article_classifications or matched_article_tags:
                     # NOTE: This is a hack. ElasticSearch won't return
                     # highlighted article tags in some cases so this workaround
                     # is necessary. Please fix if you know how. Try searching
@@ -112,12 +120,22 @@ class HighlightedLaws:
                     # but the inner_hits will be empty.
                     law._highlighted_articles = []
                     articles = law.articles.filter(
-                        tags__name__in=matched_article_tags
+                        DjQ(tags__name__in=matched_article_tags) |
+                        DjQ(
+                            classifications__name__in=(
+                                matched_article_classifications)
+                        )
                     ).prefetch_related('tags')
                     for article in articles:
                         article_dict = {
                             'pk': article.pk,
                             'code': article.code,
+                            'classifications': [
+                                mark_safe('<em>{}</em>'.format(cl.name))
+                                if cl.name in matched_article_classifications
+                                else cl.name
+                                for cl in article.classifications.all()
+                            ],
                             'tags': [
                                 mark_safe('<em>{}</em>'.format(tag.name))
                                 if tag.name in matched_article_tags
@@ -170,45 +188,49 @@ class LegislationExplorer(ListView):
 
         if classification_ids:
 
-            classifications = models.TaxonomyClassification.objects.filter(
-                pk__in=classification_ids)
-
-            top_classification_names = []
-            other_classification_names = []
-
-            for cl in classifications:
-                if cl.level == 0:
-                    top_classification_names.append(cl.name)
-                else:
-                    other_classification_names.append(cl.name)
+            classification_names = models.TaxonomyClassification.objects.filter(
+                pk__in=classification_ids).values_list('name', flat=True)
 
             # Search root document for any of the classifications received
-            law_queries += [
+            law_queries.append(
                 reduce(
                     operator.or_,
                     [
                         Q('match_phrase', classifications=name)
-                        for name in top_classification_names
+                        for name in classification_names
+                    ]
+                ) | reduce(
+                    operator.or_,
+                    [
+                        Q('match_phrase', article_classifications=name)
+                        for name in classification_names
                     ]
                 )
-            ] if top_classification_names else []
+            )
 
             # Search inside articles for any classifications
-            if other_classification_names:
-                article_queries.append(
-                    reduce(
-                        operator.or_,
-                        [
-                            Q(
-                                'match_phrase',
-                                articles__classifications_text=name
-                            ) for name in other_classification_names
-                        ]
-                    )
+            article_queries.append(
+                reduce(
+                    operator.or_,
+                    [
+                        Q(
+                            'match_phrase',
+                            articles__classifications_text=name
+                        ) for name in classification_names
+                    ]
+                ) | reduce(
+                    operator.or_,
+                    [
+                        Q(
+                            'match_phrase',
+                            articles__parent_classifications=name
+                        ) for name in classification_names
+                    ]
                 )
-                article_highlights['articles.classifications_text'] = {
-                    'number_of_fragments': 0
-                }
+            )
+            article_highlights['articles.classifications_text'] = {
+                'number_of_fragments': 0
+            }
 
         # List of strings representing TaxonomyTag ids
         tag_ids = [int(pk) for pk in self.request.GET.getlist('tags[]')]
@@ -218,47 +240,35 @@ class LegislationExplorer(ListView):
 
             # Search root document
             law_queries.append(
-                Q(
-                    'bool', should=[
-                        reduce(
-                            operator.or_,
-                            [
-                                Q('match_phrase', tags=name)
-                                for name in tag_names
-                            ]
-                        ),
-                        reduce(
-                            operator.or_,
-                            [
-                                Q('match_phrase', article_tags=name)
-                                for name in tag_names
-                            ]
-                        )
-                    ],
-                    minimum_should_match=1
+                reduce(
+                    operator.or_,
+                    [
+                        Q('match_phrase', tags=name)
+                        for name in tag_names
+                    ]
+                ) | reduce(
+                    operator.or_,
+                    [
+                        Q('match_phrase', article_tags=name)
+                        for name in tag_names
+                    ]
                 )
             )
 
             # Search inside articles
             article_queries.append(
-                Q(
-                    'bool', should=[
-                        reduce(
-                            operator.or_,
-                            [
-                                Q('match_phrase', articles__tags_text=name)
-                                for name in tag_names
-                            ]
-                        ),
-                        reduce(
-                            operator.or_,
-                            [
-                                Q('match_phrase', articles__parent_tags=name)
-                                for name in tag_names
-                            ]
-                        )
-                    ],
-                    minimum_should_match=1
+                reduce(
+                    operator.or_,
+                    [
+                        Q('match_phrase', articles__tags_text=name)
+                        for name in tag_names
+                    ]
+                ) | reduce(
+                    operator.or_,
+                    [
+                        Q('match_phrase', articles__parent_tags=name)
+                        for name in tag_names
+                    ]
                 )
             )
             article_highlights['articles.tags_text'] = {
@@ -351,29 +361,39 @@ class LegislationExplorer(ListView):
                 'abstract', 'pdf_text'
             )
         else:
-            search = search.query(
-                'bool', should=law_queries + ([
-                    Q(
-                        'nested',
-                        path='articles',
-                        query=Q(
-                            reduce(
-                                operator.and_,
-                                article_queries
-                            )
-                        ),
-                        inner_hits={
-                            'highlight': {'fields': article_highlights}
-                        }
+            root_query = [Q(
+                reduce(
+                    operator.and_,
+                    law_queries
+                )
+            )] if law_queries else []
+            nested_query = [Q(
+                'nested',
+                path='articles',
+                query=Q(
+                    reduce(
+                        operator.and_,
+                        article_queries
                     )
-
-                ] if article_queries else []),
+                ),
+                inner_hits={
+                    'highlight': {'fields': article_highlights}
+                }
+            )] if article_queries else []
+            final_query = []
+            if root_query:
+                final_query += root_query
+                if nested_query:
+                    # Necessary for highlights
+                    final_query += root_query and nested_query
+            search = search.query(
+                'bool', should=final_query,
                 minimum_should_match=1
             )
 
         search = search.highlight(
-            'title', 'classifications', 'tags', 'article_tags',
-            number_of_fragments=0
+            'title', 'classifications', 'article_classifications', 'tags',
+            'article_tags', number_of_fragments=0
         )
 
         if not any([classification_ids, tag_ids, q]):
