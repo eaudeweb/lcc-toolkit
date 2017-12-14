@@ -1,3 +1,5 @@
+import re
+
 from django_elasticsearch_dsl import DocType, Index, fields
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -27,6 +29,8 @@ class LegislationDocument(DocType):
     law_type = fields.KeywordField()
 
     pdf_text = fields.TextField()
+
+    year_mentions = fields.ListField(fields.IntegerField())
 
     articles = fields.NestedField(properties={
         'pk': fields.IntegerField(),
@@ -100,6 +104,14 @@ class LegislationDocument(DocType):
     def prepare_pdf_text(self, instance):
         return '\n\n'.join([page.page_text for page in instance.pages.all()])
 
+    def prepare_year_mentions(self, instance):
+        return [
+            int(year) for year in
+            re.findall('\d{4}', instance.year_mention or '')
+            if int(year) >= settings.MIN_YEAR and
+            int(year) <= settings.MAX_YEAR
+        ]
+
     def get_instances_from_related(self, related_instance):
         if isinstance(related_instance, LegislationArticle):
             return related_instance.legislation
@@ -115,6 +127,7 @@ class LegislationDocument(DocType):
             'title',
             'abstract',
             'year',
+            'year_amendment',
         ]
 
         related_models = [

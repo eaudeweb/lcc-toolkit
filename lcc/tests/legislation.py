@@ -375,7 +375,7 @@ class LegislationExplorer(TestCase):
             '/legislation/',
             {'partial': True, 'from_year': from_year, 'to_year': to_year}
         )
-        expected_law_ids = [6, 9, 10]
+        expected_law_ids = [3, 5, 6, 9, 10]
         returned_law_ids = [law.id for law in response.context['laws']]
 
         self.assertEqual(expected_law_ids, returned_law_ids)

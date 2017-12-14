@@ -294,7 +294,12 @@ class LegislationExplorer(ListView):
 
         if all([from_year, to_year]):
             law_queries.append(
-                Q('range', year={'gte': int(from_year), 'lte': int(to_year)}))
+                Q('range', year={'gte': int(from_year), 'lte': int(to_year)}) |
+                Q('range', year_amendment={
+                    'gte': int(from_year), 'lte': int(to_year)}) |
+                Q('range', year_mentions={
+                    'gte': int(from_year), 'lte': int(to_year)})
+            )
 
         # String to be searched in all text fields (full-text search using
         # elasticsearch's default best_fields strategy)
