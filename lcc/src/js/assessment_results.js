@@ -11,9 +11,11 @@ $(document).ready(function() {
             this.assessment_id = window.location.pathname.split('/')[2];
             var gaps_no = 0;
             var articles_no = 0;
+        
 
             getAssessmentResults.call(this);
             getAssessments.call(this);
+            var back_href;
 
             function getAssessments() {
               var self = this;
@@ -29,14 +31,28 @@ $(document).ready(function() {
                     }
                   }
                   setAssessmentTitle(current_assessment);
+                  setBackAttr(current_assessment, self.assessment_id)
                 })
             }
 
+            function setBackAttr(current_assessment, id){
+                  var new_href =  window.location.protocol + '//'
+                                + window.location.host + '/' 
+                                + window.location.pathname.split('/')[1] + "/#"
+                                + id + '#' 
+                                + current_assessment.country_iso + '#' 
+                                + current_assessment.country_name
+                    $('#back_btn').attr('href', new_href)
+                    console.log(new_href)
+            }
+
+             
             function setAssessmentTitle(assessment) {
-              var assessment_header =  '<img src="/static/img/flags/'+ assessment.country_iso.toLowerCase() +'.svg" />' + assessment.country_name
+              var assessment_header =  '<figure style="display:inline-block;width: 39px;margin-right: 1rem;" ><img style="margin-top: -10px;max-width: 100%; max-height: 100%;" src="/static/img/flags/'+ assessment.country_iso.toLowerCase() +'.svg" /></figure>' + assessment.country_name
               $('.results-header h2').html(assessment_header);
               $('.page-menu .country').html(assessment_header);
             }
+
 
 
             function getAssessmentResults() {
@@ -87,7 +103,7 @@ $(document).ready(function() {
                     .html('<span>' + gaps_no + '</span>' + (gaps_no > 1 ? ' Areas of improvement' : ' Area of improvement'))
                     .appendTo(summary);
                 var harticles = $('<li>')
-                    .html('<span>' + articles_no + '</span>' + (articles_no > 1 ? ' Law Suggestions' : ' Law Suggestion'))
+                    .html('<span>' + articles_no + '</span>' + (articles_no > 1 ? ' Suggested examples' : ' Suggested example'))
                     .appendTo(summary);
             }
 
@@ -150,7 +166,7 @@ $(document).ready(function() {
                         .appendTo(container);
 
                     var dd_gap = $('<dd/>')
-                        .append($('<span>Area of improvement</span>'))
+                        .append($('<span>Taxonomy</span>'))
                         .appendTo(dl_gap);
 
                     var dt_gap = $('<dt/>')
@@ -251,6 +267,7 @@ $(document).ready(function() {
                     'opacity': 'toggle'
                 },0)
             }
+
 
 
         });

@@ -10,6 +10,7 @@
 
 
 
+
 /* Set gray background color and 100% height */
 
 .sidenav {
@@ -20,6 +21,7 @@
         list-style-type: square;
     }
 }
+
 
 
 
@@ -313,14 +315,31 @@ body:not(.ass-results) {
         color: black;
         border: none;
         text-align: left;
+        outline: none;
         font-size: 2rem!important;
         margin-bottom: 1rem;
+        padding-left: 0;
+        border-bottom: 1px solid #eee;
+        border-radius: 0;
+        &:after {
+            content: '▼';
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            color: #0052cc;
+            transition: transform 200ms;
+        }
         &:first-of-type {
             padding-top: 0!important;
             margin-top: -1.7rem;
         }
         .ui-accordion-header-icon {
             display: none!important;
+        }
+        &.ui-accordion-header-active {
+            &:after {
+                transform: rotate(180deg);
+            }
         }
     }
 }
@@ -351,8 +370,16 @@ body:not(.ass-results) {
         justify-content: center;
         align-items: center
     }
+    &.isIE {
+             .content-wrapper {
+                margin-top: 5rem;
+                display: block!important;
+            }
+    }
 }
 
+
+      
 
 #questions-container {
     border-left: 1px solid @border;
@@ -396,13 +423,13 @@ body:not(.ass-results) {
                 font-weight: bold;
             }
             @media @mobileOnly {
-            width: 123px;
-            min-width: initial;
-            transform: scale(.7);
-            margin: 0;
-            padding: 0;
-            white-space: nowrap;
-            border: none;
+                width: 123px;
+                min-width: initial;
+                transform: scale(.7);
+                margin: 0;
+                padding: 0;
+                white-space: nowrap;
+                border: none;
             }
         }
         position: relative;
@@ -436,14 +463,14 @@ body:not(.ass-results) {
 
 .results-header,
 .page-menu {
-        .country {
+    .country {
         text-align: center;
         font-weight: bold;
-        img {
-            width: 39px;
-            margin-right: 1rem;
-            margin-top: -9px;
-        }
+        // img {
+        //     width: 39px;
+        //     margin-right: 1rem;
+        //     margin-top: -9px;
+        // }
     }
 }
 

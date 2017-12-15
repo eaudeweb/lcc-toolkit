@@ -5,11 +5,11 @@
 {% block extra-scripts %}
   <script src="{% static "js/legislation_filter.js" %}"> </script>
   <script src="{% static "js/sidebar.js" %}"> </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/jquery.easy-autocomplete.min.js"> </script>
+  <script src="{% static "js/jquery.easy-autocomplete.min.js" %}"> </script>
 {% endblock %}
 
 {% block extra-styles %}
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/easy-autocomplete.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/easy-autocomplete.min.css" %}">
 {% endblock %}
 
 {% block content-wrapper-class %}leg-viz with-sidebar{% endblock %}
@@ -46,6 +46,10 @@
 
   <div class="filter-item list-container" id="classificationsSelectWrapper">
     <h5>Select Legal Area</h5>
+    <small class="form-text text-muted">
+      Return results that match any of the selected legal areas.
+    </small>
+    <br>
     <ul class="round" id="classificationsSelect">
       {% for top_class in top_classifications %}
         <li class="first-level level">
@@ -54,22 +58,34 @@
               <input id='classification-{{ top_class.pk }}' value='{{ top_class.pk }}' type='checkbox'/>
               <label for='classification-{{ top_class.pk }}'>{{ top_class.name }}</label>
               {% if second_classifications %}
-                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                <i class="fa fa-caret-down caret" aria-hidden="true"></i>
               {% endif %}
             </span>
             <ul class="second-level level">
+              <li class="select-deselect">
+                <a href="javascript:void(0)" class="select-all">Select all</a>
+                 |
+                <a href="javascript:void(0)" class="deselect-all">Deselect all</a>
+              </li>
               {% for second_class in second_classifications %}
                 {% with second_class.get_children as third_classifications %}
                   <li>
                     <span class="list-header">
+                      <input id='classification-{{ second_class.pk }}' value='{{ second_class.pk }}' type='checkbox'/>
                       <label for="classification-{{ second_class.pk }}">{{ second_class.name }}</label>
                       {% if third_classifications %}
-                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        <i class="fa fa-caret-down caret" aria-hidden="true"></i>
                       {% endif %}
                     </span>
                     <ul class="third-level level">
+                      <li class="select-deselect">
+                        <a href="javascript:void(0)" class="select-all">Select all</a>
+                         |
+                        <a href="javascript:void(0)" class="deselect-all">Deselect all</a>
+                      </li>
                       {% for third_class in third_classifications %}
                         <li>
+                          <input id='classification-{{ third_class.pk }}' value='{{ third_class.pk }}' type='checkbox'/>
                           <label for="classification-{{ third_class.pk }}">{{ third_class.name }}</label>
                         </li>
                       {% endfor %}
@@ -86,6 +102,10 @@
 
   <div class="filter-item">
     <h5>Country</h5>
+    <small class="form-text text-muted">
+      Return results that match any of the selected countries.
+    </small>
+    <br>
     <select id="countrySelect" name="countries" multiple="multiple">
       {% for region in regions %}
         <optgroup label="{{ region }}">
@@ -99,6 +119,10 @@
 
   <div class="filter-item list-container filter-type">
     <h5>Select type</h5>
+    <small class="form-text text-muted">
+      Return results that match any of the selected law types.
+    </small>
+    <br>
     <ul class="round" id="typeSelect">
       {% for key, value in legislation_type %}
         <li class="first-level level">
@@ -111,6 +135,10 @@
 
   <div class="filter-item list-container filter-type">
     <h5>Cross cutting categories</h5>
+    <small class="form-text text-muted">
+      Only return results that match all selected categories.
+    </small>
+    <br>
     <ul class="round" id="tagsSelect">
       {% for group_tag in group_tags %}
         {% for tag in group_tag.tags.all %}
@@ -125,7 +153,7 @@
 
   <div class="filter-item">
     <h5>Promulgation year</h5>
-    <input type="text" class="span2" name="year_range" id="yearSlider" value="" data-slider-min="1945" data-slider-max="{% now 'Y' %}" data-slider-step="1" data-slider-value="[1945,{% now 'Y' %}]" />
+    <input type="text" class="span2" name="year_range" id="yearSlider" value="" data-slider-min="{{min_year}}" data-slider-max="{{max_year}}" data-slider-step="1" data-slider-value="[1945,{% now 'Y' %}]" />
     <div class="slider-values">
       <input type="text" name="from_year" value="1945" id="fromYear">
       <input type="text" name="to_year" value="{% now 'Y' %}" id="toYear">

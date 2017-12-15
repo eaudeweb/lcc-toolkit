@@ -39,7 +39,9 @@
 
   <h6 class="country_year law-country">
     {% static "" as baseUrl %}
-    <img class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" >
+    <figure style="display: inline-block; width: 25px; height: 18.75px; margin: 0" >
+      <img style="max-width: 100%; max-height: 100%;" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg">
+    </figure>
     <span>{{ law.country.name }}</span>
     <span>, {{ law.year }}</span>
   </h6>
@@ -70,7 +72,7 @@
     <div class="abstract">
       <span>Abstract:</span>
       <span>
-        {{ law.highlighted_abstract }}
+        <pre>{{ law.highlighted_abstract }}</pre>
       </span>
     </div>
   {% endif %}
@@ -83,6 +85,44 @@
       </span>
     </div>
   {% endif %}
+
+  {% for article in law.highlighted_articles %}
+    <div class="article">
+      <span>
+        <a href="{% url 'lcc:legislation:articles:view' law.pk %}#{{ article.code }}">
+          Article {{ article.pk }}
+        </a>:
+      </span>
+
+      {% if article.classifications %}
+      <div  class="tag-wrapper">
+        <span>Classification:</span>
+        <span>
+          {% for classification in article.classifications %}
+           <span class="tag">{{ classification }}</span>
+          {% endfor %}
+        </span>
+      </div>
+      {% endif %}
+
+      {% if article.tags %}
+        <div class="tag-wrapper">
+          <span>Tags:</span>
+          <span>
+            {% for tag in article.tags %}
+             <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </span>
+        </div>
+      {% endif %}
+
+      {% if article.text %}
+        <span>
+          <pre>{{ article.text }}</pre>
+        </span>
+      {% endif %}
+    </div>
+  {% endfor %}
 
 </div>
 {% empty %}

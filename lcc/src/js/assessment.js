@@ -16,6 +16,13 @@ $(document).ready(function(){
     var current = $('#questions-container .current');
     var last = $('#questions-container .last');
     var question_category = $('.question_category')
+    var continue_countries = [];
+
+    var href_content = window.location.href.split('#')
+    var ass_id = parseInt(href_content[1])
+    var country_iso = href_content[2]
+    var country_name = href_content[3]
+
 
     // requests need the assessment_id, to have this available, we need to make sure
     // that functions have this as their context, which normally will be changed when:
@@ -25,6 +32,9 @@ $(document).ready(function(){
     renderContinueAssessment.call(this);
     renderQuestions.bind(this);
     renderViewResultsButton.call(this);
+
+
+
 
     function renderViewResultsButton() {
       var self = this;
@@ -68,26 +78,54 @@ $(document).ready(function(){
                             .text('Select country')
                             .attr('value', '')
                             .appendTo(country_list);
-
           for (var j = 0; j < all_assessments.length; j++) {
             var element = all_assessments[j];
             var li_country = $('<option/>')
                               .text(element.country_name)
                               .attr('value', element.id)
-                              .attr('country_iso', element.country_iso)
+                              .attr('country_iso', function(){
+                                continue_countries.push(element.country_iso)
+                                return element.country_iso
+                              })
                               .appendTo(country_list);
           }
-
+          removeStartedAssessments();
           handleContinueAssessment.call(self);
+
+          //it's ugly but it works!
+          if(country_iso != undefined && ass_id != undefined && country_name != undefined) {
+            $('#country-list-continue').find('option[value="' + ass_id + '"]').attr("selected", "selected");
+            $('#continue-assessment').click();
+          }
+
       });
     }
+
+
+    function removeStartedAssessments(){
+      $('#country-list-new').find('option').each(function(index, item){
+        var country_iso = $(item).attr('value');
+        if(continue_countries.indexOf(country_iso) != -1 ) {
+          $(this).remove()
+        }
+      })
+    }
+
+
+
 
     function handleCreateAssessment() {
       var self = this;
       $('#add-assessment').click(function(event) {
         var selected_country_iso = $('#country-list-new').find('option:selected').val();
         var selected_country_name = $('#country-list-new').find('option:selected').text();
-        createAssessment.call(self, selected_country_iso, selected_country_name)
+        if(selected_country_iso !== '' && selected_country_name !== ''){
+          createAssessment.call(self, selected_country_iso, selected_country_name)
+        }
+        else {
+          $('#country-list-new').focus()
+          
+        }
       });
     }
 
@@ -97,7 +135,13 @@ $(document).ready(function(){
         self.assessment_id = $('#country-list-continue').find('option:selected').val();
         var selected_country_name = $('#country-list-continue').find('option:selected').text();
         var selected_country_iso = $('#country-list-continue').find('option:selected').attr('country_iso');
-        continueAssessment.call(self,  selected_country_iso, selected_country_name);
+         if(self.assessment_id !== '') {
+          // return;
+          continueAssessment.call(self,  selected_country_iso, selected_country_name);
+        }
+        else {
+          $('#country-list-continue').focus()
+        }
       });
     }
 
@@ -125,7 +169,9 @@ $(document).ready(function(){
     }
 
     function setAssessmentTitle(country_iso, country_name) {
-        var assessment_header =  '<img src="/static/img/flags/'+ country_iso.toLowerCase() +'.svg" />' + country_name
+
+        var assessment_header =  '<figure style="display:inline-block;width: 39px;margin-right: 1rem;" ><img style="margin-top: -10px;max-width: 100%; max-height: 100%;" src="/static/img/flags/'+ country_iso.toLowerCase() +'.svg" /></figure>' + country_name
+
         $('.page-menu .country').html(assessment_header);
       }
 
@@ -464,5 +510,7 @@ $(document).ready(function(){
       last.html(categories_no);
       question_category.html(category_name);
     }
+
   });
+
 });

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from datetime import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +29,7 @@ INSTALLED_APPS = [
     'rolepermissions',
     'rest_framework',
     'mptt',
-    'lcc',
+    'lcc'
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lcctoolkit.wsgi.application'
 ROLEPERMISSIONS_MODULE = 'lcc.roles'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -111,3 +113,10 @@ FIXTURE_DIRS = [
 ]
 
 LAWS_PER_PAGE = 10
+
+# Used to concatenate classification and tag names in ES indexes
+TAXONOMY_CONNECTOR = '; '
+
+MIN_YEAR = 1945
+
+MAX_YEAR = datetime.now().year

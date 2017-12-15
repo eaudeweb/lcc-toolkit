@@ -31,8 +31,9 @@
 {% block content %}
   <h3 style="margin-bottom: 3rem;" id="title" class="heading">
         {% static "" as baseUrl %}
-        <img style="width: 32px;
-    margin-top: -2px;" class="flag" src="{{ baseUrl }}/img/flags/{{ country.iso |lower }}.svg">
+        <figure style="display: inline-block; width: 32px; height: 24px; margin: 0; margin-top:-2px" >
+          <img style="max-width: 100%; max-height: 100%;"  src="{{ baseUrl }}/img/flags/{{ country.iso |lower }}.svg">
+        </figure>
         <span><b>{{ country.name }}</b></span>
   <hr>
   </h3>
@@ -40,9 +41,9 @@
   <table class="assessment_table">
     <thead>
       <th></th>
-      <th class="original">Original</th>
+      <th class="original">Original profile</th>
       {% if meta.is_customised %}
-      <th class="simulation">Simulation<small>Current profile</small></th>
+      <th class="simulation">Profile modified<small>by {{ request.user.get_full_name|default:request.user.username }}</small></th>
       {% endif %}
     </thead>
     <tbody>
@@ -132,5 +133,18 @@
     </tr>
     </tbody>
   </table>
+</div>
+
+<div class="sources">
+  <h3>Sources</h3>
+  <ul>
+    <li>Country names and regions: <a href="https://unstats.un.org/unsd/methodology/m49/">source</a></li>
+    <li>Legal system: <a href="http://www.juriglobe.ca/eng/sys-juri/index-alpha.php">source</a></li>
+    <li>Population: <a href="https://esa.un.org/unpd/wpp/">source</a></li>
+    <li>HDI: <a href="http://hdr.undp.org/en/data">source</a></li>
+    <li>GDP: <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD">source</a></li>
+    <li>Emissions: <a href="http://cait.wri.org/historical">source</a></li>
+    <li>GDP Ranges (ranking): <a href="https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups">source</a></li>
+  </ul>
 </div>
 {% endblock %}
