@@ -73,7 +73,7 @@
         {% endif %}
 
         <div class="dl neg_6_margin">
-          <div class="dd"><span>Classification</span></div>
+          <div class="dd"><span>Legal Area</span></div>
           <div class="dt">
             {% for classification in article.classifications.all %}
               <span class="tag">{{ classification.name }}</span>
@@ -84,7 +84,7 @@
         </div>
 
         <div class="dl neg_6_margin">
-          <div class="dd"><span>Tags</span></div>
+          <div class="dd"><span>Cross-cutting Categories</span></div>
           <div class="dt">
             {% for tag in article.tags.all%}
               <span class="tag">{{ tag.name }}</span>
