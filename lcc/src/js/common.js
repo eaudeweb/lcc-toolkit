@@ -136,4 +136,20 @@ $(document).ready(function() {
     })
 
 
+    if($('body').hasClass('assessment_profile')){
+        var links = $('.sources li a').clone()
+        links.find('.remove_from_table').remove();
+        var table_items = $('.assessment_table tbody tr td:first-of-type')
+
+        table_items.each(function(index,item){
+            links.each(function(links_index,links_item){
+                if($(item).attr('id')==$(links_item).attr('id')){
+                    $(item).append($(links_item))
+                    return false
+                }
+            })
+        })
+    }
+
+
 })
