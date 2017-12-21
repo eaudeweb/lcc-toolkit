@@ -92,6 +92,11 @@ $(document).ready(function(){
           removeStartedAssessments();
           handleContinueAssessment.call(self);
 
+        if($('#country-list-continue option').length <= 1) {
+          $('#country-list-continue option').text('No assessments started')
+          $('#continue-assessment').addClass('disabled')
+        }
+
           //it's ugly but it works!
           if(country_iso != undefined && ass_id != undefined && country_name != undefined) {
             $('#country-list-continue').find('option[value="' + ass_id + '"]').attr("selected", "selected");
