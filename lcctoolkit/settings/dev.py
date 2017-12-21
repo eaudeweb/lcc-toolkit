@@ -31,9 +31,9 @@ MEDIA_URL = '/files/'
 MEDIA_ROOT = root.path('media/uploadfiles/')()
 
 EMAIL_HOST = 'postfix'
-EMAIL_FROM = 'lcc-toolkit@eaudeweb.ro'
+EMAIL_FROM = 'noreply-toolkit@eaudeweb.ro'
 
-DOMAIN = 'http://localhost:8000'
+DOMAIN = env('DOMAIN', default='http://localhost:8000')
 
 if not DEBUG:
 
