@@ -9,7 +9,7 @@
 {% block content-wrapper-class %}assessment_profile{% endblock %}
 
 
-{% block page-title %}Assessment profile{% endblock %}
+{% block page-title %}Assessment Profile{% endblock %}
 {% block page-menu %}
  <div style="float: right;
     width: 200px;
@@ -50,7 +50,7 @@
     {% for prop in meta %}
       {% if not prop.name == 'cvi2015' %}
         <tr>
-          <td>{{ prop.label }} {% if prop.modified %}*{% endif %}</td>
+          <td id="{{prop.name}}">{{ prop.label }} {% if prop.modified %}*{% endif %}</td>
           <td class="original">
             {% if prop.value or prop.value is False %}
               <span class="{{ prop.type }}">
@@ -138,13 +138,14 @@
 <div class="sources">
   <h3>Sources</h3>
   <ul>
-    <li>Country names and regions: <a href="https://unstats.un.org/unsd/methodology/m49/">source</a></li>
-    <li>Legal system: <a href="http://www.juriglobe.ca/eng/sys-juri/index-alpha.php">source</a></li>
-    <li>Population: <a href="https://esa.un.org/unpd/wpp/">source</a></li>
-    <li>HDI: <a href="http://hdr.undp.org/en/data">source</a></li>
-    <li>GDP: <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD">source</a></li>
-    <li>Emissions: <a href="http://cait.wri.org/historical">source</a></li>
-    <li>GDP Ranges (ranking): <a href="https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups">source</a></li>
+    <li><a id="region" href="https://unstats.un.org/unsd/methodology/m49/"><span>[1]</span><span class="remove_from_table"> Country names and regions</span></a></li>
+    <li><a id="legal_system" href="http://www.juriglobe.ca/eng/sys-juri/index-alpha.php"><span>[2]</span><span class="remove_from_table"> Legal system</span></a></li>
+    <li><a id="population" href="https://esa.un.org/unpd/wpp/"><span>[3]</span><span class="remove_from_table"> Population</span></a></li>
+    <li><a id="hdi2015" href="http://hdr.undp.org/en/data"><span>[4]</span><span class="remove_from_table"> HDI</span></a></li>
+    <li><a id="gdp_capita" href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD"><span>[5]</span><span class="remove_from_table"> GDP</span></a></li>
+    <li><a id="ghg_no_lucf" href="http://cait.wri.org/historical"><span>[6]</span><span class="remove_from_table"> Emissions</span></a></li>
+    <li class="hide_in_sources"><a class="hide_in_sources" id="ghg_lucf" href="http://cait.wri.org/historical"><span>[6]</span><span class="remove_from_table"> Emissions</span></a></li>
+    <li><a id="gdp_capita_range" href="https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups"><span>[7]</span><span class="remove_from_table"> GDP Ranges (ranking)</span></a></li>
   </ul>
 </div>
 {% endblock %}

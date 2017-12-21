@@ -166,7 +166,7 @@ $(document).ready(function() {
                         .appendTo(container);
 
                     var dd_gap = $('<dd/>')
-                        .append($('<span>Taxonomy</span>'))
+                        .append($('<span>Key Terms</span>'))
                         .appendTo(dl_gap);
 
                     var dt_gap = $('<dt/>')

@@ -42,13 +42,12 @@
     <figure style="display: inline-block; width: 25px; height: 18.75px; margin: 0" >
       <img style="max-width: 100%; max-height: 100%;" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg">
     </figure>
-    <span>{{ law.country.name }}</span>
-    <span>, {{ law.year }}</span>
+    <span>{{ law.country.name }}</span><span>, {{ law.year }}</span>
   </h6>
 
   <div class="tag-wrapper">
     {% if law.highlighted_classifications %}
-      <span><b>Classification:</b></span>
+      <span><b>Legal Area:</b></span>
       <span>
         {% for classification in law.highlighted_classifications %}
          <span class="tag">{{ classification }}</span>
@@ -59,7 +58,7 @@
 
   <div class="tag-wrapper">
     {% if law.highlighted_tags %}
-    <span><b>Tags:</b></span>
+    <span><b>Cross-cutting Categories:</b></span>
     <span>
       {% for tag in law.highlighted_tags %}
        <span class="tag">{{ tag }}</span>
@@ -96,7 +95,7 @@
 
       {% if article.classifications %}
       <div  class="tag-wrapper">
-        <span>Classification:</span>
+        <span>Legal Area:</span>
         <span>
           {% for classification in article.classifications %}
            <span class="tag">{{ classification }}</span>
@@ -107,7 +106,7 @@
 
       {% if article.tags %}
         <div class="tag-wrapper">
-          <span>Tags:</span>
+          <span>Cross-cutting Categories:</span>
           <span>
             {% for tag in article.tags %}
              <span class="tag">{{ tag }}</span>

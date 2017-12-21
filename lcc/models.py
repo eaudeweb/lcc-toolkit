@@ -634,7 +634,8 @@ class LegislationArticle(_TaxonomyModel):
     text = models.CharField(max_length=65535)
     legislation = models.ForeignKey(Legislation, related_name="articles")
     legislation_page = models.IntegerField()
-    code = models.CharField(max_length=64)  # aka Article number
+    code = models.CharField(max_length=256)  # aka Article number
+    identifier = models.IntegerField(blank=True, null=True, default=None)
 
     objects = LegislationArticleManager()
 
