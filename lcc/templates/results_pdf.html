@@ -65,7 +65,7 @@
                   <div class="suggestions">
                     {% for article in question.articles %}
                       <div class="article-container">
-                        <a href="http://{{ host }}/legislation/{{ article.legislation.id }}/articles#{{ article.code }}" target="_blank">
+                        <a href="{{ host }}/legislation/{{ article.legislation.id }}/articles#{{ article.code }}" target="_blank">
                           {{ article.legislation.title }} - {{ article.code }}
                         </a>
                         <div class="muted">

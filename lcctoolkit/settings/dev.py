@@ -33,6 +33,8 @@ MEDIA_ROOT = root.path('media/uploadfiles/')()
 EMAIL_HOST = 'postfix'
 EMAIL_FROM = 'lcc-toolkit@eaudeweb.ro'
 
+DOMAIN = 'http://localhost:8000'
+
 if not DEBUG:
 
     # sentry configuration

@@ -41,7 +41,7 @@ class LegalAssessmentResultsPDF(View):
 
         context = {
             'results': results.data,
-            'host': request.META['HTTP_HOST'],
+            'host': settings.DOMAIN,
             'categories': top_categories,
             'areas': areas,
             'law_suggestions': suggestions,

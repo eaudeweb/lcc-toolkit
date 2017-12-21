@@ -32,10 +32,7 @@ from django.conf import settings
 
 
 def _site_url(request):
-    return '{protocol}://{domain}'.format(
-        protocol=request._get_scheme(),
-        domain=get_current_site(request),
-    )
+    return settings.DOMAIN
 
 
 def _send_mail(subject, body, recipients):
@@ -83,7 +80,7 @@ class Register(CreateView):
             site_url=_site_url(self.request),
             profile_id=profile_id,
         ))
-        subject = 'New user registration'
+        subject = 'New user registration in the Law and Climate Change Toolkit'
         _send_mail(subject, body, admin_emails)
 
 
@@ -149,7 +146,7 @@ class ApproveRegistration(HasRoleMixin, UpdateView):
                 role_name=role_name,
                 token=token,
                 uid=uid,
-                site_url=_site_url(self.request),
+                site_url=_site_url(self.request)
             )),
             [user.email]
         )
