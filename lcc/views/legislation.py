@@ -277,30 +277,6 @@ class LegislationExplorer(ListView):
                 'number_of_fragments': 0
             }
 
-        # String representing country iso code
-        countries = self.request.GET.getlist('countries[]')
-        if countries:
-            law_queries.append(Q('terms', country=countries))
-
-        # String representing law_type
-        law_types = self.request.GET.getlist('law_types[]')
-        if law_types:
-            law_queries.append(Q('terms', law_type=law_types))
-
-        # String representing the minimum year allowed in the results
-        from_year = self.request.GET.get('from_year')
-        # String representing the maximum year allowed in the results
-        to_year = self.request.GET.get('to_year')
-
-        if all([from_year, to_year]):
-            law_queries.append(
-                Q('range', year={'gte': int(from_year), 'lte': int(to_year)}) |
-                Q('range', year_amendment={
-                    'gte': int(from_year), 'lte': int(to_year)}) |
-                Q('range', year_mentions={
-                    'gte': int(from_year), 'lte': int(to_year)})
-            )
-
         # String to be searched in all text fields (full-text search using
         # elasticsearch's default best_fields strategy)
         q = self.request.GET.get('q')
@@ -393,9 +369,34 @@ class LegislationExplorer(ListView):
                 if nested_query:
                     # Necessary for highlights
                     final_query += root_query and nested_query
+            if final_query:
+                search = search.query(
+                    'bool', should=final_query,
+                    minimum_should_match=1
+                )
+
+        # String representing country iso code
+        countries = self.request.GET.getlist('countries[]')
+        if countries:
+            search = search.query('terms', country=countries)
+
+        # String representing law_type
+        law_types = self.request.GET.getlist('law_types[]')
+        if law_types:
+            search = search.query('terms', law_type=law_types)
+
+        # String representing the minimum year allowed in the results
+        from_year = self.request.GET.get('from_year')
+        # String representing the maximum year allowed in the results
+        to_year = self.request.GET.get('to_year')
+
+        if all([from_year, to_year]):
             search = search.query(
-                'bool', should=final_query,
-                minimum_should_match=1
+                Q('range', year={'gte': int(from_year), 'lte': int(to_year)}) |
+                Q('range', year_amendment={
+                    'gte': int(from_year), 'lte': int(to_year)}) |
+                Q('range', year_mentions={
+                    'gte': int(from_year), 'lte': int(to_year)})
             )
 
         search = search.highlight(

@@ -336,17 +336,44 @@ class LegislationExplorer(TestCase):
 
     def test_country_filtering(self):
 
-        iso_codes = ['MMR', 'PAN']  # Arbitrary country ids
+        myanmar = ['MMR']
+        myanmar_class_id = 93
 
         c = Client()
         response = c.get(
             '/legislation/',
-            {'partial': True, 'countries[]': iso_codes}
+            {'partial': True, 'countries[]': myanmar}
         )
 
-        expected_law_ids = [4, 6]
-        returned_law_ids = [law.id for law in response.context['laws']]
+        expected_law_ids = [4]
+        myanmar_law = response.context['laws'][0]
 
+        self.assertEqual(expected_law_ids, [myanmar_law.id])
+
+        # Filter by country AND classification
+
+        # Get a law that is NOT associated to Myanmar but has classification 93
+        law = Legislation.objects.get(id=1)
+
+        # Add an article to it
+        law.articles.create(
+            text="Some text",
+            legislation_page=1,
+            code="Art. I"
+        )
+
+        response = c.get(
+            '/legislation/',
+            {
+                'partial': True,
+                'classifications[]': [myanmar_class_id],
+                'countries[]': myanmar
+            }
+        )
+
+        expected_law_ids = [myanmar_law.id]
+        # Only the Myanmar law is in the results
+        returned_law_ids = [leg.id for leg in response.context['laws']]
         self.assertEqual(expected_law_ids, returned_law_ids)
 
     def test_law_type_filtering(self):
