@@ -48,7 +48,9 @@ class HighlightedLaws:
                     )
                 if 'pdf_text' in highlights:
                     law._highlighted_pdf_text = mark_safe(
-                        ' […] '.join(highlights['pdf_text'])
+                        ' […] '.join(
+                            highlights['pdf_text']
+                        ).replace('<pre>', '').replace('</pre>', '')
                     )
                 if 'title' in highlights:
                     law._highlighted_title = mark_safe(highlights['title'][0])
