@@ -30,8 +30,10 @@ STATIC_ROOT = env('STATIC_ROOT',
 MEDIA_URL = '/files/'
 MEDIA_ROOT = root.path('media/uploadfiles/')()
 
-EMAIL_HOST = 'mailtrap'
-EMAIL_FROM = 'lcc-toolkit@eaudeweb.ro'
+EMAIL_HOST = 'postfix'
+EMAIL_FROM = 'noreply-toolkit@eaudeweb.ro'
+
+DOMAIN = env('DOMAIN', default='http://localhost:8000')
 
 if not DEBUG:
 

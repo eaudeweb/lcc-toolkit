@@ -53,7 +53,7 @@ services:
       - DJANGO_MANAGEPY_COLLECTSTATIC=on
       - DJANGO_MANAGEPY_LOADFIXTURES=on
       - STATIC_ROOT=/var/www/lcct/static
-
+      - EMAIL_HOST=postfix
     volumes:
       - static-files:/var/www/lcct/static
       - media-files:/opt/lcct/media/uploadfiles
@@ -81,6 +81,11 @@ services:
     volumes:
       - '/var/run/docker.sock:/tmp/docker.sock'
     command: 'syslog://$${HOST}:$${PORT}?filter.name=lcct.*'
+
+  postfix:
+    image: eeacms/postfix:2.10-3.1
+    environment:
+      - MTP_HOST=lcc.eaudeweb.ro
 
 volumes:
   static-files:

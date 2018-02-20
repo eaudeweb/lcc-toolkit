@@ -46,7 +46,7 @@ services:
   db:
     container_name: lcct.db
 
-  mailtrap:
+  postfix:
     image: eaudeweb/mailtrap:latest
     container_name: lcct.mail
     ports:
