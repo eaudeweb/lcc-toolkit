@@ -108,11 +108,9 @@
     <br>
     <select id="countrySelect" name="countries" multiple="multiple">
       {% for region in regions %}
-        <optgroup label="{{ region }}">
-          {% for country in region.countries %}
-            <option value="{{ country.iso }}" class="option-child-1">{{ country.name }}</option>
-          {% endfor %}
-        </optgroup>
+        {% for country in region.countries %}
+          <option value="{{ country.iso }}" class="option-child-1">{{ country.name }}</option>
+        {% endfor %}
       {% endfor %}
     </select>
   </div>
