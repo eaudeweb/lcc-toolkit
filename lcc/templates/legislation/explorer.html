@@ -26,6 +26,7 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
+  <div id="filter-values" data-values="{{ filters }}"></div>
   <div class="search">
     <div class="row">
       <div class="input-group searchInputGroup">
@@ -108,11 +109,9 @@
     <br>
     <select id="countrySelect" name="countries" multiple="multiple">
       {% for region in regions %}
-        <optgroup label="{{ region }}">
-          {% for country in region.countries %}
-            <option value="{{ country.iso }}" class="option-child-1">{{ country.name }}</option>
-          {% endfor %}
-        </optgroup>
+        {% for country in region.countries %}
+          <option value="{{ country.iso }}" class="option-child-1">{{ country.name }}</option>
+        {% endfor %}
       {% endfor %}
     </select>
   </div>
@@ -153,10 +152,10 @@
 
   <div class="filter-item">
     <h5>Promulgation year</h5>
-    <input type="text" class="span2" name="year_range" id="yearSlider" value="" data-slider-min="{{min_year}}" data-slider-max="{{max_year}}" data-slider-step="1" data-slider-value="[1945,{% now 'Y' %}]" />
+    <input type="text" class="span2" name="year_range" id="yearSlider" value="" data-slider-min="{{min_year}}" data-slider-max="{{max_year}}" data-slider-step="1" data-slider-value="[{{from_year}},{{to_year}}]" />
     <div class="slider-values">
-      <input type="text" name="from_year" value="1945" id="fromYear">
-      <input type="text" name="to_year" value="{% now 'Y' %}" id="toYear">
+      <input type="text" name="from_year" value="{{from_year}}" id="fromYear">
+      <input type="text" name="to_year" value="{{to_year}}" id="toYear">
     </div>
   </div>
 

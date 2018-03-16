@@ -88,8 +88,8 @@
   {% for article in law.highlighted_articles %}
     <div class="article">
       <span>
-        <a href="{% url 'lcc:legislation:articles:view' law.pk %}#{{ article.code }}">
-          Article {{ article.pk }}
+        <a href="{% url 'lcc:legislation:articles:view' law.pk %}#{{ article.pk }}">
+          {{ article.code }}
         </a>:
       </span>
 
