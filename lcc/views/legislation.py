@@ -160,15 +160,6 @@ class LegislationExplorer(ListView):
     template_name = "legislation/explorer.html"
     model = models.Legislation
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     """
-    #     If the `partial` parameter is set, return only the list of laws,
-    #     don't render the whole page again.
-    #     """
-    #     if self.request.GET.get('partial'):
-    #         self.template_name = "legislation/_laws.html"
-    #     return super().dispatch(request, *args, **kwargs)
-
     def get_queryset(self):
         """
         Perform filtering using ElasticSearch instead of Postgres.
