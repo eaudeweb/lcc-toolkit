@@ -1,4 +1,4 @@
-var payload = { 'partial': true };
+var payload = {};
 
 function activatePagination() {
     $("ul.pagination li a").on('click', function() {
@@ -7,17 +7,65 @@ function activatePagination() {
     });
 }
 
-function send(payload) {
-    console.log(payload);
-    $.ajax({
-        type: 'GET',
-        url: '/legislation',
-        data: payload,
-        success: function(data) {
-            $("#laws").html(data);
-            activatePagination();
-        }
+function preselectFilters() {
+    var filters = $("#filter-values").data("values");
+    var stop = 0;
+
+    if(filters["q"]){
+      $("#textSearchInput").val(filters["q"]);
+    }
+
+    $("#classificationsSelect input").each(function(i, input){
+      var $input = $(input);
+      if($.inArray($input.val(), filters["classifications[]"]) >= 0){
+        payload["classifications"] = filters["classifications[]"];
+        $input.click();
+        $input.closest('li').parents('li').find('i:first:not(.fa-caret-up)').click();
+      }
     });
+
+    $("#typeSelect input").each(function(i, input){
+      var $input = $(input);
+      if($.inArray($input.val(), filters["law_types[]"]) >= 0){
+        payload["law_types"] = filters["law_types[]"];
+        $input.click();
+      }
+    });
+
+    $("#tagsSelect input").each(function(i, input){
+      var $input = $(input);
+      if($.inArray($input.val(), filters["tags[]"]) >= 0){
+        payload["tags"] = filters["tags[]"];
+        $input.click();
+      }
+    });
+
+    $(".ms-drop input").each(function(i, input){
+      var $input = $(input);
+      if($.inArray($input.val(), filters["countries[]"]) >= 0){
+        payload["countries"] = filters["countries[]"];
+        $input.click();
+      }
+    });
+
+    var min_year = $("#yearSlider").data("slider-min");
+    var max_year = $("#yearSlider").data("slider-max");
+    var from_year = $("#fromYear").val();
+    var to_year = $("#toYear").val();
+
+    if(from_year != min_year){
+      payload["from_year"] = from_year;
+    }
+
+    if(to_year != max_year){
+      payload["to_year"] = to_year;
+    }
+}
+
+function send(payload) {
+    var new_url = window.location.href.split('?')[0] + '?' + $.param(payload);
+    console.log(new_url);
+    window.location.href = new_url;
 }
 
 $(document).ready(function() {
@@ -56,7 +104,7 @@ $(document).ready(function() {
       payload['to_year'] = slideEvt.value[1];
     });
 
-
+    preselectFilters();
 
     var slider_text = document.getElementById('yearSlider');
 
@@ -153,8 +201,6 @@ $(document).ready(function() {
         payload['from_year'] = slideEvt.value[0];
         payload['to_year'] = slideEvt.value[1];
     });
-
-
 
     var slider_text = document.getElementById('yearSlider');
 

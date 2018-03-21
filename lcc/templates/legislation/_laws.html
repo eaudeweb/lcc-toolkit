@@ -78,9 +78,9 @@
 
   {% if law.highlighted_pdf_text %}
     <div class="pdf_text">
-      <span>Legislation text:</span>
+      <span>Legislation text:</span><br>
       <span>
-        {{ law.highlighted_pdf_text }}
+        <pre>{{ law.highlighted_pdf_text }}</pre>
       </span>
     </div>
   {% endif %}
@@ -88,8 +88,8 @@
   {% for article in law.highlighted_articles %}
     <div class="article">
       <span>
-        <a href="{% url 'lcc:legislation:articles:view' law.pk %}#{{ article.code }}">
-          Article {{ article.pk }}
+        <a href="{% url 'lcc:legislation:articles:view' law.pk %}#{{ article.pk }}">
+          {{ article.code }}
         </a>:
       </span>
 

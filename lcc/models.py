@@ -110,6 +110,9 @@ class TaxonomyTagGroup(models.Model):
     def __str__(self):
         return 'Tagging by ' + self.name
 
+    class Meta:
+        ordering = ['id']
+
 
 class TaxonomyTag(models.Model):
     # NOTE: The name must not contain the character ";".
@@ -661,7 +664,7 @@ class LegislationArticle(_TaxonomyModel):
 
 
 class LegislationPage(models.Model):
-    page_text = models.CharField(max_length=65535)
+    page_text = models.TextField(max_length=65535)
     page_number = models.IntegerField()
     legislation = models.ForeignKey(Legislation, related_name="pages")
 

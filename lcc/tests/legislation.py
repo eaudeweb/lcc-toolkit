@@ -52,7 +52,7 @@ class LegislationExplorer(TestCase):
             country_id="ROU"
         )
         c = Client()
-        response = c.get('/legislation/', {'partial': True, 'q': "Brown fox"})
+        response = c.get('/legislation/', {'q': "Brown fox"})
         self.assertEqual(
             response.context['laws'][0].highlighted_title(),
             "Keeping pets healthy"
@@ -81,7 +81,7 @@ class LegislationExplorer(TestCase):
         )
         law.save_pdf_pages()
         c = Client()
-        response = c.get('/legislation/', {'partial': True, 'q': "jararaca"})
+        response = c.get('/legislation/', {'q': "jararaca"})
         self.assertIn(
             '<em>jararaca</em>',
             response.context['laws'][0].highlighted_pdf_text(),
@@ -96,7 +96,7 @@ class LegislationExplorer(TestCase):
         )
 
         c = Client()
-        response = c.get('/legislation/', {'partial': True, 'q': "rabbits"})
+        response = c.get('/legislation/', {'q': "rabbits"})
 
         self.assertEqual(
             response.context['laws'][0].highlighted_articles()[0]['text'],
@@ -110,7 +110,7 @@ class LegislationExplorer(TestCase):
         c = Client()
         response = c.get(
             '/legislation/',
-            {'partial': True, 'classifications[]': classification_ids}
+            {'classifications[]': classification_ids}
         )
 
         expected_law_classifications_list = [
@@ -165,7 +165,7 @@ class LegislationExplorer(TestCase):
         c = Client()
         response = c.get(
             '/legislation/',
-            {'partial': True, 'classifications[]': classification_ids}
+            {'classifications[]': classification_ids}
         )
 
         expected_laws = [law1, law2]
@@ -179,7 +179,7 @@ class LegislationExplorer(TestCase):
         q = 'climate renewable'  # Arbitrary words found in classification names
 
         c = Client()
-        response = c.get('/legislation/', {'partial': True, 'q': q})
+        response = c.get('/legislation/', {'q': q})
 
         returned_laws = response.context['laws'].object_list
 
@@ -200,7 +200,7 @@ class LegislationExplorer(TestCase):
         c = Client()
         response = c.get(
             '/legislation/',
-            {'partial': True, 'tags[]': tag_ids}
+            {'tags[]': tag_ids}
         )
 
         expected_law_tag_list = [
@@ -256,7 +256,7 @@ class LegislationExplorer(TestCase):
         c = Client()
         response = c.get(
             '/legislation/',
-            {'partial': True, 'tags[]': tag_ids}
+            {'tags[]': tag_ids}
         )
 
         expected_law_tag_list = [
@@ -271,11 +271,10 @@ class LegislationExplorer(TestCase):
             (5, [1, 2, 4, 5, 6]),
             (7, [1, 2, 3, 5, 6])
         ]
-        # TODO: Intentionally define an order to be returned. Currently this
-        # order is accidental, a result of ES's default scoring algorithms. This
-        # should be fixed. Until then, if this test breaks because the order
-        # changed, you can just change the order of the list above so the test
-        # passes because it has no important meaning.
+        # NOTE: This list is ordered according to ElasticSearch default
+        # algorithms. Currently this is considered good enough even though it
+        # takes the length of tag names into account, which probably isn't
+        # relevant in our case.
 
         returned_law_tag_list = [
             (law.id, list(law.tags.values_list('id', flat=True)))
@@ -325,7 +324,7 @@ class LegislationExplorer(TestCase):
         q = 'enforcement'  # Arbitrary word found in one of the tag names
 
         c = Client()
-        response = c.get('/legislation/', {'partial': True, 'q': q})
+        response = c.get('/legislation/', {'q': q})
 
         returned_laws = response.context['laws'].object_list
         self.assertEqual(len(returned_laws), 7)
@@ -336,17 +335,44 @@ class LegislationExplorer(TestCase):
 
     def test_country_filtering(self):
 
-        iso_codes = ['MMR', 'PAN']  # Arbitrary country ids
+        myanmar = ['MMR']
+        myanmar_class_id = 93
 
         c = Client()
         response = c.get(
             '/legislation/',
-            {'partial': True, 'countries[]': iso_codes}
+            {'countries[]': myanmar}
         )
 
-        expected_law_ids = [4, 6]
-        returned_law_ids = [law.id for law in response.context['laws']]
+        expected_law_ids = [4]
+        myanmar_law = response.context['laws'][0]
 
+        self.assertEqual(expected_law_ids, [myanmar_law.id])
+
+        # Filter by country AND classification
+
+        # Get a law that is NOT associated to Myanmar but has classification 93
+        law = Legislation.objects.get(id=1)
+
+        # Add an article to it
+        law.articles.create(
+            text="Some text",
+            legislation_page=1,
+            code="Art. I"
+        )
+
+        response = c.get(
+            '/legislation/',
+            {
+                'partial': True,
+                'classifications[]': [myanmar_class_id],
+                'countries[]': myanmar
+            }
+        )
+
+        expected_law_ids = [myanmar_law.id]
+        # Only the Myanmar law is in the results
+        returned_law_ids = [leg.id for leg in response.context['laws']]
         self.assertEqual(expected_law_ids, returned_law_ids)
 
     def test_law_type_filtering(self):
@@ -356,7 +382,7 @@ class LegislationExplorer(TestCase):
         c = Client()
         response = c.get(
             '/legislation/',
-            {'partial': True, 'law_types[]': law_types}
+            {'law_types[]': law_types}
         )
 
         expected_law_ids = [1, 2, 3, 5, 6, 10]
@@ -373,7 +399,7 @@ class LegislationExplorer(TestCase):
         c = Client()
         response = c.get(
             '/legislation/',
-            {'partial': True, 'from_year': from_year, 'to_year': to_year}
+            {'from_year': from_year, 'to_year': to_year}
         )
         expected_law_ids = [3, 5, 6, 9, 10]
         returned_law_ids = [law.id for law in response.context['laws']]
@@ -395,7 +421,7 @@ class LegislationExplorer(TestCase):
         # Get second page
         response = c.get(
             '/legislation/',
-            {'partial': True, 'page': 2}
+            {'page': 2}
         )
 
         # Returns second page
@@ -406,7 +432,7 @@ class LegislationExplorer(TestCase):
         law_types = ['Law', 'Constitution']  # Law types that return 6 results
         response = c.get(
             '/legislation/',
-            {'partial': True, 'law_types[]': law_types}
+            {'law_types[]': law_types}
         )
 
         # Defaults to first page
@@ -416,7 +442,7 @@ class LegislationExplorer(TestCase):
         # Get second page
         response = c.get(
             '/legislation/',
-            {'partial': True, 'law_types[]': law_types, 'page': 2}
+            {'law_types[]': law_types, 'page': 2}
         )
         self.assertEqual(len(response.context['laws']), 2)
         self.assertEqual(response.context['laws'].number, 2)
@@ -425,7 +451,7 @@ class LegislationExplorer(TestCase):
         country_iso = 'MMR'  # Country id that returns only one result
         response = c.get(
             '/legislation/',
-            {'partial': True, 'countries[]': [country_iso]}
+            {'countries[]': [country_iso]}
         )
 
         self.assertEqual(len(response.context['laws']), 1)
@@ -434,7 +460,7 @@ class LegislationExplorer(TestCase):
         # Try to get second page (doesn't exist)
         response = c.get(
             '/legislation/',
-            {'partial': True, 'countries[]': [country_iso], 'page': 2}
+            {'countries[]': [country_iso], 'page': 2}
         )
 
         # Returns last existing page

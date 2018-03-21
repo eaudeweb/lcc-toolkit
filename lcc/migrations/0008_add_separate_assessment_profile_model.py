@@ -6,75 +6,13 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import migrations, models
 import django.db.models.deletion
 
-from lcc.models import (
-    AssessmentProfile,
-    Country,
-    FocusArea,
-    LegalSystem,
-    PrioritySector,
-    Region,
-    SubRegion,
-)
-
-
-class CountryMetadata(models.Model):
-    """
-    This model is defined here so this migration runs with a locked version of
-    the model.
-    """
-    class Meta:
-        managed = False
-
-    country = models.ForeignKey('Country', related_name='metadata')
-    user = models.ForeignKey('UserProfile', null=True)
-
-    cw = models.BooleanField('Commonwealth (Member country)', default=False)
-    small_cw = models.BooleanField('Small commonwealth country', default=False)
-    un = models.BooleanField('United Nations (Member state)', default=False)
-    ldc = models.BooleanField('Least developed country (LDC)', default=False)
-    lldc = models.BooleanField(
-        'Landlocked developing country (LLDC)',
-        default=False
-    )
-    sid = models.BooleanField(
-        'Small island developing state (SID)',
-        default=False
-    )
-
-    region = models.ForeignKey(Region, null=True, blank=True)
-    sub_region = models.ForeignKey(SubRegion, null=True, blank=True)
-    legal_system = models.ForeignKey(LegalSystem, null=True, blank=True)
-
-    population = models.FloatField("Population ('000s) 2018", null=True)
-    hdi2015 = models.FloatField('HDI2015', null=True)
-
-    gdp_capita = models.FloatField('GDP per capita, US$ 2016', null=True)
-    ghg_no_lucf = models.FloatField(
-        'Total GHG Emissions excluding LUCF MtCO2e 2014',
-        null=True
-    )
-    ghg_lucf = models.FloatField(
-        'Total GHG Emissions including LUCF MtCO2e 2014',
-        null=True
-    )
-    cvi2015 = models.FloatField(
-        'Climate vulnerability index 2015',
-        null=True,
-        blank=True
-    )
-
-    mitigation_focus_areas = models.ManyToManyField(
-        FocusArea,
-        blank=True
-    )
-
-    adaptation_priority_sectors = models.ManyToManyField(
-        PrioritySector,
-        blank=True
-    )
-
 
 def migrate_data(apps, schema_editor):
+
+    Country = apps.get_model('lcc', 'Country')
+    CountryMetadata = apps.get_model('lcc', 'CountryMetadata')
+    AssessmentProfile = apps.get_model('lcc', 'AssessmentProfile')
+
     fields = ['cw', 'small_cw', 'un', 'ldc', 'lldc', 'sid', 'region_id',
               'sub_region_id', 'legal_system_id', 'population', 'hdi2015',
               'gdp_capita', 'ghg_no_lucf', 'ghg_lucf', 'cvi2015']
@@ -83,30 +21,63 @@ def migrate_data(apps, schema_editor):
 
     country_metadatas = CountryMetadata.objects.all()
     for country_metadata in country_metadatas:
+
+        areas = country_metadata.mitigation_focus_areas.all()
+
         if country_metadata.user:
+            # CountryMetadata objects that have a user are assessment profiles
             data = {key: getattr(country_metadata, key) for key in
                     assessment_profile_fields}
             assessment = AssessmentProfile.objects.create(**data)
+            assessment.mitigation_focus_areas.add(*areas)
+            sectors = country_metadata.adaptation_priority_sectors.all()
+            assessment.adaptation_priority_sectors.add(*sectors)
 
         else:
+            # CountryMetadata objects that have no user are countries
             try:
-                assessment = Country.objects.get(pk=country_metadata.country_id)
+                country = Country.objects.get(pk=country_metadata.country_id)
                 for key in fields:
-                    setattr(assessment, key, getattr(country_metadata, key))
-                assessment.save()
+                    setattr(country, key, getattr(country_metadata, key))
+                country.save()
+                country.mitigation_focus_areas.add(*areas)
+                sectors = country_metadata.adaptation_priority_sectors.all()
+                country.adaptation_priority_sectors.add(*sectors)
+
             except ObjectDoesNotExist:
                 print("Country with pk {id} was not found.".format(
                     id=country_metadata.country_id)
                 )
 
-        areas = getattr(country_metadata, 'mitigation_focus_areas').all()
-        for area in areas:
-            assessment.mitigation_focus_areas.add(area)
 
-        sectors = getattr(country_metadata,
-                          'adaptation_priority_sectors').all()
-        for sector in sectors:
-            assessment.adaptation_priority_sectors.add(sector)
+def unmigrate_data(apps, schema_editor):
+
+    Country = apps.get_model('lcc', 'Country')
+    CountryMetadata = apps.get_model('lcc', 'CountryMetadata')
+    AssessmentProfile = apps.get_model('lcc', 'AssessmentProfile')
+
+    fields = ['cw', 'small_cw', 'un', 'ldc', 'lldc', 'sid', 'region_id',
+              'sub_region_id', 'legal_system_id', 'population', 'hdi2015',
+              'gdp_capita', 'ghg_no_lucf', 'ghg_lucf', 'cvi2015']
+    country_metadata_fields = list(fields)
+    country_metadata_fields.extend(['country', 'user'])
+
+    for country in Country.objects.all():
+        data = {key: getattr(country, key) for key in fields}
+        data['country'] = country
+        country_metadata = CountryMetadata.objects.create(**data)
+        areas = country.mitigation_focus_areas.all()
+        country_metadata.mitigation_focus_areas.add(*areas)
+        sectors = country.adaptation_priority_sectors.all()
+        country_metadata.adaptation_priority_sectors.add(*sectors)
+
+    for assessment in AssessmentProfile.objects.all():
+        data = {key: getattr(assessment, key) for key in country_metadata_fields}
+        country_metadata = CountryMetadata.objects.create(**data)
+        areas = assessment.mitigation_focus_areas.all()
+        country_metadata.mitigation_focus_areas.add(*areas)
+        sectors = assessment.adaptation_priority_sectors.all()
+        country_metadata.adaptation_priority_sectors.add(*sectors)
 
 
 class Migration(migrations.Migration):
@@ -303,7 +274,7 @@ class Migration(migrations.Migration):
         ),
 
 
-        migrations.RunPython(migrate_data),
+        migrations.RunPython(migrate_data, unmigrate_data),
 
 
         migrations.RemoveField(

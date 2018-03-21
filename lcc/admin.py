@@ -12,6 +12,7 @@ class LegislationAdmin(admin.ModelAdmin):
         'title', 'country__name',
         'classifications__name', 'tags__name'
     )
+    actions = ['generate_pages']
 
     def classifications_list(self, obj):
         return '; '.join(
@@ -20,6 +21,32 @@ class LegislationAdmin(admin.ModelAdmin):
     def tags_list(self, obj):
         return '; '.join(
             obj.tags.values_list('name', flat=True))
+
+    def generate_pages(self, request, queryset):
+        generated = 0
+        regenerated = 0
+        no_pdf = 0
+        for law in queryset:
+            old_pages = law.pages.all()
+            old_pages.delete()
+
+            if not law.pdf_file:
+                no_pdf += 1
+                continue
+
+            law.save_pdf_pages()
+
+            if old_pages:
+                regenerated += 1
+            else:
+                generated += 1
+        self.message_user(
+            request, (
+                "Pages were generated for {} laws, regenerated for {} and {} "
+                "were skipped due to absent PDF."
+            ).format(generated, regenerated, no_pdf)
+        )
+    generate_pages.short_description = "(Re)generate text pages from PDF"
 
     classifications_list.short_description = "Classifications"
     tags_list.short_description = "Cross cutting categories"
