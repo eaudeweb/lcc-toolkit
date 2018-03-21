@@ -11,6 +11,10 @@ function preselectFilters() {
     var filters = $("#filter-values").data("values");
     var stop = 0;
 
+    if(filters["q"]){
+      $("#textSearchInput").val(filters["q"]);
+    }
+
     $("#classificationsSelect input").each(function(i, input){
       var $input = $(input);
       if($.inArray($input.val(), filters["classifications[]"]) >= 0){
