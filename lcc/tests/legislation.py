@@ -271,11 +271,10 @@ class LegislationExplorer(TestCase):
             (5, [1, 2, 4, 5, 6]),
             (7, [1, 2, 3, 5, 6])
         ]
-        # TODO: Intentionally define an order to be returned. Currently this
-        # order is accidental, a result of ES's default scoring algorithms. This
-        # should be fixed. Until then, if this test breaks because the order
-        # changed, you can just change the order of the list above so the test
-        # passes because it has no important meaning.
+        # NOTE: This list is ordered according to ElasticSearch default
+        # algorithms. Currently this is considered good enough even though it
+        # takes the length of tag names into account, which probably isn't
+        # relevant in our case.
 
         returned_law_tag_list = [
             (law.id, list(law.tags.values_list('id', flat=True)))

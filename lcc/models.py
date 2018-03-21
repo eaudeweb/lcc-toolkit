@@ -110,6 +110,9 @@ class TaxonomyTagGroup(models.Model):
     def __str__(self):
         return 'Tagging by ' + self.name
 
+    class Meta:
+        ordering = ['id']
+
 
 class TaxonomyTag(models.Model):
     # NOTE: The name must not contain the character ";".
