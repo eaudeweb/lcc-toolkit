@@ -425,7 +425,7 @@ class LegislationExplorer(ListView):
         group_tags = models.TaxonomyTagGroup.objects.all()
         top_classifications = models.TaxonomyClassification.objects.filter(
             level=0).order_by('code')
-        regions = models.Region.objects.all()
+        countries = models.Country.objects.all().order_by('name')
 
         laws = self.object_list
 
@@ -438,7 +438,7 @@ class LegislationExplorer(ListView):
             'laws': laws,
             'group_tags': group_tags,
             'top_classifications': top_classifications,
-            'regions': regions,
+            'countries': countries,
             'legislation_type': constants.LEGISLATION_TYPE,
             'legislation_year': legislation_year,
             'min_year': settings.MIN_YEAR,
