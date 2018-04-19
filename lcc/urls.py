@@ -1,4 +1,5 @@
 from django.conf.urls import url, include
+from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseServerError, HttpResponse
 from django.template import loader, TemplateDoesNotExist
 
@@ -35,7 +36,8 @@ auth_patterns = [
 
 article_patterns = [
     url(r'^add/$',
-        views.articles.AddArticles.as_view(),
+        permission_required('lcc.add_legislationarticle')(
+            views.articles.AddArticles.as_view()),
         name="add"),
 
     url(r'^$',
@@ -43,11 +45,13 @@ article_patterns = [
         name='view'),
 
     url(r'^(?P<article_pk>\d+)/edit/$',
-        views.articles.EditArticles.as_view(),
+        permission_required('lcc.change_legislationarticle')(
+            views.articles.EditArticles.as_view()),
         name='edit'),
 
     url(r'^(?P<article_pk>\d+)/delete/$',
-        views.articles.DeleteArticle.as_view(),
+        permission_required('lcc.delete_legislationarticle')(
+            views.articles.DeleteArticle.as_view()),
         name='delete'),
 ]
 

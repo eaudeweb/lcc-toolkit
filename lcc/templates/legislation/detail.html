@@ -29,12 +29,14 @@
           Delete Legislation
         </a>
       </li>
+      {% if perms.lcc.add_legislationarticle %}
       <li class="wide">
         <a class="btn btn-link"
            href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
           Add articles
         </a>
       </li>
+      {% endif %}
   {% endif %}
 </ul>
 {% endblock %}
@@ -78,7 +80,7 @@
           <div class="dt">{{ law.year_mention }}</div>
         </div>
     {% endif %}
-    
+
     <div class="dl">
       <div class="dd"><span>Geographical Coverage</span></div>
       <div class="dt">{% if law.geo_coverage %}{{ law.get_geo_coverage_display }}{% else %} - {% endif %}</div>
