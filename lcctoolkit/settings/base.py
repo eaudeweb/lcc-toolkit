@@ -120,3 +120,7 @@ TAXONOMY_CONNECTOR = '; '
 MIN_YEAR = 1945
 
 MAX_YEAR = datetime.now().year
+
+# File upload
+
+FILE_UPLOAD_PERMISSIONS = 0o644
