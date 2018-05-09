@@ -12,7 +12,8 @@ function preselectFilters() {
     var stop = 0;
 
     if(filters["q"]){
-      $("#textSearchInput").val(filters["q"]);
+      payload["q"] = filters["q"][0];
+      $("#textSearchInput").val(filters["q"][0]);
     }
 
     $("#classificationsSelect input").each(function(i, input){

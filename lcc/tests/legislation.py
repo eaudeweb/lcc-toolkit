@@ -71,6 +71,8 @@ class LegislationExplorer(TestCase):
         )
 
     def test_pdf_highlights(self):
+        mode = int("%o" % os.stat('lcc/tests/files/snake.pdf').st_mode)
+        self.assertEqual(mode, 100600)
         pdf_file = open('lcc/tests/files/snake.pdf', 'rb')
         law = Legislation.objects.create(
             title="Brazilian snakes",
@@ -79,6 +81,8 @@ class LegislationExplorer(TestCase):
             pdf_file=InMemoryUploadedFile(
                 pdf_file, None, 'snake.pdf', 'application/pdf', None, None)
         )
+        mode = int("%o" % os.stat(law.pdf_file.path).st_mode)
+        self.assertEqual(mode, 100644)
         law.save_pdf_pages()
         c = Client()
         response = c.get('/legislation/', {'q': "jararaca"})
