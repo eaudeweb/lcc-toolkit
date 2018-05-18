@@ -2,15 +2,6 @@
     margin-bottom: 0;
 }
 
-
-
-
-
-
-
-
-
-
 /* Set gray background color and 100% height */
 
 .sidenav {
@@ -21,16 +12,6 @@
         list-style-type: square;
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 /* On small screens, set height to 'auto' for sidenav and grid */
 
@@ -292,7 +273,7 @@ dfn {
 }
 
 .next_question {
-    width: 35rem;
+    width: calc(~"50% - 3rem");
     float: right;
     text-align: right;
     margin-top: 4rem;
@@ -305,6 +286,35 @@ dfn {
             vertical-align: middle
         }
     }
+}
+
+.prev_question {
+    width: calc(~"50% - 3rem");
+    float: left;
+    text-align: left;
+    margin-top: 4rem;
+    margin-right: 2rem;
+    .next {
+        font-size: 2rem;
+        margin-bottom: .5rem;
+        span {
+            margin-right: 0.5rem;
+            vertical-align: middle
+        }
+    }
+}
+
+.prev_category {
+    padding-left: 2.5rem;
+}
+
+.icon-flipped::before {
+    display: block;
+    transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    float: left;
 }
 
 body:not(.ass-results) {
@@ -353,12 +363,6 @@ body:not(.ass-results) {
     }
 }
 
-
-#assessment-results-btn {
-    margin-top: 5rem;
-    float: left;
-}
-
 .assessment-page {
     .page-menu {
         margin-bottom: 0;
@@ -376,10 +380,7 @@ body:not(.ass-results) {
                 display: block!important;
             }
     }
-}
-
-
-      
+}     
 
 #questions-container {
     border-left: 1px solid @border;
