@@ -473,3 +473,42 @@ class LegislationExplorer(TestCase):
 
     def tearDown(self):
         shutil.rmtree(settings.MEDIA_ROOT, ignore_errors=True)
+
+
+class LegislationExplorerOrder(TestCase):
+    fixtures = [
+        'Countries.json',
+        'Gaps.json',
+        'Questions.json',
+        'TaxonomyClassification.json',
+        'TaxonomyTag.json',
+        'TaxonomyTagGroup.json',
+        'LegislationForOrder.json',
+    ]
+
+    def setUp(self):
+        with open(os.devnull, 'w') as f:
+            call_command('search_index', '--rebuild', '-f', stdout=f)
+
+    def test_phrase_match_prioritized(self):
+
+        classifications = [1]
+        law_types = ['Law']
+
+        c = Client()
+        response = c.get(
+            '/legislation/',
+            {
+                'q': 'Exercise policy coordination',
+                'classifications[]': classifications,
+                'law_types[]': law_types
+            }
+        )
+
+        returned_law_ids = [law.id for law in response.context['laws']]
+
+        self.assertEqual(returned_law_ids[0], 69)
+
+        # 69 is the id of the only one of the 3 laws in the database that
+        # contains an article with the exact phrase
+        # "Exercise policy coordination". It must appear at the top.
