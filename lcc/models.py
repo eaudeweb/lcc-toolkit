@@ -1,10 +1,10 @@
 import math
+import re
 import time
 import pdftotext
 import pycountry
 import mptt.models
 
-from copy import deepcopy
 from operator import itemgetter
 from rolepermissions.roles import get_user_roles
 
@@ -16,7 +16,6 @@ from django.db import models, transaction
 from django.db.models import F, Subquery, OuterRef
 from django.db.models.signals import m2m_changed
 from django.urls import reverse
-from django.utils.safestring import mark_safe
 
 import lcc.utils as utils
 import lcc.constants as constants
@@ -638,13 +637,16 @@ class LegislationArticle(_TaxonomyModel):
     legislation = models.ForeignKey(Legislation, related_name="articles")
     legislation_page = models.IntegerField()
     code = models.CharField(max_length=256)  # aka Article number
+    number = models.IntegerField(blank=True, null=True)  # populated from code
     identifier = models.IntegerField(blank=True, null=True, default=None)
 
     objects = LegislationArticleManager()
 
-    # @TODO: Change the __str__ to something more appropriate
+    class Meta(_TaxonomyModel.Meta):
+        ordering = ['number', 'code']
+
     def __str__(self):
-        return "Article: %s" % str(self.legislation)
+        return self.code
 
     def classifications_text(self):
         return settings.TAXONOMY_CONNECTOR.join(
@@ -661,6 +663,12 @@ class LegislationArticle(_TaxonomyModel):
     def parent_classifications(self):
         return settings.TAXONOMY_CONNECTOR.join(
             self.legislation.classifications.values_list('name', flat=True))
+
+    def save(self, *args, **kwargs):
+        match = re.search('\d+', self.code)
+        if match:
+            self.number = int(match.group(0))
+        return super().save(*args, **kwargs)
 
 
 class LegislationPage(models.Model):
