@@ -159,3 +159,30 @@ class Articles(TestCase):
             'href="/legislation/{}/articles/{}/delete/"'.format(
                 self.law.id, self.article.id)
         )
+
+    def test_article_order(self):
+        law = Legislation.objects.last()
+        for number in [3, 1, 2]:  # Not in order
+            law.articles.create(
+                text="Brown rabbits are commonly seen.",
+                legislation_page=number,  # Any value, doesn't matter
+                code="Art. {} of the law".format(number)
+            )
+        # In order
+        self.assertEqual(
+            list(law.articles.values_list('number', flat=True)), [1, 2, 3])
+
+    def test_article_number_updated(self):
+        law = Legislation.objects.last()
+        for number in [3, 1, 5]:  # Not in order
+            law.articles.create(
+                text="Brown rabbits are commonly seen.",
+                legislation_page=number,  # Any value, doesn't matter
+                code="Art. {} of the law".format(number)
+            )
+
+        article = law.articles.get(number=5)
+        article.code = "Art. 2 of the law"
+        article.save()
+
+        self.assertEqual(article.number, 2)
