@@ -18,7 +18,7 @@
 {% block content-title %}{% endblock %}
 
 {% block page-title %}Edit Articles{% endblock %}
-{% block page-menu %} 
+{% block page-menu %}
   {% include 'legislation/navigation.html' %}
 {% endblock %}
 
@@ -37,7 +37,7 @@
         <div class="container">
            <span>
                 <a href="{% url 'lcc:legislation:explorer' %}">Home</a></span>
-           <span> 
+           <span>
               <i class="icon-right-open-mini"></i>
               <figure style="display: inline-block;width: 25px; height: 18.75px; margin: 0">
                 <img style="max-width: 100%; max-height: 100%;" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg">
@@ -67,7 +67,7 @@
         </div>
         <div>
           <!-- TODO change classes to code  -->
-          <input class='law-meta-data-text-field' type="text" name="code" maxlength="64" required id="id_code" placeholder="Ex: 1.2.3.4" value="{{ article.code }}" />
+          <input class='law-meta-data-text-field' type="text" name="code" maxlength="256" required id="id_code" placeholder="Ex: 1.2.3.4" value="{{ article.code }}" />
         </div>
       </div>
 
@@ -130,7 +130,7 @@
             {% endfor %}
           </ul>
         </div>
-      </div> 
+      </div>
 
       <div class="classificaions wrapper">
         <div>
@@ -152,7 +152,7 @@
                       <i class="fa fa-caret-down" aria-hidden="true"></i>
                     {% endif %}
                 </span>
-                  
+
                 <ul class="second-level level">
                   {% for second_class in second_classifications %}
                     <li>
@@ -171,7 +171,7 @@
                             <input name='classification_{{third_class.pk}}' id='classification_{{ third_class.pk }}' type=checkbox
                                 {% if third_class.name in selected_classifications %}
                                   checked
-                                {% endif %}> 
+                                {% endif %}>
                             </input>
                             <label for="classification_{{ third_class.pk }}">{{ third_class.name }}</label>
                           </li>

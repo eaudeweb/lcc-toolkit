@@ -288,7 +288,14 @@ class LegislationExplorer(ListView):
             ]
             # Compose nested document search inside articles
             article_q_query = [
-                Q('multi_match', query=q, fields=['articles.text'])
+                Q('multi_match', query=q, fields=['articles.text']) |
+                Q(
+                    'constant_score', boost=50, filter={
+                        "match_phrase": {
+                            "articles.text": "Exercise policy coordination"
+                        }
+                    }
+                )
             ]
             article_q_highlights = {'articles.text': {}}
 
@@ -299,6 +306,8 @@ class LegislationExplorer(ListView):
                 'bool', must=law_queries + law_q_query + ([
                     Q(
                         'nested',
+                        score_mode='max',
+                        # boost=10,
                         path='articles',
                         query=Q(
                             reduce(
@@ -316,6 +325,8 @@ class LegislationExplorer(ListView):
                 'bool', must=law_queries + ([
                     Q(
                         'nested',
+                        score_mode='max',
+                        # boost=10,
                         path='articles',
                         query=Q(
                             reduce(
@@ -346,6 +357,8 @@ class LegislationExplorer(ListView):
             )] if law_queries else []
             nested_query = [Q(
                 'nested',
+                score_mode='max',
+                # boost=10,
                 path='articles',
                 query=Q(
                     reduce(

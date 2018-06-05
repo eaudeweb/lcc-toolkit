@@ -1,5 +1,7 @@
 import json
 
+from http import HTTPStatus
+
 from django.contrib import auth
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -24,7 +26,9 @@ class Login(TemplateView):
                 json.dumps({'msg': constants.AJAX_RETURN_SUCCESS}))
         else:
             return HttpResponse(
-                json.dumps({'msg': constants.AJAX_RETURN_FAILURE}))
+                json.dumps({'msg': constants.AJAX_RETURN_FAILURE}),
+                status=HTTPStatus.UNAUTHORIZED
+            )
 
 
 class Logout(View):

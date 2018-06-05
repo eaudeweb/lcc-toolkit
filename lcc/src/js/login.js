@@ -10,7 +10,7 @@ $(document).ready(function(){
 
     $("#login-btn").click(function(e){
 
-      var formData = $('#login-form').serialize(); 
+      var formData = $('#login-form').serialize();
       var username = $('input[name=username]').val();
       var password = $('input[name=password').val();
 
@@ -22,12 +22,12 @@ $(document).ready(function(){
       }
 
       $.ajax({
-        type: 'POST', 
+        type: 'POST',
         url: '/login/',
         cache: false,
         dataType: 'json',
         data: formData,
-        success: 
+        success:
             function (data) {
                 var next = $('#next_page').val();
                 if (next) {
@@ -38,7 +38,7 @@ $(document).ready(function(){
             },
         error:
             function(xhr, ajaxOptions, thrownError) {
-                abort("Error:" + xhr.status +  thrownError);
+                $('#auth-failed-error-msg').removeClass("hidden");
             }
       });
 

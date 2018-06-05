@@ -107,6 +107,14 @@ $(document).ready(function() {
 
     preselectFilters();
 
+    $("#classificationsSelect input").each(function(i, input){
+      var $input = $(input);
+      $input.click(function(){
+        $input.closest('li').parents('li').find(
+            '> span > input:first-child').prop('checked', true);
+      });
+    });
+
     var slider_text = document.getElementById('yearSlider');
 
     var slider_values = [
