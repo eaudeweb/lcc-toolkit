@@ -21,6 +21,7 @@ class LegislationExplorer(TestCase):
     ]
 
     def setUp(self):
+        os.chmod("lcc/tests/files/snake.pdf", 0o600)
         with open(os.devnull, 'w') as f:
             call_command('search_index', '--rebuild', '-f', stdout=f)
 
