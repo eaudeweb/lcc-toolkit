@@ -430,7 +430,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     home_country = models.ForeignKey(
-        Country, related_name='home_country', null=True)
+        Country, related_name='home_country')
     countries = models.ManyToManyField(Country)
 
     affiliation = models.CharField(
