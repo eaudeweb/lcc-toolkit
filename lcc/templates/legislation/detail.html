@@ -16,12 +16,15 @@
     {% endwith %}
     {% if request.user.is_authenticated %}
       <span class="separator"></span>
+      {% if perms.lcc.change_legislation %}
       <li class="wide">
         <a class="btn btn-link"
            href="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
           Edit Legislation
         </a>
       </li>
+      {% endif %}
+      {% if perms.lcc.delete_legislation %}
       <li class="wide">
         <a class="btn btn-link"
            href="{% url 'lcc:legislation:delete' legislation_pk=law.pk %}"
@@ -29,6 +32,7 @@
           Delete Legislation
         </a>
       </li>
+      {% endif %}
       {% if perms.lcc.add_legislationarticle %}
       <li class="wide">
         <a class="btn btn-link"
