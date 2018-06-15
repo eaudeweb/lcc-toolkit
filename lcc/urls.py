@@ -61,7 +61,8 @@ legislation_patterns = [
         name="explorer"),
 
     url(r'^add/$',
-        views.legislation.LegislationAdd.as_view(),
+        permission_required('lcc.add_legislation')(
+            views.legislation.LegislationAdd.as_view()),
         name='add'),
 
     url(r'^(?P<legislation_pk>\d+)/$',
@@ -69,11 +70,13 @@ legislation_patterns = [
         name="details"),
 
     url(r'^(?P<legislation_pk>\d+)/edit/$',
-        views.legislation.LegislationEditView.as_view(),
+        permission_required('lcc.change_legislation')(
+            views.legislation.LegislationEditView.as_view()),
         name='edit'),
 
     url(r'^(?P<legislation_pk>\d+)/delete/$',
-        views.legislation.LegislationDeleteView.as_view(),
+        permission_required('lcc.delete_legislation')(
+            views.legislation.LegislationDeleteView.as_view()),
         name='delete'),
 
     url(r'^(?P<legislation_pk>\d+)/pages/$',
