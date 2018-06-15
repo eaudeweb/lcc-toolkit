@@ -18,7 +18,9 @@
 
 {% block page-menu %}
 <ul>
+  {% if perms.lcc.add_legislation %}
   <li><a href="{% url 'lcc:legislation:add' %}" class="btn btn-primary">Add legislation</a></li>
+  {% endif %}
 </ul>
 {% endblock %}
 
