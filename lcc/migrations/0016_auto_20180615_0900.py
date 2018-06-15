@@ -18,7 +18,7 @@ def update_group_permissions(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0012_auto_20180417_0900'),
+        ('lcc', '0015_auto_20180606_0725'),
     ]
 
     operations = [
