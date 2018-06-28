@@ -292,7 +292,7 @@ class LegislationExplorer(ListView):
                 Q(
                     'constant_score', boost=50, filter={
                         "match_phrase": {
-                            "articles.text": "Exercise policy coordination"
+                            "articles.text": q
                         }
                     }
                 )
