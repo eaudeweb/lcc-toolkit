@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="945" height="630" viewBox="-13.5 -9 27 18">
+<desc>Flag of the European Union</desc>
+<defs>
+   <g id="star">
+      <g id="cone">
+	<path id="triangle" d="M0,0 v1 h0.5 z" transform="translate(0,-1) rotate(18)"/>
+	<use xlink:href="#triangle" transform="scale(-1,1)"/>
+      </g>
+	<use xlink:href="#cone" transform="rotate(72)"/>
+	<use xlink:href="#cone" transform="rotate(144)"/>
+	<use xlink:href="#cone" transform="rotate(216)"/>
+	<use xlink:href="#cone" transform="rotate(288)"/>
+   </g>
+</defs>
+	<path d="M-13.5,-9 v18 h27 v-18 z" fill="#003399"/>
+	
+   <g fill="#ffcc00">
+	<use xlink:href="#star" y="-6"/>
+      <g id="rtl">
+	<use xlink:href="#star" transform="rotate(30) translate(0,6) rotate(42)"/>
+	<use xlink:href="#star" transform="rotate(60) translate(0,6) rotate(12)"/>
+	<use xlink:href="#star" x="6"/>
+	<use xlink:href="#star" transform="rotate(120) translate(0,6) rotate(24)"/>
+	<use xlink:href="#star" transform="rotate(150) translate(0,6) rotate(66)"/>
+      </g>
+	<use xlink:href="#star" y="6"/>
+	<use xlink:href="#rtl" transform="scale(-1,1)"/>
+   </g>
+</svg>
