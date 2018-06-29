@@ -107,12 +107,18 @@ $(document).ready(function() {
 
     preselectFilters();
 
-    $("#classificationsSelect input").each(function(i, input){
+    $(".third-level input").each(function(i, input){
       var $input = $(input);
-      $input.click(function(){
-        $input.closest('li').parents('li').find(
-            '> span > input:first-child').prop('checked', true);
-      });
+      $input
+        .click(function(){
+          if ($input.prop('checked')){
+            $input
+              .closest('ul')
+              .siblings('span')
+              .find('> input:first-child')
+              .prop('checked', true);
+          }
+        });
     });
 
     var slider_text = document.getElementById('yearSlider');
