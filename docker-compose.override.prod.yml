@@ -83,7 +83,7 @@ services:
     image: eeacms/postfix:2.10-3.1
     container_name: lcct.postfix
     environment:
-      - MTP_HOST=lcc.eaudeweb.ro
+      - MTP_HOST=climatelawtoolkit.org
 
 volumes:
   static-files:
