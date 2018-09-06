@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:3.6-slim
 MAINTAINER "Eau de Web" <office@eaudeweb.ro>
 
 ARG REQFILE=requirements-prod.txt
