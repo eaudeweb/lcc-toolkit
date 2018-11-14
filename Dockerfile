@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:3.6-slim
 MAINTAINER "Eau de Web" <office@eaudeweb.ro>
 
 ARG REQFILE=requirements-prod.txt
@@ -11,7 +11,7 @@ ENV PYTHONUNBUFFERED=1 \
 RUN mkdir -p /usr/share/man/man1 \
     && mkdir -p /usr/share/man/man7
 
-RUN runDeps="curl gnupg build-essential libpoppler-cpp-dev pkg-config postgresql-client python3-dev python3-cffi libcairo2 libpango1.0-0 libpangocairo-1.0.0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info" \
+RUN runDeps="curl gnupg build-essential libpoppler-cpp-dev pkg-config postgresql-client python3-dev python3-cffi libcairo2 libpango1.0-0 libpangocairo-1.0.0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info libpq-dev" \
     && apt-get update \
     && apt-get install -y --no-install-recommends $runDeps \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
