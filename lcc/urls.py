@@ -36,6 +36,10 @@ auth_patterns = [
         views.auth.ChangePasswordView.as_view(),
         name='change_password'),
 
+    url(r'^password_reset/$',
+        views.register.PasswordResetView.as_view(),
+        name='password_reset'),
+
 ]
 
 

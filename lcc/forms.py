@@ -7,6 +7,7 @@ from itertools import chain
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
+from django.contrib.auth.forms import PasswordResetForm
 from django.forms import ModelForm
 from django.db.models import Q
 
@@ -179,6 +180,19 @@ class ApproveRegistration(ModelForm):
         self.instance.user.delete()
         notify(email)
 
+
+class PasswordResetNoUserForm(PasswordResetForm):
+    """
+       This subclass doesn't validate the form
+       if there is no user with the e-mail provided.
+    """
+    def clean(self):
+        context = super(PasswordResetForm, self).clean()
+        try:
+            models.User.objects.get(username=context['email'])
+        except models.User.DoesNotExist:
+            raise ValidationError("There is no user with this e-mail.")
+        return context
 
 class CountryBase(ModelForm):
     """ Used on view. """
