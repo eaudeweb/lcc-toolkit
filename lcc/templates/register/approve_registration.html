@@ -30,8 +30,12 @@
           {% endfor %}
         </dd>
       </dl>
-      <input type="submit" name="approve" value="Approve" class="btn btn-success" />
-      <input type="submit" name="deny" value="Deny" class="btn btn-danger" />
+      {% if not profile.user.is_active %}
+        <input type="submit" name="approve" value="Approve" class="btn btn-success" />
+        <input type="submit" name="deny" value="Deny" class="btn btn-danger" />
+      {% else %}
+        <p>The registration was already approved.</p>
+      {% endif %}
     </form>
     {% elif approved %}
     <p>Registration approved.</p>
