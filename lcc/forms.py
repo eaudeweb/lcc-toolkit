@@ -95,6 +95,8 @@ class LegislationForm(ModelForm):
 
 class RegisterForm(ModelForm):
 
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=150)
     email = forms.EmailField(label='Email address')
     role = forms.ChoiceField(
         label='Desired role',
@@ -131,11 +133,18 @@ class RegisterForm(ModelForm):
     def save(self, commit=False):
         profile = super().save(commit=False)
 
+        first_name = self.cleaned_data['first_name']
+        last_name = self.cleaned_data['last_name']
         email = self.cleaned_data['email']
         role = RolesManager.retrieve_role(self.cleaned_data['role'])
 
         # create user
-        user = models.User.objects.create_user(email, email=email)
+        user = models.User.objects.create_user(
+            email,
+            email=email,
+            first_name=first_name,
+            last_name=last_name
+        )
         role.assign_role_to_user(user)
         user.is_active = False
         user.save()

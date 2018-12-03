@@ -12,6 +12,10 @@
     <form role="form" method="POST">
       {% csrf_token %}
       <dl>
+        <dt>First name</dt>
+        <dd>{{ profile.user.first_name }}</dd>
+        <dt>Last name</dt>
+        <dd>{{ profile.user.last_name }}</dd>
         <dt>Email</dt>
         <dd><a href="mailto:{{ profile.user.email }}">{{ profile.user.email }}</a></dd>
         <dt>Institutional affiliation</dt>
