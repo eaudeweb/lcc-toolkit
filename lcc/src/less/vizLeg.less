@@ -82,23 +82,23 @@
         margin-bottom: 2rem!important;
         width: 72%;
         &:target {
-            .article-wrapper{
-            border: 1px solid @border;
-            border-left: 5px solid @link-color;
-            padding-left: 2rem;
-            padding-top: 1rem;
+            .article-wrapper {
+                border: 1px solid @border;
+                border-left: 5px solid @link-color;
+                padding-left: 2rem;
+                padding-top: 1rem;
             }
-        .article-title {
+            .article-title {
+                &:before {
+                    display: block;
+                }
+            }
             &:before {
                 display: block;
+                content: ""; 
+                margin-top: 80px; 
+                visibility: hidden; 
             }
-        }
-        &:before {
-            display: block; 
-          content: ""; 
-          margin-top: 80px; 
-          visibility: hidden; 
-        }
         }
         pre {
             padding: 1rem 0;
@@ -230,10 +230,27 @@
     -ms-user-select: none;
     user-select: none;
 }
+.btn-primary {
+    color: #fff;
+    background-color: #0052CC;
+    border-color: #007bff;
+}
+.btn-secondary {
+    color: #fff;
+    background-color: #868e96;
+    border-color: #868e96;
+}
 .btn-alt {
     color: #666;
     background-color: #fff;
     border-color: #ccc;
+}
+.btn-link {
+    font-weight: 400;
+    color: #0052CC;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
 }
 .btn-group-sm>.btn, .btn-sm {
     padding: 5px 10px;
