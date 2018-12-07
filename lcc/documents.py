@@ -25,6 +25,7 @@ class LegislationDocument(DocType):
     article_tags = fields.TextField(term_vector='with_positions_offsets')
 
     country = fields.KeywordField()
+    country_name =  fields.KeywordField(attr='country.name')
 
     law_type = fields.KeywordField()
 

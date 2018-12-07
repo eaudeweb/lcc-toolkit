@@ -32,11 +32,14 @@ class HighlightedLaws:
     pagination API.
     """
 
-    def __init__(self, search):
+    def __init__(self, search, sort=None):
         self.search = search
+        self.sort =  sort
 
     def __getitem__(self, key):
         hits = self.search[key]
+        if self.sort:
+            return hits.sort(self.sort).to_queryset()
         laws = []
         matched_article_tags = []
         matched_article_classifications = []
@@ -159,6 +162,20 @@ class HighlightedLaws:
 class LegislationExplorer(ListView):
     template_name = "legislation/explorer.html"
     model = models.Legislation
+
+    def get_sort(self):
+        promulgation_sort = self.request.GET.get("promulgation_sort")
+        country_sort = self.request.GET.get("country_sort")
+        if promulgation_sort:
+            if promulgation_sort == '1':
+                return 'year'
+            else:
+                return '-year'
+        if country_sort:
+            if country_sort == '1':
+                return 'country_name'
+            else:
+                return '-country_name'
 
     def get_queryset(self):
         """
@@ -300,124 +317,126 @@ class LegislationExplorer(ListView):
             article_q_highlights = {'articles.text': {}}
 
         search = LegislationDocument.search()
+        sort = self.get_sort()
 
-        if q:
-            q_in_law = Q(
-                'bool', must=law_queries + law_q_query + ([
-                    Q(
-                        'nested',
-                        score_mode='max',
-                        # boost=10,
-                        path='articles',
-                        query=Q(
-                            reduce(
-                                operator.and_,
-                                article_queries
-                            )
-                        ),
-                        inner_hits={
-                            'highlight': {'fields': article_highlights}
-                        }
-                    )
-                ] if article_queries else [])
-            )
-            q_in_article = Q(
-                'bool', must=law_queries + ([
-                    Q(
-                        'nested',
-                        score_mode='max',
-                        # boost=10,
-                        path='articles',
-                        query=Q(
-                            reduce(
-                                operator.and_,
-                                article_queries + article_q_query
-                            )
-                        ),
-                        inner_hits={
-                            'highlight': {
-                                'fields': {
-                                    **article_highlights,
-                                    **article_q_highlights
+        if not sort:
+            if q:
+                q_in_law = Q(
+                    'bool', must=law_queries + law_q_query + ([
+                        Q(
+                            'nested',
+                            score_mode='max',
+                            # boost=10,
+                            path='articles',
+                            query=Q(
+                                reduce(
+                                    operator.and_,
+                                    article_queries
+                                )
+                            ),
+                            inner_hits={
+                                'highlight': {'fields': article_highlights}
+                            }
+                        )
+                    ] if article_queries else [])
+                )
+                q_in_article = Q(
+                    'bool', must=law_queries + ([
+                        Q(
+                            'nested',
+                            score_mode='max',
+                            # boost=10,
+                            path='articles',
+                            query=Q(
+                                reduce(
+                                    operator.and_,
+                                    article_queries + article_q_query
+                                )
+                            ),
+                            inner_hits={
+                                'highlight': {
+                                    'fields': {
+                                        **article_highlights,
+                                        **article_q_highlights
+                                    }
                                 }
                             }
-                        }
-                    )
-                ] if article_queries or article_q_query else [])
-            )
-            search = search.query(q_in_law | q_in_article).highlight(
-                'abstract', 'pdf_text'
-            )
-        else:
-            root_query = [Q(
-                reduce(
-                    operator.and_,
-                    law_queries
+                        )
+                    ] if article_queries or article_q_query else [])
                 )
-            )] if law_queries else []
-            nested_query = [Q(
-                'nested',
-                score_mode='max',
-                # boost=10,
-                path='articles',
-                query=Q(
+                search = search.query(q_in_law | q_in_article).highlight(
+                    'abstract', 'pdf_text'
+                )
+            else:
+                root_query = [Q(
                     reduce(
                         operator.and_,
-                        article_queries
+                        law_queries
                     )
-                ),
-                inner_hits={
-                    'highlight': {'fields': article_highlights}
-                }
-            )] if article_queries else []
-            final_query = []
-            if root_query:
-                final_query += root_query
-                if nested_query:
-                    # Necessary for highlights
-                    final_query += root_query and nested_query
-            if final_query:
+                )] if law_queries else []
+                nested_query = [Q(
+                    'nested',
+                    score_mode='max',
+                    # boost=10,
+                    path='articles',
+                    query=Q(
+                        reduce(
+                            operator.and_,
+                            article_queries
+                        )
+                    ),
+                    inner_hits={
+                        'highlight': {'fields': article_highlights}
+                    }
+                )] if article_queries else []
+                final_query = []
+                if root_query:
+                    final_query += root_query
+                    if nested_query:
+                        # Necessary for highlights
+                        final_query += root_query and nested_query
+                if final_query:
+                    search = search.query(
+                        'bool', should=final_query,
+                        minimum_should_match=1
+                    )
+
+            # String representing country iso code
+            countries = self.request.GET.getlist('countries[]')
+            if countries:
+                search = search.query('terms', country=countries)
+
+            # String representing law_type
+            law_types = self.request.GET.getlist('law_types[]')
+            if law_types:
+                search = search.query('terms', law_type=law_types)
+
+            # String representing the minimum year allowed in the results
+            from_year = self.request.GET.get('from_year')
+            # String representing the maximum year allowed in the results
+            to_year = self.request.GET.get('to_year')
+
+            if all([from_year, to_year]):
                 search = search.query(
-                    'bool', should=final_query,
-                    minimum_should_match=1
+                    Q('range', year={'gte': int(from_year), 'lte': int(to_year)}) |
+                    Q('range', year_amendment={
+                        'gte': int(from_year), 'lte': int(to_year)}) |
+                    Q('range', year_mentions={
+                        'gte': int(from_year), 'lte': int(to_year)})
                 )
 
-        # String representing country iso code
-        countries = self.request.GET.getlist('countries[]')
-        if countries:
-            search = search.query('terms', country=countries)
-
-        # String representing law_type
-        law_types = self.request.GET.getlist('law_types[]')
-        if law_types:
-            search = search.query('terms', law_type=law_types)
-
-        # String representing the minimum year allowed in the results
-        from_year = self.request.GET.get('from_year')
-        # String representing the maximum year allowed in the results
-        to_year = self.request.GET.get('to_year')
-
-        if all([from_year, to_year]):
-            search = search.query(
-                Q('range', year={'gte': int(from_year), 'lte': int(to_year)}) |
-                Q('range', year_amendment={
-                    'gte': int(from_year), 'lte': int(to_year)}) |
-                Q('range', year_mentions={
-                    'gte': int(from_year), 'lte': int(to_year)})
+            search = search.highlight(
+                'title', 'classifications', 'article_classifications', 'tags',
+                'article_tags', number_of_fragments=0
             )
 
-        search = search.highlight(
-            'title', 'classifications', 'article_classifications', 'tags',
-            'article_tags', number_of_fragments=0
-        )
+            if not any([classification_ids, tag_ids, q]):
+                # If there is no score to sort by, sort by id
+                search = search.sort('id')
 
-        if not any([classification_ids, tag_ids, q]):
-            # If there is no score to sort by, sort by id
-            search = search.sort('id')
+            # import json; print(json.dumps(search.to_dict(), indent=2))
 
-        # import json; print(json.dumps(search.to_dict(), indent=2))
-
-        all_laws = HighlightedLaws(search)
+        all_laws = HighlightedLaws(search, sort)
 
         paginator = Paginator(all_laws, settings.LAWS_PER_PAGE)
 
