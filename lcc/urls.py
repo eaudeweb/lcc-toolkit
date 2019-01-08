@@ -31,6 +31,15 @@ auth_patterns = [
     url(r'^approve/(?P<profile_id_b64>[0-9A-Za-z_\-]+)$',
         views.register.ApproveRegistration.as_view(),
         name='approve'),
+
+    url(r'^change_password/',
+        views.auth.ChangePasswordView.as_view(),
+        name='change_password'),
+
+    url(r'^password_reset/$',
+        views.register.PasswordResetView.as_view(),
+        name='password_reset'),
+
 ]
 
 

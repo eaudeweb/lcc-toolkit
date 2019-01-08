@@ -415,7 +415,7 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 14,
+        "tree_id": 30,
         "level": 0
     }
 },
@@ -430,7 +430,7 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 21,
+        "tree_id": 37,
         "level": 0
     }
 },
@@ -445,7 +445,7 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 26,
+        "tree_id": 42,
         "level": 0
     }
 },
@@ -490,7 +490,7 @@
         "classification": 35,
         "lft": 1,
         "rght": 4,
-        "tree_id": 15,
+        "tree_id": 31,
         "level": 0
     }
 },
@@ -505,7 +505,7 @@
         "classification": null,
         "lft": 2,
         "rght": 3,
-        "tree_id": 15,
+        "tree_id": 31,
         "level": 1
     }
 },
@@ -520,7 +520,7 @@
         "classification": 35,
         "lft": 1,
         "rght": 2,
-        "tree_id": 22,
+        "tree_id": 38,
         "level": 0
     }
 },
@@ -535,7 +535,7 @@
         "classification": 35,
         "lft": 1,
         "rght": 2,
-        "tree_id": 27,
+        "tree_id": 43,
         "level": 0
     }
 },
@@ -580,7 +580,7 @@
         "classification": 24,
         "lft": 1,
         "rght": 2,
-        "tree_id": 16,
+        "tree_id": 32,
         "level": 0
     }
 },
@@ -595,713 +595,2154 @@
         "classification": 24,
         "lft": 1,
         "rght": 2,
-        "tree_id": 23,
+        "tree_id": 39,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 41,
+    "pk": 88,
     "fields": {
-        "text": "Does your country have provisions of laws or regulations imposing obligations on government to set targets and promote renewable energy?",
+        "text": "Does your country have legislation (or other formal law) imposing obligations on government to set targets or create plans/strategies relating to the overall energy system?",
         "parent": null,
         "parent_answer": null,
         "order": 1,
-        "classification": 46,
+        "classification": 98,
         "lft": 1,
-        "rght": 10,
-        "tree_id": 7,
+        "rght": 14,
+        "tree_id": 14,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 42,
+    "pk": 89,
     "fields": {
-        "text": "Does this include:",
-        "parent": 41,
+        "text": "Does this include provisions requiring an integrated energy plan?",
+        "parent": 88,
         "parent_answer": true,
         "order": 1,
-        "classification": null,
+        "classification": 99,
         "lft": 2,
-        "rght": 9,
-        "tree_id": 7,
+        "rght": 3,
+        "tree_id": 14,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 43,
+    "pk": 90,
     "fields": {
-        "text": "A renewable energy target?",
-        "parent": 42,
-        "parent_answer": null,
+        "text": "Does this include provisions requiring an estimation of future energy demand?",
+        "parent": 88,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 100,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 14,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 91,
+    "fields": {
+        "text": "Does this include energy access provisions?",
+        "parent": 88,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 101,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 14,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 92,
+    "fields": {
+        "text": "Does this include provisions requiring a diversification or mix of energy supply?",
+        "parent": 88,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 102,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 14,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 93,
+    "fields": {
+        "text": "Does this include electricity interconnection provisions?",
+        "parent": 88,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 103,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 14,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 94,
+    "fields": {
+        "text": "Does this include provisions requiring market parity between different sources of energy?",
+        "parent": 88,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 104,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 14,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 95,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) establishing governance bodies for the energy system or regulating how it is governed?",
+        "parent": null,
+        "parent_answer": true,
         "order": 1,
-        "classification": null,
+        "classification": 105,
+        "lft": 1,
+        "rght": 12,
+        "tree_id": 15,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 96,
+    "fields": {
+        "text": "Does this include provisions establishing a body responsible for co-ordination between the different energy sectors/sources?",
+        "parent": 95,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 106,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 15,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 97,
+    "fields": {
+        "text": "Does this include provisions establishing an energy system advisory body?",
+        "parent": 95,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 107,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 15,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 98,
+    "fields": {
+        "text": "Does this include provisions establishing an energy distribution/grid management body?",
+        "parent": 95,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 108,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 15,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 99,
+    "fields": {
+        "text": "Does this include provisions establishing an energy regulator?",
+        "parent": 95,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 109,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 15,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 100,
+    "fields": {
+        "text": "Does this include provisions requiring consultation of various stakeholders in governing the energy system?",
+        "parent": 95,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 110,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 15,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 101,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) related to carbon transition planning?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 111,
+        "lft": 1,
+        "rght": 34,
+        "tree_id": 16,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 102,
+    "fields": {
+        "text": "Does this include provisions establishing targets for decarbonisation?",
+        "parent": 101,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 112,
+        "lft": 2,
+        "rght": 11,
+        "tree_id": 16,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 103,
+    "fields": {
+        "text": "Are there specific targets for Electricity?",
+        "parent": 102,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 112,
         "lft": 3,
         "rght": 4,
-        "tree_id": 7,
+        "tree_id": 16,
         "level": 2
     }
 },
 {
     "model": "lcc.question",
-    "pk": 44,
+    "pk": 104,
     "fields": {
-        "text": "A renewable energy strategy or plan?",
-        "parent": 42,
-        "parent_answer": null,
+        "text": "Are there specific targets for Heating and cooling?",
+        "parent": 102,
+        "parent_answer": true,
         "order": 2,
-        "classification": null,
+        "classification": 113,
         "lft": 5,
         "rght": 6,
-        "tree_id": 7,
+        "tree_id": 16,
         "level": 2
     }
 },
 {
     "model": "lcc.question",
-    "pk": 45,
+    "pk": 105,
     "fields": {
-        "text": "A duty on a government agency to promote renewables?",
-        "parent": 42,
-        "parent_answer": null,
+        "text": "Are there specific targets for Transport?",
+        "parent": 102,
+        "parent_answer": true,
         "order": 3,
-        "classification": null,
+        "classification": 114,
         "lft": 7,
         "rght": 8,
-        "tree_id": 7,
+        "tree_id": 16,
         "level": 2
     }
 },
 {
     "model": "lcc.question",
-    "pk": 46,
+    "pk": 106,
     "fields": {
-        "text": "Does your country have provisions of laws or regulations mandating the production, distribution and/or consumption of one or more specific renewable energy sources (wind, solar etc)?",
-        "parent": null,
-        "parent_answer": null,
+        "text": "Are there specific targets for Industry?",
+        "parent": 102,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 115,
+        "lft": 9,
+        "rght": 10,
+        "tree_id": 16,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 107,
+    "fields": {
+        "text": "Does this include provisions requiring the phase-out of high carbon sources?",
+        "parent": 101,
+        "parent_answer": true,
         "order": 2,
-        "classification": 46,
+        "classification": 116,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 16,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 108,
+    "fields": {
+        "text": "Does this include just transition provisions?",
+        "parent": 101,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 117,
+        "lft": 14,
+        "rght": 23,
+        "tree_id": 16,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 109,
+    "fields": {
+        "text": "Are there specific provisions for Electricity?",
+        "parent": 108,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 117,
+        "lft": 15,
+        "rght": 16,
+        "tree_id": 16,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 110,
+    "fields": {
+        "text": "Are there specific provisions for Heating and cooling?",
+        "parent": 108,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 118,
+        "lft": 17,
+        "rght": 18,
+        "tree_id": 16,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 111,
+    "fields": {
+        "text": "Are there specific provisions for Transport?",
+        "parent": 108,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 119,
+        "lft": 19,
+        "rght": 20,
+        "tree_id": 16,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 112,
+    "fields": {
+        "text": "Are there specific provisions for Industry?",
+        "parent": 108,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 120,
+        "lft": 21,
+        "rght": 22,
+        "tree_id": 16,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 113,
+    "fields": {
+        "text": "Does this include provisions aimed at the reduction of energy demand?",
+        "parent": 101,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 121,
+        "lft": 24,
+        "rght": 33,
+        "tree_id": 16,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 114,
+    "fields": {
+        "text": "Are there specific provisions for Electricity?",
+        "parent": 113,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 121,
+        "lft": 25,
+        "rght": 26,
+        "tree_id": 16,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 115,
+    "fields": {
+        "text": "Are there specific provisions for Heating and cooling?",
+        "parent": 113,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 122,
+        "lft": 27,
+        "rght": 28,
+        "tree_id": 16,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 116,
+    "fields": {
+        "text": "Are there specific provisions for Transport?",
+        "parent": 113,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 123,
+        "lft": 29,
+        "rght": 30,
+        "tree_id": 16,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 117,
+    "fields": {
+        "text": "Are there specific provisions for Industry?",
+        "parent": 113,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 124,
+        "lft": 31,
+        "rght": 32,
+        "tree_id": 16,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 118,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) imposing obligations on government to set targets or create plans/strategies relating to the production of renewable energy?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 126,
         "lft": 1,
-        "rght": 2,
+        "rght": 12,
         "tree_id": 17,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 47,
+    "pk": 119,
     "fields": {
-        "text": "Does your country have provisions of laws or regulations regulating who can provide renewable energy?",
-        "parent": null,
-        "parent_answer": null,
+        "text": "Does this include provisions establishing targets for renewable energy production?",
+        "parent": 118,
+        "parent_answer": true,
         "order": 1,
-        "classification": 51,
-        "lft": 1,
-        "rght": 2,
-        "tree_id": 8,
-        "level": 0
+        "classification": 127,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 17,
+        "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 48,
+    "pk": 120,
     "fields": {
-        "text": "Does your country have provisions of laws or regulations imposing obligations on energy providers (e.g. to produce and supply renewable energy, to maintain equipment, comply with standards etc.) and establishing their corresponding rights?",
-        "parent": null,
-        "parent_answer": null,
+        "text": "Does this include provisions requiring a strategy/plan for renewable energy production?",
+        "parent": 118,
+        "parent_answer": true,
         "order": 2,
-        "classification": 51,
+        "classification": 128,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 17,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 121,
+    "fields": {
+        "text": "Does this include provisions prescribing the levels of production from different renewable energy sources?",
+        "parent": 118,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 129,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 17,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 122,
+    "fields": {
+        "text": "Does this include provisions establishing a goal/obligation to promote renewable energy?",
+        "parent": 118,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 130,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 17,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 123,
+    "fields": {
+        "text": "Does this include provisions establishing a goal/obligation to review and report on renewable energy?",
+        "parent": 118,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 131,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 17,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 124,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) establishing governance bodies for the renewable energy production or regulating how it is governed?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 132,
         "lft": 1,
-        "rght": 2,
+        "rght": 12,
         "tree_id": 18,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 49,
+    "pk": 125,
     "fields": {
-        "text": "Does your country have legislation (or other formal law) imposing codes and standards  on renewable energy producers ?",
-        "parent": null,
-        "parent_answer": null,
-        "order": 3,
-        "classification": 51,
-        "lft": 1,
-        "rght": 2,
-        "tree_id": 24,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 50,
-    "fields": {
-        "text": "Are there provisions for energy audits?",
-        "parent": null,
-        "parent_answer": null,
-        "order": 4,
-        "classification": 51,
-        "lft": 1,
-        "rght": 2,
-        "tree_id": 28,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 51,
-    "fields": {
-        "text": "Are there requirements for energy users to source renewable energy?",
-        "parent": null,
-        "parent_answer": null,
-        "order": 5,
-        "classification": 51,
-        "lft": 1,
-        "rght": 2,
-        "tree_id": 30,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 52,
-    "fields": {
-        "text": "Does your country have provisions of laws or regulations regulating electricity grids to support the provision of low carbon energy?",
-        "parent": null,
-        "parent_answer": null,
-        "order": 1,
-        "classification": 58,
-        "lft": 1,
-        "rght": 6,
-        "tree_id": 9,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 53,
-    "fields": {
-        "text": "Does this legislation include the specification of grid standards?",
-        "parent": 52,
+        "text": "Does this include provisions establishing a renewable energy co-ordination body?",
+        "parent": 124,
         "parent_answer": true,
         "order": 1,
-        "classification": null,
+        "classification": 133,
         "lft": 2,
         "rght": 3,
-        "tree_id": 9,
+        "tree_id": 18,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 54,
+    "pk": 126,
     "fields": {
-        "text": "Do these provisions include grid access measures or measures concerning the integration of renewable energy into the energy system?",
-        "parent": 52,
+        "text": "Does this include provisions establishing a renewable energy advisory body?",
+        "parent": 124,
         "parent_answer": true,
         "order": 2,
-        "classification": null,
+        "classification": 134,
         "lft": 4,
         "rght": 5,
-        "tree_id": 9,
+        "tree_id": 18,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 55,
+    "pk": 127,
     "fields": {
-        "text": "If relevant to your grid infrastructure, does your country have provisions of laws or regulations that regulate distributed or off-grid energy?",
+        "text": "Does this include provisions establishing a renewable energy regulatory body?",
+        "parent": 124,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 135,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 18,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 128,
+    "fields": {
+        "text": "Does this include provisions establishing a rural electrification body?",
+        "parent": 124,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 136,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 18,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 129,
+    "fields": {
+        "text": "Does this include Provisions requiring consultation of various stakeholders in governing renewable energy production?",
+        "parent": 124,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 137,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 18,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 130,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) regulating, or creating obligations relating to, renewable energy production and consumption?",
         "parent": null,
-        "parent_answer": null,
-        "order": 2,
-        "classification": 58,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 138,
         "lft": 1,
-        "rght": 2,
+        "rght": 14,
         "tree_id": 19,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 56,
+    "pk": 131,
     "fields": {
-        "text": "Are there special provisions for rural electrification in your national laws or regulations?",
-        "parent": null,
-        "parent_answer": null,
+        "text": "Does this include provisions establishing renewable energy obligations for energy users?",
+        "parent": 130,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 139,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 19,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 132,
+    "fields": {
+        "text": "Does this include provisions establishing duties of renewable energy providers?",
+        "parent": 130,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 140,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 19,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 133,
+    "fields": {
+        "text": "Does this include licensing provisions?",
+        "parent": 130,
+        "parent_answer": true,
         "order": 3,
-        "classification": 58,
+        "classification": 141,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 19,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 134,
+    "fields": {
+        "text": "Does this include provisions establishing (general or operating) codes and standards for renewable energy?",
+        "parent": 130,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 142,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 19,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 135,
+    "fields": {
+        "text": "Does this include provisions establishing (planning or environmental impact) codes and standards for renewable energy?",
+        "parent": 130,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 143,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 19,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 136,
+    "fields": {
+        "text": "Does this include provisions creating tradeable instruments that certify electricity has been generated from renewable energy?",
+        "parent": 130,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 144,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 19,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 137,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) regulating the distribution and storage of renewable energy (as electricity or other forms of storable renewable energy)?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 145,
         "lft": 1,
-        "rght": 2,
+        "rght": 16,
+        "tree_id": 20,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 138,
+    "fields": {
+        "text": "Does this include provisions for the specification of grid standards?",
+        "parent": 137,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 146,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 20,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 139,
+    "fields": {
+        "text": "Does this include provisions for grid management?",
+        "parent": 137,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 147,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 20,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 140,
+    "fields": {
+        "text": "Does this include provisions for grid access and integration?",
+        "parent": 137,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 148,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 20,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 141,
+    "fields": {
+        "text": "Does this include provisions relating to mini-grids?",
+        "parent": 137,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 149,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 20,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 142,
+    "fields": {
+        "text": "Does this include provisions for distributed/off-grid/micro generation?",
+        "parent": 137,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 150,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 20,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 143,
+    "fields": {
+        "text": "Does this include provisions for the storage of electricity?",
+        "parent": 137,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 151,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 20,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 144,
+    "fields": {
+        "text": "Does this include provisions for load shifting and/or demand response management?",
+        "parent": 137,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 152,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 20,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 145,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) establishing incentives or disincentives that promote or obstruct the production of renewable energy?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 153,
+        "lft": 1,
+        "rght": 32,
+        "tree_id": 21,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 146,
+    "fields": {
+        "text": "Does this include fiscal incentives for renewable energy in the form of grants, subsidies or compensation?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 154,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 147,
+    "fields": {
+        "text": "Does this include fiscal incentives for renewable energy in the form of loans or debt support?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 155,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 148,
+    "fields": {
+        "text": "Does this include fiscal incentives for fossil fuels?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 156,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 149,
+    "fields": {
+        "text": "Does this include feed-in tariffs for renewable energy?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 157,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 150,
+    "fields": {
+        "text": "Does this include provisions for the regulation of power purchase agreements?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 158,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 151,
+    "fields": {
+        "text": "Does this include provisions creating incentives for micro/self-use energy production?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 159,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 152,
+    "fields": {
+        "text": "Does this include provisions for taxation of renewable energy production?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 160,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 153,
+    "fields": {
+        "text": "Does this include provisions for taxation of fossil fuel production?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 8,
+        "classification": 161,
+        "lft": 16,
+        "rght": 17,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 154,
+    "fields": {
+        "text": "Does this include provisions establishing financial support for research and development into renewable energy and/or its production?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 9,
+        "classification": 162,
+        "lft": 18,
+        "rght": 19,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 155,
+    "fields": {
+        "text": "Does this include provisions creating energy auctions or another pricing mechanism for energy?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 10,
+        "classification": 163,
+        "lft": 20,
+        "rght": 21,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 156,
+    "fields": {
+        "text": "Does this include provisions creating concessions for the production of renewable energy?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 11,
+        "classification": 164,
+        "lft": 22,
+        "rght": 23,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 157,
+    "fields": {
+        "text": "Does this include provisions regulating tendering for the production of renewable energy?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 12,
+        "classification": 165,
+        "lft": 24,
+        "rght": 25,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 158,
+    "fields": {
+        "text": "Does this include provisions regulating mining activities?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 13,
+        "classification": 166,
+        "lft": 26,
+        "rght": 27,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 159,
+    "fields": {
+        "text": "Does this include provisions regulating waste management?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 14,
+        "classification": 167,
+        "lft": 28,
+        "rght": 29,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 160,
+    "fields": {
+        "text": "Does this include provisions regulating decommissioning for energy production infrastructure?",
+        "parent": 145,
+        "parent_answer": true,
+        "order": 15,
+        "classification": 168,
+        "lft": 30,
+        "rght": 31,
+        "tree_id": 21,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 161,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) relating to budgeting and financing for energy infrastructure?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 169,
+        "lft": 1,
+        "rght": 12,
+        "tree_id": 22,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 162,
+    "fields": {
+        "text": "Does this include overall budget/finance provisions for energy infrastructure?",
+        "parent": 161,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 170,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 22,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 163,
+    "fields": {
+        "text": "Does this include provisions for renewable energy infrastructure finance?",
+        "parent": 161,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 171,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 22,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 164,
+    "fields": {
+        "text": "Does this include provisions for fossil fuel energy infrastructure finance?",
+        "parent": 161,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 172,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 22,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 165,
+    "fields": {
+        "text": "Does this include provisions regulating the return or remuneration from investments in energy infrastructure?",
+        "parent": 161,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 173,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 22,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 166,
+    "fields": {
+        "text": "Does this include provisions regulating guarantees and/or risk sharing in investments in energy infrastructure?",
+        "parent": 161,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 174,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 22,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 167,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) relating to areas of energy that are unique or distinctive in how they are regulated?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 175,
+        "lft": 1,
+        "rght": 8,
+        "tree_id": 23,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 168,
+    "fields": {
+        "text": "Does this include regulations for nuclear energy?",
+        "parent": 167,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 176,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 23,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 169,
+    "fields": {
+        "text": "Does this include regulations for biofuels and waste?",
+        "parent": 167,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 177,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 23,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 170,
+    "fields": {
+        "text": "Does this include regulations for hydrogen fuel cells?",
+        "parent": 167,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 178,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 23,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 171,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) imposing obligations on government to set targets or create plans/strategies relating to energy efficiency?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 180,
+        "lft": 1,
+        "rght": 8,
+        "tree_id": 24,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 172,
+    "fields": {
+        "text": "Does this include provisions establishing energy efficiency targets?",
+        "parent": 171,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 181,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 24,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 173,
+    "fields": {
+        "text": "Does this include provisions requiring strategies or plans for energy efficiency?",
+        "parent": 171,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 182,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 24,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 174,
+    "fields": {
+        "text": "Does this include provisions establishing principles for energy efficiency?",
+        "parent": 171,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 183,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 24,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 175,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) establishing governance bodies for energy efficiency or regulating how it is governed?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 184,
+        "lft": 1,
+        "rght": 10,
         "tree_id": 25,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 57,
+    "pk": 176,
     "fields": {
-        "text": "Are there special provisions regulating nano -, micro- and/or mini-grids (e.g. establishing licensing or concession processes) in your national laws or regulations?",
-        "parent": null,
-        "parent_answer": null,
+        "text": "Does this include provisions establishing an energy efficiency co-ordination body?",
+        "parent": 175,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 185,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 25,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 177,
+    "fields": {
+        "text": "Does this include provisions establishing an energy efficiency advisory body?",
+        "parent": 175,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 186,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 25,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 178,
+    "fields": {
+        "text": "Does this include provisions establishing an energy efficiency regulatory body?",
+        "parent": 175,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 187,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 25,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 179,
+    "fields": {
+        "text": "Does this include provisions requiring consultation of various stakeholders in governing energy efficiency?",
+        "parent": 175,
+        "parent_answer": true,
         "order": 4,
-        "classification": 58,
+        "classification": 188,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 25,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 180,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) regulating, or creating obligations relating to energy efficiency?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 189,
         "lft": 1,
-        "rght": 2,
+        "rght": 38,
+        "tree_id": 26,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 181,
+    "fields": {
+        "text": "Does this include provisions creating energy efficiency obligations?",
+        "parent": 180,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 190,
+        "lft": 2,
+        "rght": 9,
+        "tree_id": 26,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 182,
+    "fields": {
+        "text": "Does this include obligations for large consumers?",
+        "parent": 181,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 190,
+        "lft": 3,
+        "rght": 4,
+        "tree_id": 26,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 183,
+    "fields": {
+        "text": "Does this include obligations for the public sector?",
+        "parent": 181,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 191,
+        "lft": 5,
+        "rght": 6,
+        "tree_id": 26,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 184,
+    "fields": {
+        "text": "Does this include obligations for utilities?",
+        "parent": 181,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 192,
+        "lft": 7,
+        "rght": 8,
+        "tree_id": 26,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 185,
+    "fields": {
+        "text": "Does this include provisions creating energy efficiency codes and standards?",
+        "parent": 180,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 193,
+        "lft": 10,
+        "rght": 19,
+        "tree_id": 26,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 186,
+    "fields": {
+        "text": "Does this include codes and standards for buildings?",
+        "parent": 185,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 193,
+        "lft": 11,
+        "rght": 12,
+        "tree_id": 26,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 187,
+    "fields": {
+        "text": "Does this include codes and standards for products?",
+        "parent": 185,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 194,
+        "lft": 13,
+        "rght": 14,
+        "tree_id": 26,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 188,
+    "fields": {
+        "text": "Does this include sectoral codes and standards?",
+        "parent": 185,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 195,
+        "lft": 15,
+        "rght": 16,
+        "tree_id": 26,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 189,
+    "fields": {
+        "text": "Does this include codes and standards for vehicles and emissions?",
+        "parent": 185,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 196,
+        "lft": 17,
+        "rght": 18,
+        "tree_id": 26,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 190,
+    "fields": {
+        "text": "Does this include provisions regulating information labelling and energy efficiency ratings?",
+        "parent": 180,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 197,
+        "lft": 20,
+        "rght": 21,
+        "tree_id": 26,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 191,
+    "fields": {
+        "text": "Does this include provisions establishing energy efficiency/performance certificates?",
+        "parent": 180,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 198,
+        "lft": 22,
+        "rght": 23,
+        "tree_id": 26,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 192,
+    "fields": {
+        "text": "Does this include provisions requiring energy efficiency audits?",
+        "parent": 180,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 199,
+        "lft": 24,
+        "rght": 25,
+        "tree_id": 26,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 193,
+    "fields": {
+        "text": "Does this include provisions establishing energy efficiency market schemes?",
+        "parent": 180,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 200,
+        "lft": 26,
+        "rght": 27,
+        "tree_id": 26,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 194,
+    "fields": {
+        "text": "Does this include energy efficiency procurement requirements?",
+        "parent": 180,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 201,
+        "lft": 28,
+        "rght": 37,
+        "tree_id": 26,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 195,
+    "fields": {
+        "text": "Are there sectoral requirements for electricity?",
+        "parent": 194,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 201,
+        "lft": 29,
+        "rght": 30,
+        "tree_id": 26,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 196,
+    "fields": {
+        "text": "Are there sectoral requirements for heating and cooling?",
+        "parent": 194,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 202,
+        "lft": 31,
+        "rght": 32,
+        "tree_id": 26,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 197,
+    "fields": {
+        "text": "Are there sectoral requirements for transport?",
+        "parent": 194,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 203,
+        "lft": 33,
+        "rght": 34,
+        "tree_id": 26,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 198,
+    "fields": {
+        "text": "Are there sectoral requirements for industry?",
+        "parent": 194,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 204,
+        "lft": 35,
+        "rght": 36,
+        "tree_id": 26,
+        "level": 2
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 199,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) establishing incentives or disincentives that promote or obstruct energy efficiency?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 205,
+        "lft": 1,
+        "rght": 30,
+        "tree_id": 27,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 200,
+    "fields": {
+        "text": "Does this include fiscal incentives for energy efficiency in the form of grants, subsidies or compensation?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 206,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 201,
+    "fields": {
+        "text": "Does this include fiscal incentives for energy efficiency in the form of loans or debt support?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 207,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 202,
+    "fields": {
+        "text": "Does this include fiscal incentives for energy efficiency in the form of tax relief or rebates?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 208,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 203,
+    "fields": {
+        "text": "Does this include provisions creating concessions for energy efficiency?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 209,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 204,
+    "fields": {
+        "text": "Does this include provisions establishing financial support for research and development into energy efficiency and/or its consumption?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 210,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 205,
+    "fields": {
+        "text": "Does this include provisions for energy consumption taxation?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 211,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 206,
+    "fields": {
+        "text": "Does this include provisions for energy use charges?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 212,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 207,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) relating to budgeting and financing for energy efficiency?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 8,
+        "classification": 213,
+        "lft": 16,
+        "rght": 17,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 208,
+    "fields": {
+        "text": "Does this include provisions for overall budgeting/financing of energy efficiency?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 9,
+        "classification": 214,
+        "lft": 18,
+        "rght": 19,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 209,
+    "fields": {
+        "text": "Does this include provisions for budgeting/financing of energy efficiency projects?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 10,
+        "classification": 215,
+        "lft": 20,
+        "rght": 21,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 210,
+    "fields": {
+        "text": "Does this include provisions regulating the return or remuneration of investments into energy efficiency schemes?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 11,
+        "classification": 216,
+        "lft": 22,
+        "rght": 23,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 211,
+    "fields": {
+        "text": "Does this include provisions regulating guarantees and risk sharing in investments into energy efficiency schemes?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 12,
+        "classification": 217,
+        "lft": 24,
+        "rght": 25,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 212,
+    "fields": {
+        "text": "Does this include provisions for energy performance contracting?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 13,
+        "classification": 218,
+        "lft": 26,
+        "rght": 27,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 213,
+    "fields": {
+        "text": "Does this include investment provisions for public/private partnerships?",
+        "parent": 199,
+        "parent_answer": true,
+        "order": 14,
+        "classification": 219,
+        "lft": 28,
+        "rght": 29,
+        "tree_id": 27,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 214,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) relating to the design and regulation of energy markets?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 221,
+        "lft": 1,
+        "rght": 16,
+        "tree_id": 28,
+        "level": 0
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 215,
+    "fields": {
+        "text": "Does this include provisions establishing overall market principles?",
+        "parent": 214,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 222,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 28,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 216,
+    "fields": {
+        "text": "Does this include provisions relating to market access?",
+        "parent": 214,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 223,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 28,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 217,
+    "fields": {
+        "text": "Does this include provisions establishing an energy market board?",
+        "parent": 214,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 224,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 28,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 218,
+    "fields": {
+        "text": "Does this include provisions on market transparency?",
+        "parent": 214,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 225,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 28,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 219,
+    "fields": {
+        "text": "Does this include provisions on market integrity and market abuse?",
+        "parent": 214,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 226,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 28,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 220,
+    "fields": {
+        "text": "Does this include market regulatory coordination provisions?",
+        "parent": 214,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 227,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 28,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 221,
+    "fields": {
+        "text": "Does this include market design rules for promoting efficiency?",
+        "parent": 214,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 228,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 28,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 222,
+    "fields": {
+        "text": "Does your country have legislation (or other formal law) relating to trade and competition within energy markets?",
+        "parent": null,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 229,
+        "lft": 1,
+        "rght": 18,
         "tree_id": 29,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 58,
+    "pk": 223,
     "fields": {
-        "text": "Does your country have provisions of laws or regulations providing financial incentives, guarantees or support for producers of renewable energy?",
-        "parent": null,
-        "parent_answer": null,
-        "order": 1,
-        "classification": 64,
-        "lft": 1,
-        "rght": 22,
-        "tree_id": 10,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 59,
-    "fields": {
-        "text": "Do these measures include:",
-        "parent": 58,
+        "text": "Does this include provisions establishing import tariffs?",
+        "parent": 222,
         "parent_answer": true,
         "order": 1,
-        "classification": null,
+        "classification": 230,
         "lft": 2,
-        "rght": 21,
-        "tree_id": 10,
+        "rght": 3,
+        "tree_id": 29,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 60,
+    "pk": 224,
     "fields": {
-        "text": "Fiscal incentives (tax relief/taxes, user charges)",
-        "parent": 59,
-        "parent_answer": null,
-        "order": 1,
-        "classification": null,
-        "lft": 3,
-        "rght": 4,
-        "tree_id": 10,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 61,
-    "fields": {
-        "text": "Feed-in tariffs/premiums?",
-        "parent": 59,
-        "parent_answer": null,
+        "text": "Does this include provisions establishing non-tariff measures?",
+        "parent": 222,
+        "parent_answer": true,
         "order": 2,
-        "classification": null,
-        "lft": 5,
-        "rght": 6,
-        "tree_id": 10,
-        "level": 2
+        "classification": 231,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 29,
+        "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 62,
+    "pk": 225,
     "fields": {
-        "text": "Power purchase agreements?",
-        "parent": 59,
-        "parent_answer": null,
+        "text": "Does this include provisions relating to state aid or subsidies?",
+        "parent": 222,
+        "parent_answer": true,
         "order": 3,
-        "classification": null,
-        "lft": 7,
-        "rght": 8,
-        "tree_id": 10,
-        "level": 2
+        "classification": 232,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 29,
+        "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 63,
+    "pk": 226,
     "fields": {
-        "text": "Grants and compensation mechanisms?",
-        "parent": 59,
-        "parent_answer": null,
+        "text": "Does this include competition provisions?",
+        "parent": 222,
+        "parent_answer": true,
         "order": 4,
-        "classification": null,
+        "classification": 233,
+        "lft": 8,
+        "rght": 17,
+        "tree_id": 29,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 227,
+    "fields": {
+        "text": "Does this include competition provisions on restrictive agreements/arrangements?",
+        "parent": 226,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 233,
         "lft": 9,
         "rght": 10,
-        "tree_id": 10,
+        "tree_id": 29,
         "level": 2
     }
 },
 {
     "model": "lcc.question",
-    "pk": 64,
+    "pk": 228,
     "fields": {
-        "text": "Loans and debt support for renewable energy projects?Loans and debt support for renewable energy projects?",
-        "parent": 59,
-        "parent_answer": null,
-        "order": 5,
-        "classification": null,
+        "text": "Does this include competition provisions on abuse of dominant position?",
+        "parent": 226,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 234,
         "lft": 11,
         "rght": 12,
-        "tree_id": 10,
+        "tree_id": 29,
         "level": 2
     }
 },
 {
     "model": "lcc.question",
-    "pk": 65,
+    "pk": 229,
     "fields": {
-        "text": "Research and development support mechanisms?",
-        "parent": 59,
-        "parent_answer": null,
-        "order": 6,
-        "classification": null,
+        "text": "Does this include competition provisions on ownership unbundling?",
+        "parent": 226,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 235,
         "lft": 13,
         "rght": 14,
-        "tree_id": 10,
+        "tree_id": 29,
         "level": 2
     }
 },
 {
     "model": "lcc.question",
-    "pk": 66,
+    "pk": 230,
     "fields": {
-        "text": "Auctions/pricing mechanisms?",
-        "parent": 59,
-        "parent_answer": null,
-        "order": 7,
-        "classification": null,
+        "text": "Does this include competition provisions on dumping?",
+        "parent": 226,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 236,
         "lft": 15,
         "rght": 16,
-        "tree_id": 10,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 67,
-    "fields": {
-        "text": "Power production regimes?",
-        "parent": 59,
-        "parent_answer": null,
-        "order": 8,
-        "classification": null,
-        "lft": 17,
-        "rght": 18,
-        "tree_id": 10,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 68,
-    "fields": {
-        "text": "Concessions?",
-        "parent": 59,
-        "parent_answer": null,
-        "order": 9,
-        "classification": null,
-        "lft": 19,
-        "rght": 20,
-        "tree_id": 10,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 69,
-    "fields": {
-        "text": "Does your country have provisions of laws or regulations placing obligations on government to set targets and promote energy efficiency?",
-        "parent": null,
-        "parent_answer": null,
-        "order": 1,
-        "classification": 75,
-        "lft": 1,
-        "rght": 10,
-        "tree_id": 11,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 70,
-    "fields": {
-        "text": "Does this include:",
-        "parent": 69,
-        "parent_answer": true,
-        "order": 1,
-        "classification": null,
-        "lft": 2,
-        "rght": 9,
-        "tree_id": 11,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 71,
-    "fields": {
-        "text": "Setting energy efficiency targets?",
-        "parent": 70,
-        "parent_answer": null,
-        "order": 1,
-        "classification": null,
-        "lft": 3,
-        "rght": 4,
-        "tree_id": 11,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 72,
-    "fields": {
-        "text": "A national energy efficiency strategy/plan or an obligation for the government to prepare one?",
-        "parent": 70,
-        "parent_answer": null,
-        "order": 2,
-        "classification": null,
-        "lft": 5,
-        "rght": 6,
-        "tree_id": 11,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 73,
-    "fields": {
-        "text": "Compulsory energy audits",
-        "parent": 70,
-        "parent_answer": null,
-        "order": 3,
-        "classification": null,
-        "lft": 7,
-        "rght": 8,
-        "tree_id": 11,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 74,
-    "fields": {
-        "text": "Does your country have provisions of laws or regulations imposing codes and standards for energy efficiency?",
-        "parent": null,
-        "parent_answer": null,
-        "order": 1,
-        "classification": 78,
-        "lft": 1,
-        "rght": 2,
-        "tree_id": 12,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 75,
-    "fields": {
-        "text": "Does your country have provisions of laws or regulations promoting energy efficiency through disclosure requirements?",
-        "parent": null,
-        "parent_answer": null,
-        "order": 2,
-        "classification": 78,
-        "lft": 1,
-        "rght": 10,
-        "tree_id": 20,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 76,
-    "fields": {
-        "text": "Do these provisions include:",
-        "parent": 75,
-        "parent_answer": true,
-        "order": 1,
-        "classification": null,
-        "lft": 2,
-        "rght": 9,
-        "tree_id": 20,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 77,
-    "fields": {
-        "text": "Information labelling regulations and energy efficiency ratings?",
-        "parent": 76,
-        "parent_answer": null,
-        "order": 1,
-        "classification": null,
-        "lft": 3,
-        "rght": 4,
-        "tree_id": 20,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 78,
-    "fields": {
-        "text": "Energy efficiency or performance certificates?",
-        "parent": 76,
-        "parent_answer": null,
-        "order": 2,
-        "classification": null,
-        "lft": 5,
-        "rght": 6,
-        "tree_id": 20,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 79,
-    "fields": {
-        "text": "Disclosure requirements of energy efficiency and building regulations?",
-        "parent": 76,
-        "parent_answer": null,
-        "order": 3,
-        "classification": null,
-        "lft": 7,
-        "rght": 8,
-        "tree_id": 20,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 80,
-    "fields": {
-        "text": "Does your country have provisions of laws or regulations that promote energy efficiency through energy efficiency incentive schemes?",
-        "parent": null,
-        "parent_answer": null,
-        "order": 1,
-        "classification": 86,
-        "lft": 1,
-        "rght": 16,
-        "tree_id": 13,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 81,
-    "fields": {
-        "text": "Do these provisions include:",
-        "parent": 80,
-        "parent_answer": true,
-        "order": 1,
-        "classification": null,
-        "lft": 2,
-        "rght": 15,
-        "tree_id": 13,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 82,
-    "fields": {
-        "text": "Fiscal incentives (tax relief/taxes)?",
-        "parent": 81,
-        "parent_answer": null,
-        "order": 1,
-        "classification": null,
-        "lft": 3,
-        "rght": 4,
-        "tree_id": 13,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 83,
-    "fields": {
-        "text": "Grants and compensation mechanisms?",
-        "parent": 81,
-        "parent_answer": null,
-        "order": 2,
-        "classification": null,
-        "lft": 5,
-        "rght": 6,
-        "tree_id": 13,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 84,
-    "fields": {
-        "text": "Loans and debt support for energy efficiency measures?",
-        "parent": 81,
-        "parent_answer": null,
-        "order": 3,
-        "classification": null,
-        "lft": 7,
-        "rght": 8,
-        "tree_id": 13,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 85,
-    "fields": {
-        "text": "Research and development support mechanisms?",
-        "parent": 81,
-        "parent_answer": null,
-        "order": 4,
-        "classification": null,
-        "lft": 9,
-        "rght": 10,
-        "tree_id": 13,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 86,
-    "fields": {
-        "text": "Rebates for consumers?",
-        "parent": 81,
-        "parent_answer": null,
-        "order": 5,
-        "classification": null,
-        "lft": 11,
-        "rght": 12,
-        "tree_id": 13,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 87,
-    "fields": {
-        "text": "Concessions?",
-        "parent": 81,
-        "parent_answer": null,
-        "order": 6,
-        "classification": null,
-        "lft": 13,
-        "rght": 14,
-        "tree_id": 13,
+        "tree_id": 29,
         "level": 2
     }
 }
 ]
+    

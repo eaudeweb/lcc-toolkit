@@ -12,6 +12,10 @@
     <form role="form" method="POST">
       {% csrf_token %}
       <dl>
+        <dt>First name</dt>
+        <dd>{{ profile.user.first_name }}</dd>
+        <dt>Last name</dt>
+        <dd>{{ profile.user.last_name }}</dd>
         <dt>Email</dt>
         <dd><a href="mailto:{{ profile.user.email }}">{{ profile.user.email }}</a></dd>
         <dt>Institutional affiliation</dt>
@@ -30,8 +34,12 @@
           {% endfor %}
         </dd>
       </dl>
-      <input type="submit" name="approve" value="Approve" class="btn btn-success" />
-      <input type="submit" name="deny" value="Deny" class="btn btn-danger" />
+      {% if not profile.user.is_active %}
+        <input type="submit" name="approve" value="Approve" class="btn btn-success" />
+        <input type="submit" name="deny" value="Deny" class="btn btn-danger" />
+      {% else %}
+        <p>The registration was already approved.</p>
+      {% endif %}
     </form>
     {% elif approved %}
     <p>Registration approved.</p>

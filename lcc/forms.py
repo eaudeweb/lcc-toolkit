@@ -7,6 +7,7 @@ from itertools import chain
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
+from django.contrib.auth.forms import PasswordResetForm
 from django.forms import ModelForm
 from django.db.models import Q
 
@@ -94,6 +95,8 @@ class LegislationForm(ModelForm):
 
 class RegisterForm(ModelForm):
 
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=150)
     email = forms.EmailField(label='Email address')
     role = forms.ChoiceField(
         label='Desired role',
@@ -130,11 +133,18 @@ class RegisterForm(ModelForm):
     def save(self, commit=False):
         profile = super().save(commit=False)
 
+        first_name = self.cleaned_data['first_name']
+        last_name = self.cleaned_data['last_name']
         email = self.cleaned_data['email']
         role = RolesManager.retrieve_role(self.cleaned_data['role'])
 
         # create user
-        user = models.User.objects.create_user(email, email=email)
+        user = models.User.objects.create_user(
+            email,
+            email=email,
+            first_name=first_name,
+            last_name=last_name
+        )
         role.assign_role_to_user(user)
         user.is_active = False
         user.save()
@@ -179,6 +189,19 @@ class ApproveRegistration(ModelForm):
         self.instance.user.delete()
         notify(email)
 
+
+class PasswordResetNoUserForm(PasswordResetForm):
+    """
+       This subclass doesn't validate the form
+       if there is no user with the e-mail provided.
+    """
+    def clean(self):
+        context = super(PasswordResetForm, self).clean()
+        try:
+            models.User.objects.get(username=context['email'])
+        except models.User.DoesNotExist:
+            raise ValidationError("There is no user with this e-mail.")
+        return context
 
 class CountryBase(ModelForm):
     """ Used on view. """

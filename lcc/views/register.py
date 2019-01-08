@@ -45,6 +45,15 @@ def _send_mail(subject, body, recipients):
         fail_silently=False)
 
 
+class PasswordResetView(auth.views.PasswordResetView):
+    template_name = 'register/password_reset_form.html'
+    email_template_name = 'mail/password_reset_email.html'
+    html_email_template_name = 'mail/password_reset_email.html'
+    subject_template_name = 'mail/password_reset_subject.txt'
+    success_url = reverse_lazy('lcc:home_page')
+    form_class = forms.PasswordResetNoUserForm
+
+
 class PasswordResetConfirm(auth.views.PasswordResetConfirmView):
     success_url = reverse_lazy('lcc:auth:password_reset_complete')
     template_name = "register/password_reset_confirm.html"
