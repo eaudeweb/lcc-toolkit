@@ -175,6 +175,13 @@ class TaxonomyClassification(mptt.models.MPTTModel):
         # The tree level of an object starts from 0
         return self.get_level() + 1
 
+    def get_children(self):
+        return super().get_children().extra(
+            select={
+                'code_fix': "string_to_array(code, '.')::int[]",
+            },
+        ).order_by('code_fix')
+
     def __str__(self):
         return "{} classification: {}".format(
             self.code, self.name
