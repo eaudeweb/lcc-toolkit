@@ -1,6 +1,9 @@
 {% extends "legislation/explorer.html" %}
 {% load static %}
 
+{% block extra-scripts %}
+{% endblock %}
+
 {% block page-title %}{{ law.title }}{% endblock %}
 {% block law_details %}
   {% include 'legislation/law_details.html' %}
