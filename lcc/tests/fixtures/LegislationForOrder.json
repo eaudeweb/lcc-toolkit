@@ -31,7 +31,7 @@
     "model":"lcc.legislation",
     "pk":54,
     "fields":{
-      "_classification_ids":"[\"45\"]",
+      "_classification_ids":"[\"44\"]",
       "_tag_ids":"[]",
       "title":"Renewable Energy Agency Act 2015 (No. 11 of 2015)",
       "abstract":null,
@@ -48,7 +48,7 @@
       "pdf_file":"MAURITIUS_RENEWABLE_ENERGY_AGENCY_ACT_2015.pdf",
       "pdf_file_name":"MAURITIUS RENEWABLE ENERGY AGENCY ACT 2015.pdf",
       "classifications":[
-        45
+        44
       ],
       "tags":[
 
@@ -565,7 +565,7 @@
     "model": "lcc.legislationarticle",
     "pk": 2979,
     "fields": {
-      "_classification_ids": "[\"1\", \"2\", \"30\", \"74\"]",
+      "_classification_ids": "[\"1\", \"2\", \"30\", \"97\"]",
       "_tag_ids": "[\"3\"]",
       "text": "Major participants in the energy and industry sectors will be directed towards a successful and cost-efficient reduction of greenhouse gas emissions while continuing the use of market-based mechanisms. Participation in the European Union Emissions Trading System and improving its efficiency will be continued until there are more cost-efficient ways for achieving\nthe desired results. The implementation of novel tax policy instruments for the reduction of greenhouse gas emissions in sectors and installations which do not belong to the EU\u2019s Emissions Trading System will be considered under the condition that it is purposeful, cost-efficient, and economically reasoned.",
       "legislation": 46,
@@ -576,7 +576,7 @@
         1,
         2,
         30,
-        74
+        97
       ],
       "tags": [
         3
@@ -729,7 +729,7 @@
     "model": "lcc.legislationarticle",
     "pk": 2971,
     "fields": {
-      "_classification_ids": "[\"1\", \"23\", \"42\", \"58\"]",
+      "_classification_ids": "[\"1\", \"23\", \"42\", \"97\"]",
       "_tag_ids": "[\"3\", \"5\", \"6\"]",
       "text": "To shape the climate-friendly attitudes and choices of consumers as well as companies, the awareness of the society of the mitigation of climate change and adaptation to its effects will be increased. Knowledge, skills and attitudes related to climate change will be more thoroughly addressed on all levels of education and non-formal environmental education. The public sector will act as a role model by taking environmental measures, including the implementation of environmental management and environmentally sound procurement procedures in state institutions. Furthermore, the creators and users of best practices will be acknowledged.",
       "legislation": 46,
@@ -740,7 +740,7 @@
         1,
         23,
         42,
-        58
+        97
       ],
       "tags": [
         3,
@@ -812,7 +812,7 @@
     "model": "lcc.legislationarticle",
     "pk": 3043,
     "fields": {
-      "_classification_ids": "[\"55\"]",
+      "_classification_ids": "[\"44\"]",
       "_tag_ids": "[\"3\"]",
       "text": "(1) The Minister may make such regulations as he thinks fit for the purposes of this Act.\n(2) Regulations made under subsection (1) may provide for \u2013\n(a) the setting of standards and guidelines relating to renewable energy technologies;\n(b) accreditation mechanisms in respect of operators in the sector of renewable energy ;\n(c) the criteria for approval of renewable energy projects; and\n(d) the levying of fees and charges.",
       "legislation": 54,
@@ -820,7 +820,7 @@
       "code": "20. Regulations\n",
       "identifier": 2167,
       "classifications": [
-        55
+        44
       ],
       "tags": [
         3
@@ -916,7 +916,7 @@
     "model": "lcc.legislationarticle",
     "pk": 3037,
     "fields": {
-      "_classification_ids": "[\"68\"]",
+      "_classification_ids": "[\"168\"]",
       "_tag_ids": "[\"2\", \"3\"]",
       "text": "1) The Agency shall, not later than 31 March in every year, submit to the Minister an estimate of the expenditure and income of the Agency for the next financial year for his approval.\n(2) Subject to subsection (3), the Minister shall, before the beginning of every financial year, signify in writing his approval of the estimates.\n(3) Where the Minister gives his approval under subsection (1), he may direct the Agency to amend the estimate in respect of any item in such manner as he may determine.\n(4) Subsection (1) shall not apply to the first financial year of the Agency.",
       "legislation": 54,
@@ -924,7 +924,7 @@
       "code": "14. Estimates",
       "identifier": 2161,
       "classifications": [
-        68
+        168
       ],
       "tags": [
         2,
@@ -1059,7 +1059,7 @@
     "model": "lcc.legislationarticle",
     "pk": 3029,
     "fields": {
-      "_classification_ids": "[\"68\", \"69\"]",
+      "_classification_ids": "[\"168\", \"169\"]",
       "_tag_ids": "[\"2\", \"3\"]",
       "text": "The Agency shall have such powers as may be necessary to attain its objects and discharge its functions most effectively and may, in particular \u2013\n(a) with the approval of the Minister to whom responsibility for the subject of finance is assigned, raise such loans as may be required to finance renewable energy projects and studies;\n(b) set up advisory committees;\n(c) enter into any contract in accordance with the Public Procurement Act; (d) (e) (f) sell or exchange any property;\nreceive grants and donations, and raise funds; and do such acts and things as may be necessary for the purposes of this Act.",
       "legislation": 54,
@@ -1067,8 +1067,8 @@
       "code": "6. Powers of Agency\n",
       "identifier": 2153,
       "classifications": [
-        68,
-        69
+        168,
+        169
       ],
       "tags": [
         2,
@@ -1080,7 +1080,7 @@
     "model": "lcc.legislationarticle",
     "pk": 3028,
     "fields": {
-      "_classification_ids": "[\"1\", \"48\", \"50\", \"51\", \"64\", \"68\"]",
+      "_classification_ids": "[\"1\", \"148\", \"150\", \"151\", \"164\", \"168\"]",
       "_tag_ids": "[\"2\", \"3\"]",
       "text": "The Agency shall \u2013\n(a) advise the Minister on all matters relating to renewable energy policy and strategy;\n(b) every 5 years, elaborate a renewable energy strategic plan;\n(c) establish the necessary mechanism and framework to increase the use of renewable energy;\n(d) assess the feasibility and competiveness of renewable energy projects and make recommendations;\n(e) encourage and support studies and research on the renewable energy technologies and their implementation;\n(f) compile and analyse data on use and benefits of renewable energy; (g) develop guidelines and standards for renewable energy projects and for evaluation and approval of on-grid and off-grid renewable energy projects;\n (h) devise incentive mechanisms, including subsidisation mechanisms based on principles of competitiveness and specific technologies;\n(i) define a funding strategy for renewable energy projects;\n(j) assess the requirements for the improvement of skills for the implementation of renewable energy projects;\n(k) establish linkages with the International Renewable Energy Agency and regional and international institutions with similar objectives;\n(l) share information and knowledge on renewable energy technologies;\n(m) carry out sensitisation programmes on renewable energy technologies;\n(n) devise such criteria as may be necessary for the accreditation of operators in the renewable energy sector; and\n(o) do such acts and things as may be necessary for the purposes of this Act.",
       "legislation": 54,
@@ -1089,11 +1089,11 @@
       "identifier": 2152,
       "classifications": [
         1,
-        48,
-        50,
-        51,
-        64,
-        68
+        148,
+        150,
+        151,
+        164,
+        168
       ],
       "tags": [
         2,
@@ -1105,7 +1105,7 @@
     "model": "lcc.legislationarticle",
     "pk": 3027,
     "fields": {
-      "_classification_ids": "[\"50\", \"51\"]",
+      "_classification_ids": "[\"150\", \"151\"]",
       "_tag_ids": "[\"2\", \"3\"]",
       "text": "The objects of the Agency shall be to \u2013\n(a) promote the adoption and use of renewable energy with a view to achieving sustainable development goals;\n(b) advise on possible uses of liquid natural gas;\n(c) create an enabling environment for the development of renewable energy;\n(d) increase the share of renewable energy in the national energy mix;\n (f) foster collaboration and networking, at regional and international levels, with institutions promoting renewable energy.",
       "legislation": 54,
@@ -1113,8 +1113,8 @@
       "code": "4. Objects of Agency",
       "identifier": 2151,
       "classifications": [
-        50,
-        51
+        150,
+        151
       ],
       "tags": [
         2,

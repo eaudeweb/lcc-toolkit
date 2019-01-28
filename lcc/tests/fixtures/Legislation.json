@@ -3,7 +3,7 @@
     "model": "lcc.legislation",
     "pk": 1,
     "fields": {
-      "_classification_ids": "[\"1\", \"93\"]",
+      "_classification_ids": "[\"1\", \"118\"]",
       "_tag_ids": "[\"1\", \"2\", \"3\", \"4\", \"5\", \"6\"]",
       "title": "Re-contextualized local portal law",
       "abstract": "Ratione natus magni temporibus porro. Architecto doloribus est optio occaecati. Maiores voluptatem perferendis. Recusandae adipisci itaque soluta ad voluptates quis. Accusamus reprehenderit voluptatibus ipsa magnam numquam magnam placeat. Ipsum eos optio architecto soluta accusamus. Excepturi iste soluta dicta quas sed. Suscipit nostrum recusandae nisi. Nihil quo ab vel velit. Delectus cum ab. Dolorem dicta consequuntur officia ipsam. Necessitatibus velit animi laudantium.",
@@ -21,7 +21,7 @@
       "pdf_file_name": null,
       "classifications": [
         1,
-        93
+        118
       ],
       "tags": [
         1,
@@ -37,7 +37,7 @@
     "model": "lcc.legislation",
     "pk": 2,
     "fields": {
-      "_classification_ids": "[\"1\", \"74\", \"93\"]",
+      "_classification_ids": "[\"1\", \"97\", \"118\"]",
       "_tag_ids": "[\"2\", \"4\"]",
       "title": "Enterprise-wide bottom-line projection law",
       "abstract": "Rem est ullam quibusdam quam quam. Recusandae aut vero repudiandae fugiat rerum. Iusto necessitatibus illum quo. Possimus sed similique doloribus vel atque. Sunt fugit accusamus magni. Facere accusamus officia aliquid facilis aliquid beatae voluptate.",
@@ -55,8 +55,8 @@
       "pdf_file_name": null,
       "classifications": [
         1,
-        74,
-        93
+        97,
+        118
       ],
       "tags": [
         2,
@@ -68,7 +68,7 @@
     "model": "lcc.legislation",
     "pk": 3,
     "fields": {
-      "_classification_ids": "[\"45\", \"74\", \"93\"]",
+      "_classification_ids": "[\"44\", \"97\", \"118\"]",
       "_tag_ids": "[\"2\", \"3\", \"5\"]",
       "title": "Fundamental radical focus group law",
       "abstract": "Aut natus optio sed libero repellendus exercitationem. Tempora accusamus sequi rem maxime. Maiores sunt iure enim. Dignissimos laudantium quo veniam reprehenderit officiis non. Iste cum voluptate repellendus doloribus unde dolorem. Consequatur distinctio iste vero explicabo rem deleniti nostrum. Tempora modi assumenda corrupti. Ut natus ducimus id enim dolores laboriosam.",
@@ -85,9 +85,9 @@
       "pdf_file": "",
       "pdf_file_name": null,
       "classifications": [
-        45,
-        74,
-        93
+        44,
+        97,
+        118
       ],
       "tags": [
         2,
@@ -100,7 +100,7 @@
     "model": "lcc.legislation",
     "pk": 4,
     "fields": {
-      "_classification_ids": "[\"93\"]",
+      "_classification_ids": "[\"118\"]",
       "_tag_ids": "[\"1\"]",
       "title": "Innovative didactic parallelism law",
       "abstract": "Culpa excepturi accusantium fugiat possimus. Provident magnam id sunt. Enim autem quia deserunt repudiandae. Ullam corporis libero cum aliquam voluptatibus. Iure deserunt atque. Magni blanditiis rem perspiciatis nobis ea molestias sapiente. Laborum maiores et quod eaque.",
@@ -117,7 +117,7 @@
       "pdf_file": "",
       "pdf_file_name": null,
       "classifications": [
-        93
+        118
       ],
       "tags": [
         1
@@ -128,7 +128,7 @@
     "model": "lcc.legislation",
     "pk": 5,
     "fields": {
-      "_classification_ids": "[\"74\"]",
+      "_classification_ids": "[\"97\"]",
       "_tag_ids": "[\"1\", \"2\", \"4\", \"5\", \"6\"]",
       "title": "Persevering static algorithm law",
       "abstract": "Reprehenderit recusandae harum. Ipsum distinctio ipsam aut necessitatibus ex. Expedita delectus quia magnam. Dignissimos at nam exercitationem dolore. Commodi nesciunt facere. Nesciunt et consequatur perferendis esse error.",
@@ -145,7 +145,7 @@
       "pdf_file": "",
       "pdf_file_name": null,
       "classifications": [
-        74
+        97
       ],
       "tags": [
         1,
@@ -160,7 +160,7 @@
     "model": "lcc.legislation",
     "pk": 6,
     "fields": {
-      "_classification_ids": "[\"1\", \"45\", \"74\", \"93\"]",
+      "_classification_ids": "[\"1\", \"44\", \"97\", \"118\"]",
       "_tag_ids": "[\"1\", \"2\", \"3\", \"4\", \"5\", \"6\"]",
       "title": "Reduced bifurcated alliance law",
       "abstract": "At quos fugit quibusdam natus quasi facilis. Adipisci delectus soluta veritatis at aut. Accusamus ab similique impedit. Quasi delectus provident iure perferendis incidunt. Ab iusto illum maxime. In iusto quo dolores ex deleniti totam odit. Quos odio a ea alias explicabo error. Fugiat provident beatae maiores. Optio explicabo aut voluptas. Animi iusto maxime nihil numquam. Distinctio consequatur dicta ex delectus corrupti. Placeat odio eum qui blanditiis debitis. Enim vitae minus id reiciendis excepturi minima.",
@@ -178,9 +178,9 @@
       "pdf_file_name": null,
       "classifications": [
         1,
-        45,
-        74,
-        93
+        44,
+        97,
+        118
       ],
       "tags": [
         1,
@@ -196,7 +196,7 @@
     "model": "lcc.legislation",
     "pk": 7,
     "fields": {
-      "_classification_ids": "[\"1\", \"45\", \"74\", \"93\"]",
+      "_classification_ids": "[\"1\", \"4\", \"97\", \"118\"]",
       "_tag_ids": "[\"1\", \"2\", \"3\", \"5\", \"6\"]",
       "title": "Pre-emptive holistic info-mediaries law",
       "abstract": "Rem ex neque enim. Sunt tempora saepe inventore consequatur. Odio neque nemo omnis doloremque. Et recusandae unde architecto voluptas. Sequi autem unde ut ipsum. Nesciunt tempore consequuntur eveniet laborum minus. Tempora consequuntur accusantium. Natus repellendus unde quaerat. Dignissimos accusamus accusantium quibusdam. Repellat ducimus neque perspiciatis culpa quibusdam. Assumenda laboriosam beatae autem animi.",
@@ -214,9 +214,9 @@
       "pdf_file_name": null,
       "classifications": [
         1,
-        45,
-        74,
-        93
+        44,
+        97,
+        118
       ],
       "tags": [
         1,
@@ -231,7 +231,7 @@
     "model": "lcc.legislation",
     "pk": 8,
     "fields": {
-      "_classification_ids": "[\"1\", \"93\"]",
+      "_classification_ids": "[\"1\", \"118\"]",
       "_tag_ids": "[\"1\", \"2\", \"5\", \"6\"]",
       "title": "Advanced 3rdgeneration task-force law",
       "abstract": "Voluptate ea sint voluptatum. Autem ex officiis magnam accusantium. Neque commodi fuga quo adipisci perferendis. Repellendus quam pariatur cumque tenetur. Saepe animi minus consequuntur labore. Sit fugit quidem qui. Non amet nesciunt perferendis qui harum. Exercitationem exercitationem animi illo perferendis. Velit quasi veritatis vero. Magni quod doloremque ipsum. Nesciunt maiores voluptas iure explicabo rem pariatur non.",
@@ -249,7 +249,7 @@
       "pdf_file_name": null,
       "classifications": [
         1,
-        93
+        118
       ],
       "tags": [
         1,
@@ -263,7 +263,7 @@
     "model": "lcc.legislation",
     "pk": 9,
     "fields": {
-      "_classification_ids": "[\"45\"]",
+      "_classification_ids": "[\"44\"]",
       "_tag_ids": "[\"4\"]",
       "title": "Future-proofed human-resource hub law",
       "abstract": "Sint alias tempore doloribus pariatur. Veniam rerum natus. Officiis repudiandae magnam ipsa tempora dignissimos culpa. Repellendus ratione eveniet dicta a. Doloribus id hic sequi provident nemo assumenda atque. Ipsa suscipit dicta est nobis perspiciatis. Eum maxime inventore asperiores eaque blanditiis temporibus. Consectetur exercitationem excepturi. Neque qui corrupti dolores recusandae corporis necessitatibus corporis. Id recusandae doloremque aliquid illo totam corrupti. Expedita neque eaque porro aliquam quia. Veritatis odit eius fugiat accusamus esse tempora.",
@@ -280,7 +280,7 @@
       "pdf_file": "",
       "pdf_file_name": null,
       "classifications": [
-        45
+        44
       ],
       "tags": [
         4
@@ -291,7 +291,7 @@
     "model": "lcc.legislation",
     "pk": 10,
     "fields": {
-      "_classification_ids": "[\"1\", \"45\", \"74\", \"93\"]",
+      "_classification_ids": "[\"1\", \"44\", \"97\", \"118\"]",
       "_tag_ids": "[\"1\", \"2\", \"3\", \"4\", \"5\", \"6\"]",
       "title": "Cloned mission-critical Graphic Interface law",
       "abstract": "Sed harum dicta quibusdam ipsa culpa. Repellat quibusdam adipisci maxime aperiam. Nihil inventore ipsa nisi voluptatum nobis autem necessitatibus. Saepe consequatur nihil esse eveniet. Eos doloremque error consequatur. Non minima aspernatur animi enim. Similique aperiam qui esse. Similique nam nam numquam. Sint mollitia provident accusamus. Labore laudantium nisi iure. Quae voluptatem placeat blanditiis itaque quidem. Quam iusto totam architecto. Nam assumenda repellat provident.",
@@ -309,9 +309,9 @@
       "pdf_file_name": null,
       "classifications": [
         1,
-        45,
-        74,
-        93
+        44,
+        97,
+        118
       ],
       "tags": [
         1,

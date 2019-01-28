@@ -83,6 +83,11 @@ Where [N] is the number of Legislation objects to generate.
 
 ## Testing
 
+Allow the user to create a database:
+    docker exec -it lcc.db bash
+    psql -U postgres
+    ALTER USER demo CREATEDB;
+
 To execute the test suite, attach to the web service and run the following:
 
     python manage.py test
