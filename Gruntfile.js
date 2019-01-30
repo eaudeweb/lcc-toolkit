@@ -74,9 +74,18 @@ module.exports = function(grunt) {
         },
         uglify: {
             my_target: {
-                files: {
-                    'lcc/static/*/*.js': ['lcc/static/*/*.js']
-                }
+                files: [{
+                    expand: true,
+                    src: ['lcc/static/*/*.js'],
+                    dest: 'lcc/static',
+                    cwd: '.',
+                    rename: function (dst, src) {
+                      // To keep the source js files and make new files as `*.min.js`:
+                      // return dst + '/' + src.replace('.js', '.min.js');
+                      // Or to override to src:
+                      return src;
+                    }
+                  }]
             }
         }
     });
