@@ -624,9 +624,14 @@ class Legislation(_TaxonomyModel):
 
 
 class LegislationArticleManager(models.Manager):
-    def get_articles_for_gaps(self, gap_ids):
+    def get_similar_countries(self, assessment_country):
+        return self.select_related('legislation').filter(
+            legislation__country__population__lt=assessment_country.population
+        )
+
+    def get_articles_for_gaps(self, gap_ids, assessment_country):
         table = self.model._meta.db_table
-        return self.select_related('legislation').extra(
+        return self.get_similar_countries(assessment_country).extra(
             tables=['lcc_gap'],
             select={
                 'gap_id': 'lcc_gap.id',

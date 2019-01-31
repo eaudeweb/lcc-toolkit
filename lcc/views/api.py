@@ -48,7 +48,7 @@ def get_assessment_object(assessment):
 
     assessment.categories = root_categories
     articles = models.LegislationArticle.objects.get_articles_for_gaps(
-        gap_ids)
+        gap_ids, assessment.country)
 
     for a in answers:
         a.question.articles = [
