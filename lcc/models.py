@@ -130,6 +130,7 @@ class TaxonomyClassification(mptt.models.MPTTModel):
                                         null=True,
                                         blank=True,
                                         related_name='children')
+    text = models.TextField(null=True)
 
     class Meta:
         verbose_name = 'Taxonomy Classification'
