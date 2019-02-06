@@ -3,8 +3,9 @@ import os
 from django.contrib.auth.models import User, Group
 from django.core.management import call_command
 from django.test import Client, TestCase
+from django.urls import reverse
 
-from lcc.models import Legislation, UserProfile
+from lcc.models import Legislation, LegislationArticle, UserProfile
 
 
 class Articles(TestCase):
@@ -38,11 +39,13 @@ class Articles(TestCase):
         policy_maker.groups.add(policy_maker_group)
 
         self.law = Legislation.objects.first()
-        self.article = self.law.articles.create(
-            text="Brown rabbits are commonly seen.",
-            legislation_page=1,
-            code="Art. I"
-        )
+        self.article_data = {
+            "text": "Brown rabbits are commonly seen.",
+            "legislation_page": 1,
+            "legislation": self.law.id,
+            "code": "Art. I",
+        }
+        self.article = self.law.articles.create(**self.article_data)
 
         with open(os.devnull, 'w') as f:
             call_command('search_index', '--rebuild', '-f', stdout=f)
@@ -186,3 +189,73 @@ class Articles(TestCase):
         article.save()
 
         self.assertEqual(article.number, 2)
+
+    def test_article_create(self):
+        law = Legislation.objects.last()
+        article_data = {
+            "text": "Brown rabbits are commonly seen.",
+            "legislation_page": 3,
+            "legislation": law.id,
+            "code": "Art. 3 of the law",
+        }
+        article_data.update({"save-btn": ""})
+        c = Client()
+        c.login(username='manager', password='foobar')
+        response = c.post(
+            reverse("lcc:legislation:articles:add",
+            kwargs={"legislation_pk": law.id}),
+            data=article_data
+        )
+        article = LegislationArticle.objects.first()
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.url,
+            reverse("lcc:legislation:articles:view",
+            kwargs={"legislation_pk": law.id})
+        )
+        self.assertEqual(article.text, article_data['text'])
+        self.assertEqual(article.legislation.id, article_data['legislation'])
+        self.assertEqual(article.legislation_page, article_data['legislation_page'])
+        self.assertEqual(article.code, article_data['code'])
+
+    def test_article_create_and_continue(self):
+        self.article_data.update({"save-and-continue-btn": ""})
+        c = Client()
+        c.login(username='manager', password='foobar')
+        response = c.post(
+            reverse("lcc:legislation:articles:add",
+            kwargs={"legislation_pk": self.law.id}),
+            data=self.article_data
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.url,
+            reverse("lcc:legislation:articles:add",
+            kwargs={"legislation_pk": self.law.id})
+        )
+
+    def test_edit_article(self):
+        c = Client()
+        c.login(username='manager', password='foobar')
+        self.article_data['code'] = "{}"
+        self.article_data['text'] = "text updated"
+        response = c.post(
+            reverse("lcc:legislation:articles:edit",
+            kwargs={"legislation_pk": self.article.legislation.id,
+                    "article_pk": self.article.id}),
+            data=self.article_data
+        )
+        self.assertEqual(response.status_code, 302)
+        article = LegislationArticle.objects.first()
+        self.assertEqual(article.text, self.article_data['text'])
+
+    def test_edit_article_fail_form(self):
+        c = Client()
+        c.login(username='manager', password='foobar')
+        response = c.post(
+            reverse("lcc:legislation:articles:edit",
+            kwargs={"legislation_pk": self.law.id,
+                    "article_pk": self.article.id}),
+            data={"text": 234}
+        )
+        self.assertEqual(response.status_code, 302)
