@@ -21,6 +21,7 @@ from lcc import models, constants, forms
 from lcc.constants import LEGISLATION_YEAR_RANGE
 from lcc.documents import LegislationDocument
 from lcc.views.base import TagGroupRender, TaxonomyFormMixin
+from lcc.views.country import CountryMetadataFiltering
 
 
 CONN = settings.TAXONOMY_CONNECTOR
@@ -159,7 +160,7 @@ class HighlightedLaws:
         return self.search.count()
 
 
-class LegislationExplorer(ListView):
+class LegislationExplorer(CountryMetadataFiltering, ListView):
     template_name = "legislation/explorer.html"
     model = models.Legislation
 
@@ -403,6 +404,8 @@ class LegislationExplorer(ListView):
 
             # String representing country iso code
             countries = self.request.GET.getlist('countries[]')
+            filtering_countries = self.filter_countries(self.request)
+            countries.extend([country.iso for country in filtering_countries])
             if countries:
                 search = search.query('terms', country=countries)
 
