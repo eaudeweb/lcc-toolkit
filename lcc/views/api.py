@@ -1,62 +1,63 @@
 from rest_framework import generics
 
 from lcc import models, serializers
+from lcc.views.country import CountryMetadataFiltering
 
+class AssessmentSuggestionsMixin(CountryMetadataFiltering):
+    def get_assessment_object(self, assessment):
+        answers = models.Answer.objects.get_assessment_answers(assessment.pk)
+        category_ids = {a.category_id for a in answers}
+        sub_categories = models.TaxonomyClassification.objects.filter(
+            pk__in=category_ids)
+        root_categories = models.TaxonomyClassification.objects.filter(
+            pk__in=[cat.parent_id for cat in sub_categories])
 
-def get_assessment_object(assessment):
-    answers = models.Answer.objects.get_assessment_answers(assessment.pk)
-    category_ids = {a.category_id for a in answers}
-    sub_categories = models.TaxonomyClassification.objects.filter(
-        pk__in=category_ids)
-    root_categories = models.TaxonomyClassification.objects.filter(
-        pk__in=[cat.parent_id for cat in sub_categories])
+        for root in root_categories:
+            root.categories = [
+                sub for sub in sub_categories
+                if sub.parent_id == root.id
+            ]
 
-    for root in root_categories:
-        root.categories = [
-            sub for sub in sub_categories
-            if sub.parent_id == root.id
-        ]
+        gap_ids = []
 
-    gap_ids = []
+        for a in answers:
+            q = a.question
+            q.answer = a.value
 
-    for a in answers:
-        q = a.question
-        q.answer = a.value
+            gap_ids.append(a.gap_id)
 
-        gap_ids.append(a.gap_id)
+            category = next(
+                cat for cat in sub_categories
+                if cat.id == a.category_id
+            )
+            try:
+                cat_qs = category.questions
+            except AttributeError:
+                category.questions = []
+                cat_qs = category.questions
 
-        category = next(
-            cat for cat in sub_categories
-            if cat.id == a.category_id
-        )
-        try:
-            cat_qs = category.questions
-        except AttributeError:
-            category.questions = []
-            cat_qs = category.questions
+            cat_qs.append(q)
 
-        cat_qs.append(q)
+        gaps = models.Gap.objects.filter(id__in=gap_ids).prefetch_related(
+            'classifications', 'tags')
 
-    gaps = models.Gap.objects.filter(id__in=gap_ids).prefetch_related(
-        'classifications', 'tags')
+        for a in answers:
+            a.question.gap = next(
+                gap for gap in gaps
+                if gap.id == a.gap_id
+            )
+        assessment.categories = root_categories
+        similar_countries = self.filter_countries(self.request, assessment.country)
+        articles = models.LegislationArticle.objects.get_articles_for_gaps(
+            gap_ids, similar_countries)
 
-    for a in answers:
-        a.question.gap = next(
-            gap for gap in gaps
-            if gap.id == a.gap_id
-        )
+        for a in answers:
+            a.question.articles = [
+                article for article in articles
+                if a.question.gap.id == article.gap_id
+            ]
 
-    assessment.categories = root_categories
-    articles = models.LegislationArticle.objects.get_articles_for_gaps(
-        gap_ids, assessment.country)
-
-    for a in answers:
-        a.question.articles = [
-            article for article in articles
-            if a.question.gap.id == article.gap_id
-        ]
-
-    return assessment
+        return assessment
 
 
 class QuestionViewSet(generics.ListAPIView):
@@ -119,7 +120,7 @@ class CountryViewSet(generics.ListAPIView):
     serializer_class = serializers.CountrySerializer
 
 
-class AssessmentResults(generics.RetrieveAPIView):
+class AssessmentResults(AssessmentSuggestionsMixin, generics.RetrieveAPIView):
     serializer_class = serializers.AssessmentResultSerializer
 
     def get_queryset(self):
@@ -131,5 +132,4 @@ class AssessmentResults(generics.RetrieveAPIView):
     def get_object(self):
         # decorate the assessment with... some stuff
         assessment = super().get_object()
-
-        return get_assessment_object(assessment)
+        return self.get_assessment_object(assessment)

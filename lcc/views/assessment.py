@@ -1,6 +1,6 @@
 from django.contrib.auth import mixins
 from django.views.generic import TemplateView, View
-from lcc.views.api import get_assessment_object
+from lcc.views.api import AssessmentSuggestionsMixin
 from lcc import serializers
 from lcc.models import Assessment
 
@@ -20,14 +20,14 @@ class LegalAssessmentResults(mixins.LoginRequiredMixin, TemplateView):
     template_name = "assessment_results.html"
 
 
-class LegalAssessmentResultsPDF(View):
+class LegalAssessmentResultsPDF(View, AssessmentSuggestionsMixin):
     template_name = 'results_pdf.html'
 
     def get(self, request, *args, **kwargs):
 
         assessment = Assessment.objects.get(pk=kwargs['pk'])
         results = serializers.AssessmentResultSerializer(
-            get_assessment_object(assessment)
+            self.get_assessment_object(assessment)
         )
 
         top_categories = len(results.data['categories'])
