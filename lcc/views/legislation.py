@@ -21,7 +21,14 @@ from lcc import models, constants, forms
 from lcc.constants import LEGISLATION_YEAR_RANGE
 from lcc.documents import LegislationDocument
 from lcc.views.base import TagGroupRender, TaxonomyFormMixin
-from lcc.views.country import CountryMetadataFiltering
+from lcc.views.country import (
+    CountryMetadataFiltering,
+    POP_RANGES,
+    HDI_RANGES,
+    GDP_RANGES,
+    GHG_LUCF,
+    GHG_NO_LUCF,
+)
 
 
 CONN = settings.TAXONOMY_CONNECTOR
@@ -405,8 +412,8 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
             # String representing country iso code
             countries = self.request.GET.getlist('countries[]')
             filtering_countries = self.filter_countries(self.request)
-            countries.extend([country.iso for country in filtering_countries])
-            if countries:
+            if countries or filtering_countries.count() != models.Country.objects.all().count():
+                countries.extend([country.iso for country in filtering_countries])
                 search = search.query('terms', country=countries)
 
             # String representing law_type
@@ -461,6 +468,9 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
         top_classifications = models.TaxonomyClassification.objects.filter(
             level=0).order_by('code')
         countries = models.Country.objects.all().order_by('name')
+        regions = models.Region.objects.all().order_by('name')
+        sub_regions = models.SubRegion.objects.all().order_by('name')
+        legal_systems = models.LegalSystem.objects.all().order_by('name')
 
         laws = self.object_list
 
@@ -474,6 +484,14 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
             'group_tags': group_tags,
             'top_classifications': top_classifications,
             'countries': countries,
+            'regions': regions,
+            'sub_regions': sub_regions,
+            'legal_systems': legal_systems,
+            'population': POP_RANGES,
+            'hdi2015': HDI_RANGES,
+            'gdp_capita': GDP_RANGES,
+            'ghg_no_lucf': GHG_NO_LUCF,
+            'ghg_lucf': GHG_LUCF,
             'legislation_type': constants.LEGISLATION_TYPE,
             'legislation_year': legislation_year,
             'min_year': settings.MIN_YEAR,
