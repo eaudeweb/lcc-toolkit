@@ -47,7 +47,7 @@ class AssessmentSuggestionsMixin(CountryMetadataFiltering):
                 if gap.id == a.gap_id
             )
         assessment.categories = root_categories
-        similar_countries = self.filter_countries(self.request, assessment.country)
+        similar_countries = self.filter_countries(self.request, country=None)
         articles = models.LegislationArticle.objects.get_articles_for_gaps(
             gap_ids, similar_countries)
 

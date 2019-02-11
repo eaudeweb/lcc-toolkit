@@ -64,8 +64,9 @@ class CountryMetadataFiltering:
             min_field_name = "{}__gte".format(field)
             max_field_name = "{}__lte".format(field)
             if not (min_value and max_value):
-                min_value = self.RANGE_FIELDS[field][int(request.GET.get(field))][0]
-                max_value = self.RANGE_FIELDS[field][int(request.GET.get(field))][1]
+                field_values = request.GET.getlist(field)
+                min_value = self.RANGE_FIELDS[field][int(min(field_values))][0]
+                max_value = self.RANGE_FIELDS[field][int(max(field_values))][1]
             self.data[min_field_name] = min_value
             self.data[max_field_name] = max_value
 
