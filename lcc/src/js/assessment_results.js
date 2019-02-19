@@ -2,55 +2,65 @@
  * @module LegalAssessmentResults
  * Handles the legal assesment results
  */
-$(document).ready(function() {
+$(document).ready(function () {
     'use strict'
     LCCTModules.define('LegalAssessmentResults', ['Config', 'RequestService'],
         function LegalAssessmentResults(Config, RequestService) {
 
 
             this.assessment_id = window.location.pathname.split('/')[2];
-            var gaps_no = 0;
-            var articles_no = 0;
-        
+            let gaps_no = 0;
+            let articles_no = 0;
+            let payload = {};
+
 
             getAssessmentResults.call(this);
             getAssessments.call(this);
-            var back_href;
+
+            filterCountryAttribute().updateFilterBasedOnURL(payload);
+            filterCountryAttribute().attachListenerToModal(payload, send.bind(null, payload));
+
+
+            function send(payload) {
+                let new_url = window.location.href.split('?')[0] + '?' + $.param(payload);
+
+                window.location.href = new_url;
+            }
 
             function getAssessments() {
-              var self = this;
+                var self = this;
                 RequestService
-                .getAssessments()
-                .done(function (all_assessments) {
-                  var current_assessment;
-                  for(var i=0; i<= all_assessments.length; i++) {
-                    var assesment = all_assessments[i];
-                    if(assesment.id == self.assessment_id){
-                      current_assessment = assesment;
-                      break;
-                    }
-                  }
-                  setAssessmentTitle(current_assessment);
-                  setBackAttr(current_assessment, self.assessment_id)
-                })
+                    .getAssessments()
+                    .done(function (all_assessments) {
+                        var current_assessment;
+                        for (var i = 0; i <= all_assessments.length; i++) {
+                            var assesment = all_assessments[i];
+                            if (assesment.id == self.assessment_id) {
+                                current_assessment = assesment;
+                                break;
+                            }
+                        }
+                        setAssessmentTitle(current_assessment);
+                        setBackAttr(current_assessment, self.assessment_id)
+                    })
             }
 
-            function setBackAttr(current_assessment, id){
-                  var new_href =  window.location.protocol + '//'
-                                + window.location.host + '/' 
-                                + window.location.pathname.split('/')[1] + "/#"
-                                + id + '#' 
-                                + current_assessment.country_iso + '#' 
-                                + current_assessment.country_name
-                    $('#back_btn').attr('href', new_href)
-                    console.log(new_href)
+            function setBackAttr(current_assessment, id) {
+                var new_href = window.location.protocol + '//'
+                    + window.location.host + '/'
+                    + window.location.pathname.split('/')[1] + "/#"
+                    + id + '#'
+                    + current_assessment.country_iso + '#'
+                    + current_assessment.country_name
+                $('#back_btn').attr('href', new_href)
+                console.log(new_href)
             }
 
-             
+
             function setAssessmentTitle(assessment) {
-              var assessment_header =  '<figure style="display:inline-block;width: 39px;margin-right: 1rem;" ><img style="margin-top: -10px;max-width: 100%; max-height: 100%;" src="/static/img/flags/'+ assessment.country_iso.toLowerCase() +'.svg" /></figure>' + assessment.country_name
-              $('.results-header h2').html(assessment_header);
-              $('.page-menu .country').html(assessment_header);
+                var assessment_header = '<figure style="display:inline-block;width: 39px;margin-right: 1rem;" ><img style="margin-top: -10px;max-width: 100%; max-height: 100%;" src="/static/img/flags/' + assessment.country_iso.toLowerCase() + '.svg" /></figure>' + assessment.country_name
+                $('.results-header h2').html(assessment_header);
+                $('.page-menu .country').html(assessment_header);
             }
 
 
@@ -59,7 +69,7 @@ $(document).ready(function() {
                 var self = this;
                 RequestService
                     .getAssessmentResults(this.assessment_id)
-                    .done(function(assessment_results) {
+                    .done(function (assessment_results) {
                         renderAssessmentsResults(assessment_results);
                     });
             }
@@ -182,7 +192,7 @@ $(document).ready(function() {
                         .addClass('dl_suggestions')
                         .appendTo(container);
 
-                    var dd_suggestions  = $('<dd/>')
+                    var dd_suggestions = $('<dd/>')
                         .appendTo(dl_suggestions);
 
                     var dt_suggestion = $('<dt/>')
@@ -196,11 +206,11 @@ $(document).ready(function() {
                     articles_no += question.articles.length;
                     renderSuggestedLegislation(question.articles, dt_suggestion);
 
-                    if( question.articles.length > 3 ) {
-                      var button_title = '<span class="show">View all ' + question.articles.length + ' suggestions</span> <span class="hide">Show less suggestions</span>';                 
-                      var toggle_legislation_results = $('<button type="button" class="btn btn-default results_toggle">'+button_title+'</button>')
-                                                      .appendTo(container)
-                                                      .click(handleToggleShowSugestions);  
+                    if (question.articles.length > 3) {
+                        var button_title = '<span class="show">View all ' + question.articles.length + ' suggestions</span> <span class="hide">Show less suggestions</span>';
+                        var toggle_legislation_results = $('<button type="button" class="btn btn-default results_toggle">' + button_title + '</button>')
+                            .appendTo(container)
+                            .click(handleToggleShowSugestions);
 
                     }
                 }
@@ -225,7 +235,7 @@ $(document).ready(function() {
             function renderSuggestedLegislation(articles, questions_container) {
                 for (var s = 0; s < articles.length; s++) {
                     var article = articles[s];
-                    var article_name =  article.legislation.title + ' - ' + article.code;
+                    var article_name = article.legislation.title + ' - ' + article.code;
 
 
                     var country = $('<span>')
@@ -239,10 +249,10 @@ $(document).ready(function() {
                         .appendTo(p2);
 
                     var muted = $('<div/>')
-                                .addClass('muted')
-                                .append('<small>'+article.legislation.country_name + '  • ' +article.legislation.year+'</small>')
-                                .appendTo(p2);
-                    
+                        .addClass('muted')
+                        .append('<small>' + article.legislation.country_name + '  • ' + article.legislation.year + '</small>')
+                        .appendTo(p2);
+
                 }
             }
 
@@ -257,7 +267,7 @@ $(document).ready(function() {
                 }
             }
 
-            function handleToggleShowSugestions(){
+            function handleToggleShowSugestions() {
                 var toggle_this = $(this).parent().find('.dl_suggestions dt p:nth-child(n+4)');
                 toggle_this.animate({
                     'transform': 'translate3D(0,0,0)',
@@ -265,7 +275,7 @@ $(document).ready(function() {
                 })
                 $(this).find('span').animate({
                     'opacity': 'toggle'
-                },0)
+                }, 0)
             }
 
 

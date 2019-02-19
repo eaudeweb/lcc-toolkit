@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 let payload = {};
 let orderByOptions = {
     relevance: 'Relevance',
@@ -10,8 +12,6 @@ let orderByOptions = {
         '-1': 'Country desc'
     }
 }
-let allQueryParams = '/([^?=&]+)(=([^&]*))?/g';
-// let matchOneQueryParam = `\A?${queryName}=[^&]*`;
 
 // set the page and consider the current order
 function activatePagination() {
@@ -94,10 +94,6 @@ function setOrderBy() {
     });
 }
 
-function findOrderQueryParam(params) {
-    
-}
-
 function preselectFilters() {
     let filters = $("#filter-values").data("values");
     let stop = 0;
@@ -155,12 +151,11 @@ function preselectFilters() {
 }
 
 function send(payload) {
-    let new_url = window.location.href.split('?')[0] + '?' + $.param(payload);
-    console.log(new_url);
-    window.location.href = new_url;
+  let new_url = window.location.href.split('?')[0] + '?' + $.param(payload);
+
+  window.location.href = new_url;
 }
 
-$(document).ready(function() {
 
     let classifications = [];
     let countries = [];
@@ -387,6 +382,7 @@ $(document).ready(function() {
             law_types.splice(law_types.indexOf($(this).val(), 1))
         }
         payload['law_types'] = law_types;
+        console.log(payload)
     });
 
     $('#tagsSelect input').on('change', function() {
@@ -409,4 +405,7 @@ $(document).ready(function() {
             send(payload);
         }
     });
+
+    filterCountryAttribute().updateFilterBasedOnURL(payload);
+    filterCountryAttribute().attachListenerToModal(payload);
 });

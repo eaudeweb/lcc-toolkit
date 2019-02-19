@@ -1,13 +1,5 @@
 {% extends "index.html" %}
 
-{% load static %}
-
-{% block extra-scripts %}
-<link rel="stylesheet" type="text/css" href="{% static "css/jquery-ui.css" %}">
-<script src="{% static "js/jquery-ui.js" %}"> </script>
-<script src="{% static "js/assessment_results.js" %}"> </script>
-{% endblock %}
-
 {% block hidden_variables %}
   <input type="number" name="assessment_id" value="{{ pk }}"></input>
 {% endblock %}
@@ -41,6 +33,9 @@
 	<h2 class="country"></h2>
    <ul id="summary"></ul>
    <div class="results-info">Based on your assessment, the following priority areas are suggested for reform: </div>
+   <div class="results-info">
+     {% include "./legislation/filter_country_attribute.modal.html" %}
+   </div>
 </div>
 
 <div class="container-fluid text-center" id="assessment-result">
@@ -52,4 +47,13 @@
   </div>
 </div>
 
+{% endblock %}
+
+{% load static %}
+
+{% block extra-scripts %}
+<link rel="stylesheet" type="text/css" href="{% static "css/jquery-ui.css" %}">
+<script src="{% static "js/jquery-ui.js" %}"> </script>
+<script src="{% static "js/filter_country_attribute.modal.js" %}"> </script>
+<script src="{% static "js/assessment_results.js" %}"> </script>
 {% endblock %}
