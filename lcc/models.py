@@ -126,10 +126,12 @@ class TaxonomyClassification(mptt.models.MPTTModel):
     # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=16, unique=True, blank=True)
+    details =  models.TextField(null=True, default='')
     parent = mptt.models.TreeForeignKey('self',
                                         null=True,
                                         blank=True,
                                         related_name='children')
+
 
     class Meta:
         verbose_name = 'Taxonomy Classification'
