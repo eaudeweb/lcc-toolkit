@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 let payload = {};
 let orderByOptions = {
     relevance: 'Relevance',
@@ -10,8 +12,10 @@ let orderByOptions = {
         '-1': 'Country desc'
     }
 }
-let allQueryParams = '/([^?=&]+)(=([^&]*))?/g';
-// let matchOneQueryParam = `\A?${queryName}=[^&]*`;
+$('.popoverDetails').click(function (event) {
+  console.log('click info');
+  event.preventDefault();
+})
 
 // set the page and consider the current order
 function activatePagination() {
@@ -94,10 +98,6 @@ function setOrderBy() {
     });
 }
 
-function findOrderQueryParam(params) {
-    
-}
-
 function preselectFilters() {
     let filters = $("#filter-values").data("values");
     let stop = 0;
@@ -155,12 +155,11 @@ function preselectFilters() {
 }
 
 function send(payload) {
-    let new_url = window.location.href.split('?')[0] + '?' + $.param(payload);
-    console.log(new_url);
-    window.location.href = new_url;
+  let new_url = window.location.href.split('?')[0] + '?' + $.param(payload);
+
+  window.location.href = new_url;
 }
 
-$(document).ready(function() {
 
     let classifications = [];
     let countries = [];
@@ -409,4 +408,10 @@ $(document).ready(function() {
             send(payload);
         }
     });
+    const options = {
+      submitCountryAttibutes: 'Save options'
+    }
+
+    filterCountryAttribute().updateFilterBasedOnURL(options, payload);
+    filterCountryAttribute().attachListenerToModal(payload);
 });

@@ -328,7 +328,7 @@ body:not(.ass-results) {
         outline: none;
         font-size: 2rem!important;
         margin-bottom: 1rem;
-        padding-left: 0;
+        // padding-left: 0;
         border-bottom: 1px solid #eee;
         border-radius: 0;
         &:after {
@@ -559,4 +559,16 @@ body:not(.ass-results) {
     border: 1px solid @border;
     margin-bottom: 2rem;
     border-radius: 3px;
+}
+
+.transparent-btn {
+    background: transparent;
+    border: 0;
+}
+
+.transparent-btn:focus {
+    outline: 0;
+}
+.transparent-btn:active {
+    outline: 0;
 }

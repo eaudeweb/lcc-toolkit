@@ -60,7 +60,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 class SimpleClassificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = TaxonomyClassification
-        fields = ("id", "name")
+        fields = ("id", "name", "details")
 
 
 class ClassificationSerializer(serializers.ModelSerializer):
@@ -68,7 +68,7 @@ class ClassificationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TaxonomyClassification
-        fields = ("id", "name", "second_level")
+        fields = ("id", "name",  "details", "second_level")
 
     def _get_second_level(self, obj):
 

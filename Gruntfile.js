@@ -31,7 +31,10 @@ module.exports = function(grunt) {
                     'lcc/src/js/request.service.js',
                     'lcc/src/js/lib/jquery.sticky.js',
                     'lcc/src/js/lib/bootstrap-slider.min.js',
-                    'lcc/src/js/lib/multiple-select.min.js'
+                    'lcc/src/js/lib/multiple-select.min.js',
+                    'lcc/src/js/lib/tooltip.js',
+                    'lcc/src/js/lib/popover.js',
+                    'lcc/src/js/lib/multiple-select.min.js',
                 ],
                 dest: 'lcc/static/js/main.js'
             }

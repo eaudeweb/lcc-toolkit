@@ -1,0 +1,122 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Select country
+  attributes</button>
+  <small id="contryAttributesSummary" class="form-text text-muted">
+    No attributes selected
+  </small>
+
+{% block content %}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="True">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="cw">Commonwealth (Member country):</label>
+            <select class="form-control filter-country-attributes-select" id="cw">
+              <option value="">Select...</option>
+              <option value="True">True</option>
+              <option value="False">False</option>
+            </select>
+            <label for="small_cw">Small commonwealth country:</label>
+            <select class="form-control filter-country-attributes-select" id="small_cw">
+              <option value="">Select...</option>
+              <option value="True">True</option>
+              <option value="False">False</option>
+            </select>
+            <label for="un">United Nations (Member state):</label>
+            <select class="form-control filter-country-attributes-select" id="un">
+              <option value="">Select...</option>
+              <option value="True">True</option>
+              <option value="False">False</option>
+            </select>
+            <label for="ldc">Least developed country (LDC):</label>
+            <select class="form-control filter-country-attributes-select" id="ldc">
+              <option value="">Select...</option>
+              <option value="True">True</option>
+              <option value="False">False</option>
+            </select>
+            <label for="lldc">Landlocked developing country (LLDC):</label>
+            <select class="form-control filter-country-attributes-select" id="lldc">
+              <option value="">Select...</option>
+              <option value="True">True</option>
+              <option value="False">False</option>
+            </select>
+            <label for="sid">Small island developing state (SID):</label>
+            <select class="form-control filter-country-attributes-select" id="sid">
+              <option value="">Select...</option>
+              <option value="True">True</option>
+              <option value="False">False</option>
+            </select>
+            <label for="region">Region:</label>
+            <select class="form-control filter-country-attributes-select" id="region">
+              <option value="">Select...</option>
+              {% for region in regions %}
+              <option value="{{ region.name }}" class="option-child-1">{{ region.name }}</option>
+              {% endfor %}
+            </select>
+            <label for="sub_region">Sub region:</label>
+            <select class="form-control filter-country-attributes-select" id="sub_region">
+              <option value="">Select...</option>
+              {% for sub_region in sub_regions %}
+              <option value="{{ sub_region.name }}" class="option-child-1">{{ sub_region.name }}</option>
+              {% endfor %}
+            </select>
+            <label for="legal_system">Legal system:</label>
+            <select class="form-control filter-country-attributes-select" id="legal_system">
+              <option value="">Select...</option>
+              {% for legal_system in legal_systems %}
+              <option value="{{ legal_system.name }}" class="option-child-1">{{ legal_system.name }}</option>
+              {% endfor %}
+            </select>
+            <label for="population">Population range:</label>
+            <select class="form-control filter-country-attributes-select" id="population">
+              <option value="">Select...</option>
+              {% for range in population %}
+              <option value="{{ forloop.counter0 }}" class="option-child-1">{{ range }}</option>
+              {% endfor %}
+            </select>
+            <label for="hdi2015">HDI range:</label>
+            <select class="form-control filter-country-attributes-select" id="hdi2015">
+              <option value="">Select...</option>
+              {% for range in hdi2015 %}
+              <option value="{{ forloop.counter0 }}" class="option-child-1">{{ range }}</option>
+              {% endfor %}
+            </select>
+            <label for="gdp_capita">GDP Range:</label>
+            <select class="form-control filter-country-attributes-select" id="gdp_capita">
+              <option value="">Select...</option>
+              {% for range in gdp_capita %}
+              <option value="{{ forloop.counter0 }}" class="option-child-1">{{ range }}</option>
+              {% endfor %}
+            </select>
+            <label for="ghg_no_lucf">Total GHG Emissions excluding LUCF MtCO2e 2014:</label>
+            <select class="form-control filter-country-attributes-select" id="ghg_no_lucf">
+              <option value="">Select...</option>
+              {% for range in ghg_no_lucf %}
+              <option value="{{ forloop.counter0 }}" class="option-child-1">{{ range }}</option>
+              {% endfor %}
+            </select>
+            <label for="ghg_lucf">Total GHG Emissions including LUCF MtCO2e 2014:</label>
+            <select class="form-control filter-country-attributes-select" id="ghg_lucf">
+              <option value="">Select...</option>
+              {% for range in ghg_lucf %}
+              <option value="{{ forloop.counter0 }}" class="option-child-1">{{ range }}</option>
+              {% endfor %}
+            </select>
+            
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="submitCountryAttibutes" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
