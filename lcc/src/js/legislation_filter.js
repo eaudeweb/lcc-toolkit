@@ -412,6 +412,6 @@ function send(payload) {
       submitCountryAttibutes: 'Save options'
     }
 
-    filterCountryAttribute().updateFilterBasedOnURL(options);
+    filterCountryAttribute().updateFilterBasedOnURL(options, payload);
     filterCountryAttribute().attachListenerToModal(payload);
 });

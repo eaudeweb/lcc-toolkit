@@ -34,7 +34,7 @@ function filterCountryAttribute() {
     });
   }
 
-  const updateFilterBasedOnURL = function(options) {
+  const updateFilterBasedOnURL = function(options, payload) {
     const decodedURL = decodeURIComponent(window.location.search);
     contryAttributesSummary = 0;
 
@@ -54,6 +54,7 @@ function filterCountryAttribute() {
           const option = selectDOMElement.options[i];
           if(option.value === attributeValue) {
             selectDOMElement.selectedIndex = i;
+            payload[attribute] = attributeValue;
             break;
           }
         }
