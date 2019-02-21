@@ -7,11 +7,6 @@ from django import views
 from lcc import models
 
 
-class Index(views.View):
-    def get(self, request):
-        return HttpResponseRedirect(reverse('lcc:legislation:explorer'))
-
-
 class TagGroupRender():
     def __init__(self, tag_group):
         self.name = tag_group.name

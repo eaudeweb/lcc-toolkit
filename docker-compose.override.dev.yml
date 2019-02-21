@@ -20,6 +20,7 @@ services:
       - db
     volumes:
       - .:/opt/lcct
+    entrypoint: ["/usr/bin/tail", "-f", "/dev/null"]
 
   elasticsearch:
     container_name: lcct.elastic

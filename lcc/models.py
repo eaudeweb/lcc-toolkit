@@ -126,10 +126,12 @@ class TaxonomyClassification(mptt.models.MPTTModel):
     # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=16, unique=True, blank=True)
+    details =  models.TextField(null=True, default='')
     parent = mptt.models.TreeForeignKey('self',
                                         null=True,
                                         blank=True,
                                         related_name='children')
+
 
     class Meta:
         verbose_name = 'Taxonomy Classification'
@@ -174,6 +176,13 @@ class TaxonomyClassification(mptt.models.MPTTModel):
         # The logical classification of taxonomy starts from 1
         # The tree level of an object starts from 0
         return self.get_level() + 1
+
+    def get_children(self):
+        return super().get_children().extra(
+            select={
+                'code_fix': "string_to_array(code, '.')::int[]",
+            },
+        ).order_by('code_fix')
 
     def __str__(self):
         return "{} classification: {}".format(
@@ -617,9 +626,14 @@ class Legislation(_TaxonomyModel):
 
 
 class LegislationArticleManager(models.Manager):
-    def get_articles_for_gaps(self, gap_ids):
+    def filter_by_similar_countries(self, similar_countries):
+        return self.select_related('legislation').filter(
+            legislation__country__in=similar_countries
+        )
+
+    def get_articles_for_gaps(self, gap_ids, similar_countries):
         table = self.model._meta.db_table
-        return self.select_related('legislation').extra(
+        return self.filter_by_similar_countries(similar_countries).extra(
             tables=['lcc_gap'],
             select={
                 'gap_id': 'lcc_gap.id',

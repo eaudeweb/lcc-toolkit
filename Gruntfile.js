@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
     require('jit-grunt')(grunt);
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.initConfig({
         less: {
@@ -31,7 +31,10 @@ module.exports = function(grunt) {
                     'lcc/src/js/request.service.js',
                     'lcc/src/js/lib/jquery.sticky.js',
                     'lcc/src/js/lib/bootstrap-slider.min.js',
-                    'lcc/src/js/lib/multiple-select.min.js'
+                    'lcc/src/js/lib/multiple-select.min.js',
+                    'lcc/src/js/lib/tooltip.js',
+                    'lcc/src/js/lib/popover.js',
+                    'lcc/src/js/lib/multiple-select.min.js',
                 ],
                 dest: 'lcc/static/js/main.js'
             }
@@ -74,9 +77,18 @@ module.exports = function(grunt) {
         },
         uglify: {
             my_target: {
-                files: {
-                    'lcc/static/*/*.js': ['lcc/static/*/*.js']
-                }
+                files: [{
+                    expand: true,
+                    src: ['lcc/static/*/*.js'],
+                    dest: 'lcc/static',
+                    cwd: '.',
+                    rename: function (dst, src) {
+                      // To keep the source js files and make new files as `*.min.js`:
+                      // return dst + '/' + src.replace('.js', '.min.js');
+                      // Or to override to src:
+                      return src;
+                    }
+                  }]
             }
         }
     });

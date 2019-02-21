@@ -60,9 +60,10 @@ default values in the .example files, so you shouldn't have to change anything).
           REQFILE: requirements-dev.txt
       entrypoint: bash
 
-Then run the web service
-
-    docker-compose run --service-ports web
+To create and run the develop stack:
+    docker-compose up -d
+    docker-compose ps
+    docker exec -it lcct.web bash
 
 and run the following:
 
@@ -82,6 +83,11 @@ command:
 Where [N] is the number of Legislation objects to generate.
 
 ## Testing
+
+Allow the user to create a database:
+    docker exec -it lcc.db bash
+    psql -U postgres
+    ALTER USER demo CREATEDB;
 
 To execute the test suite, attach to the web service and run the following:
 

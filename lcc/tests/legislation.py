@@ -110,7 +110,7 @@ class LegislationExplorer(TestCase):
 
     def test_classification_filtering(self):
 
-        classification_ids = ['1', '74']  # Arbitrary level 0 classifications
+        classification_ids = ['1', '97']  # Arbitrary level 0 classifications
 
         c = Client()
         response = c.get(
@@ -119,14 +119,14 @@ class LegislationExplorer(TestCase):
         )
 
         expected_law_classifications_list = [
-            [1, 74, 93],
-            [1, 45, 74, 93],
-            [1, 93],
-            [1, 45, 74, 93],
-            [1, 45, 74, 93],
-            [74],
-            [1, 93],
-            [45, 74, 93]
+            [1, 44, 97, 118],
+            [1, 97, 118],
+            [1, 44, 97, 118],
+            [1, 118],
+            [1, 44, 97, 118],
+            [97],
+            [1, 118],
+            [44, 97, 118]
         ]
         # TODO: Intentionally define an order to be returned. Currently this
         # order is accidental, a result of ES's default scoring algorithms. This
@@ -188,13 +188,9 @@ class LegislationExplorer(TestCase):
 
         returned_laws = response.context['laws'].object_list
 
-        self.assertEqual(len(returned_laws), 8)
+        self.assertEqual(len(returned_laws), 6)
         self.assertIn(
             'Dedicated <em>climate</em> laws and governance',
-            returned_laws[0].highlighted_classifications()
-        )
-        self.assertIn(
-            'Energy production and <em>renewable</em> energy laws',
             returned_laws[0].highlighted_classifications()
         )
 
@@ -341,7 +337,7 @@ class LegislationExplorer(TestCase):
     def test_country_filtering(self):
 
         myanmar = ['MMR']
-        myanmar_class_id = 93
+        myanmar_class_id = 118
 
         c = Client()
         response = c.get(

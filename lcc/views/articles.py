@@ -103,6 +103,13 @@ class EditArticles(mixins.LoginRequiredMixin,
 
     def form_invalid(self, form):
         print(form.errors)
+        article = self.get_object()
+        return HttpResponseRedirect(
+            reverse('lcc:legislation:articles:edit', kwargs={
+                'legislation_pk': article.legislation.pk,
+                'article_pk': article.pk
+            })
+        )
 
     def form_valid(self, form):
         article = form.save()
