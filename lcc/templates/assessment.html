@@ -57,21 +57,21 @@
 			</div>
 		</div>
 		<div id="questions-container" class="col-sm-8 text-left">
-			<small>
+			<small style="display: block">
 				<span class="classification_title">Title</span>
 				<span class="current">0</span>/
 				<span class="last">0</span>
-				<button type="button"
-					id="popoverDetails"
-					class="btn btn-default btn-lg"
-					data-container="body"
-					data-toggle="popover"
-					data-placement="top"
-				>
-					<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-				</button>
 			</small>
-			<h3 class="question_category">Subtitle</h3>
+			<h3 class="question_category" style="display: inline">Subtitle</h3>
+			<span
+				id="popoverDetails"
+				data-container="body"
+				data-toggle="popover"
+				data-placement="left"
+				data-html="true"
+			>
+				<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+			</span>
 			<ul class="list-group">
 			</ul>
 

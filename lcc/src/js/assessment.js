@@ -188,7 +188,8 @@ $(document).ready(function () {
               .done(renderTitleContent(responseClassifications[0].name
                 , responseClassifications[0].second_level[0].name
                 , responseClassifications[0].second_level.length
-                , 0, responseClassifications[0]));
+                , 0
+                , responseClassifications[0].second_level[0].details));
           });
       }
 
@@ -225,7 +226,8 @@ $(document).ready(function () {
                                                           , j
                                                           , previousClassification
                                                           , nextClassification
-                                                          , currentClassification))
+                                                          , currentClassification
+                                                          , subcat.details))
               .appendTo(classification_menu);
             var i_comp = $('<i/>')
               .text(j + 1)
@@ -459,14 +461,14 @@ $(document).ready(function () {
           });
       }
 
-      function getQuestionsForCategory(classification_name, category_name, categories_no, index, previousClassification, nextClassification, currentClassification, event) {
+      function getQuestionsForCategory(classification_name, category_name, categories_no, index, previousClassification, nextClassification, currentClassification, details) {
         var elem = $(event.currentTarget);
         var all_elems = $('classification-item').removeClass('iron-selected');
 
         elem.addClass('iron-selected');
         classification_id = elem.attr('data-id');
         getQuestions.call(this, classification_id);
-        renderTitleContent(classification_name, category_name, categories_no, index, currentClassification.details);
+        renderTitleContent(classification_name, category_name, categories_no, index, details);
         handleGoToQuestions.call(this, false, false, index, categories_no, previousClassification, nextClassification, currentClassification);
       }
 
@@ -619,13 +621,45 @@ $(document).ready(function () {
         return selectedClassificationsIndex;
       }
 
-      function renderTitleContent(classification_name, category_name, categories_no, index, classif) {
+      function renderTitleContent(classification_name, category_name, categories_no, index, details) {
+        if(details) {
+          popoverDetails.show();
+          let fomattedDetails = handleNewLine(details);
+          fomattedDetails = fomattedDetails.indexOf('http') !== -1 ? handleLink(fomattedDetails) : fomattedDetails;
+          popoverDetails.attr('data-content', fomattedDetails);
+        } else {
+          popoverDetails.hide();
+        }
+
         classification_title.html(classification_name);
-        console.log(classif)
-        popoverDetails.attr('data-content', classification_name)
         current.html(parseInt(index) + 1);
         last.html(categories_no);
         question_category.html(category_name);
+      }
+
+      function handleNewLine(testValue) {
+        var resultWithNewLineTags = testValue.match(/\n/) ? replaceNewLine(testValue) : testValue.match(/\r/) ? replaceNewLine(testValue) : testValue;
+
+        function replaceNewLine(itemValue) {
+          var lines = itemValue.split('\n');
+          var result = lines[0];
+          for (let index = 1; index < lines.length; index++) {
+            const element = lines[index];
+            result += '<br>' + element;
+          }
+          return result;
+        }
+        return resultWithNewLineTags;
+      }
+
+      function handleLink(itemValue) {
+        let result = itemValue;
+        let all = result.substring(result.indexOf('http'), result.length).split(' ');
+        for (let i = 0; i < all.length; i++) {
+          const substr = all[i];
+          result = substr.indexOf('http') > -1 ? result.replace(substr, '<a target="_blank" href=" ' + substr + '">' + substr + '</a>') : result;
+        }
+        return result;
       }
     });
 });
