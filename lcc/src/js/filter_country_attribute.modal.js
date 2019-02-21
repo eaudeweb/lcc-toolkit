@@ -1,8 +1,11 @@
 
 function filterCountryAttribute() {
   const countryAttributes = ['cw', 'small_cw', 'un', 'ldc', 'lldc', 'sid', 'region', 'sub_region', 'legal_system', 'population', 'hdi2015', 'gdp_capita', 'ghg_no_lucf', 'ghg_lucf'];
+  let contryAttributesSummary = 0;
 
   const attachListenerToModal = function(payload, callback) {
+    contryAttributesSummary = 0;
+
     $('#exampleModal').on('show.bs.modal', function (event) {
       let submitButton = document.getElementById("submitCountryAttibutes");
       let allSelectList = document.getElementsByClassName("filter-country-attributes-select");
@@ -17,12 +20,13 @@ function filterCountryAttribute() {
           // it is single value select, so it will overwrite existing
           if(selectedValue) {
             payload[selectedLabel] = selectedValue;
+            contryAttributesSummary++;
           } else if(payload[selectedLabel]) {
             delete payload[selectedLabel];
           }
 
         }
-
+        updateContryAttributesSummary();
         if(callback) {
           callback();
         }
@@ -30,8 +34,15 @@ function filterCountryAttribute() {
     });
   }
 
-  const updateFilterBasedOnURL = function() {
+  const updateFilterBasedOnURL = function(options) {
     const decodedURL = decodeURIComponent(window.location.search);
+    contryAttributesSummary = 0;
+
+    if(options) {
+      Object.keys(options).map((key) => {
+        document.getElementById(key).innerText = options[key];
+      })
+    }
 
     countryAttributes.map((attribute) => {
       const attributeWithValue = decodedURL.match('\A?' + attribute + '=[^&]*');
@@ -45,9 +56,15 @@ function filterCountryAttribute() {
             selectDOMElement.selectedIndex = i;
             break;
           }
-        }        
+        }
+        contryAttributesSummary++;
       }
     });
+    updateContryAttributesSummary();
+  }
+
+  const updateContryAttributesSummary = function() {
+    document.getElementById('contryAttributesSummary').innerText = contryAttributesSummary > 0 ? `${contryAttributesSummary} attributes selected` : 'No attributes selected';
   }
 
   return {

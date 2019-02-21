@@ -53,7 +53,8 @@
           {% with top_class.get_children as second_classifications %}
             <span class="list-header">
               <input id='classification-{{ top_class.pk }}' value='{{ top_class.pk }}' type='checkbox'/>
-              <label for='classification-{{ top_class.pk }}'>{{ top_class.name }}</label>
+              <label for='classification-{{ top_class.pk }}'>{{ top_class.name }}
+              </label>
               {% if second_classifications %}
                 <i class="fa fa-caret-down caret" aria-hidden="true"></i>
               {% endif %}

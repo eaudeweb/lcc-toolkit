@@ -12,12 +12,15 @@ $(document).ready(function () {
             let gaps_no = 0;
             let articles_no = 0;
             let payload = {};
+            const options = {
+                submitCountryAttibutes: 'Apply filters'
+            }
 
 
             getAssessmentResults.call(this);
             getAssessments.call(this);
 
-            filterCountryAttribute().updateFilterBasedOnURL(payload);
+            filterCountryAttribute().updateFilterBasedOnURL(options);
             filterCountryAttribute().attachListenerToModal(payload, send.bind(null, payload));
 
 

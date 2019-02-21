@@ -13,6 +13,7 @@ $(document).ready(function () {
       var all_questions = [];
       var listeners = {};
       var classification_title = $('.classification_title');
+      var popoverDetails = $('#popoverDetails');
       var current = $('#questions-container .current');
       var last = $('#questions-container .last');
       var question_category = $('.question_category');
@@ -187,7 +188,7 @@ $(document).ready(function () {
               .done(renderTitleContent(responseClassifications[0].name
                 , responseClassifications[0].second_level[0].name
                 , responseClassifications[0].second_level.length
-                , 0));
+                , 0, responseClassifications[0]));
           });
       }
 
@@ -243,6 +244,8 @@ $(document).ready(function () {
           if(z === 0) {
             renderButtonsGoToCategoryText(classification.second_level[0], null, null, null);
           }
+
+          $('[data-toggle="popover"]').popover()
         }
       }
 
@@ -463,7 +466,7 @@ $(document).ready(function () {
         elem.addClass('iron-selected');
         classification_id = elem.attr('data-id');
         getQuestions.call(this, classification_id);
-        renderTitleContent(classification_name, category_name, categories_no, index);
+        renderTitleContent(classification_name, category_name, categories_no, index, currentClassification.details);
         handleGoToQuestions.call(this, false, false, index, categories_no, previousClassification, nextClassification, currentClassification);
       }
 
@@ -616,8 +619,10 @@ $(document).ready(function () {
         return selectedClassificationsIndex;
       }
 
-      function renderTitleContent(classification_name, category_name, categories_no, index) {
+      function renderTitleContent(classification_name, category_name, categories_no, index, classif) {
         classification_title.html(classification_name);
+        console.log(classif)
+        popoverDetails.attr('data-content', classification_name)
         current.html(parseInt(index) + 1);
         last.html(categories_no);
         question_category.html(category_name);

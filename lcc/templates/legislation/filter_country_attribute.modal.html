@@ -1,5 +1,8 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Select country
   attributes</button>
+  <small id="contryAttributesSummary" class="form-text text-muted">
+    No attributes selected
+  </small>
 
 {% block content %}
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -111,7 +114,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="submitCountryAttibutes" type="button" class="btn btn-primary" data-dismiss="modal">Save attributes</button>
+        <button id="submitCountryAttibutes" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
       </div>
     </div>
   </div>

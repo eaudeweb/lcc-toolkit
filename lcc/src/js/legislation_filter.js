@@ -12,6 +12,10 @@ let orderByOptions = {
         '-1': 'Country desc'
     }
 }
+$('.popoverDetails').click(function (event) {
+  console.log('click info');
+  event.preventDefault();
+})
 
 // set the page and consider the current order
 function activatePagination() {
@@ -382,7 +386,6 @@ function send(payload) {
             law_types.splice(law_types.indexOf($(this).val(), 1))
         }
         payload['law_types'] = law_types;
-        console.log(payload)
     });
 
     $('#tagsSelect input').on('change', function() {
@@ -405,7 +408,10 @@ function send(payload) {
             send(payload);
         }
     });
+    const options = {
+      submitCountryAttibutes: 'Save options'
+    }
 
-    filterCountryAttribute().updateFilterBasedOnURL(payload);
+    filterCountryAttribute().updateFilterBasedOnURL(options);
     filterCountryAttribute().attachListenerToModal(payload);
 });
