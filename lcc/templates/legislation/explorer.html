@@ -75,6 +75,21 @@
                         <i class="fa fa-caret-down caret" aria-hidden="true"></i>
                       {% endif %}
                     </span>
+
+                    {% if second_class.details %}
+                      <a tabindex="0"
+                        id="popoverDetails-{{ second_class.pk }}"
+                        class="popoverDetails"
+                        data-toggle="popover"
+                        data-placement="left"
+                        data-html="true"
+                        data-trigger="manual"
+                        data-item="{{ second_class.details }}"
+                      >
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                      </a>
+                    {% endif %}
+
                     <ul class="third-level level">
                       <li class="select-deselect">
                         <a href="javascript:void(0)" class="select-all">Select all</a>
@@ -83,8 +98,23 @@
                       </li>
                       {% for third_class in third_classifications %}
                         <li>
-                          <input id='classification-{{ third_class.pk }}' value='{{ third_class.pk }}' type='checkbox'/>
-                          <label for="classification-{{ third_class.pk }}">{{ third_class.name }}</label>
+                          <span class="list-header">
+                            <input id='classification-{{ third_class.pk }}' value='{{ third_class.pk }}' type='checkbox'/>
+                            <label for="classification-{{ third_class.pk }}">{{ third_class.name }}</label>
+                          </span>
+                          {% if third_class.details %}
+                            <a tabindex="0"
+                              id="popoverDetails-{{ third_class.pk }}"
+                              data-item="{{ third_class.details }}"
+                              class="popoverDetails"
+                              data-toggle="popover"
+                              data-placement="left"
+                              data-html="true"
+                              data-trigger="manual"
+                            >
+                              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                            </a>
+                          {% endif %}
                         </li>
                       {% endfor %}
                     </ul>

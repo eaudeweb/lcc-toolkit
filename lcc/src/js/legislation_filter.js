@@ -1,61 +1,57 @@
 $(document).ready(function() {
 
-let payload = {};
-let orderByOptions = {
+  let payload = {};
+  let orderByOptions = {
     relevance: 'Relevance',
     promulgation_sort: {
-        '1': 'Promulgation asc',
-        '-1': 'Promulgation desc'
+      '1': 'Promulgation asc',
+      '-1': 'Promulgation desc'
     },
     country_sort: {
-        '1': 'Country asc',
-        '-1': 'Country desc'
+      '1': 'Country asc',
+      '-1': 'Country desc'
     }
-}
-$('.popoverDetails').click(function (event) {
-  console.log('click info');
-  event.preventDefault();
-})
+  }
 
-// set the page and consider the current order
-function activatePagination() {
+  // set the page and consider the current order
+  function activatePagination() {
     let selectedOrder = null;
     let selectedOrderValue = null;
     let found = false;
 
     $("ul.pagination li a").on('click', function() {
-        Object.keys(orderByOptions).map(function(orderKey) {
-            let queryMatch = window.location.search.match('\A?' + orderKey + '=[^&]*');
-            selectedOrder = !found && !!queryMatch ? orderKey : selectedOrder;
-            selectedOrderValue = !found && !!queryMatch ? queryMatch[0].split('=')[1] : selectedOrderValue;
-            found = !! selectedOrder;
-        });
-        !!selectedOrder ? payload[selectedOrder] = selectedOrderValue : null;
+      Object.keys(orderByOptions).map(function(orderKey) {
+        let queryMatch = window.location.search.match('\A?' + orderKey + '=[^&]*');
+        selectedOrder = !found && !!queryMatch ? orderKey : selectedOrder;
+        selectedOrderValue = !found && !!queryMatch ? queryMatch[0].split('=')[1] : selectedOrderValue;
+        found = !! selectedOrder;
+      });
+      !!selectedOrder ? payload[selectedOrder] = selectedOrderValue : null;
 
-        payload['page'] = $(this).attr('data-page');
-        $(".submitBtn").click();
+      payload['page'] = $(this).attr('data-page');
+      $(".submitBtn").click();
     });
-}
+  }
 
-function setOrderBy() {
+  function setOrderBy() {
     let selectedOrderName = null;
     let selectedOrderValue = null;
     let selectedOrderKey = null;
     let found = false;
 
     Object.keys(orderByOptions).map(function(orderKey) {
-        let queryMatch = window.location.search.match('\A?' + orderKey + '=[^&]*');
-        // if found query, change, if not keep as it was
-        selectedOrderName = !found ?
-                                queryMatch ? orderByOptions[orderKey][queryMatch[0].split('=')[1]] : ''
-                            : selectedOrderName;
-        found = !!selectedOrderName;
+      let queryMatch = window.location.search.match('\A?' + orderKey + '=[^&]*');
+      // if found query, change, if not keep as it was
+      selectedOrderName = !found ?
+                              queryMatch ? orderByOptions[orderKey][queryMatch[0].split('=')[1]] : ''
+                          : selectedOrderName;
+      found = !!selectedOrderName;
 
-        // if found query, change, if not keep as it was
-        selectedOrderKey = queryMatch ? orderKey : selectedOrderKey;
+      // if found query, change, if not keep as it was
+      selectedOrderKey = queryMatch ? orderKey : selectedOrderKey;
 
-        // if found query, change, if not keep as it was
-        selectedOrderValue = queryMatch ? queryMatch[0].split('=')[1] : selectedOrderValue;
+      // if found query, change, if not keep as it was
+      selectedOrderValue = queryMatch ? queryMatch[0].split('=')[1] : selectedOrderValue;
     });
 
     selectedOrderName = selectedOrderName ? selectedOrderName : orderByOptions.relevance;
@@ -67,11 +63,11 @@ function setOrderBy() {
 
     // set the 'active' class on the order that is currently selected
     $("ul.dropdown-menu-order li").addClass(function( index ) {
-        let className = 
-            $(this).children( "a" ).attr('data-sort-id') === selectedOrderKey &&
-            $(this).children( "a" ).attr('data-sort-dir') === selectedOrderValue ?
-                "active" : '';
-        return className;
+      let className =
+        $(this).children( "a" ).attr('data-sort-id') === selectedOrderKey &&
+        $(this).children( "a" ).attr('data-sort-dir') === selectedOrderValue ?
+          "active" : '';
+      return className;
     });
 
     // set the name of the preselected order
@@ -79,28 +75,27 @@ function setOrderBy() {
 
     // set the active class on the list of order option, to open it
     $("#orderByBtn").on('click', function showOptions() {
-        $("#orderByParent").addClass( "active" )
+      $("#orderByParent").addClass( "active" )
     });
 
     // remove the 'active' class, to close the list on blur
     $("#orderByBtn").on('blur', function showOptions() {
-        $("#orderByParent").removeClass( "active" )
+      $("#orderByParent").removeClass( "active" )
     });
 
     // on lick set the payload and click the submit to reflect the order and the page
     $("ul.dropdown-menu-order li a").on('click', function() {
-        let orderName = $(this).attr('data-sort-id');
-        let orderValue = $(this).attr('data-sort-dir');
-        
-        orderName !== 'relevance' ? payload[orderName] = orderValue : null;
-        pageNumber ? payload['page'] = pageNumber : null;
-        $(".submitBtn").click();
-    });
-}
+      let orderName = $(this).attr('data-sort-id');
+      let orderValue = $(this).attr('data-sort-dir');
 
-function preselectFilters() {
+      orderName !== 'relevance' ? payload[orderName] = orderValue : null;
+      pageNumber ? payload['page'] = pageNumber : null;
+      $(".submitBtn").click();
+    });
+  }
+
+  function preselectFilters() {
     let filters = $("#filter-values").data("values");
-    let stop = 0;
 
     if(filters["q"]){
       payload["q"] = filters["q"][0];
@@ -152,266 +147,238 @@ function preselectFilters() {
     if(to_year != max_year){
       payload["to_year"] = to_year;
     }
-}
+  }
 
-function send(payload) {
-  let new_url = window.location.href.split('?')[0] + '?' + $.param(payload);
+  function send(payload) {
+    let new_url = window.location.href.split('?')[0] + '?' + $.param(payload);
 
-  window.location.href = new_url;
-}
+    window.location.href = new_url;
+  }
 
+  let classifications = [];
+  let law_types = [];
+  let tags = [];
 
-    let classifications = [];
-    let countries = [];
-    let law_types = [];
-    let tags = [];
+  let autocomplete = [];
+  $('[data-toggle="popover"]').popover()
+  $('.popoverDetails').on({
+    'click': function() {
+      $(this).popover('show');
+    }
+  });
 
-    let autocomplete = [];
+  activatePagination();
+  setOrderBy();
+  setContentForEachPopover();
 
-    activatePagination();
-    setOrderBy();
+  function setContentForEachPopover() {
+    const allPopovers = $('.popoverDetails');
 
-    // Activate multiselect
-    $('#countrySelect').multipleSelect({
-        width: '100%',
-        multiple: true,
-        multipleWidth: 260,
-        filter: true
+    allPopovers.each(function( index ) {
+      const id = $(this).attr('id');
+      const itemDetails = $(this).attr('data-item');
+      let fomattedDetails = handleNewLine(itemDetails);
+
+      fomattedDetails = fomattedDetails.indexOf('http') !== -1 ? handleLink(fomattedDetails) : fomattedDetails;
+      $(this)
+      .attr({'data-content':`${fomattedDetails}`})
+      .on('click', handleShowPopover(id)) // this is from common.js
     });
-    $('.ms-search').append(
-        '<div class="search-icon">\
-        <i class="fa fa-search" aria-hidden="true"></i>\
-        </div>'
-    );
 
-    // Activate Slider
-    $("#yearSlider").slider({formatter: function(value) {
+    // this is from common.js
+    destroyPopoverOnFocusOut();
+  }
+
+  // Activate multiselect
+  $('#countrySelect').multipleSelect({
+    width: '100%',
+    multiple: true,
+    multipleWidth: 260,
+    filter: true
+  });
+  $('.ms-search').append(
+    '<div class="search-icon">\
+    <i class="fa fa-search" aria-hidden="true"></i>\
+    </div>'
+  );
+
+  // Activate Slider
+  $("#yearSlider").slider({formatter: function(value) {
+    return value;
+  }});
+
+  $("#yearSlider").on("slide", function(slideEvt) {
+    $("#fromYear").val(slideEvt.value[0]);
+    $("#toYear").val(slideEvt.value[1]);
+    payload['from_year'] = slideEvt.value[0];
+    payload['to_year'] = slideEvt.value[1];
+  });
+
+  preselectFilters();
+
+  $(".third-level input").each(function(i, input){
+    let $input = $(input);
+    $input
+      .click(function(){
+        if ($input.prop('checked')){
+          $input
+            .closest('ul')
+            .siblings('span')
+            .find('> input:first-child')
+            .prop('checked', true);
+        }
+      });
+  });
+
+  let slider_text = document.getElementById('yearSlider');
+
+  let slider_values = [
+    parseInt($('#yearSlider').attr('data-slider-min')),
+    parseInt($('#yearSlider').attr('data-slider-max'))
+  ]
+
+  $("body").on('blur', '#fromYear, #toYear', function(e){
+    let int_slider_values = [parseInt($('#fromYear').val()), parseInt($('#toYear').val())]
+    $('#yearSlider').slider('setValue', int_slider_values)
+  });
+
+
+  // Activate autocomplete
+
+  $("#classificationsSelect > li.first-level > span > label").each(function(){
+    autocomplete.push({
+      id: $(this).attr('for'),
+      name: $(this).html()
+    });
+  });
+
+  $("#tagsSelect > li label").each(function(){
+    autocomplete.push({
+      id: $(this).attr('for'),
+      name: $(this).html()
+    });
+  });
+
+  $('#textSearchInput').easyAutocomplete({
+    data: autocomplete,
+    getValue: 'name',
+    list: {
+      maxNumberOfElements: 5,
+      match: {
+        enabled: true
+      },
+      onChooseEvent: function() {
+        let id = $("#textSearchInput").getSelectedItemData().id;
+        $("#" + id).click();
+        $("#textSearchInput").val('').change();
+      }
+    }
+  });
+  $('div.easy-autocomplete').removeAttr('style');
+
+  // Activate select/deselect links for classification filters
+
+  $('a.select-all').on('click', function(){
+    $(this).closest('ul').find('input').prop('checked', true);
+  });
+
+  $('a.deselect-all').on('click', function(){
+    $(this).closest('ul').find('input').prop('checked', false);
+  });
+
+  // Handle search and filters
+
+  $('#textSearchInput').on('change', function() {
+    let val = $(this).val();
+    if(val){
+      payload['q'] = val;
+    } else {
+      delete payload['q'];
+    }
+  });
+
+  // Activate Slider
+  $("#yearSlider").slider({
+    formatter: function(value) {
       return value;
-    }});
-
-    $("#yearSlider").on("slide", function(slideEvt) {
-      $("#fromYear").val(slideEvt.value[0]);
-      $("#toYear").val(slideEvt.value[1]);
-      payload['from_year'] = slideEvt.value[0];
-      payload['to_year'] = slideEvt.value[1];
-    });
-
-    preselectFilters();
-
-    $(".third-level input").each(function(i, input){
-      let $input = $(input);
-      $input
-        .click(function(){
-          if ($input.prop('checked')){
-            $input
-              .closest('ul')
-              .siblings('span')
-              .find('> input:first-child')
-              .prop('checked', true);
-          }
-        });
-    });
-
-    let slider_text = document.getElementById('yearSlider');
-
-    let slider_values = [
-        parseInt($('#yearSlider').attr('data-slider-min')),
-        parseInt($('#yearSlider').attr('data-slider-max'))
-    ]
-
-    $("body").on('blur', '#fromYear, #toYear', function(e){
-      let int_slider_values = [parseInt($('#fromYear').val()), parseInt($('#toYear').val())]
-      console.log(int_slider_values)
-      $('#yearSlider').slider('setValue', int_slider_values)
-    });
-
-
-    // Activate autocomplete
-
-    $("#classificationsSelect > li.first-level > span > label").each(function(){
-      autocomplete.push({
-        id: $(this).attr('for'),
-        name: $(this).html()
-      });
-    });
-
-    $("#tagsSelect > li label").each(function(){
-      autocomplete.push({
-        id: $(this).attr('for'),
-        name: $(this).html()
-      });
-    });
-
-    $('#textSearchInput').easyAutocomplete({
-      data: autocomplete,
-      getValue: 'name',
-      list: {
-        maxNumberOfElements: 5,
-        match: {
-          enabled: true
-        },
-        onChooseEvent: function() {
-          let id = $("#textSearchInput").getSelectedItemData().id;
-          $("#" + id).click();
-          $("#textSearchInput").val('').change();
-        }
-      }
-    });
-    $('div.easy-autocomplete').removeAttr('style');
-
-    // Activate select/deselect links for classification filters
-
-    $('a.select-all').on('click', function(){
-      $(this).closest('ul').find('input').prop('checked', true);
-    });
-
-    $('a.deselect-all').on('click', function(){
-      $(this).closest('ul').find('input').prop('checked', false);
-    });
-
-    // Handle search and filters
-
-    $('#textSearchInput').on('change', function() {
-      let val = $(this).val();
-      if(val){
-        payload['q'] = val;
-      } else {
-        delete payload['q'];
-      }
-    });
-
-    // Activate Slider
-    $("#yearSlider").slider({
-        formatter: function(value) {
-            return value;
-        }
-    });
-
-    $("#yearSlider").on("slide", function(slideEvt) {
-        $("#fromYear").val(slideEvt.value[0]);
-        $("#toYear").val(slideEvt.value[1]);
-        payload['from_year'] = slideEvt.value[0];
-        payload['to_year'] = slideEvt.value[1];
-    });
-
-    let observer = new MutationObserver(function(mutations) {
-        slider_values = slider_text.getAttribute('value').split(',');
-        slider_values = [parseInt(slider_values[0]), parseInt(slider_values[1])]
-        $("#fromYear").val(slider_values[0]);
-        $("#toYear").val(slider_values[1]);
-        payload['from_year'] = slider_values[0];
-        payload['to_year'] = slider_values[1];
-    });
-    try {
-      // statements
-      observer.observe(slider_text, {
-          attributes: true,
-          attributeFilter: ['value']
-      });
-    } catch(e) {
-      console.log(e);
     }
+  });
 
+  $("#yearSlider").on("slide", function(slideEvt) {
+    $("#fromYear").val(slideEvt.value[0]);
+    $("#toYear").val(slideEvt.value[1]);
+    payload['from_year'] = slideEvt.value[0];
+    payload['to_year'] = slideEvt.value[1];
+  });
 
-    $("body").on('blur', '#fromYear, #toYear', function(e) {
-        let int_slider_values = [parseInt($('#fromYear').val()), parseInt($('#toYear').val())]
-        console.log(int_slider_values)
-        $('#yearSlider').slider('setValue', int_slider_values)
+  let observer = new MutationObserver(function(mutations) {
+    slider_values = slider_text.getAttribute('value').split(',');
+    slider_values = [parseInt(slider_values[0]), parseInt(slider_values[1])]
+    $("#fromYear").val(slider_values[0]);
+    $("#toYear").val(slider_values[1]);
+    payload['from_year'] = slider_values[0];
+    payload['to_year'] = slider_values[1];
+  });
+  try {
+    // statements
+    observer.observe(slider_text, {
+      attributes: true,
+      attributeFilter: ['value']
     });
+  } catch(e) {
+    console.log(e);
+  }
 
-
-    // Activate autocomplete
-
-    $("#classificationsSelect > li.first-level > span > label").each(function() {
-        autocomplete.push({
-            id: $(this).attr('for'),
-            name: $(this).html()
-        });
-    });
-
-    $("#tagsSelect > li label").each(function() {
-        autocomplete.push({
-            id: $(this).attr('for'),
-            name: $(this).html()
-        });
-    });
-
-    $('#textSearchInput').easyAutocomplete({
-        data: autocomplete,
-        getValue: 'name',
-        list: {
-            maxNumberOfElements: 5,
-            match: {
-                enabled: true
-            },
-            onChooseEvent: function() {
-                let id = $("#textSearchInput").getSelectedItemData().id;
-                $("#" + id).click();
-                $("#textSearchInput").val('').change();
-            }
-        }
-    });
-    $('div.easy-autocomplete').removeAttr('style');
-
-    $('#textSearchInput').on('change', function() {
-        let val = $(this).val();
-        if (val) {
-            payload['q'] = val;
-        } else {
-            delete payload['q'];
-        }
-    });
-
-    $('#classificationsSelect input').on('change', function() {
-        if ($(this).is(':checked')) {
-            if ($.inArray($(this).val()) == -1) {
-                classifications.push($(this).val())
-            }
-        } else {
-            classifications.splice(classifications.indexOf($(this).val(), 1))
-        }
-        payload['classifications'] = classifications;
-    });
-
-    $('#countrySelect').on('change', function() {
-        payload['countries'] = $(this).val();
-    });
-
-    $('#typeSelect input').on('change', function() {
-        if ($(this).is(':checked')) {
-            if ($.inArray($(this).val()) == -1) {
-                law_types.push($(this).val())
-            }
-        } else {
-            law_types.splice(law_types.indexOf($(this).val(), 1))
-        }
-        payload['law_types'] = law_types;
-    });
-
-    $('#tagsSelect input').on('change', function() {
-        if ($(this).is(':checked')) {
-            if ($.inArray($(this).val()) == -1) {
-                tags.push($(this).val())
-            }
-        } else {
-            tags.splice(tags.indexOf($(this).val(), 1))
-        }
-        payload['tags'] = tags;
-    });
-
-    $('.submitBtn').on('click', function() {
-        send(payload);
-    });
-
-    $('#textSearchInput').on('keyup', function(e) {
-        if (e.which == 13) {
-            send(payload);
-        }
-    });
-    const options = {
-      submitCountryAttibutes: 'Save options'
+  $('#classificationsSelect input').on('change', function() {
+    if ($(this).is(':checked')) {
+      if ($.inArray($(this).val()) == -1) {
+        classifications.push($(this).val())
+      }
+    } else {
+      classifications.splice(classifications.indexOf($(this).val(), 1))
     }
+    payload['classifications'] = classifications;
+  });
 
-    filterCountryAttribute().updateFilterBasedOnURL(options, payload);
-    filterCountryAttribute().attachListenerToModal(payload);
+  $('#countrySelect').on('change', function() {
+    payload['countries'] = $(this).val();
+  });
+
+  $('#typeSelect input').on('change', function() {
+    if ($(this).is(':checked')) {
+      if ($.inArray($(this).val()) == -1) {
+        law_types.push($(this).val())
+      }
+    } else {
+      law_types.splice(law_types.indexOf($(this).val(), 1))
+    }
+    payload['law_types'] = law_types;
+  });
+
+  $('#tagsSelect input').on('change', function() {
+    if ($(this).is(':checked')) {
+      if ($.inArray($(this).val()) == -1) {
+        tags.push($(this).val())
+      }
+    } else {
+      tags.splice(tags.indexOf($(this).val(), 1))
+    }
+    payload['tags'] = tags;
+  });
+
+  $('.submitBtn').on('click', function() {
+    send(payload);
+  });
+
+  $('#textSearchInput').on('keyup', function(e) {
+    if (e.which == 13) {
+      send(payload);
+    }
+  });
+  const options = {
+    submitCountryAttibutes: 'Save options'
+  }
+
+  filterCountryAttribute().updateFilterBasedOnURL(options, payload);
+  filterCountryAttribute().attachListenerToModal(payload);
 });
