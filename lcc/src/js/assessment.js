@@ -13,7 +13,7 @@ $(document).ready(function () {
       var all_questions = [];
       var listeners = {};
       var classification_title = $('.classification_title');
-      var popoverDetails = $('#popoverDetails');
+      var popoverDetails = $('.popoverDetails');
       var current = $('#questions-container .current');
       var last = $('#questions-container .last');
       var question_category = $('.question_category');
@@ -190,8 +190,8 @@ $(document).ready(function () {
                 , responseClassifications[0].second_level.length
                 , 0
                 , responseClassifications[0].second_level[0].details));
-          });
-      }
+              });
+            }
 
       function renderClassifications(responseClassifications) {
         var accordion = $('#accordion')[0];
@@ -200,12 +200,12 @@ $(document).ready(function () {
         for (var z = 0; z < responseClassifications.length; z++) {
           var classification = responseClassifications[z];
           var h3 = $('<h3>')
-            .text(classification.name)
-            .appendTo(accordion);
+          .text(classification.name)
+          .appendTo(accordion);
           var classification_menu = $('<classification-menu/>')
-            .addClass('flex lcct-list classification-menu')
-            .attr('role', 'menu')
-            .attr('tabindex', '0');
+          .addClass('flex lcct-list classification-menu')
+          .attr('role', 'menu')
+          .attr('tabindex', '0');
 
           for (var j = 0; classification.second_level && j < classification.second_level.length; j++) {
             var subcat = classification.second_level[j];
@@ -226,8 +226,7 @@ $(document).ready(function () {
                                                           , j
                                                           , previousClassification
                                                           , nextClassification
-                                                          , currentClassification
-                                                          , subcat.details))
+                                                          , currentClassification))
               .appendTo(classification_menu);
             var i_comp = $('<i/>')
               .text(j + 1)
@@ -237,6 +236,31 @@ $(document).ready(function () {
               .text(subcat.name)
               .addClass('lcct-list')
               .appendTo(classification_item);
+
+            if(subcat.details) {
+              let fomattedDetails = handleNewLine(subcat.details);
+              fomattedDetails = fomattedDetails.indexOf('http') !== -1 ? handleLink(fomattedDetails) : fomattedDetails;
+
+              var popoverButton = $('<a/>')
+              .attr({
+                'tabindex':"0",
+                'id':`popoverDetails-${subcat.id}`,
+                'data-container':"body",
+                'class':"popoverDetails",
+                'data-toggle':"popover",
+                'data-placement':"left",
+                'data-html':"true",
+                'data-trigger':"manual",
+                'data-content':`${fomattedDetails}`
+              })
+              .html(`
+                  <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              `)
+              .on('click', handleShowPopover(`popoverDetails-${subcat.id}`)
+              )
+              .appendTo(classification_item);
+            }
+
           }
 
           classification_menu.appendTo(accordion);
@@ -247,8 +271,11 @@ $(document).ready(function () {
             renderButtonsGoToCategoryText(classification.second_level[0], null, null, null);
           }
 
-          $('[data-toggle="popover"]').popover()
         }
+        $('[data-toggle="popover"]').popover();
+
+        // this is from common.js
+        destroyPopoverOnFocusOut();
       }
 
       function handleAccordion() {
@@ -461,14 +488,14 @@ $(document).ready(function () {
           });
       }
 
-      function getQuestionsForCategory(classification_name, category_name, categories_no, index, previousClassification, nextClassification, currentClassification, details) {
+      function getQuestionsForCategory(classification_name, category_name, categories_no, index, previousClassification, nextClassification, currentClassification) {
         var elem = $(event.currentTarget);
         var all_elems = $('classification-item').removeClass('iron-selected');
 
         elem.addClass('iron-selected');
         classification_id = elem.attr('data-id');
         getQuestions.call(this, classification_id);
-        renderTitleContent(classification_name, category_name, categories_no, index, details);
+        renderTitleContent(classification_name, category_name, categories_no, index);
         handleGoToQuestions.call(this, false, false, index, categories_no, previousClassification, nextClassification, currentClassification);
       }
 
@@ -621,45 +648,12 @@ $(document).ready(function () {
         return selectedClassificationsIndex;
       }
 
-      function renderTitleContent(classification_name, category_name, categories_no, index, details) {
-        if(details) {
-          popoverDetails.show();
-          let fomattedDetails = handleNewLine(details);
-          fomattedDetails = fomattedDetails.indexOf('http') !== -1 ? handleLink(fomattedDetails) : fomattedDetails;
-          popoverDetails.attr('data-content', fomattedDetails);
-        } else {
-          popoverDetails.hide();
-        }
-
+      function renderTitleContent(classification_name, category_name, categories_no, index) {
         classification_title.html(classification_name);
         current.html(parseInt(index) + 1);
         last.html(categories_no);
         question_category.html(category_name);
       }
 
-      function handleNewLine(testValue) {
-        var resultWithNewLineTags = testValue.match(/\n/) ? replaceNewLine(testValue) : testValue.match(/\r/) ? replaceNewLine(testValue) : testValue;
-
-        function replaceNewLine(itemValue) {
-          var lines = itemValue.split('\n');
-          var result = lines[0];
-          for (let index = 1; index < lines.length; index++) {
-            const element = lines[index];
-            result += '<br>' + element;
-          }
-          return result;
-        }
-        return resultWithNewLineTags;
-      }
-
-      function handleLink(itemValue) {
-        let result = itemValue;
-        let all = result.substring(result.indexOf('http'), result.length).split(' ');
-        for (let i = 0; i < all.length; i++) {
-          const substr = all[i];
-          result = substr.indexOf('http') > -1 ? result.replace(substr, '<a target="_blank" href=" ' + substr + '">' + substr + '</a>') : result;
-        }
-        return result;
-      }
     });
 });
