@@ -1,2395 +1,3250 @@
 [
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 1,
-    "fields": {
-        "name": "Dedicated climate laws and governance",
-        "code": "1",
-        "parent": null,
-        "lft": 1,
-        "rght": 88,
-        "tree_id": 1,
-        "level": 0
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 1,
+        "fields": {
+            "name": "Dedicated climate laws and governance",
+            "code": "1",
+            "details": "",
+            "parent": null,
+            "lft": 1,
+            "rght": 88,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 2,
+        "fields": {
+            "name": "Mitigation strategies, targets, budgets and measures",
+            "code": "1.1",
+            "details": "",
+            "parent": 1,
+            "lft": 2,
+            "rght": 15,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 3,
+        "fields": {
+            "name": "Emission targets-in law",
+            "code": "1.1.1",
+            "details": "",
+            "parent": 2,
+            "lft": 3,
+            "rght": 4,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 4,
+        "fields": {
+            "name": "Emission targets \u2013 duty to set",
+            "code": "1.1.2",
+            "details": "",
+            "parent": 2,
+            "lft": 5,
+            "rght": 6,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 5,
+        "fields": {
+            "name": "Emission targets- mechanisms for setting and amending",
+            "code": "1.1.3",
+            "details": "",
+            "parent": 2,
+            "lft": 7,
+            "rght": 8,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 6,
+        "fields": {
+            "name": "Provision for carbon budgeting",
+            "code": "1.1.4",
+            "details": "",
+            "parent": 2,
+            "lft": 9,
+            "rght": 10,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 7,
+        "fields": {
+            "name": "Non-quantitative mitigation measures/standards",
+            "code": "1.1.5",
+            "details": "",
+            "parent": 2,
+            "lft": 11,
+            "rght": 12,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 8,
+        "fields": {
+            "name": "Strategic plan on mitigation",
+            "code": "1.1.6",
+            "details": "",
+            "parent": 2,
+            "lft": 13,
+            "rght": 14,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 9,
+        "fields": {
+            "name": "Adaptation measures",
+            "code": "1.2",
+            "details": "",
+            "parent": 1,
+            "lft": 16,
+            "rght": 27,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 10,
+        "fields": {
+            "name": "Provisions for climate risk and vulnerability assessments",
+            "code": "1.2.1",
+            "details": "",
+            "parent": 9,
+            "lft": 17,
+            "rght": 18,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 11,
+        "fields": {
+            "name": "National strategies/plans for adaptation and climate resilient development",
+            "code": "1.2.2",
+            "details": "",
+            "parent": 9,
+            "lft": 19,
+            "rght": 20,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 12,
+        "fields": {
+            "name": "Mandate to government to develop strategies, plans or regulations on adaptation",
+            "code": "1.2.3",
+            "details": "",
+            "parent": 9,
+            "lft": 21,
+            "rght": 22,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 13,
+        "fields": {
+            "name": "Provision for adaptation consultations",
+            "code": "1.2.4",
+            "details": "",
+            "parent": 9,
+            "lft": 23,
+            "rght": 24,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 14,
+        "fields": {
+            "name": "Mechanism for setting of adaptation standards",
+            "code": "1.2.5",
+            "details": "",
+            "parent": 9,
+            "lft": 25,
+            "rght": 26,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 15,
+        "fields": {
+            "name": "Establishing or designating national climate bodies and functions",
+            "code": "1.3",
+            "details": "",
+            "parent": 1,
+            "lft": 28,
+            "rght": 45,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 16,
+        "fields": {
+            "name": "Coordination body on climate change",
+            "code": "1.3.1",
+            "details": "",
+            "parent": 15,
+            "lft": 29,
+            "rght": 30,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 17,
+        "fields": {
+            "name": "Inter-agency body on climate change",
+            "code": "1.3.2",
+            "details": "",
+            "parent": 15,
+            "lft": 31,
+            "rght": 32,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 18,
+        "fields": {
+            "name": "Advisory body on climate change",
+            "code": "1.3.3",
+            "details": "",
+            "parent": 15,
+            "lft": 33,
+            "rght": 34,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 19,
+        "fields": {
+            "name": "Body with planning/regulatory powers and functions",
+            "code": "1.3.4",
+            "details": "",
+            "parent": 15,
+            "lft": 35,
+            "rght": 36,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 20,
+        "fields": {
+            "name": "Body responsible for national inventory and reporting",
+            "code": "1.3.5",
+            "details": "",
+            "parent": 15,
+            "lft": 37,
+            "rght": 38,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 21,
+        "fields": {
+            "name": "Body responsible for administering climate budget/climate finance",
+            "code": "1.3.6",
+            "details": "",
+            "parent": 15,
+            "lft": 39,
+            "rght": 40,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 22,
+        "fields": {
+            "name": "Provisions for consultation",
+            "code": "1.3.7",
+            "details": "",
+            "parent": 15,
+            "lft": 41,
+            "rght": 42,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 23,
+        "fields": {
+            "name": "Education/information/capacity building bodies",
+            "code": "1.3.8",
+            "details": "",
+            "parent": 15,
+            "lft": 43,
+            "rght": 44,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 24,
+        "fields": {
+            "name": "Monitoring, reporting and verification obligations",
+            "code": "1.4",
+            "details": "",
+            "parent": 1,
+            "lft": 46,
+            "rght": 53,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 25,
+        "fields": {
+            "name": "Monitoring and reporting obligations on government",
+            "code": "1.4.1",
+            "details": "",
+            "parent": 24,
+            "lft": 47,
+            "rght": 48,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 26,
+        "fields": {
+            "name": "Monitoring and Reporting obligation on companies/installations /financial institutions",
+            "code": "1.4.2",
+            "details": "",
+            "parent": 24,
+            "lft": 49,
+            "rght": 50,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 27,
+        "fields": {
+            "name": "Provisions for verification of data ",
+            "code": "1.4.3",
+            "details": "",
+            "parent": 24,
+            "lft": 51,
+            "rght": 52,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 28,
+        "fields": {
+            "name": "Economic instruments",
+            "code": "1.5",
+            "details": "",
+            "parent": 1,
+            "lft": 54,
+            "rght": 67,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 29,
+        "fields": {
+            "name": "Carbon tax or levy provisions",
+            "code": "1.5.1",
+            "details": "",
+            "parent": 28,
+            "lft": 55,
+            "rght": 56,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 30,
+        "fields": {
+            "name": "Emissions trading",
+            "code": "1.5.2",
+            "details": "",
+            "parent": 28,
+            "lft": 57,
+            "rght": 58,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 31,
+        "fields": {
+            "name": "Tradable certificates",
+            "code": "1.5.3",
+            "details": "",
+            "parent": 28,
+            "lft": 59,
+            "rght": 60,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 32,
+        "fields": {
+            "name": "Use of international market mechanisms",
+            "code": "1.5.4",
+            "details": "",
+            "parent": 28,
+            "lft": 61,
+            "rght": 62,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 33,
+        "fields": {
+            "name": "Incentives for voluntary actions",
+            "code": "1.5.5",
+            "details": "",
+            "parent": 28,
+            "lft": 63,
+            "rght": 64,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 34,
+        "fields": {
+            "name": "Fiscal incentives",
+            "code": "1.5.6",
+            "details": "",
+            "parent": 28,
+            "lft": 65,
+            "rght": 66,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 35,
+        "fields": {
+            "name": "Finance and budgetary provisions",
+            "code": "1.6",
+            "details": "",
+            "parent": 1,
+            "lft": 68,
+            "rght": 79,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 36,
+        "fields": {
+            "name": "Procurement of goods and services",
+            "code": "1.6.1",
+            "details": "",
+            "parent": 35,
+            "lft": 69,
+            "rght": 70,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 37,
+        "fields": {
+            "name": "Provisions on access to international climate finance",
+            "code": "1.6.2",
+            "details": "",
+            "parent": 35,
+            "lft": 71,
+            "rght": 72,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 38,
+        "fields": {
+            "name": "Regulation of financial markets",
+            "code": "1.6.3",
+            "details": "",
+            "parent": 35,
+            "lft": 73,
+            "rght": 74,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 39,
+        "fields": {
+            "name": "Sources of climate finance",
+            "code": "1.6.4",
+            "details": "",
+            "parent": 35,
+            "lft": 75,
+            "rght": 76,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 40,
+        "fields": {
+            "name": "Establishment of national climate fund",
+            "code": "1.6.5",
+            "details": "",
+            "parent": 35,
+            "lft": 77,
+            "rght": 78,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 41,
+        "fields": {
+            "name": "Guiding objectives and principles ",
+            "code": "1.7",
+            "details": "",
+            "parent": 1,
+            "lft": 80,
+            "rght": 87,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 42,
+        "fields": {
+            "name": "Objectives",
+            "code": "1.7.1",
+            "details": "",
+            "parent": 41,
+            "lft": 81,
+            "rght": 82,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 43,
+        "fields": {
+            "name": "Enabling constitutional provisions",
+            "code": "1.7.2",
+            "details": "",
+            "parent": 41,
+            "lft": 83,
+            "rght": 84,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 44,
+        "fields": {
+            "name": "Principles",
+            "code": "1.7.3",
+            "details": "",
+            "parent": 41,
+            "lft": 85,
+            "rght": 86,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 97,
+        "fields": {
+            "name": "Energy System",
+            "code": "2",
+            "details": "",
+            "parent": null,
+            "lft": 1,
+            "rght": 56,
+            "tree_id": 2,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 98,
+        "fields": {
+            "name": "Targets, plans and strategies",
+            "code": "2.1",
+            "details": "",
+            "parent": 97,
+            "lft": 2,
+            "rght": 15,
+            "tree_id": 2,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 99,
+        "fields": {
+            "name": "Integrated energy plan",
+            "code": "2.1.1",
+            "details": "",
+            "parent": 98,
+            "lft": 3,
+            "rght": 4,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 100,
+        "fields": {
+            "name": "Future energy demand estimation",
+            "code": "2.1.2",
+            "details": "",
+            "parent": 98,
+            "lft": 5,
+            "rght": 6,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 101,
+        "fields": {
+            "name": "Energy access provisions",
+            "code": "2.1.3",
+            "details": "",
+            "parent": 98,
+            "lft": 7,
+            "rght": 8,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 102,
+        "fields": {
+            "name": "Energy supply diversification/mix",
+            "code": "2.1.4",
+            "details": "",
+            "parent": 98,
+            "lft": 9,
+            "rght": 10,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 103,
+        "fields": {
+            "name": "Electricity interconnection",
+            "code": "2.1.5",
+            "details": "",
+            "parent": 98,
+            "lft": 11,
+            "rght": 12,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 104,
+        "fields": {
+            "name": "Energy parity provisions",
+            "code": "2.1.6",
+            "details": "",
+            "parent": 98,
+            "lft": 13,
+            "rght": 14,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 105,
+        "fields": {
+            "name": "Institutions and governance",
+            "code": "2.2",
+            "details": "",
+            "parent": 97,
+            "lft": 16,
+            "rght": 27,
+            "tree_id": 2,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 106,
+        "fields": {
+            "name": "Energy co-ordination body",
+            "code": "2.2.1",
+            "details": "",
+            "parent": 105,
+            "lft": 17,
+            "rght": 18,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 107,
+        "fields": {
+            "name": "Energy system advisory body",
+            "code": "2.2.2",
+            "details": "",
+            "parent": 105,
+            "lft": 19,
+            "rght": 20,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 108,
+        "fields": {
+            "name": "Energy distribution/grid management body",
+            "code": "2.2.3",
+            "details": "",
+            "parent": 105,
+            "lft": 21,
+            "rght": 22,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 109,
+        "fields": {
+            "name": "Energy regulator",
+            "code": "2.2.4",
+            "details": "",
+            "parent": 105,
+            "lft": 23,
+            "rght": 24,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 110,
+        "fields": {
+            "name": "Provisions for consultation",
+            "code": "2.2.5",
+            "details": "",
+            "parent": 105,
+            "lft": 25,
+            "rght": 26,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 111,
+        "fields": {
+            "name": "Carbon transition planning",
+            "code": "2.3",
+            "details": "",
+            "parent": 97,
+            "lft": 28,
+            "rght": 55,
+            "tree_id": 2,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 112,
+        "fields": {
+            "name": "Decarbonisation target \u2013 Electricity",
+            "code": "2.3.1",
+            "details": "",
+            "parent": 111,
+            "lft": 29,
+            "rght": 30,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 113,
+        "fields": {
+            "name": "Decarbonisation target \u2013 Heating and cooling",
+            "code": "2.3.2",
+            "details": "",
+            "parent": 111,
+            "lft": 39,
+            "rght": 40,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 114,
+        "fields": {
+            "name": "Decarbonisation target \u2013 Transport",
+            "code": "2.3.3",
+            "details": "",
+            "parent": 111,
+            "lft": 41,
+            "rght": 42,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 115,
+        "fields": {
+            "name": "Decarbonisation target \u2013 Industry",
+            "code": "2.3.4",
+            "details": "",
+            "parent": 111,
+            "lft": 43,
+            "rght": 44,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 116,
+        "fields": {
+            "name": "Phase-out of high carbon sources",
+            "code": "2.3.5",
+            "details": "",
+            "parent": 111,
+            "lft": 45,
+            "rght": 46,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 117,
+        "fields": {
+            "name": "Just transition provisions \u2013 Electricity",
+            "code": "2.3.6",
+            "details": "",
+            "parent": 111,
+            "lft": 47,
+            "rght": 48,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 118,
+        "fields": {
+            "name": "Just transition provisions \u2013 Heating and cooling",
+            "code": "2.3.7",
+            "details": "",
+            "parent": 111,
+            "lft": 49,
+            "rght": 50,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 119,
+        "fields": {
+            "name": "Just transition provisions \u2013 Transport",
+            "code": "2.3.8",
+            "details": "",
+            "parent": 111,
+            "lft": 51,
+            "rght": 52,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 120,
+        "fields": {
+            "name": "Just transition provisions \u2013 Industry",
+            "code": "2.3.9",
+            "details": "",
+            "parent": 111,
+            "lft": 53,
+            "rght": 54,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 121,
+        "fields": {
+            "name": "Demand reduction provisions \u2013 Electricity",
+            "code": "2.3.10",
+            "details": "",
+            "parent": 111,
+            "lft": 31,
+            "rght": 32,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 122,
+        "fields": {
+            "name": "Demand reduction provisions \u2013 Heating and cooling",
+            "code": "2.3.11",
+            "details": "",
+            "parent": 111,
+            "lft": 33,
+            "rght": 34,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 123,
+        "fields": {
+            "name": "Demand reduction provisions \u2013 Transport",
+            "code": "2.3.12",
+            "details": "",
+            "parent": 111,
+            "lft": 35,
+            "rght": 36,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 124,
+        "fields": {
+            "name": "Demand reduction provisions \u2013 Industry",
+            "code": "2.3.13",
+            "details": "",
+            "parent": 111,
+            "lft": 37,
+            "rght": 38,
+            "tree_id": 2,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 125,
+        "fields": {
+            "name": "Energy Production and Renewable Energy",
+            "code": "3",
+            "details": "",
+            "parent": null,
+            "lft": 1,
+            "rght": 108,
+            "tree_id": 3,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 126,
+        "fields": {
+            "name": "Targets, plans and strategies",
+            "code": "3.1",
+            "details": "",
+            "parent": 125,
+            "lft": 2,
+            "rght": 13,
+            "tree_id": 3,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 127,
+        "fields": {
+            "name": "Renewable energy targets",
+            "code": "3.1.1",
+            "details": "",
+            "parent": 126,
+            "lft": 3,
+            "rght": 4,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 128,
+        "fields": {
+            "name": "Renewable energy strategy/plan",
+            "code": "3.1.2",
+            "details": "",
+            "parent": 126,
+            "lft": 5,
+            "rght": 6,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 129,
+        "fields": {
+            "name": "Prescription of renewable energy sources",
+            "code": "3.1.3",
+            "details": "",
+            "parent": 126,
+            "lft": 7,
+            "rght": 8,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 130,
+        "fields": {
+            "name": "Goal/obligation to promote renewable energy",
+            "code": "3.1.4",
+            "details": "",
+            "parent": 126,
+            "lft": 9,
+            "rght": 10,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 131,
+        "fields": {
+            "name": "Goal/obligation to review and report on renewable energy",
+            "code": "3.1.5",
+            "details": "",
+            "parent": 126,
+            "lft": 11,
+            "rght": 12,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 132,
+        "fields": {
+            "name": "Institutions and governance",
+            "code": "3.2",
+            "details": "",
+            "parent": 125,
+            "lft": 14,
+            "rght": 25,
+            "tree_id": 3,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 133,
+        "fields": {
+            "name": "Renewable energy co-ordination body",
+            "code": "3.2.1",
+            "details": "",
+            "parent": 132,
+            "lft": 15,
+            "rght": 16,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 134,
+        "fields": {
+            "name": "Renewable energy advisory body",
+            "code": "3.2.2",
+            "details": "",
+            "parent": 132,
+            "lft": 17,
+            "rght": 18,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 135,
+        "fields": {
+            "name": "Renewable energy regulatory body",
+            "code": "3.2.3",
+            "details": "",
+            "parent": 132,
+            "lft": 19,
+            "rght": 20,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 136,
+        "fields": {
+            "name": "Rural electrification body",
+            "code": "3.2.4",
+            "details": "",
+            "parent": 132,
+            "lft": 21,
+            "rght": 22,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 137,
+        "fields": {
+            "name": "Provisions for consultation",
+            "code": "3.2.5",
+            "details": "",
+            "parent": 132,
+            "lft": 23,
+            "rght": 24,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 138,
+        "fields": {
+            "name": "Renewable energy obligations and regulation",
+            "code": "3.3",
+            "details": "",
+            "parent": 125,
+            "lft": 26,
+            "rght": 39,
+            "tree_id": 3,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 139,
+        "fields": {
+            "name": "Renewable energy obligations for energy users",
+            "code": "3.3.1",
+            "details": "",
+            "parent": 138,
+            "lft": 27,
+            "rght": 28,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 140,
+        "fields": {
+            "name": "Duties of renewable energy providers",
+            "code": "3.3.2",
+            "details": "",
+            "parent": 138,
+            "lft": 29,
+            "rght": 30,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 141,
+        "fields": {
+            "name": "Licensing provisions",
+            "code": "3.3.3",
+            "details": "",
+            "parent": 138,
+            "lft": 31,
+            "rght": 32,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 142,
+        "fields": {
+            "name": "Renewable energy codes and standards \u2013 general/operating",
+            "code": "3.3.4",
+            "details": "",
+            "parent": 138,
+            "lft": 33,
+            "rght": 34,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 143,
+        "fields": {
+            "name": "Renewable energy codes and standards \u2013 planning/environmental impact",
+            "code": "3.3.5",
+            "details": "",
+            "parent": 138,
+            "lft": 35,
+            "rght": 36,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 144,
+        "fields": {
+            "name": "Green tradeable certificates",
+            "code": "3.3.6",
+            "details": "",
+            "parent": 138,
+            "lft": 37,
+            "rght": 38,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 145,
+        "fields": {
+            "name": "Distribution and storage (electricity and other)",
+            "code": "3.4",
+            "details": "",
+            "parent": 125,
+            "lft": 40,
+            "rght": 55,
+            "tree_id": 3,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 146,
+        "fields": {
+            "name": "Specification of grid standards",
+            "code": "3.4.1",
+            "details": "",
+            "parent": 145,
+            "lft": 41,
+            "rght": 42,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 147,
+        "fields": {
+            "name": "Grid management provisions",
+            "code": "3.4.2",
+            "details": "",
+            "parent": 145,
+            "lft": 43,
+            "rght": 44,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 148,
+        "fields": {
+            "name": "Grid access and integration",
+            "code": "3.4.3",
+            "details": "",
+            "parent": 145,
+            "lft": 45,
+            "rght": 46,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 149,
+        "fields": {
+            "name": "Mini-grid provisions",
+            "code": "3.4.4",
+            "details": "",
+            "parent": 145,
+            "lft": 47,
+            "rght": 48,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 150,
+        "fields": {
+            "name": "Distributed/off-grid/micro generation",
+            "code": "3.4.5",
+            "details": "",
+            "parent": 145,
+            "lft": 49,
+            "rght": 50,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 151,
+        "fields": {
+            "name": "Electricity storage",
+            "code": "3.4.6",
+            "details": "",
+            "parent": 145,
+            "lft": 51,
+            "rght": 52,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 152,
+        "fields": {
+            "name": "Load shifting and demand response management",
+            "code": "3.4.7",
+            "details": "",
+            "parent": 145,
+            "lft": 53,
+            "rght": 54,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 153,
+        "fields": {
+            "name": "Incentives and disincentives",
+            "code": "3.5",
+            "details": "",
+            "parent": 125,
+            "lft": 56,
+            "rght": 87,
+            "tree_id": 3,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 154,
+        "fields": {
+            "name": "Fiscal incentives \u2013 renewable energy \u2013 grants/subsidies/compensation",
+            "code": "3.5.1",
+            "details": "",
+            "parent": 153,
+            "lft": 57,
+            "rght": 58,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 155,
+        "fields": {
+            "name": "Fiscal incentives \u2013 renewable energy \u2013 loans/debt support",
+            "code": "3.5.2",
+            "details": "",
+            "parent": 153,
+            "lft": 71,
+            "rght": 72,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 156,
+        "fields": {
+            "name": "Fiscal incentives \u2013 fossil fuels",
+            "code": "3.5.3",
+            "details": "",
+            "parent": 153,
+            "lft": 73,
+            "rght": 74,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 157,
+        "fields": {
+            "name": "Feed-in tariffs",
+            "code": "3.5.4",
+            "details": "",
+            "parent": 153,
+            "lft": 75,
+            "rght": 76,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 158,
+        "fields": {
+            "name": "Regulation of power purchase agreements",
+            "code": "3.5.5",
+            "details": "",
+            "parent": 153,
+            "lft": 77,
+            "rght": 78,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 159,
+        "fields": {
+            "name": "Incentives for micro/self-use energy production",
+            "code": "3.5.6",
+            "details": "",
+            "parent": 153,
+            "lft": 79,
+            "rght": 80,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 160,
+        "fields": {
+            "name": "Energy production taxation \u2013 renewable energy",
+            "code": "3.5.7",
+            "details": "",
+            "parent": 153,
+            "lft": 81,
+            "rght": 82,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 161,
+        "fields": {
+            "name": "Energy production taxation \u2013 fossil fuels",
+            "code": "3.5.8",
+            "details": "",
+            "parent": 153,
+            "lft": 83,
+            "rght": 84,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 162,
+        "fields": {
+            "name": "Renewable energy R&D support",
+            "code": "3.5.9",
+            "details": "",
+            "parent": 153,
+            "lft": 85,
+            "rght": 86,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 163,
+        "fields": {
+            "name": "Energy auctions/pricing mechanism",
+            "code": "3.5.10",
+            "details": "",
+            "parent": 153,
+            "lft": 59,
+            "rght": 60,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 164,
+        "fields": {
+            "name": "Concessions",
+            "code": "3.5.11",
+            "details": "",
+            "parent": 153,
+            "lft": 61,
+            "rght": 62,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 165,
+        "fields": {
+            "name": "Tendering regulation",
+            "code": "3.5.12",
+            "details": "",
+            "parent": 153,
+            "lft": 63,
+            "rght": 64,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 166,
+        "fields": {
+            "name": "Mining regulation",
+            "code": "3.5.13",
+            "details": "",
+            "parent": 153,
+            "lft": 65,
+            "rght": 66,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 167,
+        "fields": {
+            "name": "Waste management",
+            "code": "3.5.14",
+            "details": "",
+            "parent": 153,
+            "lft": 67,
+            "rght": 68,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 168,
+        "fields": {
+            "name": "Infrastructure decommissioning",
+            "code": "3.5.15",
+            "details": "",
+            "parent": 153,
+            "lft": 69,
+            "rght": 70,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 169,
+        "fields": {
+            "name": "Infrastructure budget and finance",
+            "code": "3.6",
+            "details": "",
+            "parent": 125,
+            "lft": 88,
+            "rght": 99,
+            "tree_id": 3,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 170,
+        "fields": {
+            "name": "Overall energy infrastructure budget/finance",
+            "code": "3.6.1",
+            "details": "",
+            "parent": 169,
+            "lft": 89,
+            "rght": 90,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 171,
+        "fields": {
+            "name": "Energy infrastructure finance \u2013 renewable energy",
+            "code": "3.6.2",
+            "details": "",
+            "parent": 169,
+            "lft": 91,
+            "rght": 92,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 172,
+        "fields": {
+            "name": "Energy infrastructure finance \u2013 fossil fuels",
+            "code": "3.6.3",
+            "details": "",
+            "parent": 169,
+            "lft": 93,
+            "rght": 94,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 173,
+        "fields": {
+            "name": "Investor regulation \u2013 return/remuneration",
+            "code": "3.6.4",
+            "details": "",
+            "parent": 169,
+            "lft": 95,
+            "rght": 96,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 174,
+        "fields": {
+            "name": "Investor regulation \u2013 guarantees and risk sharing",
+            "code": "3.6.5",
+            "details": "",
+            "parent": 169,
+            "lft": 97,
+            "rght": 98,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 175,
+        "fields": {
+            "name": "Distinct energy regulation",
+            "code": "3.7",
+            "details": "",
+            "parent": 125,
+            "lft": 100,
+            "rght": 107,
+            "tree_id": 3,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 176,
+        "fields": {
+            "name": "Nuclear",
+            "code": "3.7.1",
+            "details": "",
+            "parent": 175,
+            "lft": 101,
+            "rght": 102,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 177,
+        "fields": {
+            "name": "Biofuels and waste",
+            "code": "3.7.2",
+            "details": "",
+            "parent": 175,
+            "lft": 103,
+            "rght": 104,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 178,
+        "fields": {
+            "name": "Hydrogen fuel cells",
+            "code": "3.7.3",
+            "details": "",
+            "parent": 175,
+            "lft": 105,
+            "rght": 106,
+            "tree_id": 3,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 179,
+        "fields": {
+            "name": "Energy Efficiency",
+            "code": "4",
+            "details": "",
+            "parent": null,
+            "lft": 1,
+            "rght": 82,
+            "tree_id": 4,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 180,
+        "fields": {
+            "name": "Targets, plans and strategies",
+            "code": "4.1",
+            "details": "",
+            "parent": 179,
+            "lft": 2,
+            "rght": 9,
+            "tree_id": 4,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 181,
+        "fields": {
+            "name": "Energy efficiency targets",
+            "code": "4.1.1",
+            "details": "",
+            "parent": 180,
+            "lft": 3,
+            "rght": 4,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 182,
+        "fields": {
+            "name": "Energy efficiency strategy/plan",
+            "code": "4.1.2",
+            "details": "",
+            "parent": 180,
+            "lft": 5,
+            "rght": 6,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 183,
+        "fields": {
+            "name": "Energy efficiency principles",
+            "code": "4.1.3",
+            "details": "",
+            "parent": 180,
+            "lft": 7,
+            "rght": 8,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 184,
+        "fields": {
+            "name": "Institutions and governance",
+            "code": "4.2",
+            "details": "",
+            "parent": 179,
+            "lft": 10,
+            "rght": 19,
+            "tree_id": 4,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 185,
+        "fields": {
+            "name": "Energy efficiency co-ordination body",
+            "code": "4.2.1",
+            "details": "",
+            "parent": 184,
+            "lft": 11,
+            "rght": 12,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 186,
+        "fields": {
+            "name": "Energy efficiency advisory body",
+            "code": "4.2.2",
+            "details": "",
+            "parent": 184,
+            "lft": 13,
+            "rght": 14,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 187,
+        "fields": {
+            "name": "Energy efficiency regulatory body",
+            "code": "4.2.3",
+            "details": "",
+            "parent": 184,
+            "lft": 15,
+            "rght": 16,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 188,
+        "fields": {
+            "name": "Provisions for consultation",
+            "code": "4.2.4",
+            "details": "",
+            "parent": 184,
+            "lft": 17,
+            "rght": 18,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 189,
+        "fields": {
+            "name": "Energy efficiency obligations and regulations",
+            "code": "4.3",
+            "details": "",
+            "parent": 179,
+            "lft": 20,
+            "rght": 51,
+            "tree_id": 4,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 190,
+        "fields": {
+            "name": "Energy efficiency obligations - large consumers",
+            "code": "4.3.1",
+            "details": "",
+            "parent": 189,
+            "lft": 21,
+            "rght": 22,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 191,
+        "fields": {
+            "name": "Energy efficiency obligations - public sector",
+            "code": "4.3.2",
+            "details": "",
+            "parent": 189,
+            "lft": 35,
+            "rght": 36,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 192,
+        "fields": {
+            "name": "Energy efficiency obligations \u2013 utilities",
+            "code": "4.3.3",
+            "details": "",
+            "parent": 189,
+            "lft": 37,
+            "rght": 38,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 193,
+        "fields": {
+            "name": "Energy efficiency codes and standards \u2013 buildings",
+            "code": "4.3.4",
+            "details": "",
+            "parent": 189,
+            "lft": 39,
+            "rght": 40,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 194,
+        "fields": {
+            "name": "Energy efficiency codes and standards \u2013 products",
+            "code": "4.3.5",
+            "details": "",
+            "parent": 189,
+            "lft": 41,
+            "rght": 42,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 195,
+        "fields": {
+            "name": "Energy efficiency codes and standards \u2013 sectoral",
+            "code": "4.3.6",
+            "details": "",
+            "parent": 189,
+            "lft": 43,
+            "rght": 44,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 196,
+        "fields": {
+            "name": "Energy efficiency codes and standards \u2013 vehicles and emissions",
+            "code": "4.3.7",
+            "details": "",
+            "parent": 189,
+            "lft": 45,
+            "rght": 46,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 197,
+        "fields": {
+            "name": "Information labelling regulations and energy efficiency ratings",
+            "code": "4.3.8",
+            "details": "",
+            "parent": 189,
+            "lft": 47,
+            "rght": 48,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 198,
+        "fields": {
+            "name": "Energy efficiency/performance certificates",
+            "code": "4.3.9",
+            "details": "",
+            "parent": 189,
+            "lft": 49,
+            "rght": 50,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 199,
+        "fields": {
+            "name": "Energy audits",
+            "code": "4.3.10",
+            "details": "",
+            "parent": 189,
+            "lft": 23,
+            "rght": 24,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 200,
+        "fields": {
+            "name": "Energy efficiency market schemes",
+            "code": "4.3.11",
+            "details": "",
+            "parent": 189,
+            "lft": 25,
+            "rght": 26,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 201,
+        "fields": {
+            "name": "Energy efficiency procurement requirements \u2013 Electricity",
+            "code": "4.3.12",
+            "details": "",
+            "parent": 189,
+            "lft": 27,
+            "rght": 28,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 202,
+        "fields": {
+            "name": "Energy efficiency procurement requirements \u2013 Heating and cooling",
+            "code": "4.3.13",
+            "details": "",
+            "parent": 189,
+            "lft": 29,
+            "rght": 30,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 203,
+        "fields": {
+            "name": "Energy efficiency procurement requirements \u2013 Transport",
+            "code": "4.3.14",
+            "details": "",
+            "parent": 189,
+            "lft": 31,
+            "rght": 32,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 204,
+        "fields": {
+            "name": "Energy efficiency procurement requirements \u2013 Industry",
+            "code": "4.3.15",
+            "details": "",
+            "parent": 189,
+            "lft": 33,
+            "rght": 34,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 205,
+        "fields": {
+            "name": "Incentives and disincentives",
+            "code": "4.4",
+            "details": "",
+            "parent": 179,
+            "lft": 52,
+            "rght": 67,
+            "tree_id": 4,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 206,
+        "fields": {
+            "name": "Fiscal incentives \u2013 energy efficiency \u2013 grants/subsidies/compensation",
+            "code": "4.4.1",
+            "details": "",
+            "parent": 205,
+            "lft": 53,
+            "rght": 54,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 207,
+        "fields": {
+            "name": "Fiscal incentives \u2013 energy efficiency \u2013 loans/debt support",
+            "code": "4.4.2",
+            "details": "",
+            "parent": 205,
+            "lft": 55,
+            "rght": 56,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 208,
+        "fields": {
+            "name": "Fiscal incentives \u2013 energy efficiency \u2013 tax relief/rebates",
+            "code": "4.4.3",
+            "details": "",
+            "parent": 205,
+            "lft": 57,
+            "rght": 58,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 209,
+        "fields": {
+            "name": "Energy efficiency concessions",
+            "code": "4.4.4",
+            "details": "",
+            "parent": 205,
+            "lft": 59,
+            "rght": 60,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 210,
+        "fields": {
+            "name": "Energy efficiency R&D support",
+            "code": "4.4.5",
+            "details": "",
+            "parent": 205,
+            "lft": 61,
+            "rght": 62,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 211,
+        "fields": {
+            "name": "Energy consumption taxation",
+            "code": "4.4.6",
+            "details": "",
+            "parent": 205,
+            "lft": 63,
+            "rght": 64,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 212,
+        "fields": {
+            "name": "Energy use charges",
+            "code": "4.4.7",
+            "details": "",
+            "parent": 205,
+            "lft": 65,
+            "rght": 66,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 213,
+        "fields": {
+            "name": "Energy efficiency budget and finance",
+            "code": "4.5",
+            "details": "",
+            "parent": 179,
+            "lft": 68,
+            "rght": 81,
+            "tree_id": 4,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 214,
+        "fields": {
+            "name": "Overall energy efficiency budget/finance",
+            "code": "4.5.1",
+            "details": "",
+            "parent": 213,
+            "lft": 69,
+            "rght": 70,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 215,
+        "fields": {
+            "name": "Energy efficiency project finance",
+            "code": "4.5.2",
+            "details": "",
+            "parent": 213,
+            "lft": 71,
+            "rght": 72,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 216,
+        "fields": {
+            "name": "Investor regulation \u2013 return/remuneration",
+            "code": "4.5.3",
+            "details": "",
+            "parent": 213,
+            "lft": 73,
+            "rght": 74,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 217,
+        "fields": {
+            "name": "Investor regulation \u2013 guarantees and risk sharing",
+            "code": "4.5.4",
+            "details": "",
+            "parent": 213,
+            "lft": 75,
+            "rght": 76,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 218,
+        "fields": {
+            "name": "Energy performance contracting",
+            "code": "4.5.5",
+            "details": "",
+            "parent": 213,
+            "lft": 77,
+            "rght": 78,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 219,
+        "fields": {
+            "name": "Investment provisions for public/private partnerships",
+            "code": "4.5.6",
+            "details": "",
+            "parent": 213,
+            "lft": 79,
+            "rght": 80,
+            "tree_id": 4,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 220,
+        "fields": {
+            "name": "Energy Market Regulation",
+            "code": "5",
+            "details": "",
+            "parent": null,
+            "lft": 1,
+            "rght": 34,
+            "tree_id": 5,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 221,
+        "fields": {
+            "name": "Markets \u2013 design and regulation",
+            "code": "5.1",
+            "details": "",
+            "parent": 220,
+            "lft": 2,
+            "rght": 17,
+            "tree_id": 5,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 222,
+        "fields": {
+            "name": "Overall market principles",
+            "code": "5.1.1",
+            "details": "",
+            "parent": 221,
+            "lft": 3,
+            "rght": 4,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 223,
+        "fields": {
+            "name": "Market access provisions",
+            "code": "5.1.2",
+            "details": "",
+            "parent": 221,
+            "lft": 5,
+            "rght": 6,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 224,
+        "fields": {
+            "name": "Energy market board",
+            "code": "5.1.3",
+            "details": "",
+            "parent": 221,
+            "lft": 7,
+            "rght": 8,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 225,
+        "fields": {
+            "name": "Market transparency",
+            "code": "5.1.4",
+            "details": "",
+            "parent": 221,
+            "lft": 9,
+            "rght": 10,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 226,
+        "fields": {
+            "name": "Market integrity and abuse",
+            "code": "5.1.5",
+            "details": "",
+            "parent": 221,
+            "lft": 11,
+            "rght": 12,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 227,
+        "fields": {
+            "name": "Market regulatory coordination provisions",
+            "code": "5.1.6",
+            "details": "",
+            "parent": 221,
+            "lft": 13,
+            "rght": 14,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 228,
+        "fields": {
+            "name": "Market design rules for promoting efficiency",
+            "code": "5.1.7",
+            "details": "",
+            "parent": 221,
+            "lft": 15,
+            "rght": 16,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 229,
+        "fields": {
+            "name": "Markets \u2013 trade and competition",
+            "code": "5.2",
+            "details": "",
+            "parent": 220,
+            "lft": 18,
+            "rght": 33,
+            "tree_id": 5,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 230,
+        "fields": {
+            "name": "Import tariffs",
+            "code": "5.2.1",
+            "details": "",
+            "parent": 229,
+            "lft": 19,
+            "rght": 20,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 231,
+        "fields": {
+            "name": "Non-tariff measures",
+            "code": "5.2.2",
+            "details": "",
+            "parent": 229,
+            "lft": 21,
+            "rght": 22,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 232,
+        "fields": {
+            "name": "State aid/subsidies",
+            "code": "5.2.3",
+            "details": "",
+            "parent": 229,
+            "lft": 23,
+            "rght": 24,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 233,
+        "fields": {
+            "name": "Competition \u2013 restrictive agreements/arrangements",
+            "code": "5.2.4",
+            "details": "",
+            "parent": 229,
+            "lft": 25,
+            "rght": 26,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 234,
+        "fields": {
+            "name": "Competition \u2013 abuse of dominant position",
+            "code": "5.2.5",
+            "details": "",
+            "parent": 229,
+            "lft": 27,
+            "rght": 28,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 235,
+        "fields": {
+            "name": "Competition \u2013 ownership unbundling",
+            "code": "5.2.6",
+            "details": "",
+            "parent": 229,
+            "lft": 29,
+            "rght": 30,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 236,
+        "fields": {
+            "name": "Competition \u2013 dumping",
+            "code": "5.2.7",
+            "details": "",
+            "parent": 229,
+            "lft": 31,
+            "rght": 32,
+            "tree_id": 5,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 237,
+        "fields": {
+            "name": "Agriculture (crop and livestock) and climate change",
+            "code": "6",
+            "details": "",
+            "parent": null,
+            "lft": 1,
+            "rght": 96,
+            "tree_id": 6,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 238,
+        "fields": {
+            "name": "Institutions and governance",
+            "code": "6.1",
+            "details": "",
+            "parent": 237,
+            "lft": 2,
+            "rght": 9,
+            "tree_id": 6,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 239,
+        "fields": {
+            "name": "Government authority in charge of agriculture",
+            "code": "6.1.1",
+            "details": "",
+            "parent": 238,
+            "lft": 3,
+            "rght": 4,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 240,
+        "fields": {
+            "name": "Duty to take climate change into account in agriculture policy/plans",
+            "code": "6.1.2",
+            "details": "",
+            "parent": 238,
+            "lft": 5,
+            "rght": 6,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 241,
+        "fields": {
+            "name": "Duty to collect and report on GHG emissions from agriculture",
+            "code": "6.1.3",
+            "details": "",
+            "parent": 238,
+            "lft": 7,
+            "rght": 8,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 242,
+        "fields": {
+            "name": "Disaster risk management/reduction and climate change",
+            "code": "6.2",
+            "details": "",
+            "parent": 237,
+            "lft": 10,
+            "rght": 17,
+            "tree_id": 6,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 243,
+        "fields": {
+            "name": "Disaster risk management and response mechanisms",
+            "code": "6.2.1",
+            "details": "",
+            "parent": 242,
+            "lft": 11,
+            "rght": 12,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 244,
+        "fields": {
+            "name": "Climate related insurance mechanisms",
+            "code": "6.2.2",
+            "details": "",
+            "parent": 242,
+            "lft": 13,
+            "rght": 14,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 245,
+        "fields": {
+            "name": "Early warning mechanisms",
+            "code": "6.2.3",
+            "details": "",
+            "parent": 242,
+            "lft": 15,
+            "rght": 16,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 246,
+        "fields": {
+            "name": "Sustainable agricultural production",
+            "code": "6.3",
+            "details": "Sustainable agricultural production includes the improvement of food security and the eradication of hunger, as well as the preservation of economic viability, while conserving land, water, plant and animal genetic resources, biodiversity and ecosystems, and enhancing resilience to climate change and natural disasters. \r\n\r\nFor further information, please refer to: \r\nRio+20 outcome document \u201cThe Future We Want\u201d paragraph 111: https://sustainabledevelopment.un.org/futurewewant.html\r\nFAO Post-2015 Development Agenda: http://www.fao.org/sustainable-development-goals/overview/fao-and-the-post-2015-development-agenda/sustainable-agriculture/en/",
+            "parent": 237,
+            "lft": 18,
+            "rght": 27,
+            "tree_id": 6,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 247,
+        "fields": {
+            "name": "Environmental criteria in the selection and use of fertilizers (synthetic and organic)",
+            "code": "6.3.1",
+            "details": "Whilst fertilizers are crucial to nutrient management and crop production, they are, in different ways and quantities,\u00a0depending on their nature,\u00a0a principal source of GHG emissions from agriculture.\u00a0Introducing environmental criteria in fertilizer management through legislation can assist to regulate\u00a0the availability on the market and the use of fertilizers, leading to a lower carbon impact. Measures can include favoring fertilizers with lower carbon production footprint, as well as those\u00a0with lower GHG emissions in their application, as well as\u00a0adopting farming\u00a0techniques that can reduce the need for fertilizers, e.g. crop rotation.\u2028\r\nFor further information please refer to: \r\nSOFA 2016: Agriculture and Climate Change. FAO: \u00a0http://www.fao.org/3/a-i6030e.pdf",
+            "parent": 246,
+            "lft": 19,
+            "rght": 20,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 248,
+        "fields": {
+            "name": "Tillage and residues management",
+            "code": "6.3.2",
+            "details": "As the largest terrestrial carbon pool, soils (and soil organic matter) play a central role in climate change mitigation. However, certain practices such as tillage and burning of crop residues lead to major losses of key soil functions. Thus, regulating tillage and residues management to limit practices with adverse effects contributes to managing soil organic matter content, and more broadly, soil quality. \r\n\r\nFor further information, please refer to:\r\nFAO 2017. Voluntary Guidelines for Sustainable Soil Management: http://www.fao.org/3/a-bl813e.pdf",
+            "parent": 246,
+            "lft": 21,
+            "rght": 22,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 249,
+        "fields": {
+            "name": "Sustainable water use and management",
+            "code": "6.3.3",
+            "details": "Climate change may result in water scarcity, posing serious threats to agriculture and livelihoods. At the same time, water use within the agriculture sector requires appropriate regulation, since this sector is one of the main users of water. \r\n\r\nFor further information, please refer to: http://www.fao.org/3/CA1726EN/ca1726en.pdf, pp. 42-43",
+            "parent": 246,
+            "lft": 23,
+            "rght": 24,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 250,
+        "fields": {
+            "name": "Climate-smart agriculture approaches",
+            "code": "6.3.4",
+            "details": "Climate Smart Agriculture (CSA) refers to a holistic approach that sustainably increases productivity, strengthens resilience (adaptation), reduces or removes greenhouse gases (mitigation) where possible, and enhances achievement of national food security and integration of other development goals in the agriculture sector. \r\nFor further information, please refer to: \r\nFAO definition of CSA: http://www.fao.org/climatechange/epic/activities/what-is-climate-smart-agriculture/en/#.XDdts89KhsN\r\nCGIAR Research Program on Climate Change, Agriculture and Food Security (CCAFS) for the World Bank: https://csa.guide/csa/why-climate-smart-agriculture",
+            "parent": 246,
+            "lft": 25,
+            "rght": 26,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 251,
+        "fields": {
+            "name": "Seed management and climate change",
+            "code": "6.4",
+            "details": "Ensuring that farmers have adequate access to seeds of diverse and well-adapted crops and their varieties is important to support climate change adaptation, given the impacts of a changing climate on the environmental conditions of ecosystems that support agriculture.",
+            "parent": 237,
+            "lft": 28,
+            "rght": 39,
+            "tree_id": 6,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 252,
+        "fields": {
+            "name": "Management of plant breeding",
+            "code": "6.4.1",
+            "details": "",
+            "parent": 251,
+            "lft": 29,
+            "rght": 30,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 253,
+        "fields": {
+            "name": "Protection of plant breeders\u2019 intellectual property",
+            "code": "6.4.2",
+            "details": "As a result of changing climatic conditions, landraces and plant varieties might no longer be well adapted to environmental conditions in the places where they have traditionally been grown. Thus, the development of new breeds that are able to adapt to the new climatic situations will gain importance. Breeds\u2019 development should be facilitated through appropriate legal frameworks that protect breeders\u00b4 intellectual property rights and traditional farmers\u00b4 rights to save seeds for the next season.\r\n\r\nFor further information, please refer to:\r\nFAO 2015, Coping with Climate Change: the roles of genetic resources for food and agriculture: http://www.fao.org/3/a-i3866e.pdf",
+            "parent": 251,
+            "lft": 31,
+            "rght": 32,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 254,
+        "fields": {
+            "name": "Seed registration requirements",
+            "code": "6.4.3",
+            "details": "",
+            "parent": 251,
+            "lft": 33,
+            "rght": 34,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 255,
+        "fields": {
+            "name": "Seed quality control system",
+            "code": "6.4.4",
+            "details": "",
+            "parent": 251,
+            "lft": 35,
+            "rght": 36,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 256,
+        "fields": {
+            "name": "Representation of farmers/community enterprises in seeds governing bodies and/or institutions",
+            "code": "6.4.5",
+            "details": "",
+            "parent": 251,
+            "lft": 37,
+            "rght": 38,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 257,
+        "fields": {
+            "name": "Soil management and climate change",
+            "code": "6.5",
+            "details": "As the largest terrestrial carbon pool, soil plays a crucial role in climate change mitigation by regulating dynamic biogeochemical processes and the exchange of GHGs with the atmosphere. Nonetheless, soil has become one of the world\u2019s most vulnerable resources in the face of climate change, land degradation, biodiversity loss and increased demand for food production. Sustainable soil management (SSM) aims at maintaining and enhancing the supporting, provisioning, and regulating of the services provided by soils, without significantly impairing either the soil functions or biodiversity. \r\n\r\nFor further information, please refer to: \r\nFAO 2017. Voluntary Guidelines for Sustainable Soil Management: http://www.fao.org/3/a-bl813e.pdf \r\nUN Principles for sustainable soil management: https://www.unglobalcompact.org/docs/issues_doc/agriculture_and_food/soil-principles.pdf",
+            "parent": 237,
+            "lft": 40,
+            "rght": 55,
+            "tree_id": 6,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 258,
+        "fields": {
+            "name": "Soil conservation bodies and/or institutions",
+            "code": "6.5.1",
+            "details": "",
+            "parent": 257,
+            "lft": 41,
+            "rght": 42,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 259,
+        "fields": {
+            "name": "Soil conservation",
+            "code": "6.5.2",
+            "details": "",
+            "parent": 257,
+            "lft": 43,
+            "rght": 44,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 260,
+        "fields": {
+            "name": "Soil pollution control",
+            "code": "6.5.3",
+            "details": "",
+            "parent": 257,
+            "lft": 45,
+            "rght": 46,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 261,
+        "fields": {
+            "name": "Soil erosion control",
+            "code": "6.5.4",
+            "details": "",
+            "parent": 257,
+            "lft": 47,
+            "rght": 48,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 262,
+        "fields": {
+            "name": "Soil restoration",
+            "code": "6.5.5",
+            "details": "",
+            "parent": 257,
+            "lft": 49,
+            "rght": 50,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 263,
+        "fields": {
+            "name": "Soil fertility management",
+            "code": "6.5.6",
+            "details": "The preservation or enhancement of natural soil fertility and nutrient cycles is important for addressing climate change. It can be supported through crop rotation with legumes, green and animal manures and cover crops in combination with reduced or no tillage, less use of herbicides and agroforestry practices. Integrated Soil Management (ISM) is one existing approach which refers to soil fertility management practices that include the use of fertilizers, organic inputs and improved germplasm, adapted to local circumstances based on local knowledge, within the overall aim of improving crop productivity. Legislation can be instrumental to enable and support farmers in adopting the above practices.\r\n\r\nFor further information, please refer to http://www.fao.org/3/a-bl813e.pdf \r\nhttps://publications.cta.int/media/publications/downloads/1853_PDF.pdf",
+            "parent": 257,
+            "lft": 51,
+            "rght": 52,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 264,
+        "fields": {
+            "name": "Soil biodiversity conservation",
+            "code": "6.5.7",
+            "details": "",
+            "parent": 257,
+            "lft": 53,
+            "rght": 54,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 265,
+        "fields": {
+            "name": "Plant health, pest control and climate change",
+            "code": "6.6",
+            "details": "Climate change is directly and indirectly influencing the distribution and severity of crop pests, including invasive species, which is further affecting crop production, with evidence suggesting that pest problems overall are likely to become more unpredictable and larger in amplitude. In this regard, plant health legislation is referred to as the area of law most commonly used to regulate crop pests.",
+            "parent": 237,
+            "lft": 56,
+            "rght": 61,
+            "tree_id": 6,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 266,
+        "fields": {
+            "name": "Phytosanitary protection and surveillance",
+            "code": "6.6.1",
+            "details": "",
+            "parent": 265,
+            "lft": 57,
+            "rght": 58,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 267,
+        "fields": {
+            "name": "Pest management",
+            "code": "6.6.2",
+            "details": "In the face of climate change, the incidence of plant pest and diseases is likely to increase and become more unpredictable. Legislation can ensure adequate pest surveillance and control programs, good pesticide and fertilizers management based on ecosystem approaches, including Integrated Pest Management (IPM). Ensuring that adequate financial resources are earmarked for these activities is also key. \r\n\r\nFor further information, please refer to:\r\nFAO on pest and pesticides management: http://www.fao.org/agriculture/crops/core-themes/theme/pests/ipm\r\nhttp://www.fao.org/agriculture/crops/thematic-sitemap/theme/pests/en/",
+            "parent": 265,
+            "lft": 59,
+            "rght": 60,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 268,
+        "fields": {
+            "name": "Pesticide management",
+            "code": "6.7",
+            "details": "",
+            "parent": 237,
+            "lft": 62,
+            "rght": 65,
+            "tree_id": 6,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 269,
+        "fields": {
+            "name": "Environmental considerations in pesticide management",
+            "code": "6.7.1",
+            "details": "",
+            "parent": 268,
+            "lft": 63,
+            "rght": 64,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 270,
+        "fields": {
+            "name": "Livestock management and climate change",
+            "code": "6.8",
+            "details": "Livestock production is a significant source of GHG emissions and is also affected by climate change. Legislation may promote the adoption of more sustainable livestock management practices to reduce emissions from livestock production (e.g. feed and manure management) and to contribute to climate change adaptation in the sector. For adaptation, legislation may promote better water management (e.g. boreholes); regulate breeding techniques for resistance to drought or for disease control and animal health; create insurance mechanisms for livestock loss; ban deforestation for growing crops or livestock; ensure livestock mobility, including land access for pastoralists; and encourage market-oriented actions such as laws on labelling products, which might provide incentives for sustainable livestock production.\r\n\r\nFor further information, please refer to: \r\nhttp://www.fao.org/ag/againfo/resources/en/publications/tackling_climate_change/index.htm\r\nGerber, P.J., Steinfeld, H., Henderson, B., Mottet, A., Opio, C., Dijkman, J., Falcucci, A. & Tempio, G. 2013. Tackling climate change through livestock \u2013 A global assessment of emissions and mitigation opportunities. FAO: http://www.fao.org/3/a-i3437e.pdf",
+            "parent": 237,
+            "lft": 66,
+            "rght": 81,
+            "tree_id": 6,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 271,
+        "fields": {
+            "name": "Feed management",
+            "code": "6.8.1",
+            "details": "Sustainable livestock production includes the use of better quality feed and feed balancing to lower enteric and manure emissions, thus contributing to climate change mitigation.\r\n\r\nFor further information, please refer to:\r\nhttp://www.fao.org/ag/againfo/resources/en/publications/tackling_climate_change/index.htm\r\nGerber, P.J., Steinfeld, H., Henderson, B., Mottet, A., Opio, C., Dijkman, J., Falcucci, A. & Tempio, G. 2013. Tackling climate change through livestock \u2013 A global assessment of emissions and mitigation opportunities. FAO: http://www.fao.org/3/a-i3437e.pdf",
+            "parent": 270,
+            "lft": 67,
+            "rght": 68,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 272,
+        "fields": {
+            "name": "Breeding management",
+            "code": "6.8.2",
+            "details": "Improved breeding helps to shrink the herd overhead (i.e. unproductive part of the herd) and reduce related GHG emissions. Further, breeding techniques can be used to produce different breeds that have lower enteric and manure emissions of GHG.\r\n\r\nFor further information, please refer to:\r\nGerber, P.J., Steinfeld, H., Henderson, B., Mottet, A., Opio, C., Dijkman, J., Falcucci, A. & Tempio, G. 2013. Tackling climate change through livestock \u2013 A global assessment of emissions and mitigation opportunities. FAO: http://www.fao.org/3/a-i3437e.pdf",
+            "parent": 270,
+            "lft": 69,
+            "rght": 70,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 273,
+        "fields": {
+            "name": "Manure management",
+            "code": "6.8.3",
+            "details": "Manure management practices can ensure the recovery and recycling of nutrients and energy contained in manure and improvements in energy use efficiency along supply chains. Therefore, manure management systems can reduce overall GHG emissions from manure. \r\n\r\nFor further information, please refer to:\r\nGerber, P.J., Steinfeld, H., Henderson, B., Mottet, A., Opio, C., Dijkman, J., Falcucci, A. & Tempio, G. 2013. Tackling climate change through livestock \u2013 A global assessment of emissions and mitigation opportunities. FAO: http://www.fao.org/3/a-i3437e.pdf",
+            "parent": 270,
+            "lft": 71,
+            "rght": 72,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 274,
+        "fields": {
+            "name": "Disease monitoring",
+            "code": "6.8.4",
+            "details": "In the face of climate change, the burden of new disease and the persistence of chronic disease will remain considerable, particularly in the developing world. Thus, disease monitoring will gain further importance in the tackling of the adverse effects of climate change on animal health. In this regard, improvements are required to support disease monitoring mechanisms in the face of novel animal health emergencies.\r\n\r\nFor further information, please refer to:\r\nJuan Lubroth. Climate change and animal health. Animal Health Service, FAO: http://www.fao.org/docrep/017/i3084e/i3084e05.pdf",
+            "parent": 270,
+            "lft": 73,
+            "rght": 74,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 275,
+        "fields": {
+            "name": "Sustainable livestock production",
+            "code": "6.8.5",
+            "details": "Development of sustainable livestock production is a key enabler for achieving climate change and sustainable development goals. Issues to consider include animal welfare (to reduce herd losses and ensure efficiency in production), population control (to reduce emissions), indoor livestock farming and other factors that are related to ensuring production to meet societal goals while lowering emissions. \r\n\r\nFor further information, please refer to: http://www.fao.org/3/a-i6142e.pdf \r\nhttp://www.fao.org/docrep/u7600t/u7600t01.htm",
+            "parent": 270,
+            "lft": 75,
+            "rght": 76,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 276,
+        "fields": {
+            "name": "Grazing and pasture land management",
+            "code": "6.8.6",
+            "details": "",
+            "parent": 270,
+            "lft": 77,
+            "rght": 78,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 277,
+        "fields": {
+            "name": "Sustainable animal husbandry practices",
+            "code": "6.8.7",
+            "details": "Among the available technical options for mitigation of GHG emissions from the livestock sector are sustainable animal husbandry practices, which include animal and reproductive management practices and technologies. \r\n\r\nFor further information, please refer to: \r\nGerber, P.J., Steinfeld, H., Henderson, B., Mottet, A., Opio, C., Dijkman, J., Falcucci, A. & Tempio, G. 2013. Tackling climate change through livestock \u2013 A global assessment of emissions and mitigation opportunities. FAO. Pages 48 to 50: http://www.fao.org/3/a-i3437e.pdf",
+            "parent": 270,
+            "lft": 79,
+            "rght": 80,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 278,
+        "fields": {
+            "name": "Financing/incentives for CSA approaches",
+            "code": "6.9",
+            "details": "Climate finance can play a catalytic role in supporting the agriculture sector to become part of the climate solution while promoting inclusive and sustainable growth. In addition, economic incentives can be a way to steer a transition towards more sustainable practices in agriculture. Incentives can include \u201cpayment for ecosystem services\u201d programs; offset schemes, market-based incentives such as certification/labelling, among others. Access to finance and incentives is particularly important for small-scale farmers who would not otherwise be in a position to invest in climate-smart agriculture. Small-scale producers are less resilient to natural hazards inherent in agriculture and this tends to inhibit financial institutions from granting them loans. Thus, access to financial instruments adapted to different needs and realities in the agricultural sector need to be supported through legislation. \r\n\r\nFor further information, please refer to:\r\nFAO 2013. Climate-Smart Agriculture Sourcebook; pp. 375-406: http://www.fao.org/3/a-i3325e.pdf",
+            "parent": 237,
+            "lft": 82,
+            "rght": 95,
+            "tree_id": 6,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 279,
+        "fields": {
+            "name": "Loans and credits",
+            "code": "6.9.1",
+            "details": "",
+            "parent": 278,
+            "lft": 83,
+            "rght": 84,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 280,
+        "fields": {
+            "name": "SubsidiesSubsidies",
+            "code": "6.9.2",
+            "details": "",
+            "parent": 278,
+            "lft": 85,
+            "rght": 86,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 281,
+        "fields": {
+            "name": "Research and development",
+            "code": "6.9.3",
+            "details": "",
+            "parent": 278,
+            "lft": 87,
+            "rght": 88,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 282,
+        "fields": {
+            "name": "Payments for ecosystem services (PES)",
+            "code": "6.9.4",
+            "details": "",
+            "parent": 278,
+            "lft": 89,
+            "rght": 90,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 283,
+        "fields": {
+            "name": "Certification/labelling schemes",
+            "code": "6.9.5",
+            "details": "",
+            "parent": 278,
+            "lft": 91,
+            "rght": 92,
+            "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 284,
+        "fields": {
+            "name": "Carbon pricing mechanisms",
+            "code": "6.9.6",
+            "details": "",
+            "parent": 278,
+            "lft": 93,
+            "rght": 94,
+            "tree_id": 6,
+            "level": 2
+        }
     }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 2,
-    "fields": {
-        "name": "Mitigation strategies, targets, budgets and measures",
-        "code": "1.1",
-        "parent": 1,
-        "lft": 2,
-        "rght": 15,
-        "tree_id": 1,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 3,
-    "fields": {
-        "name": "Emission targets-in law",
-        "code": "1.1.1",
-        "parent": 2,
-        "lft": 3,
-        "rght": 4,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 4,
-    "fields": {
-        "name": "Emission targets \u2013 duty to set",
-        "code": "1.1.2",
-        "parent": 2,
-        "lft": 5,
-        "rght": 6,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 5,
-    "fields": {
-        "name": "Emission targets- mechanisms for setting and amending",
-        "code": "1.1.3",
-        "parent": 2,
-        "lft": 7,
-        "rght": 8,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 6,
-    "fields": {
-        "name": "Provision for carbon budgeting",
-        "code": "1.1.4",
-        "parent": 2,
-        "lft": 9,
-        "rght": 10,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 7,
-    "fields": {
-        "name": "Non-quantitative mitigation measures/standards",
-        "code": "1.1.5",
-        "parent": 2,
-        "lft": 11,
-        "rght": 12,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 8,
-    "fields": {
-        "name": "Strategic plan on mitigation",
-        "code": "1.1.6",
-        "parent": 2,
-        "lft": 13,
-        "rght": 14,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 9,
-    "fields": {
-        "name": "Adaptation measures",
-        "code": "1.2",
-        "parent": 1,
-        "lft": 16,
-        "rght": 27,
-        "tree_id": 1,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 10,
-    "fields": {
-        "name": "Provisions for climate risk and vulnerability assessments",
-        "code": "1.2.1",
-        "parent": 9,
-        "lft": 17,
-        "rght": 18,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 11,
-    "fields": {
-        "name": "National strategies/plans for adaptation and climate resilient development",
-        "code": "1.2.2",
-        "parent": 9,
-        "lft": 19,
-        "rght": 20,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 12,
-    "fields": {
-        "name": "Mandate to government to develop strategies, plans or regulations on adaptation",
-        "code": "1.2.3",
-        "parent": 9,
-        "lft": 21,
-        "rght": 22,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 13,
-    "fields": {
-        "name": "Provision for adaptation consultations",
-        "code": "1.2.4",
-        "parent": 9,
-        "lft": 23,
-        "rght": 24,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 14,
-    "fields": {
-        "name": "Mechanism for setting of adaptation standards",
-        "code": "1.2.5",
-        "parent": 9,
-        "lft": 25,
-        "rght": 26,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 15,
-    "fields": {
-        "name": "Establishing or designating national climate bodies and functions",
-        "code": "1.3",
-        "parent": 1,
-        "lft": 28,
-        "rght": 45,
-        "tree_id": 1,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 16,
-    "fields": {
-        "name": "Coordination body on climate change",
-        "code": "1.3.1",
-        "parent": 15,
-        "lft": 29,
-        "rght": 30,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 17,
-    "fields": {
-        "name": "Inter-agency body on climate change",
-        "code": "1.3.2",
-        "parent": 15,
-        "lft": 31,
-        "rght": 32,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 18,
-    "fields": {
-        "name": "Advisory body on climate change",
-        "code": "1.3.3",
-        "parent": 15,
-        "lft": 33,
-        "rght": 34,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 19,
-    "fields": {
-        "name": "Body with planning/regulatory powers and functions",
-        "code": "1.3.4",
-        "parent": 15,
-        "lft": 35,
-        "rght": 36,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 20,
-    "fields": {
-        "name": "Body responsible for national inventory and reporting",
-        "code": "1.3.5",
-        "parent": 15,
-        "lft": 37,
-        "rght": 38,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 21,
-    "fields": {
-        "name": "Body responsible for administering climate budget/climate finance",
-        "code": "1.3.6",
-        "parent": 15,
-        "lft": 39,
-        "rght": 40,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 22,
-    "fields": {
-        "name": "Provisions for consultation",
-        "code": "1.3.7",
-        "parent": 15,
-        "lft": 41,
-        "rght": 42,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 23,
-    "fields": {
-        "name": "Education/information/capacity building bodies",
-        "code": "1.3.8",
-        "parent": 15,
-        "lft": 43,
-        "rght": 44,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 24,
-    "fields": {
-        "name": "Monitoring, reporting and verification obligations",
-        "code": "1.4",
-        "parent": 1,
-        "lft": 46,
-        "rght": 53,
-        "tree_id": 1,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 25,
-    "fields": {
-        "name": "Monitoring and reporting obligations on government",
-        "code": "1.4.1",
-        "parent": 24,
-        "lft": 47,
-        "rght": 48,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 26,
-    "fields": {
-        "name": "Monitoring and Reporting obligation on companies/installations /financial institutions",
-        "code": "1.4.2",
-        "parent": 24,
-        "lft": 49,
-        "rght": 50,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 27,
-    "fields": {
-        "name": "Provisions for verification of data ",
-        "code": "1.4.3",
-        "parent": 24,
-        "lft": 51,
-        "rght": 52,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 28,
-    "fields": {
-        "name": "Economic instruments",
-        "code": "1.5",
-        "parent": 1,
-        "lft": 54,
-        "rght": 67,
-        "tree_id": 1,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 29,
-    "fields": {
-        "name": "Carbon tax or levy provisions",
-        "code": "1.5.1",
-        "parent": 28,
-        "lft": 55,
-        "rght": 56,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 30,
-    "fields": {
-        "name": "Emissions trading",
-        "code": "1.5.2",
-        "parent": 28,
-        "lft": 57,
-        "rght": 58,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 31,
-    "fields": {
-        "name": "Tradable certificates",
-        "code": "1.5.3",
-        "parent": 28,
-        "lft": 59,
-        "rght": 60,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 32,
-    "fields": {
-        "name": "Use of international market mechanisms",
-        "code": "1.5.4",
-        "parent": 28,
-        "lft": 61,
-        "rght": 62,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 33,
-    "fields": {
-        "name": "Incentives for voluntary actions",
-        "code": "1.5.5",
-        "parent": 28,
-        "lft": 63,
-        "rght": 64,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 34,
-    "fields": {
-        "name": "Fiscal incentives",
-        "code": "1.5.6",
-        "parent": 28,
-        "lft": 65,
-        "rght": 66,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 35,
-    "fields": {
-        "name": "Finance and budgetary provisions",
-        "code": "1.6",
-        "parent": 1,
-        "lft": 68,
-        "rght": 79,
-        "tree_id": 1,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 36,
-    "fields": {
-        "name": "Procurement of goods and services",
-        "code": "1.6.1",
-        "parent": 35,
-        "lft": 69,
-        "rght": 70,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 37,
-    "fields": {
-        "name": "Provisions on access to international climate finance",
-        "code": "1.6.2",
-        "parent": 35,
-        "lft": 71,
-        "rght": 72,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 38,
-    "fields": {
-        "name": "Regulation of financial markets",
-        "code": "1.6.3",
-        "parent": 35,
-        "lft": 73,
-        "rght": 74,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 39,
-    "fields": {
-        "name": "Sources of climate finance",
-        "code": "1.6.4",
-        "parent": 35,
-        "lft": 75,
-        "rght": 76,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 40,
-    "fields": {
-        "name": "Establishment of national climate fund",
-        "code": "1.6.5",
-        "parent": 35,
-        "lft": 77,
-        "rght": 78,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 41,
-    "fields": {
-        "name": "Guiding objectives and principles ",
-        "code": "1.7",
-        "parent": 1,
-        "lft": 80,
-        "rght": 87,
-        "tree_id": 1,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 42,
-    "fields": {
-        "name": "Objectives",
-        "code": "1.7.1",
-        "parent": 41,
-        "lft": 81,
-        "rght": 82,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 43,
-    "fields": {
-        "name": "Enabling constitutional provisions",
-        "code": "1.7.2",
-        "parent": 41,
-        "lft": 83,
-        "rght": 84,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 44,
-    "fields": {
-        "name": "Principles",
-        "code": "1.7.3",
-        "parent": 41,
-        "lft": 85,
-        "rght": 86,
-        "tree_id": 1,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 97,
-    "fields": {
-        "name": "Energy System",
-        "code": "2",
-        "parent": null,
-        "lft": 1,
-        "rght": 56,
-        "tree_id": 2,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 98,
-    "fields": {
-        "name": "Targets, plans and strategies",
-        "code": "2.1",
-        "parent": 97,
-        "lft": 2,
-        "rght": 15,
-        "tree_id": 2,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 99,
-    "fields": {
-        "name": "Integrated energy plan",
-        "code": "2.1.1",
-        "parent": 98,
-        "lft": 3,
-        "rght": 4,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 100,
-    "fields": {
-        "name": "Future energy demand estimation",
-        "code": "2.1.2",
-        "parent": 98,
-        "lft": 5,
-        "rght": 6,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 101,
-    "fields": {
-        "name": "Energy access provisions",
-        "code": "2.1.3",
-        "parent": 98,
-        "lft": 7,
-        "rght": 8,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 102,
-    "fields": {
-        "name": "Energy supply diversification/mix",
-        "code": "2.1.4",
-        "parent": 98,
-        "lft": 9,
-        "rght": 10,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 103,
-    "fields": {
-        "name": "Electricity interconnection",
-        "code": "2.1.5",
-        "parent": 98,
-        "lft": 11,
-        "rght": 12,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 104,
-    "fields": {
-        "name": "Energy parity provisions",
-        "code": "2.1.6",
-        "parent": 98,
-        "lft": 13,
-        "rght": 14,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 105,
-    "fields": {
-        "name": "Institutions and governance",
-        "code": "2.2",
-        "parent": 97,
-        "lft": 16,
-        "rght": 27,
-        "tree_id": 2,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 106,
-    "fields": {
-        "name": "Energy co-ordination body",
-        "code": "2.2.1",
-        "parent": 105,
-        "lft": 17,
-        "rght": 18,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 107,
-    "fields": {
-        "name": "Energy system advisory body",
-        "code": "2.2.2",
-        "parent": 105,
-        "lft": 19,
-        "rght": 20,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 108,
-    "fields": {
-        "name": "Energy distribution/grid management body",
-        "code": "2.2.3",
-        "parent": 105,
-        "lft": 21,
-        "rght": 22,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 109,
-    "fields": {
-        "name": "Energy regulator",
-        "code": "2.2.4",
-        "parent": 105,
-        "lft": 23,
-        "rght": 24,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 110,
-    "fields": {
-        "name": "Provisions for consultation",
-        "code": "2.2.5",
-        "parent": 105,
-        "lft": 25,
-        "rght": 26,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 111,
-    "fields": {
-        "name": "Carbon transition planning",
-        "code": "2.3",
-        "parent": 97,
-        "lft": 28,
-        "rght": 55,
-        "tree_id": 2,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 112,
-    "fields": {
-        "name": "Decarbonisation target \u2013 Electricity",
-        "code": "2.3.1",
-        "parent": 111,
-        "lft": 29,
-        "rght": 30,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 113,
-    "fields": {
-        "name": "Decarbonisation target \u2013 Heating and cooling",
-        "code": "2.3.2",
-        "parent": 111,
-        "lft": 39,
-        "rght": 40,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 114,
-    "fields": {
-        "name": "Decarbonisation target \u2013 Transport",
-        "code": "2.3.3",
-        "parent": 111,
-        "lft": 41,
-        "rght": 42,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 115,
-    "fields": {
-        "name": "Decarbonisation target \u2013 Industry",
-        "code": "2.3.4",
-        "parent": 111,
-        "lft": 43,
-        "rght": 44,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 116,
-    "fields": {
-        "name": "Phase-out of high carbon sources",
-        "code": "2.3.5",
-        "parent": 111,
-        "lft": 45,
-        "rght": 46,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 117,
-    "fields": {
-        "name": "Just transition provisions \u2013 Electricity",
-        "code": "2.3.6",
-        "parent": 111,
-        "lft": 47,
-        "rght": 48,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 118,
-    "fields": {
-        "name": "Just transition provisions \u2013 Heating and cooling",
-        "code": "2.3.7",
-        "parent": 111,
-        "lft": 49,
-        "rght": 50,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 119,
-    "fields": {
-        "name": "Just transition provisions \u2013 Transport",
-        "code": "2.3.8",
-        "parent": 111,
-        "lft": 51,
-        "rght": 52,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 120,
-    "fields": {
-        "name": "Just transition provisions \u2013 Industry",
-        "code": "2.3.9",
-        "parent": 111,
-        "lft": 53,
-        "rght": 54,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 121,
-    "fields": {
-        "name": "Demand reduction provisions \u2013 Electricity",
-        "code": "2.3.10",
-        "parent": 111,
-        "lft": 31,
-        "rght": 32,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 122,
-    "fields": {
-        "name": "Demand reduction provisions \u2013 Heating and cooling",
-        "code": "2.3.11",
-        "parent": 111,
-        "lft": 33,
-        "rght": 34,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 123,
-    "fields": {
-        "name": "Demand reduction provisions \u2013 Transport",
-        "code": "2.3.12",
-        "parent": 111,
-        "lft": 35,
-        "rght": 36,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 124,
-    "fields": {
-        "name": "Demand reduction provisions \u2013 Industry",
-        "code": "2.3.13",
-        "parent": 111,
-        "lft": 37,
-        "rght": 38,
-        "tree_id": 2,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 125,
-    "fields": {
-        "name": "Energy Production and Renewable Energy",
-        "code": "3",
-        "parent": null,
-        "lft": 1,
-        "rght": 108,
-        "tree_id": 3,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 126,
-    "fields": {
-        "name": "Targets, plans and strategies",
-        "code": "3.1",
-        "parent": 125,
-        "lft": 2,
-        "rght": 13,
-        "tree_id": 3,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 127,
-    "fields": {
-        "name": "Renewable energy targets",
-        "code": "3.1.1",
-        "parent": 126,
-        "lft": 3,
-        "rght": 4,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 128,
-    "fields": {
-        "name": "Renewable energy strategy/plan",
-        "code": "3.1.2",
-        "parent": 126,
-        "lft": 5,
-        "rght": 6,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 129,
-    "fields": {
-        "name": "Prescription of renewable energy sources",
-        "code": "3.1.3",
-        "parent": 126,
-        "lft": 7,
-        "rght": 8,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 130,
-    "fields": {
-        "name": "Goal/obligation to promote renewable energy",
-        "code": "3.1.4",
-        "parent": 126,
-        "lft": 9,
-        "rght": 10,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 131,
-    "fields": {
-        "name": "Goal/obligation to review and report on renewable energy",
-        "code": "3.1.5",
-        "parent": 126,
-        "lft": 11,
-        "rght": 12,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 132,
-    "fields": {
-        "name": "Institutions and governance",
-        "code": "3.2",
-        "parent": 125,
-        "lft": 14,
-        "rght": 25,
-        "tree_id": 3,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 133,
-    "fields": {
-        "name": "Renewable energy co-ordination body",
-        "code": "3.2.1",
-        "parent": 132,
-        "lft": 15,
-        "rght": 16,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 134,
-    "fields": {
-        "name": "Renewable energy advisory body",
-        "code": "3.2.2",
-        "parent": 132,
-        "lft": 17,
-        "rght": 18,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 135,
-    "fields": {
-        "name": "Renewable energy regulatory body",
-        "code": "3.2.3",
-        "parent": 132,
-        "lft": 19,
-        "rght": 20,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 136,
-    "fields": {
-        "name": "Rural electrification body",
-        "code": "3.2.4",
-        "parent": 132,
-        "lft": 21,
-        "rght": 22,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 137,
-    "fields": {
-        "name": "Provisions for consultation",
-        "code": "3.2.5",
-        "parent": 132,
-        "lft": 23,
-        "rght": 24,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 138,
-    "fields": {
-        "name": "Renewable energy obligations and regulation",
-        "code": "3.3",
-        "parent": 125,
-        "lft": 26,
-        "rght": 39,
-        "tree_id": 3,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 139,
-    "fields": {
-        "name": "Renewable energy obligations for energy users",
-        "code": "3.3.1",
-        "parent": 138,
-        "lft": 27,
-        "rght": 28,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 140,
-    "fields": {
-        "name": "Duties of renewable energy providers",
-        "code": "3.3.2",
-        "parent": 138,
-        "lft": 29,
-        "rght": 30,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 141,
-    "fields": {
-        "name": "Licensing provisions",
-        "code": "3.3.3",
-        "parent": 138,
-        "lft": 31,
-        "rght": 32,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 142,
-    "fields": {
-        "name": "Renewable energy codes and standards \u2013 general/operating",
-        "code": "3.3.4",
-        "parent": 138,
-        "lft": 33,
-        "rght": 34,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 143,
-    "fields": {
-        "name": "Renewable energy codes and standards \u2013 planning/environmental impact",
-        "code": "3.3.5",
-        "parent": 138,
-        "lft": 35,
-        "rght": 36,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 144,
-    "fields": {
-        "name": "Green tradeable certificates",
-        "code": "3.3.6",
-        "parent": 138,
-        "lft": 37,
-        "rght": 38,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 145,
-    "fields": {
-        "name": "Distribution and storage (electricity and other)",
-        "code": "3.4",
-        "parent": 125,
-        "lft": 40,
-        "rght": 55,
-        "tree_id": 3,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 146,
-    "fields": {
-        "name": "Specification of grid standards",
-        "code": "3.4.1",
-        "parent": 145,
-        "lft": 41,
-        "rght": 42,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 147,
-    "fields": {
-        "name": "Grid management provisions",
-        "code": "3.4.2",
-        "parent": 145,
-        "lft": 43,
-        "rght": 44,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 148,
-    "fields": {
-        "name": "Grid access and integration",
-        "code": "3.4.3",
-        "parent": 145,
-        "lft": 45,
-        "rght": 46,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 149,
-    "fields": {
-        "name": "Mini-grid provisions",
-        "code": "3.4.4",
-        "parent": 145,
-        "lft": 47,
-        "rght": 48,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 150,
-    "fields": {
-        "name": "Distributed/off-grid/micro generation",
-        "code": "3.4.5",
-        "parent": 145,
-        "lft": 49,
-        "rght": 50,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 151,
-    "fields": {
-        "name": "Electricity storage",
-        "code": "3.4.6",
-        "parent": 145,
-        "lft": 51,
-        "rght": 52,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 152,
-    "fields": {
-        "name": "Load shifting and demand response management",
-        "code": "3.4.7",
-        "parent": 145,
-        "lft": 53,
-        "rght": 54,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 153,
-    "fields": {
-        "name": "Incentives and disincentives",
-        "code": "3.5",
-        "parent": 125,
-        "lft": 56,
-        "rght": 87,
-        "tree_id": 3,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 154,
-    "fields": {
-        "name": "Fiscal incentives \u2013 renewable energy \u2013 grants/subsidies/compensation",
-        "code": "3.5.1",
-        "parent": 153,
-        "lft": 57,
-        "rght": 58,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 155,
-    "fields": {
-        "name": "Fiscal incentives \u2013 renewable energy \u2013 loans/debt support",
-        "code": "3.5.2",
-        "parent": 153,
-        "lft": 71,
-        "rght": 72,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 156,
-    "fields": {
-        "name": "Fiscal incentives \u2013 fossil fuels",
-        "code": "3.5.3",
-        "parent": 153,
-        "lft": 73,
-        "rght": 74,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 157,
-    "fields": {
-        "name": "Feed-in tariffs",
-        "code": "3.5.4",
-        "parent": 153,
-        "lft": 75,
-        "rght": 76,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 158,
-    "fields": {
-        "name": "Regulation of power purchase agreements",
-        "code": "3.5.5",
-        "parent": 153,
-        "lft": 77,
-        "rght": 78,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 159,
-    "fields": {
-        "name": "Incentives for micro/self-use energy production",
-        "code": "3.5.6",
-        "parent": 153,
-        "lft": 79,
-        "rght": 80,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 160,
-    "fields": {
-        "name": "Energy production taxation \u2013 renewable energy",
-        "code": "3.5.7",
-        "parent": 153,
-        "lft": 81,
-        "rght": 82,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 161,
-    "fields": {
-        "name": "Energy production taxation \u2013 fossil fuels",
-        "code": "3.5.8",
-        "parent": 153,
-        "lft": 83,
-        "rght": 84,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 162,
-    "fields": {
-        "name": "Renewable energy R&D support",
-        "code": "3.5.9",
-        "parent": 153,
-        "lft": 85,
-        "rght": 86,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 163,
-    "fields": {
-        "name": "Energy auctions/pricing mechanism",
-        "code": "3.5.10",
-        "parent": 153,
-        "lft": 59,
-        "rght": 60,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 164,
-    "fields": {
-        "name": "Concessions",
-        "code": "3.5.11",
-        "parent": 153,
-        "lft": 61,
-        "rght": 62,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 165,
-    "fields": {
-        "name": "Tendering regulation",
-        "code": "3.5.12",
-        "parent": 153,
-        "lft": 63,
-        "rght": 64,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 166,
-    "fields": {
-        "name": "Mining regulation",
-        "code": "3.5.13",
-        "parent": 153,
-        "lft": 65,
-        "rght": 66,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 167,
-    "fields": {
-        "name": "Waste management",
-        "code": "3.5.14",
-        "parent": 153,
-        "lft": 67,
-        "rght": 68,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 168,
-    "fields": {
-        "name": "Infrastructure decommissioning",
-        "code": "3.5.15",
-        "parent": 153,
-        "lft": 69,
-        "rght": 70,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 169,
-    "fields": {
-        "name": "Infrastructure budget and finance",
-        "code": "3.6",
-        "parent": 125,
-        "lft": 88,
-        "rght": 99,
-        "tree_id": 3,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 170,
-    "fields": {
-        "name": "Overall energy infrastructure budget/finance",
-        "code": "3.6.1",
-        "parent": 169,
-        "lft": 89,
-        "rght": 90,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 171,
-    "fields": {
-        "name": "Energy infrastructure finance \u2013 renewable energy",
-        "code": "3.6.2",
-        "parent": 169,
-        "lft": 91,
-        "rght": 92,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 172,
-    "fields": {
-        "name": "Energy infrastructure finance \u2013 fossil fuels",
-        "code": "3.6.3",
-        "parent": 169,
-        "lft": 93,
-        "rght": 94,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 173,
-    "fields": {
-        "name": "Investor regulation \u2013 return/remuneration",
-        "code": "3.6.4",
-        "parent": 169,
-        "lft": 95,
-        "rght": 96,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 174,
-    "fields": {
-        "name": "Investor regulation \u2013 guarantees and risk sharing",
-        "code": "3.6.5",
-        "parent": 169,
-        "lft": 97,
-        "rght": 98,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 175,
-    "fields": {
-        "name": "Distinct energy regulation",
-        "code": "3.7",
-        "parent": 125,
-        "lft": 100,
-        "rght": 107,
-        "tree_id": 3,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 176,
-    "fields": {
-        "name": "Nuclear",
-        "code": "3.7.1",
-        "parent": 175,
-        "lft": 101,
-        "rght": 102,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 177,
-    "fields": {
-        "name": "Biofuels and waste",
-        "code": "3.7.2",
-        "parent": 175,
-        "lft": 103,
-        "rght": 104,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 178,
-    "fields": {
-        "name": "Hydrogen fuel cells",
-        "code": "3.7.3",
-        "parent": 175,
-        "lft": 105,
-        "rght": 106,
-        "tree_id": 3,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 179,
-    "fields": {
-        "name": "Energy Efficiency",
-        "code": "4",
-        "parent": null,
-        "lft": 1,
-        "rght": 82,
-        "tree_id": 4,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 180,
-    "fields": {
-        "name": "Targets, plans and strategies",
-        "code": "4.1",
-        "parent": 179,
-        "lft": 2,
-        "rght": 9,
-        "tree_id": 4,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 181,
-    "fields": {
-        "name": "Energy efficiency targets",
-        "code": "4.1.1",
-        "parent": 180,
-        "lft": 3,
-        "rght": 4,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 182,
-    "fields": {
-        "name": "Energy efficiency strategy/plan",
-        "code": "4.1.2",
-        "parent": 180,
-        "lft": 5,
-        "rght": 6,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 183,
-    "fields": {
-        "name": "Energy efficiency principles",
-        "code": "4.1.3",
-        "parent": 180,
-        "lft": 7,
-        "rght": 8,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 184,
-    "fields": {
-        "name": "Institutions and governance",
-        "code": "4.2",
-        "parent": 179,
-        "lft": 10,
-        "rght": 19,
-        "tree_id": 4,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 185,
-    "fields": {
-        "name": "Energy efficiency co-ordination body",
-        "code": "4.2.1",
-        "parent": 184,
-        "lft": 11,
-        "rght": 12,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 186,
-    "fields": {
-        "name": "Energy efficiency advisory body",
-        "code": "4.2.2",
-        "parent": 184,
-        "lft": 13,
-        "rght": 14,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 187,
-    "fields": {
-        "name": "Energy efficiency regulatory body",
-        "code": "4.2.3",
-        "parent": 184,
-        "lft": 15,
-        "rght": 16,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 188,
-    "fields": {
-        "name": "Provisions for consultation",
-        "code": "4.2.4",
-        "parent": 184,
-        "lft": 17,
-        "rght": 18,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 189,
-    "fields": {
-        "name": "Energy efficiency obligations and regulations",
-        "code": "4.3",
-        "parent": 179,
-        "lft": 20,
-        "rght": 51,
-        "tree_id": 4,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 190,
-    "fields": {
-        "name": "Energy efficiency obligations - large consumers",
-        "code": "4.3.1",
-        "parent": 189,
-        "lft": 21,
-        "rght": 22,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 191,
-    "fields": {
-        "name": "Energy efficiency obligations - public sector",
-        "code": "4.3.2",
-        "parent": 189,
-        "lft": 35,
-        "rght": 36,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 192,
-    "fields": {
-        "name": "Energy efficiency obligations \u2013 utilities",
-        "code": "4.3.3",
-        "parent": 189,
-        "lft": 37,
-        "rght": 38,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 193,
-    "fields": {
-        "name": "Energy efficiency codes and standards \u2013 buildings",
-        "code": "4.3.4",
-        "parent": 189,
-        "lft": 39,
-        "rght": 40,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 194,
-    "fields": {
-        "name": "Energy efficiency codes and standards \u2013 products",
-        "code": "4.3.5",
-        "parent": 189,
-        "lft": 41,
-        "rght": 42,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 195,
-    "fields": {
-        "name": "Energy efficiency codes and standards \u2013 sectoral",
-        "code": "4.3.6",
-        "parent": 189,
-        "lft": 43,
-        "rght": 44,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 196,
-    "fields": {
-        "name": "Energy efficiency codes and standards \u2013 vehicles and emissions",
-        "code": "4.3.7",
-        "parent": 189,
-        "lft": 45,
-        "rght": 46,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 197,
-    "fields": {
-        "name": "Information labelling regulations and energy efficiency ratings",
-        "code": "4.3.8",
-        "parent": 189,
-        "lft": 47,
-        "rght": 48,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 198,
-    "fields": {
-        "name": "Energy efficiency/performance certificates",
-        "code": "4.3.9",
-        "parent": 189,
-        "lft": 49,
-        "rght": 50,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 199,
-    "fields": {
-        "name": "Energy audits",
-        "code": "4.3.10",
-        "parent": 189,
-        "lft": 23,
-        "rght": 24,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 200,
-    "fields": {
-        "name": "Energy efficiency market schemes",
-        "code": "4.3.11",
-        "parent": 189,
-        "lft": 25,
-        "rght": 26,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 201,
-    "fields": {
-        "name": "Energy efficiency procurement requirements \u2013 Electricity",
-        "code": "4.3.12",
-        "parent": 189,
-        "lft": 27,
-        "rght": 28,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 202,
-    "fields": {
-        "name": "Energy efficiency procurement requirements \u2013 Heating and cooling",
-        "code": "4.3.13",
-        "parent": 189,
-        "lft": 29,
-        "rght": 30,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 203,
-    "fields": {
-        "name": "Energy efficiency procurement requirements \u2013 Transport",
-        "code": "4.3.14",
-        "parent": 189,
-        "lft": 31,
-        "rght": 32,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 204,
-    "fields": {
-        "name": "Energy efficiency procurement requirements \u2013 Industry",
-        "code": "4.3.15",
-        "parent": 189,
-        "lft": 33,
-        "rght": 34,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 205,
-    "fields": {
-        "name": "Incentives and disincentives",
-        "code": "4.4",
-        "parent": 179,
-        "lft": 52,
-        "rght": 67,
-        "tree_id": 4,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 206,
-    "fields": {
-        "name": "Fiscal incentives \u2013 energy efficiency \u2013 grants/subsidies/compensation",
-        "code": "4.4.1",
-        "parent": 205,
-        "lft": 53,
-        "rght": 54,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 207,
-    "fields": {
-        "name": "Fiscal incentives \u2013 energy efficiency \u2013 loans/debt support",
-        "code": "4.4.2",
-        "parent": 205,
-        "lft": 55,
-        "rght": 56,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 208,
-    "fields": {
-        "name": "Fiscal incentives \u2013 energy efficiency \u2013 tax relief/rebates",
-        "code": "4.4.3",
-        "parent": 205,
-        "lft": 57,
-        "rght": 58,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 209,
-    "fields": {
-        "name": "Energy efficiency concessions",
-        "code": "4.4.4",
-        "parent": 205,
-        "lft": 59,
-        "rght": 60,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 210,
-    "fields": {
-        "name": "Energy efficiency R&D support",
-        "code": "4.4.5",
-        "parent": 205,
-        "lft": 61,
-        "rght": 62,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 211,
-    "fields": {
-        "name": "Energy consumption taxation",
-        "code": "4.4.6",
-        "parent": 205,
-        "lft": 63,
-        "rght": 64,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 212,
-    "fields": {
-        "name": "Energy use charges",
-        "code": "4.4.7",
-        "parent": 205,
-        "lft": 65,
-        "rght": 66,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 213,
-    "fields": {
-        "name": "Energy efficiency budget and finance",
-        "code": "4.5",
-        "parent": 179,
-        "lft": 68,
-        "rght": 81,
-        "tree_id": 4,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 214,
-    "fields": {
-        "name": "Overall energy efficiency budget/finance",
-        "code": "4.5.1",
-        "parent": 213,
-        "lft": 69,
-        "rght": 70,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 215,
-    "fields": {
-        "name": "Energy efficiency project finance",
-        "code": "4.5.2",
-        "parent": 213,
-        "lft": 71,
-        "rght": 72,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 216,
-    "fields": {
-        "name": "Investor regulation \u2013 return/remuneration",
-        "code": "4.5.3",
-        "parent": 213,
-        "lft": 73,
-        "rght": 74,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 217,
-    "fields": {
-        "name": "Investor regulation \u2013 guarantees and risk sharing",
-        "code": "4.5.4",
-        "parent": 213,
-        "lft": 75,
-        "rght": 76,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 218,
-    "fields": {
-        "name": "Energy performance contracting",
-        "code": "4.5.5",
-        "parent": 213,
-        "lft": 77,
-        "rght": 78,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 219,
-    "fields": {
-        "name": "Investment provisions for public/private partnerships",
-        "code": "4.5.6",
-        "parent": 213,
-        "lft": 79,
-        "rght": 80,
-        "tree_id": 4,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 220,
-    "fields": {
-        "name": "Energy Market Regulation",
-        "code": "5",
-        "parent": null,
-        "lft": 1,
-        "rght": 34,
-        "tree_id": 5,
-        "level": 0
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 221,
-    "fields": {
-        "name": "Markets \u2013 design and regulation",
-        "code": "5.1",
-        "parent": 220,
-        "lft": 2,
-        "rght": 17,
-        "tree_id": 5,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 222,
-    "fields": {
-        "name": "Overall market principles",
-        "code": "5.1.1",
-        "parent": 221,
-        "lft": 3,
-        "rght": 4,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 223,
-    "fields": {
-        "name": "Market access provisions",
-        "code": "5.1.2",
-        "parent": 221,
-        "lft": 5,
-        "rght": 6,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 224,
-    "fields": {
-        "name": "Energy market board",
-        "code": "5.1.3",
-        "parent": 221,
-        "lft": 7,
-        "rght": 8,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 225,
-    "fields": {
-        "name": "Market transparency",
-        "code": "5.1.4",
-        "parent": 221,
-        "lft": 9,
-        "rght": 10,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 226,
-    "fields": {
-        "name": "Market integrity and abuse",
-        "code": "5.1.5",
-        "parent": 221,
-        "lft": 11,
-        "rght": 12,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 227,
-    "fields": {
-        "name": "Market regulatory coordination provisions",
-        "code": "5.1.6",
-        "parent": 221,
-        "lft": 13,
-        "rght": 14,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 228,
-    "fields": {
-        "name": "Market design rules for promoting efficiency",
-        "code": "5.1.7",
-        "parent": 221,
-        "lft": 15,
-        "rght": 16,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 229,
-    "fields": {
-        "name": "Markets \u2013 trade and competition",
-        "code": "5.2",
-        "parent": 220,
-        "lft": 18,
-        "rght": 33,
-        "tree_id": 5,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 230,
-    "fields": {
-        "name": "Import tariffs",
-        "code": "5.2.1",
-        "parent": 229,
-        "lft": 19,
-        "rght": 20,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 231,
-    "fields": {
-        "name": "Non-tariff measures",
-        "code": "5.2.2",
-        "parent": 229,
-        "lft": 21,
-        "rght": 22,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 232,
-    "fields": {
-        "name": "State aid/subsidies",
-        "code": "5.2.3",
-        "parent": 229,
-        "lft": 23,
-        "rght": 24,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 233,
-    "fields": {
-        "name": "Competition \u2013 restrictive agreements/arrangements",
-        "code": "5.2.4",
-        "parent": 229,
-        "lft": 25,
-        "rght": 26,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 234,
-    "fields": {
-        "name": "Competition \u2013 abuse of dominant position",
-        "code": "5.2.5",
-        "parent": 229,
-        "lft": 27,
-        "rght": 28,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 235,
-    "fields": {
-        "name": "Competition \u2013 ownership unbundling",
-        "code": "5.2.6",
-        "parent": 229,
-        "lft": 29,
-        "rght": 30,
-        "tree_id": 5,
-        "level": 2
-    }
-},
-{
-    "model": "lcc.taxonomyclassification",
-    "pk": 236,
-    "fields": {
-        "name": "Competition \u2013 dumping",
-        "code": "5.2.7",
-        "parent": 229,
-        "lft": 31,
-        "rght": 32,
-        "tree_id": 5,
-        "level": 2
-    }
-}
 ]
-    
