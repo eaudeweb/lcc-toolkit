@@ -73,7 +73,7 @@ and run the following:
     python manage.py search_index --rebuild
     python manage.py runserver 0.0.0.0:8000
 
-Now you should be able to access the app in development mode at <http://localhost:8000.>
+Now you should be able to access the app in development mode at <http://localhost:8000>
 By default, there will be no Legislation in the database. In order to generate
 some fake legislation for testing/debugging purposes, you can run the following
 command:
