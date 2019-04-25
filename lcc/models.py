@@ -126,6 +126,7 @@ class TaxonomyClassification(mptt.models.MPTTModel):
     # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=16, unique=True, blank=True)
+    legispro_code = models.CharField(max_length=16, blank=True)
     details =  models.TextField(null=True, default='')
     parent = mptt.models.TreeForeignKey('self',
                                         null=True,
@@ -412,6 +413,7 @@ class CountryBase(models.Model):
 
 class Country(CountryBase):
     iso = models.CharField('ISO', max_length=3, primary_key=True)
+    iso_code = models.CharField('Iso alpha 2', max_length=2, default='')
     name = models.CharField('Name', max_length=128)
 
     class Meta:
@@ -490,12 +492,12 @@ class Legislation(_TaxonomyModel):
     country = models.ForeignKey(Country, related_name="legislations")
     language = models.CharField(
         choices=constants.ALL_LANGUAGES,
-        default=constants.DEFAULT_LANGUAGE,
+        default=constants.DEFAULT_LANGUAGE_VALUE,
         max_length=64
     )
     law_type = models.CharField(
         choices=constants.LEGISLATION_TYPE,
-        default=constants.LEGISLATION_TYPE_DEFAULT,
+        default=constants.LEGISLATION_DEFAULT_VALUE,
         max_length=64
     )
     year = models.IntegerField(default=constants.LEGISLATION_YEAR_RANGE[-1])
@@ -507,19 +509,22 @@ class Legislation(_TaxonomyModel):
     year_mention = models.CharField(max_length=1024, blank=True, null=True)
     geo_coverage = models.CharField(
         choices=constants.GEOGRAPHICAL_COVERAGE,
-        default=constants.GEOGRAPHICAL_COVERAGE_DEFAULT,
+        default=constants.GEOGRAPHICAL_COVERAGE_DEFAULT_VALUE,
         max_length=64,
         null=True
     )
     source = models.CharField(max_length=256, blank=True, null=True)
     source_type = models.CharField(
         choices=constants.SOURCE_TYPE,
-        default=constants.SOURCE_TYPE_DEFAULT,
+        default=constants.SOURCE_TYPE_DEFAULT_VALUE,
         max_length=64, blank=True, null=True
     )
     website = models.URLField(max_length=2000, blank=True, null=True)
-
-    pdf_file = models.FileField(null=True)
+    legispro_article = models.CharField(max_length=512, blank=True, null=True)
+    import_from_legispro = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
+    pdf_file = models.FileField(null=True, blank=True)
     pdf_file_name = models.CharField(null=True, max_length=256)
 
     objects = LegislationManager()
@@ -649,11 +654,11 @@ class LegislationArticleManager(models.Manager):
 class LegislationArticle(_TaxonomyModel):
     text = models.CharField(max_length=65535)
     legislation = models.ForeignKey(Legislation, related_name="articles")
-    legislation_page = models.IntegerField()
+    legislation_page = models.IntegerField(null=True, blank=True)
     code = models.CharField(max_length=256)  # aka Article number
     number = models.IntegerField(blank=True, null=True)  # populated from code
     identifier = models.IntegerField(blank=True, null=True, default=None)
-
+    legispro_identifier = models.CharField(max_length=256, null=True, blank=True)
     objects = LegislationArticleManager()
 
     class Meta(_TaxonomyModel.Meta):

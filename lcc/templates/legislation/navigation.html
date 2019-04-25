@@ -21,11 +21,13 @@
         </a>
       </li>
       {% endif %}
+      {% if perms.lcc.add_legislationarticle %}
       <li class="wide">
         <a class="btn btn-link"
            href="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
           Add articles
         </a>
       </li>
+      {% endif %}
   {% endif %}
 </ul>

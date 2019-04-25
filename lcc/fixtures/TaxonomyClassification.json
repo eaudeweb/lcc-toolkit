@@ -5,6 +5,7 @@
         "fields": {
             "name": "Dedicated climate laws and governance",
             "code": "1",
+            "legispro_code": "2",
             "details": "",
             "parent": null,
             "lft": 1,
@@ -621,6 +622,7 @@
         "fields": {
             "name": "Energy System",
             "code": "2",
+            "legispro_code": "1",
             "details": "",
             "parent": null,
             "lft": 1,
@@ -635,6 +637,7 @@
         "fields": {
             "name": "Targets, plans and strategies",
             "code": "2.1",
+            "legispro_code": "1.1",
             "details": "",
             "parent": 97,
             "lft": 2,
@@ -649,6 +652,7 @@
         "fields": {
             "name": "Integrated energy plan",
             "code": "2.1.1",
+            "legispro_code": "1.1.1",
             "details": "",
             "parent": 98,
             "lft": 3,
@@ -663,6 +667,7 @@
         "fields": {
             "name": "Future energy demand estimation",
             "code": "2.1.2",
+            "legispro_code": "1.1.2",
             "details": "",
             "parent": 98,
             "lft": 5,
@@ -677,6 +682,7 @@
         "fields": {
             "name": "Energy access provisions",
             "code": "2.1.3",
+            "legispro_code": "1.1.3",
             "details": "",
             "parent": 98,
             "lft": 7,
@@ -691,6 +697,7 @@
         "fields": {
             "name": "Energy supply diversification/mix",
             "code": "2.1.4",
+            "legispro_code": "1.1.4",
             "details": "",
             "parent": 98,
             "lft": 9,
@@ -705,6 +712,7 @@
         "fields": {
             "name": "Electricity interconnection",
             "code": "2.1.5",
+            "legispro_code": "1.1.5",
             "details": "",
             "parent": 98,
             "lft": 11,
@@ -719,6 +727,7 @@
         "fields": {
             "name": "Energy parity provisions",
             "code": "2.1.6",
+            "legispro_code": "1.1.6",
             "details": "",
             "parent": 98,
             "lft": 13,
@@ -733,6 +742,7 @@
         "fields": {
             "name": "Institutions and governance",
             "code": "2.2",
+            "legispro_code": "1.2",
             "details": "",
             "parent": 97,
             "lft": 16,
@@ -747,6 +757,7 @@
         "fields": {
             "name": "Energy co-ordination body",
             "code": "2.2.1",
+            "legispro_code": "1.2.1",
             "details": "",
             "parent": 105,
             "lft": 17,
@@ -761,6 +772,7 @@
         "fields": {
             "name": "Energy system advisory body",
             "code": "2.2.2",
+            "legispro_code": "1.2.2",
             "details": "",
             "parent": 105,
             "lft": 19,
@@ -775,6 +787,7 @@
         "fields": {
             "name": "Energy distribution/grid management body",
             "code": "2.2.3",
+            "legispro_code": "1.2.3",
             "details": "",
             "parent": 105,
             "lft": 21,
@@ -789,6 +802,7 @@
         "fields": {
             "name": "Energy regulator",
             "code": "2.2.4",
+            "legispro_code": "1.2.4",
             "details": "",
             "parent": 105,
             "lft": 23,
@@ -803,6 +817,7 @@
         "fields": {
             "name": "Provisions for consultation",
             "code": "2.2.5",
+            "legispro_code": "1.2.5",
             "details": "",
             "parent": 105,
             "lft": 25,
@@ -817,6 +832,7 @@
         "fields": {
             "name": "Carbon transition planning",
             "code": "2.3",
+            "legispro_code": "1.3",
             "details": "",
             "parent": 97,
             "lft": 28,
@@ -831,6 +847,7 @@
         "fields": {
             "name": "Decarbonisation target \u2013 Electricity",
             "code": "2.3.1",
+            "legispro_code": "1.3.1.1",
             "details": "",
             "parent": 111,
             "lft": 29,
@@ -845,6 +862,7 @@
         "fields": {
             "name": "Decarbonisation target \u2013 Heating and cooling",
             "code": "2.3.2",
+            "legispro_code": "1.3.1.2",
             "details": "",
             "parent": 111,
             "lft": 39,
@@ -859,6 +877,7 @@
         "fields": {
             "name": "Decarbonisation target \u2013 Transport",
             "code": "2.3.3",
+            "legispro_code": "1.3.1.3",
             "details": "",
             "parent": 111,
             "lft": 41,
@@ -873,6 +892,7 @@
         "fields": {
             "name": "Decarbonisation target \u2013 Industry",
             "code": "2.3.4",
+            "legispro_code": "1.3.1.4",
             "details": "",
             "parent": 111,
             "lft": 43,
@@ -887,6 +907,7 @@
         "fields": {
             "name": "Phase-out of high carbon sources",
             "code": "2.3.5",
+            "legispro_code": "1.3.2",
             "details": "",
             "parent": 111,
             "lft": 45,
@@ -901,6 +922,7 @@
         "fields": {
             "name": "Just transition provisions \u2013 Electricity",
             "code": "2.3.6",
+            "legispro_code": "1.3.3",
             "details": "",
             "parent": 111,
             "lft": 47,
@@ -915,6 +937,7 @@
         "fields": {
             "name": "Just transition provisions \u2013 Heating and cooling",
             "code": "2.3.7",
+            "legispro_code": "1.3.3",
             "details": "",
             "parent": 111,
             "lft": 49,
@@ -929,6 +952,7 @@
         "fields": {
             "name": "Just transition provisions \u2013 Transport",
             "code": "2.3.8",
+            "legispro_code": "1.3.3",
             "details": "",
             "parent": 111,
             "lft": 51,
@@ -943,6 +967,7 @@
         "fields": {
             "name": "Just transition provisions \u2013 Industry",
             "code": "2.3.9",
+            "legispro_code": "1.3.3",
             "details": "",
             "parent": 111,
             "lft": 53,
@@ -1013,6 +1038,7 @@
         "fields": {
             "name": "Energy Production and Renewable Energy",
             "code": "3",
+            "legispro_code": "2",
             "details": "",
             "parent": null,
             "lft": 1,
@@ -1027,6 +1053,7 @@
         "fields": {
             "name": "Targets, plans and strategies",
             "code": "3.1",
+            "legispro_code": "2.1",
             "details": "",
             "parent": 125,
             "lft": 2,
@@ -1041,6 +1068,7 @@
         "fields": {
             "name": "Renewable energy targets",
             "code": "3.1.1",
+            "legispro_code": "2.1.1",
             "details": "",
             "parent": 126,
             "lft": 3,
@@ -1055,6 +1083,7 @@
         "fields": {
             "name": "Renewable energy strategy/plan",
             "code": "3.1.2",
+            "legispro_code": "2.1.2",
             "details": "",
             "parent": 126,
             "lft": 5,
@@ -1069,6 +1098,7 @@
         "fields": {
             "name": "Prescription of renewable energy sources",
             "code": "3.1.3",
+            "legispro_code": "2.1.3",
             "details": "",
             "parent": 126,
             "lft": 7,
@@ -1083,6 +1113,7 @@
         "fields": {
             "name": "Goal/obligation to promote renewable energy",
             "code": "3.1.4",
+            "legispro_code": "2.1.4",
             "details": "",
             "parent": 126,
             "lft": 9,
@@ -1097,6 +1128,7 @@
         "fields": {
             "name": "Goal/obligation to review and report on renewable energy",
             "code": "3.1.5",
+            "legispro_code": "2.1.5",
             "details": "",
             "parent": 126,
             "lft": 11,
@@ -1111,6 +1143,7 @@
         "fields": {
             "name": "Institutions and governance",
             "code": "3.2",
+            "legispro_code": "2.2",
             "details": "",
             "parent": 125,
             "lft": 14,
@@ -1125,6 +1158,7 @@
         "fields": {
             "name": "Renewable energy co-ordination body",
             "code": "3.2.1",
+            "legispro_code": "2.2.1",
             "details": "",
             "parent": 132,
             "lft": 15,
@@ -1139,6 +1173,7 @@
         "fields": {
             "name": "Renewable energy advisory body",
             "code": "3.2.2",
+            "legispro_code": "2.2.2",
             "details": "",
             "parent": 132,
             "lft": 17,
@@ -1153,6 +1188,7 @@
         "fields": {
             "name": "Renewable energy regulatory body",
             "code": "3.2.3",
+            "legispro_code": "2.2.3",
             "details": "",
             "parent": 132,
             "lft": 19,
@@ -1167,6 +1203,7 @@
         "fields": {
             "name": "Rural electrification body",
             "code": "3.2.4",
+            "legispro_code": "2.2.4",
             "details": "",
             "parent": 132,
             "lft": 21,
@@ -1181,6 +1218,7 @@
         "fields": {
             "name": "Provisions for consultation",
             "code": "3.2.5",
+            "legispro_code": "2.2.5",
             "details": "",
             "parent": 132,
             "lft": 23,
@@ -1195,6 +1233,7 @@
         "fields": {
             "name": "Renewable energy obligations and regulation",
             "code": "3.3",
+            "legispro_code": "2.3",
             "details": "",
             "parent": 125,
             "lft": 26,
@@ -1209,6 +1248,7 @@
         "fields": {
             "name": "Renewable energy obligations for energy users",
             "code": "3.3.1",
+            "legispro_code": "2.3.1",
             "details": "",
             "parent": 138,
             "lft": 27,
@@ -1223,6 +1263,7 @@
         "fields": {
             "name": "Duties of renewable energy providers",
             "code": "3.3.2",
+            "legispro_code": "2.3.2",
             "details": "",
             "parent": 138,
             "lft": 29,
@@ -1237,6 +1278,7 @@
         "fields": {
             "name": "Licensing provisions",
             "code": "3.3.3",
+            "legispro_code": "2.3.3",
             "details": "",
             "parent": 138,
             "lft": 31,
@@ -1251,6 +1293,7 @@
         "fields": {
             "name": "Renewable energy codes and standards \u2013 general/operating",
             "code": "3.3.4",
+            "legispro_code": "2.3.4",
             "details": "",
             "parent": 138,
             "lft": 33,
@@ -1265,6 +1308,7 @@
         "fields": {
             "name": "Renewable energy codes and standards \u2013 planning/environmental impact",
             "code": "3.3.5",
+            "legispro_code": "2.3.5",
             "details": "",
             "parent": 138,
             "lft": 35,
@@ -1279,6 +1323,7 @@
         "fields": {
             "name": "Green tradeable certificates",
             "code": "3.3.6",
+            "legispro_code": "2.3.6",
             "details": "",
             "parent": 138,
             "lft": 37,
@@ -1293,6 +1338,7 @@
         "fields": {
             "name": "Distribution and storage (electricity and other)",
             "code": "3.4",
+            "legispro_code": "2.4",
             "details": "",
             "parent": 125,
             "lft": 40,
@@ -1307,6 +1353,7 @@
         "fields": {
             "name": "Specification of grid standards",
             "code": "3.4.1",
+            "legispro_code": "2.4.1",
             "details": "",
             "parent": 145,
             "lft": 41,
@@ -1321,6 +1368,7 @@
         "fields": {
             "name": "Grid management provisions",
             "code": "3.4.2",
+            "legispro_code": "2.4.2",
             "details": "",
             "parent": 145,
             "lft": 43,
@@ -1335,6 +1383,7 @@
         "fields": {
             "name": "Grid access and integration",
             "code": "3.4.3",
+            "legispro_code": "2.4.3",
             "details": "",
             "parent": 145,
             "lft": 45,
@@ -1349,6 +1398,7 @@
         "fields": {
             "name": "Mini-grid provisions",
             "code": "3.4.4",
+            "legispro_code": "2.4.4",
             "details": "",
             "parent": 145,
             "lft": 47,
@@ -1363,6 +1413,7 @@
         "fields": {
             "name": "Distributed/off-grid/micro generation",
             "code": "3.4.5",
+            "legispro_code": "2.4.5",
             "details": "",
             "parent": 145,
             "lft": 49,
@@ -1377,6 +1428,7 @@
         "fields": {
             "name": "Electricity storage",
             "code": "3.4.6",
+            "legispro_code": "2.4.6",
             "details": "",
             "parent": 145,
             "lft": 51,
@@ -1391,6 +1443,7 @@
         "fields": {
             "name": "Load shifting and demand response management",
             "code": "3.4.7",
+            "legispro_code": "2.4.7",
             "details": "",
             "parent": 145,
             "lft": 53,
@@ -1405,6 +1458,7 @@
         "fields": {
             "name": "Incentives and disincentives",
             "code": "3.5",
+            "legispro_code": "2.5",
             "details": "",
             "parent": 125,
             "lft": 56,
@@ -1419,6 +1473,7 @@
         "fields": {
             "name": "Fiscal incentives \u2013 renewable energy \u2013 grants/subsidies/compensation",
             "code": "3.5.1",
+            "legispro_code": "2.5.1",
             "details": "",
             "parent": 153,
             "lft": 57,
@@ -1433,6 +1488,7 @@
         "fields": {
             "name": "Fiscal incentives \u2013 renewable energy \u2013 loans/debt support",
             "code": "3.5.2",
+            "legispro_code": "2.5.2",
             "details": "",
             "parent": 153,
             "lft": 71,
@@ -1447,6 +1503,7 @@
         "fields": {
             "name": "Fiscal incentives \u2013 fossil fuels",
             "code": "3.5.3",
+            "legispro_code": "2.5.3",
             "details": "",
             "parent": 153,
             "lft": 73,
@@ -1461,6 +1518,7 @@
         "fields": {
             "name": "Feed-in tariffs",
             "code": "3.5.4",
+            "legispro_code": "2.5.4",
             "details": "",
             "parent": 153,
             "lft": 75,
@@ -1475,6 +1533,7 @@
         "fields": {
             "name": "Regulation of power purchase agreements",
             "code": "3.5.5",
+            "legispro_code": "2.5.5",
             "details": "",
             "parent": 153,
             "lft": 77,
@@ -1489,6 +1548,7 @@
         "fields": {
             "name": "Incentives for micro/self-use energy production",
             "code": "3.5.6",
+            "legispro_code": "2.5.6",
             "details": "",
             "parent": 153,
             "lft": 79,
@@ -1503,6 +1563,7 @@
         "fields": {
             "name": "Energy production taxation \u2013 renewable energy",
             "code": "3.5.7",
+            "legispro_code": "2.5.7",
             "details": "",
             "parent": 153,
             "lft": 81,
@@ -1517,6 +1578,7 @@
         "fields": {
             "name": "Energy production taxation \u2013 fossil fuels",
             "code": "3.5.8",
+            "legispro_code": "2.5.8",
             "details": "",
             "parent": 153,
             "lft": 83,
@@ -1531,6 +1593,7 @@
         "fields": {
             "name": "Renewable energy R&D support",
             "code": "3.5.9",
+            "legispro_code": "2.5.9",
             "details": "",
             "parent": 153,
             "lft": 85,
@@ -1545,6 +1608,7 @@
         "fields": {
             "name": "Energy auctions/pricing mechanism",
             "code": "3.5.10",
+            "legispro_code": "2.5.10",
             "details": "",
             "parent": 153,
             "lft": 59,
@@ -1559,6 +1623,7 @@
         "fields": {
             "name": "Concessions",
             "code": "3.5.11",
+            "legispro_code": "2.5.11",
             "details": "",
             "parent": 153,
             "lft": 61,
@@ -1573,6 +1638,7 @@
         "fields": {
             "name": "Tendering regulation",
             "code": "3.5.12",
+            "legispro_code": "2.5.12",
             "details": "",
             "parent": 153,
             "lft": 63,
@@ -1587,6 +1653,7 @@
         "fields": {
             "name": "Mining regulation",
             "code": "3.5.13",
+            "legispro_code": "2.5.13",
             "details": "",
             "parent": 153,
             "lft": 65,
@@ -1601,6 +1668,7 @@
         "fields": {
             "name": "Waste management",
             "code": "3.5.14",
+            "legispro_code": "2.5.14",
             "details": "",
             "parent": 153,
             "lft": 67,
@@ -1615,6 +1683,7 @@
         "fields": {
             "name": "Infrastructure decommissioning",
             "code": "3.5.15",
+            "legispro_code": "2.5.15",
             "details": "",
             "parent": 153,
             "lft": 69,
@@ -1629,6 +1698,7 @@
         "fields": {
             "name": "Infrastructure budget and finance",
             "code": "3.6",
+            "legispro_code": "2.6",
             "details": "",
             "parent": 125,
             "lft": 88,
@@ -1643,6 +1713,7 @@
         "fields": {
             "name": "Overall energy infrastructure budget/finance",
             "code": "3.6.1",
+            "legispro_code": "2.6.1",
             "details": "",
             "parent": 169,
             "lft": 89,
@@ -1657,6 +1728,7 @@
         "fields": {
             "name": "Energy infrastructure finance \u2013 renewable energy",
             "code": "3.6.2",
+            "legispro_code": "2.6.2",
             "details": "",
             "parent": 169,
             "lft": 91,
@@ -1671,6 +1743,7 @@
         "fields": {
             "name": "Energy infrastructure finance \u2013 fossil fuels",
             "code": "3.6.3",
+            "legispro_code": "2.6.3",
             "details": "",
             "parent": 169,
             "lft": 93,
@@ -1685,6 +1758,7 @@
         "fields": {
             "name": "Investor regulation \u2013 return/remuneration",
             "code": "3.6.4",
+            "legispro_code": "2.6.4",
             "details": "",
             "parent": 169,
             "lft": 95,
@@ -1699,6 +1773,7 @@
         "fields": {
             "name": "Investor regulation \u2013 guarantees and risk sharing",
             "code": "3.6.5",
+            "legispro_code": "2.6.5",
             "details": "",
             "parent": 169,
             "lft": 97,
@@ -1727,6 +1802,7 @@
         "fields": {
             "name": "Nuclear",
             "code": "3.7.1",
+            "legispro_code": "2.7.1",
             "details": "",
             "parent": 175,
             "lft": 101,
@@ -1741,6 +1817,7 @@
         "fields": {
             "name": "Biofuels and waste",
             "code": "3.7.2",
+            "legispro_code": "2.7.2",
             "details": "",
             "parent": 175,
             "lft": 103,
@@ -1769,6 +1846,7 @@
         "fields": {
             "name": "Energy Efficiency",
             "code": "4",
+            "legispro_code": "3",
             "details": "",
             "parent": null,
             "lft": 1,
@@ -1783,6 +1861,7 @@
         "fields": {
             "name": "Targets, plans and strategies",
             "code": "4.1",
+            "legispro_code": "3.1",
             "details": "",
             "parent": 179,
             "lft": 2,
@@ -1797,6 +1876,7 @@
         "fields": {
             "name": "Energy efficiency targets",
             "code": "4.1.1",
+            "legispro_code": "3.1.1",
             "details": "",
             "parent": 180,
             "lft": 3,
@@ -1811,6 +1891,7 @@
         "fields": {
             "name": "Energy efficiency strategy/plan",
             "code": "4.1.2",
+            "legispro_code": "3.1.2",
             "details": "",
             "parent": 180,
             "lft": 5,
@@ -1825,6 +1906,7 @@
         "fields": {
             "name": "Energy efficiency principles",
             "code": "4.1.3",
+            "legispro_code": "3.1.3",
             "details": "",
             "parent": 180,
             "lft": 7,
@@ -1853,6 +1935,7 @@
         "fields": {
             "name": "Energy efficiency co-ordination body",
             "code": "4.2.1",
+            "legispro_code": "3.2.1",
             "details": "",
             "parent": 184,
             "lft": 11,
@@ -1881,6 +1964,7 @@
         "fields": {
             "name": "Energy efficiency regulatory body",
             "code": "4.2.3",
+            "legispro_code": "3.2.3",
             "details": "",
             "parent": 184,
             "lft": 15,
@@ -1895,6 +1979,7 @@
         "fields": {
             "name": "Provisions for consultation",
             "code": "4.2.4",
+            "legispro_code": "3.2.4",
             "details": "",
             "parent": 184,
             "lft": 17,
@@ -1909,6 +1994,7 @@
         "fields": {
             "name": "Energy efficiency obligations and regulations",
             "code": "4.3",
+            "legispro_code": "3.3",
             "details": "",
             "parent": 179,
             "lft": 20,
@@ -1923,6 +2009,7 @@
         "fields": {
             "name": "Energy efficiency obligations - large consumers",
             "code": "4.3.1",
+            "legispro_code": "3.3.1",
             "details": "",
             "parent": 189,
             "lft": 21,
@@ -1937,6 +2024,7 @@
         "fields": {
             "name": "Energy efficiency obligations - public sector",
             "code": "4.3.2",
+            "legispro_code": "3.3.2",
             "details": "",
             "parent": 189,
             "lft": 35,
@@ -1951,6 +2039,7 @@
         "fields": {
             "name": "Energy efficiency obligations \u2013 utilities",
             "code": "4.3.3",
+            "legispro_code": "3.3.3",
             "details": "",
             "parent": 189,
             "lft": 37,
@@ -1965,6 +2054,7 @@
         "fields": {
             "name": "Energy efficiency codes and standards \u2013 buildings",
             "code": "4.3.4",
+            "legispro_code": "3.3.4",
             "details": "",
             "parent": 189,
             "lft": 39,
@@ -1979,6 +2069,7 @@
         "fields": {
             "name": "Energy efficiency codes and standards \u2013 products",
             "code": "4.3.5",
+            "legispro_code": "3.3.5",
             "details": "",
             "parent": 189,
             "lft": 41,
@@ -1993,6 +2084,7 @@
         "fields": {
             "name": "Energy efficiency codes and standards \u2013 sectoral",
             "code": "4.3.6",
+            "legispro_code": "3.3.6",
             "details": "",
             "parent": 189,
             "lft": 43,
@@ -2007,6 +2099,7 @@
         "fields": {
             "name": "Energy efficiency codes and standards \u2013 vehicles and emissions",
             "code": "4.3.7",
+            "legispro_code": "3.3.7",
             "details": "",
             "parent": 189,
             "lft": 45,
@@ -2021,6 +2114,7 @@
         "fields": {
             "name": "Information labelling regulations and energy efficiency ratings",
             "code": "4.3.8",
+            "legispro_code": "3.3.8",
             "details": "",
             "parent": 189,
             "lft": 47,
@@ -2035,6 +2129,7 @@
         "fields": {
             "name": "Energy efficiency/performance certificates",
             "code": "4.3.9",
+            "legispro_code": "3.3.9",
             "details": "",
             "parent": 189,
             "lft": 49,
@@ -2049,6 +2144,7 @@
         "fields": {
             "name": "Energy audits",
             "code": "4.3.10",
+            "legispro_code": "3.3.10",
             "details": "",
             "parent": 189,
             "lft": 23,
@@ -2063,6 +2159,7 @@
         "fields": {
             "name": "Energy efficiency market schemes",
             "code": "4.3.11",
+            "legispro_code": "3.3.11",
             "details": "",
             "parent": 189,
             "lft": 25,
@@ -2077,6 +2174,7 @@
         "fields": {
             "name": "Energy efficiency procurement requirements \u2013 Electricity",
             "code": "4.3.12",
+            "legispro_code": "3.3.12",
             "details": "",
             "parent": 189,
             "lft": 27,
@@ -2133,6 +2231,7 @@
         "fields": {
             "name": "Incentives and disincentives",
             "code": "4.4",
+            "legispro_code": "3.4",
             "details": "",
             "parent": 179,
             "lft": 52,
@@ -2147,6 +2246,7 @@
         "fields": {
             "name": "Fiscal incentives \u2013 energy efficiency \u2013 grants/subsidies/compensation",
             "code": "4.4.1",
+            "legispro_code": "3.4.1",
             "details": "",
             "parent": 205,
             "lft": 53,
@@ -2161,6 +2261,7 @@
         "fields": {
             "name": "Fiscal incentives \u2013 energy efficiency \u2013 loans/debt support",
             "code": "4.4.2",
+            "legispro_code": "3.4.2",
             "details": "",
             "parent": 205,
             "lft": 55,
@@ -2175,6 +2276,7 @@
         "fields": {
             "name": "Fiscal incentives \u2013 energy efficiency \u2013 tax relief/rebates",
             "code": "4.4.3",
+            "legispro_code": "3.4.3",
             "details": "",
             "parent": 205,
             "lft": 57,
@@ -2189,6 +2291,7 @@
         "fields": {
             "name": "Energy efficiency concessions",
             "code": "4.4.4",
+            "legispro_code": "3.4.4",
             "details": "",
             "parent": 205,
             "lft": 59,
@@ -2203,6 +2306,7 @@
         "fields": {
             "name": "Energy efficiency R&D support",
             "code": "4.4.5",
+            "legispro_code": "3.4.5",
             "details": "",
             "parent": 205,
             "lft": 61,
@@ -2217,6 +2321,7 @@
         "fields": {
             "name": "Energy consumption taxation",
             "code": "4.4.6",
+            "legispro_code": "3.4.6",
             "details": "",
             "parent": 205,
             "lft": 63,
@@ -2231,6 +2336,7 @@
         "fields": {
             "name": "Energy use charges",
             "code": "4.4.7",
+            "legispro_code": "3.4.7",
             "details": "",
             "parent": 205,
             "lft": 65,
@@ -2245,6 +2351,7 @@
         "fields": {
             "name": "Energy efficiency budget and finance",
             "code": "4.5",
+            "legispro_code": "3.5",
             "details": "",
             "parent": 179,
             "lft": 68,
@@ -2259,6 +2366,7 @@
         "fields": {
             "name": "Overall energy efficiency budget/finance",
             "code": "4.5.1",
+
             "details": "",
             "parent": 213,
             "lft": 69,
@@ -2273,6 +2381,7 @@
         "fields": {
             "name": "Energy efficiency project finance",
             "code": "4.5.2",
+            "legispro_code": "3.5.2",
             "details": "",
             "parent": 213,
             "lft": 71,
@@ -2287,6 +2396,7 @@
         "fields": {
             "name": "Investor regulation \u2013 return/remuneration",
             "code": "4.5.3",
+            "legispro_code": "3.5.3",
             "details": "",
             "parent": 213,
             "lft": 73,
@@ -2301,6 +2411,7 @@
         "fields": {
             "name": "Investor regulation \u2013 guarantees and risk sharing",
             "code": "4.5.4",
+            "legispro_code": "3.5.4",
             "details": "",
             "parent": 213,
             "lft": 75,
@@ -2315,6 +2426,7 @@
         "fields": {
             "name": "Energy performance contracting",
             "code": "4.5.5",
+            "legispro_code": "3.5.5",
             "details": "",
             "parent": 213,
             "lft": 77,
@@ -2329,6 +2441,7 @@
         "fields": {
             "name": "Investment provisions for public/private partnerships",
             "code": "4.5.6",
+            "legispro_code": "3.5.6",
             "details": "",
             "parent": 213,
             "lft": 79,
@@ -2343,6 +2456,7 @@
         "fields": {
             "name": "Energy Market Regulation",
             "code": "5",
+            "legispro_code": "4",
             "details": "",
             "parent": null,
             "lft": 1,
@@ -2357,6 +2471,7 @@
         "fields": {
             "name": "Markets \u2013 design and regulation",
             "code": "5.1",
+            "legispro_code": "4.1",
             "details": "",
             "parent": 220,
             "lft": 2,
@@ -2371,6 +2486,7 @@
         "fields": {
             "name": "Overall market principles",
             "code": "5.1.1",
+            "legispro_code": "4.1.1",
             "details": "",
             "parent": 221,
             "lft": 3,
@@ -2385,6 +2501,7 @@
         "fields": {
             "name": "Market access provisions",
             "code": "5.1.2",
+            "legispro_code": "4.1.2",
             "details": "",
             "parent": 221,
             "lft": 5,
@@ -2399,6 +2516,7 @@
         "fields": {
             "name": "Energy market board",
             "code": "5.1.3",
+            "legispro_code": "4.1.3",
             "details": "",
             "parent": 221,
             "lft": 7,
@@ -2413,6 +2531,7 @@
         "fields": {
             "name": "Market transparency",
             "code": "5.1.4",
+            "legispro_code": "4.1.4",
             "details": "",
             "parent": 221,
             "lft": 9,
@@ -2427,6 +2546,7 @@
         "fields": {
             "name": "Market integrity and abuse",
             "code": "5.1.5",
+            "legispro_code": "4.1.5",
             "details": "",
             "parent": 221,
             "lft": 11,
@@ -2441,6 +2561,7 @@
         "fields": {
             "name": "Market regulatory coordination provisions",
             "code": "5.1.6",
+            "legispro_code": "4.1.6",
             "details": "",
             "parent": 221,
             "lft": 13,
@@ -2455,6 +2576,7 @@
         "fields": {
             "name": "Market design rules for promoting efficiency",
             "code": "5.1.7",
+            "legispro_code": "4.1.7",
             "details": "",
             "parent": 221,
             "lft": 15,
@@ -2469,6 +2591,7 @@
         "fields": {
             "name": "Markets \u2013 trade and competition",
             "code": "5.2",
+            "legispro_code": "4.2",
             "details": "",
             "parent": 220,
             "lft": 18,
@@ -2483,6 +2606,7 @@
         "fields": {
             "name": "Import tariffs",
             "code": "5.2.1",
+            "legispro_code": "4.2.1",
             "details": "",
             "parent": 229,
             "lft": 19,
@@ -2497,6 +2621,7 @@
         "fields": {
             "name": "Non-tariff measures",
             "code": "5.2.2",
+            "legispro_code": "4.2.2",
             "details": "",
             "parent": 229,
             "lft": 21,
@@ -2525,6 +2650,7 @@
         "fields": {
             "name": "Competition \u2013 restrictive agreements/arrangements",
             "code": "5.2.4",
+            "legispro_code": "4.2.4",
             "details": "",
             "parent": 229,
             "lft": 25,
@@ -2539,6 +2665,7 @@
         "fields": {
             "name": "Competition \u2013 abuse of dominant position",
             "code": "5.2.5",
+            "legispro_code": "4.2.5",
             "details": "",
             "parent": 229,
             "lft": 27,
@@ -2553,6 +2680,7 @@
         "fields": {
             "name": "Competition \u2013 ownership unbundling",
             "code": "5.2.6",
+            "legispro_code": "4.2.6",
             "details": "",
             "parent": 229,
             "lft": 29,
@@ -2567,6 +2695,7 @@
         "fields": {
             "name": "Competition \u2013 dumping",
             "code": "5.2.7",
+            "legispro_code": "4.2.7",
             "details": "",
             "parent": 229,
             "lft": 31,

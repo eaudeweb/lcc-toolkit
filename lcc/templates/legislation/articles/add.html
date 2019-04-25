@@ -52,6 +52,13 @@
 {% block content %}
 <div class="page-container half">
  <h2><b>Add article</b></h2>
+ {% if law.import_from_legispro %}
+   <div class="alert alert-primary">
+     <p>This legislation is imported from LegisPro.</p>
+     <p>The PDF file is not available.</p>
+     <p>The page field is not mandatory for a legislation imported from LegisPro</p>
+   </div>
+ {% endif %}
   <form class="validate_this" id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
     {% csrf_token %}
 
@@ -88,10 +95,15 @@
 
     <div class="legislation-page-container">
       <div>
-        <label class="label-large" for="id_page">Page <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
+        <label class="label-large" for="id_page">Page
+        {% if not article.legislation.import_from_legispro %}
+          <p style="display: inline-block; color: red;" title="This field is required.">*
+        {% endif %}
+        </label>
       </div>
       <div>
-        <input type="number" required id="id_page" name="legislation_page" maxlength="4" value="{{ starting_page }}">
+        <input type="numer" id="id_page" name="legislation_page" maxlength="4"
+              {% if not law.import_from_legispro %} value="{{ starting_page }}" {% endif %} >
       </div>
     </div>
 

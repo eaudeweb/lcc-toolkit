@@ -75,6 +75,9 @@ class LegislationForm(ModelForm):
         return website
 
     def clean_pdf_file(self):
+        if self.instance:
+            if self.instance.import_from_legispro:
+                return None
         file = self.cleaned_data['pdf_file']
         try:
             pdftotext.PDF(file)
