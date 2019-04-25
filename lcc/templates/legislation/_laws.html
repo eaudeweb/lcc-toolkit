@@ -20,10 +20,16 @@
               <li class="page-item active">
                 <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
               </li>
-            {% else %}
+            {% elif i <= laws.number|add:3 and i >= laws.number|add:-3 %}
+              {% if i == laws.number|add:-3 and i != 1 %}
+                <li class="page-item disabled"><span class="page-link">...</span></li>
+              {% endif %}
               <li class="page-item">
                 <a class="page-link" href="javascript:void(0)" data-page="{{ i }}">{{ i }}</a>
               </li>
+              {% if i == laws.number|add:3 and i != laws.paginator.num_pages %}
+                <li class="page-item disabled"><span class="page-link">...</span></li>
+              {% endif %}
             {% endif %}
           {% endfor %}
           {% if laws.has_next %}
@@ -209,10 +215,16 @@
           <li class="page-item active">
             <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
           </li>
-        {% else %}
+        {% elif i <= laws.number|add:3 and i >= laws.number|add:-3 %}
+          {% if i == laws.number|add:-3 and i != 1 %}
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+          {% endif %}
           <li class="page-item">
             <a class="page-link" href="javascript:void(0)" data-page="{{ i }}">{{ i }}</a>
           </li>
+          {% if i == laws.number|add:3 and i != laws.paginator.num_pages %}
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+          {% endif %}
         {% endif %}
       {% endfor %}
       {% if laws.has_next %}

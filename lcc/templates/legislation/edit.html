@@ -22,6 +22,11 @@
         <h3>
           {{ law.title }}
         </h3>
+        <div class="alert alert-primary">
+            {% if law.import_from_legispro %}
+              <p>This legislation is imported from LegisPro. File uploading is optional for this kind of legislation.</p>
+            {% endif %}
+        </div>
         <form id="legislationEditForm" enctype="multipart/form-data" method="post"
               action="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
           {% csrf_token %}
@@ -50,7 +55,11 @@
           <div class='full-width-bg' id="test">
             <div class="container upload-container" id="upload_container_file">
               <div>
-                <label style="margin-bottom: 0" class="label-large" for="id_pdf_file">Upload file <p style="display: inline-block; color: red;" title="This field is required.">*</p></label>
+                <label style="margin-bottom: 0" class="label-large" for="id_pdf_file">Upload file
+                  {% if not law.import_from_legispro %}
+                  <p style="display: inline-block; color: red;" title="This field is required.">*</p>
+                  {% endif %}
+                </label>
               </div>
 
               <div class="label-description">

@@ -333,6 +333,7 @@
     "pk": "AFG",
     "fields": {
         "name": "Afghanistan",
+        "iso_code": "AF",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -368,6 +369,7 @@
     "pk": "AGO",
     "fields": {
         "name": "Angola",
+        "iso_code": "AO",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -404,6 +406,7 @@
     "pk": "ALB",
     "fields": {
         "name": "Albania",
+        "iso_code": "AL",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -432,6 +435,7 @@
     "pk": "AND",
     "fields": {
         "name": "Andorra",
+        "iso_code": "AD",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -463,6 +467,7 @@
     "pk": "ARE",
     "fields": {
         "name": "United Arab Emirates",
+        "iso_code": "AE",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -496,6 +501,7 @@
     "pk": "ARG",
     "fields": {
         "name": "Argentina",
+        "iso_code": "AR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -529,6 +535,7 @@
     "pk": "ARM",
     "fields": {
         "name": "Armenia",
+        "iso_code": "AM",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -564,6 +571,7 @@
     "pk": "ATG",
     "fields": {
         "name": "Antigua and Barbuda",
+        "iso_code": "AG",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -599,6 +607,7 @@
     "pk": "AUS",
     "fields": {
         "name": "Australia",
+        "iso_code": "AU",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -629,6 +638,7 @@
     "pk": "AUT",
     "fields": {
         "name": "Austria",
+        "iso_code": "AT",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -659,6 +669,7 @@
     "pk": "AZE",
     "fields": {
         "name": "Azerbaijan",
+        "iso_code": "AZ",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -690,6 +701,7 @@
     "pk": "BDI",
     "fields": {
         "name": "Burundi",
+        "iso_code": "BI",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -724,6 +736,7 @@
     "pk": "BEL",
     "fields": {
         "name": "Belgium",
+        "iso_code": "BE",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -754,6 +767,7 @@
     "pk": "BEN",
     "fields": {
         "name": "Benin",
+        "iso_code": "BJ",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -790,6 +804,7 @@
     "pk": "BFA",
     "fields": {
         "name": "Burkina Faso",
+        "iso_code": "BF",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -826,6 +841,7 @@
     "pk": "BGD",
     "fields": {
         "name": "Bangladesh",
+        "iso_code": "BD",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -862,6 +878,7 @@
     "pk": "BGR",
     "fields": {
         "name": "Bulgaria",
+        "iso_code": "BG",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -892,6 +909,7 @@
     "pk": "BHR",
     "fields": {
         "name": "Bahrain",
+        "iso_code": "BH",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -926,6 +944,7 @@
     "pk": "BHS",
     "fields": {
         "name": "Bahamas",
+        "iso_code": "BS",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -957,6 +976,7 @@
     "pk": "BIH",
     "fields": {
         "name": "Bosnia and Herzegovina",
+        "iso_code": "BA",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -987,6 +1007,7 @@
     "pk": "BLR",
     "fields": {
         "name": "Belarus",
+        "iso_code": "BY",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1017,6 +1038,7 @@
     "pk": "BLZ",
     "fields": {
         "name": "Belize",
+        "iso_code": "BZ",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -1051,6 +1073,7 @@
     "pk": "BOL",
     "fields": {
         "name": "Bolivia (Plurinational State of)",
+        "iso_code": "BO",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1083,6 +1106,7 @@
     "pk": "BRA",
     "fields": {
         "name": "Brazil",
+        "iso_code": "BR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1116,6 +1140,7 @@
     "pk": "BRB",
     "fields": {
         "name": "Barbados",
+        "iso_code": "BB",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -1150,6 +1175,7 @@
     "pk": "BRN",
     "fields": {
         "name": "Brunei Darussalam",
+        "iso_code": "BN",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -1182,6 +1208,7 @@
     "pk": "BTN",
     "fields": {
         "name": "Bhutan",
+        "iso_code": "BT",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1216,6 +1243,7 @@
     "pk": "BWA",
     "fields": {
         "name": "Botswana",
+        "iso_code": "BW",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -1244,6 +1272,7 @@
     "pk": "CAF",
     "fields": {
         "name": "Central African Republic",
+        "iso_code": "CF",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1281,6 +1310,7 @@
     "pk": "CAN",
     "fields": {
         "name": "Canada",
+        "iso_code": "CA",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -1313,6 +1343,7 @@
     "pk": "CHE",
     "fields": {
         "name": "Switzerland",
+        "iso_code": "CH",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1337,6 +1368,7 @@
     "pk": "CHL",
     "fields": {
         "name": "Chile",
+        "iso_code": "CL",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1370,6 +1402,7 @@
     "pk": "CHN",
     "fields": {
         "name": "China",
+        "iso_code": "CN",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1405,6 +1438,7 @@
     "pk": "CIV",
     "fields": {
         "name": "C\u00f4te d'Ivoire",
+        "iso_code": "CI",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1442,6 +1476,7 @@
     "pk": "CMR",
     "fields": {
         "name": "Cameroon",
+        "iso_code": "CM",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -1478,6 +1513,7 @@
     "pk": "COD",
     "fields": {
         "name": "Democratic Republic of the Congo",
+        "iso_code": "CD",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1514,6 +1550,7 @@
     "pk": "COG",
     "fields": {
         "name": "Congo",
+        "iso_code": "CG",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1538,6 +1575,7 @@
     "pk": "COK",
     "fields": {
         "name": "Cook Islands",
+        "iso_code": "CK",
         "cw": false,
         "small_cw": false,
         "un": false,
@@ -1566,6 +1604,7 @@
     "pk": "COL",
     "fields": {
         "name": "Colombia",
+        "iso_code": "CO",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1600,6 +1639,7 @@
     "pk": "COM",
     "fields": {
         "name": "Comoros",
+        "iso_code": "KM",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1635,6 +1675,7 @@
     "pk": "CPV",
     "fields": {
         "name": "Cabo Verde",
+        "iso_code": "CV",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1672,6 +1713,7 @@
     "pk": "CRI",
     "fields": {
         "name": "Costa Rica",
+        "iso_code": "CR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1706,6 +1748,7 @@
     "pk": "CUB",
     "fields": {
         "name": "Cuba",
+        "iso_code": "CU",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1736,6 +1779,7 @@
     "pk": "CYP",
     "fields": {
         "name": "Cyprus",
+        "iso_code": "CY",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -1766,6 +1810,7 @@
     "pk": "CZE",
     "fields": {
         "name": "Czech Republic",
+        "iso_code": "CZ",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1796,6 +1841,7 @@
     "pk": "DEU",
     "fields": {
         "name": "Germany",
+        "iso_code": "DE",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1826,6 +1872,7 @@
     "pk": "DJI",
     "fields": {
         "name": "Djibouti",
+        "iso_code": "DJ",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1861,6 +1908,7 @@
     "pk": "DMA",
     "fields": {
         "name": "Dominica",
+        "iso_code": "DM",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -1895,6 +1943,7 @@
     "pk": "DNK",
     "fields": {
         "name": "Denmark",
+        "iso_code": "DK",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1925,6 +1974,7 @@
     "pk": "DOM",
     "fields": {
         "name": "Dominican Republic",
+        "iso_code": "DO",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1959,6 +2009,7 @@
     "pk": "DZA",
     "fields": {
         "name": "Algeria",
+        "iso_code": "DZ",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -1994,6 +2045,7 @@
     "pk": "ECU",
     "fields": {
         "name": "Ecuador",
+        "iso_code": "EC",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2028,6 +2080,7 @@
     "pk": "EGY",
     "fields": {
         "name": "Egypt",
+        "iso_code": "EG",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2065,6 +2118,7 @@
     "pk": "ERI",
     "fields": {
         "name": "Eritrea",
+        "iso_code": "ER",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2101,6 +2155,7 @@
     "pk": "ESP",
     "fields": {
         "name": "Spain",
+        "iso_code": "ES",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2131,6 +2186,7 @@
     "pk": "EST",
     "fields": {
         "name": "Estonia",
+        "iso_code": "EE",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2161,6 +2217,7 @@
     "pk": "ETH",
     "fields": {
         "name": "Ethiopia",
+        "iso_code": "ET",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2197,6 +2254,7 @@
     "pk": "EU",
     "fields": {
         "name": "European Union",
+        "iso_code": "EU",
         "cw": false,
         "small_cw": false,
         "un": false,
@@ -2227,6 +2285,7 @@
     "pk": "FIN",
     "fields": {
         "name": "Finland",
+        "iso_code": "FI",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2257,6 +2316,7 @@
     "pk": "FJI",
     "fields": {
         "name": "Fiji",
+        "iso_code": "FJ",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -2288,6 +2348,7 @@
     "pk": "FRA",
     "fields": {
         "name": "France",
+        "iso_code": "FR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2318,6 +2379,7 @@
     "pk": "FSM",
     "fields": {
         "name": "Micronesia (Federated States of)",
+        "iso_code": "FM",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2346,6 +2408,7 @@
     "pk": "GAB",
     "fields": {
         "name": "Gabon",
+        "iso_code": "GA",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2380,6 +2443,7 @@
     "pk": "GBR",
     "fields": {
         "name": "United Kingdom of Great Britain and Northern Ireland",
+        "iso_code": "UK",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -2410,6 +2474,7 @@
     "pk": "GEO",
     "fields": {
         "name": "Georgia",
+        "iso_code": "GE",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2444,6 +2509,7 @@
     "pk": "GHA",
     "fields": {
         "name": "Ghana",
+        "iso_code": "GH",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -2476,6 +2542,7 @@
     "pk": "GIN",
     "fields": {
         "name": "Guinea",
+        "iso_code": "GN",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2509,6 +2576,7 @@
     "pk": "GMB",
     "fields": {
         "name": "Gambia",
+        "iso_code": "GM",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2539,6 +2607,7 @@
     "pk": "GNB",
     "fields": {
         "name": "Guinea-Bissau",
+        "iso_code": "GW",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2572,6 +2641,7 @@
     "pk": "GNQ",
     "fields": {
         "name": "Equatorial Guinea",
+        "iso_code": "GQ",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2606,6 +2676,7 @@
     "pk": "GRC",
     "fields": {
         "name": "Greece",
+        "iso_code": "GR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2636,6 +2707,7 @@
     "pk": "GRD",
     "fields": {
         "name": "Grenada",
+        "iso_code": "GD",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -2668,6 +2740,7 @@
     "pk": "GTM",
     "fields": {
         "name": "Guatemala",
+        "iso_code": "GT",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2704,6 +2777,7 @@
     "pk": "GUY",
     "fields": {
         "name": "Guyana",
+        "iso_code": "GY",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -2735,6 +2809,7 @@
     "pk": "HND",
     "fields": {
         "name": "Honduras",
+        "iso_code": "HN",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2771,6 +2846,7 @@
     "pk": "HRV",
     "fields": {
         "name": "Croatia",
+        "iso_code": "HR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2801,6 +2877,7 @@
     "pk": "HTI",
     "fields": {
         "name": "Haiti",
+        "iso_code": "HT",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2837,6 +2914,7 @@
     "pk": "HUN",
     "fields": {
         "name": "Hungary",
+        "iso_code": "HU",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2867,6 +2945,7 @@
     "pk": "IDN",
     "fields": {
         "name": "Indonesia",
+        "iso_code": "ID",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2902,6 +2981,7 @@
     "pk": "IND",
     "fields": {
         "name": "India",
+        "iso_code": "IN",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -2938,6 +3018,7 @@
     "pk": "IRL",
     "fields": {
         "name": "Ireland",
+        "iso_code": "IE",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -2968,6 +3049,7 @@
     "pk": "IRN",
     "fields": {
         "name": "Iran (Islamic Republic of)",
+        "iso_code": "IR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3001,6 +3083,7 @@
     "pk": "IRQ",
     "fields": {
         "name": "Iraq",
+        "iso_code": "IQ",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3025,6 +3108,7 @@
     "pk": "ISL",
     "fields": {
         "name": "Iceland",
+        "iso_code": "IS",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3055,6 +3139,7 @@
     "pk": "ISR",
     "fields": {
         "name": "Israel",
+        "iso_code": "IL",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3085,6 +3170,7 @@
     "pk": "ITA",
     "fields": {
         "name": "Italy",
+        "iso_code": "IT",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3115,6 +3201,7 @@
     "pk": "JAM",
     "fields": {
         "name": "Jamaica",
+        "iso_code": "JM",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -3146,6 +3233,7 @@
     "pk": "JOR",
     "fields": {
         "name": "Jordan",
+        "iso_code": "JO",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3182,6 +3270,7 @@
     "pk": "JPN",
     "fields": {
         "name": "Japan",
+        "iso_code": "JP",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3213,6 +3302,7 @@
     "pk": "KAZ",
     "fields": {
         "name": "Kazakhstan",
+        "iso_code": "KZ",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3244,6 +3334,7 @@
     "pk": "KEN",
     "fields": {
         "name": "Kenya",
+        "iso_code": "KE",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -3279,6 +3370,7 @@
     "pk": "KGZ",
     "fields": {
         "name": "Kyrgyzstan",
+        "iso_code": "KG",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3313,6 +3405,7 @@
     "pk": "KHM",
     "fields": {
         "name": "Cambodia",
+        "iso_code": "KH",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3349,6 +3442,7 @@
     "pk": "KIR",
     "fields": {
         "name": "Kiribati",
+        "iso_code": "KI",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -3380,6 +3474,7 @@
     "pk": "KNA",
     "fields": {
         "name": "Saint Kitts and Nevis",
+        "iso_code": "KN",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -3413,6 +3508,7 @@
     "pk": "KOR",
     "fields": {
         "name": "Republic of Korea",
+        "iso_code": "KR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3443,6 +3539,7 @@
     "pk": "KWT",
     "fields": {
         "name": "Kuwait",
+        "iso_code": "KW",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3473,6 +3570,7 @@
     "pk": "LAO",
     "fields": {
         "name": "Lao People's Democratic Republic",
+        "iso_code": "LA",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3509,6 +3607,7 @@
     "pk": "LBN",
     "fields": {
         "name": "Lebanon",
+        "iso_code": "LB",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3543,6 +3642,7 @@
     "pk": "LBR",
     "fields": {
         "name": "Liberia",
+        "iso_code": "LR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3576,6 +3676,7 @@
     "pk": "LBY",
     "fields": {
         "name": "Libya",
+        "iso_code": "LY",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3600,6 +3701,7 @@
     "pk": "LCA",
     "fields": {
         "name": "Saint Lucia",
+        "iso_code": "LC",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -3634,6 +3736,7 @@
     "pk": "LIE",
     "fields": {
         "name": "Liechtenstein",
+        "iso_code": "LI",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3664,6 +3767,7 @@
     "pk": "LKA",
     "fields": {
         "name": "Sri Lanka",
+        "iso_code": "LK",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -3700,6 +3804,7 @@
     "pk": "LSO",
     "fields": {
         "name": "Lesotho",
+        "iso_code": "LS",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -3735,6 +3840,7 @@
     "pk": "LTU",
     "fields": {
         "name": "Lithuania",
+        "iso_code": "LT",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3765,6 +3871,7 @@
     "pk": "LUX",
     "fields": {
         "name": "Luxembourg",
+        "iso_code": "LU",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3795,6 +3902,7 @@
     "pk": "LVA",
     "fields": {
         "name": "Latvia",
+        "iso_code": "LV",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3825,6 +3933,7 @@
     "pk": "MAR",
     "fields": {
         "name": "Morocco",
+        "iso_code": "MA",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3860,6 +3969,7 @@
     "pk": "MCO",
     "fields": {
         "name": "Monaco",
+        "iso_code": "MC",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3890,6 +4000,7 @@
     "pk": "MDA",
     "fields": {
         "name": "Republic of Moldova",
+        "iso_code": "MD",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3921,6 +4032,7 @@
     "pk": "MDG",
     "fields": {
         "name": "Madagascar",
+        "iso_code": "MG",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3956,6 +4068,7 @@
     "pk": "MDV",
     "fields": {
         "name": "Maldives",
+        "iso_code": "MV",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -3990,6 +4103,7 @@
     "pk": "MEX",
     "fields": {
         "name": "Mexico",
+        "iso_code": "MX",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4024,6 +4138,7 @@
     "pk": "MHL",
     "fields": {
         "name": "Marshall Islands",
+        "iso_code": "MH",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4057,6 +4172,7 @@
     "pk": "MKD",
     "fields": {
         "name": "The former Yugoslav Republic of Macedonia",
+        "iso_code": "MK",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4081,6 +4197,7 @@
     "pk": "MLI",
     "fields": {
         "name": "Mali",
+        "iso_code": "ML",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4114,6 +4231,7 @@
     "pk": "MLT",
     "fields": {
         "name": "Malta",
+        "iso_code": "MT",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -4144,6 +4262,7 @@
     "pk": "MMR",
     "fields": {
         "name": "Myanmar",
+        "iso_code": "MM",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4176,6 +4295,7 @@
     "pk": "MNE",
     "fields": {
         "name": "Montenegro",
+        "iso_code": "ME",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4206,6 +4326,7 @@
     "pk": "MNG",
     "fields": {
         "name": "Mongolia",
+        "iso_code": "MN",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4241,6 +4362,7 @@
     "pk": "MOZ",
     "fields": {
         "name": "Mozambique",
+        "iso_code": "MZ",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -4276,6 +4398,7 @@
     "pk": "MRT",
     "fields": {
         "name": "Mauritania",
+        "iso_code": "MR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4313,6 +4436,7 @@
     "pk": "MUS",
     "fields": {
         "name": "Mauritius",
+        "iso_code": "MU",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -4348,6 +4472,7 @@
     "pk": "MWI",
     "fields": {
         "name": "Malawi",
+        "iso_code": "MW",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -4384,6 +4509,7 @@
     "pk": "MYS",
     "fields": {
         "name": "Malaysia",
+        "iso_code": "MY",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -4416,6 +4542,7 @@
     "pk": "NAM",
     "fields": {
         "name": "Namibia",
+        "iso_code": "NA",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -4453,6 +4580,7 @@
     "pk": "NER",
     "fields": {
         "name": "Niger",
+        "iso_code": "NE",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4485,6 +4613,7 @@
     "pk": "NGA",
     "fields": {
         "name": "Nigeria",
+        "iso_code": "NG",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -4520,6 +4649,7 @@
     "pk": "NIC",
     "fields": {
         "name": "Nicaragua",
+        "iso_code": "NI",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4544,6 +4674,7 @@
     "pk": "NIU",
     "fields": {
         "name": "Niue",
+        "iso_code": "NU",
         "cw": false,
         "small_cw": false,
         "un": false,
@@ -4581,6 +4712,7 @@
     "pk": "NLD",
     "fields": {
         "name": "Netherlands",
+        "iso_code": "NL",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4611,6 +4743,7 @@
     "pk": "NOR",
     "fields": {
         "name": "Norway",
+        "iso_code": "NO",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4641,6 +4774,7 @@
     "pk": "NPL",
     "fields": {
         "name": "Nepal",
+        "iso_code": "NP",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4674,6 +4808,7 @@
     "pk": "NRU",
     "fields": {
         "name": "Nauru",
+        "iso_code": "NR",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -4704,6 +4839,7 @@
     "pk": "NZL",
     "fields": {
         "name": "New Zealand",
+        "iso_code": "NZ",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -4735,6 +4871,7 @@
     "pk": "OMN",
     "fields": {
         "name": "Oman",
+        "iso_code": "OM",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4767,6 +4904,7 @@
     "pk": "PAK",
     "fields": {
         "name": "Pakistan",
+        "iso_code": "PK",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -4795,6 +4933,7 @@
     "pk": "PAN",
     "fields": {
         "name": "Panama",
+        "iso_code": "PA",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4823,6 +4962,7 @@
     "pk": "PER",
     "fields": {
         "name": "Peru",
+        "iso_code": "PE",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4855,6 +4995,7 @@
     "pk": "PHL",
     "fields": {
         "name": "Philippines",
+        "iso_code": "PH",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4879,6 +5020,7 @@
     "pk": "PLW",
     "fields": {
         "name": "Palau",
+        "iso_code": "PW",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4903,6 +5045,7 @@
     "pk": "PNG",
     "fields": {
         "name": "Papua New Guinea",
+        "iso_code": "PG",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -4936,6 +5079,7 @@
     "pk": "POL",
     "fields": {
         "name": "Poland",
+        "iso_code": "PL",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4966,6 +5110,7 @@
     "pk": "PRK",
     "fields": {
         "name": "Democratic People's Republic of Korea",
+        "iso_code": "KP",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -4997,6 +5142,7 @@
     "pk": "PRT",
     "fields": {
         "name": "Portugal",
+        "iso_code": "PT",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5027,6 +5173,7 @@
     "pk": "PRY",
     "fields": {
         "name": "Paraguay",
+        "iso_code": "PY",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5062,6 +5209,7 @@
     "pk": "PSE",
     "fields": {
         "name": "State of Palestine",
+        "iso_code": "PS",
         "cw": false,
         "small_cw": false,
         "un": false,
@@ -5086,6 +5234,7 @@
     "pk": "QAT",
     "fields": {
         "name": "Qatar",
+        "iso_code": "QA",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5117,6 +5266,7 @@
     "pk": "ROU",
     "fields": {
         "name": "Romania",
+        "iso_code": "RO",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5147,6 +5297,7 @@
     "pk": "RUS",
     "fields": {
         "name": "Russian Federation",
+        "iso_code": "RU",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5171,6 +5322,7 @@
     "pk": "RWA",
     "fields": {
         "name": "Rwanda",
+        "iso_code": "RW",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -5206,6 +5358,7 @@
     "pk": "SAU",
     "fields": {
         "name": "Saudi Arabia",
+        "iso_code": "SA",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5238,6 +5391,7 @@
     "pk": "SDN",
     "fields": {
         "name": "Sudan",
+        "iso_code": "SD",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5273,6 +5427,7 @@
     "pk": "SEN",
     "fields": {
         "name": "Senegal",
+        "iso_code": "SN",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5297,6 +5452,7 @@
     "pk": "SGP",
     "fields": {
         "name": "Singapore",
+        "iso_code": "SG",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -5333,6 +5489,7 @@
     "pk": "SLB",
     "fields": {
         "name": "Solomon Islands",
+        "iso_code": "SB",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -5366,6 +5523,7 @@
     "pk": "SLE",
     "fields": {
         "name": "Sierra Leone",
+        "iso_code": "SL",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -5399,6 +5557,7 @@
     "pk": "SLV",
     "fields": {
         "name": "El Salvador",
+        "iso_code": "SV",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5433,6 +5592,7 @@
     "pk": "SMR",
     "fields": {
         "name": "San Marino",
+        "iso_code": "SM",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5457,6 +5617,7 @@
     "pk": "SOM",
     "fields": {
         "name": "Somalia",
+        "iso_code": "SO",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5490,6 +5651,7 @@
     "pk": "SRB",
     "fields": {
         "name": "Serbia",
+        "iso_code": "RS",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5524,6 +5686,7 @@
     "pk": "SSD",
     "fields": {
         "name": "South Sudan",
+        "iso_code": "SS",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5548,6 +5711,7 @@
     "pk": "STP",
     "fields": {
         "name": "Sao Tome and Principe",
+        "iso_code": "ST",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5584,6 +5748,7 @@
     "pk": "SUR",
     "fields": {
         "name": "Suriname",
+        "iso_code": "SR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5608,6 +5773,7 @@
     "pk": "SVK",
     "fields": {
         "name": "Slovakia",
+        "iso_code": "SK",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5638,6 +5804,7 @@
     "pk": "SVN",
     "fields": {
         "name": "Slovenia",
+        "iso_code": "SI",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5668,6 +5835,7 @@
     "pk": "SWE",
     "fields": {
         "name": "Sweden",
+        "iso_code": "SE",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5698,6 +5866,7 @@
     "pk": "SWZ",
     "fields": {
         "name": "Swaziland",
+        "iso_code": "SZ",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -5734,6 +5903,7 @@
     "pk": "SYC",
     "fields": {
         "name": "Seychelles",
+        "iso_code": "SC",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -5766,7 +5936,8 @@
     "model": "lcc.country",
     "pk": "SYR",
     "fields": {
-        "name": "Syrian Arab Republic",
+        "name": "Syrian Arab Republic",       
+        "iso_code": "SY",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5791,6 +5962,7 @@
     "pk": "TCD",
     "fields": {
         "name": "Chad",
+        "iso_code": "TD",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5825,6 +5997,7 @@
     "pk": "TGO",
     "fields": {
         "name": "Togo",
+        "iso_code": "TG",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5859,6 +6032,7 @@
     "pk": "THA",
     "fields": {
         "name": "Thailand",
+        "iso_code": "TH",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5892,6 +6066,7 @@
     "pk": "TJK",
     "fields": {
         "name": "Tajikistan",
+        "iso_code": "TJ",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5925,6 +6100,7 @@
     "pk": "TKM",
     "fields": {
         "name": "Turkmenistan",
+        "iso_code": "TM",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5959,6 +6135,7 @@
     "pk": "TLS",
     "fields": {
         "name": "Timor-Leste",
+        "iso_code": "TL",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -5996,6 +6173,7 @@
     "pk": "TON",
     "fields": {
         "name": "Tonga",
+        "iso_code": "TO",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -6029,6 +6207,7 @@
     "pk": "TTO",
     "fields": {
         "name": "Trinidad and Tobago",
+        "iso_code": "TT",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -6053,6 +6232,7 @@
     "pk": "TUN",
     "fields": {
         "name": "Tunisia",
+        "iso_code": "TN",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -6089,6 +6269,7 @@
     "pk": "TUR",
     "fields": {
         "name": "Turkey",
+        "iso_code": "TR",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -6113,6 +6294,7 @@
     "pk": "TUV",
     "fields": {
         "name": "Tuvalu",
+        "iso_code": "TV",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -6145,6 +6327,7 @@
     "pk": "TZA",
     "fields": {
         "name": "United Republic of Tanzania",
+        "iso_code": "TZ",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -6169,6 +6352,7 @@
     "pk": "UGA",
     "fields": {
         "name": "Uganda",
+        "iso_code": "UG",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -6203,6 +6387,7 @@
     "pk": "UKR",
     "fields": {
         "name": "Ukraine",
+        "iso_code": "UA",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -6233,6 +6418,7 @@
     "pk": "URY",
     "fields": {
         "name": "Uruguay",
+        "iso_code": "UY",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -6257,6 +6443,7 @@
     "pk": "USA",
     "fields": {
         "name": "United States of America",
+        "iso_code": "US",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -6287,6 +6474,7 @@
     "pk": "UZB",
     "fields": {
         "name": "Uzbekistan",
+        "iso_code": "UZ",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -6311,6 +6499,7 @@
     "pk": "VCT",
     "fields": {
         "name": "Saint Vincent and the Grenadines",
+        "iso_code": "VC",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -6348,6 +6537,7 @@
     "pk": "VEN",
     "fields": {
         "name": "Venezuela (Bolivarian Republic of)",
+        "iso_code": "VE",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -6383,6 +6573,7 @@
     "pk": "VNM",
     "fields": {
         "name": "Viet Nam",
+        "iso_code": "VN",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -6420,6 +6611,7 @@
     "pk": "VUT",
     "fields": {
         "name": "Vanuatu",
+        "iso_code": "VU",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -6452,6 +6644,7 @@
     "pk": "WSM",
     "fields": {
         "name": "Samoa",
+        "iso_code": "WS",
         "cw": true,
         "small_cw": true,
         "un": true,
@@ -6484,6 +6677,7 @@
     "pk": "YEM",
     "fields": {
         "name": "Yemen",
+        "iso_code": "YE",
         "cw": false,
         "small_cw": false,
         "un": true,
@@ -6508,6 +6702,7 @@
     "pk": "ZAF",
     "fields": {
         "name": "South Africa",
+        "iso_code": "ZA",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -6543,6 +6738,7 @@
     "pk": "ZMB",
     "fields": {
         "name": "Zambia",
+        "iso_code": "ZM",
         "cw": true,
         "small_cw": false,
         "un": true,
@@ -6577,6 +6773,7 @@
     "pk": "ZWE",
     "fields": {
         "name": "Zimbabwe",
+        "iso_code": "ZW",
         "cw": false,
         "small_cw": false,
         "un": true,

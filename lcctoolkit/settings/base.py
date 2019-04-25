@@ -10,9 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
+import environ
 import os
 from datetime import datetime
 
+env = environ.Env(DEBUG=(bool, False),)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -124,3 +126,7 @@ MAX_YEAR = datetime.now().year
 # File upload
 
 FILE_UPLOAD_PERMISSIONS = 0o644
+
+LEGISPRO_URL=env('LEGISPRO_URL')
+LEGISPRO_USER=env('LEGISPRO_USER')
+LEGISPRO_PASS=env('LEGISPRO_PASS')
