@@ -59,11 +59,6 @@
 {% with law.other_legislations as other_legislations %}
 
   <div class="page-container {% if other_legislations %}half{% endif %} viz-container">
-    {% if law.import_from_legispro %}
-      <div class="alert alert-primary">
-        <p>This legislation is imported from LegisPro.</p>
-      </div>
-    {% endif %}
     <div class="dl">
       <div class="dd"><span>Country</span></div>
       <div class="dt">

@@ -20,6 +20,7 @@
         "fields": {
             "name": "Mitigation strategies, targets, budgets and measures",
             "code": "1.1",
+            "legispro_code": "",
             "details": "",
             "parent": 1,
             "lft": 2,
@@ -34,6 +35,7 @@
         "fields": {
             "name": "Emission targets-in law",
             "code": "1.1.1",
+            "legispro_code": "",
             "details": "",
             "parent": 2,
             "lft": 3,
@@ -48,6 +50,7 @@
         "fields": {
             "name": "Emission targets \u2013 duty to set",
             "code": "1.1.2",
+            "legispro_code": "",
             "details": "",
             "parent": 2,
             "lft": 5,
@@ -62,6 +65,7 @@
         "fields": {
             "name": "Emission targets- mechanisms for setting and amending",
             "code": "1.1.3",
+            "legispro_code": "",
             "details": "",
             "parent": 2,
             "lft": 7,
@@ -76,6 +80,7 @@
         "fields": {
             "name": "Provision for carbon budgeting",
             "code": "1.1.4",
+            "legispro_code": "",
             "details": "",
             "parent": 2,
             "lft": 9,
@@ -90,6 +95,7 @@
         "fields": {
             "name": "Non-quantitative mitigation measures/standards",
             "code": "1.1.5",
+            "legispro_code": "",
             "details": "",
             "parent": 2,
             "lft": 11,
@@ -104,6 +110,7 @@
         "fields": {
             "name": "Strategic plan on mitigation",
             "code": "1.1.6",
+            "legispro_code": "",
             "details": "",
             "parent": 2,
             "lft": 13,
@@ -118,6 +125,7 @@
         "fields": {
             "name": "Adaptation measures",
             "code": "1.2",
+            "legispro_code": "",
             "details": "",
             "parent": 1,
             "lft": 16,
@@ -132,6 +140,7 @@
         "fields": {
             "name": "Provisions for climate risk and vulnerability assessments",
             "code": "1.2.1",
+            "legispro_code": "",
             "details": "",
             "parent": 9,
             "lft": 17,
@@ -146,6 +155,7 @@
         "fields": {
             "name": "National strategies/plans for adaptation and climate resilient development",
             "code": "1.2.2",
+            "legispro_code": "",
             "details": "",
             "parent": 9,
             "lft": 19,
@@ -160,6 +170,7 @@
         "fields": {
             "name": "Mandate to government to develop strategies, plans or regulations on adaptation",
             "code": "1.2.3",
+            "legispro_code": "",
             "details": "",
             "parent": 9,
             "lft": 21,
@@ -174,6 +185,7 @@
         "fields": {
             "name": "Provision for adaptation consultations",
             "code": "1.2.4",
+            "legispro_code": "",
             "details": "",
             "parent": 9,
             "lft": 23,
@@ -188,6 +200,7 @@
         "fields": {
             "name": "Mechanism for setting of adaptation standards",
             "code": "1.2.5",
+            "legispro_code": "",
             "details": "",
             "parent": 9,
             "lft": 25,
@@ -202,6 +215,7 @@
         "fields": {
             "name": "Establishing or designating national climate bodies and functions",
             "code": "1.3",
+            "legispro_code": "",
             "details": "",
             "parent": 1,
             "lft": 28,
@@ -216,6 +230,7 @@
         "fields": {
             "name": "Coordination body on climate change",
             "code": "1.3.1",
+            "legispro_code": "",
             "details": "",
             "parent": 15,
             "lft": 29,
@@ -230,6 +245,7 @@
         "fields": {
             "name": "Inter-agency body on climate change",
             "code": "1.3.2",
+            "legispro_code": "",
             "details": "",
             "parent": 15,
             "lft": 31,
@@ -244,6 +260,7 @@
         "fields": {
             "name": "Advisory body on climate change",
             "code": "1.3.3",
+            "legispro_code": "",
             "details": "",
             "parent": 15,
             "lft": 33,
@@ -258,6 +275,7 @@
         "fields": {
             "name": "Body with planning/regulatory powers and functions",
             "code": "1.3.4",
+            "legispro_code": "",
             "details": "",
             "parent": 15,
             "lft": 35,
@@ -272,6 +290,7 @@
         "fields": {
             "name": "Body responsible for national inventory and reporting",
             "code": "1.3.5",
+            "legispro_code": "",
             "details": "",
             "parent": 15,
             "lft": 37,
@@ -286,6 +305,7 @@
         "fields": {
             "name": "Body responsible for administering climate budget/climate finance",
             "code": "1.3.6",
+            "legispro_code": "",
             "details": "",
             "parent": 15,
             "lft": 39,
@@ -300,6 +320,7 @@
         "fields": {
             "name": "Provisions for consultation",
             "code": "1.3.7",
+            "legispro_code": "",
             "details": "",
             "parent": 15,
             "lft": 41,
@@ -314,6 +335,7 @@
         "fields": {
             "name": "Education/information/capacity building bodies",
             "code": "1.3.8",
+            "legispro_code": "",
             "details": "",
             "parent": 15,
             "lft": 43,
@@ -328,6 +350,7 @@
         "fields": {
             "name": "Monitoring, reporting and verification obligations",
             "code": "1.4",
+            "legispro_code": "",
             "details": "",
             "parent": 1,
             "lft": 46,
@@ -342,6 +365,7 @@
         "fields": {
             "name": "Monitoring and reporting obligations on government",
             "code": "1.4.1",
+            "legispro_code": "",
             "details": "",
             "parent": 24,
             "lft": 47,
@@ -356,6 +380,7 @@
         "fields": {
             "name": "Monitoring and Reporting obligation on companies/installations /financial institutions",
             "code": "1.4.2",
+            "legispro_code": "",
             "details": "",
             "parent": 24,
             "lft": 49,
@@ -370,6 +395,7 @@
         "fields": {
             "name": "Provisions for verification of data ",
             "code": "1.4.3",
+            "legispro_code": "",
             "details": "",
             "parent": 24,
             "lft": 51,
@@ -384,6 +410,7 @@
         "fields": {
             "name": "Economic instruments",
             "code": "1.5",
+            "legispro_code": "",
             "details": "",
             "parent": 1,
             "lft": 54,
@@ -398,6 +425,7 @@
         "fields": {
             "name": "Carbon tax or levy provisions",
             "code": "1.5.1",
+            "legispro_code": "",
             "details": "",
             "parent": 28,
             "lft": 55,
@@ -412,6 +440,7 @@
         "fields": {
             "name": "Emissions trading",
             "code": "1.5.2",
+            "legispro_code": "",
             "details": "",
             "parent": 28,
             "lft": 57,
@@ -426,6 +455,7 @@
         "fields": {
             "name": "Tradable certificates",
             "code": "1.5.3",
+            "legispro_code": "",
             "details": "",
             "parent": 28,
             "lft": 59,
@@ -440,6 +470,7 @@
         "fields": {
             "name": "Use of international market mechanisms",
             "code": "1.5.4",
+            "legispro_code": "",
             "details": "",
             "parent": 28,
             "lft": 61,
@@ -454,6 +485,7 @@
         "fields": {
             "name": "Incentives for voluntary actions",
             "code": "1.5.5",
+            "legispro_code": "",
             "details": "",
             "parent": 28,
             "lft": 63,
@@ -468,6 +500,7 @@
         "fields": {
             "name": "Fiscal incentives",
             "code": "1.5.6",
+            "legispro_code": "",
             "details": "",
             "parent": 28,
             "lft": 65,
@@ -482,6 +515,7 @@
         "fields": {
             "name": "Finance and budgetary provisions",
             "code": "1.6",
+            "legispro_code": "",
             "details": "",
             "parent": 1,
             "lft": 68,
@@ -496,6 +530,7 @@
         "fields": {
             "name": "Procurement of goods and services",
             "code": "1.6.1",
+            "legispro_code": "",
             "details": "",
             "parent": 35,
             "lft": 69,
@@ -510,6 +545,7 @@
         "fields": {
             "name": "Provisions on access to international climate finance",
             "code": "1.6.2",
+            "legispro_code": "",
             "details": "",
             "parent": 35,
             "lft": 71,
@@ -524,6 +560,7 @@
         "fields": {
             "name": "Regulation of financial markets",
             "code": "1.6.3",
+            "legispro_code": "",
             "details": "",
             "parent": 35,
             "lft": 73,
@@ -538,6 +575,7 @@
         "fields": {
             "name": "Sources of climate finance",
             "code": "1.6.4",
+            "legispro_code": "",
             "details": "",
             "parent": 35,
             "lft": 75,
@@ -552,6 +590,7 @@
         "fields": {
             "name": "Establishment of national climate fund",
             "code": "1.6.5",
+            "legispro_code": "",
             "details": "",
             "parent": 35,
             "lft": 77,
@@ -566,6 +605,7 @@
         "fields": {
             "name": "Guiding objectives and principles ",
             "code": "1.7",
+            "legispro_code": "",
             "details": "",
             "parent": 1,
             "lft": 80,
@@ -580,6 +620,7 @@
         "fields": {
             "name": "Objectives",
             "code": "1.7.1",
+            "legispro_code": "",
             "details": "",
             "parent": 41,
             "lft": 81,
@@ -594,6 +635,7 @@
         "fields": {
             "name": "Enabling constitutional provisions",
             "code": "1.7.2",
+            "legispro_code": "",
             "details": "",
             "parent": 41,
             "lft": 83,
@@ -608,6 +650,7 @@
         "fields": {
             "name": "Principles",
             "code": "1.7.3",
+            "legispro_code": "",
             "details": "",
             "parent": 41,
             "lft": 85,
@@ -982,6 +1025,7 @@
         "fields": {
             "name": "Demand reduction provisions \u2013 Electricity",
             "code": "2.3.10",
+            "legispro_code": "",
             "details": "",
             "parent": 111,
             "lft": 31,
@@ -996,6 +1040,7 @@
         "fields": {
             "name": "Demand reduction provisions \u2013 Heating and cooling",
             "code": "2.3.11",
+            "legispro_code": "",
             "details": "",
             "parent": 111,
             "lft": 33,
@@ -1010,6 +1055,7 @@
         "fields": {
             "name": "Demand reduction provisions \u2013 Transport",
             "code": "2.3.12",
+            "legispro_code": "",
             "details": "",
             "parent": 111,
             "lft": 35,
@@ -1024,6 +1070,7 @@
         "fields": {
             "name": "Demand reduction provisions \u2013 Industry",
             "code": "2.3.13",
+            "legispro_code": "",
             "details": "",
             "parent": 111,
             "lft": 37,
@@ -1788,6 +1835,7 @@
         "fields": {
             "name": "Distinct energy regulation",
             "code": "3.7",
+            "legispro_code": "",
             "details": "",
             "parent": 125,
             "lft": 100,
@@ -1832,6 +1880,7 @@
         "fields": {
             "name": "Hydrogen fuel cells",
             "code": "3.7.3",
+            "legispro_code": "",
             "details": "",
             "parent": 175,
             "lft": 105,
@@ -1921,6 +1970,7 @@
         "fields": {
             "name": "Institutions and governance",
             "code": "4.2",
+            "legispro_code": "",
             "details": "",
             "parent": 179,
             "lft": 10,
@@ -1950,6 +2000,7 @@
         "fields": {
             "name": "Energy efficiency advisory body",
             "code": "4.2.2",
+            "legispro_code": "",
             "details": "",
             "parent": 184,
             "lft": 13,
@@ -2189,6 +2240,7 @@
         "fields": {
             "name": "Energy efficiency procurement requirements \u2013 Heating and cooling",
             "code": "4.3.13",
+            "legispro_code": "",
             "details": "",
             "parent": 189,
             "lft": 29,
@@ -2203,6 +2255,7 @@
         "fields": {
             "name": "Energy efficiency procurement requirements \u2013 Transport",
             "code": "4.3.14",
+            "legispro_code": "",
             "details": "",
             "parent": 189,
             "lft": 31,
@@ -2217,6 +2270,7 @@
         "fields": {
             "name": "Energy efficiency procurement requirements \u2013 Industry",
             "code": "4.3.15",
+            "legispro_code": "",
             "details": "",
             "parent": 189,
             "lft": 33,
@@ -2366,7 +2420,7 @@
         "fields": {
             "name": "Overall energy efficiency budget/finance",
             "code": "4.5.1",
-
+            "legispro_code": "",
             "details": "",
             "parent": 213,
             "lft": 69,
@@ -2636,6 +2690,7 @@
         "fields": {
             "name": "State aid/subsidies",
             "code": "5.2.3",
+            "legispro_code": "",
             "details": "",
             "parent": 229,
             "lft": 23,
@@ -2710,6 +2765,7 @@
         "fields": {
             "name": "Agriculture (crop and livestock) and climate change",
             "code": "6",
+            "legispro_code": "",
             "details": "",
             "parent": null,
             "lft": 1,
@@ -2724,6 +2780,7 @@
         "fields": {
             "name": "Institutions and governance",
             "code": "6.1",
+            "legispro_code": "",
             "details": "",
             "parent": 237,
             "lft": 2,
@@ -2738,6 +2795,7 @@
         "fields": {
             "name": "Government authority in charge of agriculture",
             "code": "6.1.1",
+            "legispro_code": "",
             "details": "",
             "parent": 238,
             "lft": 3,
@@ -2752,6 +2810,7 @@
         "fields": {
             "name": "Duty to take climate change into account in agriculture policy/plans",
             "code": "6.1.2",
+            "legispro_code": "",
             "details": "",
             "parent": 238,
             "lft": 5,
@@ -2766,6 +2825,7 @@
         "fields": {
             "name": "Duty to collect and report on GHG emissions from agriculture",
             "code": "6.1.3",
+            "legispro_code": "",
             "details": "",
             "parent": 238,
             "lft": 7,
@@ -2780,6 +2840,7 @@
         "fields": {
             "name": "Disaster risk management/reduction and climate change",
             "code": "6.2",
+            "legispro_code": "",
             "details": "",
             "parent": 237,
             "lft": 10,
@@ -2794,6 +2855,7 @@
         "fields": {
             "name": "Disaster risk management and response mechanisms",
             "code": "6.2.1",
+            "legispro_code": "",
             "details": "",
             "parent": 242,
             "lft": 11,
@@ -2808,6 +2870,7 @@
         "fields": {
             "name": "Climate related insurance mechanisms",
             "code": "6.2.2",
+            "legispro_code": "",
             "details": "",
             "parent": 242,
             "lft": 13,
@@ -2822,6 +2885,7 @@
         "fields": {
             "name": "Early warning mechanisms",
             "code": "6.2.3",
+            "legispro_code": "",
             "details": "",
             "parent": 242,
             "lft": 15,
@@ -2836,6 +2900,7 @@
         "fields": {
             "name": "Sustainable agricultural production",
             "code": "6.3",
+            "legispro_code": "",
             "details": "Sustainable agricultural production includes the improvement of food security and the eradication of hunger, as well as the preservation of economic viability, while conserving land, water, plant and animal genetic resources, biodiversity and ecosystems, and enhancing resilience to climate change and natural disasters. \r\n\r\nFor further information, please refer to: \r\nRio+20 outcome document \u201cThe Future We Want\u201d paragraph 111: https://sustainabledevelopment.un.org/futurewewant.html\r\nFAO Post-2015 Development Agenda: http://www.fao.org/sustainable-development-goals/overview/fao-and-the-post-2015-development-agenda/sustainable-agriculture/en/",
             "parent": 237,
             "lft": 18,
@@ -2850,6 +2915,7 @@
         "fields": {
             "name": "Environmental criteria in the selection and use of fertilizers (synthetic and organic)",
             "code": "6.3.1",
+            "legispro_code": "",
             "details": "Whilst fertilizers are crucial to nutrient management and crop production, they are, in different ways and quantities,\u00a0depending on their nature,\u00a0a principal source of GHG emissions from agriculture.\u00a0Introducing environmental criteria in fertilizer management through legislation can assist to regulate\u00a0the availability on the market and the use of fertilizers, leading to a lower carbon impact. Measures can include favoring fertilizers with lower carbon production footprint, as well as those\u00a0with lower GHG emissions in their application, as well as\u00a0adopting farming\u00a0techniques that can reduce the need for fertilizers, e.g. crop rotation.\u2028\r\nFor further information please refer to: \r\nSOFA 2016: Agriculture and Climate Change. FAO: \u00a0http://www.fao.org/3/a-i6030e.pdf",
             "parent": 246,
             "lft": 19,
@@ -2864,6 +2930,7 @@
         "fields": {
             "name": "Tillage and residues management",
             "code": "6.3.2",
+            "legispro_code": "",
             "details": "As the largest terrestrial carbon pool, soils (and soil organic matter) play a central role in climate change mitigation. However, certain practices such as tillage and burning of crop residues lead to major losses of key soil functions. Thus, regulating tillage and residues management to limit practices with adverse effects contributes to managing soil organic matter content, and more broadly, soil quality. \r\n\r\nFor further information, please refer to:\r\nFAO 2017. Voluntary Guidelines for Sustainable Soil Management: http://www.fao.org/3/a-bl813e.pdf",
             "parent": 246,
             "lft": 21,
@@ -2878,6 +2945,7 @@
         "fields": {
             "name": "Sustainable water use and management",
             "code": "6.3.3",
+            "legispro_code": "",
             "details": "Climate change may result in water scarcity, posing serious threats to agriculture and livelihoods. At the same time, water use within the agriculture sector requires appropriate regulation, since this sector is one of the main users of water. \r\n\r\nFor further information, please refer to: http://www.fao.org/3/CA1726EN/ca1726en.pdf, pp. 42-43",
             "parent": 246,
             "lft": 23,
@@ -2892,6 +2960,7 @@
         "fields": {
             "name": "Climate-smart agriculture approaches",
             "code": "6.3.4",
+            "legispro_code": "",
             "details": "Climate Smart Agriculture (CSA) refers to a holistic approach that sustainably increases productivity, strengthens resilience (adaptation), reduces or removes greenhouse gases (mitigation) where possible, and enhances achievement of national food security and integration of other development goals in the agriculture sector. \r\nFor further information, please refer to: \r\nFAO definition of CSA: http://www.fao.org/climatechange/epic/activities/what-is-climate-smart-agriculture/en/#.XDdts89KhsN\r\nCGIAR Research Program on Climate Change, Agriculture and Food Security (CCAFS) for the World Bank: https://csa.guide/csa/why-climate-smart-agriculture",
             "parent": 246,
             "lft": 25,
@@ -2906,6 +2975,7 @@
         "fields": {
             "name": "Seed management and climate change",
             "code": "6.4",
+            "legispro_code": "",
             "details": "Ensuring that farmers have adequate access to seeds of diverse and well-adapted crops and their varieties is important to support climate change adaptation, given the impacts of a changing climate on the environmental conditions of ecosystems that support agriculture.",
             "parent": 237,
             "lft": 28,
@@ -2920,6 +2990,7 @@
         "fields": {
             "name": "Management of plant breeding",
             "code": "6.4.1",
+            "legispro_code": "",
             "details": "",
             "parent": 251,
             "lft": 29,
@@ -2934,6 +3005,7 @@
         "fields": {
             "name": "Protection of plant breeders\u2019 intellectual property",
             "code": "6.4.2",
+            "legispro_code": "",
             "details": "As a result of changing climatic conditions, landraces and plant varieties might no longer be well adapted to environmental conditions in the places where they have traditionally been grown. Thus, the development of new breeds that are able to adapt to the new climatic situations will gain importance. Breeds\u2019 development should be facilitated through appropriate legal frameworks that protect breeders\u00b4 intellectual property rights and traditional farmers\u00b4 rights to save seeds for the next season.\r\n\r\nFor further information, please refer to:\r\nFAO 2015, Coping with Climate Change: the roles of genetic resources for food and agriculture: http://www.fao.org/3/a-i3866e.pdf",
             "parent": 251,
             "lft": 31,
@@ -2948,6 +3020,7 @@
         "fields": {
             "name": "Seed registration requirements",
             "code": "6.4.3",
+            "legispro_code": "",
             "details": "",
             "parent": 251,
             "lft": 33,
@@ -2962,6 +3035,7 @@
         "fields": {
             "name": "Seed quality control system",
             "code": "6.4.4",
+            "legispro_code": "",
             "details": "",
             "parent": 251,
             "lft": 35,
@@ -2976,6 +3050,7 @@
         "fields": {
             "name": "Representation of farmers/community enterprises in seeds governing bodies and/or institutions",
             "code": "6.4.5",
+            "legispro_code": "",
             "details": "",
             "parent": 251,
             "lft": 37,
@@ -2990,6 +3065,7 @@
         "fields": {
             "name": "Soil management and climate change",
             "code": "6.5",
+            "legispro_code": "",
             "details": "As the largest terrestrial carbon pool, soil plays a crucial role in climate change mitigation by regulating dynamic biogeochemical processes and the exchange of GHGs with the atmosphere. Nonetheless, soil has become one of the world\u2019s most vulnerable resources in the face of climate change, land degradation, biodiversity loss and increased demand for food production. Sustainable soil management (SSM) aims at maintaining and enhancing the supporting, provisioning, and regulating of the services provided by soils, without significantly impairing either the soil functions or biodiversity. \r\n\r\nFor further information, please refer to: \r\nFAO 2017. Voluntary Guidelines for Sustainable Soil Management: http://www.fao.org/3/a-bl813e.pdf \r\nUN Principles for sustainable soil management: https://www.unglobalcompact.org/docs/issues_doc/agriculture_and_food/soil-principles.pdf",
             "parent": 237,
             "lft": 40,
@@ -3004,6 +3080,7 @@
         "fields": {
             "name": "Soil conservation bodies and/or institutions",
             "code": "6.5.1",
+            "legispro_code": "",
             "details": "",
             "parent": 257,
             "lft": 41,
@@ -3018,6 +3095,7 @@
         "fields": {
             "name": "Soil conservation",
             "code": "6.5.2",
+            "legispro_code": "",
             "details": "",
             "parent": 257,
             "lft": 43,
@@ -3032,6 +3110,7 @@
         "fields": {
             "name": "Soil pollution control",
             "code": "6.5.3",
+            "legispro_code": "",
             "details": "",
             "parent": 257,
             "lft": 45,
@@ -3046,6 +3125,7 @@
         "fields": {
             "name": "Soil erosion control",
             "code": "6.5.4",
+            "legispro_code": "",
             "details": "",
             "parent": 257,
             "lft": 47,
@@ -3060,6 +3140,7 @@
         "fields": {
             "name": "Soil restoration",
             "code": "6.5.5",
+            "legispro_code": "",
             "details": "",
             "parent": 257,
             "lft": 49,
@@ -3074,6 +3155,7 @@
         "fields": {
             "name": "Soil fertility management",
             "code": "6.5.6",
+            "legispro_code": "",
             "details": "The preservation or enhancement of natural soil fertility and nutrient cycles is important for addressing climate change. It can be supported through crop rotation with legumes, green and animal manures and cover crops in combination with reduced or no tillage, less use of herbicides and agroforestry practices. Integrated Soil Management (ISM) is one existing approach which refers to soil fertility management practices that include the use of fertilizers, organic inputs and improved germplasm, adapted to local circumstances based on local knowledge, within the overall aim of improving crop productivity. Legislation can be instrumental to enable and support farmers in adopting the above practices.\r\n\r\nFor further information, please refer to http://www.fao.org/3/a-bl813e.pdf \r\nhttps://publications.cta.int/media/publications/downloads/1853_PDF.pdf",
             "parent": 257,
             "lft": 51,
@@ -3088,6 +3170,7 @@
         "fields": {
             "name": "Soil biodiversity conservation",
             "code": "6.5.7",
+            "legispro_code": "",
             "details": "",
             "parent": 257,
             "lft": 53,
@@ -3102,6 +3185,7 @@
         "fields": {
             "name": "Plant health, pest control and climate change",
             "code": "6.6",
+            "legispro_code": "",
             "details": "Climate change is directly and indirectly influencing the distribution and severity of crop pests, including invasive species, which is further affecting crop production, with evidence suggesting that pest problems overall are likely to become more unpredictable and larger in amplitude. In this regard, plant health legislation is referred to as the area of law most commonly used to regulate crop pests.",
             "parent": 237,
             "lft": 56,
@@ -3116,6 +3200,7 @@
         "fields": {
             "name": "Phytosanitary protection and surveillance",
             "code": "6.6.1",
+            "legispro_code": "",
             "details": "",
             "parent": 265,
             "lft": 57,
@@ -3130,6 +3215,7 @@
         "fields": {
             "name": "Pest management",
             "code": "6.6.2",
+            "legispro_code": "",
             "details": "In the face of climate change, the incidence of plant pest and diseases is likely to increase and become more unpredictable. Legislation can ensure adequate pest surveillance and control programs, good pesticide and fertilizers management based on ecosystem approaches, including Integrated Pest Management (IPM). Ensuring that adequate financial resources are earmarked for these activities is also key. \r\n\r\nFor further information, please refer to:\r\nFAO on pest and pesticides management: http://www.fao.org/agriculture/crops/core-themes/theme/pests/ipm\r\nhttp://www.fao.org/agriculture/crops/thematic-sitemap/theme/pests/en/",
             "parent": 265,
             "lft": 59,
@@ -3144,6 +3230,7 @@
         "fields": {
             "name": "Pesticide management",
             "code": "6.7",
+            "legispro_code": "",
             "details": "",
             "parent": 237,
             "lft": 62,
@@ -3158,6 +3245,7 @@
         "fields": {
             "name": "Environmental considerations in pesticide management",
             "code": "6.7.1",
+            "legispro_code": "",
             "details": "",
             "parent": 268,
             "lft": 63,
@@ -3172,6 +3260,7 @@
         "fields": {
             "name": "Livestock management and climate change",
             "code": "6.8",
+            "legispro_code": "",
             "details": "Livestock production is a significant source of GHG emissions and is also affected by climate change. Legislation may promote the adoption of more sustainable livestock management practices to reduce emissions from livestock production (e.g. feed and manure management) and to contribute to climate change adaptation in the sector. For adaptation, legislation may promote better water management (e.g. boreholes); regulate breeding techniques for resistance to drought or for disease control and animal health; create insurance mechanisms for livestock loss; ban deforestation for growing crops or livestock; ensure livestock mobility, including land access for pastoralists; and encourage market-oriented actions such as laws on labelling products, which might provide incentives for sustainable livestock production.\r\n\r\nFor further information, please refer to: \r\nhttp://www.fao.org/ag/againfo/resources/en/publications/tackling_climate_change/index.htm\r\nGerber, P.J., Steinfeld, H., Henderson, B., Mottet, A., Opio, C., Dijkman, J., Falcucci, A. & Tempio, G. 2013. Tackling climate change through livestock \u2013 A global assessment of emissions and mitigation opportunities. FAO: http://www.fao.org/3/a-i3437e.pdf",
             "parent": 237,
             "lft": 66,
@@ -3186,6 +3275,7 @@
         "fields": {
             "name": "Feed management",
             "code": "6.8.1",
+            "legispro_code": "",
             "details": "Sustainable livestock production includes the use of better quality feed and feed balancing to lower enteric and manure emissions, thus contributing to climate change mitigation.\r\n\r\nFor further information, please refer to:\r\nhttp://www.fao.org/ag/againfo/resources/en/publications/tackling_climate_change/index.htm\r\nGerber, P.J., Steinfeld, H., Henderson, B., Mottet, A., Opio, C., Dijkman, J., Falcucci, A. & Tempio, G. 2013. Tackling climate change through livestock \u2013 A global assessment of emissions and mitigation opportunities. FAO: http://www.fao.org/3/a-i3437e.pdf",
             "parent": 270,
             "lft": 67,
@@ -3200,6 +3290,7 @@
         "fields": {
             "name": "Breeding management",
             "code": "6.8.2",
+            "legispro_code": "",
             "details": "Improved breeding helps to shrink the herd overhead (i.e. unproductive part of the herd) and reduce related GHG emissions. Further, breeding techniques can be used to produce different breeds that have lower enteric and manure emissions of GHG.\r\n\r\nFor further information, please refer to:\r\nGerber, P.J., Steinfeld, H., Henderson, B., Mottet, A., Opio, C., Dijkman, J., Falcucci, A. & Tempio, G. 2013. Tackling climate change through livestock \u2013 A global assessment of emissions and mitigation opportunities. FAO: http://www.fao.org/3/a-i3437e.pdf",
             "parent": 270,
             "lft": 69,
@@ -3214,6 +3305,7 @@
         "fields": {
             "name": "Manure management",
             "code": "6.8.3",
+            "legispro_code": "",
             "details": "Manure management practices can ensure the recovery and recycling of nutrients and energy contained in manure and improvements in energy use efficiency along supply chains. Therefore, manure management systems can reduce overall GHG emissions from manure. \r\n\r\nFor further information, please refer to:\r\nGerber, P.J., Steinfeld, H., Henderson, B., Mottet, A., Opio, C., Dijkman, J., Falcucci, A. & Tempio, G. 2013. Tackling climate change through livestock \u2013 A global assessment of emissions and mitigation opportunities. FAO: http://www.fao.org/3/a-i3437e.pdf",
             "parent": 270,
             "lft": 71,
@@ -3228,6 +3320,7 @@
         "fields": {
             "name": "Disease monitoring",
             "code": "6.8.4",
+            "legispro_code": "",
             "details": "In the face of climate change, the burden of new disease and the persistence of chronic disease will remain considerable, particularly in the developing world. Thus, disease monitoring will gain further importance in the tackling of the adverse effects of climate change on animal health. In this regard, improvements are required to support disease monitoring mechanisms in the face of novel animal health emergencies.\r\n\r\nFor further information, please refer to:\r\nJuan Lubroth. Climate change and animal health. Animal Health Service, FAO: http://www.fao.org/docrep/017/i3084e/i3084e05.pdf",
             "parent": 270,
             "lft": 73,
@@ -3242,6 +3335,7 @@
         "fields": {
             "name": "Sustainable livestock production",
             "code": "6.8.5",
+            "legispro_code": "",
             "details": "Development of sustainable livestock production is a key enabler for achieving climate change and sustainable development goals. Issues to consider include animal welfare (to reduce herd losses and ensure efficiency in production), population control (to reduce emissions), indoor livestock farming and other factors that are related to ensuring production to meet societal goals while lowering emissions. \r\n\r\nFor further information, please refer to: http://www.fao.org/3/a-i6142e.pdf \r\nhttp://www.fao.org/docrep/u7600t/u7600t01.htm",
             "parent": 270,
             "lft": 75,
@@ -3256,6 +3350,7 @@
         "fields": {
             "name": "Grazing and pasture land management",
             "code": "6.8.6",
+            "legispro_code": "",
             "details": "",
             "parent": 270,
             "lft": 77,
@@ -3270,6 +3365,7 @@
         "fields": {
             "name": "Sustainable animal husbandry practices",
             "code": "6.8.7",
+            "legispro_code": "",
             "details": "Among the available technical options for mitigation of GHG emissions from the livestock sector are sustainable animal husbandry practices, which include animal and reproductive management practices and technologies. \r\n\r\nFor further information, please refer to: \r\nGerber, P.J., Steinfeld, H., Henderson, B., Mottet, A., Opio, C., Dijkman, J., Falcucci, A. & Tempio, G. 2013. Tackling climate change through livestock \u2013 A global assessment of emissions and mitigation opportunities. FAO. Pages 48 to 50: http://www.fao.org/3/a-i3437e.pdf",
             "parent": 270,
             "lft": 79,
@@ -3284,6 +3380,7 @@
         "fields": {
             "name": "Financing/incentives for CSA approaches",
             "code": "6.9",
+            "legispro_code": "",
             "details": "Climate finance can play a catalytic role in supporting the agriculture sector to become part of the climate solution while promoting inclusive and sustainable growth. In addition, economic incentives can be a way to steer a transition towards more sustainable practices in agriculture. Incentives can include \u201cpayment for ecosystem services\u201d programs; offset schemes, market-based incentives such as certification/labelling, among others. Access to finance and incentives is particularly important for small-scale farmers who would not otherwise be in a position to invest in climate-smart agriculture. Small-scale producers are less resilient to natural hazards inherent in agriculture and this tends to inhibit financial institutions from granting them loans. Thus, access to financial instruments adapted to different needs and realities in the agricultural sector need to be supported through legislation. \r\n\r\nFor further information, please refer to:\r\nFAO 2013. Climate-Smart Agriculture Sourcebook; pp. 375-406: http://www.fao.org/3/a-i3325e.pdf",
             "parent": 237,
             "lft": 82,
@@ -3298,6 +3395,7 @@
         "fields": {
             "name": "Loans and credits",
             "code": "6.9.1",
+            "legispro_code": "",
             "details": "",
             "parent": 278,
             "lft": 83,
@@ -3310,8 +3408,9 @@
         "model": "lcc.taxonomyclassification",
         "pk": 280,
         "fields": {
-            "name": "SubsidiesSubsidies",
+            "name": "Subsidies",
             "code": "6.9.2",
+            "legispro_code": "",
             "details": "",
             "parent": 278,
             "lft": 85,
@@ -3326,6 +3425,7 @@
         "fields": {
             "name": "Research and development",
             "code": "6.9.3",
+            "legispro_code": "",
             "details": "",
             "parent": 278,
             "lft": 87,
@@ -3340,6 +3440,7 @@
         "fields": {
             "name": "Payments for ecosystem services (PES)",
             "code": "6.9.4",
+            "legispro_code": "",
             "details": "",
             "parent": 278,
             "lft": 89,
@@ -3354,6 +3455,7 @@
         "fields": {
             "name": "Certification/labelling schemes",
             "code": "6.9.5",
+            "legispro_code": "",
             "details": "",
             "parent": 278,
             "lft": 91,
@@ -3368,11 +3470,372 @@
         "fields": {
             "name": "Carbon pricing mechanisms",
             "code": "6.9.6",
+            "legispro_code": "",
             "details": "",
             "parent": 278,
             "lft": 93,
             "rght": 94,
             "tree_id": 6,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 285,
+        "fields": {
+            "name": "Land use & management and climate change",
+            "code": "7",
+            "legispro_code": "",
+            "details": "",
+            "parent": null,
+            "lft": 1,
+            "rght": 48,
+            "tree_id": 7,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 286,
+        "fields": {
+            "name": "Institutions and governance",
+            "code": "7.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 285,
+            "lft": 2,
+            "rght": 11,
+            "tree_id": 7,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 287,
+        "fields": {
+            "name": "Government authority in charge of land use and management",
+            "code": "7.1.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 286,
+            "lft": 3,
+            "rght": 4,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 288,
+        "fields": {
+            "name": "Duty to take climate change into account in land use plans/policy",
+            "code": "7.1.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 286,
+            "lft": 5,
+            "rght": 6,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 289,
+        "fields": {
+            "name": "Cross-sectoral coordination in land decision and policy making",
+            "code": "7.1.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 286,
+            "lft": 7,
+            "rght": 8,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 290,
+        "fields": {
+            "name": "Establishment of a land cadaster/inventory",
+            "code": "7.1.4",
+            "legispro_code": "",
+            "details": "Land inventories or cadasters are useful for recording tenure rights.  With secure tenure rights, landholders are more likely to invest in sustainable land management (SLM) and climate-smart approaches. Cadasters/inventories can be instrumental in providing an accurate map of land uses and availability of land, which is important for climate-related reporting, as well as for spatial planning for climate change adaptation.",
+            "parent": 286,
+            "lft": 9,
+            "rght": 10,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 291,
+        "fields": {
+            "name": "Spatial planning",
+            "code": "7.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 285,
+            "lft": 12,
+            "rght": 19,
+            "tree_id": 7,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 292,
+        "fields": {
+            "name": "Requirements to consider climate change in spatial planning",
+            "code": "7.2.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 291,
+            "lft": 13,
+            "rght": 14,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 293,
+        "fields": {
+            "name": "Requirements for environmental and social impact assessments",
+            "code": "7.2.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 291,
+            "lft": 15,
+            "rght": 16,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 294,
+        "fields": {
+            "name": "Climate change policy goals in land use change",
+            "code": "7.2.3",
+            "legispro_code": "",
+            "details": "The \u201cAgriculture, Forestry and Other Land Use (AFOLU)\u201d sector is responsible for approximately a quarter of anthropogenic GHG emissions that lead to climate change, with emissions from land-use change (e.g, .conversion of forestlands to other land uses such as agriculture) accounting for about 10% of the total emissions. Legislation can ensure that decisions on land-use change are informed by climate policy goals; for instance, it can establish that conversion of forest land is subject to impact assessments, and that it respects overall goals of maintaining carbon sinks.\r\n\r\nFor further information, see: http://www.fao.org/3/a-i5588e.pdf.",
+            "parent": 291,
+            "lft": 17,
+            "rght": 18,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 295,
+        "fields": {
+            "name": "Land management",
+            "code": "7.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 285,
+            "lft": 20,
+            "rght": 31,
+            "tree_id": 7,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 296,
+        "fields": {
+            "name": "Objective of sustainable land management",
+            "code": "7.3.1",
+            "legispro_code": "",
+            "details": "Sustainable land management (SLM) refers to \u201cthe adoption of land-use systems that through appropriate management practices enable land users to maximize the economic and social benefits from the land while maintaining or enhancing the ecological support functions of the land resources\u201d. \r\nEvidence increasingly highlights that SLM practices have the potential to simultaneously address desertification, land degradation and drought, climate change adaptation and mitigation, while often achieving other benefits, such as protection of biodiversity.\r\nFor further information see: https://www.unccd.int/sites/default/files/documents/2017-09/SPIPB_3_ENG_WEB.pdf",
+            "parent": 295,
+            "lft": 21,
+            "rght": 22,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 297,
+        "fields": {
+            "name": "Sustainable surface and ground water management",
+            "code": "7.3.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 295,
+            "lft": 23,
+            "rght": 24,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 298,
+        "fields": {
+            "name": "Climate change considerations for land management",
+            "code": "7.3.3",
+            "legispro_code": "",
+            "details": "Evidence increasingly highlights that sustainable land management (SLM) practices have the potential to simultaneously address desertification, land degradation and drought, climate change adaptation and mitigation, while often achieving other benefits, such as protection of biodiversity.  Examples of SLM practices are the protection of vulnerable lands from conversion; managing soil organic matter for soil carbon sequestration; promoting integrated soil\u2013crop\u2013water management and integrated agroforestry and agrosilvopastoral systems; managing grazing and livestock, and; rainwater harvesting, among others. Legislation can be instrumental in encouraging such practices by landholders (e.g. through direct requirements or incentives), and conversely, by avoiding strict land use requirements that can present barriers for their adoption (for example, rules requiring single crop use of farmlands).",
+            "parent": 295,
+            "lft": 25,
+            "rght": 26,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 299,
+        "fields": {
+            "name": "Provisions to combat desertification and land degradation, and promote restoration of degraded lands",
+            "code": "7.3.4",
+            "legispro_code": "",
+            "details": "",
+            "parent": 295,
+            "lft": 27,
+            "rght": 28,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 300,
+        "fields": {
+            "name": "Incentives for sustainable land management",
+            "code": "7.3.5",
+            "legispro_code": "",
+            "details": "",
+            "parent": 295,
+            "lft": 29,
+            "rght": 30,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 301,
+        "fields": {
+            "name": "Procedural rights applicable to land use planning and management",
+            "code": "7.4",
+            "legispro_code": "",
+            "details": "",
+            "parent": 285,
+            "lft": 32,
+            "rght": 39,
+            "tree_id": 7,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 302,
+        "fields": {
+            "name": "Procedural rights - access to information",
+            "code": "7.4.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 301,
+            "lft": 33,
+            "rght": 34,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 303,
+        "fields": {
+            "name": "Procedural rights \u2013public participation and Free, Prior and Informed Consent (FPIC)",
+            "code": "7.4.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 301,
+            "lft": 35,
+            "rght": 36,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 304,
+        "fields": {
+            "name": "Procedural rights \u2013 access to justice and dispute resolution",
+            "code": "7.4.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 301,
+            "lft": 37,
+            "rght": 38,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 305,
+        "fields": {
+            "name": "Security of land tenure",
+            "code": "7.5",
+            "legispro_code": "",
+            "details": "How people, communities and others gain access to land, fisheries and forests is defined and regulated by societies through systems of tenure. These tenure systems determine who can use which resources, for how long, and under what conditions. Security of tenure is considered essential for sustainable land management, as well as for the investments needed to adopt climate-smart approaches. Legislation can provide rules for the recognition, protection and enforcement of tenure rights.\r\nFor further information see:\r\n\u201cThe Voluntary Guidelines for Responsible Governance of Tenure of Land, Fisheries and Forestry in the Context of National Food Security (VGGT)\u201d: http://www.fao.org/tenure/voluntary-guidelines/en/",
+            "parent": 285,
+            "lft": 40,
+            "rght": 47,
+            "tree_id": 7,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 306,
+        "fields": {
+            "name": "VGGT principles and recommendations reflected in legislation",
+            "code": "7.5.1",
+            "legispro_code": "",
+            "details": "The VGGT (2012) provide an authoritative point of reference for countries when they are adopting, amending or implementing national legislation on land and natural resources tenure. The VGGT contain substantive guidance to States on legal, institutional and policy frameworks for securing tenure rights and promoting sustainable land management (SLM), which include:\r\n\t\u2022\tEstablishing and maintaining policies, legal and institutional frameworks that promote responsible and integrated governance of land tenure, fisheries and forestry resources;\r\n\t\u2022\tRecognizing and respecting, in accordance with national laws, all legitimate tenure rights and their holders, including customary ones that are not protected by law; this includes, therefore, departing from a notion of statutory legitimacy to include also socially legitimate tenure rights: landholders with a registered title, customary landholders and common tenure rights, indigenous peoples, pastoralists, etc; States should also facilitate, promote and protect the exercise of these rights, and provide access to justice in cases of rights violations and dispute resolution mechanisms;\r\n\t\u2022\tImplementing the above objectives in a non-discriminatory way, and promoting social and gender equity; in particular, specific obstacles faced by women and girls with regard to ownership and associated tenure rights should be taken into account to ensure the protection and realization of their rights; \r\n\t\u2022\tDeveloping relevant policies, laws and procedures through participatory processes involving all affected parties. Promoting transparency and access to information;\r\nFor further information see: \u201cThe VGGT at a Glance\u201d http://www.fao.org/3/a-i3016e.pdf and \u201cThe VGGT and the Law: A Guide for Lawyers and Other Legal Service Providers\u201d  http://www.fao.org/3/a-i5449e.pdf",
+            "parent": 305,
+            "lft": 41,
+            "rght": 42,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 307,
+        "fields": {
+            "name": "Tenure conflicts \u2013 dispute resolution mechanisms",
+            "code": "7.5.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 305,
+            "lft": 43,
+            "rght": 44,
+            "tree_id": 7,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 308,
+        "fields": {
+            "name": "Mechanisms addressing climate change impacts on tenure rights",
+            "code": "7.5.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 305,
+            "lft": 45,
+            "rght": 46,
+            "tree_id": 7,
             "level": 2
         }
     }

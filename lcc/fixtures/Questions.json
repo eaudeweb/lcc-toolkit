@@ -415,7 +415,7 @@
             "classification": 28,
             "lft": 1,
             "rght": 2,
-            "tree_id": 48,
+            "tree_id": 53,
             "level": 0
         }
     },
@@ -430,7 +430,7 @@
             "classification": 28,
             "lft": 1,
             "rght": 2,
-            "tree_id": 55,
+            "tree_id": 60,
             "level": 0
         }
     },
@@ -445,7 +445,7 @@
             "classification": 28,
             "lft": 1,
             "rght": 2,
-            "tree_id": 60,
+            "tree_id": 65,
             "level": 0
         }
     },
@@ -490,7 +490,7 @@
             "classification": 35,
             "lft": 1,
             "rght": 4,
-            "tree_id": 49,
+            "tree_id": 54,
             "level": 0
         }
     },
@@ -505,7 +505,7 @@
             "classification": null,
             "lft": 2,
             "rght": 3,
-            "tree_id": 49,
+            "tree_id": 54,
             "level": 1
         }
     },
@@ -520,7 +520,7 @@
             "classification": 35,
             "lft": 1,
             "rght": 2,
-            "tree_id": 56,
+            "tree_id": 61,
             "level": 0
         }
     },
@@ -535,7 +535,7 @@
             "classification": 35,
             "lft": 1,
             "rght": 2,
-            "tree_id": 61,
+            "tree_id": 66,
             "level": 0
         }
     },
@@ -580,7 +580,7 @@
             "classification": 24,
             "lft": 1,
             "rght": 2,
-            "tree_id": 50,
+            "tree_id": 55,
             "level": 0
         }
     },
@@ -595,7 +595,7 @@
             "classification": 24,
             "lft": 1,
             "rght": 2,
-            "tree_id": 57,
+            "tree_id": 62,
             "level": 0
         }
     },
@@ -3416,6 +3416,336 @@
             "lft": 12,
             "rght": 13,
             "tree_id": 47,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 276,
+        "fields": {
+            "text": "Does your country have legislation designating a specific government authority(ies) (e.g. line ministry or department) in charge of land use and management?",
+            "parent": null,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 286,
+            "lft": 1,
+            "rght": 8,
+            "tree_id": 48,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 277,
+        "fields": {
+            "text": "Is there a duty for the authority(ies) to include climate change considerations in the development and implementation of land use policy/plans?",
+            "parent": 276,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 288,
+            "lft": 2,
+            "rght": 3,
+            "tree_id": 48,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 278,
+        "fields": {
+            "text": "Are there mechanisms for cross-sectoral coordination on land decision and policy making (including with authorities in charge of agriculture, forestry, water, environment, mining, industry, urban planning, etc.)?",
+            "parent": 276,
+            "parent_answer": true,
+            "order": 2,
+            "classification": 289,
+            "lft": 4,
+            "rght": 5,
+            "tree_id": 48,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 279,
+        "fields": {
+            "text": "Does your country have provisions of laws or regulations establishing a land cadaster/inventory that provides information about the occupation and use of land?",
+            "parent": 276,
+            "parent_answer": true,
+            "order": 3,
+            "classification": 290,
+            "lft": 6,
+            "rght": 7,
+            "tree_id": 48,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 280,
+        "fields": {
+            "text": "Does your country have provisions of law or regulations on spatial planning?",
+            "parent": null,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 291,
+            "lft": 1,
+            "rght": 8,
+            "tree_id": 49,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 281,
+        "fields": {
+            "text": "Are there requirements for spatial planning to consider climate change issues (e.g. climate vulnerability of specific areas)?",
+            "parent": 280,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 292,
+            "lft": 2,
+            "rght": 3,
+            "tree_id": 49,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 282,
+        "fields": {
+            "text": "Are there requirements for environmental and social impact assessments for spatial planning?",
+            "parent": 280,
+            "parent_answer": true,
+            "order": 2,
+            "classification": 293,
+            "lft": 4,
+            "rght": 5,
+            "tree_id": 49,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 283,
+        "fields": {
+            "text": "Are there requirements for land use change that consider climate change policy goals (e.g. protection of specific areas due to their function as carbon sinks) ?",
+            "parent": 280,
+            "parent_answer": true,
+            "order": 3,
+            "classification": 294,
+            "lft": 6,
+            "rght": 7,
+            "tree_id": 49,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 284,
+        "fields": {
+            "text": "Does your country have provisions of laws or regulations on land management?",
+            "parent": null,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 295,
+            "lft": 1,
+            "rght": 12,
+            "tree_id": 50,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 285,
+        "fields": {
+            "text": "Do these include the objective of sustainable land management?",
+            "parent": 284,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 296,
+            "lft": 2,
+            "rght": 3,
+            "tree_id": 50,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 286,
+        "fields": {
+            "text": "Are there requirements for sustainable surface and ground water management (e.g. integrated land and water management)?",
+            "parent": 284,
+            "parent_answer": true,
+            "order": 2,
+            "classification": 297,
+            "lft": 4,
+            "rght": 5,
+            "tree_id": 50,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 287,
+        "fields": {
+            "text": "Are there requirements to include climate change considerations in land management?",
+            "parent": 284,
+            "parent_answer": true,
+            "order": 3,
+            "classification": 298,
+            "lft": 6,
+            "rght": 7,
+            "tree_id": 50,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 288,
+        "fields": {
+            "text": "Are there provisions to combat desertification and land degradation, and promote restoration of degraded lands?",
+            "parent": 284,
+            "parent_answer": true,
+            "order": 4,
+            "classification": 299,
+            "lft": 8,
+            "rght": 9,
+            "tree_id": 50,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 289,
+        "fields": {
+            "text": "Are there provisions on incentives (e.g. subsidies, payment for ecosystem services) for sustainable land management practices?",
+            "parent": 284,
+            "parent_answer": true,
+            "order": 5,
+            "classification": 300,
+            "lft": 10,
+            "rght": 11,
+            "tree_id": 50,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 290,
+        "fields": {
+            "text": "Does your country have provisions of law or regulations on procedural rights applicable to land use planning and management?",
+            "parent": null,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 301,
+            "lft": 1,
+            "rght": 8,
+            "tree_id": 51,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 291,
+        "fields": {
+            "text": "Does this include Access to information?",
+            "parent": 290,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 302,
+            "lft": 2,
+            "rght": 3,
+            "tree_id": 51,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 292,
+        "fields": {
+            "text": "Does this include Public participation and Free Prior and Informed Consent (FPIC)?",
+            "parent": 290,
+            "parent_answer": true,
+            "order": 2,
+            "classification": 303,
+            "lft": 4,
+            "rght": 5,
+            "tree_id": 51,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 293,
+        "fields": {
+            "text": "Does this include Access to justice and dispute resolution?",
+            "parent": 290,
+            "parent_answer": true,
+            "order": 3,
+            "classification": 304,
+            "lft": 6,
+            "rght": 7,
+            "tree_id": 51,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 294,
+        "fields": {
+            "text": "Does your country have legislation that ensures security of tenure?",
+            "parent": null,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 305,
+            "lft": 1,
+            "rght": 8,
+            "tree_id": 52,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 295,
+        "fields": {
+            "text": "Do these reflect the principles and recommendations of the Voluntary Guidelines on the Responsible Governance of Tenure of Land, Forest and Fisheries in the Context of National Food Security (VGGT)?",
+            "parent": 294,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 306,
+            "lft": 2,
+            "rght": 3,
+            "tree_id": 52,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 296,
+        "fields": {
+            "text": "Do these include Dispute resolution mechanisms for tenure conflicts (e.g. due to climate induced displacement/migrations)?",
+            "parent": 294,
+            "parent_answer": true,
+            "order": 2,
+            "classification": 307,
+            "lft": 4,
+            "rght": 5,
+            "tree_id": 52,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 297,
+        "fields": {
+            "text": "Do these include Mechanisms to cope with climate change impacts on tenure rights (e.g. displacement due to climate induced disasters like sea level rise)",
+            "parent": 294,
+            "parent_answer": true,
+            "order": 3,
+            "classification": 308,
+            "lft": 6,
+            "rght": 7,
+            "tree_id": 52,
             "level": 1
         }
     }

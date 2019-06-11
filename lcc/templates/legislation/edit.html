@@ -22,11 +22,7 @@
         <h3>
           {{ law.title }}
         </h3>
-        <div class="alert alert-primary">
-            {% if law.import_from_legispro %}
-              <p>This legislation is imported from LegisPro. File uploading is optional for this kind of legislation.</p>
-            {% endif %}
-        </div>
+
         <form id="legislationEditForm" enctype="multipart/form-data" method="post"
               action="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
           {% csrf_token %}

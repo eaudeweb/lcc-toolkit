@@ -54,9 +54,7 @@
  <h2><b>Add article</b></h2>
  {% if law.import_from_legispro %}
    <div class="alert alert-primary">
-     <p>This legislation is imported from LegisPro.</p>
      <p>The PDF file is not available.</p>
-     <p>The page field is not mandatory for a legislation imported from LegisPro</p>
    </div>
  {% endif %}
   <form class="validate_this" id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
