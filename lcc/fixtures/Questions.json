@@ -415,7 +415,7 @@
             "classification": 28,
             "lft": 1,
             "rght": 2,
-            "tree_id": 53,
+            "tree_id": 59,
             "level": 0
         }
     },
@@ -430,7 +430,7 @@
             "classification": 28,
             "lft": 1,
             "rght": 2,
-            "tree_id": 60,
+            "tree_id": 66,
             "level": 0
         }
     },
@@ -445,7 +445,7 @@
             "classification": 28,
             "lft": 1,
             "rght": 2,
-            "tree_id": 65,
+            "tree_id": 71,
             "level": 0
         }
     },
@@ -490,7 +490,7 @@
             "classification": 35,
             "lft": 1,
             "rght": 4,
-            "tree_id": 54,
+            "tree_id": 60,
             "level": 0
         }
     },
@@ -505,7 +505,7 @@
             "classification": null,
             "lft": 2,
             "rght": 3,
-            "tree_id": 54,
+            "tree_id": 60,
             "level": 1
         }
     },
@@ -520,7 +520,7 @@
             "classification": 35,
             "lft": 1,
             "rght": 2,
-            "tree_id": 61,
+            "tree_id": 67,
             "level": 0
         }
     },
@@ -535,7 +535,7 @@
             "classification": 35,
             "lft": 1,
             "rght": 2,
-            "tree_id": 66,
+            "tree_id": 72,
             "level": 0
         }
     },
@@ -580,7 +580,7 @@
             "classification": 24,
             "lft": 1,
             "rght": 2,
-            "tree_id": 55,
+            "tree_id": 61,
             "level": 0
         }
     },
@@ -595,7 +595,7 @@
             "classification": 24,
             "lft": 1,
             "rght": 2,
-            "tree_id": 62,
+            "tree_id": 68,
             "level": 0
         }
     },
@@ -3746,6 +3746,501 @@
             "lft": 6,
             "rght": 7,
             "tree_id": 52,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 298,
+        "fields": {
+            "text": "Does your country have legislation designating a specific Government authority(ies) (e.g. line ministry or department) in charge of forest use and management?",
+            "parent": null,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 310,
+            "lft": 1,
+            "rght": 10,
+            "tree_id": 53,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 299,
+        "fields": {
+            "text": "Is there a duty on the authority(ies) to include climate change considerations in the development and implementation of forest policy (e.g. enhancing forests as carbon sinks or no net forest loss)?",
+            "parent": 298,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 312,
+            "lft": 2,
+            "rght": 3,
+            "tree_id": 53,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 300,
+        "fields": {
+            "text": "Does this include a mandate for regulating forest conversion?",
+            "parent": 298,
+            "parent_answer": true,
+            "order": 2,
+            "classification": 313,
+            "lft": 4,
+            "rght": 5,
+            "tree_id": 53,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 301,
+        "fields": {
+            "text": "Are there requirements to collect and report information about GHG emissions and removals by sinks from the forest sector?",
+            "parent": 298,
+            "parent_answer": true,
+            "order": 3,
+            "classification": 314,
+            "lft": 6,
+            "rght": 7,
+            "tree_id": 53,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 302,
+        "fields": {
+            "text": "Does your country have provisions of laws or regulations establishing a forestland cadaster/inventory?",
+            "parent": 298,
+            "parent_answer": true,
+            "order": 4,
+            "classification": 315,
+            "lft": 8,
+            "rght": 9,
+            "tree_id": 53,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 303,
+        "fields": {
+            "text": "Does your country have provisions of law or regulations on forestland use and planning?",
+            "parent": null,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 316,
+            "lft": 1,
+            "rght": 8,
+            "tree_id": 54,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 304,
+        "fields": {
+            "text": "Do these include definitions of the different uses of forests allowed (e.g. conservation, commercial, recreational)?",
+            "parent": 303,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 317,
+            "lft": 2,
+            "rght": 3,
+            "tree_id": 54,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 305,
+        "fields": {
+            "text": "Do these include Rules for conversion of forestland to other uses that take climate change into account?",
+            "parent": 303,
+            "parent_answer": true,
+            "order": 2,
+            "classification": 318,
+            "lft": 4,
+            "rght": 7,
+            "tree_id": 54,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 306,
+        "fields": {
+            "text": "Do these include requirements of social and environmental impact assessment?",
+            "parent": 305,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 319,
+            "lft": 5,
+            "rght": 6,
+            "tree_id": 54,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 307,
+        "fields": {
+            "text": "Does your country have legislation that ensures security of forest tenure?",
+            "parent": null,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 320,
+            "lft": 1,
+            "rght": 4,
+            "tree_id": 55,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 308,
+        "fields": {
+            "text": "Do these reflect the principles and recommendations of the Voluntary Guidelines on the Responsible Governance of Tenure of Land, Fisheries and Forests in the Context of National Food Security ( VGGT)?",
+            "parent": 307,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 321,
+            "lft": 2,
+            "rght": 3,
+            "tree_id": 55,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 309,
+        "fields": {
+            "text": "Does your country have provisions of legislation or regulations on forest management?",
+            "parent": null,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 322,
+            "lft": 1,
+            "rght": 26,
+            "tree_id": 56,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 310,
+        "fields": {
+            "text": "Do these include the objective of sustainable forest management?",
+            "parent": 309,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 323,
+            "lft": 2,
+            "rght": 3,
+            "tree_id": 56,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 311,
+        "fields": {
+            "text": "Do these include provisions to combat deforestation and forest degradation?",
+            "parent": 309,
+            "parent_answer": true,
+            "order": 2,
+            "classification": 324,
+            "lft": 4,
+            "rght": 5,
+            "tree_id": 56,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 312,
+        "fields": {
+            "text": "Do these include provisions to promote afforestation and reforestation?",
+            "parent": 309,
+            "parent_answer": true,
+            "order": 3,
+            "classification": 325,
+            "lft": 6,
+            "rght": 7,
+            "tree_id": 56,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 313,
+        "fields": {
+            "text": "Are there provisions governing illegal logging?",
+            "parent": 309,
+            "parent_answer": true,
+            "order": 4,
+            "classification": 326,
+            "lft": 8,
+            "rght": 9,
+            "tree_id": 56,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 314,
+        "fields": {
+            "text": "Do these include provisions on timber legality?",
+            "parent": 309,
+            "parent_answer": true,
+            "order": 5,
+            "classification": 327,
+            "lft": 10,
+            "rght": 15,
+            "tree_id": 56,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 315,
+        "fields": {
+            "text": "Do these include environmental requirements in the harvesting of timber (e.g. EIA, reforestation obligations, areas where timber is forbidden)?",
+            "parent": 314,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 328,
+            "lft": 11,
+            "rght": 12,
+            "tree_id": 56,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 316,
+        "fields": {
+            "text": "Do these include requirements for timber trade?",
+            "parent": 314,
+            "parent_answer": true,
+            "order": 2,
+            "classification": 329,
+            "lft": 13,
+            "rght": 14,
+            "tree_id": 56,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 317,
+        "fields": {
+            "text": "Are there provisions promoting the use of wood products from sustainably managed forests?",
+            "parent": 309,
+            "parent_answer": true,
+            "order": 6,
+            "classification": 330,
+            "lft": 16,
+            "rght": 17,
+            "tree_id": 56,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 318,
+        "fields": {
+            "text": "Do these include provisions on access and use of non-timber forest products?",
+            "parent": 309,
+            "parent_answer": true,
+            "order": 7,
+            "classification": 331,
+            "lft": 18,
+            "rght": 19,
+            "tree_id": 56,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 319,
+        "fields": {
+            "text": "Are there provisions promoting participatory/community based forest management (if applicable to your country)?",
+            "parent": 309,
+            "parent_answer": true,
+            "order": 8,
+            "classification": 332,
+            "lft": 20,
+            "rght": 21,
+            "tree_id": 56,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 320,
+        "fields": {
+            "text": "Are there provisions on agroforestry?",
+            "parent": 309,
+            "parent_answer": true,
+            "order": 9,
+            "classification": 333,
+            "lft": 22,
+            "rght": 23,
+            "tree_id": 56,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 321,
+        "fields": {
+            "text": "Are there provisions creating a national forest monitoring system?",
+            "parent": 309,
+            "parent_answer": true,
+            "order": 10,
+            "classification": 334,
+            "lft": 24,
+            "rght": 25,
+            "tree_id": 56,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 322,
+        "fields": {
+            "text": "Does your country have provisions of law or regulations on procedural rights applicable to the forest sector?",
+            "parent": null,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 335,
+            "lft": 1,
+            "rght": 8,
+            "tree_id": 57,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 323,
+        "fields": {
+            "text": "Do these include Access to information?",
+            "parent": 322,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 336,
+            "lft": 2,
+            "rght": 3,
+            "tree_id": 57,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 324,
+        "fields": {
+            "text": "Do these include Public participation and free, prior and informed consent?",
+            "parent": 322,
+            "parent_answer": true,
+            "order": 2,
+            "classification": 337,
+            "lft": 4,
+            "rght": 5,
+            "tree_id": 57,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 325,
+        "fields": {
+            "text": "Do these include Access to justice and dispute resolution?",
+            "parent": 322,
+            "parent_answer": true,
+            "order": 3,
+            "classification": 338,
+            "lft": 6,
+            "rght": 7,
+            "tree_id": 57,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 326,
+        "fields": {
+            "text": "Does your country have provisions in legislation or regulations creating financing and incentive mechanisms for sustainable forest management?",
+            "parent": null,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 339,
+            "lft": 1,
+            "rght": 10,
+            "tree_id": 58,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 327,
+        "fields": {
+            "text": "Do these include (as applicable to your country) a national forest fund?",
+            "parent": 326,
+            "parent_answer": true,
+            "order": 1,
+            "classification": 340,
+            "lft": 2,
+            "rght": 3,
+            "tree_id": 58,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 328,
+        "fields": {
+            "text": "Do these include (as applicable to your country) research & development funds for climate change adaptation and mitigation in the forest sector?",
+            "parent": 326,
+            "parent_answer": true,
+            "order": 2,
+            "classification": 341,
+            "lft": 4,
+            "rght": 5,
+            "tree_id": 58,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 329,
+        "fields": {
+            "text": "Do these include (as applicable to your country) payments for ecosystem services/results-based payments?",
+            "parent": 326,
+            "parent_answer": true,
+            "order": 3,
+            "classification": 342,
+            "lft": 6,
+            "rght": 7,
+            "tree_id": 58,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.question",
+        "pk": 330,
+        "fields": {
+            "text": "Do these include (as applicable to your country) certification and labelling schemes for sustainable forest products?",
+            "parent": 326,
+            "parent_answer": true,
+            "order": 4,
+            "classification": 343,
+            "lft": 8,
+            "rght": 9,
+            "tree_id": 58,
             "level": 1
         }
     }

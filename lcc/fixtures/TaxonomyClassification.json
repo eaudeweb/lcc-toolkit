@@ -3838,5 +3838,530 @@
             "tree_id": 7,
             "level": 2
         }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 309,
+        "fields": {
+            "name": "Forestry and climate change",
+            "code": "8",
+            "legispro_code": "",
+            "details": "",
+            "parent": null,
+            "lft": 1,
+            "rght": 70,
+            "tree_id": 8,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 310,
+        "fields": {
+            "name": "Institutions and governance",
+            "code": "8.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 309,
+            "lft": 2,
+            "rght": 13,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 311,
+        "fields": {
+            "name": "Government authority in charge of forest use and management",
+            "code": "8.1.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 310,
+            "lft": 3,
+            "rght": 4,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 312,
+        "fields": {
+            "name": "Duty to take climate change into consideration in forestry policy",
+            "code": "8.1.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 310,
+            "lft": 5,
+            "rght": 6,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 313,
+        "fields": {
+            "name": "Mandate for regulating forest conversion",
+            "code": "8.1.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 310,
+            "lft": 7,
+            "rght": 8,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 314,
+        "fields": {
+            "name": "Duty to collect and report on GHG emissions and removals by sinks from the forest sector",
+            "code": "8.1.4",
+            "legispro_code": "",
+            "details": "",
+            "parent": 310,
+            "lft": 9,
+            "rght": 10,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 315,
+        "fields": {
+            "name": "Establishment of a forestland cadaster/inventory",
+            "code": "8.1.5",
+            "legispro_code": "",
+            "details": "",
+            "parent": 310,
+            "lft": 11,
+            "rght": 12,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 316,
+        "fields": {
+            "name": "Forestland use and planning",
+            "code": "8.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 309,
+            "lft": 14,
+            "rght": 21,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 317,
+        "fields": {
+            "name": "Definitions of different uses of forests",
+            "code": "8.2.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 316,
+            "lft": 15,
+            "rght": 16,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 318,
+        "fields": {
+            "name": "Rules for forestland conversion",
+            "code": "8.2.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 316,
+            "lft": 17,
+            "rght": 18,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 319,
+        "fields": {
+            "name": "Rules for forestland conversion \u2013 social and environmental impact assessment",
+            "code": "8.2.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 316,
+            "lft": 19,
+            "rght": 20,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 320,
+        "fields": {
+            "name": "Security of forest tenure",
+            "code": "8.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 309,
+            "lft": 22,
+            "rght": 25,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 321,
+        "fields": {
+            "name": "VGGT principles and recommendations reflected in forest legislation",
+            "code": "8.3.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 320,
+            "lft": 23,
+            "rght": 24,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 322,
+        "fields": {
+            "name": "Forest management",
+            "code": "8.4",
+            "legispro_code": "",
+            "details": "",
+            "parent": 309,
+            "lft": 26,
+            "rght": 51,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 323,
+        "fields": {
+            "name": "Objective of sustainable forest management",
+            "code": "8.4.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 27,
+            "rght": 28,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 324,
+        "fields": {
+            "name": "Provisions to combat deforestation and forest degradation",
+            "code": "8.4.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 35,
+            "rght": 36,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 325,
+        "fields": {
+            "name": "Provisions to promote afforestation and reforestation",
+            "code": "8.4.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 37,
+            "rght": 38,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 326,
+        "fields": {
+            "name": "Provisions governing illegal logging",
+            "code": "8.4.4",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 39,
+            "rght": 40,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 327,
+        "fields": {
+            "name": "Timber legality",
+            "code": "8.4.5",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 41,
+            "rght": 42,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 328,
+        "fields": {
+            "name": "Timber legality \u2013 Environmental requirements for timber harvesting",
+            "code": "8.4.6",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 43,
+            "rght": 44,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 329,
+        "fields": {
+            "name": "Timber legality \u2013 Requirements for timber trade",
+            "code": "8.4.7",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 45,
+            "rght": 46,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 330,
+        "fields": {
+            "name": "Promotion of use of wood products from sustainably managed forests",
+            "code": "8.4.8",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 47,
+            "rght": 48,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 331,
+        "fields": {
+            "name": "Non-timber forest products \u2013 access and use",
+            "code": "8.4.9",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 49,
+            "rght": 50,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 332,
+        "fields": {
+            "name": "Participatory/community-based forest management (CBFM)",
+            "code": "8.4.10",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 29,
+            "rght": 30,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 333,
+        "fields": {
+            "name": "Agroforestry",
+            "code": "8.4.11",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 31,
+            "rght": 32,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 334,
+        "fields": {
+            "name": "National forest monitoring system",
+            "code": "8.4.12",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 33,
+            "rght": 34,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 335,
+        "fields": {
+            "name": "Procedural rights applicable to the forest sector",
+            "code": "8.5",
+            "legispro_code": "",
+            "details": "",
+            "parent": 309,
+            "lft": 52,
+            "rght": 59,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 336,
+        "fields": {
+            "name": "Procedural rights \u2013 access to information",
+            "code": "8.5.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 335,
+            "lft": 53,
+            "rght": 54,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 337,
+        "fields": {
+            "name": "Procedural rights \u2013 public participation and Free Prior and Informed Consent (FPIC)",
+            "code": "8.5.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 335,
+            "lft": 55,
+            "rght": 56,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 338,
+        "fields": {
+            "name": "Procedural rights \u2013 access to justice and dispute resolution",
+            "code": "8.5.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 335,
+            "lft": 57,
+            "rght": 58,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 339,
+        "fields": {
+            "name": "Financing and incentives for sustainable forest management",
+            "code": "8.6",
+            "legispro_code": "",
+            "details": "",
+            "parent": 309,
+            "lft": 60,
+            "rght": 69,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 340,
+        "fields": {
+            "name": "National forest fund",
+            "code": "8.6.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 339,
+            "lft": 61,
+            "rght": 62,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 341,
+        "fields": {
+            "name": "Research & development funds",
+            "code": "8.6.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 339,
+            "lft": 63,
+            "rght": 64,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 342,
+        "fields": {
+            "name": "Payments for ecosystem services (PES)/results-based payments",
+            "code": "8.6.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 339,
+            "lft": 65,
+            "rght": 66,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 343,
+        "fields": {
+            "name": "Certification/labeling schemes for sustainable forest products",
+            "code": "8.6.4",
+            "legispro_code": "",
+            "details": "",
+            "parent": 339,
+            "lft": 67,
+            "rght": 68,
+            "tree_id": 8,
+            "level": 2
+        }
     }
 ]
