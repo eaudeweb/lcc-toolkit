@@ -70,7 +70,7 @@ class CountryMetadataFiltering:
             self.data[min_field_name] = min_value
             self.data[max_field_name] = max_value
 
-    def filter_countries(self, request, country=None):
+    def filter_countries(self, request, country=None, selected_countries=False):
         for field in self.BOOLEAN_FIELDS:
             self.filter_boolean_fields(request, field, getattr(country, field, None))
 
@@ -87,6 +87,8 @@ class CountryMetadataFiltering:
                         max_value = range[1]
                         continue
             self.filter_range_fields(request, field, min_value, max_value)
+        if selected_countries == True and not self.data:
+            return self.countries.none()
         return self.countries.filter(**self.data)
 
 
