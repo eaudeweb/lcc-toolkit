@@ -85,7 +85,7 @@ Where [N] is the number of Legislation objects to generate.
 ## Testing
 
 Allow the user to create a database:
-    docker exec -it lcc.db bash
+    docker exec -it lcct.db bash
     psql -U postgres
     ALTER USER demo CREATEDB;
 

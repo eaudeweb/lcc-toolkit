@@ -336,7 +336,7 @@ class LegislationExplorer(TestCase):
 
     def test_country_filtering(self):
 
-        myanmar = ['MMR']
+        myanmar = 'MMR'
         myanmar_class_id = 118
 
         c = Client()

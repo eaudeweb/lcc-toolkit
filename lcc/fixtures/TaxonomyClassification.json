@@ -3838,5 +3838,530 @@
             "tree_id": 7,
             "level": 2
         }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 309,
+        "fields": {
+            "name": "Forestry and climate change",
+            "code": "8",
+            "legispro_code": "",
+            "details": "",
+            "parent": null,
+            "lft": 1,
+            "rght": 70,
+            "tree_id": 8,
+            "level": 0
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 310,
+        "fields": {
+            "name": "Institutions and governance",
+            "code": "8.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 309,
+            "lft": 2,
+            "rght": 13,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 311,
+        "fields": {
+            "name": "Government authority in charge of forest use and management",
+            "code": "8.1.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 310,
+            "lft": 3,
+            "rght": 4,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 312,
+        "fields": {
+            "name": "Duty to take climate change into consideration in forestry policy",
+            "code": "8.1.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 310,
+            "lft": 5,
+            "rght": 6,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 313,
+        "fields": {
+            "name": "Mandate for regulating forest conversion",
+            "code": "8.1.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 310,
+            "lft": 7,
+            "rght": 8,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 314,
+        "fields": {
+            "name": "Duty to collect and report on GHG emissions and removals by sinks from the forest sector",
+            "code": "8.1.4",
+            "legispro_code": "",
+            "details": "Information on the level of emissions and removals of greenhouse gases is essential for policy making, as well as for reporting obligations under the climate change regime. The Paris Agreement has added to the reporting obligations under the UN Framework Convention on Climate Change by requiring Parties to provide information on their national inventory report of greenhouse gas (GHG) emissions by sources and removal by sinks, to evaluate changes in net emission levels against self-declared emission targets. This requirement is also included in the new \u2018Enhanced Transparency Framework (ETF)\u2019 in Article 13, paragraph 7(a) of the Paris Agreement, which also requires a progress report on the implementation of Nationally Determined Contributions. The Conference of the Parties serving as the meeting of the Parties to the Paris Agreement adopted decisions on the Biennial Transparency Reports (BRT) which will provide a framework for Parties to provide the national inventory reports and the information necessary to track progress in implementing and achieving NDCs, as well as information on climate change impacts and adaptation mandated under Article 7 of the Paris Agreement.  Developed country Parties are also to provide information pursuant to Article 13, paragraph 9. The first BRT and inventory reports are to be submitted by 2024.",
+            "parent": 310,
+            "lft": 9,
+            "rght": 10,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 315,
+        "fields": {
+            "name": "Establishment of a forestland cadaster/inventory",
+            "code": "8.1.5",
+            "legispro_code": "",
+            "details": "",
+            "parent": 310,
+            "lft": 11,
+            "rght": 12,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 316,
+        "fields": {
+            "name": "Forestland use and planning",
+            "code": "8.2",
+            "legispro_code": "",
+            "details": "For forested or partly forested areas, land-use planning involves the systematic assessment of forestland and its potential for various land uses, a consideration of the desirability of those land uses, and an understanding of economic, social and environmental conditions and implications of each type of land use. Land-use planning is driven by the need for (i) improved management, and (ii) a different pattern of land use, as dictated by changing circumstances. Typically, a land use plan (LUP) offers a framework for overall land and environmental management, which includes forested lands, and which determines resource allocation, cross sectoral linkages and institutional coordination. A LUP (at national or subnational levels, depending on the context) can also be a vehicle for the promotion of sustainable land use management, the conservation of forest resources and carbon sinks, and for increasing tenure security by recognising and protecting customary and indigenous tenure rights. A LUP will also increase accountability and provide a sound basis for the resolution of tenure-related disputes. These are all elements that contribute to the improvement of livelihoods and food security, which in turn are prerequisites for a successful implementation of climate strategies. Countries will often enact a LUP through passing a piece of legislation, which gives it greater legal force. \r\n\r\nFor further information, refer to: http://www.fao.org/sustainable-forest-management/toolbox/modules/land-use-planning/basic-knowledge/en/?type=111",
+            "parent": 309,
+            "lft": 14,
+            "rght": 21,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 317,
+        "fields": {
+            "name": "Definitions of different uses of forests",
+            "code": "8.2.1",
+            "legispro_code": "",
+            "details": "A central part of land-use planning in forest areas is reaching agreement on the different management regimes possible for those areas. These might include: areas for commercial timber harvesting; areas of high conservation value to be included in a protected-area network or afforded other special management status; areas that have special significance for indigenous peoples and other local communities; areas that are part of local agricultural or agroforestry systems; parts of the landscape, such as highly erodible soil types or riparian zones that need special management; areas of recreational value; areas that need restoration or rehabilitation; and areas that require special management because of climate change. The inclusion of a definition of different forestland uses into legislation adds to clarity for planning and sustainable forest management. \r\n\r\nFor further information, refer to: http://www.fao.org/sustainable-forest-management/toolbox/modules/land-use-planning/basic-knowledge/en/?type=111",
+            "parent": 316,
+            "lft": 15,
+            "rght": 16,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 318,
+        "fields": {
+            "name": "Rules for forestland conversion",
+            "code": "8.2.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 316,
+            "lft": 17,
+            "rght": 18,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 319,
+        "fields": {
+            "name": "Rules for forestland conversion \u2013 social and environmental impact assessment",
+            "code": "8.2.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 316,
+            "lft": 19,
+            "rght": 20,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 320,
+        "fields": {
+            "name": "Security of forest tenure",
+            "code": "8.3",
+            "legispro_code": "",
+            "details": "Forest tenure is used to refer to the rules (formal or informal) that determine access, use and control over forest resources within a given jurisdiction. The governance of tenure is a crucial element in determining how individuals, communities and businesses acquire rights to forest resources under the law and in practice. Weak governance systems will have negative consequences on social stability, economic growth and sustainable natural resource management. Sustainable Forest Management and the achievement of climate goals are therefore highly dependent on the capacity of the legal, institutional and judicial frameworks to ensure equitable access to forestland and resources, to protect against the arbitrary loss of tenure rights and to provide for transparent, accountable and participatory decision-making processes.",
+            "parent": 309,
+            "lft": 22,
+            "rght": 25,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 321,
+        "fields": {
+            "name": "VGGT principles and recommendations reflected in forest legislation",
+            "code": "8.3.1",
+            "legispro_code": "",
+            "details": "The VGGT (2012) provide an authoritative point of reference for countries when they are adopting, amending or implementing national legislation on land and natural resources tenure. The VGGT contain substantive guidance to States on legal, institutional and policy frameworks for securing tenure rights and promoting sustainable land management (SLM), which include:\r\n\t\u2022\tEstablishing and maintaining policies, legal and institutional frameworks that promote responsible and integrated governance of land tenure, fisheries and forestry resources;\r\n\t\u2022\tRecognizing and respecting, in accordance with national laws, all legitimate tenure rights and their holders, including customary ones that are not protected by law. This includes departing from a notion of statutory legitimacy alone to including socially legitimate tenure rights: landholders with a registered title, customary landholders and common tenure rights, indigenous peoples, pastoralists, etc. States should also facilitate, promote and protect the exercise of these rights, and provide access to justice and dispute resolution mechanisms;\r\n\t\u2022\tImplementing the above objectives in a non-discriminatory way, and promoting social and gender equity; in particular, specific obstacles faced by women and girls with regard to ownership and associated tenure rights should be taken into account to ensure the protection and realization of their rights; \r\n\t\u2022\tDeveloping relevant policies, laws and procedures through participatory processes involving all affected parties. Promoting transparency and access to information.\r\n\r\nFor further information see: \u201cThe VGGT at a Glance\u201d http://www.fao.org/3/a-i3016e.pdf and \u201cThe VGGT and the Law: A Guide for Lawyers and Other Legal Service Providers\u201d  http://www.fao.org/3/a-i5449e.pdf",
+            "parent": 320,
+            "lft": 23,
+            "rght": 24,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 322,
+        "fields": {
+            "name": "Forest management",
+            "code": "8.4",
+            "legispro_code": "",
+            "details": "Forest management is the process of planning and implementing practices for the stewardship and use of forests and other wooded lands to meet specific environmental, economic, social and cultural objectives. It deals with the overall administrative, economic, legal, social, technical and scientific aspects related to natural and planted forests. It may involve varying degrees of deliberate human intervention, ranging from actions aimed at safeguarding and maintaining forest ecosystems and their functions, to those favouring specific socially or economically valuable species or groups of species for the improved production of forest goods and services. In this regard, it is a key function for the achievement of climate change goals. Legislation applicable to the forest sector will usually include forest management issues.\r\n\r\nFor further information, refer to: http://www.fao.org/forestry/sfm/85084/en/",
+            "parent": 309,
+            "lft": 26,
+            "rght": 51,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 323,
+        "fields": {
+            "name": "Objective of sustainable forest management",
+            "code": "8.4.1",
+            "legispro_code": "",
+            "details": "Promoting sustainable forest management (SFM) is a fundamental step to achieving climate goals in the forest sector. SFM consists in \u201caddressing deforestation and forest degradation while increasing direct benefits to people and the environment. At the social level, SFM contributes to livelihoods, income generation and employment; at the environmental level, it contributes to preservation of ecosystem services such as carbon sequestration and water, soil and biodiversity conservation. Managing forests sustainably means increasing their benefits, including timber and food, to meet society\u2019s needs in a way that conserves and maintains forest ecosystems for the benefit of present and future generations\u201d.  At the national level, the responsiveness of a country\u2019s policy, legal and institutional framework and the application of the rule of law are considered strong determinants of the success of SFM. \r\n\r\nFor further information see: http://www.fao.org/forestry/sfm/en/",
+            "parent": 322,
+            "lft": 27,
+            "rght": 28,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 324,
+        "fields": {
+            "name": "Provisions to combat deforestation and forest degradation",
+            "code": "8.4.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 35,
+            "rght": 36,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 325,
+        "fields": {
+            "name": "Provisions to promote afforestation and reforestation",
+            "code": "8.4.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 37,
+            "rght": 38,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 326,
+        "fields": {
+            "name": "Provisions governing illegal logging",
+            "code": "8.4.4",
+            "legispro_code": "",
+            "details": "Illegal logging and unregulated logging resulting from forest conversion are a major driver of deforestation and forest degradation, which contributes to increasing GHG emissions (and reducing carbon sinks). The term is used to refer to logging practices that contravene one or more of the domestic and/or international legal instruments that apply to forestry activities and the timber value chain in a country.  There may not be legal provisions governing \"illegal logging\" as such, but when actors along the timber value chain violate these provisions, logging becomes illegal. Examples include a violation of the conditions attached to a logging authorisation, violation of international labour standards, or non-compliance with fiscal obligations or traceability requirements. Reducing opportunities for illegality and providing incentives to trade in legally sourced and processed timber contributes to sustainable forest management and to climate change mitigation.",
+            "parent": 322,
+            "lft": 39,
+            "rght": 40,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 327,
+        "fields": {
+            "name": "Timber legality",
+            "code": "8.4.5",
+            "legispro_code": "",
+            "details": "Legislation should define the scope of what constitutes \u201ctimber legality\u201d, which is otherwise subject to interpretation and generally limited to timber that complies with sector-specific legislation.  It is important that loggers, operators and compliance officers have a clear and common understanding of the full range of legal instruments that apply nationally to determine the legality of timber. Legality in the timber value chain is an important contributor to the achievement of climate goals, in particular to avoid deforestation and conversion of forestland that is done against the law.",
+            "parent": 322,
+            "lft": 41,
+            "rght": 42,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 328,
+        "fields": {
+            "name": "Timber legality \u2013 Environmental requirements for timber harvesting",
+            "code": "8.4.6",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 43,
+            "rght": 44,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 329,
+        "fields": {
+            "name": "Timber legality \u2013 Requirements for timber trade",
+            "code": "8.4.7",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 45,
+            "rght": 46,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 330,
+        "fields": {
+            "name": "Promotion of use of wood products from sustainably managed forests",
+            "code": "8.4.8",
+            "legispro_code": "",
+            "details": "Legislation can promote the use of wood from sustainably managed forests, e.g. through incentives and/or certification and labelling schemes and other requirements/standards. This represents an important contribution towards climate change goals, and also supports sustainable forest management.",
+            "parent": 322,
+            "lft": 47,
+            "rght": 48,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 331,
+        "fields": {
+            "name": "Non-timber forest products \u2013 access and use",
+            "code": "8.4.9",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 49,
+            "rght": 50,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 332,
+        "fields": {
+            "name": "Participatory/community-based forest management (CBFM)",
+            "code": "8.4.10",
+            "legispro_code": "",
+            "details": "Community based forest management (CBFM) refers broadly to governance of forestland tenure, as well as to forest use and governance arrangements under which the rights, responsibilities, and authority for forest management rest partially or fully with local communities of forest users. Clarity and security of access of local communities to an array of forest rights are considered vital in reducing deforestation and degradation of rural landscapes. CBFM is increasingly put forward as an effective climate change adaptation measure in the forest sector.  Legislation has a central role to play in ensuring the legal recognition and protection of customary tenure systems that support such forms of participatory/community-based forest management arrangements.\r\n\r\nFor further information see:\r\n- http://www.fao.org/forestry/participatory/en/\r\n- World Resources Institute, \u201cSecuring Rights, Combating Climate Change: How Strengthening Community Forest Rights Mitigates Climate Change.\u201d, 2014, pages 3-4: https://www.wri.org/publication/securing-rights-combating-climate-change",
+            "parent": 322,
+            "lft": 29,
+            "rght": 30,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 333,
+        "fields": {
+            "name": "Agroforestry",
+            "code": "8.4.11",
+            "legispro_code": "",
+            "details": "Agroforestry areas are defined as \u201cland with tree cover, that is not forestland and with temporary agricultural crops and/or pastures/animals\u201d. Such areas can include agrisilviculturural, silvopastoral and agrosilvopastoral systems. The Intergovernmental Panel on Climate Change (IPCC) acknowledges that agroforestry systems and tree cover on agricultural land make an important contribution to climate change mitigation. Legal provisions should lay out the requirements for engaging in agroforestry.\r\n\r\nFor further information see:\r\n- IPPC (2001). A Report of Working Group III of the Intergovernmental Panel on Climate Change, Accra, Ghana, Section 10.3.2.5. Available at: http://www.ipcc.ch/ipccreports/tar/wg3/index.php?idp=418\r\n- http://www.fao.org/forestry/agroforestry/en/",
+            "parent": 322,
+            "lft": 31,
+            "rght": 32,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 334,
+        "fields": {
+            "name": "National forest monitoring system",
+            "code": "8.4.12",
+            "legispro_code": "",
+            "details": "",
+            "parent": 322,
+            "lft": 33,
+            "rght": 34,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 335,
+        "fields": {
+            "name": "Procedural rights applicable to the forest sector",
+            "code": "8.5",
+            "legispro_code": "",
+            "details": "Procedural rights represent important guarantees for individuals, as they provide mechanisms to hold governments to account and to make informed decisions. Procedural rights include the right to access environmental information, the right to consultation and participation in decision-making (including free, prior and informed consent (FPIC), which is a key element of many forest related operations), and the right to seek legal remedy.",
+            "parent": 309,
+            "lft": 52,
+            "rght": 59,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 336,
+        "fields": {
+            "name": "Procedural rights \u2013 access to information",
+            "code": "8.5.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 335,
+            "lft": 53,
+            "rght": 54,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 337,
+        "fields": {
+            "name": "Procedural rights \u2013 public participation and Free Prior and Informed Consent (FPIC)",
+            "code": "8.5.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 335,
+            "lft": 55,
+            "rght": 56,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 338,
+        "fields": {
+            "name": "Procedural rights \u2013 access to justice and dispute resolution",
+            "code": "8.5.3",
+            "legispro_code": "",
+            "details": "",
+            "parent": 335,
+            "lft": 57,
+            "rght": 58,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 339,
+        "fields": {
+            "name": "Financing and incentives for sustainable forest management",
+            "code": "8.6",
+            "legispro_code": "",
+            "details": "",
+            "parent": 309,
+            "lft": 60,
+            "rght": 69,
+            "tree_id": 8,
+            "level": 1
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 340,
+        "fields": {
+            "name": "National forest fund",
+            "code": "8.6.1",
+            "legispro_code": "",
+            "details": "",
+            "parent": 339,
+            "lft": 61,
+            "rght": 62,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 341,
+        "fields": {
+            "name": "Research & development funds",
+            "code": "8.6.2",
+            "legispro_code": "",
+            "details": "",
+            "parent": 339,
+            "lft": 63,
+            "rght": 64,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 342,
+        "fields": {
+            "name": "Payments for ecosystem services (PES)/results-based payments",
+            "code": "8.6.3",
+            "legispro_code": "",
+            "details": "Article 5 of the Paris Agreement states that Parties should take action to conserve and enhance sinks and reservoirs of GHGs, including forests, and encourages actions to implement and support these goals, including through the establishment of results-based payment systems.  This Article also gave a treaty-based legal anchor to the Warsaw Framework for REDD+ (reducing emissions from deforestation and forest degradation in developing countries, and the role of conservation, sustainable management of forests, and enhancement of forest carbon stocks in developing countries), which was adopted at COP 19.\u00a0Payment for ecosystem services (PES) is an example of results-based payments that has been gaining support as a promising tool for the promotion of sustainable practices. PES involves payments to land or other natural resource owners in return for a guaranteed flow of ecosystem services or certain actions likely to enhance their provision over and above what would otherwise be provided in the absence of payment.\r\n\r\nFor further information see:\r\nhttp://www.undp.org/content/sdfinance/en/home/solutions/payments-for-ecosystem-services.html",
+            "parent": 339,
+            "lft": 65,
+            "rght": 66,
+            "tree_id": 8,
+            "level": 2
+        }
+    },
+    {
+        "model": "lcc.taxonomyclassification",
+        "pk": 343,
+        "fields": {
+            "name": "Certification/labeling schemes for sustainable forest products",
+            "code": "8.6.4",
+            "legispro_code": "",
+            "details": "",
+            "parent": 339,
+            "lft": 67,
+            "rght": 68,
+            "tree_id": 8,
+            "level": 2
+        }
     }
 ]

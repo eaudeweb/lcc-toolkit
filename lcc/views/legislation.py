@@ -411,7 +411,10 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
 
             # String representing country iso code
             countries = self.request.GET.getlist('countries[]')
-            filtering_countries = self.filter_countries(self.request)
+            selected_countries = False
+            if countries:
+                selected_countries = True
+            filtering_countries = self.filter_countries(self.request, selected_countries=selected_countries)
             if countries or filtering_countries.count() != models.Country.objects.all().count():
                 countries.extend([country.iso for country in filtering_countries])
                 search = search.query('terms', country=countries)
