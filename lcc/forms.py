@@ -108,6 +108,7 @@ class RegisterForm(ModelForm):
             RolesManager.get_roles_names()
         ))
     )
+    affiliation = forms.CharField(max_length=255, required=True)
 
     class Meta:
         model = models.UserProfile
