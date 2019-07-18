@@ -79,7 +79,6 @@ function handleLink(itemValue) {
 }
 
 function handleShowPopover(id) {
-    console.log('handleShowPopover', id)
     return showPopoverForTheItem;
 
     function showPopoverForTheItem(event) {
