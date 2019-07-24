@@ -458,6 +458,13 @@ class UserProfile(models.Model):
         blank=True,
     )
 
+    approve_url = models.URLField(
+        'Approve URL',
+        max_length=255,
+        null=True,
+        blank=True
+    )
+
     @property
     def roles(self):
         return get_user_roles(self.user)

@@ -22,6 +22,8 @@ from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.utils.encoding import force_text
 
+from django.urls import reverse
+
 from rolepermissions.roles import get_user_roles
 from rolepermissions.mixins import HasRoleMixin
 
@@ -79,6 +81,12 @@ class Register(CreateView):
 
     def _send_admin_mails(self, profile):
         profile_id = urlsafe_base64_encode(force_bytes(profile.pk))
+        approve_url = _site_url(self.request) + reverse(
+            'lcc:auth:approve',
+            kwargs={'profile_id_b64': profile_id}
+        )
+        profile.approve_url = approve_url
+        profile.save()
         admin_emails = (
             User.objects
             .filter(is_staff=True)
