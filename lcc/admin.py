@@ -1,5 +1,10 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
+from django.utils.safestring import mark_safe
 from lcc import models
+
+
+User = get_user_model()
 
 
 class LegislationAdmin(admin.ModelAdmin):
@@ -52,6 +57,25 @@ class LegislationAdmin(admin.ModelAdmin):
     tags_list.short_description = "Cross cutting categories"
 
 
+class UserAdmin(admin.ModelAdmin):
+    search_fields = ["username", "first_name", "last_name"]
+    list_display = (
+        "username", "first_name", "last_name", "email", "is_active",
+        "get_approve_url"
+    )
+    list_filter = (
+        "is_staff", "is_superuser", "is_active", "groups"
+    )
+
+    def get_approve_url(self, obj):
+        url = obj.userprofile.approve_url
+        link = ""
+        if url:
+            link = '<a href="%s">%s</a>' % (url, url)
+        return mark_safe(link)
+    get_approve_url.short_description = 'Approve URL'
+
+
 # Register your models here.
 admin.site.register(models.Legislation, LegislationAdmin)
 admin.site.register(models.LegislationArticle)
@@ -67,3 +91,6 @@ admin.site.register(models.Gap)
 admin.site.register(models.Question)
 admin.site.register(models.Assessment)
 admin.site.register(models.Answer)
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
