@@ -70,7 +70,7 @@ class UserAdmin(admin.ModelAdmin):
     def get_approve_url(self, obj):
         url = obj.userprofile.approve_url
         link = ""
-        if url:
+        if url and not obj.is_active:
             link = '<a href="%s">%s</a>' % (url, url)
         return mark_safe(link)
     get_approve_url.short_description = 'Approve URL'
