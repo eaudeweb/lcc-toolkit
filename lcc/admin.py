@@ -57,7 +57,17 @@ class LegislationAdmin(admin.ModelAdmin):
     tags_list.short_description = "Cross cutting categories"
 
 
-class UserAdmin(admin.ModelAdmin):
+class BaseUserAdmin(object):
+    def get_approve_url(self, obj):
+        url = obj.userprofile.approve_url
+        link = ""
+        if url and not obj.is_active:
+            link = '<a href="%s">%s</a>' % (url, url)
+        return mark_safe(link)
+    get_approve_url.short_description = 'Approve URL'
+
+
+class UserAdmin(BaseUserAdmin, admin.ModelAdmin):
     search_fields = ["username", "first_name", "last_name"]
     list_display = (
         "username", "first_name", "last_name", "email", "is_active",
@@ -67,13 +77,27 @@ class UserAdmin(admin.ModelAdmin):
         "is_staff", "is_superuser", "is_active", "groups"
     )
 
-    def get_approve_url(self, obj):
-        url = obj.userprofile.approve_url
-        link = ""
-        if url and not obj.is_active:
-            link = '<a href="%s">%s</a>' % (url, url)
-        return mark_safe(link)
-    get_approve_url.short_description = 'Approve URL'
+
+@admin.register(models.UserProxy)
+class UserProxyAdmin(BaseUserAdmin, admin.ModelAdmin):
+    list_display = (
+        "username", "first_name", "last_name", "get_approve_url"
+    )
+    list_display_links = None
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def get_queryset(self, request):
+        return self.model.objects.filter(is_active=False)
+
+    def get_readonly_fields(self, request, obj=None):
+        readonly_fields = [f.name for f in self.model._meta.fields]
+        readonly_fields += ['groups', 'user_permissions']
+        return readonly_fields
 
 
 # Register your models here.

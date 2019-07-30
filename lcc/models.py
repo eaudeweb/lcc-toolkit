@@ -822,3 +822,11 @@ class Answer(models.Model):
         return "Question %s for assessment %d" % (
             self.question.full_order, self.assessment.pk
         )
+
+
+class UserProxy(User):
+
+    class Meta:
+        proxy = True
+        verbose_name = 'Pending user approval'
+        verbose_name_plural = 'Pending users approval'
