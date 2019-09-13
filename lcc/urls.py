@@ -32,11 +32,11 @@ auth_patterns = [
         views.register.ApproveRegistration.as_view(),
         name='approve'),
 
-    url(r'^change_password/',
+    url(r'^change-password/',
         views.auth.ChangePasswordView.as_view(),
         name='change_password'),
 
-    url(r'^password_reset/$',
+    url(r'^password-reset/$',
         views.register.PasswordResetView.as_view(),
         name='password_reset'),
 

@@ -82,6 +82,10 @@ command:
 
 Where [N] is the number of Legislation objects to generate.
 
+If you need to make front-end changes, make sure to run:
+
+    grunt dev
+
 ## Testing
 
 Allow the user to create a database:

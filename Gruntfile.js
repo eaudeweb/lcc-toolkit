@@ -35,6 +35,7 @@ module.exports = function(grunt) {
                     'lcc/src/js/lib/tooltip.js',
                     'lcc/src/js/lib/popover.js',
                     'lcc/src/js/lib/multiple-select.min.js',
+                    'lcc/src/js/lib/dropdown.js',
                 ],
                 dest: 'lcc/static/js/main.js'
             }
