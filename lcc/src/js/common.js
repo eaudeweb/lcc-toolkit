@@ -104,6 +104,8 @@ function destroyPopoverOnFocusOut() {
 
 $(document).ready(function () {
 
+    $('.dropdown-toggle').dropdown();
+
     if (isIE()) {
         $('body').addClass('isIE');
     }
