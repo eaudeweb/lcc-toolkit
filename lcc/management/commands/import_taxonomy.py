@@ -19,6 +19,8 @@ class Command(BaseCommand):
         wb = load_workbook(file, read_only=True)
         sheet = wb.active
         for row in sheet:
+            if not row[0].value:  # Empty row, ignore it
+                continue
             code = str(row[0].value).strip()
             name = row[1].value.strip()
             parent_code = ".".join(code.split('.')[:-1])
