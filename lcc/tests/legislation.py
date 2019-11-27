@@ -119,30 +119,28 @@ class LegislationExplorer(TestCase):
             {'classifications[]': classification_ids}
         )
 
-        expected_law_classifications_list = [
-            [1, 44, 97, 118],
-            [1, 97, 118],
-            [1, 44, 97, 118],
-            [1, 118],
-            [1, 44, 97, 118],
-            [97],
-            [1, 118],
-            [44, 97, 118]
-        ]
+        expected_law_classifications_set = {
+            (1, 44, 97, 118),
+            (1, 97, 118),
+            (1, 44, 97, 118),
+            (1, 118),
+            (1, 44, 97, 118),
+            (97,),
+            (1, 118),
+            (44, 97, 118)
+        }
         # TODO: Intentionally define an order to be returned. Currently this
-        # order is accidental, a result of ES's default scoring algorithms. This
-        # should be fixed. Until then, if this test breaks because the order
-        # changed, you can just change the order of the list above so the test
-        # passes because it has no important meaning.
+        # order is accidental, a result of ES's default scoring algorithms, so
+        # we need to use sets instead of lists when testing.
 
-        returned_law_classifications_list = [
-            list(law.classifications.values_list('id', flat=True))
+        returned_law_classifications_set = {
+            tuple(law.classifications.values_list('id', flat=True))
             for law in response.context['laws']
-        ]
+        }
 
         self.assertEqual(
-            expected_law_classifications_list,
-            returned_law_classifications_list
+            expected_law_classifications_set,
+            returned_law_classifications_set
         )
 
     def test_article_classification_filtering(self):
@@ -205,30 +203,28 @@ class LegislationExplorer(TestCase):
             {'tags[]': tag_ids}
         )
 
-        expected_law_tag_list = [
-            (4, [1]),
-            (8, [1, 2, 5, 6]),
-            (6, [1, 2, 3, 4, 5, 6]),
-            (10, [1, 2, 3, 4, 5, 6]),
-            (5, [1, 2, 4, 5, 6]),
-            (2, [2, 4]),
-            (7, [1, 2, 3, 5, 6]),
-            (1, [1, 2, 3, 4, 5, 6]),
-            (3, [2, 3, 5])
-        ]
+        expected_law_tag_set = {
+            (4, (1,)),
+            (8, (1, 2, 5, 6)),
+            (6, (1, 2, 3, 4, 5, 6)),
+            (10, (1, 2, 3, 4, 5, 6)),
+            (5, (1, 2, 4, 5, 6)),
+            (2, (2, 4)),
+            (7, (1, 2, 3, 5, 6)),
+            (1, (1, 2, 3, 4, 5, 6)),
+            (3, (2, 3, 5))
+        }
         # TODO: Intentionally define an order to be returned. Currently this
-        # order is accidental, a result of ES's default scoring algorithms. This
-        # should be fixed. Until then, if this test breaks because the order
-        # changed, you can just change the order of the list above so the test
-        # passes because it has no important meaning.
+        # order is accidental, a result of ES's default scoring algorithms, so
+        # we need to use sets instead of lists when testing.
 
-        returned_law_tag_list = [
-            (law.id, list(law.tags.values_list('id', flat=True)))
+        returned_law_tag_set = {
+            (law.id, tuple(law.tags.values_list('id', flat=True)))
             for law in response.context['laws']
-        ]
+        }
         self.assertEqual(
-            expected_law_tag_list,
-            returned_law_tag_list
+            expected_law_tag_set,
+            returned_law_tag_set
         )
 
     def test_article_tag_filtering(self):

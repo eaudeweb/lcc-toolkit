@@ -1,5 +1,10 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
+from django.utils.safestring import mark_safe
 from lcc import models
+
+
+User = get_user_model()
 
 
 class LegislationAdmin(admin.ModelAdmin):
@@ -52,6 +57,49 @@ class LegislationAdmin(admin.ModelAdmin):
     tags_list.short_description = "Cross cutting categories"
 
 
+class BaseUserAdmin(object):
+    def get_approve_url(self, obj):
+        url = obj.userprofile.approve_url
+        link = ""
+        if url and not obj.is_active:
+            link = '<a href="%s">%s</a>' % (url, url)
+        return mark_safe(link)
+    get_approve_url.short_description = 'Approve URL'
+
+
+class UserAdmin(BaseUserAdmin, admin.ModelAdmin):
+    search_fields = ["username", "first_name", "last_name"]
+    list_display = (
+        "username", "first_name", "last_name", "email", "is_active",
+        "get_approve_url"
+    )
+    list_filter = (
+        "is_staff", "is_superuser", "is_active", "groups"
+    )
+
+
+@admin.register(models.UserProxy)
+class UserProxyAdmin(BaseUserAdmin, admin.ModelAdmin):
+    list_display = (
+        "username", "first_name", "last_name", "get_approve_url"
+    )
+    list_display_links = None
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def get_queryset(self, request):
+        return self.model.objects.filter(is_active=False)
+
+    def get_readonly_fields(self, request, obj=None):
+        readonly_fields = [f.name for f in self.model._meta.fields]
+        readonly_fields += ['groups', 'user_permissions']
+        return readonly_fields
+
+
 # Register your models here.
 admin.site.register(models.Legislation, LegislationAdmin)
 admin.site.register(models.LegislationArticle)
@@ -67,3 +115,6 @@ admin.site.register(models.Gap)
 admin.site.register(models.Question)
 admin.site.register(models.Assessment)
 admin.site.register(models.Answer)
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)

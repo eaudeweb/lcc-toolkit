@@ -259,6 +259,13 @@ $(document).ready(function() {
     });
   });
 
+  $("#countrySelect").next().find('li.multiple label').each(function(){
+    autocomplete.push({
+      id: $(this).find('input').val(),
+      name: $(this).text()
+    });
+  });
+
   $('#textSearchInput').easyAutocomplete({
     data: autocomplete,
     getValue: 'name',
@@ -269,7 +276,11 @@ $(document).ready(function() {
       },
       onChooseEvent: function() {
         let id = $("#textSearchInput").getSelectedItemData().id;
-        $("#" + id).click();
+        if(id.includes("classification") || id.includes("tag")){
+          $("#" + id).click();
+        } else {
+          $("input[value='"+id+"']").click();
+        }
         $("#textSearchInput").val('').change();
       }
     }

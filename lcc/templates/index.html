@@ -5,25 +5,24 @@
 {% block header-top-right %}
 <div class="user-actions">
   {% if request.user.is_authenticated %}
-      <div class="actions-wrapper">
+    <div class="actions-wrapper">
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          {{ request.user.get_full_name|default:request.user.username }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
           {% if request.user_profile %}
-              <span class="country">
-                <a class="disabled" href="" title="User Profile page will be available in the next version">
-                  <span class="username">
-                    {{ request.user.get_full_name|default:request.user.username }}
-                  </span>
-                </a>
-              </span>
-            {% else %}
-              <span class="username">
-                {{ request.user.get_full_name|default:request.user.username }}
-              </span>
+            <li>
+              <a class="disabled" href="" title="User Profile page will be available in the next version">
+                Edit profile
+              </a>
+            </li>
           {% endif %}
-
-          <span class="action">
-            <a class="btn btn-link" href="{% url 'lcc:auth:logout' %}">Logout</a>
-          </span>
+          <li><a href="{% url 'lcc:auth:change_password' %}">Change password</a></li>
+          <li><a href="{% url 'lcc:auth:logout' %}">Logout</a></li>
+        </ul>
       </div>
+    </div>
   {% else %}
     <a class="btn btn-link" href="{% url 'lcc:auth:login' %}?next={{ request.path }}" id='login-link'> Login</a> <span class="separator"></span>
     <a class="btn btn-link" href="{% url 'lcc:auth:register' %}" id='register-link'> Register </a>

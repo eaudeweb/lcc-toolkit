@@ -458,6 +458,13 @@ class UserProfile(models.Model):
         blank=True,
     )
 
+    approve_url = models.URLField(
+        'Approve URL',
+        max_length=255,
+        null=True,
+        blank=True
+    )
+
     @property
     def roles(self):
         return get_user_roles(self.user)
@@ -815,3 +822,11 @@ class Answer(models.Model):
         return "Question %s for assessment %d" % (
             self.question.full_order, self.assessment.pk
         )
+
+
+class UserProxy(User):
+
+    class Meta:
+        proxy = True
+        verbose_name = 'Pending user approval'
+        verbose_name_plural = 'Pending users approval'

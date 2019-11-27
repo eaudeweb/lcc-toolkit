@@ -123,6 +123,7 @@ docker/init.sql
 docker/postgres.env
 docker/web.env
 docker-compose.override.yml
+requirements-local.txt
 
 static/
 media/

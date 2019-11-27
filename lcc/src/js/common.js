@@ -79,7 +79,6 @@ function handleLink(itemValue) {
 }
 
 function handleShowPopover(id) {
-    console.log('handleShowPopover', id)
     return showPopoverForTheItem;
 
     function showPopoverForTheItem(event) {
@@ -104,6 +103,8 @@ function destroyPopoverOnFocusOut() {
 }
 
 $(document).ready(function () {
+
+    $('.dropdown-toggle').dropdown();
 
     if (isIE()) {
         $('body').addClass('isIE');
