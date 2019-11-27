@@ -38,7 +38,7 @@ class Command(BaseCommand):
             raw_code, text = value.strip().split(' ', 1)
             code = self.process(raw_code)
             return {
-                'text': row[0].value.strip(),
+                'text': text,
                 'level': 0,
                 'parent_answer': 1,
                 'classification': code,
@@ -50,7 +50,7 @@ class Command(BaseCommand):
             raw_code, text = value.strip().split(' ', 1)
             code = self.process(raw_code)
             return {
-                'text': row[3].value.strip(),
+                'text': text,
                 'level': 1,
                 'parent_answer': 1,
                 'classification': code,
