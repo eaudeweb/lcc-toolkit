@@ -7,7 +7,8 @@ from django import views
 from django.conf import settings
 from django.contrib.auth import mixins
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q as DjQ
+from django.db.models import Q as DjQ, IntegerField
+from django.db.models.functions import Cast
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
@@ -42,7 +43,7 @@ class HighlightedLaws:
 
     def __init__(self, search, sort=None):
         self.search = search
-        self.sort =  sort
+        self.sort = sort
 
     def __getitem__(self, key):
         hits = self.search[key]
@@ -469,7 +470,9 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
         context = super().get_context_data(**kwargs)
         group_tags = models.TaxonomyTagGroup.objects.all()
         top_classifications = models.TaxonomyClassification.objects.filter(
-            level=0).order_by('code')
+            level=0).annotate(
+                code_as_int=Cast('code', output_field=IntegerField())
+            ).order_by('code_as_int')
         countries = models.Country.objects.all().order_by('name')
         regions = models.Region.objects.all().order_by('name')
         sub_regions = models.SubRegion.objects.all().order_by('name')
