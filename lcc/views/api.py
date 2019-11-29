@@ -1,5 +1,8 @@
 from rest_framework import generics
 
+from django.db.models import IntegerField
+from django.db.models.functions import Cast
+
 from lcc import models, serializers
 from lcc.views.country import CountryMetadataFiltering
 
@@ -8,9 +11,11 @@ class AssessmentSuggestionsMixin(CountryMetadataFiltering):
         answers = models.Answer.objects.get_assessment_answers(assessment.pk)
         category_ids = {a.category_id for a in answers}
         sub_categories = models.TaxonomyClassification.objects.filter(
-            pk__in=category_ids)
+            pk__in=category_ids
+        )
         root_categories = models.TaxonomyClassification.objects.filter(
-            pk__in=[cat.parent_id for cat in sub_categories])
+            pk__in=[cat.parent_id for cat in sub_categories]
+        )
 
         for root in root_categories:
             root.categories = [
@@ -84,7 +89,10 @@ class ClassificationViewSet(generics.ListAPIView):
     def get_queryset(self):
         queryset = models.TaxonomyClassification.objects.filter(
             level=0
-        ).order_by('code')
+        ).annotate(
+            code_as_int=Cast('code', output_field=IntegerField())
+        ).order_by('code_as_int')
+
         new_queryset = queryset
         for top_level in queryset:
             flag = False
