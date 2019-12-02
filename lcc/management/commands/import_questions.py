@@ -19,6 +19,13 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):    
         parser.add_argument('file', type=str)
+        parser.add_argument(
+            "--dry-run",
+            action="store_true",
+            default=False,
+            help="Only parse the data, but do not insert it."
+        )
+
 
     def parse_row(self, row):
         return {
@@ -46,13 +53,19 @@ class Command(BaseCommand):
             parents_by_level[data['level']] = question
             print("Question for {} already created.".format(classification))
             return
-        question = Question.objects.create(
-            text=data['text'],
-            parent=parent,
-            parent_answer=data['parent_answer'],
-            classification=classification
+        print(
+            "Creating question for {} with parent {}".format(
+                classification, parent
+            )
         )
-        return question
+        if not options["dry_run"]:
+            question = Question.objects.create(
+                text=data['text'],
+                parent=parent,
+                parent_answer=data['parent_answer'],
+                classification=classification
+            )
+            return question
     
     def create_gap(self, data, question):
         gap_classifications = []
