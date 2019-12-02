@@ -33,30 +33,20 @@ class Command(BaseCommand):
         parser.add_argument("-n", "--num_prev", type=int)
 
     def parse_row(self, row):
-        value = row[0].value
-        if value:
-            raw_code, text = value.strip().split(' ', 1)
-            code = self.process(raw_code)
-            return {
-                'text': text,
-                'level': 0,
-                'parent_answer': 1,
-                'classification': code,
-                'gap_answer': 0,
-                'gap_classifications': [code],
-            }
-        else:
-            value = row[3].value
-            raw_code, text = value.strip().split(' ', 1)
-            code = self.process(raw_code)
-            return {
-                'text': text,
-                'level': 1,
-                'parent_answer': 1,
-                'classification': code,
-                'gap_answer': 0,
-                'gap_classifications': [code],
-            }
+        ret = []
+        for value, level in [(row[0].value, 0), (row[3].value, 1)]:
+            if value:
+                raw_code, text = value.strip().split(' ', 1)
+                code = self.process(raw_code)
+                ret.append({
+                    'text': text,
+                    'level': level,
+                    'parent_answer': 1,
+                    'classification': code,
+                    'gap_answer': 0,
+                    'gap_classifications': [code],
+                })
+        return ret
 
     def create_question(self, data, parents_by_level):
         if data['level'] == 0:
@@ -102,16 +92,17 @@ class Command(BaseCommand):
                     # No relevant data in this row that cannot be inferred
                     # from other ones, skip it
                     continue
-                data = self.parse_row(row)
-                try:
-                    question = self.create_question(data, parents_by_level)
-                    if not question:
-                        continue
-                    parents_by_level[data['level']] = question
-                    self.create_gap(data, question)
-                except Exception as e:
-                    print(
-                        "Failed to create question for {} with error {}".format(
-                            data['classification'], str(e)
+                all_data = self.parse_row(row)
+                for data in all_data:
+                    try:
+                        question = self.create_question(data, parents_by_level)
+                        if not question:
+                            continue
+                        parents_by_level[data['level']] = question
+                        self.create_gap(data, question)
+                    except Exception as e:
+                        print(
+                            "Failed to create question for {} with error {}".format(
+                                data['classification'], str(e)
+                            )
                         )
-                    )
