@@ -4254,7 +4254,7 @@
         "order": 1,
         "classification": 345,
         "lft": 1,
-        "rght": 10,
+        "rght": 12,
         "tree_id": 59,
         "level": 0
     }
@@ -4329,7 +4329,7 @@
         "order": 1,
         "classification": 351,
         "lft": 1,
-        "rght": 12,
+        "rght": 14,
         "tree_id": 60,
         "level": 0
     }
@@ -4419,7 +4419,7 @@
         "order": 1,
         "classification": 358,
         "lft": 1,
-        "rght": 6,
+        "rght": 8,
         "tree_id": 61,
         "level": 0
     }
@@ -4464,7 +4464,7 @@
         "order": 1,
         "classification": 362,
         "lft": 1,
-        "rght": 6,
+        "rght": 8,
         "tree_id": 62,
         "level": 0
     }
@@ -4509,7 +4509,7 @@
         "order": 1,
         "classification": 367,
         "lft": 1,
-        "rght": 10,
+        "rght": 12,
         "tree_id": 63,
         "level": 0
     }
@@ -4584,7 +4584,7 @@
         "order": 1,
         "classification": 373,
         "lft": 1,
-        "rght": 10,
+        "rght": 12,
         "tree_id": 64,
         "level": 0
     }
@@ -4659,7 +4659,7 @@
         "order": 1,
         "classification": 379,
         "lft": 1,
-        "rght": 12,
+        "rght": 14,
         "tree_id": 65,
         "level": 0
     }
@@ -4749,7 +4749,7 @@
         "order": 1,
         "classification": 387,
         "lft": 1,
-        "rght": 18,
+        "rght": 20,
         "tree_id": 66,
         "level": 0
     }
@@ -4884,7 +4884,7 @@
         "order": 1,
         "classification": 397,
         "lft": 1,
-        "rght": 14,
+        "rght": 16,
         "tree_id": 67,
         "level": 0
     }
@@ -4989,7 +4989,7 @@
         "order": 1,
         "classification": 405,
         "lft": 1,
-        "rght": 20,
+        "rght": 22,
         "tree_id": 68,
         "level": 0
     }
@@ -5139,7 +5139,7 @@
         "order": 1,
         "classification": 416,
         "lft": 1,
-        "rght": 12,
+        "rght": 14,
         "tree_id": 69,
         "level": 0
     }
@@ -5229,7 +5229,7 @@
         "order": 1,
         "classification": 423,
         "lft": 1,
-        "rght": 8,
+        "rght": 10,
         "tree_id": 70,
         "level": 0
     }
@@ -5289,7 +5289,7 @@
         "order": 1,
         "classification": 428,
         "lft": 1,
-        "rght": 14,
+        "rght": 16,
         "tree_id": 71,
         "level": 0
     }
@@ -5394,7 +5394,7 @@
         "order": 1,
         "classification": 436,
         "lft": 1,
-        "rght": 8,
+        "rght": 10,
         "tree_id": 72,
         "level": 0
     }
@@ -5454,7 +5454,7 @@
         "order": 1,
         "classification": 442,
         "lft": 1,
-        "rght": 14,
+        "rght": 16,
         "tree_id": 73,
         "level": 0
     }
@@ -5559,7 +5559,7 @@
         "order": 1,
         "classification": 450,
         "lft": 1,
-        "rght": 12,
+        "rght": 14,
         "tree_id": 74,
         "level": 0
     }
@@ -5649,7 +5649,7 @@
         "order": 1,
         "classification": 457,
         "lft": 1,
-        "rght": 6,
+        "rght": 8,
         "tree_id": 75,
         "level": 0
     }
@@ -5694,7 +5694,7 @@
         "order": 1,
         "classification": 461,
         "lft": 1,
-        "rght": 6,
+        "rght": 8,
         "tree_id": 76,
         "level": 0
     }
@@ -5739,7 +5739,7 @@
         "order": 1,
         "classification": 465,
         "lft": 1,
-        "rght": 8,
+        "rght": 10,
         "tree_id": 77,
         "level": 0
     }
@@ -5799,7 +5799,7 @@
         "order": 1,
         "classification": 471,
         "lft": 1,
-        "rght": 14,
+        "rght": 16,
         "tree_id": 78,
         "level": 0
     }
@@ -5904,7 +5904,7 @@
         "order": 1,
         "classification": 479,
         "lft": 1,
-        "rght": 8,
+        "rght": 10,
         "tree_id": 79,
         "level": 0
     }
@@ -5964,7 +5964,7 @@
         "order": 1,
         "classification": 484,
         "lft": 1,
-        "rght": 4,
+        "rght": 6,
         "tree_id": 80,
         "level": 0
     }
@@ -5980,6 +5980,336 @@
         "classification": 486,
         "lft": 2,
         "rght": 3,
+        "tree_id": 80,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 447,
+    "fields": {
+        "text": "Do these include legal provisions that require inter-institutional coordination among national and subnational governments*?",
+        "parent": 331,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 346,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 59,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 448,
+    "fields": {
+        "text": "Do these include legal provisions that require stakeholder and community identification?",
+        "parent": 336,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 352,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 60,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 449,
+    "fields": {
+        "text": "Do these include legal provisions that require data collection and sharing among local, subnational and national levels?",
+        "parent": 342,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 359,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 61,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 450,
+    "fields": {
+        "text": "Do these include provisions with a clear definition* of institutional roles and responsibilities?",
+        "parent": 345,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 363,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 62,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 451,
+    "fields": {
+        "text": "Do these include legal provisions that require the national territorial plan to classify national land according to its use, for example in urban and non-urban land*?",
+        "parent": 348,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 368,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 63,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 452,
+    "fields": {
+        "text": "Do these include legal provisions that require regional territorial plans to establish an integrated transportation network and infrastructure system*?",
+        "parent": 353,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 374,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 64,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 453,
+    "fields": {
+        "text": "Do these include legal provisions that require urban plans to classify land based on what is and is not allowed within each category*?",
+        "parent": 358,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 380,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 65,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 454,
+    "fields": {
+        "text": "Do these include the requirement to produce climate risk and vulnerability assessments to assess current and estimated future vulnerabilities and risks as part of the urban planning process?",
+        "parent": 364,
+        "parent_answer": true,
+        "order": 9,
+        "classification": 388,
+        "lft": 18,
+        "rght": 19,
+        "tree_id": 66,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 455,
+    "fields": {
+        "text": "Do these include the requirement to determine available adaptation options for the identified risks and to describe them in detail*?",
+        "parent": 373,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 398,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 67,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 456,
+    "fields": {
+        "text": "Do these provide for total and partial restrictions* on land use and development in hazard prone areas?",
+        "parent": 380,
+        "parent_answer": true,
+        "order": 10,
+        "classification": 406,
+        "lft": 20,
+        "rght": 21,
+        "tree_id": 68,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 457,
+    "fields": {
+        "text": "Do these include urban planning and land management tools* for urban expansion, infill and redevelopment to change the shape and configuration of plots?",
+        "parent": 390,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 417,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 69,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 458,
+    "fields": {
+        "text": "Do these include the legal requirement to identify and, if necessary, set aside land for relocation in case of extreme weather events?",
+        "parent": 396,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 424,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 70,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 459,
+    "fields": {
+        "text": "Do these include the legal recognition of a variety of tenure forms including customary rights, informal tenure rights and occupation?",
+        "parent": 400,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 429,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 71,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 460,
+    "fields": {
+        "text": "Do these include provisions that link the development approval process to legally approved urban plans, zoning regulations and evidence from climate risk and vulnerability assessments?",
+        "parent": 407,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 437,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 72,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 461,
+    "fields": {
+        "text": "Do these include provisions that require the assessment of the greenhouse gas emissions associated with the existing urban form*?",
+        "parent": 411,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 443,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 73,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 462,
+    "fields": {
+        "text": "Do these include provisions of law or regulations that promote connectivity*, establishing minimum standards for streets*?",
+        "parent": 418,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 451,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 74,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 463,
+    "fields": {
+        "text": "Do these include provisions of law or regulations that establish minimum quantitative standards for green spaces*?",
+        "parent": 424,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 458,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 75,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 464,
+    "fields": {
+        "text": "Do these include provisions of law or regulations that require neighbourhood plans to consider wind and sun direction when deciding the orientation and the layout of streets*?",
+        "parent": 427,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 462,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 76,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 465,
+    "fields": {
+        "text": "Do these include provisions that link the development approval process to legally approved urban plans and zoning regulations?",
+        "parent": 430,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 466,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 77,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 466,
+    "fields": {
+        "text": "Do these include provisions that establish earmarked intergovernmental fiscal transfers to local governments for climate change mitigation and adaptation in urban planning?",
+        "parent": 434,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 472,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 78,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 467,
+    "fields": {
+        "text": "Do these include economic incentives* to support climate change mitigation in urban planning?",
+        "parent": 441,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 480,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 79,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 468,
+    "fields": {
+        "text": "Do these include economic incentives* that promote unsustainable urban land uses?",
+        "parent": 445,
+        "parent_answer": true,
+        "order": 2,
+        "classification": 485,
+        "lft": 4,
+        "rght": 5,
         "tree_id": 80,
         "level": 1
     }
