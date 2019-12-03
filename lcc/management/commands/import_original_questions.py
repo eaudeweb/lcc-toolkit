@@ -37,6 +37,12 @@ class Command(BaseCommand):
             default=False,
             help="Only parse the data, but do not insert it."
         )
+        parser.add_argument(
+            "--remove",
+            action="store_true",
+            default=False,
+            help="Delete all the data corresponding to the file."
+        )
 
     def parse_row(self, row):
         ret = []
@@ -54,7 +60,9 @@ class Command(BaseCommand):
                 })
         return ret
 
-    def create_question(self, data, parents_by_level, dry_run=False):
+    def create_question(
+        self, data, parents_by_level, dry_run=False, remove=False
+    ):
         if data['level'] == 0:
             parent = None
         else:
@@ -69,6 +77,12 @@ class Command(BaseCommand):
         if question:
             parents_by_level[data['level']] = question
             print("Question for {} already created.".format(classification))
+            if remove:
+                print("Deleting.")
+                if not dry_run:
+                    question.delete()
+            return
+        if remove:
             return
         print(
             "Creating question for {} with parent {}".format(
@@ -84,25 +98,33 @@ class Command(BaseCommand):
             )
             return question
 
-    def create_gap(self, data, question, dry_run=False):
+    def create_gap(self, data, question, dry_run=False, remove=False):
         gap_classifications = []
         for code in data['gap_classifications']:
             classification = TaxonomyClassification.objects.get(code=code)
             gap_classifications.append(classification)
 
         print(
-            "Creating gap for question {} with classifications {}".format(
-                question, gap_classifications
+            "{} gap for question {} with classifications {}".format(
+                "Deleting" if remove else "Creating",
+                question,
+                gap_classifications
             )
         )
         if not dry_run:
-            gap = Gap.objects.create(on=data['gap_answer'], question=question)
-            for classification in gap_classifications:
-                gap.classifications.add(classification)
+            if not remove:
+                gap = Gap.objects.create(on=data['gap_answer'], question=question)
+                for classification in gap_classifications:
+                    gap.classifications.add(classification)
+            else:
+                Gap.objects.filter(
+                    on=data['gap_answer'], question=question
+                ).delete()
 
     def handle(self, file, *args, **options):
         self.num_prev = options.get('num_prev', 0)
         dry_run = options.get('dry_run', False)
+        remove = options.get('remove', False)
 
         wb = load_workbook(file, read_only=True)
         parents_by_level = [None] * 10
@@ -115,14 +137,20 @@ class Command(BaseCommand):
                 all_data = self.parse_row(row)
                 for data in all_data:
                     try:
-                        question = self.create_question(data, parents_by_level, dry_run)
+                        question = self.create_question(
+                            data, parents_by_level, dry_run, remove
+                        )
                         if not question:
                             continue
                         parents_by_level[data['level']] = question
-                        self.create_gap(data, question, dry_run)
+                        self.create_gap(
+                            data, question, dry_run, remove
+                        )
                     except Exception as e:
                         print(
-                            "Failed to create question for {} with error {}".format(
-                                data['classification'], str(e)
+                            "Failed to {} question for {} with error {}".format(
+                                "remove" if remove else "create",
+                                data['classification'],
+                                str(e)
                             )
                         )

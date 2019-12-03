@@ -415,7 +415,7 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 81,
+        "tree_id": 124,
         "level": 0
     }
 },
@@ -430,7 +430,7 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 88,
+        "tree_id": 131,
         "level": 0
     }
 },
@@ -445,7 +445,7 @@
         "classification": 28,
         "lft": 1,
         "rght": 2,
-        "tree_id": 93,
+        "tree_id": 136,
         "level": 0
     }
 },
@@ -490,7 +490,7 @@
         "classification": 35,
         "lft": 1,
         "rght": 4,
-        "tree_id": 82,
+        "tree_id": 125,
         "level": 0
     }
 },
@@ -505,7 +505,7 @@
         "classification": null,
         "lft": 2,
         "rght": 3,
-        "tree_id": 82,
+        "tree_id": 125,
         "level": 1
     }
 },
@@ -520,7 +520,7 @@
         "classification": 35,
         "lft": 1,
         "rght": 2,
-        "tree_id": 89,
+        "tree_id": 132,
         "level": 0
     }
 },
@@ -535,7 +535,7 @@
         "classification": 35,
         "lft": 1,
         "rght": 2,
-        "tree_id": 94,
+        "tree_id": 137,
         "level": 0
     }
 },
@@ -580,7 +580,7 @@
         "classification": 24,
         "lft": 1,
         "rght": 2,
-        "tree_id": 83,
+        "tree_id": 126,
         "level": 0
     }
 },
@@ -595,7 +595,7 @@
         "classification": 24,
         "lft": 1,
         "rght": 2,
-        "tree_id": 90,
+        "tree_id": 133,
         "level": 0
     }
 },
@@ -4246,7 +4246,7 @@
 },
 {
     "model": "lcc.question",
-    "pk": 331,
+    "pk": 601,
     "fields": {
         "text": "Does your country have provisions in legislation or regulations requiring multi-level institutional coordination for climate action and urban planning?",
         "parent": null,
@@ -4255,73 +4255,88 @@
         "classification": 345,
         "lft": 1,
         "rght": 12,
-        "tree_id": 59,
+        "tree_id": 102,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 332,
+    "pk": 602,
     "fields": {
-        "text": "Do these include legal provisions that require coordination across line ministries at the national level*?",
-        "parent": 331,
+        "text": "Do these include legal provisions that require inter-institutional coordination among national and subnational governments*?",
+        "parent": 601,
         "parent_answer": true,
         "order": 1,
-        "classification": 347,
+        "classification": 346,
         "lft": 2,
         "rght": 3,
-        "tree_id": 59,
+        "tree_id": 102,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 333,
+    "pk": 603,
     "fields": {
-        "text": "Do these include legal provisions that require coordination among local jurisdictions that belong to the same metropolitan area?",
-        "parent": 331,
+        "text": "Do these include legal provisions that require coordination across line ministries at the national level*?",
+        "parent": 601,
         "parent_answer": true,
         "order": 2,
-        "classification": 348,
+        "classification": 347,
         "lft": 4,
         "rght": 5,
-        "tree_id": 59,
+        "tree_id": 102,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 334,
+    "pk": 604,
     "fields": {
-        "text": "Do these include legal provisions that require coordination between neighbouring cities and rural areas that are part of the same economic, social or environmental functional areas?",
-        "parent": 331,
+        "text": "Do these include legal provisions that require coordination among local jurisdictions that belong to the same metropolitan area?",
+        "parent": 601,
         "parent_answer": true,
         "order": 3,
-        "classification": 349,
+        "classification": 348,
         "lft": 6,
         "rght": 7,
-        "tree_id": 59,
+        "tree_id": 102,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 335,
+    "pk": 605,
     "fields": {
-        "text": "Do these include legal provisions that require coordination among different line departments in local governments?",
-        "parent": 331,
+        "text": "Do these include legal provisions that require coordination between neighbouring cities and rural areas that are part of the same economic, social or environmental functional areas?",
+        "parent": 601,
         "parent_answer": true,
         "order": 4,
-        "classification": 350,
+        "classification": 349,
         "lft": 8,
         "rght": 9,
-        "tree_id": 59,
+        "tree_id": 102,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 336,
+    "pk": 606,
+    "fields": {
+        "text": "Do these include legal provisions that require coordination among different line departments in local governments?",
+        "parent": 601,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 350,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 102,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 607,
     "fields": {
         "text": "Does your country have provisions in legislation or regulations requiring engagement with local stakeholders, civil society and businesses in urban planning processes and climate planning processes?",
         "parent": null,
@@ -4330,88 +4345,103 @@
         "classification": 351,
         "lft": 1,
         "rght": 14,
-        "tree_id": 60,
+        "tree_id": 103,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 337,
+    "pk": 608,
     "fields": {
-        "text": "Do these include legal provisions that grant the right of access to information across the planning process?",
-        "parent": 336,
+        "text": "Do these include legal provisions that require stakeholder and community identification?",
+        "parent": 607,
         "parent_answer": true,
         "order": 1,
-        "classification": 353,
+        "classification": 352,
         "lft": 2,
         "rght": 3,
-        "tree_id": 60,
+        "tree_id": 103,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 338,
+    "pk": 609,
     "fields": {
-        "text": "Do these include legal provisions that require participation across the planning process and not only when the urban plans have already been developed?",
-        "parent": 336,
+        "text": "Do these include legal provisions that grant the right of access to information across the planning process?",
+        "parent": 607,
         "parent_answer": true,
         "order": 2,
-        "classification": 354,
+        "classification": 353,
         "lft": 4,
         "rght": 5,
-        "tree_id": 60,
+        "tree_id": 103,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 339,
+    "pk": 610,
     "fields": {
-        "text": "Do these include legal provisions that require planning institutions to tailor participatory processes to specific community needs?",
-        "parent": 336,
+        "text": "Do these include legal provisions that require participation across the planning process and not only when the urban plans have already been developed?",
+        "parent": 607,
         "parent_answer": true,
         "order": 3,
-        "classification": 355,
+        "classification": 354,
         "lft": 6,
         "rght": 7,
-        "tree_id": 60,
+        "tree_id": 103,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 340,
+    "pk": 611,
     "fields": {
-        "text": "Do these include legal provisions that require consideration of and response to community demands and priorities?",
-        "parent": 336,
+        "text": "Do these include legal provisions that require planning institutions to tailor participatory processes to specific community needs?",
+        "parent": 607,
         "parent_answer": true,
         "order": 4,
-        "classification": 356,
+        "classification": 355,
         "lft": 8,
         "rght": 9,
-        "tree_id": 60,
+        "tree_id": 103,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 341,
+    "pk": 612,
     "fields": {
-        "text": "Do these include legal provisions that grant access to dispute or appeals mechanisms?",
-        "parent": 336,
+        "text": "Do these include legal provisions that require consideration of and response to community demands and priorities?",
+        "parent": 607,
         "parent_answer": true,
         "order": 5,
-        "classification": 357,
+        "classification": 356,
         "lft": 10,
         "rght": 11,
-        "tree_id": 60,
+        "tree_id": 103,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 342,
+    "pk": 613,
+    "fields": {
+        "text": "Do these include legal provisions that grant access to dispute or appeals mechanisms?",
+        "parent": 607,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 357,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 103,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 614,
     "fields": {
         "text": "Does your country have provisions in legislation or regulations requiring data collection and sharing arrangements of climate sensitive information among different institutions dealing with urban planning and climate planning?",
         "parent": null,
@@ -4420,43 +4450,58 @@
         "classification": 358,
         "lft": 1,
         "rght": 8,
-        "tree_id": 61,
+        "tree_id": 104,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 343,
+    "pk": 615,
     "fields": {
-        "text": "Do these include legal provisions that require data collection and sharing among subnational governments (different cities, regions, provinces)?",
-        "parent": 342,
+        "text": "Do these include legal provisions that require data collection and sharing among local, subnational and national levels?",
+        "parent": 614,
         "parent_answer": true,
         "order": 1,
-        "classification": 360,
+        "classification": 359,
         "lft": 2,
         "rght": 3,
-        "tree_id": 61,
+        "tree_id": 104,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 344,
+    "pk": 616,
     "fields": {
-        "text": "Do these include legal provisions that require data collection and sharing among different departments and institutions in the same city?",
-        "parent": 342,
+        "text": "Do these include legal provisions that require data collection and sharing among subnational governments (different cities, regions, provinces)?",
+        "parent": 614,
         "parent_answer": true,
         "order": 2,
-        "classification": 361,
+        "classification": 360,
         "lft": 4,
         "rght": 5,
-        "tree_id": 61,
+        "tree_id": 104,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 345,
+    "pk": 617,
+    "fields": {
+        "text": "Do these include legal provisions that require data collection and sharing among different departments and institutions in the same city?",
+        "parent": 614,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 361,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 104,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 618,
     "fields": {
         "text": "Does your country have provisions in legislation or regulations assigning local governments the mandate for urban planning in their urban areas?",
         "parent": null,
@@ -4465,43 +4510,58 @@
         "classification": 362,
         "lft": 1,
         "rght": 8,
-        "tree_id": 62,
+        "tree_id": 105,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 346,
+    "pk": 619,
     "fields": {
-        "text": "Do these include provisions that require local governments to build and improve their capacities* to implement their mandates?",
-        "parent": 345,
+        "text": "Do these include provisions with a clear definition* of institutional roles and responsibilities?",
+        "parent": 618,
         "parent_answer": true,
         "order": 1,
-        "classification": 364,
+        "classification": 363,
         "lft": 2,
         "rght": 3,
-        "tree_id": 62,
+        "tree_id": 105,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 347,
+    "pk": 620,
     "fields": {
-        "text": "Do these include provisions that require or facilitate informal and flexible inter-municipal collaborations for urban and infrastructure planning when administrative boundaries do not correspond to functional boundaries and morphological boundaries*?",
-        "parent": 345,
+        "text": "Do these include provisions that require local governments to build and improve their capacities* to implement their mandates?",
+        "parent": 618,
         "parent_answer": true,
         "order": 2,
-        "classification": 365,
+        "classification": 364,
         "lft": 4,
         "rght": 5,
-        "tree_id": 62,
+        "tree_id": 105,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 348,
+    "pk": 621,
+    "fields": {
+        "text": "Do these include provisions that require or facilitate informal and flexible inter-municipal collaborations for urban and infrastructure planning when administrative boundaries do not correspond to functional boundaries and morphological boundaries*?",
+        "parent": 618,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 365,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 105,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 622,
     "fields": {
         "text": "Does your country have provisions in legislation or regulations requiring the formulation of a national territorial plan*?",
         "parent": null,
@@ -4510,73 +4570,88 @@
         "classification": 367,
         "lft": 1,
         "rght": 12,
-        "tree_id": 63,
+        "tree_id": 106,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 349,
+    "pk": 623,
     "fields": {
-        "text": "Do these include legal provisions that require the national territorial plan to establish an integrated national inland and coastal transportation and infrastructure network?",
-        "parent": 348,
+        "text": "Do these include legal provisions that require the national territorial plan to classify national land according to its use, for example in urban and non-urban land*?",
+        "parent": 622,
         "parent_answer": true,
         "order": 1,
-        "classification": 369,
+        "classification": 368,
         "lft": 2,
         "rght": 3,
-        "tree_id": 63,
+        "tree_id": 106,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 350,
+    "pk": 624,
     "fields": {
-        "text": "Do these include the legal requirement to coordinate the national territorial plan with national climate plans?",
-        "parent": 348,
+        "text": "Do these include legal provisions that require the national territorial plan to establish an integrated national inland and coastal transportation and infrastructure network?",
+        "parent": 622,
         "parent_answer": true,
         "order": 2,
-        "classification": 370,
+        "classification": 369,
         "lft": 4,
         "rght": 5,
-        "tree_id": 63,
+        "tree_id": 106,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 351,
+    "pk": 625,
     "fields": {
-        "text": "Do these include the legal requirement to assess the climate vulnerability associated with the implementation of the national territorial plan*?",
-        "parent": 348,
+        "text": "Do these include the legal requirement to coordinate the national territorial plan with national climate plans?",
+        "parent": 622,
         "parent_answer": true,
         "order": 3,
-        "classification": 371,
+        "classification": 370,
         "lft": 6,
         "rght": 7,
-        "tree_id": 63,
+        "tree_id": 106,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 352,
+    "pk": 626,
     "fields": {
-        "text": "Do these include the legal requirement to assess the greenhouse gas emissions associated with the implementation of the national territorial plan*?",
-        "parent": 348,
+        "text": "Do these include the legal requirement to assess the climate vulnerability associated with the implementation of the national territorial plan*?",
+        "parent": 622,
         "parent_answer": true,
         "order": 4,
-        "classification": 372,
+        "classification": 371,
         "lft": 8,
         "rght": 9,
-        "tree_id": 63,
+        "tree_id": 106,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 353,
+    "pk": 627,
+    "fields": {
+        "text": "Do these include the legal requirement to assess the greenhouse gas emissions associated with the implementation of the national territorial plan*?",
+        "parent": 622,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 372,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 106,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 628,
     "fields": {
         "text": "Does your country have provisions in legislation or regulations requiring the formulation of regional territorial plans*?",
         "parent": null,
@@ -4585,73 +4660,88 @@
         "classification": 373,
         "lft": 1,
         "rght": 12,
-        "tree_id": 64,
+        "tree_id": 107,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 354,
+    "pk": 629,
     "fields": {
-        "text": "Do these include legal provisions that require the coordination of the regional territorial plans with national climate plans?",
-        "parent": 353,
+        "text": "Do these include legal provisions that require regional territorial plans to establish an integrated transportation network and infrastructure system*?",
+        "parent": 628,
         "parent_answer": true,
         "order": 1,
-        "classification": 375,
+        "classification": 374,
         "lft": 2,
         "rght": 3,
-        "tree_id": 64,
+        "tree_id": 107,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 355,
+    "pk": 630,
     "fields": {
-        "text": "Do these include legal provisions* to ensure that regional plans implement the objectives of the national territorial plan?",
-        "parent": 353,
+        "text": "Do these include legal provisions that require the coordination of the regional territorial plans with national climate plans?",
+        "parent": 628,
         "parent_answer": true,
         "order": 2,
-        "classification": 376,
+        "classification": 375,
         "lft": 4,
         "rght": 5,
-        "tree_id": 64,
+        "tree_id": 107,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 356,
+    "pk": 631,
     "fields": {
-        "text": "Do these include the legal requirement to assess the climate vulnerability associated with the implementation of the regional territorial plans?",
-        "parent": 353,
+        "text": "Do these include legal provisions* to ensure that regional plans implement the objectives of the national territorial plan?",
+        "parent": 628,
         "parent_answer": true,
         "order": 3,
-        "classification": 377,
+        "classification": 376,
         "lft": 6,
         "rght": 7,
-        "tree_id": 64,
+        "tree_id": 107,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 357,
+    "pk": 632,
     "fields": {
-        "text": "Do these include the legal requirement to assess the greenhouse gas emissions associated with the implementation of the regional territorial plans?",
-        "parent": 353,
+        "text": "Do these include the legal requirement to assess the climate vulnerability associated with the implementation of the regional territorial plans?",
+        "parent": 628,
         "parent_answer": true,
         "order": 4,
-        "classification": 378,
+        "classification": 377,
         "lft": 8,
         "rght": 9,
-        "tree_id": 64,
+        "tree_id": 107,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 358,
+    "pk": 633,
+    "fields": {
+        "text": "Do these include the legal requirement to assess the greenhouse gas emissions associated with the implementation of the regional territorial plans?",
+        "parent": 628,
+        "parent_answer": true,
+        "order": 5,
+        "classification": 378,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 107,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 634,
     "fields": {
         "text": "Does your country have provisions in legislation or regulations that require the formulation of spatial plans for urban areas?",
         "parent": null,
@@ -4660,88 +4750,103 @@
         "classification": 379,
         "lft": 1,
         "rght": 14,
-        "tree_id": 65,
+        "tree_id": 108,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 359,
+    "pk": 635,
     "fields": {
-        "text": "Do these include legal provisions that require urban plans to assess future land needs* and identify land safe from the effects of climate change adequate to meet these needs?",
-        "parent": 358,
+        "text": "Do these include legal provisions that require urban plans to classify land based on what is and is not allowed within each category*?",
+        "parent": 634,
         "parent_answer": true,
         "order": 1,
-        "classification": 381,
+        "classification": 380,
         "lft": 2,
         "rght": 3,
-        "tree_id": 65,
+        "tree_id": 108,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 360,
+    "pk": 636,
     "fields": {
-        "text": "Do these include legal provisions that require the setting of urban growth boundaries or other growth management strategies* making sure that the amount of buildable land within the boundary is adequate to meet current and future land needs?",
-        "parent": 358,
+        "text": "Do these include legal provisions that require urban plans to assess future land needs* and identify land safe from the effects of climate change adequate to meet these needs?",
+        "parent": 634,
         "parent_answer": true,
         "order": 2,
-        "classification": 382,
+        "classification": 381,
         "lft": 4,
         "rght": 5,
-        "tree_id": 65,
+        "tree_id": 108,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 361,
+    "pk": 637,
     "fields": {
-        "text": "Do these include legal provisions that require a planning horizon of at least 20 years?",
-        "parent": 358,
+        "text": "Do these include legal provisions that require the setting of urban growth boundaries or other growth management strategies* making sure that the amount of buildable land within the boundary is adequate to meet current and future land needs?",
+        "parent": 634,
         "parent_answer": true,
         "order": 3,
-        "classification": 383,
+        "classification": 382,
         "lft": 6,
         "rght": 7,
-        "tree_id": 65,
+        "tree_id": 108,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 362,
+    "pk": 638,
     "fields": {
-        "text": "Do these include legal provisions that require reviews of urban plans if new climate risks or new climate adaptation options are identified?",
-        "parent": 358,
+        "text": "Do these include legal provisions that require a planning horizon of at least 20 years?",
+        "parent": 634,
         "parent_answer": true,
         "order": 4,
-        "classification": 384,
+        "classification": 383,
         "lft": 8,
         "rght": 9,
-        "tree_id": 65,
+        "tree_id": 108,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 363,
+    "pk": 639,
     "fields": {
-        "text": "Do these include legal provisions* to ensure that urban plans implement the objectives of the national territorial plan?",
-        "parent": 358,
+        "text": "Do these include legal provisions that require reviews of urban plans if new climate risks or new climate adaptation options are identified?",
+        "parent": 634,
         "parent_answer": true,
         "order": 5,
-        "classification": 385,
+        "classification": 384,
         "lft": 10,
         "rght": 11,
-        "tree_id": 65,
+        "tree_id": 108,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 364,
+    "pk": 640,
+    "fields": {
+        "text": "Do these include legal provisions* to ensure that urban plans implement the objectives of the national territorial plan?",
+        "parent": 634,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 385,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 108,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 641,
     "fields": {
         "text": "Does your country have provisions of law or regulations that require the consideration of climate risks and vulnerability for planned areas and infrastructure?",
         "parent": null,
@@ -4750,133 +4855,148 @@
         "classification": 387,
         "lft": 1,
         "rght": 20,
-        "tree_id": 66,
+        "tree_id": 109,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 365,
+    "pk": 642,
     "fields": {
-        "text": "Do these include legal requirements concerning methods and processes to conduct risk and vulnerability assessments?",
-        "parent": 364,
+        "text": "Do these include the requirement to produce climate risk and vulnerability assessments to assess current and estimated future vulnerabilities and risks as part of the urban planning process?",
+        "parent": 641,
         "parent_answer": true,
         "order": 1,
-        "classification": 389,
+        "classification": 388,
         "lft": 2,
         "rght": 3,
-        "tree_id": 66,
+        "tree_id": 109,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 366,
+    "pk": 643,
     "fields": {
-        "text": "Do these include the requirement to conduct inclusive and participatory vulnerability assessments*?",
-        "parent": 364,
+        "text": "Do these include legal requirements concerning methods and processes to conduct risk and vulnerability assessments?",
+        "parent": 641,
         "parent_answer": true,
         "order": 2,
-        "classification": 390,
+        "classification": 389,
         "lft": 4,
         "rght": 5,
-        "tree_id": 66,
+        "tree_id": 109,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 367,
+    "pk": 644,
     "fields": {
-        "text": "Do these include a list of potential climate hazards* that need to be identified in the risk and vulnerability assessments?",
-        "parent": 364,
+        "text": "Do these include the requirement to conduct inclusive and participatory vulnerability assessments*?",
+        "parent": 641,
         "parent_answer": true,
         "order": 3,
-        "classification": 391,
+        "classification": 390,
         "lft": 6,
         "rght": 7,
-        "tree_id": 66,
+        "tree_id": 109,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 368,
+    "pk": 645,
     "fields": {
-        "text": "Do these include a legal requirement to identify the places where climate hazards are most likely to occur through climate hazard maps?",
-        "parent": 364,
+        "text": "Do these include a list of potential climate hazards* that need to be identified in the risk and vulnerability assessments?",
+        "parent": 641,
         "parent_answer": true,
         "order": 4,
-        "classification": 392,
+        "classification": 391,
         "lft": 8,
         "rght": 9,
-        "tree_id": 66,
+        "tree_id": 109,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 369,
+    "pk": 646,
     "fields": {
-        "text": "Do these include the requirement to identify people, property and economic sectors exposed to risks arising from climate change?",
-        "parent": 364,
+        "text": "Do these include a legal requirement to identify the places where climate hazards are most likely to occur through climate hazard maps?",
+        "parent": 641,
         "parent_answer": true,
         "order": 5,
-        "classification": 393,
+        "classification": 392,
         "lft": 10,
         "rght": 11,
-        "tree_id": 66,
+        "tree_id": 109,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 370,
+    "pk": 647,
     "fields": {
-        "text": "Do these include the requirement for hazard maps to be publicly accessible?",
-        "parent": 364,
+        "text": "Do these include the requirement to identify people, property and economic sectors exposed to risks arising from climate change?",
+        "parent": 641,
         "parent_answer": true,
         "order": 6,
-        "classification": 394,
+        "classification": 393,
         "lft": 12,
         "rght": 13,
-        "tree_id": 66,
+        "tree_id": 109,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 371,
+    "pk": 648,
     "fields": {
-        "text": "Do these include the requirement that hazard maps need to be reviewed at least every 10 years?",
-        "parent": 364,
+        "text": "Do these include the requirement for hazard maps to be publicly accessible?",
+        "parent": 641,
         "parent_answer": true,
         "order": 7,
-        "classification": 395,
+        "classification": 394,
         "lft": 14,
         "rght": 15,
-        "tree_id": 66,
+        "tree_id": 109,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 372,
+    "pk": 649,
     "fields": {
-        "text": "Do these include the legal requirement to assess the climate vulnerability of urban plans and infrastructure through environmental impact assessments or strategic impact assessments?",
-        "parent": 364,
+        "text": "Do these include the requirement that hazard maps need to be reviewed at least every 10 years?",
+        "parent": 641,
         "parent_answer": true,
         "order": 8,
-        "classification": 396,
+        "classification": 395,
         "lft": 16,
         "rght": 17,
-        "tree_id": 66,
+        "tree_id": 109,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 373,
+    "pk": 650,
+    "fields": {
+        "text": "Do these include the legal requirement to assess the climate vulnerability of urban plans and infrastructure through environmental impact assessments or strategic impact assessments?",
+        "parent": 641,
+        "parent_answer": true,
+        "order": 9,
+        "classification": 396,
+        "lft": 18,
+        "rght": 19,
+        "tree_id": 109,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 651,
     "fields": {
         "text": "Does your country have provisions of law or regulations on how to identify and prioritize adaptation options for the risks and vulnerabilities identified?",
         "parent": null,
@@ -4885,103 +5005,118 @@
         "classification": 397,
         "lft": 1,
         "rght": 16,
-        "tree_id": 67,
+        "tree_id": 110,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 374,
+    "pk": 652,
     "fields": {
-        "text": "Do these include the requirement to assess the identified adaptation options based on time, cost, benefits and barriers to implementation?",
-        "parent": 373,
+        "text": "Do these include the requirement to determine available adaptation options for the identified risks and to describe them in detail*?",
+        "parent": 651,
         "parent_answer": true,
         "order": 1,
-        "classification": 399,
+        "classification": 398,
         "lft": 2,
         "rght": 3,
-        "tree_id": 67,
+        "tree_id": 110,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 375,
+    "pk": 653,
     "fields": {
-        "text": "Do these include the requirement to prioritize the adaptation options and select the preferred ones*?",
-        "parent": 373,
+        "text": "Do these include the requirement to assess the identified adaptation options based on time, cost, benefits and barriers to implementation?",
+        "parent": 651,
         "parent_answer": true,
         "order": 2,
-        "classification": 400,
+        "classification": 399,
         "lft": 4,
         "rght": 5,
-        "tree_id": 67,
+        "tree_id": 110,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 376,
+    "pk": 654,
     "fields": {
-        "text": "Do these include the legal requirement for stakeholders' engagement in the process of identification and prioritization of the adaptation options?",
-        "parent": 373,
+        "text": "Do these include the requirement to prioritize the adaptation options and select the preferred ones*?",
+        "parent": 651,
         "parent_answer": true,
         "order": 3,
-        "classification": 401,
+        "classification": 400,
         "lft": 6,
         "rght": 7,
-        "tree_id": 67,
+        "tree_id": 110,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 377,
+    "pk": 655,
     "fields": {
-        "text": "Do these include the legal requirement to identify both infrastructure-based and ecosystem-based adaptation measures?",
-        "parent": 373,
+        "text": "Do these include the legal requirement for stakeholders' engagement in the process of identification and prioritization of the adaptation options?",
+        "parent": 651,
         "parent_answer": true,
         "order": 4,
-        "classification": 402,
+        "classification": 401,
         "lft": 8,
         "rght": 9,
-        "tree_id": 67,
+        "tree_id": 110,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 378,
+    "pk": 656,
     "fields": {
-        "text": "Do these include the legal requirement to have targets to improve the adaptation of urban areas with measurable and verifiable benchmarks against which progress can be assessed?",
-        "parent": 373,
+        "text": "Do these include the legal requirement to identify both infrastructure-based and ecosystem-based adaptation measures?",
+        "parent": 651,
         "parent_answer": true,
         "order": 5,
-        "classification": 403,
+        "classification": 402,
         "lft": 10,
         "rght": 11,
-        "tree_id": 67,
+        "tree_id": 110,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 379,
+    "pk": 657,
     "fields": {
-        "text": "Do these include provisions that require the assessment of the urban plan's ability to meet the local, sub-regional and national governments' climate change strategies, adaptation targets and measures?",
-        "parent": 373,
+        "text": "Do these include the legal requirement to have targets to improve the adaptation of urban areas with measurable and verifiable benchmarks against which progress can be assessed?",
+        "parent": 651,
         "parent_answer": true,
         "order": 6,
-        "classification": 404,
+        "classification": 403,
         "lft": 12,
         "rght": 13,
-        "tree_id": 67,
+        "tree_id": 110,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 380,
+    "pk": 658,
+    "fields": {
+        "text": "Do these include provisions that require the assessment of the urban plan's ability to meet the local, sub-regional and national governments' climate change strategies, adaptation targets and measures?",
+        "parent": 651,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 404,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 110,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 659,
     "fields": {
         "text": "Does your country have provisions of law or regulations to facilitate implementation of the adaptation options identified for planned areas and infrastructure?",
         "parent": null,
@@ -4990,148 +5125,163 @@
         "classification": 405,
         "lft": 1,
         "rght": 22,
-        "tree_id": 68,
+        "tree_id": 111,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 381,
+    "pk": 660,
     "fields": {
-        "text": "Do these include the provision for a public land buffer between sea and rivers, and land?",
-        "parent": 380,
+        "text": "Do these provide for total and partial restrictions* on land use and development in hazard prone areas?",
+        "parent": 659,
         "parent_answer": true,
         "order": 1,
-        "classification": 407,
+        "classification": 406,
         "lft": 2,
         "rght": 3,
-        "tree_id": 68,
+        "tree_id": 111,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 382,
+    "pk": 661,
     "fields": {
-        "text": "Do these include the requirement to establish riparian setbacks with widths based on scientific assessments and projections?",
-        "parent": 380,
+        "text": "Do these include the provision for a public land buffer between sea and rivers, and land?",
+        "parent": 659,
         "parent_answer": true,
         "order": 2,
-        "classification": 408,
+        "classification": 407,
         "lft": 4,
         "rght": 5,
-        "tree_id": 68,
+        "tree_id": 111,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 383,
+    "pk": 662,
     "fields": {
-        "text": "Do these include the requirement to establish coastal setbacks with widths based on scientific assessments and projections?",
-        "parent": 380,
+        "text": "Do these include the requirement to establish riparian setbacks with widths based on scientific assessments and projections?",
+        "parent": 659,
         "parent_answer": true,
         "order": 3,
-        "classification": 409,
+        "classification": 408,
         "lft": 6,
         "rght": 7,
-        "tree_id": 68,
+        "tree_id": 111,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 384,
+    "pk": 663,
     "fields": {
-        "text": "Do these include the requirement to develop integrated coastal zone management plans that integrate climate change adaptation considerations?",
-        "parent": 380,
+        "text": "Do these include the requirement to establish coastal setbacks with widths based on scientific assessments and projections?",
+        "parent": 659,
         "parent_answer": true,
         "order": 4,
-        "classification": 410,
+        "classification": 409,
         "lft": 8,
         "rght": 9,
-        "tree_id": 68,
+        "tree_id": 111,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 385,
+    "pk": 664,
     "fields": {
-        "text": "Do these include the legal requirement to plan the location of essential infrastructure* outside of flood-prone, high-risk areas?",
-        "parent": 380,
+        "text": "Do these include the requirement to develop integrated coastal zone management plans that integrate climate change adaptation considerations?",
+        "parent": 659,
         "parent_answer": true,
         "order": 5,
-        "classification": 411,
+        "classification": 410,
         "lft": 10,
         "rght": 11,
-        "tree_id": 68,
+        "tree_id": 111,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 386,
+    "pk": 665,
     "fields": {
-        "text": "Do these include the legal requirement to plan sewer systems, storm drains and wastewater treatment plants based on predicted rainfall, flooding (sea/river) and densification with a time horizon of at least 20 years?",
-        "parent": 380,
+        "text": "Do these include the legal requirement to plan the location of essential infrastructure* outside of flood-prone, high-risk areas?",
+        "parent": 659,
         "parent_answer": true,
         "order": 6,
-        "classification": 412,
+        "classification": 411,
         "lft": 12,
         "rght": 13,
-        "tree_id": 68,
+        "tree_id": 111,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 387,
+    "pk": 666,
     "fields": {
-        "text": "Do these include the legal requirement to consider nature-based storm water management to manage increasing volumes of storm water in already built-up and expansion areas?",
-        "parent": 380,
+        "text": "Do these include the legal requirement to plan sewer systems, storm drains and wastewater treatment plants based on predicted rainfall, flooding (sea/river) and densification with a time horizon of at least 20 years?",
+        "parent": 659,
         "parent_answer": true,
         "order": 7,
-        "classification": 413,
+        "classification": 412,
         "lft": 14,
         "rght": 15,
-        "tree_id": 68,
+        "tree_id": 111,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 388,
+    "pk": 667,
     "fields": {
-        "text": "Do these include provisions that allow the land information system to integrate vulnerabilities and exposure of land parcels to climate hazards*?",
-        "parent": 380,
+        "text": "Do these include the legal requirement to consider nature-based storm water management to manage increasing volumes of storm water in already built-up and expansion areas?",
+        "parent": 659,
         "parent_answer": true,
         "order": 8,
-        "classification": 414,
+        "classification": 413,
         "lft": 16,
         "rght": 17,
-        "tree_id": 68,
+        "tree_id": 111,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 389,
+    "pk": 668,
     "fields": {
-        "text": "Do these include the legal requirement to plan for evacuation routes and identify locations for low risk safety areas in case of extreme weather events?",
-        "parent": 380,
+        "text": "Do these include provisions that allow the land information system to integrate vulnerabilities and exposure of land parcels to climate hazards*?",
+        "parent": 659,
         "parent_answer": true,
         "order": 9,
-        "classification": 415,
+        "classification": 414,
         "lft": 18,
         "rght": 19,
-        "tree_id": 68,
+        "tree_id": 111,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 390,
+    "pk": 669,
+    "fields": {
+        "text": "Do these include the legal requirement to plan for evacuation routes and identify locations for low risk safety areas in case of extreme weather events?",
+        "parent": 659,
+        "parent_answer": true,
+        "order": 10,
+        "classification": 415,
+        "lft": 20,
+        "rght": 21,
+        "tree_id": 111,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 670,
     "fields": {
         "text": "Does your country have provisions of law or regulations to support the adaptation of slums and other vulnerable settlements to the effects of climate change?",
         "parent": null,
@@ -5140,88 +5290,103 @@
         "classification": 416,
         "lft": 1,
         "rght": 14,
-        "tree_id": 69,
+        "tree_id": 112,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 391,
+    "pk": 671,
     "fields": {
-        "text": "Do these include differentiated and flexible planning and infrastructure standards for slums and other vulnerable settlements?",
-        "parent": 390,
+        "text": "Do these include urban planning and land management tools* for urban expansion, infill and redevelopment to change the shape and configuration of plots?",
+        "parent": 670,
         "parent_answer": true,
         "order": 1,
-        "classification": 418,
+        "classification": 417,
         "lft": 2,
         "rght": 3,
-        "tree_id": 69,
+        "tree_id": 112,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 392,
+    "pk": 672,
     "fields": {
-        "text": "Do these include mechanisms to ensure the participation of all owners and residents* of slums and other vulnerable settlements in the process of upgrading with special consideration to women, youth, disabled people and elderly people?",
-        "parent": 390,
+        "text": "Do these include differentiated and flexible planning and infrastructure standards for slums and other vulnerable settlements?",
+        "parent": 670,
         "parent_answer": true,
         "order": 2,
-        "classification": 419,
+        "classification": 418,
         "lft": 4,
         "rght": 5,
-        "tree_id": 69,
+        "tree_id": 112,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 393,
+    "pk": 673,
     "fields": {
-        "text": "Do these include the requirement to conduct community-led surveys, maps and household enumerations* to facilitate the adaptation of slums and other vulnerable settlements?",
-        "parent": 390,
+        "text": "Do these include mechanisms to ensure the participation of all owners and residents* of slums and other vulnerable settlements in the process of upgrading with special consideration to women, youth, disabled people and elderly people?",
+        "parent": 670,
         "parent_answer": true,
         "order": 3,
-        "classification": 420,
+        "classification": 419,
         "lft": 6,
         "rght": 7,
-        "tree_id": 69,
+        "tree_id": 112,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 394,
+    "pk": 674,
     "fields": {
-        "text": "Do these include provisions that ensure the accessibility of water, sanitation and electricity services based on the provision of customary and non-documentary forms* in addition to formal tenure rights documents?",
-        "parent": 390,
+        "text": "Do these include the requirement to conduct community-led surveys, maps and household enumerations* to facilitate the adaptation of slums and other vulnerable settlements?",
+        "parent": 670,
         "parent_answer": true,
         "order": 4,
-        "classification": 421,
+        "classification": 420,
         "lft": 8,
         "rght": 9,
-        "tree_id": 69,
+        "tree_id": 112,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 395,
+    "pk": 675,
     "fields": {
-        "text": "Do these include the legal requirement to maintain the affordability of the upgraded settlement for the pre-existing community and prevent its economic displacement*?",
-        "parent": 390,
+        "text": "Do these include provisions that ensure the accessibility of water, sanitation and electricity services based on the provision of customary and non-documentary forms* in addition to formal tenure rights documents?",
+        "parent": 670,
         "parent_answer": true,
         "order": 5,
-        "classification": 422,
+        "classification": 421,
         "lft": 10,
         "rght": 11,
-        "tree_id": 69,
+        "tree_id": 112,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 396,
+    "pk": 676,
+    "fields": {
+        "text": "Do these include the legal requirement to maintain the affordability of the upgraded settlement for the pre-existing community and prevent its economic displacement*?",
+        "parent": 670,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 422,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 112,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 677,
     "fields": {
         "text": "Does your country have provisions of law or regulations that support the relocation of populations from areas at risk from the effects of climate change to ensure their safety and health after all reasonable on-site alternatives and solutions have first been explored?",
         "parent": null,
@@ -5230,58 +5395,73 @@
         "classification": 423,
         "lft": 1,
         "rght": 10,
-        "tree_id": 70,
+        "tree_id": 113,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 397,
+    "pk": 678,
     "fields": {
-        "text": "Do these include the requirement that the resettlement land need to be safe from current and future climate hazards?",
-        "parent": 396,
+        "text": "Do these include the legal requirement to identify and, if necessary, set aside land for relocation in case of extreme weather events?",
+        "parent": 677,
         "parent_answer": true,
         "order": 1,
-        "classification": 425,
+        "classification": 424,
         "lft": 2,
         "rght": 3,
-        "tree_id": 70,
+        "tree_id": 113,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 398,
+    "pk": 679,
     "fields": {
-        "text": "Do these include a process for planned relocations with inclusive* consultation and engagement with the affected resettled and host communities?",
-        "parent": 396,
+        "text": "Do these include the requirement that the resettlement land need to be safe from current and future climate hazards?",
+        "parent": 677,
         "parent_answer": true,
         "order": 2,
-        "classification": 426,
+        "classification": 425,
         "lft": 4,
         "rght": 5,
-        "tree_id": 70,
+        "tree_id": 113,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 399,
+    "pk": 680,
     "fields": {
-        "text": "Is there a legal requirement to provide the relocation site before occupation with livelihood opportunities, water and food security, sanitation, education and health facilities?",
-        "parent": 396,
+        "text": "Do these include a process for planned relocations with inclusive* consultation and engagement with the affected resettled and host communities?",
+        "parent": 677,
         "parent_answer": true,
         "order": 3,
-        "classification": 427,
+        "classification": 426,
         "lft": 6,
         "rght": 7,
-        "tree_id": 70,
+        "tree_id": 113,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 400,
+    "pk": 681,
+    "fields": {
+        "text": "Is there a legal requirement to provide the relocation site before occupation with livelihood opportunities, water and food security, sanitation, education and health facilities?",
+        "parent": 677,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 427,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 113,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 682,
     "fields": {
         "text": "Does your country have provisions of law or regulations that ensure the security of tenure of people living in slums and other settlements vulnerable to the effects of climate change or whose tenure security might be affected by planned relocations?",
         "parent": null,
@@ -5290,103 +5470,118 @@
         "classification": 428,
         "lft": 1,
         "rght": 16,
-        "tree_id": 71,
+        "tree_id": 114,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 401,
+    "pk": 683,
     "fields": {
-        "text": "Do these include the process to regularize* informal land and property rights?",
-        "parent": 400,
+        "text": "Do these include the legal recognition of a variety of tenure forms including customary rights, informal tenure rights and occupation?",
+        "parent": 682,
         "parent_answer": true,
         "order": 1,
-        "classification": 430,
+        "classification": 429,
         "lft": 2,
         "rght": 3,
-        "tree_id": 71,
+        "tree_id": 114,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 402,
+    "pk": 684,
     "fields": {
-        "text": "Do these include provisions that allow a variety of tenure forms, including customary rights, informal tenure rights and occupation, to be recorded in the official land information system?",
-        "parent": 400,
+        "text": "Do these include the process to regularize* informal land and property rights?",
+        "parent": 682,
         "parent_answer": true,
         "order": 2,
-        "classification": 431,
+        "classification": 430,
         "lft": 4,
         "rght": 5,
-        "tree_id": 71,
+        "tree_id": 114,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 403,
+    "pk": 685,
     "fields": {
-        "text": "Do these include provisions of law or regulations on how evictions and relocations should be conducted*?",
-        "parent": 400,
+        "text": "Do these include provisions that allow a variety of tenure forms, including customary rights, informal tenure rights and occupation, to be recorded in the official land information system?",
+        "parent": 682,
         "parent_answer": true,
         "order": 3,
-        "classification": 432,
+        "classification": 431,
         "lft": 6,
         "rght": 7,
-        "tree_id": 71,
+        "tree_id": 114,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 404,
+    "pk": 686,
     "fields": {
-        "text": "Do these include provisions for land acquisition that consider and compensate loss of formal rights, informal rights and interests and livelihoods for slum dwellers and resettled and host communities?",
-        "parent": 400,
+        "text": "Do these include provisions of law or regulations on how evictions and relocations should be conducted*?",
+        "parent": 682,
         "parent_answer": true,
         "order": 4,
-        "classification": 433,
+        "classification": 432,
         "lft": 8,
         "rght": 9,
-        "tree_id": 71,
+        "tree_id": 114,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 405,
+    "pk": 687,
     "fields": {
-        "text": "Do laws or regulations provide access to formal grievance, review, dispute resolution and redress mechanisms* for land and property disputes for people whose tenure security might be affected by the adaptation of slums, vulnerable settlements and planned relocations?",
-        "parent": 400,
+        "text": "Do these include provisions for land acquisition that consider and compensate loss of formal rights, informal rights and interests and livelihoods for slum dwellers and resettled and host communities?",
+        "parent": 682,
         "parent_answer": true,
         "order": 5,
-        "classification": 434,
+        "classification": 433,
         "lft": 10,
         "rght": 11,
-        "tree_id": 71,
+        "tree_id": 114,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 406,
+    "pk": 688,
     "fields": {
-        "text": "Do these include alternative dispute resolution mechanisms for land and property disputes such as customary institutions, negotiation, mediation and arbitration?",
-        "parent": 400,
+        "text": "Do laws or regulations provide access to formal grievance, review, dispute resolution and redress mechanisms* for land and property disputes for people whose tenure security might be affected by the adaptation of slums, vulnerable settlements and planned relocations?",
+        "parent": 682,
         "parent_answer": true,
         "order": 6,
-        "classification": 435,
+        "classification": 434,
         "lft": 12,
         "rght": 13,
-        "tree_id": 71,
+        "tree_id": 114,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 407,
+    "pk": 689,
+    "fields": {
+        "text": "Do these include alternative dispute resolution mechanisms for land and property disputes such as customary institutions, negotiation, mediation and arbitration?",
+        "parent": 682,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 435,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 114,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 690,
     "fields": {
         "text": "Does your country have provisions of law or regulations to ensure that planning and design standards for adaptation to climate risks and vulnerabilities are implemented, monitored and enforced through the development approval process?",
         "parent": null,
@@ -5395,58 +5590,73 @@
         "classification": 436,
         "lft": 1,
         "rght": 10,
-        "tree_id": 72,
+        "tree_id": 115,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 408,
+    "pk": 691,
     "fields": {
-        "text": "Do these include provisions that allow governments to charge developers, either in cash or in kind through conditions to be attached to the approval of planning applications, for infrastructure costs associated with their developments*?",
-        "parent": 407,
+        "text": "Do these include provisions that link the development approval process to legally approved urban plans, zoning regulations and evidence from climate risk and vulnerability assessments?",
+        "parent": 690,
         "parent_answer": true,
         "order": 1,
-        "classification": 438,
+        "classification": 437,
         "lft": 2,
         "rght": 3,
-        "tree_id": 72,
+        "tree_id": 115,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 409,
+    "pk": 692,
     "fields": {
-        "text": "Do these include mechanisms to monitor compliance with the approved development and its conditions?",
-        "parent": 407,
+        "text": "Do these include provisions that allow governments to charge developers, either in cash or in kind through conditions to be attached to the approval of planning applications, for infrastructure costs associated with their developments*?",
+        "parent": 690,
         "parent_answer": true,
         "order": 2,
-        "classification": 439,
+        "classification": 438,
         "lft": 4,
         "rght": 5,
-        "tree_id": 72,
+        "tree_id": 115,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 410,
+    "pk": 693,
     "fields": {
-        "text": "Do these include mechanisms for enforcement in the event developments are not compliant with the submitted application and its conditions?",
-        "parent": 407,
+        "text": "Do these include mechanisms to monitor compliance with the approved development and its conditions?",
+        "parent": 690,
         "parent_answer": true,
         "order": 3,
-        "classification": 440,
+        "classification": 439,
         "lft": 6,
         "rght": 7,
-        "tree_id": 72,
+        "tree_id": 115,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 411,
+    "pk": 694,
+    "fields": {
+        "text": "Do these include mechanisms for enforcement in the event developments are not compliant with the submitted application and its conditions?",
+        "parent": 690,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 440,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 115,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 695,
     "fields": {
         "text": "Does your country have provisions of law or regulations that require assessment of the greenhouse gas emissions of different urban planning options?",
         "parent": null,
@@ -5455,103 +5665,118 @@
         "classification": 442,
         "lft": 1,
         "rght": 16,
-        "tree_id": 73,
+        "tree_id": 116,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 412,
+    "pk": 696,
     "fields": {
-        "text": "Do these include provisions that require the estimation of existing carbon sinks?",
-        "parent": 411,
+        "text": "Do these include provisions that require the assessment of the greenhouse gas emissions associated with the existing urban form*?",
+        "parent": 695,
         "parent_answer": true,
         "order": 1,
-        "classification": 444,
+        "classification": 443,
         "lft": 2,
         "rght": 3,
-        "tree_id": 73,
+        "tree_id": 116,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 413,
+    "pk": 697,
     "fields": {
-        "text": "Do these include provisions that require the production of different planning scenarios and the estimation of the greenhouse gas emissions associated with each scenario?",
-        "parent": 411,
+        "text": "Do these include provisions that require the estimation of existing carbon sinks?",
+        "parent": 695,
         "parent_answer": true,
         "order": 2,
-        "classification": 445,
+        "classification": 444,
         "lft": 4,
         "rght": 5,
-        "tree_id": 73,
+        "tree_id": 116,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 414,
+    "pk": 698,
     "fields": {
-        "text": "Do these include provisions that require the production of different planning scenarios and the estimation of the carbon sink potential associated with each scenario?",
-        "parent": 411,
+        "text": "Do these include provisions that require the production of different planning scenarios and the estimation of the greenhouse gas emissions associated with each scenario?",
+        "parent": 695,
         "parent_answer": true,
         "order": 3,
-        "classification": 446,
+        "classification": 445,
         "lft": 6,
         "rght": 7,
-        "tree_id": 73,
+        "tree_id": 116,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 415,
+    "pk": 699,
     "fields": {
-        "text": "Do these include provisions that require the assessment of the plan's ability to meet the local, sub-regional and national governments' climate change strategies and plans, greenhouse gas reduction targets and measures?",
-        "parent": 411,
+        "text": "Do these include provisions that require the production of different planning scenarios and the estimation of the carbon sink potential associated with each scenario?",
+        "parent": 695,
         "parent_answer": true,
         "order": 4,
-        "classification": 447,
+        "classification": 446,
         "lft": 8,
         "rght": 9,
-        "tree_id": 73,
+        "tree_id": 116,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 416,
+    "pk": 700,
     "fields": {
-        "text": "Do these include the legal requirement for urban plans to have targets to reduce greenhouse gas emissions with measurable and verifiable benchmarks against which progress can be assessed?",
-        "parent": 411,
+        "text": "Do these include provisions that require the assessment of the plan's ability to meet the local, sub-regional and national governments' climate change strategies and plans, greenhouse gas reduction targets and measures?",
+        "parent": 695,
         "parent_answer": true,
         "order": 5,
-        "classification": 448,
+        "classification": 447,
         "lft": 10,
         "rght": 11,
-        "tree_id": 73,
+        "tree_id": 116,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 417,
+    "pk": 701,
     "fields": {
-        "text": "Do these include the legal requirement to assess the greenhouse gas emissions associated with the urban plans*?",
-        "parent": 411,
+        "text": "Do these include the legal requirement for urban plans to have targets to reduce greenhouse gas emissions with measurable and verifiable benchmarks against which progress can be assessed?",
+        "parent": 695,
         "parent_answer": true,
         "order": 6,
-        "classification": 449,
+        "classification": 448,
         "lft": 12,
         "rght": 13,
-        "tree_id": 73,
+        "tree_id": 116,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 418,
+    "pk": 702,
+    "fields": {
+        "text": "Do these include the legal requirement to assess the greenhouse gas emissions associated with the urban plans*?",
+        "parent": 695,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 449,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 116,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 703,
     "fields": {
         "text": "Does your country have provisions of law or regulations that promote a connected, accessible, and dense urban form that reduces car trips, and promotes walkability and the efficient use of public infrastructure?",
         "parent": null,
@@ -5560,88 +5785,103 @@
         "classification": 450,
         "lft": 1,
         "rght": 14,
-        "tree_id": 74,
+        "tree_id": 117,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 419,
+    "pk": 704,
     "fields": {
-        "text": "Do these include provisions that promote connectivity through street design standards* for walkability and cycling?",
-        "parent": 418,
+        "text": "Do these include provisions of law or regulations that promote connectivity*, establishing minimum standards for streets*?",
+        "parent": 703,
         "parent_answer": true,
         "order": 1,
-        "classification": 452,
+        "classification": 451,
         "lft": 2,
         "rght": 3,
-        "tree_id": 74,
+        "tree_id": 117,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 420,
+    "pk": 705,
     "fields": {
-        "text": "Do these include provisions that promote connectivity through plot design rules* for a walkable streetscape?",
-        "parent": 418,
+        "text": "Do these include provisions that promote connectivity through street design standards* for walkability and cycling?",
+        "parent": 703,
         "parent_answer": true,
         "order": 2,
-        "classification": 453,
+        "classification": 452,
         "lft": 4,
         "rght": 5,
-        "tree_id": 74,
+        "tree_id": 117,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 421,
+    "pk": 706,
     "fields": {
-        "text": "Do these include provisions to promote accessibility* to jobs, housing, services, and shopping by promoting mixed land use*?",
-        "parent": 418,
+        "text": "Do these include provisions that promote connectivity through plot design rules* for a walkable streetscape?",
+        "parent": 703,
         "parent_answer": true,
         "order": 3,
-        "classification": 454,
+        "classification": 453,
         "lft": 6,
         "rght": 7,
-        "tree_id": 74,
+        "tree_id": 117,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 422,
+    "pk": 707,
     "fields": {
-        "text": "Do these include provisions that promote optimal urban density*?",
-        "parent": 418,
+        "text": "Do these include provisions to promote accessibility* to jobs, housing, services, and shopping by promoting mixed land use*?",
+        "parent": 703,
         "parent_answer": true,
         "order": 4,
-        "classification": 455,
+        "classification": 454,
         "lft": 8,
         "rght": 9,
-        "tree_id": 74,
+        "tree_id": 117,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 423,
+    "pk": 708,
     "fields": {
-        "text": "Do these include provisions that require the consideration of existing and planned transport infrastructure in determining the allowed population densities near the infrastructure?",
-        "parent": 418,
+        "text": "Do these include provisions that promote optimal urban density*?",
+        "parent": 703,
         "parent_answer": true,
         "order": 5,
-        "classification": 456,
+        "classification": 455,
         "lft": 10,
         "rght": 11,
-        "tree_id": 74,
+        "tree_id": 117,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 424,
+    "pk": 709,
+    "fields": {
+        "text": "Do these include provisions that require the consideration of existing and planned transport infrastructure in determining the allowed population densities near the infrastructure?",
+        "parent": 703,
+        "parent_answer": true,
+        "order": 6,
+        "classification": 456,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 117,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 710,
     "fields": {
         "text": "Does your country have provisions of law or regulations that promote a network of green spaces for environmental and climate services?",
         "parent": null,
@@ -5650,43 +5890,58 @@
         "classification": 457,
         "lft": 1,
         "rght": 8,
-        "tree_id": 75,
+        "tree_id": 118,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 425,
+    "pk": 711,
     "fields": {
-        "text": "Do these include provisions of law or regulations that require the adequate distribution of green spaces across the city?",
-        "parent": 424,
+        "text": "Do these include provisions of law or regulations that establish minimum quantitative standards for green spaces*?",
+        "parent": 710,
         "parent_answer": true,
         "order": 1,
-        "classification": 459,
+        "classification": 458,
         "lft": 2,
         "rght": 3,
-        "tree_id": 75,
+        "tree_id": 118,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 426,
+    "pk": 712,
     "fields": {
-        "text": "Do these include provisions of law or regulations that require connecting and planning together networks of green areas and water bodies?",
-        "parent": 424,
+        "text": "Do these include provisions of law or regulations that require the adequate distribution of green spaces across the city?",
+        "parent": 710,
         "parent_answer": true,
         "order": 2,
-        "classification": 460,
+        "classification": 459,
         "lft": 4,
         "rght": 5,
-        "tree_id": 75,
+        "tree_id": 118,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 427,
+    "pk": 713,
+    "fields": {
+        "text": "Do these include provisions of law or regulations that require connecting and planning together networks of green areas and water bodies?",
+        "parent": 710,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 460,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 118,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 714,
     "fields": {
         "text": "Does your country have provisions of law or regulations that require neighbourhood design principles to achieve energy savings in buildings?",
         "parent": null,
@@ -5695,43 +5950,58 @@
         "classification": 461,
         "lft": 1,
         "rght": 8,
-        "tree_id": 76,
+        "tree_id": 119,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 428,
+    "pk": 715,
     "fields": {
-        "text": "Do these include provisions of law or regulations that require the consideration of the thermal properties of urban surfaces*?",
-        "parent": 427,
+        "text": "Do these include provisions of law or regulations that require neighbourhood plans to consider wind and sun direction when deciding the orientation and the layout of streets*?",
+        "parent": 714,
         "parent_answer": true,
         "order": 1,
-        "classification": 463,
+        "classification": 462,
         "lft": 2,
         "rght": 3,
-        "tree_id": 76,
+        "tree_id": 119,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 429,
+    "pk": 716,
     "fields": {
-        "text": "Do these include provisions of law or regulations that require plot design to achieve optimal orientation of the buildings for the purpose of energy saving in buildings*?",
-        "parent": 427,
+        "text": "Do these include provisions of law or regulations that require the consideration of the thermal properties of urban surfaces*?",
+        "parent": 714,
         "parent_answer": true,
         "order": 2,
-        "classification": 464,
+        "classification": 463,
         "lft": 4,
         "rght": 5,
-        "tree_id": 76,
+        "tree_id": 119,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 430,
+    "pk": 717,
+    "fields": {
+        "text": "Do these include provisions of law or regulations that require plot design to achieve optimal orientation of the buildings for the purpose of energy saving in buildings*?",
+        "parent": 714,
+        "parent_answer": true,
+        "order": 3,
+        "classification": 464,
+        "lft": 6,
+        "rght": 7,
+        "tree_id": 119,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 718,
     "fields": {
         "text": "Does your country have provisions of law or regulations to ensure that planning and design standards that mitigate the emissions of greenhouse gases are enforced through the development approval process?",
         "parent": null,
@@ -5740,58 +6010,73 @@
         "classification": 465,
         "lft": 1,
         "rght": 10,
-        "tree_id": 77,
+        "tree_id": 120,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 431,
+    "pk": 719,
     "fields": {
-        "text": "Do these include provisions that allow local governments to charge developers, either in cash or in kind through conditions to be attached to the approval of planning applications, for infrastructure costs* associated with their developments?",
-        "parent": 430,
+        "text": "Do these include provisions that link the development approval process to legally approved urban plans and zoning regulations?",
+        "parent": 718,
         "parent_answer": true,
         "order": 1,
-        "classification": 467,
+        "classification": 466,
         "lft": 2,
         "rght": 3,
-        "tree_id": 77,
+        "tree_id": 120,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 432,
+    "pk": 720,
     "fields": {
-        "text": "Do these include mechanisms to monitor compliance with the approved development and its conditions?",
-        "parent": 430,
+        "text": "Do these include provisions that allow local governments to charge developers, either in cash or in kind through conditions to be attached to the approval of planning applications, for infrastructure costs* associated with their developments?",
+        "parent": 718,
         "parent_answer": true,
         "order": 2,
-        "classification": 468,
+        "classification": 467,
         "lft": 4,
         "rght": 5,
-        "tree_id": 77,
+        "tree_id": 120,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 433,
+    "pk": 721,
     "fields": {
-        "text": "Do these include mechanisms for enforcement in the event developments are not compliant with the submitted application and its conditions?",
-        "parent": 430,
+        "text": "Do these include mechanisms to monitor compliance with the approved development and its conditions?",
+        "parent": 718,
         "parent_answer": true,
         "order": 3,
-        "classification": 469,
+        "classification": 468,
         "lft": 6,
         "rght": 7,
-        "tree_id": 77,
+        "tree_id": 120,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 434,
+    "pk": 722,
+    "fields": {
+        "text": "Do these include mechanisms for enforcement in the event developments are not compliant with the submitted application and its conditions?",
+        "parent": 718,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 469,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 120,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 723,
     "fields": {
         "text": "Does your country have provisions of law or regulations that create a flow of resources to finance climate change mitigation and adaptation in urban planning?",
         "parent": null,
@@ -5800,103 +6085,118 @@
         "classification": 471,
         "lft": 1,
         "rght": 16,
-        "tree_id": 78,
+        "tree_id": 121,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 435,
+    "pk": 724,
     "fields": {
-        "text": "Do these include provisions that give local governments the responsibility to collect locally generated revenues*?",
-        "parent": 434,
+        "text": "Do these include provisions that establish earmarked intergovernmental fiscal transfers to local governments for climate change mitigation and adaptation in urban planning?",
+        "parent": 723,
         "parent_answer": true,
         "order": 1,
-        "classification": 473,
+        "classification": 472,
         "lft": 2,
         "rght": 3,
-        "tree_id": 78,
+        "tree_id": 121,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 436,
+    "pk": 725,
     "fields": {
-        "text": "Do these include provisions that give local governments the authority to decide how to spend locally generated revenues?",
-        "parent": 434,
+        "text": "Do these include provisions that give local governments the responsibility to collect locally generated revenues*?",
+        "parent": 723,
         "parent_answer": true,
         "order": 2,
-        "classification": 474,
+        "classification": 473,
         "lft": 4,
         "rght": 5,
-        "tree_id": 78,
+        "tree_id": 121,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 437,
+    "pk": 726,
     "fields": {
-        "text": "Do these include provisions that require local governments to earmark resources* for urban planning and climate change?",
-        "parent": 434,
+        "text": "Do these include provisions that give local governments the authority to decide how to spend locally generated revenues?",
+        "parent": 723,
         "parent_answer": true,
         "order": 3,
-        "classification": 475,
+        "classification": 474,
         "lft": 6,
         "rght": 7,
-        "tree_id": 78,
+        "tree_id": 121,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 438,
+    "pk": 727,
     "fields": {
-        "text": "Do these include provisions that create enabling environments that facilitate the mobilization of investment capital?",
-        "parent": 434,
+        "text": "Do these include provisions that require local governments to earmark resources* for urban planning and climate change?",
+        "parent": 723,
         "parent_answer": true,
         "order": 4,
-        "classification": 476,
+        "classification": 475,
         "lft": 8,
         "rght": 9,
-        "tree_id": 78,
+        "tree_id": 121,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 439,
+    "pk": 728,
     "fields": {
-        "text": "Do these include provisions that allow local governments to receive a public credit guarantee from the national government*?",
-        "parent": 434,
+        "text": "Do these include provisions that create enabling environments that facilitate the mobilization of investment capital?",
+        "parent": 723,
         "parent_answer": true,
         "order": 5,
-        "classification": 477,
+        "classification": 476,
         "lft": 10,
         "rght": 11,
-        "tree_id": 78,
+        "tree_id": 121,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 440,
+    "pk": 729,
     "fields": {
-        "text": "Do these include provisions that create frameworks for public-private partnerships?",
-        "parent": 434,
+        "text": "Do these include provisions that allow local governments to receive a public credit guarantee from the national government*?",
+        "parent": 723,
         "parent_answer": true,
         "order": 6,
-        "classification": 478,
+        "classification": 477,
         "lft": 12,
         "rght": 13,
-        "tree_id": 78,
+        "tree_id": 121,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 441,
+    "pk": 730,
+    "fields": {
+        "text": "Do these include provisions that create frameworks for public-private partnerships?",
+        "parent": 723,
+        "parent_answer": true,
+        "order": 7,
+        "classification": 478,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 121,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 731,
     "fields": {
         "text": "Does your country have provisions of law or regulations that create incentives to achieve climate change mitigation and adaptation objectives in urban planning?",
         "parent": null,
@@ -5905,58 +6205,73 @@
         "classification": 479,
         "lft": 1,
         "rght": 10,
-        "tree_id": 79,
+        "tree_id": 122,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 442,
+    "pk": 732,
     "fields": {
-        "text": "Do these include non-economic incentives* to support climate change mitigation in urban planning?",
-        "parent": 441,
+        "text": "Do these include economic incentives* to support climate change mitigation in urban planning?",
+        "parent": 731,
         "parent_answer": true,
         "order": 1,
-        "classification": 481,
+        "classification": 480,
         "lft": 2,
         "rght": 3,
-        "tree_id": 79,
+        "tree_id": 122,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 443,
+    "pk": 733,
     "fields": {
-        "text": "Do these include economic incentives* to support climate change adaptation in urban planning?",
-        "parent": 441,
+        "text": "Do these include non-economic incentives* to support climate change mitigation in urban planning?",
+        "parent": 731,
         "parent_answer": true,
         "order": 2,
-        "classification": 482,
+        "classification": 481,
         "lft": 4,
         "rght": 5,
-        "tree_id": 79,
+        "tree_id": 122,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 444,
+    "pk": 734,
     "fields": {
-        "text": "Do these include non-economic incentives to support climate change adaptation* in urban planning?",
-        "parent": 441,
+        "text": "Do these include economic incentives* to support climate change adaptation in urban planning?",
+        "parent": 731,
         "parent_answer": true,
         "order": 3,
-        "classification": 483,
+        "classification": 482,
         "lft": 6,
         "rght": 7,
-        "tree_id": 79,
+        "tree_id": 122,
         "level": 1
     }
 },
 {
     "model": "lcc.question",
-    "pk": 445,
+    "pk": 735,
+    "fields": {
+        "text": "Do these include non-economic incentives to support climate change adaptation* in urban planning?",
+        "parent": 731,
+        "parent_answer": true,
+        "order": 4,
+        "classification": 483,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 122,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 736,
     "fields": {
         "text": "Does your country have provisions of law or regulations that create incentives to promote unsustainable urban land uses*?",
         "parent": null,
@@ -5965,352 +6280,37 @@
         "classification": 484,
         "lft": 1,
         "rght": 6,
-        "tree_id": 80,
+        "tree_id": 123,
         "level": 0
     }
 },
 {
     "model": "lcc.question",
-    "pk": 446,
-    "fields": {
-        "text": "Do these include non-economic incentives* that promote unsustainable urban land uses?",
-        "parent": 445,
-        "parent_answer": true,
-        "order": 1,
-        "classification": 486,
-        "lft": 2,
-        "rght": 3,
-        "tree_id": 80,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 447,
-    "fields": {
-        "text": "Do these include legal provisions that require inter-institutional coordination among national and subnational governments*?",
-        "parent": 331,
-        "parent_answer": true,
-        "order": 5,
-        "classification": 346,
-        "lft": 10,
-        "rght": 11,
-        "tree_id": 59,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 448,
-    "fields": {
-        "text": "Do these include legal provisions that require stakeholder and community identification?",
-        "parent": 336,
-        "parent_answer": true,
-        "order": 6,
-        "classification": 352,
-        "lft": 12,
-        "rght": 13,
-        "tree_id": 60,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 449,
-    "fields": {
-        "text": "Do these include legal provisions that require data collection and sharing among local, subnational and national levels?",
-        "parent": 342,
-        "parent_answer": true,
-        "order": 3,
-        "classification": 359,
-        "lft": 6,
-        "rght": 7,
-        "tree_id": 61,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 450,
-    "fields": {
-        "text": "Do these include provisions with a clear definition* of institutional roles and responsibilities?",
-        "parent": 345,
-        "parent_answer": true,
-        "order": 3,
-        "classification": 363,
-        "lft": 6,
-        "rght": 7,
-        "tree_id": 62,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 451,
-    "fields": {
-        "text": "Do these include legal provisions that require the national territorial plan to classify national land according to its use, for example in urban and non-urban land*?",
-        "parent": 348,
-        "parent_answer": true,
-        "order": 5,
-        "classification": 368,
-        "lft": 10,
-        "rght": 11,
-        "tree_id": 63,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 452,
-    "fields": {
-        "text": "Do these include legal provisions that require regional territorial plans to establish an integrated transportation network and infrastructure system*?",
-        "parent": 353,
-        "parent_answer": true,
-        "order": 5,
-        "classification": 374,
-        "lft": 10,
-        "rght": 11,
-        "tree_id": 64,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 453,
-    "fields": {
-        "text": "Do these include legal provisions that require urban plans to classify land based on what is and is not allowed within each category*?",
-        "parent": 358,
-        "parent_answer": true,
-        "order": 6,
-        "classification": 380,
-        "lft": 12,
-        "rght": 13,
-        "tree_id": 65,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 454,
-    "fields": {
-        "text": "Do these include the requirement to produce climate risk and vulnerability assessments to assess current and estimated future vulnerabilities and risks as part of the urban planning process?",
-        "parent": 364,
-        "parent_answer": true,
-        "order": 9,
-        "classification": 388,
-        "lft": 18,
-        "rght": 19,
-        "tree_id": 66,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 455,
-    "fields": {
-        "text": "Do these include the requirement to determine available adaptation options for the identified risks and to describe them in detail*?",
-        "parent": 373,
-        "parent_answer": true,
-        "order": 7,
-        "classification": 398,
-        "lft": 14,
-        "rght": 15,
-        "tree_id": 67,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 456,
-    "fields": {
-        "text": "Do these provide for total and partial restrictions* on land use and development in hazard prone areas?",
-        "parent": 380,
-        "parent_answer": true,
-        "order": 10,
-        "classification": 406,
-        "lft": 20,
-        "rght": 21,
-        "tree_id": 68,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 457,
-    "fields": {
-        "text": "Do these include urban planning and land management tools* for urban expansion, infill and redevelopment to change the shape and configuration of plots?",
-        "parent": 390,
-        "parent_answer": true,
-        "order": 6,
-        "classification": 417,
-        "lft": 12,
-        "rght": 13,
-        "tree_id": 69,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 458,
-    "fields": {
-        "text": "Do these include the legal requirement to identify and, if necessary, set aside land for relocation in case of extreme weather events?",
-        "parent": 396,
-        "parent_answer": true,
-        "order": 4,
-        "classification": 424,
-        "lft": 8,
-        "rght": 9,
-        "tree_id": 70,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 459,
-    "fields": {
-        "text": "Do these include the legal recognition of a variety of tenure forms including customary rights, informal tenure rights and occupation?",
-        "parent": 400,
-        "parent_answer": true,
-        "order": 7,
-        "classification": 429,
-        "lft": 14,
-        "rght": 15,
-        "tree_id": 71,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 460,
-    "fields": {
-        "text": "Do these include provisions that link the development approval process to legally approved urban plans, zoning regulations and evidence from climate risk and vulnerability assessments?",
-        "parent": 407,
-        "parent_answer": true,
-        "order": 4,
-        "classification": 437,
-        "lft": 8,
-        "rght": 9,
-        "tree_id": 72,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 461,
-    "fields": {
-        "text": "Do these include provisions that require the assessment of the greenhouse gas emissions associated with the existing urban form*?",
-        "parent": 411,
-        "parent_answer": true,
-        "order": 7,
-        "classification": 443,
-        "lft": 14,
-        "rght": 15,
-        "tree_id": 73,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 462,
-    "fields": {
-        "text": "Do these include provisions of law or regulations that promote connectivity*, establishing minimum standards for streets*?",
-        "parent": 418,
-        "parent_answer": true,
-        "order": 6,
-        "classification": 451,
-        "lft": 12,
-        "rght": 13,
-        "tree_id": 74,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 463,
-    "fields": {
-        "text": "Do these include provisions of law or regulations that establish minimum quantitative standards for green spaces*?",
-        "parent": 424,
-        "parent_answer": true,
-        "order": 3,
-        "classification": 458,
-        "lft": 6,
-        "rght": 7,
-        "tree_id": 75,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 464,
-    "fields": {
-        "text": "Do these include provisions of law or regulations that require neighbourhood plans to consider wind and sun direction when deciding the orientation and the layout of streets*?",
-        "parent": 427,
-        "parent_answer": true,
-        "order": 3,
-        "classification": 462,
-        "lft": 6,
-        "rght": 7,
-        "tree_id": 76,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 465,
-    "fields": {
-        "text": "Do these include provisions that link the development approval process to legally approved urban plans and zoning regulations?",
-        "parent": 430,
-        "parent_answer": true,
-        "order": 4,
-        "classification": 466,
-        "lft": 8,
-        "rght": 9,
-        "tree_id": 77,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 466,
-    "fields": {
-        "text": "Do these include provisions that establish earmarked intergovernmental fiscal transfers to local governments for climate change mitigation and adaptation in urban planning?",
-        "parent": 434,
-        "parent_answer": true,
-        "order": 7,
-        "classification": 472,
-        "lft": 14,
-        "rght": 15,
-        "tree_id": 78,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 467,
-    "fields": {
-        "text": "Do these include economic incentives* to support climate change mitigation in urban planning?",
-        "parent": 441,
-        "parent_answer": true,
-        "order": 4,
-        "classification": 480,
-        "lft": 8,
-        "rght": 9,
-        "tree_id": 79,
-        "level": 1
-    }
-},
-{
-    "model": "lcc.question",
-    "pk": 468,
+    "pk": 737,
     "fields": {
         "text": "Do these include economic incentives* that promote unsustainable urban land uses?",
-        "parent": 445,
+        "parent": 736,
+        "parent_answer": true,
+        "order": 1,
+        "classification": 485,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 123,
+        "level": 1
+    }
+},
+{
+    "model": "lcc.question",
+    "pk": 738,
+    "fields": {
+        "text": "Do these include non-economic incentives* that promote unsustainable urban land uses?",
+        "parent": 736,
         "parent_answer": true,
         "order": 2,
-        "classification": 485,
+        "classification": 486,
         "lft": 4,
         "rght": 5,
-        "tree_id": 80,
+        "tree_id": 123,
         "level": 1
     }
 }
