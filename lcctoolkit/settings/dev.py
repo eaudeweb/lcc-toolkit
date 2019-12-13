@@ -41,11 +41,12 @@ if not DEBUG:
     # sentry configuration
     SENTRY_DSN = env('SENTRY_DSN', default='')
     SENTRY_ENV = env('SENTRY_ENV', default='')
-    sentry_sdk.init(
-        dsn=SENTRY_DSN,
-        environment=SENTRY_ENV,
-        integrations=[DjangoIntegration()]
-    )
+    if SENTRY_DSN:
+        sentry_sdk.init(
+            dsn=SENTRY_DSN,
+            environment=SENTRY_ENV,
+            integrations=[DjangoIntegration()]
+        )
 
     # google analytics
     GA_TRACKING_ID = env('GA_TRACKING_ID', default='')
