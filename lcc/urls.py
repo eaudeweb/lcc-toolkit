@@ -5,10 +5,11 @@ from django.template import loader, TemplateDoesNotExist
 
 from lcc import views
 from lcc.context import sentry
+from lcc.utils import login_forbidden
 
 auth_patterns = [
     url(r'^login/$',
-        views.auth.Login.as_view(),
+        login_forbidden(views.auth.Login.as_view()),
         name='login'),
 
     url(r'^logout/$',
@@ -16,7 +17,7 @@ auth_patterns = [
         name='logout'),
 
     url(r'^register/',
-        views.register.Register.as_view(),
+        login_forbidden(views.register.Register.as_view()),
         name='register'),
 
     url(r'^reset/done/$',
@@ -37,7 +38,7 @@ auth_patterns = [
         name='change_password'),
 
     url(r'^password-reset/$',
-        views.register.PasswordResetView.as_view(),
+        login_forbidden(views.register.PasswordResetView.as_view()),
         name='password_reset'),
 
 ]

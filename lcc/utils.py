@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import user_passes_test
+
 from lcc import models
 
 
@@ -25,6 +27,20 @@ def generate_code(model, instance):
         code = '{0}'.format(int(last_code) + 1)
 
     return code
+
+
+def login_forbidden(function=None, redirect_field_name=None, redirect_to="/"):
+    """
+    Decorator for views that checks that the user is not logged in
+    """
+    actual_decorator = user_passes_test(
+        lambda u: u.is_anonymous,
+        login_url=redirect_to,
+        redirect_field_name=redirect_field_name
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
 
 
 # @TODO change for edit
