@@ -181,11 +181,12 @@ $(document).ready(function () {
         RequestService
           .getClassifications(self.assessment_id)
           .done(function (responseClassifications) {
-
             renderClassifications.call(self, responseClassifications);
             handleAccordion();
-            getQuestions.call(self, responseClassifications[0].second_level[0].id)
-              .done(renderTitleContent(responseClassifications[0].name
+            getQuestions
+              .call(self, responseClassifications[0].second_level[0].id)
+              .done(renderTitleContent(
+                responseClassifications[0].name
                 , responseClassifications[0].second_level[0].name
                 , responseClassifications[0].second_level.length
                 , 0
@@ -308,46 +309,83 @@ $(document).ready(function () {
         renderQuestions.call(this, questions, true, questions_container);
       }
 
+      /**
+       * This renders the questions on the right side of the page
+       * @param {Object} my_questions
+       * @param {Object} my_questions.answer
+       * @param {number} my_questions.id
+       * @param {Object[]} my_questions.children_no
+       * @param {Object[]} my_questions.children_yes
+       * @param {string} my_questions.details
+       * @param {boolean} show
+       * @param {Object} questions_container
+       * @param {string} questionClass
+       */
       function renderQuestions(my_questions, show, questions_container, questionClass) {
-
         for (var index = 0; index < my_questions.length; index++) {
           var question = my_questions[index];
           var answerId = question.answer ? question.answer.id : '';
-          questionClass = questionClass ? 'qq' + question.id : questionClass + '_' + question.id;
+          questionClass = questionClass ? 'qq' + question.id : '_' + question.id;
           var li = $('<li/>')
             .addClass('list-group-item question' + questionClass)
             .attr('id', question.id)
             .appendTo(questions_container);
-          var p = $('<p/>')
-            .text(question.text)
-            .appendTo(li);
-          var div = $('<div/>')
-            .addClass('btn-group question')
-            .attr('role', 'group')
-            .appendTo(li);
+        var p = $('<p/>')
+          .text(` ${question.text}`)
+          .appendTo(li);
 
-          if (!question.children) {
-            var buttonYes = $('<button/>')
-              .text('Yes')
-              .addClass('btn ' + getBtnClass(true, question.answer))
-              .appendTo(div)
-              .attr('data-question', question.id)
-              .attr('data-value', 'true')
-              .attr('data-answer-id', answerId)
-              .on('click', handleAnswer.bind(this,
-                question.children_yes, question.children_no,
-                true, questionClass + 'yes'));
+        // the popover will be added at the end of the <p> in order to have it next to the end of the text
+        if (question.details) {
+          let fomattedDetails = handleNewLine(question.details);
+          fomattedDetails = fomattedDetails.indexOf('http') !== -1 ? handleLink(fomattedDetails) : fomattedDetails;
 
-            var buttonNo = $('<button/>')
-              .text('No')
-              .addClass('btn ' + getBtnClass(false, question.answer))
-              .attr('data-question', question.id)
-              .attr('data-value', 'false')
-              .attr('data-answer-id', answerId)
-              .appendTo(div)
-              .on('click', handleAnswer.bind(this,
-                question.children_yes, question.children_no,
-                false, questionClass + 'no'));
+          var popoverButton = $('<a/>')
+          .attr({
+            'tabindex':"0",
+            'id':`popoverDetails-que-${question.id}`,
+            'data-container':"body",
+            'class':"popoverDetails",
+            'data-toggle':"popover",
+            'data-placement':"left",
+            'data-html':"true",
+            'data-trigger':"manual",
+            'data-content':`${fomattedDetails}`
+          })
+          .html(`
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+          `)
+          .on('click', handleShowPopover(`popoverDetails-que-${question.id}`)
+          )
+          .appendTo(p);
+        }
+
+        var div = $('<div/>')
+          .addClass('btn-group question')
+          .attr('role', 'group')
+          .appendTo(li);
+
+        if (!question.children) {
+          var buttonYes = $('<button/>')
+            .text('Yes')
+            .addClass('btn ' + getBtnClass(true, question.answer))
+            .appendTo(div)
+            .attr('data-question', question.id)
+            .attr('data-value', 'true')
+            .attr('data-answer-id', answerId)
+            .on('click', handleAnswer.bind(this,
+              question.children_yes, question.children_no,
+              true, questionClass + 'yes'));
+
+          var buttonNo = $('<button/>')
+            .text('No')
+            .addClass('btn ' + getBtnClass(false, question.answer))
+            .attr('data-question', question.id)
+            .attr('data-value', 'false')
+            .attr('data-answer-id', answerId)
+            .appendTo(div)
+            .on('click', handleAnswer.bind(this,
+              question.children_yes, question.children_no,
+              false, questionClass + 'no'));
           }
 
           show ? li.show() : li.hide();
@@ -495,7 +533,8 @@ $(document).ready(function () {
         elem.addClass('iron-selected');
         classification_id = elem.attr('data-id');
         getQuestions.call(this, classification_id);
-        renderTitleContent(classification_name, category_name, categories_no, index);
+
+        renderTitleContent(classification_name, category_name, categories_no, index, currentClassification);
         handleGoToQuestions.call(this, false, false, index, categories_no, previousClassification, nextClassification, currentClassification);
       }
 
@@ -648,11 +687,37 @@ $(document).ready(function () {
         return selectedClassificationsIndex;
       }
 
-      function renderTitleContent(classification_name, category_name, categories_no, index) {
-        classification_title.html(classification_name);
+      function renderTitleContent(classification_name, category_name, categories_no, index, currentClassification) {
+        question_category[0].innerHTML = category_name
+        classification_title.html(classification_name)
         current.html(parseInt(index) + 1);
         last.html(categories_no);
-        question_category.html(category_name);
+
+        const subcat = currentClassification.second_level[index]
+
+        if(subcat.details) {
+          let fomattedDetails = handleNewLine(subcat.details);
+          fomattedDetails = fomattedDetails.indexOf('http') !== -1 ? handleLink(fomattedDetails) : fomattedDetails;
+
+          var popoverButton = $('<a/>')
+          .attr({
+            'tabindex':"0",
+            'id':`popoverDetails-test-${subcat.id}`,
+            'data-container':"body",
+            'class':"popoverDetails",
+            'data-toggle':"popover",
+            'data-placement':"left",
+            'data-html':"true",
+            'data-trigger':"manual",
+            'data-content':`${fomattedDetails}`
+          })
+          .html(`
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+          `)
+          .on('click', handleShowPopover(`popoverDetails-test-${subcat.id}`)
+          )
+          .appendTo(question_category);
+        }
       }
 
     });

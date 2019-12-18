@@ -16,10 +16,11 @@ class QuestionSerializer(serializers.ModelSerializer):
     children_no = serializers.SerializerMethodField('_get_children_no')
     children = serializers.SerializerMethodField('_get_children')
     answer = serializers.SerializerMethodField('_get_answer')
+    details = serializers.SerializerMethodField('_get_details')
 
     class Meta:
         model = Question
-        fields = ("id", "text", "order", "answer",
+        fields = ("id", "text", "order", "answer", "details",
                   "children_yes", "children_no", "children")
 
     def _get_answer(self, obj):
@@ -55,6 +56,11 @@ class QuestionSerializer(serializers.ModelSerializer):
             serializer = QuestionSerializer(
                 query, context=self.context, many=True)
             return serializer.data
+
+    def _get_details(self, obj):
+        if obj.classification:
+            return obj.classification.details
+        return ""
 
 
 class SimpleClassificationSerializer(serializers.ModelSerializer):
