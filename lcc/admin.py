@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
 from django.utils.safestring import mark_safe
 from lcc import models
 
@@ -73,7 +74,7 @@ class ApprovedFilter(admin.SimpleListFilter):
         return queryset
 
 
-class BaseUserAdmin(object):
+class BaseUserAdmin(UserAdmin):
     def get_approve_url(self, obj):
         url = obj.userprofile.approve_url
         link = ""
@@ -89,7 +90,7 @@ class BaseUserAdmin(object):
 
 
 
-class UserAdmin(BaseUserAdmin, admin.ModelAdmin):
+class UserAdmin(BaseUserAdmin):
     search_fields = ["username", "first_name", "last_name"]
     list_display = (
         "username", "first_name", "last_name", "email", "get_active",
@@ -101,7 +102,7 @@ class UserAdmin(BaseUserAdmin, admin.ModelAdmin):
 
 
 @admin.register(models.UserProxy)
-class UserProxyAdmin(BaseUserAdmin, admin.ModelAdmin):
+class UserProxyAdmin(BaseUserAdmin):
     list_display = (
         "username", "first_name", "last_name", "get_approve_url"
     )
