@@ -18,6 +18,9 @@
               </a>
             </li>
           {% endif %}
+          {% if request.user.is_superuser %}
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+          {% endif %}
           <li><a href="{% url 'lcc:auth:change_password' %}">Change password</a></li>
           <li><a href="{% url 'lcc:auth:logout' %}">Logout</a></li>
         </ul>
