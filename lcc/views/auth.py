@@ -10,11 +10,11 @@ from django.contrib.auth import (
     update_session_auth_hash
 )
 from django.contrib.auth.forms import PasswordChangeForm
-
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, FormView
+
 from lcc import constants
 
 

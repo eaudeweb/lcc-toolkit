@@ -202,7 +202,7 @@ class PasswordResetNoUserForm(PasswordResetForm):
     def clean(self):
         context = super(PasswordResetForm, self).clean()
         try:
-            models.User.objects.get(username=context['email'])
+            models.User.objects.get(email=context['email'])
         except models.User.DoesNotExist:
             raise ValidationError("There is no user with this e-mail.")
         return context

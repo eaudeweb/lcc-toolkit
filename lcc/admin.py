@@ -57,6 +57,22 @@ class LegislationAdmin(admin.ModelAdmin):
     tags_list.short_description = "Cross cutting categories"
 
 
+class ApprovedFilter(admin.SimpleListFilter):
+    title = 'Approved'
+    parameter_name = 'approved'
+
+    def lookups(self, request, model_admin):
+        return [
+            (True, 'Yes'),
+            (False, 'No'),
+        ]
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(is_active=self.value())
+        return queryset
+
+
 class BaseUserAdmin(object):
     def get_approve_url(self, obj):
         url = obj.userprofile.approve_url
@@ -66,15 +82,21 @@ class BaseUserAdmin(object):
         return mark_safe(link)
     get_approve_url.short_description = 'Approve URL'
 
+    def get_active(self, obj):
+        return obj.is_active
+    get_active.boolean =  True
+    get_active.short_description = 'Approved'
+
+
 
 class UserAdmin(BaseUserAdmin, admin.ModelAdmin):
     search_fields = ["username", "first_name", "last_name"]
     list_display = (
-        "username", "first_name", "last_name", "email", "is_active",
+        "username", "first_name", "last_name", "email", "get_active",
         "get_approve_url"
     )
     list_filter = (
-        "is_staff", "is_superuser", "is_active", "groups"
+        "is_staff", "is_superuser", "groups", ApprovedFilter,
     )
 
 
