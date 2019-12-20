@@ -1,7 +1,10 @@
+from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseServerError, HttpResponse
 from django.template import loader, TemplateDoesNotExist
+from django.views.static import serve
+
 
 from lcc import views
 from lcc.context import sentry
@@ -193,5 +196,14 @@ urlpatterns = [
 
     url(r'^country/',
         include(country_patterns, namespace='country')),
+
+    url(r'^docs/(?P<path>.*)$',
+        serve,
+        {'document_root': settings.DOCS_ROOT}),
+
+    url(r'^docs/guide.html',
+        serve,
+        {'document_root': settings.DOCS_ROOT},
+        name='user_manual'),
 
 ]
