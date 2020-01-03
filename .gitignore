@@ -127,3 +127,8 @@ requirements-local.txt
 
 static/
 media/
+
+# Sphinx documentation
+docs/_build/
+docs/_templates/
+docs/guide.html

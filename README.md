@@ -125,3 +125,13 @@ The application expects configuration via environment variables:
 
 ``NODE_ENV``
     Define different environments for nodejs. Possible values are: prod, dev.
+
+
+# Generate documentation
+
+The application documentation is generated from Sphinx. The following commands should be run on production
+every time the documentation is changed:
+
+
+    cd docs/
+    make html

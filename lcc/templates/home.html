@@ -67,6 +67,11 @@
       </section>
       <section class="partners">
         <h2>Contributing Partners</h2>
+
+        {% if user.is_authenticated %}
+          <p class="mw-100 ml-0">Click <a href="{% url 'lcc:user_manual' %}">here</a> to view User Manual</p>
+        {% endif %}
+
         <p>We would like to thank the following contributing partners for their support in the preparation of the beta version of the Toolkit:</p>
         <ul>
           <li><a href="http://www.fao.org/" target="_blank">Food and Agriculture Organization of the United Nations</a></li>

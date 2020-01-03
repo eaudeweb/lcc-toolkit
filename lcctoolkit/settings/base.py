@@ -114,6 +114,8 @@ FIXTURE_DIRS = [
     'lcc/tests/fixtures',
 ]
 
+DOCS_ROOT = os.path.join(BASE_DIR, '..', 'docs/_build/html')
+
 LAWS_PER_PAGE = 10
 
 # Used to concatenate classification and tag names in ES indexes
