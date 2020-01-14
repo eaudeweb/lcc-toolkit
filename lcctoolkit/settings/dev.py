@@ -32,7 +32,7 @@ MEDIA_URL = '/files/'
 MEDIA_ROOT = root.path('media/uploadfiles/')()
 
 EMAIL_HOST = 'postfix'
-EMAIL_FROM = 'noreply-toolkit@eaudeweb.ro'
+EMAIL_FROM = 'noreply@climatelawtoolkit.org'
 
 DOMAIN = env('DOMAIN', default='http://localhost:8000')
 
