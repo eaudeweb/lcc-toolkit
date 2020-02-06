@@ -114,6 +114,8 @@ FIXTURE_DIRS = [
     'lcc/tests/fixtures',
 ]
 
+DOCS_ROOT = os.path.join(BASE_DIR, '..', 'docs/_build/html')
+
 LAWS_PER_PAGE = 10
 
 # Used to concatenate classification and tag names in ES indexes
@@ -128,5 +130,7 @@ MAX_YEAR = datetime.now().year
 FILE_UPLOAD_PERMISSIONS = 0o644
 
 LEGISPRO_URL=env('LEGISPRO_URL')
+UNHABITAT_URL=env('UNHABITAT_URL')
+UNFAO_URL=env('UNFAO_URL')
 LEGISPRO_USER=env('LEGISPRO_USER')
 LEGISPRO_PASS=env('LEGISPRO_PASS')

@@ -4,11 +4,14 @@ import re
 
 from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand
+from django.db.models import Q
 
 from lcctoolkit.settings.base import (
     LEGISPRO_URL,
     LEGISPRO_USER,
-    LEGISPRO_PASS
+    LEGISPRO_PASS,
+    UNHABITAT_URL,
+    UNFAO_URL,
 )
 
 from lcc.constants import (
@@ -30,11 +33,25 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
+            '--commonwealth',
+            action='store_true',
+            help='Use latest updated_at for updating or creating legislations',
+        )
+        parser.add_argument(
             '--use_last_update',
             action='store_true',
             help='Use latest updated_at for updating or creating legislations',
         )
-
+        parser.add_argument(
+            '--unfao',
+            action='store_true',
+            help='Use latest updated_at for updating or creating legislations',
+        )
+        parser.add_argument(
+            '--unhabitat',
+            action='store_true',
+            help='Use latest updated_at for updating or creating legislations',
+        )
         parser.add_argument(
             '--legislation',
             action='store',
@@ -100,7 +117,7 @@ class Command(BaseCommand):
         if iso_code == 'GB':
             return Country.objects.filter(iso_code='UK').first()
         else:
-            return Country.objects.filter(iso_code=iso_code).first()
+            return Country.objects.filter(Q(iso_code=iso_code) | Q(pk=iso_code)).first()
 
     def parse_year(self, legislation_data):
         title = legislation_data.find('frbrname').get('value')
@@ -131,8 +148,8 @@ class Command(BaseCommand):
             else: 
                 print("Concept {} {} not found.", concept_code, concept_name)
 
-    def create_or_update_legislation(self, legislation_origin):
-        legislation_link =  '/'.join([LEGISPRO_URL, legislation_origin])
+    def create_or_update_legislation(self, legislation_origin, legislation_url):
+        legislation_link =  '/'.join([legislation_url, legislation_origin])
         response = requests.get(
             legislation_link, 
             auth=requests.auth.HTTPBasicAuth(LEGISPRO_USER, LEGISPRO_PASS)
@@ -141,6 +158,10 @@ class Command(BaseCommand):
         try:
             fields = None
             fields = self.parse_legislation_data(legislation_data, legislation_origin)
+            if not fields['country']:
+                print("Country {} was not found.".format(iso_code = legislation_data.find('frbrcountry').get('value')))
+                return
+
             legislation = Legislation.objects.filter(legispro_article=legislation_origin)
             if legislation:
                 legislation.update(**fields)
@@ -169,12 +190,19 @@ class Command(BaseCommand):
             return True
 
     def handle(self, *args, **options):
+        legislation_url = LEGISPRO_URL
+        if options['unfao']:
+            legislation_url = UNFAO_URL
+        if options['unhabitat']:
+            legislation_url = UNHABITAT_URL
+
+        print("Pullting data from {}".format(legislation_url))
         if options['legislation']:
-            self.create_or_update_legislation(options['legislation'])
+            self.create_or_update_legislation(options['legislation'], legislation_url)
             return
         
         response = requests.get(
-            LEGISPRO_URL, auth=requests.auth.HTTPBasicAuth(LEGISPRO_USER, LEGISPRO_PASS)
+            legislation_url, auth=requests.auth.HTTPBasicAuth(LEGISPRO_USER, LEGISPRO_PASS)
         )
         xml_soup = BeautifulSoup(response.content, 'lxml')
         legislation_resources = xml_soup.find_all("exist:resource")
@@ -185,8 +213,8 @@ class Command(BaseCommand):
 
         for legislation_resource in legislation_resources:
             if not options['use_last_update']:
-                self.create_or_update_legislation(legislation_resource.get('name'))
+                self.create_or_update_legislation(legislation_resource.get('name'), legislation_url)
                 continue
 
             if self.must_update_legislation(legislation_resource, last_updated_date):
-                self.create_or_update_legislation(legislation_resource.get('name'))
+                self.create_or_update_legislation(legislation_resource.get('name'), legislation_url)
