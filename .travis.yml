@@ -6,6 +6,8 @@ services:
 env:
   global:
     - LEGISPRO_URL='http://example.com'
+    - UNHABITAT_URL='http://example.com'
+    - UNFAO_URL='http://example.com'
     - LEGISPRO_USER='test'
     - LEGISPRO_PASS='test'
     - ES_VERSION=5.4.1
