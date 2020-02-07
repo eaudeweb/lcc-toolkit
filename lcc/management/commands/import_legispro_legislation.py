@@ -167,7 +167,8 @@ class Command(BaseCommand):
         year = re.findall('\d{4}', title)
         if year:
             return year[0]
-        return None
+        # Specific fix for The New York Community Risk And Resiliency Act
+        return '2014'
 
     def parse_legislation_data(self, legislation_data, legispro_article):
         legislation_dict = {
