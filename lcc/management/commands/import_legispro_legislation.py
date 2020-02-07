@@ -27,6 +27,37 @@ from lcc.models import (
 ) 
 
 
+def find_classification(concept_name, concept_code):
+    classification = TaxonomyClassification.objects.filter(
+        legispro_code=concept_code
+    ).first()
+    if classification:
+        return classification
+    else:
+        # Try to find classification by name instead; useful when
+        # concepts in LegisPro have not been synced with our
+        # TaxonomyClassifications.
+        classification = TaxonomyClassification.objects.filter(
+            name=concept_name
+        )
+        if classification.count() > 1:
+            print(
+                "More than one concept found for {} {}.".format(
+                    concept_code, concept_name
+                )
+            )
+            return None
+        elif classification.count() == 0:
+            print(
+                "Concept {} {} not found.".format(
+                    concept_code, concept_name
+                )
+            )
+            return None
+        else:
+            return classification.first()
+
+
 class Command(BaseCommand):
 
     help = "Import legislations from LegisPro"
@@ -72,14 +103,26 @@ class Command(BaseCommand):
         for concept in concepts:
             concept_name = re.sub('[^ a-zA-z]+', '' , concept.get('title')).strip()
             concept_code = concept.get("refersto").split("__")[1]
-            clasification = TaxonomyClassification.objects.filter(legispro_code=concept_code)
-            if clasification:
-                article_object.classifications.add(clasification.first())
-            else: 
-                print("Concept {} {} not found.", concept_code, concept_name)
+            classification = find_classification(concept_name, concept_code)
+            if classification:
+                article_object.classifications.add(classification)
+                print(
+                    'Added classification {} to article.'.format(
+                        classification.code
+                    )
+                )
 
     def create_or_update_articles(self, legislation_data, legislation):
         articles = legislation_data.find_all('article')
+        if not articles:
+            # Fall back to looking for sections.
+            articles = legislation_data.find_all('section')
+        if not articles:
+            # Then fall back to looking for chapters
+            articles = legislation_data.find_all('chapter')
+        if not articles:
+            # And finally fall back to looking for parts.
+            articles = legislation_data.find_all('part')
         for article in articles:
             try:
                 fields = None
@@ -124,7 +167,7 @@ class Command(BaseCommand):
         year = re.findall('\d{4}', title)
         if year:
             return year[0]
-        return ''
+        return None
 
     def parse_legislation_data(self, legislation_data, legispro_article):
         legislation_dict = {
@@ -142,11 +185,10 @@ class Command(BaseCommand):
         for concept in concepts:
             concept_name = re.sub('[^ a-zA-z]+', '' , concept.get('showas')).strip()
             concept_code = concept.get("eid").split("__")[1]
-            clasification = TaxonomyClassification.objects.filter(legispro_code=concept_code)
-            if clasification:
-                legislation_object.classifications.add(clasification.first())
-            else: 
-                print("Concept {} {} not found.", concept_code, concept_name)
+            classification = find_classification(concept_name, concept_code)
+            if classification:
+                legislation_object.classifications.add(classification)
+                print('Added classification {} to legislation.'.format(classification.code))
 
     def create_or_update_legislation(self, legislation_origin, legislation_url):
         legislation_link =  '/'.join([legislation_url, legislation_origin])
@@ -196,7 +238,7 @@ class Command(BaseCommand):
         if options['unhabitat']:
             legislation_url = UNHABITAT_URL
 
-        print("Pullting data from {}".format(legislation_url))
+        print("Pulling data from {}".format(legislation_url))
         if options['legislation']:
             self.create_or_update_legislation(options['legislation'], legislation_url)
             return
