@@ -112,6 +112,26 @@ class Command(BaseCommand):
                     )
                 )
 
+    def add_possible_concepts(self, possible_concepts, article_object):
+        """
+        Some concepts seem to be included in the "<level>" tag;
+        we need to check that they have the "refersto" property.
+        """
+        for concept in possible_concepts:
+            refers_to =  concept.get("refersto")
+            if not refers_to:
+                continue
+            concept_name = re.sub('[^ a-zA-z]+', '' , concept.get('title')).strip()
+            concept_code = refers_to.split("__")[1]
+            classification = find_classification(concept_name, concept_code)
+            if classification:
+                article_object.classifications.add(classification)
+                print(
+                    'Added classification {} to article.'.format(
+                        classification.code
+                    )
+                )
+
     def create_or_update_articles(self, legislation_data, legislation):
         articles = legislation_data.find_all('article')
         if not articles:
@@ -145,6 +165,9 @@ class Command(BaseCommand):
                         fields['code']
                     ))
                 self.add_concepts(article.find_all('concept'), article_object)
+                self.add_possible_concepts(
+                    article.find_all('level'), article_object
+                )
             except Exception as e:
                 if fields:
                     code = fields['code']
@@ -167,7 +190,8 @@ class Command(BaseCommand):
         year = re.findall('\d{4}', title)
         if year:
             return year[0]
-        return None
+        # Specific fix for The New York Community Risk And Resiliency Act
+        return '2014'
 
     def parse_legislation_data(self, legislation_data, legispro_article):
         legislation_dict = {
