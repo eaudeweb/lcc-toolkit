@@ -101,7 +101,7 @@ class Command(BaseCommand):
     def add_concepts(self, concepts, article_object):
         article_object.classifications.clear()
         for concept in concepts:
-            concept_name = re.sub('[^ a-zA-z]+', '' , concept.get('title')).strip()
+            concept_name = re.sub('[^ a-zA-z\-]+', '' , concept.get('title')).strip()
             concept_code = concept.get("refersto").split("__")[1]
             classification = find_classification(concept_name, concept_code)
             if classification:
@@ -121,7 +121,7 @@ class Command(BaseCommand):
             refers_to =  concept.get("refersto")
             if not refers_to:
                 continue
-            concept_name = re.sub('[^ a-zA-z]+', '' , concept.get('title')).strip()
+            concept_name = re.sub('[^ a-zA-z\-]+', '' , concept.get('title')).strip()
             concept_code = refers_to.split("__")[1]
             classification = find_classification(concept_name, concept_code)
             if classification:
@@ -164,6 +164,10 @@ class Command(BaseCommand):
                         legislation.title,
                         fields['code']
                     ))
+                # Add concepts that are included in the article tag
+                self.add_possible_concepts([article, ], article_object)
+
+                # Add concepts included in the article concepts
                 self.add_concepts(article.find_all('concept'), article_object)
                 self.add_possible_concepts(
                     article.find_all('level'), article_object
@@ -207,7 +211,7 @@ class Command(BaseCommand):
         legislation_object.classifications.clear()
         concepts = legislation.find_all('tlcconcept')
         for concept in concepts:
-            concept_name = re.sub('[^ a-zA-z]+', '' , concept.get('showas')).strip()
+            concept_name = re.sub('[^ a-zA-z\-]+', '' , concept.get('showas')).strip()
             concept_code = concept.get("eid").split("__")[1]
             classification = find_classification(concept_name, concept_code)
             if classification:
