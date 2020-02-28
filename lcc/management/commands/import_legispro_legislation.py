@@ -24,7 +24,10 @@ from lcc.models import (
     Legislation,
     LegislationArticle,
     TaxonomyClassification,
-) 
+)
+
+
+sub_expression = '[^ a-zA-z.,:;()\'\-]+'
 
 
 def find_classification(concept_name, concept_code):
@@ -92,7 +95,7 @@ class Command(BaseCommand):
     def parse_article(self, article, legislation):
         return {
             "code" : article.find('num').text.strip(),
-            "text" : re.sub('^Article [0-9]+[.]?', '',
+            "text" : re.sub('^Article [0-9.]+[.]?', '',
                             article.text.strip()).strip().replace('\n\n', '\n'),
             "legislation" : legislation,
             "legispro_identifier": article.get('eid', '')
@@ -101,7 +104,7 @@ class Command(BaseCommand):
     def add_concepts(self, concepts, article_object):
         article_object.classifications.clear()
         for concept in concepts:
-            concept_name = re.sub('[^ a-zA-z\-]+', '' , concept.get('title')).strip()
+            concept_name = re.sub(sub_expression, '' , concept.get('title')).strip()
             concept_code = concept.get("refersto").split("__")[1]
             classification = find_classification(concept_name, concept_code)
             if classification:
@@ -121,7 +124,7 @@ class Command(BaseCommand):
             refers_to =  concept.get("refersto")
             if not refers_to:
                 continue
-            concept_name = re.sub('[^ a-zA-z\-]+', '' , concept.get('title')).strip()
+            concept_name = re.sub(sub_expression, '' , concept.get('title')).strip()
             concept_code = refers_to.split("__")[1]
             classification = find_classification(concept_name, concept_code)
             if classification:
@@ -211,7 +214,7 @@ class Command(BaseCommand):
         legislation_object.classifications.clear()
         concepts = legislation.find_all('tlcconcept')
         for concept in concepts:
-            concept_name = re.sub('[^ a-zA-z\-]+', '' , concept.get('showas')).strip()
+            concept_name = re.sub(sub_expression, '' , concept.get('showas')).strip()
             concept_code = concept.get("eid").split("__")[1]
             classification = find_classification(concept_name, concept_code)
             if classification:
