@@ -21,7 +21,7 @@ from lcc.models import (
 )
 
 
-sub_expression = '[^ a-zA-z.,:;()\'\-]+'
+sub_expression = '[^ a-zA-z,:;()\'\-]+'
 
 
 def find_classification(concept_name, concept_code):
@@ -265,6 +265,7 @@ class Command(BaseCommand):
             auth=requests.auth.HTTPBasicAuth(LEGISPRO_USER, LEGISPRO_PASS)
         )
         legislation_data = BeautifulSoup(response.content, 'lxml')
+
         try:
             fields = None
             fields = self.parse_legislation_data(
@@ -301,7 +302,10 @@ class Command(BaseCommand):
                 name = fields['title']
             else:
                 name = None
-            print("Warning Legislation {} generated the folowing error: {}".format(name, e))
+            print(
+                "Warning Legislation {} generated the folowing error: "
+                "{}".format(name, e)
+            )
 
     def must_update_legislation(self, legislation_resource, last_updated_date):
         try:
