@@ -94,10 +94,11 @@ class Command(BaseCommand):
 
     def parse_article(self, article, legislation):
         return {
-            "code" : article.find('num').text.strip(),
-            "text" : re.sub('^Article [0-9.]+[.]?', '',
-                            article.text.strip()).strip().replace('\n\n', '\n'),
-            "legislation" : legislation,
+            "code": article.find('num').text.strip(),
+            "text": re.sub(
+                '^Article [0-9.]+[.]?', '', article.text.strip()
+            ).strip().replace('\n\n', '\n'),
+            "legislation": legislation,
             "legispro_identifier": article.get('eid', '')
         }
 
@@ -143,19 +144,47 @@ class Command(BaseCommand):
                     )
                 )
 
+    def identify_articles(self, legislation_data):
+        """
+        Identifies articles based on a priority list of tags that might
+        contain them.
+        Takes into account the fact that some legislations have one big
+        placeholder tag that contains several other tags that represent the
+        actual articles (see (AUS) Victoria Marine and Coastal Act 2018 Tagged).
+        """
+        # Tags that might be used for marking articles, in order of precedence.
+        possible_article_tags = ('article', 'section', 'chapter', 'part',)
+
+        for tag in possible_article_tags:
+            articles = legislation_data.find_all(tag)
+            if not articles:
+                # Try with the next possible tag if this one has not been found
+                continue
+
+            if len(articles) == 1:
+                # If document contains just one tag, also look at sub-tags.
+                # If there is more than 1, consider these the articles,
+                # otherwise just continue.
+                sub_articles = self.identify_articles(articles[0])
+                if sub_articles and len(sub_articles) > 1:
+                    return sub_articles
+
+            # Finally, if articles have been identified and there are enough
+            # of them, just return then
+            return articles
+
+        return []
+
     def create_or_update_articles(
             self, legislation_data, legislation, dry_run=False
     ):
-        articles = legislation_data.find_all('article')
+        articles = self.identify_articles(legislation_data)
         if not articles:
-            # Fall back to looking for sections.
-            articles = legislation_data.find_all('section')
-        if not articles:
-            # Then fall back to looking for chapters
-            articles = legislation_data.find_all('chapter')
-        if not articles:
-            # And finally fall back to looking for parts.
-            articles = legislation_data.find_all('part')
+            print(
+                'No articles found for legislation {}.'.format(
+                    legislation.title
+                )
+            )
         for article in articles:
             try:
                 fields = None
