@@ -1,6 +1,8 @@
+import re
 import requests
 from bs4 import BeautifulSoup
 
+from django.db.models import Q
 from django.core.management.base import BaseCommand
 
 from lcctoolkit.settings.base import (
@@ -10,6 +12,7 @@ from lcctoolkit.settings.base import (
     UNHABITAT_URL,
     UNFAO_URL,
 )
+from lcc.models import Country
 
 
 class Command(BaseCommand):
@@ -37,6 +40,23 @@ class Command(BaseCommand):
             action='store',
             help='Term to find in legislation'
         )
+
+    def parse_country(self, legislation_data):
+        iso_code = legislation_data.find('frbrcountry').get('value')
+        if iso_code == 'GB':
+            return Country.objects.filter(iso_code='UK').first()
+        else:
+            return Country.objects.filter(
+                Q(iso_code=iso_code) | Q(pk=iso_code)
+            ).first()
+
+    def parse_year(self, legislation_data):
+        title = legislation_data.find('frbrname').get('value')
+        year = re.findall('\d{4}', title)
+        if year:
+            return year[0]
+        # Specific fix for The New York Community Risk And Resiliency Act
+        return '2014'
 
     def parse_legislation_data(self, legislation_data, legispro_article):
         legislation_dict = {
