@@ -59,8 +59,9 @@ class Command(BaseCommand):
         return '2014'
 
     def parse_legislation_data(self, legislation_data, legispro_article):
+        title = legislation_data.find('frbrname')
         legislation_dict = {
-            'title': legislation_data.find('frbrname').get('value'),
+            'title': title.get('value') if title else '',
             'country': self.parse_country(legislation_data),
             'year': self.parse_year(legislation_data),
             'legispro_article': legispro_article,
