@@ -21,7 +21,7 @@ from lcc.models import (
 )
 
 
-sub_expression = '[^ a-zA-z,:;()\'\-]+'
+sub_expression = "[^ a-zA-z,:;()\'\-]+"
 
 
 def find_classification(concept_name, concept_code):
@@ -131,7 +131,7 @@ class Command(BaseCommand):
             if not refers_to:
                 continue
             concept_name = re.sub(
-                sub_expression, '' , concept.get('title')
+                sub_expression, '', concept.get('title')
             ).strip()
             concept_code = refers_to.split("__")[1]
             classification = find_classification(concept_name, concept_code)
