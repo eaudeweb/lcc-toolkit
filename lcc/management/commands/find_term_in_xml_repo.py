@@ -42,7 +42,10 @@ class Command(BaseCommand):
         )
 
     def parse_country(self, legislation_data):
-        iso_code = legislation_data.find('frbrcountry').get('value')
+        title = legislation_data.find('frbrcountry')
+        iso_code = title.get('value') if title else ''
+        if not iso_code:
+            return ''
         if iso_code == 'GB':
             return Country.objects.filter(iso_code='UK').first()
         else:
@@ -51,8 +54,8 @@ class Command(BaseCommand):
             ).first()
 
     def parse_year(self, legislation_data):
-        title = legislation_data.find('frbrname').get('value')
-        year = re.findall('\d{4}', title)
+        title = legislation_data.find('frbrname')
+        year = re.findall('\d{4}', title.get('value')) if title else ''
         if year:
             return year[0]
         # Specific fix for The New York Community Risk And Resiliency Act
