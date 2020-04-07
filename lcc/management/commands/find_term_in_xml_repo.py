@@ -87,14 +87,41 @@ class Command(BaseCommand):
             legislation_origin, fields['title'])
         )
 
+        # Search in legislation-wide tags
+        for concept in legislation_data.find_all('TLCConcept'):
+            title = concept.get('showas')
+            if title and term in title:
+                print(
+                    'Matching legislation-wide concept {} in legislation '
+                    '{}'.format(
+                        fields['title'], title
+                    )
+                )
+
+        # Search in normal concept tags
         for concept in legislation_data.find_all('concept'):
             title = concept.get('title')
-            if term in title:
+            if title and term in title:
                 print(
                     'Matching concept {} in legislation {}'.format(
                         fields['title'], title
                     )
                 )
+
+        # Search in article tags, as they can also have concepts
+        possible_article_tags = ('article', 'section', 'chapter', 'part',)
+        for tag in possible_article_tags:
+            for item in legislation_data.find_all(tag):
+                refers_to = item.get("refersto")
+                if not refers_to:
+                    continue
+                title = item.get('title')
+                if title and term in title:
+                    print(
+                        'Matching concept {} in legislation {}'.format(
+                            fields['title'], title
+                        )
+                    )
 
     def handle(self, *args, **options):
         legislation_url = LEGISPRO_URL
@@ -106,6 +133,10 @@ class Command(BaseCommand):
         if not options['term']:
             print('A search term must be provided. Exiting.')
             return
+
+        print(
+            'Searching for term {} in all legislation.'.format(options['term'])
+        )
 
         response = requests.get(
             legislation_url,
