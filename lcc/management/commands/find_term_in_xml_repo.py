@@ -42,7 +42,10 @@ class Command(BaseCommand):
         )
 
     def parse_country(self, legislation_data):
-        iso_code = legislation_data.find('frbrcountry').get('value')
+        title = legislation_data.find('frbrcountry')
+        iso_code = title.get('value') if title else ''
+        if not iso_code:
+            return ''
         if iso_code == 'GB':
             return Country.objects.filter(iso_code='UK').first()
         else:
@@ -51,16 +54,17 @@ class Command(BaseCommand):
             ).first()
 
     def parse_year(self, legislation_data):
-        title = legislation_data.find('frbrname').get('value')
-        year = re.findall('\d{4}', title)
+        title = legislation_data.find('frbrname')
+        year = re.findall('\d{4}', title.get('value')) if title else ''
         if year:
             return year[0]
         # Specific fix for The New York Community Risk And Resiliency Act
         return '2014'
 
     def parse_legislation_data(self, legislation_data, legispro_article):
+        title = legislation_data.find('frbrname')
         legislation_dict = {
-            'title': legislation_data.find('frbrname').get('value'),
+            'title': title.get('value') if title else '',
             'country': self.parse_country(legislation_data),
             'year': self.parse_year(legislation_data),
             'legispro_article': legispro_article,
@@ -83,14 +87,41 @@ class Command(BaseCommand):
             legislation_origin, fields['title'])
         )
 
+        # Search in legislation-wide tags
+        for concept in legislation_data.find_all('TLCConcept'):
+            title = concept.get('showas')
+            if title and term in title:
+                print(
+                    'Matching legislation-wide concept {} in legislation '
+                    '{}'.format(
+                        fields['title'], title
+                    )
+                )
+
+        # Search in normal concept tags
         for concept in legislation_data.find_all('concept'):
             title = concept.get('title')
-            if term in title:
+            if title and term in title:
                 print(
                     'Matching concept {} in legislation {}'.format(
                         fields['title'], title
                     )
                 )
+
+        # Search in article tags, as they can also have concepts
+        possible_article_tags = ('article', 'section', 'chapter', 'part',)
+        for tag in possible_article_tags:
+            for item in legislation_data.find_all(tag):
+                refers_to = item.get("refersto")
+                if not refers_to:
+                    continue
+                title = item.get('title')
+                if title and term in title:
+                    print(
+                        'Matching concept {} in legislation {}'.format(
+                            fields['title'], title
+                        )
+                    )
 
     def handle(self, *args, **options):
         legislation_url = LEGISPRO_URL
@@ -102,6 +133,10 @@ class Command(BaseCommand):
         if not options['term']:
             print('A search term must be provided. Exiting.')
             return
+
+        print(
+            'Searching for term {} in all legislation.'.format(options['term'])
+        )
 
         response = requests.get(
             legislation_url,

@@ -374,6 +374,9 @@ class Command(BaseCommand):
             print("Using last update: {}".format(last_updated_date))
 
         for legislation_resource in legislation_resources:
+            if legislation_resource.get('name') == '.project.xml':
+                continue
+
             if not options['use_last_update']:
                 self.create_or_update_legislation(
                     legislation_resource.get('name'),
