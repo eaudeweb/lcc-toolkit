@@ -142,8 +142,8 @@ class Command(BaseCommand):
                 if not dry_run:
                     article_object.classifications.add(classification)
                 print(
-                    'Added classification {} to article.'.format(
-                        classification.code
+                    'Added classification {} to article {}.'.format(
+                        classification.code, article_object.code
                     )
                 )
 
@@ -312,17 +312,23 @@ class Command(BaseCommand):
             legislation = Legislation.objects.filter(
                 legispro_article=legislation_origin
             )
+            if legislation.count() > 1:
+                print(
+                    'Warning: more than 1 legislation found for {}'.format(
+                        legislation_origin
+                    )
+                )
             if legislation:
+                legislation = legislation.first()
                 if not dry_run:
                     legislation.update(**fields)
-                    legislation = legislation.first()
-                print("Legislation {} was updated.".format(legislation.title))
+                print("Legislation {} was updated.".format(fields['title']))
             else:
                 if not dry_run:
                     legislation = Legislation.objects.create(**fields)
-                    print(
-                        "Legislation {} was created.".format(legislation.title)
-                    )
+                print(
+                    "Legislation {} was created.".format(fields['title'])
+                )
             # Now also add articles and concepts
             self.create_or_update_articles(
                 legislation_data, legislation, dry_run
