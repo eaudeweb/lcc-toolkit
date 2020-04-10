@@ -141,9 +141,10 @@ class Command(BaseCommand):
             if classification:
                 if not dry_run:
                     article_object.classifications.add(classification)
+                article_code = article_object.code if article_object else ''
                 print(
                     'Added classification {} to article {}.'.format(
-                        classification.code, article_object.code
+                        classification.code, article_code
                     )
                 )
 
@@ -193,10 +194,11 @@ class Command(BaseCommand):
                     legispro_identifier=fields['legispro_identifier'],
                     legislation=legislation
                 )
+                article_object = None
                 if article_objects:
                     if not dry_run:
-                        article_objects.update(**fields)
                         article_object = article_objects.first()
+                        article_objects.update(**fields)
                     print("Legislation {} - Article {} was updated.".format(
                         legislation.title,
                         fields['code']
