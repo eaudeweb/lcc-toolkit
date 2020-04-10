@@ -321,9 +321,9 @@ class Command(BaseCommand):
                     )
                 )
             if legislation:
-                legislation = legislation.first()
                 if not dry_run:
                     legislation.update(**fields)
+                legislation = legislation.first()
                 print("Legislation {} was updated.".format(fields['title']))
             else:
                 if not dry_run:
