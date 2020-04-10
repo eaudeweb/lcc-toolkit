@@ -23,6 +23,9 @@ from lcc.models import (
 
 sub_expression = "[^ a-zA-z,:;()\'\-]+"
 
+# Tags that might be used for marking articles, in order of precedence.
+possible_article_tags = ('article', 'section', 'chapter', 'part',)
+
 
 def find_classification(concept_name, concept_code):
     classification = TaxonomyClassification.objects.filter(
@@ -123,7 +126,7 @@ class Command(BaseCommand):
             self, possible_concepts, article_object, dry_run=False
     ):
         """
-        Some concepts seem to be included in the "<level>" tag;
+        Some concepts seem to be included in the sections tags;
         we need to check that they have the "refersto" property.
         """
         for concept in possible_concepts:
@@ -152,9 +155,6 @@ class Command(BaseCommand):
         placeholder tag that contains several other tags that represent the
         actual articles (see (AUS) Victoria Marine and Coastal Act 2018 Tagged).
         """
-        # Tags that might be used for marking articles, in order of precedence.
-        possible_article_tags = ('article', 'section', 'chapter', 'part',)
-
         for tag in possible_article_tags:
             articles = legislation_data.find_all(tag)
             if not articles:
@@ -218,9 +218,13 @@ class Command(BaseCommand):
                 self.add_concepts(
                     article.find_all('concept'), article_object, dry_run
                 )
-                self.add_possible_concepts(
-                    article.find_all('level'), article_object, dry_run
-                )
+
+                # Sometimes articles have subsections that have associated
+                # concepts. Also take paragraphs into account.
+                for inner_section in possible_article_tags + ('p',):
+                    self.add_possible_concepts(
+                        article.find_all(inner_section), article_object, dry_run
+                    )
             except Exception as e:
                 if fields:
                     code = fields['code']
