@@ -270,7 +270,8 @@ class Command(BaseCommand):
     def add_legislation_concepts(
             self, legislation, legislation_object, dry_run
     ):
-        legislation_object.classifications.clear()
+        if not dry_run:
+            legislation_object.classifications.clear()
         concepts = legislation.find_all('tlcconcept')
         for concept in concepts:
             concept_name = re.sub(
