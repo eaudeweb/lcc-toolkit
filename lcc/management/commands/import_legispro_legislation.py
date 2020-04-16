@@ -222,8 +222,9 @@ class Command(BaseCommand):
                 )
 
                 # Sometimes articles have subsections that have associated
-                # concepts. Also take paragraphs into account.
-                for inner_section in possible_article_tags + ('p',):
+                # concepts. Also take paragraphs and levels into account as
+                # subsections.
+                for inner_section in possible_article_tags + ('level', 'p',):
                     self.add_possible_concepts(
                         article.find_all(inner_section), article_object, dry_run
                     )
@@ -269,7 +270,8 @@ class Command(BaseCommand):
     def add_legislation_concepts(
             self, legislation, legislation_object, dry_run
     ):
-        legislation_object.classifications.clear()
+        if not dry_run:
+            legislation_object.classifications.clear()
         concepts = legislation.find_all('tlcconcept')
         for concept in concepts:
             concept_name = re.sub(
@@ -344,7 +346,7 @@ class Command(BaseCommand):
             else:
                 name = None
             print(
-                "Warning Legislation {} generated the folowing error: "
+                "Warning Legislation {} generated the following error: "
                 "{}".format(name, e)
             )
 
