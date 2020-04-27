@@ -26,6 +26,12 @@ sub_expression = "[^ a-zA-z,:;()\'\-]+"
 # Tags that might be used for marking articles, in order of precedence.
 possible_article_tags = ('article', 'section', 'chapter', 'part',)
 
+def check_alphanumeric_classification_names(concept_name):
+    classifications = TaxonomyClassification.objects.values_list("code", "name")
+    for classification in classifications:
+        if re.sub('[^A-Za-z0-9]+', '', classification[1]) == re.sub('[^A-Za-z0-9]+', '', concept_name):
+            return TaxonomyClassification.objects.filter(code=classification[0])
+    return None
 
 def find_classification(concept_name, concept_code):
     classification = TaxonomyClassification.objects.filter(
@@ -48,6 +54,9 @@ def find_classification(concept_name, concept_code):
             )
             return None
         elif classification.count() == 0:
+            classification = check_alphanumeric_classification_names(concept_name)
+            if classification:
+                return classification.first()
             print(
                 "Concept {} {} not found.".format(
                     concept_code, concept_name
