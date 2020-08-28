@@ -11,6 +11,8 @@ from django.contrib.auth.forms import PasswordResetForm
 from django.forms import ModelForm
 from django.db.models import Q
 
+from captcha.fields import CaptchaField
+
 from lcc import models
 from lcc import roles
 from lcc.constants import LEGISLATION_YEAR_RANGE
@@ -109,6 +111,7 @@ class RegisterForm(ModelForm):
         ))
     )
     affiliation = forms.CharField(max_length=255, required=True)
+    captcha = CaptchaField()
 
     class Meta:
         model = models.UserProfile
