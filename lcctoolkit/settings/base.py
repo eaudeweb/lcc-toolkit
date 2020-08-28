@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'rolepermissions',
     'rest_framework',
     'mptt',
+    'captcha',
     'lcc'
 ]
 
