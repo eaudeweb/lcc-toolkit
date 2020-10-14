@@ -105,10 +105,10 @@ class RegisterForm(ModelForm):
     email = forms.EmailField(label='Email address')
     role = forms.ChoiceField(
         label='Desired role',
-        choices=map(lambda x: (x, x), filter(
-            lambda n: n != roles.SiteAdministrator.get_name(),
-            RolesManager.get_roles_names()
-        ))
+        choices=map(
+            lambda x: (x, x),
+            roles.get_nonprivileged_roles()
+        )
     )
     affiliation = forms.CharField(max_length=255, required=True)
     captcha = CaptchaField()
