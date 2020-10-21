@@ -29,5 +29,6 @@ INSTALLED_APPS += [
     'django_webtest'
 ]
 
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 MEDIA_ROOT = MEDIA_ROOT + '/tests/'
