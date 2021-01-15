@@ -47,85 +47,87 @@
       Return results that match any of the selected legal areas.
     </small>
     <br>
-    <ul class="round" id="classificationsSelect">
-      {% for top_class in top_classifications %}
-        <li class="first-level level">
-          {% with top_class.get_children as second_classifications %}
-            <span class="list-header">
-              <input id='classification-{{ top_class.pk }}' value='{{ top_class.pk }}' type='checkbox'/>
-              <label for='classification-{{ top_class.pk }}'>{{ top_class.name }}
-              </label>
-              {% if second_classifications %}
-                <i class="fa fa-caret-down caret" aria-hidden="true"></i>
-              {% endif %}
-            </span>
-            <ul class="second-level level">
-              <li class="select-deselect">
-                <a href="javascript:void(0)" class="select-all">Select all</a>
-                 |
-                <a href="javascript:void(0)" class="deselect-all">Deselect all</a>
-              </li>
-              {% for second_class in second_classifications %}
-                {% with second_class.get_children as third_classifications %}
-                  <li>
-                    <span class="list-header">
-                      <input id='classification-{{ second_class.pk }}' value='{{ second_class.pk }}' type='checkbox'/>
-                      <label for="classification-{{ second_class.pk }}">{{ second_class.name }}</label>
-                      {% if third_classifications %}
-                        <i class="fa fa-caret-down caret" aria-hidden="true"></i>
-                      {% endif %}
-                    </span>
+		<form autocomplete="off">
+			<ul class="round" id="classificationsSelect">
+				{% for top_class in top_classifications %}
+					<li class="first-level level">
+						{% with top_class.get_children as second_classifications %}
+							<span class="list-header">
+								<input id='classification-{{ top_class.pk }}' value='{{ top_class.pk }}' type='checkbox'/>
+								<label for='classification-{{ top_class.pk }}'>{{ top_class.name }}
+								</label>
+								{% if second_classifications %}
+									<i class="fa fa-caret-down caret" aria-hidden="true"></i>
+								{% endif %}
+							</span>
+							<ul class="second-level level">
+								<li class="select-deselect">
+									<a href="javascript:void(0)" class="select-all">Select all</a>
+									|
+									<a href="javascript:void(0)" class="deselect-all">Deselect all</a>
+								</li>
+								{% for second_class in second_classifications %}
+									{% with second_class.get_children as third_classifications %}
+										<li>
+											<span class="list-header">
+												<input id='classification-{{ second_class.pk }}' value='{{ second_class.pk }}' type='checkbox'/>
+												<label for="classification-{{ second_class.pk }}">{{ second_class.name }}</label>
+												{% if third_classifications %}
+													<i class="fa fa-caret-down caret" aria-hidden="true"></i>
+												{% endif %}
+											</span>
 
-                    {% if second_class.details %}
-                      <a tabindex="0"
-                        id="popoverDetails-{{ second_class.pk }}"
-                        class="popoverDetails"
-                        data-toggle="popover"
-                        data-placement="left"
-                        data-html="true"
-                        data-trigger="manual"
-                        data-item="{{ second_class.details }}"
-                      >
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                      </a>
-                    {% endif %}
+											{% if second_class.details %}
+												<a tabindex="0"
+													id="popoverDetails-{{ second_class.pk }}"
+													class="popoverDetails"
+													data-toggle="popover"
+													data-placement="left"
+													data-html="true"
+													data-trigger="manual"
+													data-item="{{ second_class.details }}"
+												>
+													<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+												</a>
+											{% endif %}
 
-                    <ul class="third-level level">
-                      <li class="select-deselect">
-                        <a href="javascript:void(0)" class="select-all">Select all</a>
-                         |
-                        <a href="javascript:void(0)" class="deselect-all">Deselect all</a>
-                      </li>
-                      {% for third_class in third_classifications %}
-                        <li>
-                          <span class="list-header">
-                            <input id='classification-{{ third_class.pk }}' value='{{ third_class.pk }}' type='checkbox'/>
-                            <label for="classification-{{ third_class.pk }}">{{ third_class.name }}</label>
-                          </span>
-                          {% if third_class.details %}
-                            <a tabindex="0"
-                              id="popoverDetails-{{ third_class.pk }}"
-                              data-item="{{ third_class.details }}"
-                              class="popoverDetails"
-                              data-toggle="popover"
-                              data-placement="left"
-                              data-html="true"
-                              data-trigger="manual"
-                            >
-                              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                            </a>
-                          {% endif %}
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </li>
-                {% endwith %}
-              {% endfor %}
-            </ul>
-          {% endwith %}
-        </li>
-      {% endfor %}
-    </ul>
+											<ul class="third-level level">
+												<li class="select-deselect">
+													<a href="javascript:void(0)" class="select-all">Select all</a>
+													|
+													<a href="javascript:void(0)" class="deselect-all">Deselect all</a>
+												</li>
+												{% for third_class in third_classifications %}
+													<li>
+														<span class="list-header">
+															<input id='classification-{{ third_class.pk }}' value='{{ third_class.pk }}' type='checkbox'/>
+															<label for="classification-{{ third_class.pk }}">{{ third_class.name }}</label>
+														</span>
+														{% if third_class.details %}
+															<a tabindex="0"
+																id="popoverDetails-{{ third_class.pk }}"
+																data-item="{{ third_class.details }}"
+																class="popoverDetails"
+																data-toggle="popover"
+																data-placement="left"
+																data-html="true"
+																data-trigger="manual"
+															>
+																<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+															</a>
+														{% endif %}
+													</li>
+												{% endfor %}
+											</ul>
+										</li>
+									{% endwith %}
+								{% endfor %}
+							</ul>
+						{% endwith %}
+					</li>
+				{% endfor %}
+			</ul>
+		</form>
   </div>
   {% include "./filter_country_attribute.modal.html" %}
 
