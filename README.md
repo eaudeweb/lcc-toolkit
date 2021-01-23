@@ -127,6 +127,21 @@ The application expects configuration via environment variables:
     Define different environments for nodejs. Possible values are: prod, dev.
 
 
+## Migrating data to a different server
+
+To create a Postgresql dump directly from the running lcct.db container, the following command should be used:
+```shell
+docker exec lcct.db pg_dump -U lcct lcct > <backup-file-name>
+```
+The `-U lcct` part refers to the database user, while the last lcct in the `docker exec` command refers to the database name.
+
+To restore the backed-up data to a fresh install of the lcc-toolkit stack, the following command should be used:
+```shell
+docker exec lcct.db psql -U lcct lcct < <backup-file-name>
+The psql parameters are the same as those used for the above pg_dump command.
+```
+
+
 # Generate documentation
 
 The application documentation is generated from Sphinx. The following commands should be run on production
