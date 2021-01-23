@@ -4,7 +4,6 @@ function filterCountryAttribute() {
   let contryAttributesSummary = 0;
 
   const attachListenerToModal = function(payload, callback) {
-    contryAttributesSummary = 0;
 
     $('#exampleModal').on('show.bs.modal', function (event) {
       let submitButton = document.getElementById("submitCountryAttibutes");
@@ -12,10 +11,18 @@ function filterCountryAttribute() {
 
       //it will update payload object reference that it gets
       submitButton.addEventListener("click", function () {
+        contryAttributesSummary = 0;
+        console.log('rrr')
+        console.log('allSelectList', allSelectList)
+        console.log('payload', payload)
+
         for (let index = 0; index < allSelectList.length; index++) {
           const selectElement = allSelectList[index];
           const selectedValue = selectElement.selectedOptions[0].value;
           const selectedLabel = selectElement.id;
+          console.log('selectElement', selectElement)
+          console.log('selectedValue', selectedValue)
+          console.log('selectedLabel', selectedLabel)
 
           // it is single value select, so it will overwrite existing
           if(selectedValue) {
@@ -45,8 +52,10 @@ function filterCountryAttribute() {
     }
 
     countryAttributes.map((attribute) => {
-      const attributeWithValue = decodedURL.match('\A?' + attribute + '=[^&]*');
-      const attributeValue = attributeWithValue ? attributeWithValue[0].split('=')[1].replace('+', ' ') : null;
+      const listOfParams = decodedURL.replace('?','').split('&')
+      const attributeValueItem = listOfParams.find((param) => param.split('=')[0] === attribute);
+      const attributeValue = attributeValueItem ? attributeValueItem.split('=')[1].replace('+',' ') : null;
+
       if(attributeValue) {
         const selectDOMElement = document.getElementById(attribute);
 
