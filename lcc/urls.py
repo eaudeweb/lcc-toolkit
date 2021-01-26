@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls import url, include
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import permission_required, login_required
 from django.http import HttpResponseServerError, HttpResponse
 from django.template import loader, TemplateDoesNotExist
 from django.views.static import serve
@@ -33,7 +33,7 @@ auth_patterns = [
         name='password_reset_confirm'),
 
     url(r'^approve/(?P<profile_id_b64>[0-9A-Za-z_\-]+)$',
-        views.register.ApproveRegistration.as_view(),
+        login_required(views.register.ApproveRegistration.as_view()),
         name='approve'),
 
     url(r'^change-password/',
