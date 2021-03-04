@@ -48,6 +48,7 @@ def _send_mail(subject, body, recipients):
 
 
 class PasswordResetView(auth.views.PasswordResetView):
+    from_email = settings.EMAIL_FROM
     template_name = 'register/password_reset_form.html'
     email_template_name = 'mail/password_reset_email.html'
     html_email_template_name = 'mail/password_reset_email.html'
