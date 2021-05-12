@@ -1,7 +1,9 @@
-from datetime import datetime
-import requests
 import re
+import requests
+import sys
+import traceback
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 from django.core.management.base import BaseCommand
 from django.db.models import Q
@@ -120,7 +122,9 @@ class Command(BaseCommand):
             concept_name = re.sub(
                 sub_expression, '', concept.get('title')
             ).strip()
-            concept_code = concept.get("refersto").split("__")[1]
+            concept_code = concept.get("refersto").split("__")
+            concept_code = concept_code[1] \
+                if (concept_code and len(concept_code) > 1) else ""
             classification = find_classification(concept_name, concept_code)
             if classification:
                 if not dry_run:
@@ -145,7 +149,9 @@ class Command(BaseCommand):
             concept_name = re.sub(
                 sub_expression, '', concept.get('title')
             ).strip()
-            concept_code = refers_to.split("__")[1]
+            concept_code = refers_to.split("__")
+            concept_code = concept_code[1] \
+                if (concept_code and len(concept_code) > 1) else ""
             classification = find_classification(concept_name, concept_code)
             if classification:
                 if not dry_run:
@@ -286,7 +292,10 @@ class Command(BaseCommand):
             concept_name = re.sub(
                 sub_expression, '' , concept.get('showas')
             ).strip()
-            concept_code = concept.get("eid").split("__")[1]
+            concept_code = concept.get("eid").split("__")
+
+            concept_code = concept_code[1] \
+                if (concept_code and len(concept_code) > 1) else ""
             classification = find_classification(concept_name, concept_code)
             if classification:
                 if not dry_run:
@@ -350,13 +359,14 @@ class Command(BaseCommand):
                 legislation_data, legislation, dry_run
             )
         except Exception as e:
+            exc_info = sys.exc_info()
             if fields:
-                name = fields['title']
+                name = fields.get("title", "")
             else:
                 name = None
             print(
-                "Warning Legislation {} generated the following error: "
-                "{}".format(name, e)
+                "Warning Legislation {} generated the following error: \n"
+                "{}".format(name, traceback.print_exception(exc_info))
             )
 
     def must_update_legislation(self, legislation_resource, last_updated_date):
