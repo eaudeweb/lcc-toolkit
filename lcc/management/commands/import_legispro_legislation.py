@@ -328,7 +328,7 @@ class Command(BaseCommand):
             )
             if not fields['country']:
                 code = legislation_data.find('frbrcountry').get('value')
-                print("Country {} was not found.".format(iso_code=code))
+                print("Country {} was not found.".format(code))
                 return
 
             legislation = Legislation.objects.filter(
@@ -366,7 +366,7 @@ class Command(BaseCommand):
                 name = None
             print(
                 "Warning Legislation {} generated the following error: \n"
-                "{}".format(name, traceback.print_exception(exc_info))
+                "{}".format(name, traceback.print_exception(*exc_info))
             )
 
     def must_update_legislation(self, legislation_resource, last_updated_date):
