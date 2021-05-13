@@ -260,6 +260,14 @@ class Command(BaseCommand):
         iso_code = iso_code.split("-")[0] if "-" in iso_code else iso_code
         if iso_code == 'GB':
             return Country.objects.filter(iso_code='UK').first()
+        elif iso_code == 'KHR':
+            return Country.objects.filter(iso_code='KH').first()
+        elif iso_code == 'TAN':
+            return Country.objects.filter(iso_code='TZ').first()
+        elif iso_code == 'PHI':
+            return Country.objects.filter(iso_code='PH').first()
+        elif iso_code == 'BER':
+            return Country.objects.filter(iso_code='BM').first()
         else:
             return Country.objects.filter(
                 Q(iso_code=iso_code) | Q(pk=iso_code)
