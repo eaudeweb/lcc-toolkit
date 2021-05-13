@@ -257,6 +257,7 @@ class Command(BaseCommand):
 
     def parse_country(self, legislation_data):
         iso_code = legislation_data.find('frbrcountry').get('value')
+        iso_code = iso_code.split("-")[0] if "-" in iso_code else iso_code
         if iso_code == 'GB':
             return Country.objects.filter(iso_code='UK').first()
         else:
