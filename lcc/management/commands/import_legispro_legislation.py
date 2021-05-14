@@ -268,6 +268,8 @@ class Command(BaseCommand):
             return Country.objects.filter(iso_code='PH').first()
         elif iso_code == 'BER':
             return Country.objects.filter(iso_code='BM').first()
+        elif iso_code == 'BRZ':
+            return Country.objects.filter(iso_code='BR').first()
         else:
             return Country.objects.filter(
                 Q(iso_code=iso_code) | Q(pk=iso_code)
