@@ -116,7 +116,7 @@ class TaxonomyTagGroup(models.Model):
 class TaxonomyTag(models.Model):
     # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
-    group = models.ForeignKey(TaxonomyTagGroup, related_name='tags')
+    group = models.ForeignKey(TaxonomyTagGroup, on_delete=models.CASCADE, related_name='tags')
 
     def __str__(self):
         return "Tag " + self.name
@@ -131,6 +131,7 @@ class TaxonomyClassification(mptt.models.MPTTModel):
     parent = mptt.models.TreeForeignKey('self',
                                         null=True,
                                         blank=True,
+                                        on_delete=models.CASCADE,
                                         related_name='children')
 
 
@@ -319,9 +320,9 @@ class CountryBase(models.Model):
         default=False
     )
 
-    region = models.ForeignKey(Region, null=True, blank=True)
-    sub_region = models.ForeignKey(SubRegion, null=True, blank=True)
-    legal_system = models.ForeignKey(LegalSystem, null=True, blank=True)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True, blank=True)
+    sub_region = models.ForeignKey(SubRegion, on_delete=models.CASCADE, null=True, blank=True)
+    legal_system = models.ForeignKey(LegalSystem, on_delete=models.CASCADE, null=True, blank=True)
 
     population = models.FloatField("Population ('000s) 2018", null=True)
     hdi2015 = models.FloatField('HDI2015', null=True)
@@ -427,8 +428,8 @@ class Country(CountryBase):
 
 
 class AssessmentProfile(CountryBase):
-    country = models.ForeignKey('Country', related_name='assessment_profiles')
-    user = models.ForeignKey('UserProfile')
+    country = models.ForeignKey('Country', on_delete=models.CASCADE, related_name='assessment_profiles')
+    user = models.ForeignKey('UserProfile', on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('lcc:country:view', kwargs={'iso': self.country.iso})
@@ -441,7 +442,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     home_country = models.ForeignKey(
-        Country, related_name='home_country')
+        Country, on_delete=models.CASCADE, related_name='home_country')
     countries = models.ManyToManyField(Country)
 
     affiliation = models.CharField(
@@ -496,7 +497,7 @@ class LegislationManager(models.Manager):
 class Legislation(_TaxonomyModel):
     title = models.CharField(max_length=256)
     abstract = models.CharField(max_length=1024, blank=True, null=True)
-    country = models.ForeignKey(Country, related_name="legislations")
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name="legislations")
     language = models.CharField(
         choices=constants.ALL_LANGUAGES,
         default=constants.DEFAULT_LANGUAGE_VALUE,
@@ -660,7 +661,7 @@ class LegislationArticleManager(models.Manager):
 
 class LegislationArticle(_TaxonomyModel):
     text = models.CharField(max_length=65535)
-    legislation = models.ForeignKey(Legislation, related_name="articles")
+    legislation = models.ForeignKey(Legislation, on_delete=models.CASCADE, related_name="articles")
     legislation_page = models.IntegerField(null=True, blank=True)
     code = models.CharField(max_length=256)  # aka Article number
     number = models.IntegerField(blank=True, null=True)  # populated from code
@@ -700,7 +701,7 @@ class LegislationArticle(_TaxonomyModel):
 class LegislationPage(models.Model):
     page_text = models.TextField(max_length=65535)
     page_number = models.IntegerField()
-    legislation = models.ForeignKey(Legislation, related_name="pages")
+    legislation = models.ForeignKey(Legislation, on_delete=models.CASCADE, related_name="pages")
 
     def __str__(self):
         return "Page %d of Legislation %s" % (
@@ -715,12 +716,14 @@ class Question(mptt.models.MPTTModel):
         'self',
         null=True,
         blank=True,
+        on_delete=models.CASCADE,
         related_name='children')
     parent_answer = models.NullBooleanField(default=None)
     order = models.IntegerField(blank=True)
 
     classification = models.ForeignKey(
         TaxonomyClassification,
+        on_delete=models.CASCADE,
         null=True, blank=True)
 
     class Meta:
@@ -752,7 +755,7 @@ class Question(mptt.models.MPTTModel):
 
 
 class Gap(_TaxonomyModel):
-    question = models.ForeignKey(Question, related_name="gaps")
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="gaps")
     on = models.BooleanField()
 
     class Meta(_TaxonomyModel.Meta):
@@ -768,8 +771,8 @@ class AssessmentManager(models.Manager):
 
 
 class Assessment(models.Model):
-    user = models.ForeignKey(User, related_name="assessments")
-    country = models.ForeignKey(Country, related_name="assessments")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="assessments")
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name="assessments")
 
     objects = AssessmentManager()
 
@@ -809,8 +812,8 @@ class AnswerManager(models.Manager):
 
 
 class Answer(models.Model):
-    assessment = models.ForeignKey(Assessment)
-    question = models.ForeignKey(Question)
+    assessment = models.ForeignKey(Assessment, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     value = models.BooleanField()
 
     objects = AnswerManager()
