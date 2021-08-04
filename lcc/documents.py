@@ -1,6 +1,6 @@
 import re
 
-from django_elasticsearch_dsl import DocType, Index, fields
+from django_elasticsearch_dsl import Document, Index, fields
 from django.conf import settings
 from django.core.exceptions import ValidationError
 
@@ -14,7 +14,7 @@ legislation = Index('legislations')
 
 
 @legislation.doc_type
-class LegislationDocument(DocType):
+class LegislationDocument(Document):
 
     classifications = fields.TextField(term_vector='with_positions_offsets')
 
@@ -119,8 +119,8 @@ class LegislationDocument(DocType):
         else:  # it's a TaxonomyClassification or TaxonomyTag
             return related_instance.legislation_set.all()
 
-    class Meta:
-        model = Legislation  # The model associated with this DocType
+    class Django:
+        model = Legislation  # The model associated with this Document
 
         # The fields of the model to be indexed in Elasticsearch
         fields = [

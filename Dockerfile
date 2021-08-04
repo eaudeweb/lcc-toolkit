@@ -1,4 +1,4 @@
-FROM python:3.6-slim
+FROM python:3.8-slim
 
 ARG REQFILE=requirements-prod.txt
 
@@ -29,7 +29,7 @@ RUN pip install --no-cache-dir -r $REQFILE \
     && npm install -g grunt-cli \
     && npm install
 
-ADD . $WORK_DIR
+COPY . $WORK_DIR
 
 RUN grunt $GRUNT_TASK
 

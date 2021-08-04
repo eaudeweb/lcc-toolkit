@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import url, include
+from django.urls import path, include, re_path
 from django.contrib.auth.decorators import permission_required, login_required
 from django.http import HttpResponseServerError, HttpResponse
 from django.template import loader, TemplateDoesNotExist
@@ -10,37 +10,41 @@ from lcc import views
 from lcc.context import sentry
 from lcc.utils import login_forbidden
 
+
+app_name = 'lcc'
+
+
 auth_patterns = [
-    url(r'^login/$',
+    path('login/',
         login_forbidden(views.auth.Login.as_view()),
         name='login'),
 
-    url(r'^logout/$',
+    path('logout/',
         views.auth.Logout.as_view(),
         name='logout'),
 
-    url(r'^register/',
+    path('register/',
         login_forbidden(views.register.Register.as_view()),
         name='register'),
 
-    url(r'^reset/done/$',
+    path('reset/done/',
         views.register.PasswordResetComplete.as_view(),
         name='password_reset_complete'),
 
-    url((r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/'
-         r'(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$'),
+    re_path((r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/'
+        r'(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/'),
         views.register.PasswordResetConfirm.as_view(),
         name='password_reset_confirm'),
 
-    url(r'^approve/(?P<profile_id_b64>[0-9A-Za-z_\-]+)$',
+    re_path(r'^approve/(?P<profile_id_b64>[0-9A-Za-z_\-]+)',
         login_required(views.register.ApproveRegistration.as_view()),
         name='approve'),
 
-    url(r'^change-password/',
+    path('change-password/',
         views.auth.ChangePasswordView.as_view(),
         name='change_password'),
 
-    url(r'^password-reset/$',
+    path('password-reset/',
         login_forbidden(views.register.PasswordResetView.as_view()),
         name='password_reset'),
 
@@ -48,108 +52,108 @@ auth_patterns = [
 
 
 article_patterns = [
-    url(r'^add/$',
+    path('add/',
         permission_required('lcc.add_legislationarticle')(
             views.articles.AddArticles.as_view()),
         name="add"),
 
-    url(r'^$',
+    path('',
         views.articles.ArticlesList.as_view(),
         name='view'),
 
-    url(r'^(?P<article_pk>\d+)/edit/$',
+    path('<int:article_pk>/edit/',
         permission_required('lcc.change_legislationarticle')(
             views.articles.EditArticles.as_view()),
         name='edit'),
 
-    url(r'^(?P<article_pk>\d+)/delete/$',
+    path('<int:article_pk>/delete/',
         permission_required('lcc.delete_legislationarticle')(
             views.articles.DeleteArticle.as_view()),
         name='delete'),
 ]
 
 legislation_patterns = [
-    url(r'^$',
+    path('',
         views.legislation.LegislationExplorer.as_view(),
         name="explorer"),
 
-    url(r'^add/$',
+    path('add/',
         permission_required('lcc.add_legislation')(
             views.legislation.LegislationAdd.as_view()),
         name='add'),
 
-    url(r'^(?P<legislation_pk>\d+)/$',
+    path('<int:legislation_pk>/',
         views.legislation.LegislationView.as_view(),
         name="details"),
 
-    url(r'^(?P<legislation_pk>\d+)/edit/$',
+    path('<int:legislation_pk>/edit/',
         permission_required('lcc.change_legislation')(
             views.legislation.LegislationEditView.as_view()),
         name='edit'),
 
-    url(r'^(?P<legislation_pk>\d+)/delete/$',
+    path('<int:legislation_pk>/delete/',
         permission_required('lcc.delete_legislation')(
             views.legislation.LegislationDeleteView.as_view()),
         name='delete'),
 
-    url(r'^(?P<legislation_pk>\d+)/pages/$',
+    path('<int:legislation_pk>/pages/',
         views.legislation.LegislationPagesView.as_view()),
 
-    url(r'^(?P<legislation_pk>\d+)/articles/',
-        include(article_patterns, namespace='articles')),
+    path('<int:legislation_pk>/articles/',
+        include((article_patterns, app_name), namespace='articles')),
 ]
 
 country_patterns = [
-    url(r'^(?P<iso>\w+)/$', views.country.Details.as_view(), name="view"),
-    url(r'^(?P<iso>\w+)/delete$',
+    path('<str:iso>/', views.country.Details.as_view(), name="view"),
+    path('<str:iso>/delete',
         views.country.DeleteCustomisedProfile.as_view(),
         name="delete"),
-    url(r'^(?P<iso>\w+)/customise$',
+    path('<str:iso>/customise',
         views.country.Customise.as_view(),
         name="customise"),
 ]
 
 api_patterns = [
-    url(r'question-category/(?P<category_pk>\d+).*$',
+    re_path(r'^question-category/(?P<category_pk>\d+).*',
         views.api.QuestionViewSet.as_view(),
         name="question_category"),
 
-    url(r'classification/$',
+    path('classification/',
         views.api.ClassificationViewSet.as_view(),
         name="classification"),
 
-    url(r'answers/$',
+    path('answers/',
         views.api.AnswerList.as_view(),
         name='answers_list_create'),
 
-    url(r'answers/(?P<pk>[0-9]+)/$',
+    path('answers/<int:pk>/',
         views.api.AnswerDetail.as_view(),
         name='answers_get_update'),
 
-    url(r'assessments/$',
+    path('assessments/',
         views.api.AssessmentList.as_view(),
         name='assessment_list_create'),
 
-    url(r'assessments/(?P<pk>[0-9]+)/results/$',
+    path('assessments/<int:pk>/results/',
         views.api.AssessmentResults.as_view(),
         name='assessment_results'),
 
-    url(r'countries/$',
+    path('countries/',
         views.api.CountryViewSet.as_view(),
         name="countries")
 
 ]
 
 assessment_patterns = [
-    url(r'^$',
+    path('',
         views.assessment.LegalAssessment.as_view(),
         name="legal_assessment"),
 
-    url(r'^(?P<pk>[0-9]+)/results/$',
+    path('<int:pk>/results/',
         views.assessment.LegalAssessmentResults.as_view(),
         name="legal_assessment_results"),
 
-    url(r'^(?P<pk>[0-9]+)/results/download$',
+    path('<int:pk>/results/download',
         views.assessment.LegalAssessmentResultsPDF.as_view(),
         name="legal_assessment_results_pdf")
 ]
@@ -172,36 +176,36 @@ def crash_me(request):
 
 
 urlpatterns = [
-    url(r'^$',
+    path('',
         views.base.HomePageView.as_view(),
         name='home_page'),
 
-    url(r'^about-us/$',
+    path('about-us/',
         views.base.AboutUsView.as_view(),
         name='about_us'),
 
-    url(r'^',
-        include(auth_patterns, namespace='auth')),
+    path('',
+        include((auth_patterns, app_name), namespace='auth')),
 
-    url(r'^api/',
-        include(api_patterns, namespace='api')),
+    path('api/',
+        include((api_patterns, app_name), namespace='api')),
 
-    url(r'^crashme$', crash_me, name='crashme'),
+    path('crashme/', crash_me, name='crashme'),
 
-    url(r'^legal-assessment/',
-        include(assessment_patterns, namespace='assessment')),
+    path('legal-assessment/',
+        include((assessment_patterns, app_name), namespace='assessment')),
 
-    url(r'^legislation/',
-        include(legislation_patterns, namespace='legislation')),
+    path('legislation/',
+        include((legislation_patterns, app_name), namespace='legislation')),
 
-    url(r'^country/',
-        include(country_patterns, namespace='country')),
+    path('country/',
+        include((country_patterns, app_name), namespace='country')),
 
-    url(r'^docs/(?P<path>.*)$',
+    path('docs/<path:path>/',
         serve,
         {'document_root': settings.DOCS_ROOT}),
 
-    url(r'^docs/guide.html',
+    path('docs/guide.html',
         serve,
         {'document_root': settings.DOCS_ROOT},
         name='user_manual'),

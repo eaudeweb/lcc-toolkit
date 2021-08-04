@@ -116,7 +116,9 @@ class TaxonomyTagGroup(models.Model):
 class TaxonomyTag(models.Model):
     # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
-    group = models.ForeignKey(TaxonomyTagGroup, on_delete=models.CASCADE, related_name='tags')
+    group = models.ForeignKey(
+        TaxonomyTagGroup,
+        on_delete=models.CASCADE, related_name='tags')
 
     def __str__(self):
         return "Tag " + self.name
