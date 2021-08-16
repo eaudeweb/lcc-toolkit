@@ -2,6 +2,7 @@ import os
 
 from django.contrib.auth.models import User, Group
 from django.core.management import call_command
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase
 from django.urls import reverse
 
@@ -39,6 +40,11 @@ class Articles(TestCase):
         policy_maker.groups.add(policy_maker_group)
 
         self.law = Legislation.objects.first()
+        self.law.pdf_file = SimpleUploadedFile(
+            "Legislation_3_-_ccra2002212.pdf",
+            b"these are the file contents!"
+        )
+        self.law.save()
         self.article_data = {
             "text": "Brown rabbits are commonly seen.",
             "legislation_page": 1,
