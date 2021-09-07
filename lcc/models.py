@@ -700,6 +700,51 @@ class LegislationArticle(_TaxonomyModel):
         return super().save(*args, **kwargs)
 
 
+class LegislationArticleTree(_TaxonomyModel, mptt.models.MPTTModel):
+    text = models.CharField(max_length=65535)
+    legislation = models.ForeignKey(Legislation, on_delete=models.CASCADE, related_name="articles_tree")
+    legislation_page = models.IntegerField(null=True, blank=True)
+    code = models.CharField(max_length=256)  # aka Article number
+    number = models.IntegerField(blank=True, null=True)  # populated from code
+    identifier = models.IntegerField(blank=True, null=True, default=None)
+    legispro_identifier = models.CharField(max_length=256, null=True, blank=True)
+    parent = mptt.models.TreeForeignKey('self',
+                                        null=True,
+                                        blank=True,
+                                        on_delete=models.CASCADE,
+                                        related_name='children')
+    objects = LegislationArticleManager()
+
+    class Meta(_TaxonomyModel.Meta):
+        ordering = ['number', 'code']
+
+    def __str__(self):
+        return self.code
+
+    def classifications_text(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.classifications.values_list('name', flat=True))
+
+    def tags_text(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.tags.values_list('name', flat=True))
+
+    def parent_tags(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.legislation.tags.values_list('name', flat=True))
+
+    def parent_classifications(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.legislation.classifications.values_list('name', flat=True))
+
+    def save(self, *args, **kwargs):
+        match = re.search('\d+', self.code)
+        if match:
+            self.number = int(match.group(0))
+        return super().save(*args, **kwargs)
+
+
+
 class LegislationPage(models.Model):
     page_text = models.TextField(max_length=65535)
     page_number = models.IntegerField()
