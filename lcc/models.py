@@ -701,13 +701,13 @@ class LegislationArticle(_TaxonomyModel):
 
 
 class LegislationArticleTree(_TaxonomyModel, mptt.models.MPTTModel):
-    text = models.CharField(max_length=65535)
+    text = models.TextField()
     legislation = models.ForeignKey(Legislation, on_delete=models.CASCADE, related_name="articles_tree")
     legislation_page = models.IntegerField(null=True, blank=True)
-    code = models.CharField(max_length=256)  # aka Article number
     number = models.IntegerField(blank=True, null=True)  # populated from code
     identifier = models.IntegerField(blank=True, null=True, default=None)
     legispro_identifier = models.CharField(max_length=256, null=True, blank=True)
+    code = models.CharField(max_length=256, blank=True)
     parent = mptt.models.TreeForeignKey('self',
                                         null=True,
                                         blank=True,
@@ -715,8 +715,18 @@ class LegislationArticleTree(_TaxonomyModel, mptt.models.MPTTModel):
                                         related_name='children')
     objects = LegislationArticleManager()
 
-    class Meta(_TaxonomyModel.Meta):
-        ordering = ['number', 'code']
+    class Meta:
+        ordering = ['code']
+
+    class MPTTMeta:
+        order_insertion_by = ['code']
+
+    def get_children(self):
+        return super().get_children().extra(
+            select={
+                'code_fix': "string_to_array(code, '.')::int[]",
+            },
+        ).order_by('code_fix')
 
     def __str__(self):
         return self.code
@@ -746,7 +756,7 @@ class LegislationArticleTree(_TaxonomyModel, mptt.models.MPTTModel):
 
 
 class LegislationPage(models.Model):
-    page_text = models.TextField(max_length=65535)
+    page_text = models.TextField()
     page_number = models.IntegerField()
     legislation = models.ForeignKey(Legislation, on_delete=models.CASCADE, related_name="pages")
 
