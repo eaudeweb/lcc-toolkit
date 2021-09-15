@@ -7,18 +7,23 @@ from lcc import models
 
 User = get_user_model()
 
+class LegislationArticleInline(admin.TabularInline):
+    model = models.LegislationArticle
+    readonly_fields = ['pk', 'text', 'code', 'number', 'identifier']
+    fields = readonly_fields
 
 class LegislationAdmin(admin.ModelAdmin):
     list_display = (
-        '__str__', 'title', 'pk',
+        '__str__', 'title', 'pk', 'import_from_legispro', 'date_updated', 'date_created',
         'classifications_list', 'tags_list'
     )
-    list_filter = ('law_type', 'country')
+    list_filter = ('import_from_legispro', 'law_type', 'country')
     search_fields = (
         'title', 'country__name',
         'classifications__name', 'tags__name'
     )
     actions = ['generate_pages']
+    inlines = [LegislationArticleInline,]
 
     def classifications_list(self, obj):
         return '; '.join(
@@ -126,6 +131,7 @@ class UserProxyAdmin(BaseUserAdmin):
 # Register your models here.
 admin.site.register(models.Legislation, LegislationAdmin)
 admin.site.register(models.LegislationArticle)
+admin.site.register(models.LegislationArticleTree)
 admin.site.register(models.LegislationPage)
 admin.site.register(models.UserProfile)
 admin.site.register(models.Country)

@@ -19,7 +19,7 @@ class AddArticles(mixins.LoginRequiredMixin, TaxonomyFormMixin,
                   ArticleFormMixin,
                   CreateView):
     template_name = "legislation/articles/add.html"
-    model = models.LegislationArticle
+    model = models.LegislationArticleTree
     form_class = forms.ArticleForm
 
     def get_context_data(self, **kwargs):
@@ -71,13 +71,13 @@ class EditArticles(mixins.LoginRequiredMixin,
                    ArticleFormMixin,
                    UpdateView):
     template_name = "legislation/articles/edit.html"
-    model = models.LegislationArticle
+    model = models.LegislationArticleTree
     context_object_name = 'article'
     form_class = forms.ArticleForm
     pk_url_kwarg = 'article_pk'
 
     def get_object(self, **kwargs):
-        return get_object_or_404(models.LegislationArticle,
+        return get_object_or_404(models.LegislationArticleTree,
                                  pk=self.kwargs['article_pk'],
                                  legislation__pk=self.kwargs['legislation_pk'])
 
@@ -121,7 +121,7 @@ class EditArticles(mixins.LoginRequiredMixin,
 
 
 class DeleteArticle(mixins.LoginRequiredMixin, DeleteView):
-    model = models.LegislationArticle
+    model = models.LegislationArticleTree
     pk_url_kwarg = 'article_pk'
 
     def get_success_url(self, **kwargs):

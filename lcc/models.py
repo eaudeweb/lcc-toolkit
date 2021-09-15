@@ -660,10 +660,13 @@ class LegislationArticleManager(models.Manager):
             ]
         )
 
+    def root_levels(self):
+        return self.filter(parent=None)
+
 
 class LegislationArticle(_TaxonomyModel):
     text = models.CharField(max_length=65535)
-    legislation = models.ForeignKey(Legislation, on_delete=models.CASCADE, related_name="articles")
+    legislation = models.ForeignKey(Legislation, on_delete=models.CASCADE, related_name="old_articles")
     legislation_page = models.IntegerField(null=True, blank=True)
     code = models.CharField(max_length=256)  # aka Article number
     number = models.IntegerField(blank=True, null=True)  # populated from code
@@ -702,7 +705,7 @@ class LegislationArticle(_TaxonomyModel):
 
 class LegislationArticleTree(_TaxonomyModel, mptt.models.MPTTModel):
     text = models.CharField(max_length=65535)
-    legislation = models.ForeignKey(Legislation, on_delete=models.CASCADE, related_name="articles_tree")
+    legislation = models.ForeignKey(Legislation, on_delete=models.CASCADE, related_name="articles")
     legislation_page = models.IntegerField(null=True, blank=True)
     code = models.CharField(max_length=256)  # aka Article number
     number = models.IntegerField(blank=True, null=True)  # populated from code

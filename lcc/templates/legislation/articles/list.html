@@ -63,7 +63,7 @@
 </h3> -->
 <div class="articles-container">
   {% for article in law.articles.all %}
-    <div id="{{article.code}}" class="viz-container multiple">
+    <div id="{{article.code}}" class="viz-container multiple {% if article.is_child_node %}article-child{% endif %}">
       <div class="article-wrapper">
 
         {% if request.user.is_authenticated %}
