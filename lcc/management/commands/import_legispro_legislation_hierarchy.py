@@ -18,7 +18,7 @@ from lcctoolkit.settings.base import (
 from lcc.models import (
     Country,
     Legislation,
-    LegislationArticleTree,
+    LegislationSection,
     TaxonomyClassification,
 )
 
@@ -169,7 +169,7 @@ class Command(BaseCommand):
     ):
         fields = None
         fields = self.parse_section(section, legislation, parent, code)
-        section_objects = LegislationArticleTree.objects.filter(
+        section_objects = LegislationSection.objects.filter(
             legispro_identifier=fields["legispro_identifier"],
             legislation=legislation,
             code=code,
@@ -178,7 +178,7 @@ class Command(BaseCommand):
         if not dry_run:
             if section_objects:
                 section_objects.delete()
-            section_object = LegislationArticleTree.objects.create(**fields)
+            section_object = LegislationSection.objects.create(**fields)
         print(
             "Legislation {} - Section {} was created.".format(
                 legislation_data.find("frbrname").get("value"), fields["code"]
@@ -279,8 +279,8 @@ class Command(BaseCommand):
                     )
                 )
 
-    def delete_articles(self, legislation):
-        legislation.articles.delete()
+    def delete_sections(self, legislation):
+        legislation.sections.delete()
         return
 
     def create_or_update_legislation(
@@ -317,7 +317,7 @@ class Command(BaseCommand):
             if legislation:
                 if not dry_run:
                     legislation.update(**fields)
-                    self.delete_articles(legislation)
+                    self.delete_sections(legislation)
                 legislation = legislation.first()
                 print("Legislation {} was updated.".format(fields["title"]))
             else:

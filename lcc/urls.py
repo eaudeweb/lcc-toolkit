@@ -11,160 +11,168 @@ from lcc.context import sentry
 from lcc.utils import login_forbidden
 
 
-app_name = 'lcc'
+app_name = "lcc"
 
 
 auth_patterns = [
-    path('login/',
-        login_forbidden(views.auth.Login.as_view()),
-        name='login'),
-
-    path('logout/',
-        views.auth.Logout.as_view(),
-        name='logout'),
-
-    path('register/',
-        login_forbidden(views.register.Register.as_view()),
-        name='register'),
-
-    path('reset/done/',
+    path("login/", login_forbidden(views.auth.Login.as_view()), name="login"),
+    path("logout/", views.auth.Logout.as_view(), name="logout"),
+    path(
+        "register/", login_forbidden(views.register.Register.as_view()), name="register"
+    ),
+    path(
+        "reset/done/",
         views.register.PasswordResetComplete.as_view(),
-        name='password_reset_complete'),
-
-    re_path((r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/'
-        r'(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/'),
+        name="password_reset_complete",
+    ),
+    re_path(
+        (
+            r"^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/"
+            r"(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/"
+        ),
         views.register.PasswordResetConfirm.as_view(),
-        name='password_reset_confirm'),
-
-    re_path(r'^approve/(?P<profile_id_b64>[0-9A-Za-z_\-]+)',
+        name="password_reset_confirm",
+    ),
+    re_path(
+        r"^approve/(?P<profile_id_b64>[0-9A-Za-z_\-]+)",
         login_required(views.register.ApproveRegistration.as_view()),
-        name='approve'),
-
-    path('change-password/',
+        name="approve",
+    ),
+    path(
+        "change-password/",
         views.auth.ChangePasswordView.as_view(),
-        name='change_password'),
-
-    path('password-reset/',
+        name="change_password",
+    ),
+    path(
+        "password-reset/",
         login_forbidden(views.register.PasswordResetView.as_view()),
-        name='password_reset'),
-
+        name="password_reset",
+    ),
 ]
 
 
-article_patterns = [
-    path('add/',
-        permission_required('lcc.add_legislationarticle')(
-            views.articles.AddArticles.as_view()),
-        name="add"),
-
-    path('',
-        views.articles.ArticlesList.as_view(),
-        name='view'),
-
-    path('<int:article_pk>/edit/',
-        permission_required('lcc.change_legislationarticle')(
-            views.articles.EditArticles.as_view()),
-        name='edit'),
-
-    path('<int:article_pk>/delete/',
-        permission_required('lcc.delete_legislationarticle')(
-            views.articles.DeleteArticle.as_view()),
-        name='delete'),
+section_patterns = [
+    path(
+        "add/",
+        permission_required("lcc.add_legislationsection")(
+            views.sections.AddSections.as_view()
+        ),
+        name="add",
+    ),
+    path("", views.sections.SectionsList.as_view(), name="view"),
+    path(
+        "<int:section_pk>/edit/",
+        permission_required("lcc.change_legislationsection")(
+            views.sections.EditSections.as_view()
+        ),
+        name="edit",
+    ),
+    path(
+        "<int:section_pk>/delete/",
+        permission_required("lcc.delete_legislationsection")(
+            views.sections.DeleteSection.as_view()
+        ),
+        name="delete",
+    ),
 ]
 
 legislation_patterns = [
-    path('',
-        views.legislation.LegislationExplorer.as_view(),
-        name="explorer"),
-
-    path('add/',
-        permission_required('lcc.add_legislation')(
-            views.legislation.LegislationAdd.as_view()),
-        name='add'),
-
-    path('<int:legislation_pk>/',
+    path("", views.legislation.LegislationExplorer.as_view(), name="explorer"),
+    path(
+        "add/",
+        permission_required("lcc.add_legislation")(
+            views.legislation.LegislationAdd.as_view()
+        ),
+        name="add",
+    ),
+    path(
+        "<int:legislation_pk>/",
         views.legislation.LegislationView.as_view(),
-        name="details"),
-
-    path('<int:legislation_pk>/edit/',
-        permission_required('lcc.change_legislation')(
-            views.legislation.LegislationEditView.as_view()),
-        name='edit'),
-
-    path('<int:legislation_pk>/delete/',
-        permission_required('lcc.delete_legislation')(
-            views.legislation.LegislationDeleteView.as_view()),
-        name='delete'),
-
-    path('<int:legislation_pk>/pages/',
-        views.legislation.LegislationPagesView.as_view()),
-
-    path('<int:legislation_pk>/articles/',
-        include((article_patterns, app_name), namespace='articles')),
+        name="details",
+    ),
+    path(
+        "<int:legislation_pk>/edit/",
+        permission_required("lcc.change_legislation")(
+            views.legislation.LegislationEditView.as_view()
+        ),
+        name="edit",
+    ),
+    path(
+        "<int:legislation_pk>/delete/",
+        permission_required("lcc.delete_legislation")(
+            views.legislation.LegislationDeleteView.as_view()
+        ),
+        name="delete",
+    ),
+    path(
+        "<int:legislation_pk>/pages/", views.legislation.LegislationPagesView.as_view()
+    ),
+    path(
+        "<int:legislation_pk>/articles/",
+        include((section_patterns, app_name), namespace="sections"),
+    ),
 ]
 
 country_patterns = [
-    path('<str:iso>/', views.country.Details.as_view(), name="view"),
-    path('<str:iso>/delete',
+    path("<str:iso>/", views.country.Details.as_view(), name="view"),
+    path(
+        "<str:iso>/delete",
         views.country.DeleteCustomisedProfile.as_view(),
-        name="delete"),
-    path('<str:iso>/customise',
-        views.country.Customise.as_view(),
-        name="customise"),
+        name="delete",
+    ),
+    path("<str:iso>/customise", views.country.Customise.as_view(), name="customise"),
 ]
 
 api_patterns = [
-    re_path(r'^question-category/(?P<category_pk>\d+).*',
+    re_path(
+        r"^question-category/(?P<category_pk>\d+).*",
         views.api.QuestionViewSet.as_view(),
-        name="question_category"),
-
-    path('classification/',
+        name="question_category",
+    ),
+    path(
+        "classification/",
         views.api.ClassificationViewSet.as_view(),
-        name="classification"),
-
-    path('answers/',
-        views.api.AnswerList.as_view(),
-        name='answers_list_create'),
-
-    path('answers/<int:pk>/',
-        views.api.AnswerDetail.as_view(),
-        name='answers_get_update'),
-
-    path('assessments/',
+        name="classification",
+    ),
+    path("answers/", views.api.AnswerList.as_view(), name="answers_list_create"),
+    path(
+        "answers/<int:pk>/", views.api.AnswerDetail.as_view(), name="answers_get_update"
+    ),
+    path(
+        "assessments/",
         views.api.AssessmentList.as_view(),
-        name='assessment_list_create'),
-
-    path('assessments/<int:pk>/results/',
+        name="assessment_list_create",
+    ),
+    path(
+        "assessments/<int:pk>/results/",
         views.api.AssessmentResults.as_view(),
-        name='assessment_results'),
-
-    path('countries/',
-        views.api.CountryViewSet.as_view(),
-        name="countries")
-
+        name="assessment_results",
+    ),
+    path("countries/", views.api.CountryViewSet.as_view(), name="countries"),
 ]
 
 assessment_patterns = [
-    path('',
-        views.assessment.LegalAssessment.as_view(),
-        name="legal_assessment"),
-
-    path('<int:pk>/results/',
+    path("", views.assessment.LegalAssessment.as_view(), name="legal_assessment"),
+    path(
+        "<int:pk>/results/",
         views.assessment.LegalAssessmentResults.as_view(),
-        name="legal_assessment_results"),
-
-    path('<int:pk>/results/download',
+        name="legal_assessment_results",
+    ),
+    path(
+        "<int:pk>/results/download",
         views.assessment.LegalAssessmentResultsPDF.as_view(),
-        name="legal_assessment_results_pdf")
+        name="legal_assessment_results_pdf",
+    ),
 ]
 
 
-def handler500(request, template_name='errors/500.html'):
+def handler500(request, template_name="errors/500.html"):
     try:
         template = loader.get_template(template_name)
     except TemplateDoesNotExist:
-        return HttpResponseServerError('<h1>Server Error (500)</h1>',
-                                       content_type='text/html')
+        return HttpResponseServerError(
+            "<h1>Server Error (500)</h1>", content_type="text/html"
+        )
     return HttpResponseServerError(template.render(context=sentry(request)))
 
 
@@ -176,38 +184,25 @@ def crash_me(request):
 
 
 urlpatterns = [
-    path('',
-        views.base.HomePageView.as_view(),
-        name='home_page'),
-
-    path('about-us/',
-        views.base.AboutUsView.as_view(),
-        name='about_us'),
-
-    path('',
-        include((auth_patterns, app_name), namespace='auth')),
-
-    path('api/',
-        include((api_patterns, app_name), namespace='api')),
-
-    path('crashme/', crash_me, name='crashme'),
-
-    path('legal-assessment/',
-        include((assessment_patterns, app_name), namespace='assessment')),
-
-    path('legislation/',
-        include((legislation_patterns, app_name), namespace='legislation')),
-
-    path('country/',
-        include((country_patterns, app_name), namespace='country')),
-
-    path('docs/<path:path>/',
+    path("", views.base.HomePageView.as_view(), name="home_page"),
+    path("about-us/", views.base.AboutUsView.as_view(), name="about_us"),
+    path("", include((auth_patterns, app_name), namespace="auth")),
+    path("api/", include((api_patterns, app_name), namespace="api")),
+    path("crashme/", crash_me, name="crashme"),
+    path(
+        "legal-assessment/",
+        include((assessment_patterns, app_name), namespace="assessment"),
+    ),
+    path(
+        "legislation/",
+        include((legislation_patterns, app_name), namespace="legislation"),
+    ),
+    path("country/", include((country_patterns, app_name), namespace="country")),
+    path("docs/<path:path>/", serve, {"document_root": settings.DOCS_ROOT}),
+    path(
+        "docs/guide.html",
         serve,
-        {'document_root': settings.DOCS_ROOT}),
-
-    path('docs/guide.html',
-        serve,
-        {'document_root': settings.DOCS_ROOT},
-        name='user_manual'),
-
+        {"document_root": settings.DOCS_ROOT},
+        name="user_manual",
+    ),
 ]

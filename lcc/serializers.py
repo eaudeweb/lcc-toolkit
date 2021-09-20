@@ -1,6 +1,13 @@
 from lcc.models import (
-    Answer, Assessment, Country, Question, TaxonomyClassification,
-    TaxonomyTag, Gap, Legislation, LegislationArticle
+    Answer,
+    Assessment,
+    Country,
+    Question,
+    TaxonomyClassification,
+    TaxonomyTag,
+    Gap,
+    Legislation,
+    LegislationSection,
 )
 from rest_framework import serializers
 
@@ -12,19 +19,27 @@ class QuestionAnswerSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    children_yes = serializers.SerializerMethodField('_get_children_yes')
-    children_no = serializers.SerializerMethodField('_get_children_no')
-    children = serializers.SerializerMethodField('_get_children')
-    answer = serializers.SerializerMethodField('_get_answer')
-    details = serializers.SerializerMethodField('_get_details')
+    children_yes = serializers.SerializerMethodField("_get_children_yes")
+    children_no = serializers.SerializerMethodField("_get_children_no")
+    children = serializers.SerializerMethodField("_get_children")
+    answer = serializers.SerializerMethodField("_get_answer")
+    details = serializers.SerializerMethodField("_get_details")
 
     class Meta:
         model = Question
-        fields = ("id", "text", "order", "answer", "details",
-                  "children_yes", "children_no", "children")
+        fields = (
+            "id",
+            "text",
+            "order",
+            "answer",
+            "details",
+            "children_yes",
+            "children_no",
+            "children",
+        )
 
     def _get_answer(self, obj):
-        assessment_pk = self.context.get('assessment_pk')
+        assessment_pk = self.context.get("assessment_pk")
         query = None
 
         if assessment_pk:
@@ -39,22 +54,19 @@ class QuestionSerializer(serializers.ModelSerializer):
     def _get_children_yes(self, obj):
         query = obj.get_children().filter(parent_answer=True)
         if query:
-            serializer = QuestionSerializer(
-                query, context=self.context, many=True)
+            serializer = QuestionSerializer(query, context=self.context, many=True)
             return serializer.data
 
     def _get_children_no(self, obj):
         query = obj.get_children().filter(parent_answer=False)
         if query:
-            serializer = QuestionSerializer(
-                query, context=self.context, many=True)
+            serializer = QuestionSerializer(query, context=self.context, many=True)
             return serializer.data
 
     def _get_children(self, obj):
         query = obj.get_children().filter(parent_answer=None)
         if query:
-            serializer = QuestionSerializer(
-                query, context=self.context, many=True)
+            serializer = QuestionSerializer(query, context=self.context, many=True)
             return serializer.data
 
     def _get_details(self, obj):
@@ -70,15 +82,15 @@ class SimpleClassificationSerializer(serializers.ModelSerializer):
 
 
 class ClassificationSerializer(serializers.ModelSerializer):
-    second_level = serializers.SerializerMethodField('_get_second_level')
+    second_level = serializers.SerializerMethodField("_get_second_level")
 
     class Meta:
         model = TaxonomyClassification
-        fields = ("id", "name",  "details", "second_level")
+        fields = ("id", "name", "details", "second_level")
 
     def _get_second_level(self, obj):
 
-        query = obj.get_children().order_by('code')
+        query = obj.get_children().order_by("code")
         new_query = query
         for second_level in query:
             if not Question.objects.filter(classification=second_level):
@@ -97,7 +109,7 @@ class TagsSerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = '__all__'
+        fields = "__all__"
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
@@ -128,22 +140,22 @@ class LegislationSerializer(serializers.ModelSerializer):
         fields = ("id", "title", "year", "country_name", "country_iso")
 
 
-class GapArticleSerializer(serializers.ModelSerializer):
+class GapSectionSerializer(serializers.ModelSerializer):
     legislation = LegislationSerializer()
 
     class Meta:
-        model = LegislationArticle
+        model = LegislationSection
         fields = ("id", "code", "text", "legislation")
 
 
 class ResultQuestionSerializer(serializers.ModelSerializer):
-    articles = GapArticleSerializer(many=True)
+    sections = GapSectionSerializer(many=True)
     gap = GapSerializer()
     answer = serializers.BooleanField()
 
     class Meta:
         model = Question
-        fields = ("id", "text", "answer", "gap", "articles")
+        fields = ("id", "text", "answer", "gap", "sections")
 
 
 class SubCategorySerializer(serializers.ModelSerializer):

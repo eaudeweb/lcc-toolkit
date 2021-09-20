@@ -50,8 +50,8 @@ class HighlightedLaws:
         if self.sort:
             return hits.sort(self.sort).to_queryset()
         laws = []
-        matched_article_tags = []
-        matched_article_classifications = []
+        matched_section_tags = []
+        matched_section_classifications = []
         for hit, law in zip(hits, hits.to_queryset()):
             if hasattr(hit.meta, 'highlight'):
                 highlights = hit.meta.highlight.to_dict()
@@ -73,10 +73,10 @@ class HighlightedLaws:
                         for classification in (
                             highlights['classifications'][0].split(CONN))
                     ]
-                if 'article_classifications' in highlights:
-                    matched_article_classifications += [
+                if 'section_classifications' in highlights:
+                    matched_section_classifications += [
                         tag[4:-5] for tag in (
-                            highlights['article_classifications'][0].split(CONN))
+                            highlights['section_classifications'][0].split(CONN))
                         if '<em>' in tag
                     ]
                 if 'tags' in highlights:
@@ -84,83 +84,83 @@ class HighlightedLaws:
                         mark_safe(tag)
                         for tag in highlights['tags'][0].split(CONN)
                     ]
-                if 'article_tags' in highlights:
-                    matched_article_tags += [
+                if 'section_tags' in highlights:
+                    matched_section_tags += [
                         tag[4:-5] for tag in (
-                            highlights['article_tags'][0].split(CONN))
+                            highlights['section_tags'][0].split(CONN))
                         if '<em>' in tag
                     ]
 
             if hasattr(hit.meta, 'inner_hits'):
-                law._highlighted_articles = []
-                if hit.meta.inner_hits.articles:
-                    for article in hit.meta.inner_hits.articles.hits:
-                        article_dict = {
-                            'pk': article.pk,
-                            'code': article.code
+                law._highlighted_sections = []
+                if hit.meta.inner_hits.sections:
+                    for section in hit.meta.inner_hits.sections.hits:
+                        section_dict = {
+                            'pk': section.pk,
+                            'code': section.code
                         }
-                        if not hasattr(article.meta, 'highlight'):
+                        if not hasattr(section.meta, 'highlight'):
                             continue
-                        highlights = article.meta.highlight.to_dict()
-                        matched_text = highlights.get('articles.text')
+                        highlights = section.meta.highlight.to_dict()
+                        matched_text = highlights.get('sections.text')
                         if matched_text:
-                            article_dict['text'] = mark_safe(
+                            section_dict['text'] = mark_safe(
                                 ' […] '.join(matched_text)
                             )
                         matched_classifications = (
                             highlights.get(
-                                'articles.classifications_text')
+                                'sections.classifications_text')
                         )
                         if matched_classifications:
-                            article_dict['classifications'] = [
+                            section_dict['classifications'] = [
                                 mark_safe(classification)
                                 for classification in (
                                     matched_classifications[0].split(CONN))
                             ]
                         matched_tags = highlights.get(
-                            'articles.tags_text')
+                            'sections.tags_text')
                         if matched_tags:
-                            article_dict['tags'] = [
+                            section_dict['tags'] = [
                                 mark_safe(tag)
                                 for tag in (
                                     matched_tags[0].split(CONN))
                             ]
-                        law._highlighted_articles.append(article_dict)
-                elif matched_article_classifications or matched_article_tags:
+                        law._highlighted_sections.append(section_dict)
+                elif matched_section_classifications or matched_section_tags:
                     # NOTE: This is a hack. ElasticSearch won't return
-                    # highlighted article tags in some cases so this workaround
+                    # highlighted section tags in some cases so this workaround
                     # is necessary. Please fix if you know how. Try searching
                     # for a keyword that is in the title of a law, and filtering
-                    # by a tag that is assigned to an article of that law, but
+                    # by a tag that is assigned to an section of that law, but
                     # not the law itself. The query will work (it will only
-                    # return the law that has such an article, and not others),
+                    # return the law that has such an section, and not others),
                     # but the inner_hits will be empty.
-                    law._highlighted_articles = []
-                    articles = law.articles.filter(
-                        DjQ(tags__name__in=matched_article_tags) |
+                    law._highlighted_sections = []
+                    sections = law.sections.filter(
+                        DjQ(tags__name__in=matched_section_tags) |
                         DjQ(
                             classifications__name__in=(
-                                matched_article_classifications)
+                                matched_section_classifications)
                         )
                     ).prefetch_related('tags')
-                    for article in articles:
-                        article_dict = {
-                            'pk': article.pk,
-                            'code': article.code,
+                    for section in sections:
+                        section_dict = {
+                            'pk': section.pk,
+                            'code': section.code,
                             'classifications': [
                                 mark_safe('<em>{}</em>'.format(cl.name))
-                                if cl.name in matched_article_classifications
+                                if cl.name in matched_section_classifications
                                 else cl.name
-                                for cl in article.classifications.all()
+                                for cl in section.classifications.all()
                             ],
                             'tags': [
                                 mark_safe('<em>{}</em>'.format(tag.name))
-                                if tag.name in matched_article_tags
+                                if tag.name in matched_section_tags
                                 else tag.name
-                                for tag in article.tags.all()
+                                for tag in section.tags.all()
                             ]
                         }
-                        law._highlighted_articles.append(article_dict)
+                        law._highlighted_sections.append(section_dict)
             laws.append(law)
         return laws
 
@@ -196,8 +196,8 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
         """
 
         law_queries = []
-        article_queries = []
-        article_highlights = {}
+        section_queries = []
+        section_highlights = {}
 
         # jQuery's ajax function ads `[]` to duplicated querystring parameters
         # or parameters whose values are objects, so we have to take that into
@@ -224,20 +224,20 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                 ) | reduce(
                     operator.or_,
                     [
-                        Q('match_phrase', article_classifications=name)
+                        Q('match_phrase', section_classifications=name)
                         for name in classification_names
                     ]
                 )
             )
 
-            # Search inside articles for any classifications
-            article_queries.append(
+            # Search inside sections for any classifications
+            section_queries.append(
                 reduce(
                     operator.or_,
                     [
                         Q(
                             'match_phrase',
-                            articles__classifications_text=name
+                            sections__classifications_text=name
                         ) for name in classification_names
                     ]
                 ) | reduce(
@@ -245,12 +245,12 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                     [
                         Q(
                             'match_phrase',
-                            articles__parent_classifications=name
+                            sections__parent_classifications=name
                         ) for name in classification_names
                     ]
                 )
             )
-            article_highlights['articles.classifications_text'] = {
+            section_highlights['sections.classifications_text'] = {
                 'number_of_fragments': 0
             }
 
@@ -271,29 +271,29 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                 ) | reduce(
                     operator.or_,
                     [
-                        Q('match_phrase', article_tags=name)
+                        Q('match_phrase', section_tags=name)
                         for name in tag_names
                     ]
                 )
             )
 
-            # Search inside articles
-            article_queries.append(
+            # Search inside sections
+            section_queries.append(
                 reduce(
                     operator.or_,
                     [
-                        Q('match_phrase', articles__tags_text=name)
+                        Q('match_phrase', sections__tags_text=name)
                         for name in tag_names
                     ]
                 ) | reduce(
                     operator.or_,
                     [
-                        Q('match_phrase', articles__parent_tags=name)
+                        Q('match_phrase', sections__parent_tags=name)
                         for name in tag_names
                     ]
                 )
             )
-            article_highlights['articles.tags_text'] = {
+            section_highlights['sections.tags_text'] = {
                 'number_of_fragments': 0
             }
 
@@ -301,7 +301,7 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
         # elasticsearch's default best_fields strategy)
         q = self.request.GET.get('q')
         law_q_query = []
-        article_q_query = []
+        section_q_query = []
         if q:
             # Compose root document search
             law_q_query = [
@@ -312,18 +312,18 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                     ]
                 )
             ]
-            # Compose nested document search inside articles
-            article_q_query = [
-                Q('multi_match', query=q, fields=['articles.text']) |
+            # Compose nested document search inside sections
+            section_q_query = [
+                Q('multi_match', query=q, fields=['sections.text']) |
                 Q(
                     'constant_score', boost=50, filter={
                         "match_phrase": {
-                            "articles.text": q
+                            "sections.text": q
                         }
                     }
                 )
             ]
-            article_q_highlights = {'articles.text': {}}
+            section_q_highlights = {'sections.text': {}}
 
         search = LegislationDocument.search()
         sort = self.get_sort()
@@ -336,44 +336,44 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                             'nested',
                             score_mode='max',
                             # boost=10,
-                            path='articles',
+                            path='sections',
                             query=Q(
                                 reduce(
                                     operator.and_,
-                                    article_queries
+                                    section_queries
                                 )
                             ),
                             inner_hits={
-                                'highlight': {'fields': article_highlights}
+                                'highlight': {'fields': section_highlights}
                             }
                         )
-                    ] if article_queries else [])
+                    ] if section_queries else [])
                 )
-                q_in_article = Q(
+                q_in_section = Q(
                     'bool', must=law_queries + ([
                         Q(
                             'nested',
                             score_mode='max',
                             # boost=10,
-                            path='articles',
+                            path='sections',
                             query=Q(
                                 reduce(
                                     operator.and_,
-                                    article_queries + article_q_query
+                                    section_queries + section_q_query
                                 )
                             ),
                             inner_hits={
                                 'highlight': {
                                     'fields': {
-                                        **article_highlights,
-                                        **article_q_highlights
+                                        **section_highlights,
+                                        **section_q_highlights
                                     }
                                 }
                             }
                         )
-                    ] if article_queries or article_q_query else [])
+                    ] if section_queries or section_q_query else [])
                 )
-                search = search.query(q_in_law | q_in_article).highlight(
+                search = search.query(q_in_law | q_in_section).highlight(
                     'abstract', 'pdf_text'
                 )
             else:
@@ -387,17 +387,17 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                     'nested',
                     score_mode='max',
                     # boost=10,
-                    path='articles',
+                    path='sections',
                     query=Q(
                         reduce(
                             operator.and_,
-                            article_queries
+                            section_queries
                         )
                     ),
                     inner_hits={
-                        'highlight': {'fields': article_highlights}
+                        'highlight': {'fields': section_highlights}
                     }
-                )] if article_queries else []
+                )] if section_queries else []
                 final_query = []
                 if root_query:
                     final_query += root_query
@@ -440,8 +440,8 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                 )
 
             search = search.highlight(
-                'title', 'classifications', 'article_classifications', 'tags',
-                'article_tags', number_of_fragments=0
+                'title', 'classifications', 'section_classifications', 'tags',
+                'section_tags', number_of_fragments=0
             )
 
             if not any([classification_ids, tag_ids, q]):
@@ -470,9 +470,11 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
         context = super().get_context_data(**kwargs)
         group_tags = models.TaxonomyTagGroup.objects.all()
         top_classifications = models.TaxonomyClassification.objects.filter(
-            level=0).annotate(
-                code_as_int=Cast('code', output_field=IntegerField())
-            ).order_by('code_as_int')
+            level=0).extra(
+            select={
+                'code_fix': "string_to_array(code, '.')::int[]",
+            },
+        ).order_by('code_fix')
         countries = models.Country.objects.all().order_by('name')
         regions = models.Region.objects.all().order_by('name')
         sub_regions = models.SubRegion.objects.all().order_by('name')
@@ -539,7 +541,7 @@ class LegislationAdd(mixins.LoginRequiredMixin, TaxonomyFormMixin,
 
         if "save-and-continue-btn" in self.request.POST:
             return HttpResponseRedirect(
-                reverse('lcc:legislation:articles:add',
+                reverse('lcc:legislation:sections:add',
                         kwargs={'legislation_pk': legislation.pk})
             )
         if "save-btn" in self.request.POST:

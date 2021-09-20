@@ -158,39 +158,39 @@
     </div>
   {% endif %}
 
-  {% for article in law.highlighted_articles %}
-    <div class="article">
+  {% for section in law.highlighted_sections %}
+    <div class="section">
       <span>
-        <a href="{% url 'lcc:legislation:articles:view' law.pk %}#{{ article.pk }}">
-          {{ article.code }}
+        <a href="{% url 'lcc:legislation:sections:view' law.pk %}#{{ section.pk }}">
+          {{ section.code }}
         </a>:
       </span>
 
-      {% if article.classifications %}
+      {% if section.classifications %}
       <div  class="tag-wrapper">
         <span>Legal Area:</span>
         <span>
-          {% for classification in article.classifications %}
+          {% for classification in section.classifications %}
            <span class="tag">{{ classification }}</span>
           {% endfor %}
         </span>
       </div>
       {% endif %}
 
-      {% if article.tags %}
+      {% if section.tags %}
         <div class="tag-wrapper">
           <span>Cross-cutting Categories:</span>
           <span>
-            {% for tag in article.tags %}
+            {% for tag in section.tags %}
              <span class="tag">{{ tag }}</span>
             {% endfor %}
           </span>
         </div>
       {% endif %}
 
-      {% if article.text %}
+      {% if section.text %}
         <span>
-          <pre>{{ article.text }}</pre>
+          <pre>{{ section.text }}</pre>
         </span>
       {% endif %}
     </div>

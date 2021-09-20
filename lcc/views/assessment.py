@@ -62,7 +62,7 @@ class LegalAssessmentResultsPDF(AssessmentSuggestionsMixin, View):
             for subcategory in category['categories']:
                 areas += len(subcategory['questions'])
                 for question in subcategory['questions']:
-                    suggestions += len(question['articles'])
+                    suggestions += len(question['sections'])
 
         context = {
             'results': results.data,

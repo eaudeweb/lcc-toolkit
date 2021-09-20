@@ -8,32 +8,32 @@ from lcc import models, forms
 from lcc.views.base import TagGroupRender, TaxonomyFormMixin
 
 
-class ArticleFormMixin:
+class SectionFormMixin:
     def dispatch(self, request, *args, **kwargs):
         self.law = get_object_or_404(models.Legislation,
                                      pk=kwargs['legislation_pk'])
         return super().dispatch(request, *args, **kwargs)
 
 
-class AddArticles(mixins.LoginRequiredMixin, TaxonomyFormMixin,
-                  ArticleFormMixin,
+class AddSections(mixins.LoginRequiredMixin, TaxonomyFormMixin,
+                  SectionFormMixin,
                   CreateView):
-    template_name = "legislation/articles/add.html"
-    model = models.LegislationArticle
-    form_class = forms.ArticleForm
+    template_name = "legislation/sections/add.html"
+    model = models.LegislationSection
+    form_class = forms.SectionForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        last_article = self.law.articles.order_by('pk').last() \
-            if self.law.articles else None
-        starting_page = last_article.legislation_page if last_article else 1
+        last_section = self.law.sections.order_by('pk').last() \
+            if self.law.sections else None
+        starting_page = last_section.legislation_page if last_section else 1
 
         context.update(
             {
                 'law': self.law,
                 "starting_page": starting_page,
-                "last_article": last_article,
-                "add_article": True,
+                "last_section": last_section,
+                "add_section": True,
                 "tag_groups": [
                     TagGroupRender(tag_group)
                     for tag_group in models.TaxonomyTagGroup.objects.all()
@@ -46,51 +46,59 @@ class AddArticles(mixins.LoginRequiredMixin, TaxonomyFormMixin,
         return context
 
     def form_valid(self, form):
-        article = form.save()
+        section = form.save()
         if "save-and-continue-btn" in self.request.POST:
             return HttpResponseRedirect(
-                reverse('lcc:legislation:articles:add',
-                        kwargs={'legislation_pk': article.legislation.pk})
+                reverse('lcc:legislation:sections:add',
+                        kwargs={'legislation_pk': section.legislation.pk})
             )
         if "save-btn" in self.request.POST:
             return HttpResponseRedirect(
-                reverse('lcc:legislation:articles:view',
-                        kwargs={'legislation_pk': article.legislation.pk})
+                reverse('lcc:legislation:sections:view',
+                        kwargs={'legislation_pk': section.legislation.pk})
             )
 
 
-class ArticlesList(DetailView):
-    template_name = "legislation/articles/list.html"
+class SectionsList(DetailView):
+    template_name = "legislation/sections/list.html"
     context_object_name = 'law'
     model = models.Legislation
     pk_url_kwarg = 'legislation_pk'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sections'] = models.LegislationSection.objects.filter(legislation=context['object']).extra(
+            select={
+                'code_fix': "string_to_array(code, '.')::int[]",
+            },
+        ).order_by('code_fix')
+        return context
 
-class EditArticles(mixins.LoginRequiredMixin,
+class EditSections(mixins.LoginRequiredMixin,
                    TaxonomyFormMixin,
-                   ArticleFormMixin,
+                   SectionFormMixin,
                    UpdateView):
-    template_name = "legislation/articles/edit.html"
-    model = models.LegislationArticle
-    context_object_name = 'article'
-    form_class = forms.ArticleForm
-    pk_url_kwarg = 'article_pk'
+    template_name = "legislation/sections/edit.html"
+    model = models.LegislationSection
+    context_object_name = 'section'
+    form_class = forms.SectionForm
+    pk_url_kwarg = 'section_pk'
 
     def get_object(self, **kwargs):
-        return get_object_or_404(models.LegislationArticle,
-                                 pk=self.kwargs['article_pk'],
+        return get_object_or_404(models.LegislationSection,
+                                 pk=self.kwargs['section_pk'],
                                  legislation__pk=self.kwargs['legislation_pk'])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        article = self.get_object()
+        section = self.get_object()
         context.update({
-            "starting_page": article.legislation_page,
-            "law": article.legislation,
-            "selected_tags": [tag.name for tag in article.tags.all()],
+            "starting_page": section.legislation_page,
+            "law": section.legislation,
+            "selected_tags": [tag.name for tag in section.tags.all()],
             "selected_classifications": [
                 classification.name
-                for classification in article.classifications.all()
+                for classification in section.classifications.all()
             ],
             "tag_groups": [
                 TagGroupRender(tag_group)
@@ -103,30 +111,31 @@ class EditArticles(mixins.LoginRequiredMixin,
 
     def form_invalid(self, form):
         print(form.errors)
-        article = self.get_object()
+        section = self.get_object()
         return HttpResponseRedirect(
-            reverse('lcc:legislation:articles:edit', kwargs={
-                'legislation_pk': article.legislation.pk,
-                'article_pk': article.pk
+            reverse('lcc:legislation:sections:edit', kwargs={
+                'legislation_pk': section.legislation.pk,
+                'section_pk': section.pk
             })
         )
 
     def form_valid(self, form):
-        article = form.save()
+        section = form.save()
+
         return HttpResponseRedirect(
-            reverse('lcc:legislation:articles:view', kwargs={
-                'legislation_pk': article.legislation.pk
+            reverse('lcc:legislation:sections:view', kwargs={
+                'legislation_pk': section.legislation.pk
             })
         )
 
 
-class DeleteArticle(mixins.LoginRequiredMixin, DeleteView):
-    model = models.LegislationArticle
-    pk_url_kwarg = 'article_pk'
+class DeleteSection(mixins.LoginRequiredMixin, DeleteView):
+    model = models.LegislationSection
+    pk_url_kwarg = 'section_pk'
 
     def get_success_url(self, **kwargs):
         legislation_pk = self.kwargs['legislation_pk']
-        return reverse('lcc:legislation:articles:view', kwargs={
+        return reverse('lcc:legislation:sections:view', kwargs={
             'legislation_pk': legislation_pk
         })
 

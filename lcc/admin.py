@@ -123,7 +123,7 @@ class UserProxyAdmin(BaseUserAdmin):
         return readonly_fields
 
 
-class LegislationArticleTreeAdmin(admin.ModelAdmin):
+class LegislationSectionAdmin(admin.ModelAdmin):
     list_display = ("code", "number", "identifier", "legispro_identifier")
 
     def get_queryset(self, request):
@@ -137,7 +137,7 @@ class LegislationArticleTreeAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(models.Legislation, LegislationAdmin)
 admin.site.register(models.LegislationArticle)
-admin.site.register(models.LegislationArticleTree, LegislationArticleTreeAdmin)
+admin.site.register(models.LegislationSection, LegislationSectionAdmin)
 admin.site.register(models.LegislationPage)
 admin.site.register(models.UserProfile)
 admin.site.register(models.Country)

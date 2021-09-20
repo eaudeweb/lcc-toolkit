@@ -61,17 +61,17 @@
                 </div>
 
                 <div class="suggestions-wrapper">
-                  <p class="suggestions-intro">{{ question.articles|length }} suggestions: </p>
+                  <p class="suggestions-intro">{{ question.sections|length }} suggestions: </p>
                   <div class="suggestions">
-                    {% for article in question.articles %}
-                      <div class="article-container">
-                        <a href="{{ host }}/legislation/{{ article.legislation.id }}/articles#{{ article.code }}" target="_blank">
-                          {{ article.legislation.title }} - {{ article.code }}
+                    {% for section in question.sections %}
+                      <div class="section-container">
+                        <a href="{{ host }}/legislation/{{ section.legislation.id }}/sections#{{ section.code }}" target="_blank">
+                          {{ section.legislation.title }} - {{ section.code }}
                         </a>
                         <div class="muted">
-                          <small>{{ article.legislation.country_name }}  {{ article.legislation.year }}</small>
+                          <small>{{ section.legislation.country_name }}  {{ section.legislation.year }}</small>
                         </div>
-                        <pre>{{ article.text }}</pre>
+                        <pre>{{ section.text }}</pre>
                       </div>
                     {% endfor %}
                   </div>

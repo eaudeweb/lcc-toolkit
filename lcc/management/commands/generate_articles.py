@@ -1,13 +1,11 @@
 from django.core.management.base import BaseCommand
-from lcc.models import (
-    Gap, Legislation, LegislationArticle
-)
+from lcc.models import Gap, Legislation, LegislationSection
 import lorem
 
 
 class Command(BaseCommand):
 
-    help = "Generate articles for testing purpose"
+    help = "Generate sections for testing purpose"
 
     def handle(self, *args, **options):
         gaps = Gap.objects.all()
@@ -18,14 +16,14 @@ class Command(BaseCommand):
             return
 
         for idx, gap in enumerate(gaps):
-            article = LegislationArticle.objects.create(
+            section = LegislationSection.objects.create(
                 text=lorem.text(),
                 legislation=legislation,
                 legislation_page=1,
                 code=idx,
             )
-            article.classifications = gap.classifications.all()
-            article.tags = gap.tags.all()
-            article.save()
+            section.classifications = gap.classifications.all()
+            section.tags = gap.tags.all()
+            section.save()
 
-        print("Random articles created")
+        print("Random sections created")
