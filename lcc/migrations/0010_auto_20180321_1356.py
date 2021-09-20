@@ -8,18 +8,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0009_auto_20171215_1500'),
+        ("lcc", "0009_auto_20171215_1500"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='legislation',
-            name='year',
+            model_name="legislation",
+            name="year",
             field=models.IntegerField(default=2018),
         ),
         migrations.AlterField(
-            model_name='legislationpage',
-            name='page_text',
+            model_name="legislationpage",
+            name="page_text",
             field=models.TextField(max_length=65535),
         ),
     ]

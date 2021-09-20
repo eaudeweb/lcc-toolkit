@@ -11,38 +11,37 @@ from lcc.models import Legislation, LegislationSection, UserProfile
 
 class Sections(TestCase):
     fixtures = [
-        'Countries.json',
-        'Gaps.json',
-        'Questions.json',
-        'TaxonomyClassification.json',
-        'TaxonomyTag.json',
-        'TaxonomyTagGroup.json',
-        'Legislation.json',
+        "Countries.json",
+        "Gaps.json",
+        "Questions.json",
+        "TaxonomyClassification.json",
+        "TaxonomyTag.json",
+        "TaxonomyTagGroup.json",
+        "Legislation.json",
     ]
 
     def setUp(self):
 
-        content_manager_group = Group.objects.get(name='Content manager')
-        policy_maker_group = Group.objects.get(name='Policy maker')
+        content_manager_group = Group.objects.get(name="Content manager")
+        policy_maker_group = Group.objects.get(name="Policy maker")
 
-        content_manager = User.objects.create(username='manager')
-        content_manager.set_password('foobar')
+        content_manager = User.objects.create(username="manager")
+        content_manager.set_password("foobar")
         content_manager.save()
-        UserProfile.objects.create(user=content_manager, home_country_id='AFG')
+        UserProfile.objects.create(user=content_manager, home_country_id="AFG")
 
         content_manager.groups.add(content_manager_group)
 
-        policy_maker = User.objects.create(username='policymaker')
-        policy_maker.set_password('foobar')
+        policy_maker = User.objects.create(username="policymaker")
+        policy_maker.set_password("foobar")
         policy_maker.save()
-        UserProfile.objects.create(user=policy_maker, home_country_id='AFG')
+        UserProfile.objects.create(user=policy_maker, home_country_id="AFG")
 
         policy_maker.groups.add(policy_maker_group)
 
         self.law = Legislation.objects.first()
         self.law.pdf_file = SimpleUploadedFile(
-            "Legislation_3_-_ccra2002212.pdf",
-            b"these are the file contents!"
+            "Legislation_3_-_ccra2002212.pdf", b"these are the file contents!"
         )
         self.law.save()
         self.section_data = {
@@ -53,18 +52,20 @@ class Sections(TestCase):
         }
         self.section = self.law.sections.create(**self.section_data)
 
-        with open(os.devnull, 'w') as f:
-            call_command('search_index', '--rebuild', '-f', stdout=f)
+        with open(os.devnull, "w") as f:
+            call_command("search_index", "--rebuild", "-f", stdout=f)
 
     def test_needs_perm_to_add_sections(self):
 
         c = Client()
-        c.login(username='policymaker', password='foobar')
-        url = reverse("lcc:legislation:sections:add", kwargs={"legislation_pk": self.law.id})
+        c.login(username="policymaker", password="foobar")
+        url = reverse(
+            "lcc:legislation:sections:add", kwargs={"legislation_pk": self.law.id}
+        )
         response = c.get(url)
         self.assertEqual(response.status_code, 302)  # Temporary redirect
 
-        c.login(username='manager', password='foobar')
+        c.login(username="manager", password="foobar")
         response = c.get(url)
 
         self.assertEqual(response.status_code, 200)  # OK
@@ -72,16 +73,16 @@ class Sections(TestCase):
     def test_needs_perm_to_edit_sections(self):
 
         c = Client()
-        c.login(username='policymaker', password='foobar')
-        url = reverse("lcc:legislation:sections:edit", kwargs={
-            "legislation_pk": self.law.id,
-            "section_pk": self.section.id}
+        c.login(username="policymaker", password="foobar")
+        url = reverse(
+            "lcc:legislation:sections:edit",
+            kwargs={"legislation_pk": self.law.id, "section_pk": self.section.id},
         )
         response = c.get(url)
 
         self.assertEqual(response.status_code, 302)  # Temporary redirect
 
-        c.login(username='manager', password='foobar')
+        c.login(username="manager", password="foobar")
         response = c.get(url)
 
         self.assertEqual(response.status_code, 200)  # OK
@@ -89,16 +90,16 @@ class Sections(TestCase):
     def test_needs_perm_to_delete_sections(self):
 
         c = Client()
-        c.login(username='policymaker', password='foobar')
-        url = reverse("lcc:legislation:sections:delete", kwargs={
-            "legislation_pk": self.law.id,
-            "section_pk": self.section.id}
+        c.login(username="policymaker", password="foobar")
+        url = reverse(
+            "lcc:legislation:sections:delete",
+            kwargs={"legislation_pk": self.law.id, "section_pk": self.section.id},
         )
         response = c.get(url)
 
         self.assertEqual(response.status_code, 302)  # Temporary redirect
 
-        c.login(username='manager', password='foobar')
+        c.login(username="manager", password="foobar")
         self.assertEqual(self.law.sections.count(), 1)
         response = c.get(url)
         self.assertEqual(response.status_code, 302)  # Temporary redirect
@@ -107,55 +108,85 @@ class Sections(TestCase):
     def test_needs_perm_to_see_add_sections_link(self):
 
         c = Client()
-        c.login(username='policymaker', password='foobar')
-        response = c.get('/legislation/{}/'.format(self.law.id))
+        c.login(username="policymaker", password="foobar")
+        response = c.get("/legislation/{}/".format(self.law.id))
 
         self.assertNotContains(
             response,
-            'href="{}"'.format(reverse("lcc:legislation:sections:add", kwargs={"legislation_pk": self.law.id}))
+            'href="{}"'.format(
+                reverse(
+                    "lcc:legislation:sections:add",
+                    kwargs={"legislation_pk": self.law.id},
+                )
+            ),
         )
 
-        c.login(username='manager', password='foobar')
-        response = c.get(reverse("lcc:legislation:sections:add", kwargs={"legislation_pk": self.law.id}))
+        c.login(username="manager", password="foobar")
+        response = c.get(
+            reverse(
+                "lcc:legislation:sections:add", kwargs={"legislation_pk": self.law.id}
+            )
+        )
 
         self.assertContains(
             response,
-            'href="{}"'.format(reverse("lcc:legislation:sections:add", kwargs={"legislation_pk": self.law.id}))
+            'href="{}"'.format(
+                reverse(
+                    "lcc:legislation:sections:add",
+                    kwargs={"legislation_pk": self.law.id},
+                )
+            ),
         )
 
     def test_needs_perm_to_see_edit_sections_link(self):
 
         c = Client()
-        c.login(username='policymaker', password='foobar')
-        response = c.get(reverse("lcc:legislation:sections:view", kwargs={"legislation_pk": self.law.id}))
+        c.login(username="policymaker", password="foobar")
+        response = c.get(
+            reverse(
+                "lcc:legislation:sections:view", kwargs={"legislation_pk": self.law.id}
+            )
+        )
 
-        url = reverse("lcc:legislation:sections:edit", kwargs={
-            "legislation_pk": self.law.id,
-            "section_pk": self.section.id
-        })
+        url = reverse(
+            "lcc:legislation:sections:edit",
+            kwargs={"legislation_pk": self.law.id, "section_pk": self.section.id},
+        )
 
         self.assertNotContains(response, 'href="{}"'.format(url))
 
-        c.login(username='manager', password='foobar')
-        response = c.get(reverse("lcc:legislation:sections:view", kwargs={"legislation_pk": self.law.id}))
+        c.login(username="manager", password="foobar")
+        response = c.get(
+            reverse(
+                "lcc:legislation:sections:view", kwargs={"legislation_pk": self.law.id}
+            )
+        )
 
         self.assertContains(response, 'href="{}"'.format(url))
 
     def test_needs_perm_to_see_delete_sections_link(self):
 
         c = Client()
-        c.login(username='policymaker', password='foobar')
-        response = c.get(reverse("lcc:legislation:sections:view", kwargs={"legislation_pk": self.law.id}))
+        c.login(username="policymaker", password="foobar")
+        response = c.get(
+            reverse(
+                "lcc:legislation:sections:view", kwargs={"legislation_pk": self.law.id}
+            )
+        )
 
-        url = reverse("lcc:legislation:sections:delete", kwargs={
-            "legislation_pk": self.law.id,
-            "section_pk": self.section.id
-        })
+        url = reverse(
+            "lcc:legislation:sections:delete",
+            kwargs={"legislation_pk": self.law.id, "section_pk": self.section.id},
+        )
 
         self.assertNotContains(response, 'href="{}"'.format(url))
 
-        c.login(username='manager', password='foobar')
-        response = c.get(reverse("lcc:legislation:sections:view", kwargs={"legislation_pk": self.law.id}))
+        c.login(username="manager", password="foobar")
+        response = c.get(
+            reverse(
+                "lcc:legislation:sections:view", kwargs={"legislation_pk": self.law.id}
+            )
+        )
 
         self.assertContains(response, 'href="{}"'.format(url))
 
@@ -165,11 +196,10 @@ class Sections(TestCase):
             law.sections.create(
                 text="Brown rabbits are commonly seen.",
                 legislation_page=number,  # Any value, doesn't matter
-                code="Art. {} of the law".format(number)
+                code="Art. {} of the law".format(number),
             )
         # In order
-        self.assertEqual(
-            list(law.sections.values_list('number', flat=True)), [1, 2, 3])
+        self.assertEqual(list(law.sections.values_list("number", flat=True)), [1, 2, 3])
 
     def test_section_number_updated(self):
         law = Legislation.objects.last()
@@ -177,7 +207,7 @@ class Sections(TestCase):
             law.sections.create(
                 text="Brown rabbits are commonly seen.",
                 legislation_page=number,  # Any value, doesn't matter
-                code="Art. {} of the law".format(number)
+                code="Art. {} of the law".format(number),
             )
 
         section = law.sections.get(number=5)
@@ -196,62 +226,67 @@ class Sections(TestCase):
         }
         section_data.update({"save-btn": ""})
         c = Client()
-        c.login(username='manager', password='foobar')
+        c.login(username="manager", password="foobar")
         response = c.post(
-            reverse("lcc:legislation:sections:add",
-            kwargs={"legislation_pk": law.id}),
-            data=section_data
+            reverse("lcc:legislation:sections:add", kwargs={"legislation_pk": law.id}),
+            data=section_data,
         )
         section = LegislationSection.objects.first()
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
-            reverse("lcc:legislation:sections:view",
-            kwargs={"legislation_pk": law.id})
+            reverse("lcc:legislation:sections:view", kwargs={"legislation_pk": law.id}),
         )
-        self.assertEqual(section.text, section_data['text'])
-        self.assertEqual(section.legislation.id, section_data['legislation'])
-        self.assertEqual(section.legislation_page, section_data['legislation_page'])
-        self.assertEqual(section.code, section_data['code'])
+        self.assertEqual(section.text, section_data["text"])
+        self.assertEqual(section.legislation.id, section_data["legislation"])
+        self.assertEqual(section.legislation_page, section_data["legislation_page"])
+        self.assertEqual(section.code, section_data["code"])
 
     def test_section_create_and_continue(self):
         self.section_data.update({"save-and-continue-btn": ""})
         c = Client()
-        c.login(username='manager', password='foobar')
+        c.login(username="manager", password="foobar")
         response = c.post(
-            reverse("lcc:legislation:sections:add",
-            kwargs={"legislation_pk": self.law.id}),
-            data=self.section_data
+            reverse(
+                "lcc:legislation:sections:add", kwargs={"legislation_pk": self.law.id}
+            ),
+            data=self.section_data,
         )
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
-            reverse("lcc:legislation:sections:add",
-            kwargs={"legislation_pk": self.law.id})
+            reverse(
+                "lcc:legislation:sections:add", kwargs={"legislation_pk": self.law.id}
+            ),
         )
 
     def test_edit_section(self):
         c = Client()
-        c.login(username='manager', password='foobar')
-        self.section_data['code'] = "{}"
-        self.section_data['text'] = "text updated"
+        c.login(username="manager", password="foobar")
+        self.section_data["code"] = "{}"
+        self.section_data["text"] = "text updated"
         response = c.post(
-            reverse("lcc:legislation:sections:edit",
-            kwargs={"legislation_pk": self.section.legislation.id,
-                    "section_pk": self.section.id}),
-            data=self.section_data
+            reverse(
+                "lcc:legislation:sections:edit",
+                kwargs={
+                    "legislation_pk": self.section.legislation.id,
+                    "section_pk": self.section.id,
+                },
+            ),
+            data=self.section_data,
         )
         self.assertEqual(response.status_code, 302)
         section = LegislationSection.objects.first()
-        self.assertEqual(section.text, self.section_data['text'])
+        self.assertEqual(section.text, self.section_data["text"])
 
     def test_edit_section_fail_form(self):
         c = Client()
-        c.login(username='manager', password='foobar')
+        c.login(username="manager", password="foobar")
         response = c.post(
-            reverse("lcc:legislation:sections:edit",
-            kwargs={"legislation_pk": self.law.id,
-                    "section_pk": self.section.id}),
-            data={"text": 234}
+            reverse(
+                "lcc:legislation:sections:edit",
+                kwargs={"legislation_pk": self.law.id, "section_pk": self.section.id},
+            ),
+            data={"text": 234},
         )
         self.assertEqual(response.status_code, 302)

@@ -6,6 +6,7 @@ from django.db.models.functions import Cast
 from lcc import models, serializers
 from lcc.views.country import CountryMetadataFiltering
 
+
 class AssessmentSuggestionsMixin(CountryMetadataFiltering):
     def get_assessment_object(self, assessment):
         answers = models.Answer.objects.get_assessment_answers(assessment.pk)
@@ -19,8 +20,7 @@ class AssessmentSuggestionsMixin(CountryMetadataFiltering):
 
         for root in root_categories:
             root.categories = [
-                sub for sub in sub_categories
-                if sub.parent_id == root.id
+                sub for sub in sub_categories if sub.parent_id == root.id
             ]
 
         gap_ids = []
@@ -31,10 +31,7 @@ class AssessmentSuggestionsMixin(CountryMetadataFiltering):
 
             gap_ids.append(a.gap_id)
 
-            category = next(
-                cat for cat in sub_categories
-                if cat.id == a.category_id
-            )
+            category = next(cat for cat in sub_categories if cat.id == a.category_id)
             try:
                 cat_qs = category.questions
             except AttributeError:
@@ -44,22 +41,20 @@ class AssessmentSuggestionsMixin(CountryMetadataFiltering):
             cat_qs.append(q)
 
         gaps = models.Gap.objects.filter(id__in=gap_ids).prefetch_related(
-            'classifications', 'tags')
+            "classifications", "tags"
+        )
 
         for a in answers:
-            a.question.gap = next(
-                gap for gap in gaps
-                if gap.id == a.gap_id
-            )
+            a.question.gap = next(gap for gap in gaps if gap.id == a.gap_id)
         assessment.categories = root_categories
         similar_countries = self.filter_countries(self.request, country=None)
         sections = models.LegislationSection.objects.get_sections_for_gaps(
-            gap_ids, similar_countries)
+            gap_ids, similar_countries
+        )
 
         for a in answers:
             a.question.sections = [
-                section for section in sections
-                if a.question.gap.id == section.gap_id
+                section for section in sections if a.question.gap.id == section.gap_id
             ]
 
         return assessment
@@ -68,35 +63,35 @@ class AssessmentSuggestionsMixin(CountryMetadataFiltering):
 class QuestionViewSet(generics.ListAPIView):
     def get_serializer(self, *args, **kwargs):
         serializer_class = serializers.QuestionSerializer
-        kwargs['context'] = self.get_serializer_context()
+        kwargs["context"] = self.get_serializer_context()
         return serializer_class(*args, **kwargs)
 
     def get_queryset(self):
-        category = self.kwargs['category_pk']
+        category = self.kwargs["category_pk"]
         return models.Question.objects.filter(level=0, classification=category)
 
     def get_serializer_context(self):
-        assessment_pk = self.request.query_params.get('assessment_pk', None)
+        assessment_pk = self.request.query_params.get("assessment_pk", None)
         if assessment_pk:
-            return {'request': self.request, 'assessment_pk': assessment_pk}
+            return {"request": self.request, "assessment_pk": assessment_pk}
         else:
-            return {'request': self.request}
+            return {"request": self.request}
 
 
 class ClassificationViewSet(generics.ListAPIView):
     serializer_class = serializers.ClassificationSerializer
 
     def get_queryset(self):
-        queryset = models.TaxonomyClassification.objects.filter(
-            level=0
-        ).annotate(
-            code_as_int=Cast('code', output_field=IntegerField())
-        ).order_by('code_as_int')
+        queryset = (
+            models.TaxonomyClassification.objects.filter(level=0)
+            .annotate(code_as_int=Cast("code", output_field=IntegerField()))
+            .order_by("code_as_int")
+        )
 
         new_queryset = queryset
         for top_level in queryset:
             flag = False
-            for second_level in top_level.get_children().order_by('code'):
+            for second_level in top_level.get_children().order_by("code"):
                 if models.Question.objects.filter(classification=second_level):
                     flag = True
             if not flag:
@@ -133,7 +128,7 @@ class AssessmentResults(AssessmentSuggestionsMixin, generics.RetrieveAPIView):
 
     def get_queryset(self):
         return models.Assessment.objects.filter(
-            pk=self.kwargs['pk'],
+            pk=self.kwargs["pk"],
             user=self.request.user,
         )
 

@@ -8,15 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0016_auto_20180615_0900'),
+        ("lcc", "0016_auto_20180615_0900"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='taxonomyclassification',
-            name='details',
-            field=models.TextField(default='', null=True),
+            model_name="taxonomyclassification",
+            name="details",
+            field=models.TextField(default="", null=True),
         ),
     ]
-
-    

@@ -9,15 +9,29 @@ import django.db.models.deletion
 
 def migrate_data(apps, schema_editor):
 
-    Country = apps.get_model('lcc', 'Country')
-    CountryMetadata = apps.get_model('lcc', 'CountryMetadata')
-    AssessmentProfile = apps.get_model('lcc', 'AssessmentProfile')
+    Country = apps.get_model("lcc", "Country")
+    CountryMetadata = apps.get_model("lcc", "CountryMetadata")
+    AssessmentProfile = apps.get_model("lcc", "AssessmentProfile")
 
-    fields = ['cw', 'small_cw', 'un', 'ldc', 'lldc', 'sid', 'region_id',
-              'sub_region_id', 'legal_system_id', 'population', 'hdi2015',
-              'gdp_capita', 'ghg_no_lucf', 'ghg_lucf', 'cvi2015']
+    fields = [
+        "cw",
+        "small_cw",
+        "un",
+        "ldc",
+        "lldc",
+        "sid",
+        "region_id",
+        "sub_region_id",
+        "legal_system_id",
+        "population",
+        "hdi2015",
+        "gdp_capita",
+        "ghg_no_lucf",
+        "ghg_lucf",
+        "cvi2015",
+    ]
     assessment_profile_fields = list(fields)
-    assessment_profile_fields.extend(['country_id', 'user_id'])
+    assessment_profile_fields.extend(["country_id", "user_id"])
 
     country_metadatas = CountryMetadata.objects.all()
     for country_metadata in country_metadatas:
@@ -26,8 +40,9 @@ def migrate_data(apps, schema_editor):
 
         if country_metadata.user:
             # CountryMetadata objects that have a user are assessment profiles
-            data = {key: getattr(country_metadata, key) for key in
-                    assessment_profile_fields}
+            data = {
+                key: getattr(country_metadata, key) for key in assessment_profile_fields
+            }
             assessment = AssessmentProfile.objects.create(**data)
             assessment.mitigation_focus_areas.add(*areas)
             sectors = country_metadata.adaptation_priority_sectors.all()
@@ -45,26 +60,42 @@ def migrate_data(apps, schema_editor):
                 country.adaptation_priority_sectors.add(*sectors)
 
             except ObjectDoesNotExist:
-                print("Country with pk {id} was not found.".format(
-                    id=country_metadata.country_id)
+                print(
+                    "Country with pk {id} was not found.".format(
+                        id=country_metadata.country_id
+                    )
                 )
 
 
 def unmigrate_data(apps, schema_editor):
 
-    Country = apps.get_model('lcc', 'Country')
-    CountryMetadata = apps.get_model('lcc', 'CountryMetadata')
-    AssessmentProfile = apps.get_model('lcc', 'AssessmentProfile')
+    Country = apps.get_model("lcc", "Country")
+    CountryMetadata = apps.get_model("lcc", "CountryMetadata")
+    AssessmentProfile = apps.get_model("lcc", "AssessmentProfile")
 
-    fields = ['cw', 'small_cw', 'un', 'ldc', 'lldc', 'sid', 'region_id',
-              'sub_region_id', 'legal_system_id', 'population', 'hdi2015',
-              'gdp_capita', 'ghg_no_lucf', 'ghg_lucf', 'cvi2015']
+    fields = [
+        "cw",
+        "small_cw",
+        "un",
+        "ldc",
+        "lldc",
+        "sid",
+        "region_id",
+        "sub_region_id",
+        "legal_system_id",
+        "population",
+        "hdi2015",
+        "gdp_capita",
+        "ghg_no_lucf",
+        "ghg_lucf",
+        "cvi2015",
+    ]
     country_metadata_fields = list(fields)
-    country_metadata_fields.extend(['country', 'user'])
+    country_metadata_fields.extend(["country", "user"])
 
     for country in Country.objects.all():
         data = {key: getattr(country, key) for key in fields}
-        data['country'] = country
+        data["country"] = country
         country_metadata = CountryMetadata.objects.create(**data)
         areas = country.mitigation_focus_areas.all()
         country_metadata.mitigation_focus_areas.add(*areas)
@@ -83,229 +114,303 @@ def unmigrate_data(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0007_auto_20171106_1347'),
+        ("lcc", "0007_auto_20171106_1347"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AssessmentProfile',
+            name="AssessmentProfile",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True,
-                                        serialize=False, verbose_name='ID')),
-                ('cw', models.BooleanField(
-                    default=False, verbose_name='Commonwealth (Member country)')
-                 ),
-                ('small_cw', models.BooleanField(
-                    default=False, verbose_name='Small commonwealth country')
-                 ),
-                ('un', models.BooleanField(
-                    default=False,
-                    verbose_name='United Nations (Member state)')),
-                ('ldc', models.BooleanField(
-                    default=False, verbose_name='Least developed country (LDC)')
-                 ),
-                ('lldc', models.BooleanField(
-                    default=False,
-                    verbose_name='Landlocked developing country (LLDC)')),
-                ('sid', models.BooleanField(
-                    default=False,
-                    verbose_name='Small island developing state (SID)')),
-                ('population', models.FloatField(
-                    null=True, verbose_name="Population ('000s) 2018")),
-                ('hdi2015', models.FloatField(
-                    null=True, verbose_name='HDI2015')),
-                ('gdp_capita', models.FloatField(
-                    null=True, verbose_name='GDP per capita, US$ 2016')),
-                ('ghg_no_lucf', models.FloatField(
-                    null=True,
-                    verbose_name='Total GHG Emissions excluding LUCF MtCO2e 2014')),
-                ('ghg_lucf', models.FloatField(
-                    null=True,
-                    verbose_name='Total GHG Emissions including LUCF MtCO2e 2014')),
-                ('cvi2015', models.FloatField(blank=True, null=True,
-                                              verbose_name='Climate vulnerability index 2015')),
-                ('adaptation_priority_sectors',
-                 models.ManyToManyField(blank=True, to='lcc.PrioritySector')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "cw",
+                    models.BooleanField(
+                        default=False, verbose_name="Commonwealth (Member country)"
+                    ),
+                ),
+                (
+                    "small_cw",
+                    models.BooleanField(
+                        default=False, verbose_name="Small commonwealth country"
+                    ),
+                ),
+                (
+                    "un",
+                    models.BooleanField(
+                        default=False, verbose_name="United Nations (Member state)"
+                    ),
+                ),
+                (
+                    "ldc",
+                    models.BooleanField(
+                        default=False, verbose_name="Least developed country (LDC)"
+                    ),
+                ),
+                (
+                    "lldc",
+                    models.BooleanField(
+                        default=False,
+                        verbose_name="Landlocked developing country (LLDC)",
+                    ),
+                ),
+                (
+                    "sid",
+                    models.BooleanField(
+                        default=False,
+                        verbose_name="Small island developing state (SID)",
+                    ),
+                ),
+                (
+                    "population",
+                    models.FloatField(
+                        null=True, verbose_name="Population ('000s) 2018"
+                    ),
+                ),
+                ("hdi2015", models.FloatField(null=True, verbose_name="HDI2015")),
+                (
+                    "gdp_capita",
+                    models.FloatField(
+                        null=True, verbose_name="GDP per capita, US$ 2016"
+                    ),
+                ),
+                (
+                    "ghg_no_lucf",
+                    models.FloatField(
+                        null=True,
+                        verbose_name="Total GHG Emissions excluding LUCF MtCO2e 2014",
+                    ),
+                ),
+                (
+                    "ghg_lucf",
+                    models.FloatField(
+                        null=True,
+                        verbose_name="Total GHG Emissions including LUCF MtCO2e 2014",
+                    ),
+                ),
+                (
+                    "cvi2015",
+                    models.FloatField(
+                        blank=True,
+                        null=True,
+                        verbose_name="Climate vulnerability index 2015",
+                    ),
+                ),
+                (
+                    "adaptation_priority_sectors",
+                    models.ManyToManyField(blank=True, to="lcc.PrioritySector"),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-
         ),
         migrations.AddField(
-            model_name='country',
-            name='adaptation_priority_sectors',
-            field=models.ManyToManyField(blank=True, to='lcc.PrioritySector'),
+            model_name="country",
+            name="adaptation_priority_sectors",
+            field=models.ManyToManyField(blank=True, to="lcc.PrioritySector"),
         ),
         migrations.AddField(
-            model_name='country',
-            name='cvi2015',
-            field=models.FloatField(blank=True, null=True,
-                                    verbose_name='Climate vulnerability index 2015'),
+            model_name="country",
+            name="cvi2015",
+            field=models.FloatField(
+                blank=True, null=True, verbose_name="Climate vulnerability index 2015"
+            ),
         ),
         migrations.AddField(
-            model_name='country',
-            name='cw',
-            field=models.BooleanField(default=False,
-                                      verbose_name='Commonwealth (Member country)'),
+            model_name="country",
+            name="cw",
+            field=models.BooleanField(
+                default=False, verbose_name="Commonwealth (Member country)"
+            ),
         ),
         migrations.AddField(
-            model_name='country',
-            name='gdp_capita',
-            field=models.FloatField(null=True,
-                                    verbose_name='GDP per capita, US$ 2016'),
+            model_name="country",
+            name="gdp_capita",
+            field=models.FloatField(null=True, verbose_name="GDP per capita, US$ 2016"),
         ),
         migrations.AddField(
-            model_name='country',
-            name='ghg_lucf',
-            field=models.FloatField(null=True,
-                                    verbose_name='Total GHG Emissions including LUCF MtCO2e 2014'),
+            model_name="country",
+            name="ghg_lucf",
+            field=models.FloatField(
+                null=True, verbose_name="Total GHG Emissions including LUCF MtCO2e 2014"
+            ),
         ),
         migrations.AddField(
-            model_name='country',
-            name='ghg_no_lucf',
-            field=models.FloatField(null=True,
-                                    verbose_name='Total GHG Emissions excluding LUCF MtCO2e 2014'),
+            model_name="country",
+            name="ghg_no_lucf",
+            field=models.FloatField(
+                null=True, verbose_name="Total GHG Emissions excluding LUCF MtCO2e 2014"
+            ),
         ),
         migrations.AddField(
-            model_name='country',
-            name='hdi2015',
-            field=models.FloatField(null=True, verbose_name='HDI2015'),
+            model_name="country",
+            name="hdi2015",
+            field=models.FloatField(null=True, verbose_name="HDI2015"),
         ),
         migrations.AddField(
-            model_name='country',
-            name='ldc',
-            field=models.BooleanField(default=False,
-                                      verbose_name='Least developed country (LDC)'),
+            model_name="country",
+            name="ldc",
+            field=models.BooleanField(
+                default=False, verbose_name="Least developed country (LDC)"
+            ),
         ),
         migrations.AddField(
-            model_name='country',
-            name='legal_system',
-            field=models.ForeignKey(blank=True, null=True,
-                                    on_delete=django.db.models.deletion.CASCADE,
-                                    to='lcc.LegalSystem'),
+            model_name="country",
+            name="legal_system",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="lcc.LegalSystem",
+            ),
         ),
         migrations.AddField(
-            model_name='country',
-            name='lldc',
-            field=models.BooleanField(default=False,
-                                      verbose_name='Landlocked developing country (LLDC)'),
+            model_name="country",
+            name="lldc",
+            field=models.BooleanField(
+                default=False, verbose_name="Landlocked developing country (LLDC)"
+            ),
         ),
         migrations.AddField(
-            model_name='country',
-            name='mitigation_focus_areas',
-            field=models.ManyToManyField(blank=True, to='lcc.FocusArea'),
+            model_name="country",
+            name="mitigation_focus_areas",
+            field=models.ManyToManyField(blank=True, to="lcc.FocusArea"),
         ),
         migrations.AddField(
-            model_name='country',
-            name='population',
-            field=models.FloatField(null=True,
-                                    verbose_name="Population ('000s) 2018"),
+            model_name="country",
+            name="population",
+            field=models.FloatField(null=True, verbose_name="Population ('000s) 2018"),
         ),
         migrations.AddField(
-            model_name='country',
-            name='region',
-            field=models.ForeignKey(blank=True, null=True,
-                                    on_delete=django.db.models.deletion.CASCADE,
-                                    to='lcc.Region'),
+            model_name="country",
+            name="region",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="lcc.Region",
+            ),
         ),
         migrations.AddField(
-            model_name='country',
-            name='sid',
-            field=models.BooleanField(default=False,
-                                      verbose_name='Small island developing state (SID)'),
+            model_name="country",
+            name="sid",
+            field=models.BooleanField(
+                default=False, verbose_name="Small island developing state (SID)"
+            ),
         ),
         migrations.AddField(
-            model_name='country',
-            name='small_cw',
-            field=models.BooleanField(default=False,
-                                      verbose_name='Small commonwealth country'),
+            model_name="country",
+            name="small_cw",
+            field=models.BooleanField(
+                default=False, verbose_name="Small commonwealth country"
+            ),
         ),
         migrations.AddField(
-            model_name='country',
-            name='sub_region',
-            field=models.ForeignKey(blank=True, null=True,
-                                    on_delete=django.db.models.deletion.CASCADE,
-                                    to='lcc.SubRegion'),
+            model_name="country",
+            name="sub_region",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="lcc.SubRegion",
+            ),
         ),
         migrations.AddField(
-            model_name='country',
-            name='un',
-            field=models.BooleanField(default=False,
-                                      verbose_name='United Nations (Member state)'),
+            model_name="country",
+            name="un",
+            field=models.BooleanField(
+                default=False, verbose_name="United Nations (Member state)"
+            ),
         ),
         migrations.AddField(
-            model_name='assessmentprofile',
-            name='country',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-                                    related_name='metadata', to='lcc.Country'),
+            model_name="assessmentprofile",
+            name="country",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="metadata",
+                to="lcc.Country",
+            ),
         ),
         migrations.AddField(
-            model_name='assessmentprofile',
-            name='legal_system',
-            field=models.ForeignKey(blank=True, null=True,
-                                    on_delete=django.db.models.deletion.CASCADE,
-                                    to='lcc.LegalSystem'),
+            model_name="assessmentprofile",
+            name="legal_system",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="lcc.LegalSystem",
+            ),
         ),
         migrations.AddField(
-            model_name='assessmentprofile',
-            name='mitigation_focus_areas',
-            field=models.ManyToManyField(blank=True, to='lcc.FocusArea'),
+            model_name="assessmentprofile",
+            name="mitigation_focus_areas",
+            field=models.ManyToManyField(blank=True, to="lcc.FocusArea"),
         ),
         migrations.AddField(
-            model_name='assessmentprofile',
-            name='region',
-            field=models.ForeignKey(blank=True, null=True,
-                                    on_delete=django.db.models.deletion.CASCADE,
-                                    to='lcc.Region'),
+            model_name="assessmentprofile",
+            name="region",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="lcc.Region",
+            ),
         ),
         migrations.AddField(
-            model_name='assessmentprofile',
-            name='sub_region',
-            field=models.ForeignKey(blank=True, null=True,
-                                    on_delete=django.db.models.deletion.CASCADE,
-                                    to='lcc.SubRegion'),
+            model_name="assessmentprofile",
+            name="sub_region",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="lcc.SubRegion",
+            ),
         ),
         migrations.AddField(
-            model_name='assessmentprofile',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
-                                    to='lcc.UserProfile'),
+            model_name="assessmentprofile",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="lcc.UserProfile"
+            ),
         ),
-
-
         migrations.RunPython(migrate_data, unmigrate_data),
-
-
         migrations.RemoveField(
-            model_name='countrymetadata',
-            name='adaptation_priority_sectors',
+            model_name="countrymetadata",
+            name="adaptation_priority_sectors",
         ),
         migrations.RemoveField(
-            model_name='countrymetadata',
-            name='country',
+            model_name="countrymetadata",
+            name="country",
         ),
         migrations.RemoveField(
-            model_name='countrymetadata',
-            name='legal_system',
+            model_name="countrymetadata",
+            name="legal_system",
         ),
         migrations.RemoveField(
-            model_name='countrymetadata',
-            name='mitigation_focus_areas',
+            model_name="countrymetadata",
+            name="mitigation_focus_areas",
         ),
         migrations.RemoveField(
-            model_name='countrymetadata',
-            name='region',
+            model_name="countrymetadata",
+            name="region",
         ),
         migrations.RemoveField(
-            model_name='countrymetadata',
-            name='sub_region',
+            model_name="countrymetadata",
+            name="sub_region",
         ),
         migrations.RemoveField(
-            model_name='countrymetadata',
-            name='user',
+            model_name="countrymetadata",
+            name="user",
         ),
         migrations.DeleteModel(
-            name='CountryMetadata',
+            name="CountryMetadata",
         ),
     ]

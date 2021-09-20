@@ -8,18 +8,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0002_auto_20171027_1240'),
+        ("lcc", "0002_auto_20171027_1240"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='legislation',
-            name='source_type',
-            field=models.CharField(blank=True, choices=[('', '----'), ('unofficial', 'Unofficial'), ('official', 'Official')], default=('', '----'), max_length=64, null=True),
+            model_name="legislation",
+            name="source_type",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("", "----"),
+                    ("unofficial", "Unofficial"),
+                    ("official", "Official"),
+                ],
+                default=("", "----"),
+                max_length=64,
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='legislationarticle',
-            name='tags',
-            field=models.ManyToManyField(blank=True, to='lcc.TaxonomyTag'),
+            model_name="legislationarticle",
+            name="tags",
+            field=models.ManyToManyField(blank=True, to="lcc.TaxonomyTag"),
         ),
     ]

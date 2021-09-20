@@ -11,7 +11,7 @@ class Command(BaseCommand):
     help = "Generate fake legislation"
 
     def add_arguments(self, parser):
-        parser.add_argument('num', type=int)
+        parser.add_argument("num", type=int)
 
     def handle(self, *args, **options):
 
@@ -19,7 +19,7 @@ class Command(BaseCommand):
         classifications = list(TaxonomyClassification.objects.filter(level=0))
         tags = list(TaxonomyTag.objects.all())
 
-        for _ in range(options['num']):
+        for _ in range(options["num"]):
 
             num_class = randint(1, 4)
             num_tags = randint(1, 10)
