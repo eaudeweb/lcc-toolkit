@@ -654,6 +654,9 @@ class LegislationSectionManager(models.Manager):
             ],
         )
 
+    def root_levels(self):
+        return self.filter(parent=None)
+
 
 class LegislationArticle(_TaxonomyModel):
     text = models.CharField(max_length=65535)

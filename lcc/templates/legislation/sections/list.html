@@ -63,9 +63,8 @@
 </h3> -->
 <div class="sections-container">
   {% for section in law.sections.all %}
-    <div id="{{section.code}}" class="viz-container multiple">
+    <div id="{{section.code}}" class="viz-container multiple {% if section.is_child_node %}section-child{% endif %}">
       <div class="section-wrapper">
-
         {% if request.user.is_authenticated %}
           {% if perms.lcc.delete_legislationsection %}
             <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:sections:delete' legislation_pk=law.pk section_pk=section.pk %}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>

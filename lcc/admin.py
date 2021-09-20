@@ -7,12 +7,23 @@ from lcc import models
 
 User = get_user_model()
 
+class LegislationSectionInline(admin.TabularInline):
+    model = models.LegislationSection
+    readonly_fields = ['pk', 'text', 'code', 'number', 'identifier']
+    fields = readonly_fields
 
 class LegislationAdmin(admin.ModelAdmin):
-    list_display = ("__str__", "title", "pk", "classifications_list", "tags_list")
-    list_filter = ("law_type", "country", "import_from_legispro")
-    search_fields = ("title", "country__name", "classifications__name", "tags__name")
-    actions = ["generate_pages"]
+    list_display = (
+        '__str__', 'title', 'pk', 'import_from_legispro', 'date_updated', 'date_created',
+        'classifications_list', 'tags_list'
+    )
+    list_filter = ('import_from_legispro', 'law_type', 'country')
+    search_fields = (
+        'title', 'country__name',
+        'classifications__name', 'tags__name'
+    )
+    actions = ['generate_pages']
+    inlines = [LegislationSectionInline,]
 
     def classifications_list(self, obj):
         return "; ".join(obj.classifications.values_list("name", flat=True))
@@ -136,7 +147,7 @@ class LegislationSectionAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(models.Legislation, LegislationAdmin)
-admin.site.register(models.LegislationArticle)
+admin.site.register(models.LegislationSection)
 admin.site.register(models.LegislationSection, LegislationSectionAdmin)
 admin.site.register(models.LegislationPage)
 admin.site.register(models.UserProfile)
