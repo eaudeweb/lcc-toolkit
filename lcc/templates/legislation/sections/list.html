@@ -2,8 +2,6 @@
 {% load mptt_tags %}
 {% load static %}
 
-{% block extra-scripts %}
-{% endblock %}
 {% block page-title %}{{ law.title }}{% endblock %}
 
 {% block law_details %}
@@ -61,32 +59,31 @@
     width: 31px;"
     class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" >{{ law.title }}
 </h3> -->
-<div class="sections-container">
-  {% for section in law.sections.all %}
-    <div id="{{section.code}}" class="viz-container multiple {% if section.is_child_node %}section-child{% endif %}">
-      <div class="section-wrapper">
+<div class="articles-container">
+  <div id="{{node.code}}" class="viz-container multiple">
+    {% recursetree sections %}
+      <div class="section-wrapper {% if node.is_child_node %}section-level-{{node.level}}{% endif %} {% if node.pk in node.descendants %}descendant{%endif%}">
         {% if request.user.is_authenticated %}
           {% if perms.lcc.delete_legislationsection %}
-            <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:sections:delete' legislation_pk=law.pk section_pk=section.pk %}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+            <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:sections:delete' legislation_pk=law.pk section_pk=node.pk %}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
           {% endif %}
           {% if perms.lcc.change_legislationsection %}
-            <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:sections:edit' legislation_pk=law.pk section_pk=section.pk %}">Edit article</a>
+            <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:sections:edit' legislation_pk=law.pk section_pk=node.pk %}">Edit article</a>
           {% endif %}
         {% endif %}
-        {% if section.code %}
-        <a class="section-title" href="#{{section.pk}}">
-          <h4 id="{{section.pk}}">{{ section.code|title }}</h4>
+        {% if node.code %}
+        <a class="section-title" href="#{{node.pk}}">
+          <h4 id="{{node.pk}}">{{ node.code|title }}</h4>
         </a>
         {% endif %}
-
-        {% if section.text %}
-          <p><pre>{{ section.text }}</pre></p>
+        {% if node.text %}
+          <p><pre>{{ node.text }}</pre></p>
         {% endif %}
 
         <div class="dl neg_6_margin">
           <div class="dd"><span>Legal Area</span></div>
           <div class="dt">
-            {% for classification in section.classifications.all %}
+            {% for classification in node.classifications.all %}
               <span class="tag">{{ classification.name }}</span>
             {% empty %}
              -
@@ -97,7 +94,7 @@
         <div class="dl neg_6_margin">
           <div class="dd"><span>Cross-cutting Categories</span></div>
           <div class="dt">
-            {% for tag in section.tags.all%}
+            {% for tag in node.tags.all%}
               <span class="tag">{{ tag.name }}</span>
             {% empty %}
              -
@@ -105,10 +102,46 @@
           </div>
         </div>
 
+        {% if not node.is_leaf_node %}
+          {% if child and child in node.descendants %}
+            <button id="{{node.id}}-button" type="button" class="btn btn-primary sections-display" onclick="displayChildren({{node.id}})">Hide sub-section</button>
+            <ul class="children" id="{{node.id}}-children">
+              <div class="children">
+                <div >
+                  {{ children }}
+                </div>
+              </div>
+            </ul>
+          {% else %}
+            <button id="{{node.id}}-button" type="button" class="btn btn-primary sections-display" onclick="displayChildren({{node.id}})">Show sub-section</button>
+            <ul class="children" style="display: none;" id="{{node.id}}-children">
+              <div class="children">
+                <div >
+                  {{ children }}
+                </div>
+              </div>
+            </ul>
+          {% endif %}
+        {% endif %}
       </div>
-    </div>
-  {% empty %}
-    <p>This law does not have articles.</p>
-  {% endfor %}
+    {% endrecursetree %}
+  </div>
 </div>
+{% endblock %}
+
+
+{% block extra-scripts %}
+  <script>
+    function displayChildren(nodeID){
+      let nodeElem = document.getElementById(nodeID + "-children")
+      let nodeButton = document.getElementById(nodeID + "-button")
+      if (nodeElem.style.display === "none") {
+        nodeElem.style.display = "block";
+        nodeButton.textContent = "Hide sub-sections"
+      } else {
+        nodeElem.style.display = "none";
+        nodeButton.textContent = "Show sub-sections"
+      }
+    };
+  </script>
 {% endblock %}

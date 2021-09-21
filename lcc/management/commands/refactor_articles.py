@@ -14,6 +14,7 @@ class Command(BaseCommand):
     help = "Refactor articles into tree sections"
 
     def handle(self, *args, **options):
+        # LegislationSection.objects.all().delete()
         single_leaf_leg =  Legislation.objects.filter(
             import_from_legispro=False
         ).exclude(

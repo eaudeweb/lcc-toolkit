@@ -106,9 +106,6 @@
     }
 }
 
-.article-child {
-  margin-left: 200px!important;
-}
 .law-container {
     margin: 3rem 0;
     &:first-of-type {
@@ -348,3 +345,35 @@
     outline: 0;
     background-color: #e5e5e5;
 }
+
+@iterations: 10;
+
+.classes-generator (@i) when (@i > 1) {
+  .section-level-@{i} {
+    // padding-left:  @i * 10px;
+    padding-left: 20px;
+    margin-left: @i * 10px;
+    border-left: 3px solid @link-color;
+  }
+  .classes-generator(@i - 1);
+}
+
+.classes-generator(@iterations);
+
+.section-level-1 {
+  padding-left: 20px;
+  border-left: 3px solid @link-color;
+}
+
+.section-wrapper {
+  margin-bottom: 20px;
+}
+
+.sections-display {
+  margin-left: 80%;
+}
+
+.descendant {
+  margin-top: 20px;
+}
+

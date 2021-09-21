@@ -1,5 +1,7 @@
 from django.urls import reverse
 from django.contrib.auth import mixins
+from django.contrib.postgres.fields import ArrayField
+from django.db.models import OuterRef, Subquery, IntegerField
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
@@ -71,15 +73,29 @@ class SectionsList(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["sections"] = (
-            models.LegislationSection.objects.filter(legislation=context["object"])
-            .extra(
-                select={
-                    "code_fix": "string_to_array(code, '.')::int[]",
-                },
-            )
-            .order_by("code_fix")
-        )
+
+        class Array(Subquery):
+            template = 'ARRAY(%(subquery)s)'
+            output_field = ArrayField(base_field=IntegerField())
+
+        desc = models.LegislationSection.objects.filter(
+            tree_id=OuterRef('tree_id')
+        ).exclude(level=0).values('pk')
+        sections = models.LegislationSection.objects.filter(
+            legislation=self.object
+        ).annotate(descendants=Array(desc))
+
+        context['sections'] = sections
+        context['child'] = int(self.request.GET.get('child', None))
+        # context["sections"] = (
+        #     models.LegislationSection.objects.filter(legislation=context["object"])
+        #     .extra(
+        #         select={
+        #             "code_fix": "string_to_array(code, '.')::int[]",
+        #         },
+        #     )
+        #     .order_by("code_fix")
+        # )
         return context
 
 

@@ -718,23 +718,23 @@ class LegislationSection(_TaxonomyModel, mptt.models.MPTTModel):
     )
     objects = LegislationSectionManager()
 
-    class Meta:
-        ordering = ["code"]
+    class Meta(_TaxonomyModel.Meta):
+        ordering = ['number', 'code']
 
     class MPTTMeta:
         order_insertion_by = ["code"]
 
-    def get_children(self):
-        return (
-            super()
-            .get_children()
-            .extra(
-                select={
-                    "code_fix": "string_to_array(code, '.')::int[]",
-                },
-            )
-            .order_by("code_fix")
-        )
+    # def get_children(self):
+    #     return (
+    #         super()
+    #         .get_children()
+    #         .extra(
+    #             select={
+    #                 "code_fix": "string_to_array(code, '.')::int[]",
+    #             },
+    #         )
+    #         .order_by("code_fix")
+    #     )
 
     def __str__(self):
         return self.code

@@ -161,7 +161,7 @@
   {% for section in law.highlighted_sections %}
     <div class="section">
       <span>
-        <a href="{% url 'lcc:legislation:sections:view' law.pk %}#{{ section.pk }}">
+        <a href="{% url 'lcc:legislation:sections:view' law.pk %}{% if not section.is_leaf_node %}?child={{section.pk}}{% endif %}#{{ section.pk }}">
           {{ section.code }}
         </a>:
       </span>
