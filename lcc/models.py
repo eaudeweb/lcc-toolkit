@@ -786,7 +786,7 @@ class Question(mptt.models.MPTTModel):
     parent = mptt.models.TreeForeignKey(
         "self", null=True, blank=True, on_delete=models.CASCADE, related_name="children"
     )
-    parent_answer = models.NullBooleanField(default=None)
+    parent_answer = models.BooleanField(default=None, null=True)
     order = models.IntegerField(blank=True)
 
     classification = models.ForeignKey(

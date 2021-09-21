@@ -27,6 +27,7 @@ class SectionForm(ModelForm):
         fields = [
             "code",
             "text",
+            "parent",
             "legislation",
             "legislation_page",
             "classifications",

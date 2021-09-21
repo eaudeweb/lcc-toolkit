@@ -91,6 +91,23 @@
       </div>
     </div>
 
+    <div class="law-meta-data-container selector selector-inline--4">
+      <div>
+        <label class="label-large" for="id_parent">Sub-article of:</label>
+      </div>
+
+      <div>
+        <select name="parent" id="id_parent" class="law-meta-data-combobox">
+          <option value="" selected>----</option>
+          {% for section in law.sections.all %}
+            <option value="{{ section.pk }}">
+              {{ section.code }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
     <div class="legislation-page-container">
       <div>
         <label class="label-large" for="id_page">Page
