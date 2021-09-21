@@ -147,7 +147,6 @@ class LegislationSectionAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(models.Legislation, LegislationAdmin)
-admin.site.register(models.LegislationSection)
 admin.site.register(models.LegislationSection, LegislationSectionAdmin)
 admin.site.register(models.LegislationPage)
 admin.site.register(models.UserProfile)
