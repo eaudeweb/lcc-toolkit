@@ -22,12 +22,13 @@ class Command(BaseCommand):
         )
         for leg in single_leaf_leg:
             print("Processing legislation {}".format(leg.title))
-            for article in leg.articles.all():
+            for idx, article in enumerate(leg.articles.all(), start=1):
                 new_article = LegislationSection.objects.create(
                     text=article.text,
                     legislation=article.legislation,
                     legislation_page=article.legislation_page,
                     code=article.code,
+                    code_order= idx,
                     number=article.number,
                     identifier=article.identifier,
                     legispro_identifier=article.legispro_identifier,
@@ -45,11 +46,13 @@ class Command(BaseCommand):
             print("Processing legislation {}".format(leg.title))
             previous = None
             parent = None
+            code_order = 1
             for article in leg.articles.all():
                 if previous and previous.number == article.number:
                     if not parent:
                         parent = previous
                 else:
+                    code_order += 1
                     parent = None
 
                 y = re.search("^[Article ]+\d+-", article.code)
@@ -60,12 +63,13 @@ class Command(BaseCommand):
                             legislation=article.legislation,
                             legislation_page=article.legislation_page,
                             code=article.code,
+                            code_order="{}.{}".format(parent.code_order,parent.get_children().count() + 1),
                             number=article.number,
                             identifier=article.identifier,
                             legispro_identifier=article.legispro_identifier,
                             parent=parent,
                         )
-                        print("Created new section {}".format(new_article.code))
+                        print("Created new section {}, code order: {}".format(article_tree.code, article_tree.code_order))
 
                 else:
                     article_tree = LegislationSection.objects.create(
@@ -73,13 +77,14 @@ class Command(BaseCommand):
                         legislation=article.legislation,
                         legislation_page=article.legislation_page,
                         code=article.code,
+                        code_order=code_order,
                         number=article.number,
                         identifier=article.identifier,
                         legispro_identifier=article.legispro_identifier,
                         parent=None,
                     )
-                    print("Created new section {}".format(new_article.code))
-                    parent = None
+                    print("Created new section {}, coder order: {}".format(article_tree.code, article_tree.code_order))
+                    # parent = None
                 
                 article_tree.classifications.set(article.classifications.all())
                 article_tree.tags.set(article.tags.all())
@@ -91,11 +96,13 @@ class Command(BaseCommand):
             previous = None
             parent = None
             parent_2 = None
+            code_order = 1
             for article in leg.articles.all():
                 if previous and previous.number == article.number:
                     if not parent:
                         parent = previous
                 else:
+                    code_order += 1
                     parent = None
 
                 y = re.search("^\d+[A-Z]{2}", article.code)
@@ -108,37 +115,44 @@ class Command(BaseCommand):
                         legislation=article.legislation,
                         legislation_page=article.legislation_page,
                         code=article.code,
+                        code_order="{}.{}".format(parent_2.code_order,parent_2.get_children().count() + 1),
                         number=article.number,
                         identifier=article.identifier,
                         legispro_identifier=article.legispro_identifier,
                         parent=parent_2,
                     )
-                    print("Created new section {}".format(new_article.code))
+                    print("Created new section {}, code order: {}".format(article_tree.code, article_tree.code_order))
                 elif x:
                     article_tree = LegislationSection.objects.create(
                         text=article.text,
                         legislation=article.legislation,
                         legislation_page=article.legislation_page,
                         code=article.code,
+                        code_order="{}.{}".format(parent.code_order,parent.get_children().count() + 1),
                         number=article.number,
                         identifier=article.identifier,
                         legispro_identifier=article.legispro_identifier,
                         parent=parent,
                     )
-                    print("Created new section {}".format(new_article.code))
+                    print("Created new section {}, coder order: {}".format(article_tree.code, article_tree.code_order))
                     parent_2 = None
                 else:
+                    if not parent:
+                        order = code_order
+                    else:
+                        order = "{}.{}".format(parent.code_order,parent.get_children().count() + 1)
                     article_tree = LegislationSection.objects.create(
                         text=article.text,
                         legislation=article.legislation,
                         legislation_page=article.legislation_page,
                         code=article.code,
+                        code_order=order,
                         number=article.number,
                         identifier=article.identifier,
                         legispro_identifier=article.legispro_identifier,
                         parent=parent,
                     )
-                    print("Created new section {}".format(new_article.code))
+                    print("Created new section {}, code order: {}".format(article_tree.code, article_tree.code_order))
                     parent = None
                     parent_2 = None
                 

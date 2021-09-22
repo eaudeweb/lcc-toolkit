@@ -86,16 +86,19 @@ class SectionsList(DetailView):
         ).annotate(descendants=Array(desc))
 
         context['sections'] = sections
-        context['child'] = int(self.request.GET.get('child', None))
-        # context["sections"] = (
-        #     models.LegislationSection.objects.filter(legislation=context["object"])
-        #     .extra(
-        #         select={
-        #             "code_fix": "string_to_array(code, '.')::int[]",
-        #         },
-        #     )
-        #     .order_by("code_fix")
-        # )
+        child = self.request.GET.get('child', None)
+        if child:
+            child = int(child)
+        context['child'] = child
+        context["sections"] = (
+            models.LegislationSection.objects.filter(legislation=context["object"])
+            .extra(
+                select={
+                    "code_order_fix": "string_to_array(code_order, '.')::int[]",
+                },
+            )
+            .order_by("code_order_fix")
+        )
         return context
 
 

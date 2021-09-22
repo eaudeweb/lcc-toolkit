@@ -135,16 +135,19 @@ class UserProxyAdmin(BaseUserAdmin):
 
 
 class LegislationSectionAdmin(admin.ModelAdmin):
-    list_display = ("code", "number", "identifier", "legispro_identifier")
+    list_display = ("code", "code_order", "number", "identifier", "legispro_identifier", "legislation")
     search_fields = (
         'code',
     )
-    # def get_queryset(self, request):
-    #     return self.model.objects.extra(
-    #         select={
-    #             "code_fix": "string_to_array(code, '.')::int[]",
-    #         },
-    #     ).order_by("code_fix", "code")
+    list_filter = (
+        'legislation',
+    )
+    def get_queryset(self, request):
+        return self.model.objects.extra(
+            select={
+                "code_order_fix": "string_to_array(code_order, '.')::int[]",
+            },
+        ).order_by("code_order_fix")
 
 
 # Register your models here.

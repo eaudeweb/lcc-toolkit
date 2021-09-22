@@ -713,6 +713,7 @@ class LegislationSection(_TaxonomyModel, mptt.models.MPTTModel):
     identifier = models.IntegerField(blank=True, null=True, default=None)
     legispro_identifier = models.CharField(max_length=256, null=True, blank=True)
     code = models.CharField(max_length=256, blank=True)
+    code_order = models.CharField(max_length=256, blank=True)
     parent = mptt.models.TreeForeignKey(
         "self", null=True, blank=True, on_delete=models.CASCADE, related_name="children"
     )
@@ -724,17 +725,17 @@ class LegislationSection(_TaxonomyModel, mptt.models.MPTTModel):
     class MPTTMeta:
         order_insertion_by = ["code"]
 
-    # def get_children(self):
-    #     return (
-    #         super()
-    #         .get_children()
-    #         .extra(
-    #             select={
-    #                 "code_fix": "string_to_array(code, '.')::int[]",
-    #             },
-    #         )
-    #         .order_by("code_fix")
-    #     )
+    def get_children(self):
+        return (
+            super()
+            .get_children()
+            .extra(
+                select={
+                    "code_order_fix": "string_to_array(code_order, '.')::int[]",
+                },
+            )
+            .order_by("code_order_fix")
+        )
 
     def __str__(self):
         return self.code

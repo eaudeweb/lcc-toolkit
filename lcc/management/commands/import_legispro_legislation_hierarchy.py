@@ -173,6 +173,7 @@ class Command(BaseCommand):
             legispro_identifier=fields["legispro_identifier"],
             legislation=legislation,
             code=code,
+            code_order=code,
         )
         section_object = None
         if not dry_run:
