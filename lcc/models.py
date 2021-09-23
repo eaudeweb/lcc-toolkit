@@ -5,6 +5,7 @@ import pdftotext
 import pycountry
 import mptt.models
 
+from mptt.managers import TreeManager
 from operator import itemgetter
 from rolepermissions.roles import get_user_roles
 
@@ -634,7 +635,7 @@ class Legislation(_TaxonomyModel):
         self.save()
 
 
-class LegislationSectionManager(models.Manager):
+class LegislationSectionManager(TreeManager):
     def filter_by_similar_countries(self, similar_countries):
         return self.select_related("legislation").filter(
             legislation__country__in=similar_countries
@@ -668,7 +669,7 @@ class LegislationArticle(_TaxonomyModel):
     number = models.IntegerField(blank=True, null=True)  # populated from code
     identifier = models.IntegerField(blank=True, null=True, default=None)
     legispro_identifier = models.CharField(max_length=256, null=True, blank=True)
-    objects = LegislationSectionManager()
+    # objects = LegislationSectionManager()
 
     class Meta(_TaxonomyModel.Meta):
         ordering = ["number", "code"]
