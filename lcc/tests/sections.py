@@ -49,6 +49,7 @@ class Sections(TestCase):
             "legislation_page": 1,
             "legislation": self.law.id,
             "code": "Art. I",
+            "code_order": "1",
         }
         self.section = self.law.sections.create(**self.section_data)
 
@@ -243,6 +244,7 @@ class Sections(TestCase):
         self.assertEqual(section.parent.id, section_data["parent"])
         self.assertEqual(section.legislation_page, section_data["legislation_page"])
         self.assertEqual(section.code, section_data["code"])
+        self.assertEqual(section.code_order, "1.1")
 
     def test_section_create_and_continue(self):
         self.section_data.update({"save-and-continue-btn": ""})
@@ -267,22 +269,22 @@ class Sections(TestCase):
         c.login(username="manager", password="foobar")
         self.section_data["code"] = "{}"
         self.section_data["text"] = "text updated"
+        self.section_data["code_order"] = "1.1"
+        self.section_data["parent"] = self.section
         new_section = self.law.sections.create(**self.section_data)
-        self.section_data["parent"] = new_section.id
         response = c.post(
             reverse(
                 "lcc:legislation:sections:edit",
                 kwargs={
-                    "legislation_pk": self.section.legislation.id,
-                    "section_pk": self.section.id,
+                    "legislation_pk": new_section.legislation.id,
+                    "section_pk": new_section.id,
                 },
             ),
             data=self.section_data,
         )
         self.assertEqual(response.status_code, 302)
-        section = LegislationSection.objects.first()
-        self.assertEqual(section.text, self.section_data["text"])
-        self.assertEqual(section.parent.id, self.section_data["parent"])
+        self.assertEqual(new_section.text, self.section_data["text"])
+        self.assertEqual(new_section.parent, self.section_data["parent"])
 
     def test_edit_section_fail_form(self):
         c = Client()

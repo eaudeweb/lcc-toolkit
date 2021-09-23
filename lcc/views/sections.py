@@ -49,6 +49,12 @@ class AddSections(
 
     def form_valid(self, form):
         section = form.save()
+        if section.parent:
+            section.code_order = "{}.{}".format(section.parent.code_order, section.parent.get_children().count())
+        else:
+            section.code_order = section.legislation.sections.filter(parent=None).count()
+
+        section.save()
         if "save-and-continue-btn" in self.request.POST:
             return HttpResponseRedirect(
                 reverse(
