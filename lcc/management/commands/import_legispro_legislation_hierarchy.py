@@ -108,6 +108,7 @@ class Command(BaseCommand):
                 break
             text = " ".join([text] + tag.get_text().split())
         return {
+            "code_order": code or section.find("num").text.strip(),
             "code": code or section.find("num").text.strip(),
             "text": text,
             "legislation": legislation,
