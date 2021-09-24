@@ -109,7 +109,7 @@ class Command(BaseCommand):
             text = " ".join([text] + tag.get_text().split())
         return {
             "code_order": code or section.find("num").text.strip(),
-            "code": code or section.find("num").text.strip(),
+            "code": section.get("eid", "").replace("_", " ").capitalize(),
             "text": text,
             "legislation": legislation,
             "legispro_identifier": section.get("eid", ""),

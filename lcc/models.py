@@ -721,10 +721,10 @@ class LegislationSection(_TaxonomyModel, mptt.models.MPTTModel):
     objects = LegislationSectionManager()
 
     class Meta(_TaxonomyModel.Meta):
-        ordering = ['number', 'code']
+        ordering = ['number', 'code_order']
 
     class MPTTMeta:
-        order_insertion_by = ["code"]
+        order_insertion_by = ["code_order"]
 
     def get_children(self):
         return (
