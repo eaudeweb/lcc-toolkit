@@ -62,7 +62,7 @@
 <div class="articles-container">
   <div id="{{node.code}}" class="viz-container multiple">
     {% recursetree sections %}
-      <div class="section-wrapper {% if node.is_child_node %}section-level-{{node.level}}{% endif %} {% if node.pk in node.descendants %}descendant{%endif%}">
+      <div class="section-wrapper {% if node.is_child_node %}section-level-{{node.level}}{% endif %}">
         {% if request.user.is_authenticated %}
           {% if perms.lcc.delete_legislationsection %}
             <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:sections:delete' legislation_pk=law.pk section_pk=node.pk %}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>

@@ -721,7 +721,7 @@ class LegislationSection(_TaxonomyModel, mptt.models.MPTTModel):
     objects = LegislationSectionManager()
 
     class Meta(_TaxonomyModel.Meta):
-        ordering = ['number', 'code_order']
+        ordering = ['code_order']
 
     class MPTTMeta:
         order_insertion_by = ["code_order"]

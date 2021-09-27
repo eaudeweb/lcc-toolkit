@@ -91,13 +91,12 @@ class SectionsList(DetailView):
             legislation=self.object
         ).annotate(descendants=Array(desc))
 
-        context['sections'] = sections
         child = self.request.GET.get('child', None)
         if child:
             child = int(child)
         context['child'] = child
         context["sections"] = (
-            models.LegislationSection.objects.filter(legislation=context["object"])
+            sections
             .extra(
                 select={
                     "code_order_fix": "string_to_array(code_order, '.')::int[]",
