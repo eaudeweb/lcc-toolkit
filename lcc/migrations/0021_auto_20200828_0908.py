@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0020_userproxy'),
+        ("lcc", "0020_userproxy"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='legislation',
-            name='year',
+            model_name="legislation",
+            name="year",
             field=models.IntegerField(default=2020),
         ),
     ]

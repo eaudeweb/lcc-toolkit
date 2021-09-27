@@ -18,20 +18,12 @@ from lcctoolkit.settings.base import (
 from lcc.models import (
     Country,
     Legislation,
-    LegislationArticle,
+    LegislationSection,
     TaxonomyClassification,
 )
 
 
 sub_expression = "[^ a-zA-z,:;()'\-]+"
-
-# Tags that might be used for marking articles, in order of precedence.
-possible_article_tags = (
-    "article",
-    "section",
-    "chapter",
-    "part",
-)
 
 
 def check_alphanumeric_classification_names(concept_name):
@@ -109,18 +101,24 @@ class Command(BaseCommand):
             "but do not touch the database.",
         )
 
-    def parse_article(self, article, legislation):
+    def parse_section(self, section, legislation, parent, code):
+        text = ""
+        for tag in section.find_all():
+            if tag.get("guid"):
+                break
+            text = " ".join([text] + tag.get_text().split())
         return {
-            "code": article.find("num").text.strip(),
-            "text": re.sub("^Article [0-9.]+[.]?", "", article.text.strip())
-            .strip()
-            .replace("\n\n", "\n"),
+            "code_order": code or section.find("num").text.strip(),
+            "code": section.get("eid", "").replace("_", " ").capitalize(),
+            "text": text,
             "legislation": legislation,
-            "legispro_identifier": article.get("eid", ""),
+            "legispro_identifier": section.get("eid", ""),
+            "parent": parent,
         }
 
-    def add_concepts(self, concepts, article_object, dry_run=False):
-        article_object.classifications.clear()
+    def add_concepts(self, concepts, section_object, dry_run=False):
+        if not dry_run:
+            section_object.classifications.clear()
         for concept in concepts:
             concept_name = re.sub(sub_expression, "", concept.get("title")).strip()
             concept_code = concept.get("refersto").split("__")
@@ -130,10 +128,10 @@ class Command(BaseCommand):
             classification = find_classification(concept_name, concept_code)
             if classification:
                 if not dry_run:
-                    article_object.classifications.add(classification)
-                print("Added classification {} to article.".format(classification.code))
+                    section_object.classifications.add(classification)
+                print("Added classification {} to section".format(classification.code))
 
-    def add_possible_concepts(self, possible_concepts, article_object, dry_run=False):
+    def add_possible_concepts(self, possible_concepts, section_object, dry_run=False):
         """
         Some concepts seem to be included in the sections tags;
         we need to check that they have the "refersto" property.
@@ -150,104 +148,81 @@ class Command(BaseCommand):
             classification = find_classification(concept_name, concept_code)
             if classification:
                 if not dry_run:
-                    article_object.classifications.add(classification)
-                article_code = article_object.code if article_object else ""
+                    section_object.classifications.add(classification)
+                section_code = section_object.code if section_object else ""
                 print(
-                    "Added classification {} to article {}.".format(
-                        classification.code, article_code
+                    "Added classification {} to section {}.".format(
+                        classification.code, section_code
                     )
                 )
 
-    def identify_articles(self, legislation_data):
-        """
-        Identifies articles based on a priority list of tags that might
-        contain them.
-        Takes into account the fact that some legislations have one big
-        placeholder tag that contains several other tags that represent the
-        actual articles (see (AUS) Victoria Marine and Coastal Act 2018 Tagged).
-        """
-        for tag in possible_article_tags:
-            articles = legislation_data.find_all(tag)
-            if not articles:
-                # Try with the next possible tag if this one has not been found
-                continue
+    def find_children(self, section):
+        return section.find_all(guid=True, recursive=False)
 
-            if len(articles) == 1:
-                # If document contains just one tag, also look at sub-tags.
-                # If there is more than 1, consider these the articles,
-                # otherwise just continue.
-                sub_articles = self.identify_articles(articles[0])
-                if sub_articles and len(sub_articles) > 1:
-                    return sub_articles
+    def create_section(
+        self,
+        legislation_data,
+        legislation,
+        section,
+        dry_run=False,
+        parent=None,
+        code=None,
+    ):
+        fields = None
+        fields = self.parse_section(section, legislation, parent, code)
+        section_objects = LegislationSection.objects.filter(
+            legispro_identifier=fields["legispro_identifier"],
+            legislation=legislation,
+            code=code,
+            code_order=code,
+        )
+        section_object = None
+        if not dry_run:
+            if section_objects:
+                section_objects.delete()
+            section_object = LegislationSection.objects.create(**fields)
+        print(
+            "Legislation {} - Section {} was created.".format(
+                legislation_data.find("frbrname").get("value"), fields["code"]
+            )
+        )
+        self.add_possible_concepts(
+            [
+                section,
+            ],
+            section_object,
+            dry_run,
+        )
+        # Add concepts included in the section concepts
+        self.add_concepts(section.find_all("concept"), section_object, dry_run)
+        children = self.find_children(section)
+        for idx, child in enumerate(children):
+            next_code = f"{code}.{idx}"
+            self.create_section(
+                legislation_data,
+                legislation,
+                child,
+                parent=section_object,
+                dry_run=dry_run,
+                code=next_code,
+            )
 
-            # Finally, if articles have been identified and there are enough
-            # of them, just return then
-            return articles
+    def create_sections_tree(self, legislation_data, legislation, dry_run=False):
+        sections_root = legislation_data.find("body").find_all(
+            guid=True, recursive=False
+        )
+        if not sections_root:
+            print("No sections found for legislation {}.".format(legislation.title))
 
-        return []
-
-    def create_or_update_articles(self, legislation_data, legislation, dry_run=False):
-        articles = self.identify_articles(legislation_data)
-        if not articles:
-            print("No articles found for legislation {}.".format(legislation.title))
-        for article in articles:
-            try:
-                fields = None
-                fields = self.parse_article(article, legislation)
-                article_objects = LegislationArticle.objects.filter(
-                    legispro_identifier=fields["legispro_identifier"],
-                    legislation=legislation,
-                )
-                article_object = None
-                if article_objects:
-                    if not dry_run:
-                        article_object = article_objects.first()
-                        article_objects.update(**fields)
-                    print(
-                        "Legislation {} - Article {} was updated.".format(
-                            legislation.title, fields["code"]
-                        )
-                    )
-                else:
-                    if not dry_run:
-                        article_object = LegislationArticle.objects.create(**fields)
-                    print(
-                        "Legislation {} - Article {} was created.".format(
-                            legislation.title, fields["code"]
-                        )
-                    )
-
-                # Add concepts that are included in the article tag
-                self.add_possible_concepts(
-                    [
-                        article,
-                    ],
-                    article_object,
-                    dry_run,
-                )
-
-                # Add concepts included in the article concepts
-                self.add_concepts(article.find_all("concept"), article_object, dry_run)
-
-                # Sometimes articles have subsections that have associated
-                # concepts. Also take paragraphs and levels into account as
-                # subsections.
-                for inner_section in possible_article_tags + (
-                    "level",
-                    "p",
-                ):
-                    self.add_possible_concepts(
-                        article.find_all(inner_section), article_object, dry_run
-                    )
-            except Exception as e:
-                if fields:
-                    code = fields["code"]
-                else:
-                    code = None
-                print(
-                    "Warning Legislation {} Article {} generated the following "
-                    "error: {}".format(legislation.title, code, e)
-                )
+        for idx, section in enumerate(sections_root, start=1):
+            self.create_section(
+                legislation_data,
+                legislation,
+                section,
+                dry_run=dry_run,
+                parent=None,
+                code=str(idx),
+            )
 
     def parse_country(self, legislation_data):
         iso_code = legislation_data.find("frbrcountry").get("value")
@@ -306,6 +281,10 @@ class Command(BaseCommand):
                     )
                 )
 
+    def delete_sections(self, legislation):
+        legislation.sections.delete()
+        return
+
     def create_or_update_legislation(
         self, legislation_origin, legislation_url, dry_run=False
     ):
@@ -319,8 +298,7 @@ class Command(BaseCommand):
             legislation_link,
             auth=requests.auth.HTTPBasicAuth(LEGISPRO_USER, LEGISPRO_PASS),
         )
-        legislation_data = BeautifulSoup(response.content, "lxml")
-
+        legislation_data = BeautifulSoup(response.content, "html.parser")
         try:
             fields = None
             fields = self.parse_legislation_data(legislation_data, legislation_origin)
@@ -341,14 +319,15 @@ class Command(BaseCommand):
             if legislation:
                 if not dry_run:
                     legislation.update(**fields)
+                    self.delete_sections(legislation)
                 legislation = legislation.first()
                 print("Legislation {} was updated.".format(fields["title"]))
             else:
                 if not dry_run:
                     legislation = Legislation.objects.create(**fields)
                 print("Legislation {} was created.".format(fields["title"]))
-            # Now also add articles and concepts
-            self.create_or_update_articles(legislation_data, legislation, dry_run)
+            # Now also add sections and concepts
+            self.create_sections_tree(legislation_data, legislation, dry_run)
             self.add_legislation_concepts(legislation_data, legislation, dry_run)
         except Exception as e:
             exc_info = sys.exc_info()

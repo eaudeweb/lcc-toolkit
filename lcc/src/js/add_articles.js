@@ -38,13 +38,13 @@ if($('.validate_this').length > 0){
                  .attr("type", "hidden")
                  .attr("id", "form_page_id")
                  .attr("name", "page").val(page_number);
-  var input_article = $("<input>")
+  var input_section = $("<input>")
                  .attr("type", "hidden")
-                 .attr("name", "article_id").val(parseInt($("#article_pk").val()));
-  $('#addArticle').append($(input_law_id));
-  $('#addArticle').append($(input_page));
-  $('#editArticle').append($(input_article));
-  $('#editArticle').append($(input_law_id));
+                 .attr("name", "section_id").val(parseInt($("#section_pk").val()));
+  $('#addSection').append($(input_law_id));
+  $('#addSection').append($(input_page));
+  $('#editSection').append($(input_section));
+  $('#editSection').append($(input_law_id));
 
   $max_page = Object.keys(pages).length;
   $('#last_page').html($max_page)
@@ -80,7 +80,7 @@ if($('.validate_this').length > 0){
   });
 
   $("body").on('click','#save-and-continue-btn', function(){
-    if ($("#addArticle").valid()) {
+    if ($("#addSection").valid()) {
       $page_number = parseInt($('#page_number').text());
       AjaxSubmit["code"] = $("#id_code").val();
       AjaxSubmit["text"] = $("#id_text").val();

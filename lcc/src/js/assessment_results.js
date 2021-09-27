@@ -10,7 +10,7 @@ $(document).ready(function () {
 
             this.assessment_id = window.location.pathname.split('/')[2];
             let gaps_no = 0;
-            let articles_no = 0;
+            let sections_no = 0;
             let payload = {};
             const options = {
                 submitCountryAttibutes: 'Apply filters'
@@ -115,8 +115,8 @@ $(document).ready(function () {
                 var hgap = $('<li>')
                     .html('<span>' + gaps_no + '</span>' + (gaps_no > 1 ? ' Areas of improvement' : ' Area of improvement'))
                     .appendTo(summary);
-                var harticles = $('<li>')
-                    .html('<span>' + articles_no + '</span>' + (articles_no > 1 ? ' Suggested examples' : ' Suggested example'))
+                var hsections = $('<li>')
+                    .html('<span>' + sections_no + '</span>' + (sections_no > 1 ? ' Suggested examples' : ' Suggested example'))
                     .appendTo(summary);
             }
 
@@ -203,14 +203,14 @@ $(document).ready(function () {
 
 
                     var p_suggested_law = $('<p/>')
-                        .text(question.articles.length + (question.articles.length > 1 ? ' Suggestions' : ' Suggestion'))
+                        .text(question.sections.length + (question.sections.length > 1 ? ' Suggestions' : ' Suggestion'))
                         .appendTo(dd_suggestions);
 
-                    articles_no += question.articles.length;
-                    renderSuggestedLegislation(question.articles, dt_suggestion);
+                    sections_no += question.sections.length;
+                    renderSuggestedLegislation(question.sections, dt_suggestion);
 
-                    if (question.articles.length > 3) {
-                        var button_title = '<span class="show">View all ' + question.articles.length + ' suggestions</span> <span class="hide">Show less suggestions</span>';
+                    if (question.sections.length > 3) {
+                        var button_title = '<span class="show">View all ' + question.sections.length + ' suggestions</span> <span class="hide">Show less suggestions</span>';
                         var toggle_legislation_results = $('<button type="button" class="btn btn-default results_toggle">' + button_title + '</button>')
                             .appendTo(container)
                             .click(handleToggleShowSugestions);
@@ -235,10 +235,10 @@ $(document).ready(function () {
                 return gap_name;
             }
 
-            function renderSuggestedLegislation(articles, questions_container) {
-                for (var s = 0; s < articles.length; s++) {
-                    var article = articles[s];
-                    var article_name = article.legislation.title + ' - ' + article.code;
+            function renderSuggestedLegislation(sections, questions_container) {
+                for (var s = 0; s < sections.length; s++) {
+                    var section = sections[s];
+                    var section_name = section.legislation.title + ' - ' + section.code;
 
 
                     var country = $('<span>')
@@ -246,14 +246,14 @@ $(document).ready(function () {
                     var p2 = $('<p/>')
                         .appendTo(questions_container);
                     var a = $('<a/>')
-                        .text(article_name)
+                        .text(section_name)
                         .css("color", "#0052CC")
                         .attr('href', '/legislation/' + article.legislation.id + '/articles/#' + article.code)
                         .appendTo(p2);
 
                     var muted = $('<div/>')
                         .addClass('muted')
-                        .append('<small>' + article.legislation.country_name + '  • ' + article.legislation.year + '</small>')
+                        .append('<small>' + section.legislation.country_name + '  • ' + section.legislation.year + '</small>')
                         .appendTo(p2);
 
                 }

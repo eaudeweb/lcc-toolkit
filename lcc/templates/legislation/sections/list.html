@@ -1,0 +1,147 @@
+{% extends "legislation/explorer.html" %}
+{% load mptt_tags %}
+{% load static %}
+
+{% block page-title %}{{ law.title }}{% endblock %}
+
+{% block law_details %}
+  {% include 'legislation/law_details.html' %}
+{% endblock %}
+
+{% block page-menu %}
+  {# include 'legislation/navigation.html' #}
+  <ul>
+    <li class="wide"><a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-link">Overview</a></li>
+    {% with law.sections.all as sections %}
+    <li class="wide"><a href="{% url 'lcc:legislation:sections:view' legislation_pk=law.pk %}" class="btn btn-link active {% if not sections %}disabled{% endif %}" title="{% if not sections %}This legislation does not have any articles defined.{% endif %}">Articles</a></li>
+    {% endwith %}
+    {% if request.user.is_authenticated %}
+      <span class="separator"></span>
+      {% if perms.lcc.change_legislation %}
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:edit' legislation_pk=law.pk %}">
+          Edit legislation
+        </a>
+      </li>
+      {% endif %}
+      {% if perms.lcc.delete_legislation %}
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:delete' legislation_pk=law.pk %}"
+           onclick="return confirm('Are you sure you want to delete this?')">
+          Delete legislation
+        </a>
+      </li>
+      {% endif %}
+      {% if perms.lcc.add_legislationsection %}
+      <li class="wide">
+        <a class="btn btn-link"
+           href="{% url 'lcc:legislation:sections:add' legislation_pk=law.pk %}">
+          Add articles
+        </a>
+      </li>
+      {% endif %}
+  {% endif %}
+</ul>
+{% endblock %}
+
+{% block body-layout-type %}extended{% endblock %}
+
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<!-- <h3>
+  {% static "" as baseUrl %}
+  <img style="margin-right: .5rem;
+    margin-top: -.5rem;
+    width: 31px;"
+    class="flag" src="{{ baseUrl }}img/flags/{{ law.country.iso |lower }}.svg" >{{ law.title }}
+</h3> -->
+<div class="articles-container">
+  <div id="{{node.code}}" class="viz-container multiple">
+    {% recursetree sections %}
+      <div class="section-wrapper {% if node.is_child_node %}section-level-{{node.level}}{% endif %}">
+        {% if request.user.is_authenticated %}
+          {% if perms.lcc.delete_legislationsection %}
+            <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:sections:delete' legislation_pk=law.pk section_pk=node.pk %}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+          {% endif %}
+          {% if perms.lcc.change_legislationsection %}
+            <a class="btn btn-link pull-right" href="{% url 'lcc:legislation:sections:edit' legislation_pk=law.pk section_pk=node.pk %}">Edit article</a>
+          {% endif %}
+        {% endif %}
+        {% if node.code %}
+        <a class="section-title" href="#{{node.pk}}">
+          <h4 id="{{node.pk}}">{{ node.code|title }}</h4>
+        </a>
+        {% endif %}
+        {% if node.text %}
+          <p><pre>{{ node.text }}</pre></p>
+        {% endif %}
+
+        <div class="dl neg_6_margin">
+          <div class="dd"><span>Legal Area</span></div>
+          <div class="dt">
+            {% for classification in node.classifications.all %}
+              <span class="tag">{{ classification.name }}</span>
+            {% empty %}
+             -
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="dl neg_6_margin">
+          <div class="dd"><span>Cross-cutting Categories</span></div>
+          <div class="dt">
+            {% for tag in node.tags.all%}
+              <span class="tag">{{ tag.name }}</span>
+            {% empty %}
+             -
+            {% endfor %}
+          </div>
+        </div>
+
+        {% if not node.is_leaf_node %}
+          {% if child and child in node.descendants %}
+            <button id="{{node.id}}-button" type="button" class="btn btn-primary sections-display" onclick="displayChildren({{node.id}})">Hide sub-section</button>
+            <ul class="children" id="{{node.id}}-children">
+              <div class="children">
+                <div >
+                  {{ children }}
+                </div>
+              </div>
+            </ul>
+          {% else %}
+            <button id="{{node.id}}-button" type="button" class="btn btn-primary sections-display" onclick="displayChildren({{node.id}})">Show sub-section</button>
+            <ul class="children" style="display: none;" id="{{node.id}}-children">
+              <div class="children">
+                <div >
+                  {{ children }}
+                </div>
+              </div>
+            </ul>
+          {% endif %}
+        {% endif %}
+      </div>
+    {% endrecursetree %}
+  </div>
+</div>
+{% endblock %}
+
+
+{% block extra-scripts %}
+  <script>
+    function displayChildren(nodeID){
+      let nodeElem = document.getElementById(nodeID + "-children")
+      let nodeButton = document.getElementById(nodeID + "-button")
+      if (nodeElem.style.display === "none") {
+        nodeElem.style.display = "block";
+        nodeButton.textContent = "Hide sub-sections"
+      } else {
+        nodeElem.style.display = "none";
+        nodeButton.textContent = "Show sub-sections"
+      }
+    };
+  </script>
+{% endblock %}

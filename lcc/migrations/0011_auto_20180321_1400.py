@@ -8,12 +8,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0010_auto_20180321_1356'),
+        ("lcc", "0010_auto_20180321_1356"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='taxonomytaggroup',
-            options={'ordering': ['id']},
+            name="taxonomytaggroup",
+            options={"ordering": ["id"]},
         ),
     ]

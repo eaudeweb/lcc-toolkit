@@ -9,35 +9,45 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0006_auto_20171101_1507'),
+        ("lcc", "0006_auto_20171101_1507"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='countrymetadata',
-            name='legal_system',
+            model_name="countrymetadata",
+            name="legal_system",
         ),
         migrations.AddField(
-            model_name='countrymetadata',
-            name='legal_system',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='lcc.LegalSystem'),
+            model_name="countrymetadata",
+            name="legal_system",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="lcc.LegalSystem",
+            ),
         ),
         migrations.RemoveField(
-            model_name='countrymetadata',
-            name='region',
+            model_name="countrymetadata",
+            name="region",
         ),
         migrations.AddField(
-            model_name='countrymetadata',
-            name='region',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='lcc.Region'),
+            model_name="countrymetadata",
+            name="region",
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.CASCADE, to="lcc.Region"
+            ),
         ),
         migrations.RemoveField(
-            model_name='countrymetadata',
-            name='sub_region',
+            model_name="countrymetadata",
+            name="sub_region",
         ),
         migrations.AddField(
-            model_name='countrymetadata',
-            name='sub_region',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='lcc.SubRegion'),
+            model_name="countrymetadata",
+            name="sub_region",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="lcc.SubRegion",
+            ),
         ),
     ]

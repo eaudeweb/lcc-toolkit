@@ -5,6 +5,7 @@ import pdftotext
 import pycountry
 import mptt.models
 
+from mptt.managers import TreeManager
 from operator import itemgetter
 from rolepermissions.roles import get_user_roles
 
@@ -54,10 +55,10 @@ HDI_RANGES = (
 )
 
 GDP_RANGES = (
-    (0, 1005, 'Low'),
-    (1006, 3955, 'Lower-middle'),
-    (3956, 12235, 'Upper-middle'),
-    (12236, math.inf, 'High'),
+    (0, 1005, "Low"),
+    (1006, 3955, "Lower-middle"),
+    (3956, 12235, "Upper-middle"),
+    (12236, math.inf, "High"),
 )
 
 
@@ -69,7 +70,7 @@ GHG_NO_LUCF = (
     (50, 99.99),
     (100, 299.99),
     (300, 999.99),
-    (1000, math.inf)
+    (1000, math.inf),
 )
 
 GHG_LUCF = (
@@ -81,42 +82,41 @@ GHG_LUCF = (
     (50, 99.99),
     (100, 299.99),
     (300, 999.99),
-    (1000, math.inf)
+    (1000, math.inf),
 )
 
 
 def _format_range(range):
     min, max = range
-    formatter = f'{min} - {max}'
+    formatter = f"{min} - {max}"
     if max == math.inf:
-        formatter = f'> {min}'
+        formatter = f"> {min}"
     if min == -math.inf:
-        formatter = f'< {max}'
+        formatter = f"< {max}"
     return formatter
 
 
 def _range_from_value(range, value):
     min, max = map(itemgetter, (0, 1))
-    return next(
-        val for val in range
-        if min(val) <= value <= max(val)
-    )
+    return next(val for val in range if min(val) <= value <= max(val))
 
 
 class TaxonomyTagGroup(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
-        return 'Tagging by ' + self.name
+        return "Tagging by " + self.name
 
     class Meta:
-        ordering = ['id']
+        ordering = ["id"]
 
 
 class TaxonomyTag(models.Model):
     # NOTE: The name must not contain the character ";".
     name = models.CharField(max_length=255)
-    group = models.ForeignKey(TaxonomyTagGroup, related_name='tags')
+    group = models.ForeignKey(
+        TaxonomyTagGroup, on_delete=models.CASCADE, related_name="tags"
+    )
 
     def __str__(self):
         return "Tag " + self.name
@@ -127,20 +127,18 @@ class TaxonomyClassification(mptt.models.MPTTModel):
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=16, unique=True, blank=True)
     legispro_code = models.CharField(max_length=16, blank=True)
-    details =  models.TextField(null=True, default='')
-    parent = mptt.models.TreeForeignKey('self',
-                                        null=True,
-                                        blank=True,
-                                        related_name='children')
-
+    details = models.TextField(null=True, default="")
+    parent = mptt.models.TreeForeignKey(
+        "self", null=True, blank=True, on_delete=models.CASCADE, related_name="children"
+    )
 
     class Meta:
-        verbose_name = 'Taxonomy Classification'
-        verbose_name_plural = 'Taxonomy Classifications'
-        ordering = ('code',)
+        verbose_name = "Taxonomy Classification"
+        verbose_name_plural = "Taxonomy Classifications"
+        ordering = ("code",)
 
     class MPTTMeta:
-        order_insertion_by = ['code']
+        order_insertion_by = ["code"]
 
     @classmethod
     def _pre_save_classification_code_on_create(cls, instance):
@@ -156,22 +154,20 @@ class TaxonomyClassification(mptt.models.MPTTModel):
         Update the code for every child to match the parent classification.
         """
         for classification in instance.children.all():
-            parts = classification.code.split('.')
+            parts = classification.code.split(".")
             suffix_code = parts[-1]
-            classification.code = '{0}.{1}'.format(instance.code, suffix_code)
+            classification.code = "{0}.{1}".format(instance.code, suffix_code)
             classification.save()
 
     @staticmethod
     def pre_save_classification_code(**kwargs):
 
-        instance = kwargs['instance']
+        instance = kwargs["instance"]
 
         if instance.code:
-            TaxonomyClassification._pre_save_classification_code_on_edit(
-                instance)
+            TaxonomyClassification._pre_save_classification_code_on_edit(instance)
         else:
-            TaxonomyClassification._pre_save_classification_code_on_create(
-                instance)
+            TaxonomyClassification._pre_save_classification_code_on_create(instance)
 
     def get_classification_level(self):
         # The logical classification of taxonomy starts from 1
@@ -179,39 +175,39 @@ class TaxonomyClassification(mptt.models.MPTTModel):
         return self.get_level() + 1
 
     def get_children(self):
-        return super().get_children().extra(
-            select={
-                'code_fix': "string_to_array(code, '.')::int[]",
-            },
-        ).order_by('code_fix')
+        return (
+            super()
+            .get_children()
+            .extra(
+                select={
+                    "code_fix": "string_to_array(code, '.')::int[]",
+                },
+            )
+            .order_by("code_fix")
+        )
 
     def __str__(self):
-        return "{} classification: {}".format(
-            self.code, self.name
-        )
+        return "{} classification: {}".format(self.code, self.name)
 
 
 models.signals.pre_save.connect(
-    TaxonomyClassification.pre_save_classification_code,
-    sender=TaxonomyClassification
+    TaxonomyClassification.pre_save_classification_code, sender=TaxonomyClassification
 )
 
 
 class _TaxonomyModel(models.Model):
-    classifications = models.ManyToManyField(
-        TaxonomyClassification, blank=True)
-    tags = models.ManyToManyField(
-        TaxonomyTag, blank=True)
+    classifications = models.ManyToManyField(TaxonomyClassification, blank=True)
+    tags = models.ManyToManyField(TaxonomyTag, blank=True)
 
-    _classification_ids = ArrayField(
-        models.IntegerField(), default=list, blank=True)
-    _tag_ids = ArrayField(
-        models.IntegerField(), default=list, blank=True)
+    _classification_ids = ArrayField(models.IntegerField(), default=list, blank=True)
+    _tag_ids = ArrayField(models.IntegerField(), default=list, blank=True)
 
     class Meta:
         abstract = True
-        indexes = [GinIndex(fields=['_classification_ids']),
-                   GinIndex(fields=['_tag_ids'])]
+        indexes = [
+            GinIndex(fields=["_classification_ids"]),
+            GinIndex(fields=["_tag_ids"]),
+        ]
 
     """
     # this is what we'd like to do, but m2m operations don't pass through save
@@ -225,36 +221,36 @@ class _TaxonomyModel(models.Model):
 
 def cache_taxonomy(sender, **kwargs):
     # this is hard stuff to code, so avoiding it until really necessary:
-    if kwargs['reverse']:
+    if kwargs["reverse"]:
         raise RuntimeError("noway, like, really")
 
-    watched = ('post_add', 'post_clear', 'post_remove')
+    watched = ("post_add", "post_clear", "post_remove")
     m2ms = {
         TaxonomyClassification: {
-            'source': 'classifications',
-            'target': '_classification_ids',
+            "source": "classifications",
+            "target": "_classification_ids",
         },
         TaxonomyTag: {
-            'source': 'tags',
-            'target': '_tag_ids',
+            "source": "tags",
+            "target": "_tag_ids",
         },
-
     }
 
-    if kwargs['action'] not in watched:
+    if kwargs["action"] not in watched:
         return
 
     try:
-        fields = m2ms[kwargs['model']]
+        fields = m2ms[kwargs["model"]]
     except KeyError:
         return
 
-    instance = kwargs['instance']
+    instance = kwargs["instance"]
 
     setattr(
         instance,
-        fields['target'],
-        [item.id for item in getattr(instance, fields['source']).all()])
+        fields["target"],
+        [item.id for item in getattr(instance, fields["source"]).all()],
+    )
     instance.save()
 
 
@@ -262,105 +258,90 @@ m2m_changed.connect(cache_taxonomy)
 
 
 class Region(models.Model):
-    name = models.CharField('Name', max_length=128)
+    name = models.CharField("Name", max_length=128)
 
     def __str__(self):
         return self.name
 
     def countries(self):
-        return ( object for object in
-            self.country_set.all()
-        )
+        return (object for object in self.country_set.all())
 
 
 class SubRegion(models.Model):
-    name = models.CharField('Name', max_length=128)
+    name = models.CharField("Name", max_length=128)
 
     def __str__(self):
         return self.name
 
 
 class LegalSystem(models.Model):
-    name = models.CharField('Name', max_length=128)
+    name = models.CharField("Name", max_length=128)
 
     def __str__(self):
         return self.name
 
 
 class FocusArea(models.Model):
-    name = models.CharField('Name', max_length=255)
+    name = models.CharField("Name", max_length=255)
 
     def __str__(self):
         return self.name
 
 
 class PrioritySector(models.Model):
-    name = models.CharField('Name', max_length=255)
+    name = models.CharField("Name", max_length=255)
 
     def __str__(self):
         return self.name
 
 
 class CountryBase(models.Model):
-
     class Meta:
         abstract = True
 
-    cw = models.BooleanField('Commonwealth (Member country)', default=False)
-    small_cw = models.BooleanField('Small commonwealth country', default=False)
-    un = models.BooleanField('United Nations (Member state)', default=False)
-    ldc = models.BooleanField('Least developed country (LDC)', default=False)
-    lldc = models.BooleanField(
-        'Landlocked developing country (LLDC)',
-        default=False
-    )
-    sid = models.BooleanField(
-        'Small island developing state (SID)',
-        default=False
-    )
+    cw = models.BooleanField("Commonwealth (Member country)", default=False)
+    small_cw = models.BooleanField("Small commonwealth country", default=False)
+    un = models.BooleanField("United Nations (Member state)", default=False)
+    ldc = models.BooleanField("Least developed country (LDC)", default=False)
+    lldc = models.BooleanField("Landlocked developing country (LLDC)", default=False)
+    sid = models.BooleanField("Small island developing state (SID)", default=False)
 
-    region = models.ForeignKey(Region, null=True, blank=True)
-    sub_region = models.ForeignKey(SubRegion, null=True, blank=True)
-    legal_system = models.ForeignKey(LegalSystem, null=True, blank=True)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True, blank=True)
+    sub_region = models.ForeignKey(
+        SubRegion, on_delete=models.CASCADE, null=True, blank=True
+    )
+    legal_system = models.ForeignKey(
+        LegalSystem, on_delete=models.CASCADE, null=True, blank=True
+    )
 
     population = models.FloatField("Population ('000s) 2018", null=True)
-    hdi2015 = models.FloatField('HDI2015', null=True)
+    hdi2015 = models.FloatField("HDI2015", null=True)
 
-    gdp_capita = models.FloatField('GDP per capita, US$ 2016', null=True)
+    gdp_capita = models.FloatField("GDP per capita, US$ 2016", null=True)
     ghg_no_lucf = models.FloatField(
-        'Total GHG Emissions excluding LUCF MtCO2e 2014',
-        null=True
+        "Total GHG Emissions excluding LUCF MtCO2e 2014", null=True
     )
     ghg_lucf = models.FloatField(
-        'Total GHG Emissions including LUCF MtCO2e 2014',
-        null=True
+        "Total GHG Emissions including LUCF MtCO2e 2014", null=True
     )
     cvi2015 = models.FloatField(
-        'Climate vulnerability index 2015',
-        null=True,
-        blank=True
+        "Climate vulnerability index 2015", null=True, blank=True
     )
 
-    mitigation_focus_areas = models.ManyToManyField(
-        FocusArea,
-        blank=True
-    )
+    mitigation_focus_areas = models.ManyToManyField(FocusArea, blank=True)
 
-    adaptation_priority_sectors = models.ManyToManyField(
-        PrioritySector,
-        blank=True
-    )
+    adaptation_priority_sectors = models.ManyToManyField(PrioritySector, blank=True)
 
     @property
     def population_range(self):
-        return _format_range(
-            _range_from_value(POP_RANGES, self.population))
+        return _format_range(_range_from_value(POP_RANGES, self.population))
 
     @property
     def hdi2015_range(self):
         return (
             _format_range(_range_from_value(HDI_RANGES, self.hdi2015))
-            if self.hdi2015 else 'N/A'
+            if self.hdi2015
+            else "N/A"
         )
 
     @property
@@ -368,58 +349,73 @@ class CountryBase(models.Model):
         label = itemgetter(2)
         return (
             label(_range_from_value(GDP_RANGES, self.gdp_capita))
-            if self.gdp_capita else 'N/A'
+            if self.gdp_capita
+            else "N/A"
         )
 
     @property
     def ghg_no_lucf_range(self):
         return (
             _format_range(_range_from_value(GHG_NO_LUCF, self.ghg_no_lucf))
-            if self.ghg_no_lucf else None
+            if self.ghg_no_lucf
+            else None
         )
 
     @property
     def ghg_lucf_range(self):
         return (
             _format_range(_range_from_value(GHG_LUCF, self.ghg_lucf))
-            if self.ghg_lucf else None
+            if self.ghg_lucf
+            else None
         )
 
     def clone_to_profile(self, user_profile):
-        fields = ['cw', 'small_cw', 'un', 'ldc', 'lldc', 'sid', 'region_id',
-                  'sub_region_id', 'legal_system_id', 'population', 'hdi2015',
-                  'gdp_capita', 'ghg_no_lucf', 'ghg_lucf', 'cvi2015']
+        fields = [
+            "cw",
+            "small_cw",
+            "un",
+            "ldc",
+            "lldc",
+            "sid",
+            "region_id",
+            "sub_region_id",
+            "legal_system_id",
+            "population",
+            "hdi2015",
+            "gdp_capita",
+            "ghg_no_lucf",
+            "ghg_lucf",
+            "cvi2015",
+        ]
         data = {key: getattr(self, key) for key in fields}
-        data['user'] = user_profile
-        data['country'] = self
+        data["user"] = user_profile
+        data["country"] = self
         clone = AssessmentProfile.objects.create(**data)
         clone.save()
 
         # copy many to many fields
         m2m = (
-            f.name for f in self._meta.get_fields()
+            f.name
+            for f in self._meta.get_fields()
             if isinstance(f, models.ManyToManyField)
         )
 
         for name in m2m:
-            val = (
-                getattr(self, name).all()
-                if hasattr(self, name) else []
-            )
+            val = getattr(self, name).all() if hasattr(self, name) else []
             setattr(clone, name, val)
 
         return clone
 
 
 class Country(CountryBase):
-    iso = models.CharField('ISO', max_length=3, primary_key=True)
-    iso_code = models.CharField('Iso alpha 2', max_length=2, default='')
-    name = models.CharField('Name', max_length=128)
+    iso = models.CharField("ISO", max_length=3, primary_key=True)
+    iso_code = models.CharField("Iso alpha 2", max_length=2, default="")
+    name = models.CharField("Name", max_length=128)
 
     class Meta:
-        verbose_name = 'Country'
-        verbose_name_plural = 'Countries'
-        ordering = ('name',)
+        verbose_name = "Country"
+        verbose_name_plural = "Countries"
+        ordering = ("name",)
         db_table = "country"
 
     def __str__(self):
@@ -427,11 +423,13 @@ class Country(CountryBase):
 
 
 class AssessmentProfile(CountryBase):
-    country = models.ForeignKey('Country', related_name='assessment_profiles')
-    user = models.ForeignKey('UserProfile')
+    country = models.ForeignKey(
+        "Country", on_delete=models.CASCADE, related_name="assessment_profiles"
+    )
+    user = models.ForeignKey("UserProfile", on_delete=models.CASCADE)
 
     def get_absolute_url(self):
-        return reverse('lcc:country:view', kwargs={'iso': self.country.iso})
+        return reverse("lcc:country:view", kwargs={"iso": self.country.iso})
 
     def __str__(self):
         return "{country}({user})".format(country=self.country, user=self.user)
@@ -441,29 +439,25 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     home_country = models.ForeignKey(
-        Country, related_name='home_country')
+        Country, on_delete=models.CASCADE, related_name="home_country"
+    )
     countries = models.ManyToManyField(Country)
 
     affiliation = models.CharField(
-        'Institutional affiliation',
+        "Institutional affiliation",
         max_length=255,
         null=True,
         blank=True,
     )
 
     position = models.CharField(
-        'Position',
+        "Position",
         max_length=255,
         null=True,
         blank=True,
     )
 
-    approve_url = models.URLField(
-        'Approve URL',
-        max_length=255,
-        null=True,
-        blank=True
-    )
+    approve_url = models.URLField("Approve URL", max_length=255, null=True, blank=True)
 
     @property
     def roles(self):
@@ -471,8 +465,7 @@ class UserProfile(models.Model):
 
     @property
     def flag(self):
-        """ Returns alpha3 from iso3.
-        """
+        """Returns alpha3 from iso3."""
         return pycountry.countries.get(alpha_3=self.home_country.iso).alpha_3
 
     @property
@@ -488,43 +481,44 @@ class UserProfile(models.Model):
 
 
 class LegislationManager(models.Manager):
-
     def get_queryset(self):
-        return super().get_queryset().select_related('country')
+        return super().get_queryset().select_related("country")
 
 
 class Legislation(_TaxonomyModel):
     title = models.CharField(max_length=256)
     abstract = models.CharField(max_length=1024, blank=True, null=True)
-    country = models.ForeignKey(Country, related_name="legislations")
+    country = models.ForeignKey(
+        Country, on_delete=models.CASCADE, related_name="legislations"
+    )
     language = models.CharField(
         choices=constants.ALL_LANGUAGES,
         default=constants.DEFAULT_LANGUAGE_VALUE,
-        max_length=64
+        max_length=64,
     )
     law_type = models.CharField(
         choices=constants.LEGISLATION_TYPE,
         default=constants.LEGISLATION_DEFAULT_VALUE,
-        max_length=64
+        max_length=64,
     )
     year = models.IntegerField(default=constants.LEGISLATION_YEAR_RANGE[-1])
     year_amendment = models.IntegerField(
-        default=constants.LEGISLATION_DEFAULT_YEAR,
-        blank=True,
-        null=True
+        default=constants.LEGISLATION_DEFAULT_YEAR, blank=True, null=True
     )
     year_mention = models.CharField(max_length=1024, blank=True, null=True)
     geo_coverage = models.CharField(
         choices=constants.GEOGRAPHICAL_COVERAGE,
         default=constants.GEOGRAPHICAL_COVERAGE_DEFAULT_VALUE,
         max_length=64,
-        null=True
+        null=True,
     )
     source = models.CharField(max_length=256, blank=True, null=True)
     source_type = models.CharField(
         choices=constants.SOURCE_TYPE,
         default=constants.SOURCE_TYPE_DEFAULT_VALUE,
-        max_length=64, blank=True, null=True
+        max_length=64,
+        blank=True,
+        null=True,
     )
     website = models.URLField(max_length=2000, blank=True, null=True)
     legispro_article = models.CharField(max_length=512, blank=True, null=True)
@@ -548,13 +542,16 @@ class Legislation(_TaxonomyModel):
     def other_legislations(self):
         other = {}
         for classification in self.classifications.all():
-            other[classification] = Legislation.objects.filter(
-                classifications__id__exact=classification.pk).exclude(pk=self.pk).all()[:3]
+            other[classification] = (
+                Legislation.objects.filter(classifications__id__exact=classification.pk)
+                .exclude(pk=self.pk)
+                .all()[:3]
+            )
         return other
 
     # @TODO: Change the __str__ to something more appropriate
     def __str__(self):
-        return "Legislation: " + ' | '.join([self.country.name, self.law_type])
+        return "Legislation: " + " | ".join([self.country.name, self.law_type])
 
     def highlighted_title(self):
         """
@@ -562,7 +559,7 @@ class Legislation(_TaxonomyModel):
         the title with the search terms highlighted. If not, return the original
         title.
         """
-        return getattr(self, '_highlighted_title', self.title)
+        return getattr(self, "_highlighted_title", self.title)
 
     def highlighted_abstract(self):
         """
@@ -570,7 +567,7 @@ class Legislation(_TaxonomyModel):
         the abstract with the search terms highlighted. If not, return an empty
         string.
         """
-        return getattr(self, '_highlighted_abstract', '')
+        return getattr(self, "_highlighted_abstract", "")
 
     def highlighted_pdf_text(self):
         """
@@ -578,7 +575,7 @@ class Legislation(_TaxonomyModel):
         the pdf_text with the search terms highlighted. If not, return an empty
         string.
         """
-        return getattr(self, '_highlighted_pdf_text', '')
+        return getattr(self, "_highlighted_pdf_text", "")
 
     def highlighted_classifications(self):
         """
@@ -587,8 +584,9 @@ class Legislation(_TaxonomyModel):
         not, return the original list of classification names.
         """
         return getattr(
-            self, '_highlighted_classifications',
-            self.classifications.all().values_list('name', flat=True)
+            self,
+            "_highlighted_classifications",
+            self.classifications.all().values_list("name", flat=True),
         )
 
     def highlighted_tags(self):
@@ -598,113 +596,189 @@ class Legislation(_TaxonomyModel):
         the original list of tag names.
         """
         return getattr(
-            self, '_highlighted_tags',
-            self.tags.all().values_list('name', flat=True)
+            self, "_highlighted_tags", self.tags.all().values_list("name", flat=True)
         )
 
-    def highlighted_articles(self):
+    def highlighted_sections(self):
         """
         If this law was returned as a result of an elasticsearch query, return
-        a list of dictionaries representing articles with the search terms
+        a list of dictionaries representing sections with the search terms
         highlighted in the text field. If not, return an empty list.
         """
-        return getattr(self, '_highlighted_articles', [])
+        return getattr(self, "_highlighted_sections", [])
 
     def save_pdf_pages(self):
         if settings.DEBUG:
             time_to_load_pdf = time.time()
         if settings.DEBUG:
-            print("INFO: FS pdf file load time: %fs" %
-                  (time.time() - time_to_load_pdf))
+            print("INFO: FS pdf file load time: %fs" % (time.time() - time_to_load_pdf))
             time_begin_transaction = time.time()
 
         with transaction.atomic():
             pdf = pdftotext.PDF(self.pdf_file)
             for idx, page in enumerate(pdf):
-                page = page.replace('\x00', '')
+                page = page.replace("\x00", "")
                 LegislationPage(
                     page_text="<pre>%s</pre>" % page,
                     page_number=idx + 1,
-                    legislation=self
+                    legislation=self,
                 ).save()
 
         if settings.DEBUG:
-            print("INFO: ORM models.LegislationPages save time: %fs" %
-                  (time.time() - time_begin_transaction))
+            print(
+                "INFO: ORM models.LegislationPages save time: %fs"
+                % (time.time() - time_begin_transaction)
+            )
 
         # This is necessary in order to trigger the signal that will update the
         # ElasticSearch index.
         self.save()
 
 
-class LegislationArticleManager(models.Manager):
+class LegislationSectionManager(TreeManager):
     def filter_by_similar_countries(self, similar_countries):
-        return self.select_related('legislation').filter(
+        return self.select_related("legislation").filter(
             legislation__country__in=similar_countries
         )
 
-    def get_articles_for_gaps(self, gap_ids, similar_countries):
+    def get_sections_for_gaps(self, gap_ids, similar_countries):
         table = self.model._meta.db_table
         return self.filter_by_similar_countries(similar_countries).extra(
-            tables=['lcc_gap'],
+            tables=["lcc_gap"],
             select={
-                'gap_id': 'lcc_gap.id',
+                "gap_id": "lcc_gap.id",
             },
             where=[
-                "lcc_gap.id IN (%s)" % ','.join(map(str, gap_ids)),
+                "lcc_gap.id IN (%s)" % ",".join(map(str, gap_ids)),
                 "%s._classification_ids @> lcc_gap._classification_ids" % table,
-                "%s._tag_ids @> lcc_gap._tag_ids" % table
-            ]
+                "%s._tag_ids @> lcc_gap._tag_ids" % table,
+            ],
         )
+
+    def root_levels(self):
+        return self.filter(parent=None)
 
 
 class LegislationArticle(_TaxonomyModel):
     text = models.CharField(max_length=65535)
-    legislation = models.ForeignKey(Legislation, related_name="articles")
+    legislation = models.ForeignKey(
+        Legislation, on_delete=models.CASCADE, related_name="articles"
+    )
     legislation_page = models.IntegerField(null=True, blank=True)
     code = models.CharField(max_length=256)  # aka Article number
     number = models.IntegerField(blank=True, null=True)  # populated from code
     identifier = models.IntegerField(blank=True, null=True, default=None)
     legispro_identifier = models.CharField(max_length=256, null=True, blank=True)
-    objects = LegislationArticleManager()
+    # objects = LegislationSectionManager()
 
     class Meta(_TaxonomyModel.Meta):
-        ordering = ['number', 'code']
+        ordering = ["number", "code"]
 
     def __str__(self):
         return self.code
 
     def classifications_text(self):
         return settings.TAXONOMY_CONNECTOR.join(
-            self.classifications.values_list('name', flat=True))
+            self.classifications.values_list("name", flat=True)
+        )
 
     def tags_text(self):
         return settings.TAXONOMY_CONNECTOR.join(
-            self.tags.values_list('name', flat=True))
+            self.tags.values_list("name", flat=True)
+        )
 
     def parent_tags(self):
         return settings.TAXONOMY_CONNECTOR.join(
-            self.legislation.tags.values_list('name', flat=True))
+            self.legislation.tags.values_list("name", flat=True)
+        )
 
     def parent_classifications(self):
         return settings.TAXONOMY_CONNECTOR.join(
-            self.legislation.classifications.values_list('name', flat=True))
+            self.legislation.classifications.values_list("name", flat=True)
+        )
 
     def save(self, *args, **kwargs):
-        match = re.search('\d+', self.code)
+        match = re.search("\d+", self.code)
+        if match:
+            self.number = int(match.group(0))
+        return super().save(*args, **kwargs)
+
+
+class LegislationSection(_TaxonomyModel, mptt.models.MPTTModel):
+    text = models.TextField()
+    legislation = models.ForeignKey(
+        Legislation, on_delete=models.CASCADE, related_name="sections"
+    )
+    legislation_page = models.IntegerField(null=True, blank=True)
+    number = models.IntegerField(blank=True, null=True)  # populated from code
+    identifier = models.IntegerField(blank=True, null=True, default=None)
+    legispro_identifier = models.CharField(max_length=256, null=True, blank=True)
+    code = models.CharField(max_length=256, blank=True)
+    code_order = models.CharField(max_length=256, blank=True)
+    parent = mptt.models.TreeForeignKey(
+        "self", null=True, blank=True, on_delete=models.CASCADE, related_name="children"
+    )
+    objects = LegislationSectionManager()
+
+    class Meta(_TaxonomyModel.Meta):
+        ordering = ['code_order']
+
+    class MPTTMeta:
+        order_insertion_by = ["code_order"]
+
+    def get_children(self):
+        return (
+            super()
+            .get_children()
+            .extra(
+                select={
+                    "code_order_fix": "string_to_array(code_order, '.')::int[]",
+                },
+            )
+            .order_by("code_order_fix")
+        )
+
+    def __str__(self):
+        return self.code
+
+    def classifications_text(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.classifications.values_list("name", flat=True)
+        )
+
+    def tags_text(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.tags.values_list("name", flat=True)
+        )
+
+    def parent_tags(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.legislation.tags.values_list("name", flat=True)
+        )
+
+    def parent_classifications(self):
+        return settings.TAXONOMY_CONNECTOR.join(
+            self.legislation.classifications.values_list("name", flat=True)
+        )
+
+    def save(self, *args, **kwargs):
+        match = re.search("\d+", self.code)
         if match:
             self.number = int(match.group(0))
         return super().save(*args, **kwargs)
 
 
 class LegislationPage(models.Model):
-    page_text = models.TextField(max_length=65535)
+    page_text = models.TextField()
     page_number = models.IntegerField()
-    legislation = models.ForeignKey(Legislation, related_name="pages")
+    legislation = models.ForeignKey(
+        Legislation, on_delete=models.CASCADE, related_name="pages"
+    )
 
     def __str__(self):
         return "Page %d of Legislation %s" % (
-            self.page_number, str(self.legislation.title)
+            self.page_number,
+            str(self.legislation.title),
         )
 
 
@@ -712,23 +786,21 @@ class Question(mptt.models.MPTTModel):
 
     text = models.CharField(max_length=1024)
     parent = mptt.models.TreeForeignKey(
-        'self',
-        null=True,
-        blank=True,
-        related_name='children')
-    parent_answer = models.NullBooleanField(default=None)
+        "self", null=True, blank=True, on_delete=models.CASCADE, related_name="children"
+    )
+    parent_answer = models.BooleanField(default=None, null=True)
     order = models.IntegerField(blank=True)
 
     classification = models.ForeignKey(
-        TaxonomyClassification,
-        null=True, blank=True)
+        TaxonomyClassification, on_delete=models.CASCADE, null=True, blank=True
+    )
 
     class Meta:
-        verbose_name = 'Question'
-        verbose_name_plural = 'Questions'
+        verbose_name = "Question"
+        verbose_name_plural = "Questions"
 
     class MPTTMeta:
-        order_insertion_by = ['order']
+        order_insertion_by = ["order"]
 
     def save(self, *args, **kwargs):
         if not self.order:
@@ -737,26 +809,28 @@ class Question(mptt.models.MPTTModel):
 
     @property
     def full_order(self):
-        return ".".join([
-            str(question.order)
-            for question in self.get_ancestors(include_self=True)
-        ])
+        return ".".join(
+            [str(question.order) for question in self.get_ancestors(include_self=True)]
+        )
 
     def __str__(self):
         if self.parent:
             return "Question: %s with parent answer: %s" % (
-                self.full_order, self.parent_answer
+                self.full_order,
+                self.parent_answer,
             )
         else:
             return "C: %s Question: %s" % (self.classification.code, self.order)
 
 
 class Gap(_TaxonomyModel):
-    question = models.ForeignKey(Question, related_name="gaps")
+    question = models.ForeignKey(
+        Question, on_delete=models.CASCADE, related_name="gaps"
+    )
     on = models.BooleanField()
 
     class Meta(_TaxonomyModel.Meta):
-        unique_together = ('on', 'question')
+        unique_together = ("on", "question")
 
     def __str__(self):
         return "Gap for Q %s" % self.question
@@ -764,12 +838,14 @@ class Gap(_TaxonomyModel):
 
 class AssessmentManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().select_related('country')
+        return super().get_queryset().select_related("country")
 
 
 class Assessment(models.Model):
-    user = models.ForeignKey(User, related_name="assessments")
-    country = models.ForeignKey(Country, related_name="assessments")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="assessments")
+    country = models.ForeignKey(
+        Country, on_delete=models.CASCADE, related_name="assessments"
+    )
 
     objects = AssessmentManager()
 
@@ -785,32 +861,31 @@ class Assessment(models.Model):
         return self.country.iso
 
     def __str__(self):
-        return "%s' assessment for %s" % (
-            self.user.username, self.country.name
-        )
+        return "%s' assessment for %s" % (self.user.username, self.country.name)
 
 
 class AnswerManager(models.Manager):
     def get_assessment_answers(self, assessment_pk):
         answers = (
-            self
-            .select_related('question')
+            self.select_related("question")
             .filter(assessment__pk=assessment_pk)
-            .filter(value=F('question__gaps__on'))
-            .annotate(gap_id=F('question__gaps__id'))
-            .annotate(category_id=Subquery(
-                Question.objects.filter(tree_id=OuterRef(
-                    'question__tree_id'), parent=None)
-                .values('classification_id')[:1]
-            ))
+            .filter(value=F("question__gaps__on"))
+            .annotate(gap_id=F("question__gaps__id"))
+            .annotate(
+                category_id=Subquery(
+                    Question.objects.filter(
+                        tree_id=OuterRef("question__tree_id"), parent=None
+                    ).values("classification_id")[:1]
+                )
+            )
         )
 
         return answers
 
 
 class Answer(models.Model):
-    assessment = models.ForeignKey(Assessment)
-    question = models.ForeignKey(Question)
+    assessment = models.ForeignKey(Assessment, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     value = models.BooleanField()
 
     objects = AnswerManager()
@@ -820,13 +895,13 @@ class Answer(models.Model):
 
     def __str__(self):
         return "Question %s for assessment %d" % (
-            self.question.full_order, self.assessment.pk
+            self.question.full_order,
+            self.assessment.pk,
         )
 
 
 class UserProxy(User):
-
     class Meta:
         proxy = True
-        verbose_name = 'Pending user approval'
-        verbose_name_plural = 'Pending users approval'
+        verbose_name = "Pending user approval"
+        verbose_name_plural = "Pending users approval"

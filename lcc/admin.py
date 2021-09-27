@@ -7,26 +7,29 @@ from lcc import models
 
 User = get_user_model()
 
+class LegislationSectionInline(admin.TabularInline):
+    model = models.LegislationSection
+    readonly_fields = ['pk', 'text', 'code', 'number', 'identifier']
+    fields = readonly_fields
 
 class LegislationAdmin(admin.ModelAdmin):
     list_display = (
-        '__str__', 'title', 'pk',
+        '__str__', 'title', 'pk', 'import_from_legispro', 'date_updated', 'date_created',
         'classifications_list', 'tags_list'
     )
-    list_filter = ('law_type', 'country')
+    list_filter = ('import_from_legispro', 'law_type', 'country')
     search_fields = (
         'title', 'country__name',
         'classifications__name', 'tags__name'
     )
     actions = ['generate_pages']
+    inlines = [LegislationSectionInline,]
 
     def classifications_list(self, obj):
-        return '; '.join(
-            obj.classifications.values_list('name', flat=True))
+        return "; ".join(obj.classifications.values_list("name", flat=True))
 
     def tags_list(self, obj):
-        return '; '.join(
-            obj.tags.values_list('name', flat=True))
+        return "; ".join(obj.tags.values_list("name", flat=True))
 
     def generate_pages(self, request, queryset):
         generated = 0
@@ -47,11 +50,13 @@ class LegislationAdmin(admin.ModelAdmin):
             else:
                 generated += 1
         self.message_user(
-            request, (
+            request,
+            (
                 "Pages were generated for {} laws, regenerated for {} and {} "
                 "were skipped due to absent PDF."
-            ).format(generated, regenerated, no_pdf)
+            ).format(generated, regenerated, no_pdf),
         )
+
     generate_pages.short_description = "(Re)generate text pages from PDF"
 
     classifications_list.short_description = "Classifications"
@@ -59,13 +64,13 @@ class LegislationAdmin(admin.ModelAdmin):
 
 
 class ApprovedFilter(admin.SimpleListFilter):
-    title = 'Approved'
-    parameter_name = 'approved'
+    title = "Approved"
+    parameter_name = "approved"
 
     def lookups(self, request, model_admin):
         return [
-            (True, 'Yes'),
-            (False, 'No'),
+            (True, "Yes"),
+            (False, "No"),
         ]
 
     def queryset(self, request, queryset):
@@ -81,31 +86,37 @@ class BaseUserAdmin(UserAdmin):
         if url and not obj.is_active:
             link = '<a href="%s">%s</a>' % (url, url)
         return mark_safe(link)
-    get_approve_url.short_description = 'Approve URL'
+
+    get_approve_url.short_description = "Approve URL"
 
     def get_active(self, obj):
         return obj.is_active
-    get_active.boolean =  True
-    get_active.short_description = 'Approved'
 
+    get_active.boolean = True
+    get_active.short_description = "Approved"
 
 
 class UserAdmin(BaseUserAdmin):
     search_fields = ["username", "first_name", "last_name"]
     list_display = (
-        "username", "first_name", "last_name", "email", "get_active",
-        "get_approve_url"
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "get_active",
+        "get_approve_url",
     )
     list_filter = (
-        "is_staff", "is_superuser", "groups", ApprovedFilter,
+        "is_staff",
+        "is_superuser",
+        "groups",
+        ApprovedFilter,
     )
 
 
 @admin.register(models.UserProxy)
 class UserProxyAdmin(BaseUserAdmin):
-    list_display = (
-        "username", "first_name", "last_name", "get_approve_url"
-    )
+    list_display = ("username", "first_name", "last_name", "get_approve_url")
     list_display_links = None
 
     def has_add_permission(self, request):
@@ -119,13 +130,29 @@ class UserProxyAdmin(BaseUserAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         readonly_fields = [f.name for f in self.model._meta.fields]
-        readonly_fields += ['groups', 'user_permissions']
+        readonly_fields += ["groups", "user_permissions"]
         return readonly_fields
+
+
+class LegislationSectionAdmin(admin.ModelAdmin):
+    list_display = ("code", "code_order", "number", "identifier", "legispro_identifier", "legislation")
+    search_fields = (
+        'code',
+    )
+    list_filter = (
+        'legislation',
+    )
+    def get_queryset(self, request):
+        return self.model.objects.extra(
+            select={
+                "code_order_fix": "string_to_array(code_order, '.')::int[]",
+            },
+        ).order_by("code_order_fix")
 
 
 # Register your models here.
 admin.site.register(models.Legislation, LegislationAdmin)
-admin.site.register(models.LegislationArticle)
+admin.site.register(models.LegislationSection, LegislationSectionAdmin)
 admin.site.register(models.LegislationPage)
 admin.site.register(models.UserProfile)
 admin.site.register(models.Country)

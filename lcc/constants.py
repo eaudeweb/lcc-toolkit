@@ -14,17 +14,17 @@ POST_DATA_PASSWORD_KEY = "password"
 AJAX_RETURN_SUCCESS = "success"
 AJAX_RETURN_FAILURE = "failure"
 
-DEFAULT_LANGUAGE_VALUE = 'English'
-DEFAULT_LANGUAGE = ('en', DEFAULT_LANGUAGE_VALUE )
+DEFAULT_LANGUAGE_VALUE = "English"
+DEFAULT_LANGUAGE = ("en", DEFAULT_LANGUAGE_VALUE)
 
 ALL_LANGUAGES = (
     DEFAULT_LANGUAGE,
-    ('ar', 'Arabic'),
-    ('zh', 'Chinese'),
-    ('fr', 'French'),
-    ('ru', 'Russian'),
-    ('es-es', 'Spanish'),
-    ('oth', 'Other')
+    ("ar", "Arabic"),
+    ("zh", "Chinese"),
+    ("fr", "French"),
+    ("ru", "Russian"),
+    ("es-es", "Spanish"),
+    ("oth", "Other"),
 )
 
 LEGISLATION_DEFAULT_VALUE = "Law"
@@ -33,7 +33,7 @@ LEGISLATION_TYPE = (
     LEGISLATION_TYPE_DEFAULT,
     ("Constitution", "Constitution"),
     ("Regulation", "Regulation"),
-    ('oth', 'Other')
+    ("oth", "Other"),
 )
 
 LEGISLATION_DEFAULT_YEAR = None
@@ -46,13 +46,9 @@ GEOGRAPHICAL_COVERAGE = (
     ("int-reg", "International/regional"),
     ("st-pr", "State/province"),
     ("city-mun", "City/municipality"),
-    ("oth", "Other")
+    ("oth", "Other"),
 )
 
-SOURCE_TYPE_DEFAULT_VALUE = 'Official'
-SOURCE_TYPE_DEFAULT = ('official', SOURCE_TYPE_DEFAULT_VALUE)
-SOURCE_TYPE = (
-    SOURCE_TYPE_DEFAULT,
-    ('unofficial', 'Unofficial'),
-    ('', '----')
-)
+SOURCE_TYPE_DEFAULT_VALUE = "Official"
+SOURCE_TYPE_DEFAULT = ("official", SOURCE_TYPE_DEFAULT_VALUE)
+SOURCE_TYPE = (SOURCE_TYPE_DEFAULT, ("unofficial", "Unofficial"), ("", "----"))

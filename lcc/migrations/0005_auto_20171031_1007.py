@@ -9,38 +9,50 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0004_auto_20171031_0938'),
+        ("lcc", "0004_auto_20171031_0938"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='gap',
-            name='_classification_ids',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.IntegerField(), blank=True, default=list, size=None),
+            model_name="gap",
+            name="_classification_ids",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.IntegerField(), blank=True, default=list, size=None
+            ),
         ),
         migrations.AlterField(
-            model_name='gap',
-            name='_tag_ids',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.IntegerField(), blank=True, default=list, size=None),
+            model_name="gap",
+            name="_tag_ids",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.IntegerField(), blank=True, default=list, size=None
+            ),
         ),
         migrations.AlterField(
-            model_name='legislation',
-            name='_classification_ids',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.IntegerField(), blank=True, default=list, size=None),
+            model_name="legislation",
+            name="_classification_ids",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.IntegerField(), blank=True, default=list, size=None
+            ),
         ),
         migrations.AlterField(
-            model_name='legislation',
-            name='_tag_ids',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.IntegerField(), blank=True, default=list, size=None),
+            model_name="legislation",
+            name="_tag_ids",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.IntegerField(), blank=True, default=list, size=None
+            ),
         ),
         migrations.AlterField(
-            model_name='legislationarticle',
-            name='_classification_ids',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.IntegerField(), blank=True, default=list, size=None),
+            model_name="legislationarticle",
+            name="_classification_ids",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.IntegerField(), blank=True, default=list, size=None
+            ),
         ),
         migrations.AlterField(
-            model_name='legislationarticle',
-            name='_tag_ids',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.IntegerField(), blank=True, default=list, size=None),
+            model_name="legislationarticle",
+            name="_tag_ids",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.IntegerField(), blank=True, default=list, size=None
+            ),
         ),
     ]

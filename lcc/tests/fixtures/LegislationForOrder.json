@@ -90,7 +90,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3003,
     "fields": {
       "_classification_ids": "[\"5\", \"8\", \"12\", \"42\"]",
@@ -99,6 +99,7 @@
       "legislation": 46,
       "legislation_page": 6,
       "code": "36",
+      "code_order": "36",
       "identifier": 2124,
       "classifications": [
         5,
@@ -112,7 +113,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3002,
     "fields": {
       "_classification_ids": "[\"9\", \"42\"]",
@@ -121,6 +122,7 @@
       "legislation": 46,
       "legislation_page": 5,
       "code": "35",
+      "code_order": "35",
       "identifier": 2123,
       "classifications": [
         9,
@@ -133,7 +135,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3001,
     "fields": {
       "_classification_ids": "[\"9\", \"10\", \"42\"]",
@@ -142,6 +144,7 @@
       "legislation": 46,
       "legislation_page": 5,
       "code": "34",
+      "code_order": "34",
       "identifier": 2122,
       "classifications": [
         9,
@@ -152,7 +155,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3000,
     "fields": {
       "_classification_ids": "[\"9\", \"10\", \"42\"]",
@@ -161,6 +164,7 @@
       "legislation": 46,
       "legislation_page": 5,
       "code": "33",
+      "code_order": "33",
       "identifier": 2121,
       "classifications": [
         9,
@@ -171,7 +175,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2999,
     "fields": {
       "_classification_ids": "[\"9\", \"10\", \"42\"]",
@@ -180,6 +184,7 @@
       "legislation": 46,
       "legislation_page": 5,
       "code": "32",
+      "code_order": "32",
       "identifier": 2120,
       "classifications": [
         9,
@@ -190,7 +195,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2998,
     "fields": {
       "_classification_ids": "[\"2\", \"24\", \"42\"]",
@@ -199,6 +204,7 @@
       "legislation": 46,
       "legislation_page": 5,
       "code": "31",
+      "code_order": "31",
       "identifier": 2119,
       "classifications": [
         2,
@@ -209,7 +215,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2997,
     "fields": {
       "_classification_ids": "[\"2\", \"24\", \"42\"]",
@@ -218,6 +224,7 @@
       "legislation": 46,
       "legislation_page": 5,
       "code": "30",
+      "code_order": "30",
       "identifier": 2118,
       "classifications": [
         2,
@@ -228,7 +235,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2996,
     "fields": {
       "_classification_ids": "[\"2\", \"9\", \"24\", \"42\"]",
@@ -237,6 +244,7 @@
       "legislation": 46,
       "legislation_page": 5,
       "code": "29",
+      "code_order": "29",
       "identifier": 2117,
       "classifications": [
         2,
@@ -248,7 +256,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2995,
     "fields": {
       "_classification_ids": "[\"2\", \"9\", \"24\", \"42\"]",
@@ -257,6 +265,7 @@
       "legislation": 46,
       "legislation_page": 5,
       "code": "28",
+      "code_order": "28",
       "identifier": 2116,
       "classifications": [
         2,
@@ -268,7 +277,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2994,
     "fields": {
       "_classification_ids": "[\"2\", \"24\", \"42\"]",
@@ -277,6 +286,7 @@
       "legislation": 46,
       "legislation_page": 5,
       "code": "27",
+      "code_order": "27",
       "identifier": 2115,
       "classifications": [
         2,
@@ -287,7 +297,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2993,
     "fields": {
       "_classification_ids": "[\"2\", \"42\"]",
@@ -296,6 +306,7 @@
       "legislation": 46,
       "legislation_page": 4,
       "code": "26",
+      "code_order": "26",
       "identifier": 2114,
       "classifications": [
         2,
@@ -305,7 +316,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2992,
     "fields": {
       "_classification_ids": "[\"2\", \"9\", \"42\"]",
@@ -314,6 +325,7 @@
       "legislation": 46,
       "legislation_page": 4,
       "code": "25",
+      "code_order": "25",
       "identifier": 2113,
       "classifications": [
         2,
@@ -324,7 +336,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2991,
     "fields": {
       "_classification_ids": "[\"2\", \"9\", \"42\"]",
@@ -333,6 +345,7 @@
       "legislation": 46,
       "legislation_page": 4,
       "code": "24",
+      "code_order": "25",
       "identifier": 2112,
       "classifications": [
         2,
@@ -343,7 +356,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2990,
     "fields": {
       "_classification_ids": "[\"2\", \"9\", \"42\"]",
@@ -352,6 +365,7 @@
       "legislation": 46,
       "legislation_page": 4,
       "code": "23",
+      "code_order": "24",
       "identifier": 2111,
       "classifications": [
         2,
@@ -362,7 +376,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2989,
     "fields": {
       "_classification_ids": "[\"2\", \"28\", \"42\"]",
@@ -371,6 +385,7 @@
       "legislation": 46,
       "legislation_page": 4,
       "code": "22",
+      "code_order": "23",
       "identifier": 2110,
       "classifications": [
         2,
@@ -384,7 +399,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2988,
     "fields": {
       "_classification_ids": "[\"2\", \"9\", \"28\", \"42\"]",
@@ -393,6 +408,7 @@
       "legislation": 46,
       "legislation_page": 4,
       "code": "21",
+      "code_order": "22",
       "identifier": 2109,
       "classifications": [
         2,
@@ -404,7 +420,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2987,
     "fields": {
       "_classification_ids": "[\"2\", \"28\", \"42\"]",
@@ -413,6 +429,7 @@
       "legislation": 46,
       "legislation_page": 4,
       "code": "20",
+      "code_order": "20",
       "identifier": 2108,
       "classifications": [
         2,
@@ -423,7 +440,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2986,
     "fields": {
       "_classification_ids": "[\"2\", \"28\", \"42\"]",
@@ -432,6 +449,7 @@
       "legislation": 46,
       "legislation_page": 3,
       "code": "19",
+      "code_order": "19",
       "identifier": 2107,
       "classifications": [
         2,
@@ -442,7 +460,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2985,
     "fields": {
       "_classification_ids": "[\"2\", \"28\", \"42\"]",
@@ -451,6 +469,7 @@
       "legislation": 46,
       "legislation_page": 3,
       "code": "18",
+      "code_order": "18",
       "identifier": 2106,
       "classifications": [
         2,
@@ -465,7 +484,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2984,
     "fields": {
       "_classification_ids": "[\"2\", \"28\", \"29\", \"42\"]",
@@ -474,6 +493,7 @@
       "legislation": 46,
       "legislation_page": 3,
       "code": "17",
+      "code_order": "17",
       "identifier": 2105,
       "classifications": [
         2,
@@ -487,7 +507,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2983,
     "fields": {
       "_classification_ids": "[\"2\", \"28\", \"29\", \"42\"]",
@@ -496,6 +516,7 @@
       "legislation": 46,
       "legislation_page": 3,
       "code": "16",
+      "code_order": "16",
       "identifier": 2104,
       "classifications": [
         2,
@@ -509,7 +530,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2982,
     "fields": {
       "_classification_ids": "[\"2\", \"42\"]",
@@ -518,6 +539,7 @@
       "legislation": 46,
       "legislation_page": 3,
       "code": "15",
+      "code_order": "15",
       "identifier": 2103,
       "classifications": [
         2,
@@ -529,7 +551,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2981,
     "fields": {
       "_classification_ids": "[\"2\", \"42\"]",
@@ -538,6 +560,7 @@
       "legislation": 46,
       "legislation_page": 3,
       "code": "14",
+      "code_order": "14",
       "identifier": 2102,
       "classifications": [
         2,
@@ -549,7 +572,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2980,
     "fields": {
       "_classification_ids": "[\"2\"]",
@@ -558,6 +581,7 @@
       "legislation": 46,
       "legislation_page": 3,
       "code": "13",
+      "code_order": "13",
       "identifier": 2101,
       "classifications": [
         2
@@ -568,7 +592,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2979,
     "fields": {
       "_classification_ids": "[\"1\", \"2\", \"30\", \"97\"]",
@@ -577,6 +601,7 @@
       "legislation": 46,
       "legislation_page": 2,
       "code": "12",
+      "code_order": "12",
       "identifier": 2100,
       "classifications": [
         1,
@@ -590,7 +615,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2978,
     "fields": {
       "_classification_ids": "[\"2\", \"42\"]",
@@ -599,6 +624,7 @@
       "legislation": 46,
       "legislation_page": 2,
       "code": "11",
+      "code_order": "11",
       "identifier": 2099,
       "classifications": [
         2,
@@ -610,7 +636,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2977,
     "fields": {
       "_classification_ids": "[\"2\", \"42\"]",
@@ -619,6 +645,7 @@
       "legislation": 46,
       "legislation_page": 2,
       "code": "10",
+      "code_order": "11",
       "identifier": 2098,
       "classifications": [
         2,
@@ -631,7 +658,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2976,
     "fields": {
       "_classification_ids": "[\"2\", \"42\"]",
@@ -640,6 +667,7 @@
       "legislation": 46,
       "legislation_page": 2,
       "code": "9",
+      "code_order": "9",
       "identifier": 2097,
       "classifications": [
         2,
@@ -652,7 +680,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2975,
     "fields": {
       "_classification_ids": "[\"2\", \"42\"]",
@@ -661,6 +689,7 @@
       "legislation": 46,
       "legislation_page": 2,
       "code": "8",
+      "code_order": "8",
       "identifier": 2096,
       "classifications": [
         2,
@@ -673,7 +702,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2974,
     "fields": {
       "_classification_ids": "[\"2\", \"42\"]",
@@ -682,6 +711,7 @@
       "legislation": 46,
       "legislation_page": 2,
       "code": "7",
+      "coode_order": "7",
       "identifier": 2095,
       "classifications": [
         2,
@@ -693,7 +723,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2973,
     "fields": {
       "_classification_ids": "[\"2\", \"9\", \"44\"]",
@@ -702,6 +732,7 @@
       "legislation": 46,
       "legislation_page": 2,
       "code": "6",
+      "code_order": "6",
       "identifier": 2094,
       "classifications": [
         2,
@@ -714,7 +745,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2972,
     "fields": {
       "_classification_ids": "[\"2\", \"44\"]",
@@ -723,6 +754,7 @@
       "legislation": 46,
       "legislation_page": 1,
       "code": "5",
+      "code_order": "5",
       "identifier": 2093,
       "classifications": [
         2,
@@ -732,7 +764,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2971,
     "fields": {
       "_classification_ids": "[\"1\", \"23\", \"42\", \"97\"]",
@@ -741,6 +773,7 @@
       "legislation": 46,
       "legislation_page": 1,
       "code": "4",
+      "code_order": "4",
       "identifier": 2092,
       "classifications": [
         1,
@@ -756,7 +789,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2970,
     "fields": {
       "_classification_ids": "[\"8\", \"35\"]",
@@ -765,6 +798,7 @@
       "legislation": 46,
       "legislation_page": 1,
       "code": "3",
+      "code_order": "3",
       "identifier": 2091,
       "classifications": [
         8,
@@ -777,7 +811,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2969,
     "fields": {
       "_classification_ids": "[\"3\"]",
@@ -786,6 +820,7 @@
       "legislation": 46,
       "legislation_page": 1,
       "code": "2",
+      "code_order": "2",
       "identifier": 2090,
       "classifications": [
         3
@@ -796,7 +831,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 2968,
     "fields": {
       "_classification_ids": "[\"42\"]",
@@ -805,6 +840,7 @@
       "legislation": 46,
       "legislation_page": 1,
       "code": "1",
+      "code_order": "1",
       "identifier": 2089,
       "classifications": [
         42
@@ -815,7 +851,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3043,
     "fields": {
       "_classification_ids": "[\"44\"]",
@@ -824,6 +860,7 @@
       "legislation": 54,
       "legislation_page": 309,
       "code": "20. Regulations\n",
+      "code_order": "18",
       "identifier": 2167,
       "classifications": [
         44
@@ -834,7 +871,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3042,
     "fields": {
       "_classification_ids": "[]",
@@ -843,6 +880,7 @@
       "legislation": 54,
       "legislation_page": 309,
       "code": "19. Confidentiality\n",
+      "code_order": "17",
       "identifier": 2166,
       "classifications": [],
       "tags": [
@@ -851,7 +889,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3041,
     "fields": {
       "_classification_ids": "[]",
@@ -860,6 +898,7 @@
       "legislation": 54,
       "legislation_page": 308,
       "code": "18. Legal proceedings\n",
+      "code_order": "16",
       "identifier": 2165,
       "classifications": [],
       "tags": [
@@ -868,7 +907,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3040,
     "fields": {
       "_classification_ids": "[]",
@@ -877,6 +916,7 @@
       "legislation": 54,
       "legislation_page": 308,
       "code": "17. Execution of documents",
+      "code_order": "15",
       "identifier": 2164,
       "classifications": [],
       "tags": [
@@ -885,7 +925,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3039,
     "fields": {
       "_classification_ids": "[]",
@@ -894,6 +934,7 @@
       "legislation": 54,
       "legislation_page": 308,
       "code": "16. Donations and Exemptions",
+      "code_order": "14",
       "identifier": 2163,
       "classifications": [],
       "tags": [
@@ -902,7 +943,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3038,
     "fields": {
       "_classification_ids": "[]",
@@ -911,6 +952,7 @@
       "legislation": 54,
       "legislation_page": 307,
       "code": "15. Annual Report",
+      "code_order": "13",
       "identifier": 2162,
       "classifications": [],
       "tags": [
@@ -919,7 +961,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3037,
     "fields": {
       "_classification_ids": "[\"168\"]",
@@ -928,6 +970,7 @@
       "legislation": 54,
       "legislation_page": 307,
       "code": "14. Estimates",
+      "code_order": "12",
       "identifier": 2161,
       "classifications": [
         168
@@ -939,7 +982,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3036,
     "fields": {
       "_classification_ids": "[]",
@@ -948,6 +991,7 @@
       "legislation": 54,
       "legislation_page": 307,
       "code": "13. General Fund\n",
+      "code_order": "11",
       "identifier": 2160,
       "classifications": [],
       "tags": [
@@ -957,7 +1001,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3035,
     "fields": {
       "_classification_ids": "[]",
@@ -966,6 +1010,7 @@
       "legislation": 54,
       "legislation_page": 306,
       "code": "12. Powers of Minister\n",
+      "code_order": "10",
       "identifier": 2159,
       "classifications": [],
       "tags": [
@@ -974,7 +1019,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3034,
     "fields": {
       "_classification_ids": "[]",
@@ -983,6 +1028,7 @@
       "legislation": 54,
       "legislation_page": 306,
       "code": "11. Appointment of employees\n  ",
+      "code_order": "9",
       "identifier": 2158,
       "classifications": [],
       "tags": [
@@ -992,7 +1038,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3033,
     "fields": {
       "_classification_ids": "[]",
@@ -1001,6 +1047,7 @@
       "legislation": 54,
       "legislation_page": 305,
       "code": "10. Chief Executive Officer",
+      "code_order": "8",
       "identifier": 2157,
       "classifications": [],
       "tags": [
@@ -1010,7 +1057,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3032,
     "fields": {
       "_classification_ids": "[]",
@@ -1019,6 +1066,7 @@
       "legislation": 54,
       "legislation_page": 304,
       "code": "9. Comittees",
+      "code_order": "8",
       "identifier": 2156,
       "classifications": [],
       "tags": [
@@ -1027,7 +1075,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3031,
     "fields": {
       "_classification_ids": "[]",
@@ -1036,6 +1084,7 @@
       "legislation": 54,
       "legislation_page": 303,
       "code": "8. Meeting of Board",
+      "code_order": "6",
       "identifier": 2155,
       "classifications": [],
       "tags": [
@@ -1044,7 +1093,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3030,
     "fields": {
       "_classification_ids": "[]",
@@ -1053,6 +1102,7 @@
       "legislation": 54,
       "legislation_page": 302,
       "code": "7. The Board",
+      "code_order": "5",
       "identifier": 2154,
       "classifications": [],
       "tags": [
@@ -1062,7 +1112,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3029,
     "fields": {
       "_classification_ids": "[\"168\", \"169\"]",
@@ -1071,6 +1121,7 @@
       "legislation": 54,
       "legislation_page": 301,
       "code": "6. Powers of Agency\n",
+      "code_order": "4",
       "identifier": 2153,
       "classifications": [
         168,
@@ -1083,7 +1134,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3028,
     "fields": {
       "_classification_ids": "[\"1\", \"148\", \"150\", \"151\", \"164\", \"168\"]",
@@ -1092,6 +1143,7 @@
       "legislation": 54,
       "legislation_page": 300,
       "code": "5. Functions of Agency",
+      "code_order": "3",
       "identifier": 2152,
       "classifications": [
         1,
@@ -1108,7 +1160,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3027,
     "fields": {
       "_classification_ids": "[\"150\", \"151\"]",
@@ -1117,6 +1169,7 @@
       "legislation": 54,
       "legislation_page": 300,
       "code": "4. Objects of Agency",
+      "code_order": "2",
       "identifier": 2151,
       "classifications": [
         150,
@@ -1129,7 +1182,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3026,
     "fields": {
       "_classification_ids": "[]",
@@ -1138,6 +1191,7 @@
       "legislation": 54,
       "legislation_page": 299,
       "code": "3. Establishment of Agency",
+      "code_order": "1",
       "identifier": 2150,
       "classifications": [],
       "tags": [
@@ -1164,7 +1218,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3321,
     "fields": {
       "_classification_ids": "[]",
@@ -1173,6 +1227,7 @@
       "legislation": 69,
       "legislation_page": 17,
       "code": "SEC. 15. Separability Clause. \u2013 ",
+      "code_order": "13",
       "identifier": 2488,
       "classifications": [],
       "tags": [
@@ -1181,7 +1236,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3319,
     "fields": {
       "_classification_ids": "[\"20\", \"21\"]",
@@ -1190,6 +1245,7 @@
       "legislation": 69,
       "legislation_page": 12,
       "code": "SEC. 12. Section 17 of Republic Act No. 9729 is hereby amended to read as follows:\n",
+      "code_order": "11",
       "identifier": 2485,
       "classifications": [
         20,
@@ -1202,7 +1258,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3318,
     "fields": {
       "_classification_ids": "[\"22\"]",
@@ -1212,6 +1268,7 @@
       "legislation_page": 12,
       "code": "SEC. 11. Section 16 of Republic Act No. 9729 is hereby amended to read as follows:\n",
       "identifier": 2484,
+      "code_order": "10",
       "classifications": [
         22
       ],
@@ -1223,7 +1280,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3316,
     "fields": {
       "_classification_ids": "[\"8\", \"11\"]",
@@ -1232,6 +1289,7 @@
       "legislation": 69,
       "legislation_page": 10,
       "code": "SEC. 9. Section 12 of Republic Act No. 9729 is hereby amended to read as follows:\n",
+      "code_order": "8",
       "identifier": 2482,
       "classifications": [
         8,
@@ -1243,7 +1301,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3315,
     "fields": {
       "_classification_ids": "[\"8\", \"11\", \"12\"]",
@@ -1252,6 +1310,7 @@
       "legislation": 69,
       "legislation_page": 10,
       "code": "SEC. 8. Section 11 of Republic Act No. 9729 is hereby amended to road as follows:\n",
+      "code_order": "7",
       "identifier": 2481,
       "classifications": [
         8,
@@ -1264,7 +1323,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3313,
     "fields": {
       "_classification_ids": "[\"15\"]",
@@ -1273,6 +1332,7 @@
       "legislation": 69,
       "legislation_page": 7,
       "code": "SEC. 6. Section 7 of Republic Act. No. 9729 is hereby amended to read as follows:\n",
+      "code_order": "5",
       "identifier": 2479,
       "classifications": [
         15
@@ -1284,7 +1344,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3311,
     "fields": {
       "_classification_ids": "[\"16\", \"17\"]",
@@ -1293,6 +1353,7 @@
       "legislation": 69,
       "legislation_page": 5,
       "code": "SEC. 4. Section 5 of Republic Act No. 9729 is hereby amended to read as follows.\n",
+      "code_order": "3",
       "identifier": 2477,
       "classifications": [
         16,
@@ -1308,7 +1369,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3310,
     "fields": {
       "_classification_ids": "[\"16\"]",
@@ -1317,6 +1378,7 @@
       "legislation": 69,
       "legislation_page": 5,
       "code": "SEC. 3. Section 4 of Republic Act No. 9729 is hereby amended to read as follows:\n",
+      "code_order": "2",
       "identifier": 2476,
       "classifications": [
         16
@@ -1328,7 +1390,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3312,
     "fields": {
       "_classification_ids": "[\"15\"]",
@@ -1337,6 +1399,7 @@
       "legislation": 69,
       "legislation_page": 7,
       "code": "SEC. 5. Section 6 of Republic Act No. 9729 is hereby amended to read as follows:\n",
+      "code_order": "4",
       "identifier": 2478,
       "classifications": [
         15
@@ -1347,7 +1410,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3309,
     "fields": {
       "_classification_ids": "[\"42\"]",
@@ -1356,6 +1419,7 @@
       "legislation": 69,
       "legislation_page": 1,
       "code": "SECTION 1. ",
+      "code_order": "1",
       "identifier": 2474,
       "classifications": [
         42
@@ -1366,7 +1430,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3314,
     "fields": {
       "_classification_ids": "[\"15\", \"19\"]",
@@ -1375,6 +1439,7 @@
       "legislation": 69,
       "legislation_page": 8,
       "code": "SEC. 7. Section 9 of Republic Act No. 9729 is hereby amended to read as follow;\n",
+      "code_order": "6",
       "identifier": 2480,
       "classifications": [
         15,
@@ -1388,7 +1453,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3317,
     "fields": {
       "_classification_ids": "[\"8\", \"11\", \"12\", \"19\"]",
@@ -1397,6 +1462,7 @@
       "legislation": 69,
       "legislation_page": 11,
       "code": "SEC. 10. Section 15 of Republic Act No. 9729 is hereby amended to read as follows:\n",
+      "code_order": "9",
       "identifier": 2483,
       "classifications": [
         8,
@@ -1411,7 +1477,7 @@
     }
   },
   {
-    "model": "lcc.legislationarticle",
+    "model": "lcc.legislationsection",
     "pk": 3320,
     "fields": {
       "_classification_ids": "[\"21\", \"37\", \"39\", \"40\"]",
@@ -1420,6 +1486,7 @@
       "legislation": 69,
       "legislation_page": 13,
       "code": "SEC. 13. Insert and renumber Sections 18, 19, 20, 21, 22, 23, 24 and 25 in Republic Act No. 9729\nto read as follows:\n",
+      "code_order": "12",
       "identifier": 2486,
       "classifications": [
         21,
