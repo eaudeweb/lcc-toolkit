@@ -198,6 +198,7 @@ class Sections(TestCase):
                 text="Brown rabbits are commonly seen.",
                 legislation_page=number,  # Any value, doesn't matter
                 code="Art. {} of the law".format(number),
+                code_order=number,
             )
         # In order
         self.assertEqual(list(law.sections.values_list("number", flat=True)), [1, 2, 3])
@@ -233,14 +234,13 @@ class Sections(TestCase):
             reverse("lcc:legislation:sections:add", kwargs={"legislation_pk": law.id}),
             data=section_data,
         )
-        section = LegislationSection.objects.first()
+        section = LegislationSection.objects.get(legislation_id=law.id)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
             reverse("lcc:legislation:sections:view", kwargs={"legislation_pk": law.id}),
         )
         self.assertEqual(section.text, section_data["text"])
-        self.assertEqual(section.legislation.id, section_data["legislation"])
         self.assertEqual(section.parent.id, section_data["parent"])
         self.assertEqual(section.legislation_page, section_data["legislation_page"])
         self.assertEqual(section.code, section_data["code"])

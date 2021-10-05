@@ -282,8 +282,7 @@ class Command(BaseCommand):
                 )
 
     def delete_sections(self, legislation):
-        legislation.sections.delete()
-        return
+        legislation.sections.all().delete()
 
     def create_or_update_legislation(
         self, legislation_origin, legislation_url, dry_run=False
@@ -319,7 +318,7 @@ class Command(BaseCommand):
             if legislation:
                 if not dry_run:
                     legislation.update(**fields)
-                    self.delete_sections(legislation)
+                    self.delete_sections(legislation.first())
                 legislation = legislation.first()
                 print("Legislation {} was updated.".format(fields["title"]))
             else:

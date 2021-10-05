@@ -1,4 +1,5 @@
 import json
+import re
 import operator
 
 from functools import reduce
@@ -7,8 +8,7 @@ from django import views
 from django.conf import settings
 from django.contrib.auth import mixins
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q as DjQ, IntegerField
-from django.db.models.functions import Cast
+from django.db.models import Q as DjQ
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
@@ -73,14 +73,15 @@ class HighlightedLaws:
                     law._highlighted_title = mark_safe(highlights["title"][0])
                 if "classifications" in highlights:
                     law._highlighted_classifications = [
-                        mark_safe(classification)
+                        mark_safe(re.sub("[\(\[].*?[\)\]]", "", classification).strip())
                         for classification in (
                             highlights["classifications"][0].split(CONN)
                         )
                     ]
                 if "section_classifications" in highlights:
                     matched_section_classifications += [
-                        tag[4:-5]
+                        re.sub("[\(\[].*?[\)\]]", "", tag.replace("<em>", "").replace("</em>", "")).strip()
+                        # tag[4:-5]
                         for tag in (
                             highlights["section_classifications"][0].split(CONN)
                         )
@@ -210,8 +211,8 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
 
             classification_names = models.TaxonomyClassification.objects.filter(
                 pk__in=classification_ids
-            ).values_list("name", flat=True)
-
+            ).values_list("name", "code")
+            classification_names = ["{} ({})".format(x[0], x[1]) for x in classification_names]
             # Search root document for any of the classifications received
             law_queries.append(
                 reduce(

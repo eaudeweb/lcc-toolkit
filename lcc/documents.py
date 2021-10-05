@@ -55,8 +55,12 @@ class LegislationDocument(Document):
 
     def prepare_classifications(self, instance):
         classification_names = instance.classifications.all().values_list(
-            "name", flat=True
+            "name",
+            "code",
         )
+        classification_names = [
+            "{} ({})".format(x[0], x[1]) for x in classification_names
+        ]
         if CONN in "".join(classification_names):
             raise ValidationError(
                 "Classification names must not include the character "
@@ -66,7 +70,7 @@ class LegislationDocument(Document):
 
     def prepare_section_classifications(self, instance):
         classification_names = {
-            cl.name
+            "{} ({})".format(cl.name, cl.code)
             for cl in [
                 item
                 for sublist in [
