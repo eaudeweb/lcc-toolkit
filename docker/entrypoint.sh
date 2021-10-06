@@ -36,6 +36,7 @@ case "$1" in
             exec gunicorn lcctoolkit.wsgi:application \
                     --name lcct \
                     --bind 0.0.0.0:8000 \
+                    --timeout $TIMEOUT \
                     --workers 3 \
                     --access-logfile - \
                     --error-logfile -
