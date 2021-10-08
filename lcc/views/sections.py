@@ -97,7 +97,7 @@ class SectionsList(DetailView):
         if child:
             child = int(child)
         context['child'] = child
-        context["sections"] = cache_tree_children(
+        context["sections"] = (
             sections
             .extra(
                 select={
