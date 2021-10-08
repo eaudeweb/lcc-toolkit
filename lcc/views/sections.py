@@ -9,6 +9,8 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from lcc import models, forms
 from lcc.views.base import TagGroupRender, TaxonomyFormMixin
 
+from mptt.templatetags.mptt_tags import cache_tree_children
+
 
 class SectionFormMixin:
     def dispatch(self, request, *args, **kwargs):
@@ -95,7 +97,7 @@ class SectionsList(DetailView):
         if child:
             child = int(child)
         context['child'] = child
-        context["sections"] = (
+        context["sections"] = cache_tree_children(
             sections
             .extra(
                 select={
