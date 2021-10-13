@@ -52,7 +52,7 @@ class HighlightedLaws:
     def __getitem__(self, key):
         hits = self.search[key]
         if self.sort:
-            return hits.sort(self.sort).to_queryset()
+            hits = hits.sort(self.sort)
         laws = []
         matched_section_tags = []
         matched_section_classifications = []
@@ -314,66 +314,12 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
         search = LegislationDocument.search()
         sort = self.get_sort()
 
-        if not sort:
-            if q:
-                q_in_law = Q(
-                    "bool",
-                    must=law_queries
-                    + law_q_query
-                    + (
-                        [
-                            Q(
-                                "nested",
-                                score_mode="max",
-                                # boost=10,
-                                path="sections",
-                                query=Q(reduce(operator.and_, section_queries)),
-                                inner_hits={
-                                    "highlight": {"fields": section_highlights}
-                                },
-                            )
-                        ]
-                        if section_queries
-                        else []
-                    ),
-                )
-                q_in_section = Q(
-                    "bool",
-                    must=law_queries
-                    + (
-                        [
-                            Q(
-                                "nested",
-                                score_mode="max",
-                                # boost=10,
-                                path="sections",
-                                query=Q(
-                                    reduce(
-                                        operator.and_, section_queries + section_q_query
-                                    )
-                                ),
-                                inner_hits={
-                                    "highlight": {
-                                        "fields": {
-                                            **section_highlights,
-                                            **section_q_highlights,
-                                        }
-                                    }
-                                },
-                            )
-                        ]
-                        if section_queries or section_q_query
-                        else []
-                    ),
-                )
-                search = search.query(q_in_law | q_in_section).highlight(
-                    "abstract", "pdf_text"
-                )
-            else:
-                root_query = (
-                    [Q(reduce(operator.and_, law_queries))] if law_queries else []
-                )
-                nested_query = (
+        if q:
+            q_in_law = Q(
+                "bool",
+                must=law_queries
+                + law_q_query
+                + (
                     [
                         Q(
                             "nested",
@@ -381,77 +327,130 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                             # boost=10,
                             path="sections",
                             query=Q(reduce(operator.and_, section_queries)),
-                            inner_hits={"highlight": {"fields": section_highlights}},
+                            inner_hits={
+                                "highlight": {"fields": section_highlights}
+                            },
                         )
                     ]
                     if section_queries
                     else []
-                )
-                final_query = []
-                if root_query:
-                    final_query += root_query
-                    if nested_query:
-                        # Necessary for highlights
-                        final_query += root_query and nested_query
-                if final_query:
-                    search = search.query(
-                        "bool", should=final_query, minimum_should_match=1
-                    )
-
-            # String representing country iso code
-            countries = self.request.GET.getlist("countries[]")
-            selected_countries = False
-            if countries:
-                selected_countries = True
-            filtering_countries = self.filter_countries(
-                self.request, selected_countries=selected_countries
+                ),
             )
-            if (
-                countries
-                or filtering_countries.count() != models.Country.objects.all().count()
-            ):
-                countries.extend([country.iso for country in filtering_countries])
-                search = search.query("terms", country=countries)
-
-            # String representing law_type
-            law_types = self.request.GET.getlist("law_types[]")
-            if law_types:
-                search = search.query("terms", law_type=law_types)
-
-            # String representing the minimum year allowed in the results
-            from_year = self.request.GET.get("from_year")
-            # String representing the maximum year allowed in the results
-            to_year = self.request.GET.get("to_year")
-
-            if all([from_year, to_year]):
+            q_in_section = Q(
+                "bool",
+                must=law_queries
+                + (
+                    [
+                        Q(
+                            "nested",
+                            score_mode="max",
+                            # boost=10,
+                            path="sections",
+                            query=Q(
+                                reduce(
+                                    operator.and_, section_queries + section_q_query
+                                )
+                            ),
+                            inner_hits={
+                                "highlight": {
+                                    "fields": {
+                                        **section_highlights,
+                                        **section_q_highlights,
+                                    }
+                                }
+                            },
+                        )
+                    ]
+                    if section_queries or section_q_query
+                    else []
+                ),
+            )
+            search = search.query(q_in_law | q_in_section).highlight(
+                "abstract", "pdf_text"
+            )
+        else:
+            root_query = (
+                [Q(reduce(operator.and_, law_queries))] if law_queries else []
+            )
+            nested_query = (
+                [
+                    Q(
+                        "nested",
+                        score_mode="max",
+                        # boost=10,
+                        path="sections",
+                        query=Q(reduce(operator.and_, section_queries)),
+                        inner_hits={"highlight": {"fields": section_highlights}},
+                    )
+                ]
+                if section_queries
+                else []
+            )
+            final_query = []
+            if root_query:
+                final_query += root_query
+                if nested_query:
+                    # Necessary for highlights
+                    final_query += root_query and nested_query
+            if final_query:
                 search = search.query(
-                    Q("range", year={"gte": int(from_year), "lte": int(to_year)})
-                    | Q(
-                        "range",
-                        year_amendment={"gte": int(from_year), "lte": int(to_year)},
-                    )
-                    | Q(
-                        "range",
-                        year_mentions={"gte": int(from_year), "lte": int(to_year)},
-                    )
+                    "bool", should=final_query, minimum_should_match=1
                 )
 
-            search = search.highlight(
-                "title",
-                "classifications",
-                "section_classifications",
-                "tags",
-                "section_tags",
-                number_of_fragments=0,
+        # String representing country iso code
+        countries = self.request.GET.getlist("countries[]")
+        selected_countries = False
+        if countries:
+            selected_countries = True
+        filtering_countries = self.filter_countries(
+            self.request, selected_countries=selected_countries
+        )
+        if (
+            countries
+            or filtering_countries.count() != models.Country.objects.all().count()
+        ):
+            countries.extend([country.iso for country in filtering_countries])
+            search = search.query("terms", country=countries)
+
+        # String representing law_type
+        law_types = self.request.GET.getlist("law_types[]")
+        if law_types:
+            search = search.query("terms", law_type=law_types)
+
+        # String representing the minimum year allowed in the results
+        from_year = self.request.GET.get("from_year")
+        # String representing the maximum year allowed in the results
+        to_year = self.request.GET.get("to_year")
+
+        if all([from_year, to_year]):
+            search = search.query(
+                Q("range", year={"gte": int(from_year), "lte": int(to_year)})
+                | Q(
+                    "range",
+                    year_amendment={"gte": int(from_year), "lte": int(to_year)},
+                )
+                | Q(
+                    "range",
+                    year_mentions={"gte": int(from_year), "lte": int(to_year)},
+                )
             )
 
-            if not any([classification_ids, tag_ids, q]):
-                # If there is no score to sort by, sort by id
-                search = search.sort("id")
+        search = search.highlight(
+            "title",
+            "classifications",
+            "section_classifications",
+            "tags",
+            "section_tags",
+            number_of_fragments=0,
+        )
 
-            # import json; print(json.dumps(search.to_dict(), indent=2))
+        if not any([classification_ids, tag_ids, q]):
+            # If there is no score to sort by, sort by id
+            search = search.sort("id")
 
-        all_laws = HighlightedLaws(search, sort)
+        # import json; print(json.dumps(search.to_dict(), indent=2))
+
+        all_laws = HighlightedLaws(search=search, sort=sort)
 
         paginator = Paginator(all_laws, settings.LAWS_PER_PAGE)
 
