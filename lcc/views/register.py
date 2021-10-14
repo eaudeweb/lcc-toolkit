@@ -25,6 +25,7 @@ from django.utils.encoding import force_text
 from django.urls import reverse
 
 from rolepermissions.roles import get_user_roles
+from rolepermissions.roles import RolesManager
 from rolepermissions.mixins import HasRoleMixin
 
 from lcc import roles
@@ -77,6 +78,10 @@ class Register(CreateView):
     @transaction.atomic
     def form_valid(self, form):
         profile = form.save()
+
+        # bypass approval process for now
+        self._notify_approved(profile)
+
         self._send_admin_mails(profile)
         return render(self.request, self.template_name, dict(success=True))
 
@@ -93,13 +98,32 @@ class Register(CreateView):
             .filter(is_staff=True)
             .values_list('email', flat=True)
         )
-        template = get_template('mail/new_registration.html')
+        template = get_template('mail/new_registration_approved.html')
         body = template.render(dict(
             site_url=_site_url(self.request),
             profile_id=profile_id,
         ))
         subject = 'New user registration in the Law and Climate Change Toolkit'
         _send_mail(subject, body, admin_emails)
+
+    def _notify_approved(self, profile):
+        user = profile.user
+        user.is_active = True
+        user.save()
+        template = get_template('mail/registration_approved.html')
+        token = auth.tokens.default_token_generator.make_token(user)
+        uid = urlsafe_base64_encode(force_bytes(user.pk))
+        _send_mail(
+            'Registration approved!',
+            template.render(dict(
+                user=user,
+                role_name=profile.roles[0].get_name(),
+                token=token,
+                uid=uid,
+                site_url=_site_url(self.request)
+            )),
+            [user.email]
+        )
 
 
 class ApproveRegistration(HasRoleMixin, UpdateView):
