@@ -104,7 +104,7 @@ class RegisterForm(ModelForm):
     last_name = forms.CharField(max_length=150)
     email = forms.EmailField(label='Email address')
     role = forms.ChoiceField(
-        label='Desired role',
+        label='User type',
         choices=map(
             lambda x: (x, x),
             roles.get_nonprivileged_roles()
@@ -165,7 +165,7 @@ class RegisterForm(ModelForm):
 
 class ApproveRegistration(ModelForm):
     role = forms.ChoiceField(
-        label='Desired role',
+        label='User type',
         choices=map(
             lambda x: (x, x),
             RolesManager.get_roles_names()

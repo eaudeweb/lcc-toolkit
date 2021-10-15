@@ -113,11 +113,17 @@ class Register(CreateView):
         template = get_template('mail/registration_approved.html')
         token = auth.tokens.default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
+
+        role_name = profile.roles[0].get_name()
+
+        if role_name == 'Other':
+            role_name = profile.other_role
+
         _send_mail(
             'Registration approved!',
             template.render(dict(
                 user=user,
-                role_name=profile.roles[0].get_name(),
+                role_name=role_name,
                 token=token,
                 uid=uid,
                 site_url=_site_url(self.request)
@@ -151,9 +157,14 @@ class ApproveRegistration(HasRoleMixin, UpdateView):
         pk = force_text(urlsafe_base64_decode(pk_base64))
         return get_object_or_404(self.model, pk=pk)
 
+    def get_role(self):
+        user_roles = get_user_roles(self.object.user)
+        return user_roles[0].role_name if user_roles else ''
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['profile'] = self.object
+        context['role'] = self.get_role()
         return context
 
     @transaction.atomic
