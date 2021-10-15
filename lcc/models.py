@@ -465,6 +465,13 @@ class UserProfile(models.Model):
         blank=True
     )
 
+    other_role = models.CharField(
+        'Other role',
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
     @property
     def roles(self):
         return get_user_roles(self.user)

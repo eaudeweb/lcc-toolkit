@@ -7,6 +7,7 @@
   <div class="panel-heading">
     Registration request
   </div>
+  <h1>{{ role }}</h1>
   <div class="panel-body">
     {% if not approved and not denied %}
     <form role="form" method="POST">
@@ -24,7 +25,7 @@
         <dd>{{ profile.position|default:'Not specified' }}</dd>
         <dt>Country</dt>
         <dd>{{ profile.home_country }}</dd>
-        <dt><label for="{{ form.role.id_for_label }}">Desired role (can be changed before approval)</label></dt>
+        <dt><label for="{{ form.role.id_for_label }}">User type(can be changed before approval)</label></dt>
         <dd>
           {{ form.role }}
           {% for error in form.role.errors %}
@@ -33,6 +34,10 @@
           </p>
           {% endfor %}
         </dd>
+        {% if role == 'Other' %}
+          <dt>Other role</dt>
+          <dd>{{ profile.other_role }}</dd>
+        {% endif %}
       </dl>
       {% if not profile.user.is_active %}
         <input type="submit" name="approve" value="Approve" class="btn btn-success" />
