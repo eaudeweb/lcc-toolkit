@@ -103,7 +103,7 @@ class Command(BaseCommand):
 
     def parse_section(self, section, legislation, parent, code):
         text = ""
-        for tag in section.find_all():
+        for tag in section.find_all(recursive=False):
             if tag.get("guid"):
                 break
             text = " ".join([text] + tag.get_text().split())
@@ -292,7 +292,7 @@ class Command(BaseCommand):
         If `dry_run` parameter is set to True, will only display what it should
         be doing, without actually adding data to the database.
         """
-        legislation_link = "/".join([legislation_url, legislation_origin])
+        legislation_link = "".join([legislation_url, legislation_origin])
         response = requests.get(
             legislation_link,
             auth=requests.auth.HTTPBasicAuth(LEGISPRO_USER, LEGISPRO_PASS),
