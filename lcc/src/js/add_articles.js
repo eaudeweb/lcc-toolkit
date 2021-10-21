@@ -97,7 +97,6 @@ if($('.validate_this').length > 0){
         AjaxSubmit[$(this).attr("name")] = 'on';
       });
 
-      console.log(AjaxSubmit)
       $.ajax({
         type: 'POST',
         url: '/legislation/' + law_id + '/articles/add/',

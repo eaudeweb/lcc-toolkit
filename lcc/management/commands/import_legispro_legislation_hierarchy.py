@@ -67,6 +67,7 @@ def find_classification(concept_name, concept_code):
 class Command(BaseCommand):
 
     help = "Import legislations from LegisPro"
+    PARENT_SECTIONS = ['section', 'part', 'chapter', 'article', 'division']
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -104,9 +105,11 @@ class Command(BaseCommand):
     def parse_section(self, section, legislation, parent, code):
         text = ""
         for tag in section.find_all(recursive=False):
-            if tag.get("guid"):
+            if tag.name in self.PARENT_SECTIONS:
                 break
             text = " ".join([text] + tag.get_text().split())
+            text = text + "\n"
+
         return {
             "code_order": code or section.find("num").text.strip(),
             "code": section.get("eid", "").replace("_", " ").capitalize(),
@@ -157,7 +160,8 @@ class Command(BaseCommand):
                 )
 
     def find_children(self, section):
-        return section.find_all(guid=True, recursive=False)
+        # TODO: triple check this
+        return section.find_all(self.PARENT_SECTIONS, recursive=False)
 
     def create_section(
         self,
@@ -211,6 +215,7 @@ class Command(BaseCommand):
         sections_root = legislation_data.find("body").find_all(
             guid=True, recursive=False
         )
+
         if not sections_root:
             print("No sections found for legislation {}.".format(legislation.title))
 
