@@ -19,5 +19,5 @@ class Command(BaseCommand):
         Question.objects.all().delete()
         Gap.objects.all().delete()
 
-        for fixture in  Command.FIXTURES:
-            call_command('loaddata', fixture)
+        for fixture in Command.FIXTURES:
+            call_command("loaddata", fixture)

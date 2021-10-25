@@ -9,35 +9,51 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0001_initial'),
+        ("lcc", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Gap',
+            name="Gap",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('on', models.BooleanField()),
-                ('classifications', models.ManyToManyField(blank=True, to='lcc.TaxonomyClassification')),
-                ('tags', models.ManyToManyField(blank=True, to='lcc.TaxonomyTag')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("on", models.BooleanField()),
+                (
+                    "classifications",
+                    models.ManyToManyField(blank=True, to="lcc.TaxonomyClassification"),
+                ),
+                ("tags", models.ManyToManyField(blank=True, to="lcc.TaxonomyTag")),
             ],
         ),
         migrations.RemoveField(
-            model_name='question',
-            name='gap_on',
+            model_name="question",
+            name="gap_on",
         ),
         migrations.RemoveField(
-            model_name='question',
-            name='tags',
+            model_name="question",
+            name="tags",
         ),
         migrations.AlterField(
-            model_name='question',
-            name='classification',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='lcc.TaxonomyClassification'),
+            model_name="question",
+            name="classification",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="lcc.TaxonomyClassification",
+            ),
         ),
         migrations.AddField(
-            model_name='question',
-            name='gaps',
-            field=models.ManyToManyField(blank=True, to='lcc.Gap'),
+            model_name="question",
+            name="gaps",
+            field=models.ManyToManyField(blank=True, to="lcc.Gap"),
         ),
     ]

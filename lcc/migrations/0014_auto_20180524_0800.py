@@ -10,10 +10,10 @@ from django.db import migrations
 
 def populate_article_numbers_from_code(apps, schema_editor):
 
-    LegislationArticle = apps.get_model('lcc', 'LegislationArticle')
+    LegislationArticle = apps.get_model("lcc", "LegislationArticle")
 
     for article in LegislationArticle.objects.all():
-        match = re.search('\d+', article.code)
+        match = re.search("\d+", article.code)
         if match:
             article.number = int(match.group(0))
         article.save()
@@ -22,10 +22,11 @@ def populate_article_numbers_from_code(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0013_auto_20180523_1338'),
+        ("lcc", "0013_auto_20180523_1338"),
     ]
 
     operations = [
         migrations.RunPython(
-            populate_article_numbers_from_code, migrations.RunPython.noop),
+            populate_article_numbers_from_code, migrations.RunPython.noop
+        ),
     ]

@@ -10,23 +10,35 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0005_auto_20171031_1007'),
+        ("lcc", "0005_auto_20171031_1007"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='assessment',
-            name='country',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='assessments', to='lcc.Country'),
+            model_name="assessment",
+            name="country",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="assessments",
+                to="lcc.Country",
+            ),
         ),
         migrations.AlterField(
-            model_name='assessment',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='assessments', to=settings.AUTH_USER_MODEL),
+            model_name="assessment",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="assessments",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AlterField(
-            model_name='legislation',
-            name='country',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='legislations', to='lcc.Country'),
+            model_name="legislation",
+            name="country",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="legislations",
+                to="lcc.Country",
+            ),
         ),
     ]

@@ -36,7 +36,7 @@ FOCUS_AREAS = partial(_row_value, 22)
 PRIORITY_SECTORS = partial(_row_value, 23)
 
 
-def _stripped_values(value: str, split_on=';'):
+def _stripped_values(value: str, split_on=";"):
     return tuple(map(str.strip, value.split(split_on)))
 
 
@@ -44,9 +44,9 @@ def _get_or_create(model, value):
     if value:
         obj, created = model.objects.get_or_create(name=value)
         if created:
-            LOGGER.info('Created: %s', obj)
+            LOGGER.info("Created: %s", obj)
         else:
-            LOGGER.info('Got: %s', obj)
+            LOGGER.info("Got: %s", obj)
         return obj
 
 
@@ -67,26 +67,27 @@ def import_row(row):
 
     country, created = models.Country.objects.get_or_create(
         iso=ISO3(row),
-        defaults=dict(name=COUNTRY(row).strip(),
-                      cw=bool(CW(row)),
-                      small_cw=bool(SMALL_CW(row)),
-                      un=bool(UN(row)),
-                      ldc=bool(LDC(row)),
-                      lldc=bool(LLDC(row)),
-                      sid=bool(SID(row)),
-                      population=_cast_or_default(float, POPULATION(row)),
-                      hdi2015=_cast_or_default(float, HDI2015(row)),
-                      gdp_capita=_cast_or_default(float, GDP_CAPITA(row)),
-                      ghg_no_lucf=_cast_or_default(float, GHG_NO_LUCF(row)),
-                      ghg_lucf=_cast_or_default(float, GHG_LUCF(row)),
-                      cvi2015=_cast_or_default(float, CVI2015(row)),
-                      ),
+        defaults=dict(
+            name=COUNTRY(row).strip(),
+            cw=bool(CW(row)),
+            small_cw=bool(SMALL_CW(row)),
+            un=bool(UN(row)),
+            ldc=bool(LDC(row)),
+            lldc=bool(LLDC(row)),
+            sid=bool(SID(row)),
+            population=_cast_or_default(float, POPULATION(row)),
+            hdi2015=_cast_or_default(float, HDI2015(row)),
+            gdp_capita=_cast_or_default(float, GDP_CAPITA(row)),
+            ghg_no_lucf=_cast_or_default(float, GHG_NO_LUCF(row)),
+            ghg_lucf=_cast_or_default(float, GHG_LUCF(row)),
+            cvi2015=_cast_or_default(float, CVI2015(row)),
+        ),
     )
 
     if created:
-        LOGGER.info('Created country: %s', country)
+        LOGGER.info("Created country: %s", country)
     else:
-        LOGGER.info('Got country: %s', country)
+        LOGGER.info("Got country: %s", country)
         return
 
     region = _get_or_create(models.Region, REGION(row).strip())
@@ -101,31 +102,23 @@ def import_row(row):
         _with_row_value(str.strip, LEGAL_SYSTEM(row)),
     )
 
-    focus_areas = _models_from_value(
-        models.FocusArea,
-        FOCUS_AREAS(row)
-    )
+    focus_areas = _models_from_value(models.FocusArea, FOCUS_AREAS(row))
 
     priority_sectors = _models_from_value(
         models.PrioritySector,
         PRIORITY_SECTORS(row),
     )
 
-
     # assign many to many fields
     country.region = region
     country.sub_region = sub_region
     country.legal_system = legal_system
-    country.mitigation_focus_areas = (
-        focus_areas if focus_areas else []
-    )
-    country.adaptation_priority_sectors = (
-        priority_sectors if priority_sectors else []
-    )
+    country.mitigation_focus_areas = focus_areas if focus_areas else []
+    country.adaptation_priority_sectors = priority_sectors if priority_sectors else []
 
     country.save()
 
-    LOGGER.info('Created: %s', country)
+    LOGGER.info("Created: %s", country)
 
 
 class Command(BaseCommand):
@@ -133,25 +126,25 @@ class Command(BaseCommand):
     help = "Load intial data"
 
     def add_arguments(self, parser):
-        parser.add_argument('file_path', type=str)
+        parser.add_argument("file_path", type=str)
 
     @transaction.atomic
     def handle(self, *args, **options):
-        if 'file_path' not in options:
+        if "file_path" not in options:
             raise CommandError("File path is required")
-        wb = openpyxl.load_workbook(options['file_path'], read_only=True)
-        sh = wb['Sheet1']
+        wb = openpyxl.load_workbook(options["file_path"], read_only=True)
+        sh = wb["Sheet1"]
 
         valid_rows = takewhile(lambda row: any(c.value for c in row), sh.rows)
         for idx, row in enumerate(valid_rows):
             if idx == 0:
-                LOGGER.warning('Skipping header row.')
+                LOGGER.warning("Skipping header row.")
                 continue
 
             if not ISO3(row):
-                LOGGER.warning('Skipping row without ISO: %s', idx)
+                LOGGER.warning("Skipping row without ISO: %s", idx)
                 continue
 
             import_row(row)
 
-        LOGGER.info('Done!')
+        LOGGER.info("Done!")

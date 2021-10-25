@@ -1,4 +1,4 @@
-FROM python:3.6-slim
+FROM python:3.8-slim
 
 ARG REQFILE=requirements-prod.txt
 
@@ -13,7 +13,7 @@ RUN mkdir -p /usr/share/man/man1 \
 RUN runDeps="curl gnupg build-essential libpoppler-cpp-dev pkg-config postgresql-client python3-dev python3-cffi libcairo2 libpango1.0-0 libpangocairo-1.0.0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info libpq-dev libz-dev libjpeg-dev libfreetype6-dev git npm" \
     && apt-get update \
     && apt-get install -y --no-install-recommends $runDeps \
-    && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+    && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get install -y nodejs \
     && rm -vrf /var/lib/apt/lists/*
 
@@ -29,7 +29,7 @@ RUN pip install --no-cache-dir -r $REQFILE \
     && npm install -g grunt-cli \
     && npm install
 
-ADD . $WORK_DIR
+COPY . $WORK_DIR
 
 RUN grunt $GRUNT_TASK
 

@@ -9,24 +9,23 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0008_alter_user_username_max_length'),
-        ('lcc', '0019_userprofile_approve_url'),
+        ("auth", "0008_alter_user_username_max_length"),
+        ("lcc", "0019_userprofile_approve_url"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UserProxy',
-            fields=[
-            ],
+            name="UserProxy",
+            fields=[],
             options={
-                'verbose_name': 'Pending user approval',
-                'verbose_name_plural': 'Pending users approval',
-                'proxy': True,
-                'indexes': [],
+                "verbose_name": "Pending user approval",
+                "verbose_name_plural": "Pending users approval",
+                "proxy": True,
+                "indexes": [],
             },
-            bases=('auth.user',),
+            bases=("auth.user",),
             managers=[
-                ('objects', django.contrib.auth.models.UserManager()),
+                ("objects", django.contrib.auth.models.UserManager()),
             ],
         ),
     ]

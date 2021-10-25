@@ -1,7 +1,5 @@
 from django_webtest import WebTest
-from lcc.models import (
-    TaxonomyTagGroup, TaxonomyTag, TaxonomyClassification
-)
+from lcc.models import TaxonomyTagGroup, TaxonomyTag, TaxonomyClassification
 
 
 def create_taxonomy_tag_group(name="test_tag_group"):
@@ -44,9 +42,11 @@ class TaxonomyClassificationTest(WebTest):
     def test_add_multiple_classification(self):
         top_level = create_taxonomy_classication(name="top_level")
         second_level = create_taxonomy_classication(
-            name="second_level", parent=top_level)
+            name="second_level", parent=top_level
+        )
         third_level = create_taxonomy_classication(
-            name="third_level", parent=second_level)
+            name="third_level", parent=second_level
+        )
 
         # test parents
         self.assertEqual(second_level.parent, top_level)

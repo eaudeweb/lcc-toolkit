@@ -23,11 +23,11 @@ class Command(BaseCommand):
         classification codes starting from 1.1, but in our database we already
         have 8 top level classifications, the returned code will be 9.1.
         """
-        pt1, pt2 = code.split('.', 1)
-        return '.'.join([str(int(pt1) + self.num_prev), pt2])
+        pt1, pt2 = code.split(".", 1)
+        return ".".join([str(int(pt1) + self.num_prev), pt2])
 
     def add_arguments(self, parser):
-        parser.add_argument('file', type=str)
+        parser.add_argument("file", type=str)
         # num_prev is the number of previous top-level taxonomy classifications
         # present in the system.
         parser.add_argument("-n", "--num_prev", type=int)
@@ -35,47 +35,44 @@ class Command(BaseCommand):
             "--dry-run",
             action="store_true",
             default=False,
-            help="Only parse the data, but do not insert it."
+            help="Only parse the data, but do not insert it.",
         )
         parser.add_argument(
             "--remove",
             action="store_true",
             default=False,
-            help="Delete all the data corresponding to the file."
+            help="Delete all the data corresponding to the file.",
         )
 
     def parse_row(self, row):
         ret = []
         for value, level in [(row[0].value, 0), (row[3].value, 1)]:
             if value:
-                raw_code, text = value.strip().split(' ', 1)
+                raw_code, text = value.strip().split(" ", 1)
                 code = self.process(raw_code)
-                ret.append({
-                    'text': text,
-                    'level': level,
-                    'parent_answer': 1,
-                    'classification': code,
-                    'gap_answer': 0,
-                    'gap_classifications': [code],
-                })
+                ret.append(
+                    {
+                        "text": text,
+                        "level": level,
+                        "parent_answer": 1,
+                        "classification": code,
+                        "gap_answer": 0,
+                        "gap_classifications": [code],
+                    }
+                )
         return ret
 
-    def create_question(
-        self, data, parents_by_level, dry_run=False, remove=False
-    ):
-        if data['level'] == 0:
+    def create_question(self, data, parents_by_level, dry_run=False, remove=False):
+        if data["level"] == 0:
             parent = None
         else:
-            parent = parents_by_level[data['level'] - 1]
-        classification = TaxonomyClassification.objects.get(
-            code=data['classification']
-        )
+            parent = parents_by_level[data["level"] - 1]
+        classification = TaxonomyClassification.objects.get(code=data["classification"])
         question = Question.objects.filter(
-            classification=classification,
-            parent=parent
+            classification=classification, parent=parent
         ).first()
         if question:
-            parents_by_level[data['level']] = question
+            parents_by_level[data["level"]] = question
             print("Question for {} already created.".format(classification))
             if remove:
                 print("Deleting.")
@@ -84,47 +81,39 @@ class Command(BaseCommand):
             return
         if remove:
             return
-        print(
-            "Creating question for {} with parent {}".format(
-                classification, parent
-             )
-        )
+        print("Creating question for {} with parent {}".format(classification, parent))
         if not dry_run:
             question = Question.objects.create(
-                text=data['text'],
+                text=data["text"],
                 parent=parent,
-                parent_answer=data['parent_answer'],
-                classification=classification
+                parent_answer=data["parent_answer"],
+                classification=classification,
             )
             return question
 
     def create_gap(self, data, question, dry_run=False, remove=False):
         gap_classifications = []
-        for code in data['gap_classifications']:
+        for code in data["gap_classifications"]:
             classification = TaxonomyClassification.objects.get(code=code)
             gap_classifications.append(classification)
 
         print(
             "{} gap for question {} with classifications {}".format(
-                "Deleting" if remove else "Creating",
-                question,
-                gap_classifications
+                "Deleting" if remove else "Creating", question, gap_classifications
             )
         )
         if not dry_run:
             if not remove:
-                gap = Gap.objects.create(on=data['gap_answer'], question=question)
+                gap = Gap.objects.create(on=data["gap_answer"], question=question)
                 for classification in gap_classifications:
                     gap.classifications.add(classification)
             else:
-                Gap.objects.filter(
-                    on=data['gap_answer'], question=question
-                ).delete()
+                Gap.objects.filter(on=data["gap_answer"], question=question).delete()
 
     def handle(self, file, *args, **options):
-        self.num_prev = options.get('num_prev', 0)
-        dry_run = options.get('dry_run', False)
-        remove = options.get('remove', False)
+        self.num_prev = options.get("num_prev", 0)
+        dry_run = options.get("dry_run", False)
+        remove = options.get("remove", False)
 
         wb = load_workbook(file, read_only=True)
         parents_by_level = [None] * 10
@@ -142,15 +131,13 @@ class Command(BaseCommand):
                         )
                         if not question:
                             continue
-                        parents_by_level[data['level']] = question
-                        self.create_gap(
-                            data, question, dry_run, remove
-                        )
+                        parents_by_level[data["level"]] = question
+                        self.create_gap(data, question, dry_run, remove)
                     except Exception as e:
                         print(
                             "Failed to {} question for {} with error {}".format(
                                 "remove" if remove else "create",
-                                data['classification'],
-                                str(e)
+                                data["classification"],
+                                str(e),
                             )
                         )

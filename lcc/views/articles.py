@@ -1,5 +1,7 @@
 from django.urls import reverse
 from django.contrib.auth import mixins
+from django.db.models import OuterRef, Subquery, IntegerField
+from django.contrib.postgres.fields import ArrayField
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
@@ -19,7 +21,7 @@ class AddArticles(mixins.LoginRequiredMixin, TaxonomyFormMixin,
                   ArticleFormMixin,
                   CreateView):
     template_name = "legislation/articles/add.html"
-    model = models.LegislationArticle
+    model = models.LegislationArticleTree
     form_class = forms.ArticleForm
 
     def get_context_data(self, **kwargs):
@@ -65,19 +67,36 @@ class ArticlesList(DetailView):
     model = models.Legislation
     pk_url_kwarg = 'legislation_pk'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        class Array(Subquery):
+            template = 'ARRAY(%(subquery)s)'
+            output_field = ArrayField(base_field=IntegerField())
+
+        desc = models.LegislationArticleTree.objects.filter(
+            tree_id=OuterRef('tree_id')
+        ).exclude(level=0).values('pk')
+        articles = models.LegislationArticleTree.objects.filter(
+            legislation=self.object
+        ).annotate(descendants=Array(desc))
+
+        context['articles'] = articles
+
+        return context
 
 class EditArticles(mixins.LoginRequiredMixin,
                    TaxonomyFormMixin,
                    ArticleFormMixin,
                    UpdateView):
     template_name = "legislation/articles/edit.html"
-    model = models.LegislationArticle
+    model = models.LegislationArticleTree
     context_object_name = 'article'
     form_class = forms.ArticleForm
     pk_url_kwarg = 'article_pk'
 
     def get_object(self, **kwargs):
-        return get_object_or_404(models.LegislationArticle,
+        return get_object_or_404(models.LegislationArticleTree,
                                  pk=self.kwargs['article_pk'],
                                  legislation__pk=self.kwargs['legislation_pk'])
 
@@ -121,7 +140,7 @@ class EditArticles(mixins.LoginRequiredMixin,
 
 
 class DeleteArticle(mixins.LoginRequiredMixin, DeleteView):
-    model = models.LegislationArticle
+    model = models.LegislationArticleTree
     pk_url_kwarg = 'article_pk'
 
     def get_success_url(self, **kwargs):

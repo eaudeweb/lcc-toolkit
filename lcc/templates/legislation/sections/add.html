@@ -5,7 +5,7 @@
 
 {% block extra-scripts %}
   <script src="{% static "js/jquery.validate.js" %}"> </script>
-  <script src="{% static "js/add_articles.js" %}"> </script>
+  <script src="{% static "js/add_sections.js" %}"> </script>
 
 
   <script>
@@ -42,7 +42,7 @@
               </figure>
             </span>
            <span  class="shorten"> <i class="icon-right-open-mini"></i><a title="{{ law.title }}" href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>...
-            <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">Articles</a></span>
+            <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:sections:view' legislation_pk=law.pk %}">Articles</a></span>
             <span> <i class="icon-right-open-mini"></i><b>Add</b class="text-color"></span>
         </div>
       </div>
@@ -57,7 +57,7 @@
      <p>The PDF file is not available.</p>
    </div>
  {% endif %}
-  <form class="validate_this" id="addArticle" method="post" action="{% url 'lcc:legislation:articles:add' legislation_pk=law.pk %}">
+  <form class="validate_this" id="addSection" method="post" action="{% url 'lcc:legislation:sections:add' legislation_pk=law.pk %}">
     {% csrf_token %}
 
       <input name="legislation" value="{{ law.pk }}" hidden>
@@ -83,7 +83,7 @@
         <textarea class='law-meta-data-text-field law-meta-data-abstract-field' name="text" maxlength="65535" required id="id_text" placeholder="(i) The text you select fom the scanned document will automatically appear here.
           You can:
           A. Replace any text in this field (default) or
-          B. Append text (useful for articles that span across multiple pages)
+          B. Append text (useful for sections that span across multiple pages)
 
           Check the original document whenever you feel like the scan was done incorrectly"></textarea>
         <!-- TODO change change char limit -->
@@ -91,10 +91,27 @@
       </div>
     </div>
 
+    <div class="law-meta-data-container selector selector-inline--4">
+      <div>
+        <label class="label-large" for="id_parent">Sub-article of:</label>
+      </div>
+
+      <div>
+        <select name="parent" id="id_parent" class="law-meta-data-combobox">
+          <option value="" selected>----</option>
+          {% for section in law.sections.all %}
+            <option value="{{ section.pk }}">
+              {{ section.code }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
     <div class="legislation-page-container">
       <div>
         <label class="label-large" for="id_page">Page
-        {% if not article.legislation.import_from_legispro %}
+        {% if not section.legislation.import_from_legispro %}
           <p style="display: inline-block; color: red;" title="This field is required.">*
         {% endif %}
         </label>
@@ -188,19 +205,19 @@
       </div>
   </form>
 
-  <div class="last-article-container">
-    {% if last_article %}
+  <div class="last-section-container">
+    {% if last_section %}
       <h3 class="muted">Previous article</h3>
-      <h3><a href="{{article.code}}">Article: {{ last_article.code }}</a></h3>
-      <p><strong>Page:</strong> {{ last_article.legislation_page }}</p>
+      <h3><a href="{{section.code}}">Article: {{ last_section.code }}</a></h3>
+      <p><strong>Page:</strong> {{ last_section.legislation_page }}</p>
 
       <!-- TODO The text inside that pre tag should be limited to ~200 chars -->
-      <p><pre>{{ last_article.text }}</pre></p>
+      <p><pre>{{ last_section.text }}</pre></p>
     {% else %}
       <p>This law doesn't have any articles.</p>
     {% endif %}
   </div>
 </div>
-{% include 'legislation/articles/pdf.html' %}
+{% include 'legislation/sections/pdf.html' %}
 
 {% endblock %}

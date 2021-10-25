@@ -55,7 +55,7 @@ class Other(AbstractUserRole):
 
 def get_nonprivileged_roles():
     return [
-        name for name in RolesManager.get_roles_names()
-        if name != SiteAdministrator.get_name()
-            and name != ContentManager.get_name()
+        name
+        for name in RolesManager.get_roles_names()
+        if name != SiteAdministrator.get_name() and name != ContentManager.get_name()
     ]

@@ -141,6 +141,42 @@ docker exec lcct.db psql -U lcct lcct < <backup-file-name>
 The psql parameters are the same as those used for the above pg_dump command.
 ```
 
+Migrating Elastic Search from 5.4 to Elastic Search 7.14:
+
+1. For keeping the volume, you will first need to update to Elastic Search 6.8.
+   The first step is to use the followin elastic search image: docker.elastic.co/elasticsearch/elasticsearch:6.8.18
+
+1. Add Kibana in the stack: docker.elastic.co/kibana/kibana:6.8.18
+
+1. Install python packages for Elastic Search version 6.8.18
+```
+pip install django-elasticsearch-dsl==6.5.0
+pip install elasticsearch-dsl==6.4.0
+pip install elasticsearch==6.8.2
+```
+
+1. Reindex the data
+```
+python manage.py search_index --rebuild
+```
+
+1. Use Kibana Upgrade Assistant to reindex the other nodes that weren't indexed by the python package
+
+1. Use Kibana console to upgrade the watches index: POST /_xpack/migration/upgrade/.watches
+
+1. Set elasticsearch to image docker.elastic.co/elasticsearch/elasticsearch:7.14.1 and add the following variable to the environment: discovery.type=single-node
+
+1. Install the python packages required for ElasticSearch 7.4:
+```
+pip install django-elasticsearch-dsl==7.2.0
+pip install elasticsearch-dsl==7.3.0
+pip install elasticsearch==7.13.3
+```
+
+1. Reindex one last time from the python shell to check if everything is working as expected:
+```
+python manage.py search_index --rebuild
+```
 
 # Generate documentation
 

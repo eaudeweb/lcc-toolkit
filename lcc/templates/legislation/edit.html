@@ -301,9 +301,9 @@
             </div>
           </div>
           <div>
-            {% with law.articles.all as articles %}
-              {% if articles %}
-                <p><b>This law has {{ articles|length }} articles.</b></p>
+            {% with law.sections.all as sections %}
+              {% if sections %}
+                <p><b>This law has {{ sections|length }} articles.</b></p>
               {% else %}
                 <p><b>This law has no articles.</b></p>
               {% endif %}
@@ -312,7 +312,7 @@
           <div class="button-wrapper">
             <button type="submit" class="btn btn-primary" id='save-btn' name='save-law-id-btn' value="{{law.pk}}"> Save </button>
             <a href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}" class="btn btn-link" id="special-button">Cancel</a>
-            <a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-link" id="special-button">Manage articles</a>
+            <a href="{% url 'lcc:legislation:sections:view' legislation_pk=law.pk %}" class="btn btn-link" id="special-button">Manage articles</a>
           </div>
         </form>
       </div>

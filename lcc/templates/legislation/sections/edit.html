@@ -5,7 +5,7 @@
 
 {% block extra-scripts %}
   <script src="{% static "js/jquery.validate.js" %}"> </script>
-  <script src="{% static "js/add_articles.js" %}"> </script>
+  <script src="{% static "js/add_sections.js" %}"> </script>
 
   <script>
     $('.nav-tabs a').click(function (e) {
@@ -28,7 +28,7 @@
 {% block hidden_variables %}
   <input type="numer" id="law_pk" value="{{ law.pk }}">
   <input type="numer" id="starting_page" value="{{ starting_page }}">
-  <input type="nume" id="article_pk" value="{{ article.pk }}">
+  <input type="nume" id="section_pk" value="{{ section.pk }}">
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -44,24 +44,24 @@
               </figure>
             </span>
            <span  class="shorten"> <i class="icon-right-open-mini"></i><a title="{{ law.title }}" href="{% url 'lcc:legislation:details' legislation_pk=law.pk %}">{{ law.title }}</a></span>...
-            <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}">Articles</a></span>
-            <span> <i class="icon-right-open-mini"></i><b>Edit article {{article.code}}</b class="text-color"></span>
+            <span> <i class="icon-right-open-mini"></i><a href="{% url 'lcc:legislation:sections:view' legislation_pk=law.pk %}">Articles</a></span>
+            <span> <i class="icon-right-open-mini"></i><b>Edit article {{section.code}}</b class="text-color"></span>
         </div>
       </div>
 {% endblock %}
 
 {% block content %}
 
-{% include 'legislation/articles/pdf.html' %}
+{% include 'legislation/sections/pdf.html' %}
 
 <div class="page-container half">
-<h2><b>Edit article {{ article.code }}</b></h2>
-{% if article.legislation.import_from_legispro %}
+<h2><b>Edit article {{ section.code }}</b></h2>
+{% if section.legislation.import_from_legispro %}
   <div class="alert alert-primary">
     <p>The PDF file is not available.</p>
   </div>
 {% endif %}
-  <form class="validate_this" id="editArticle" method="post" action="{% url 'lcc:legislation:articles:edit' legislation_pk=law.pk article_pk=article.pk %}">
+  <form class="validate_this" id="editSection" method="post" action="{% url 'lcc:legislation:sections:edit' legislation_pk=law.pk section_pk=section.pk %}">
     {% csrf_token %}
       <input name="legislation" value="{{ law.pk }}" hidden>
 
@@ -71,7 +71,7 @@
         </div>
         <div>
           <!-- TODO change classes to code  -->
-          <input class='law-meta-data-text-field' type="text" name="code" maxlength="256" required id="id_code" placeholder="Ex: 1.2.3.4" value="{{ article.code }}" />
+          <input class='law-meta-data-text-field' type="text" name="code" maxlength="256" required id="id_code" placeholder="Ex: 1.2.3.4" value="{{ section.code }}" />
         </div>
       </div>
 
@@ -85,25 +85,42 @@
         <!-- TODO check text style in textarea -->
         <textarea class='law-meta-data-text-field law-meta-data-abstract-field'
                   name="text" maxlength="65535" required id="id_text" placeholder="Add
-                  article text">{{ article.text }}</textarea>
+                  article text">{{ section.text }}</textarea>
         <!-- TODO change change char limit -->
         <small class="pull-right" id="rem_char"></small>
+      </div>
+    </div>
+
+    <div class="law-meta-data-container selector selector-inline--4">
+      <div>
+        <label class="label-large" for="id_parent">Sub-article of:</label>
+      </div>
+
+      <div>
+        <select name="parent" id="id_parent" class="law-meta-data-combobox">
+          <option value="" {% if not form.parent.value %} selected {% endif %}>----</option>
+          {% for section in law.sections.all %}
+            <option value="{{ section.pk }}" {% if section.pk == form.parent.value %} selected {% endif %}>
+              {{ section.code }}
+            </option>
+          {% endfor %}
+        </select>
       </div>
     </div>
 
     <div class="legislation-page-container">
       <div>
         <label class="label-large" for="id_page">Page
-        {% if not article.legislation.import_from_legispro %}
+        {% if not section.legislation.import_from_legispro %}
           <p style="display: inline-block; color: red;" title="This field is required.">*
         {% endif %}
         </label>
       </div>
       <div>
-        {% if article.legislation.import_from_legispro %}
-          <input type="numer" id="id_page" name="legislation_page" maxlength="4" {% if article.legislation_page %} value="{{ article.legislation_page }}" {% endif %} >
+        {% if section.legislation.import_from_legispro %}
+          <input type="numer" id="id_page" name="legislation_page" maxlength="4" {% if section.legislation_page %} value="{{ section.legislation_page }}" {% endif %} >
         {% else %}
-          <input type="numer" required  id="id_page" name="legislation_page" maxlength="4" value="{{ article.legislation_page }}">
+          <input type="numer" required  id="id_page" name="legislation_page" maxlength="4" value="{{ section.legislation_page }}">
         {% endif %}
       </div>
     </div>
@@ -200,6 +217,6 @@
       </div>
     </div>
     <button type="submit" class="btn btn-primary" id='save-btn' name='save-btn'> Save & View articles</button>
-    <a href="{% url 'lcc:legislation:articles:view' legislation_pk=law.pk %}" class="btn btn-link" id="cancel-btn">Cancel</a>
+    <a href="{% url 'lcc:legislation:sections:view' legislation_pk=law.pk %}" class="btn btn-link" id="cancel-btn">Cancel</a>
   </form>
 {% endblock %}

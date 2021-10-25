@@ -7,23 +7,22 @@ from django.db import migrations
 
 
 def update_group_permissions(apps, schema_editor):
-    Group = apps.get_model('auth', 'Group')
-    Permission = apps.get_model('auth', 'Permission')
-    content_manager, _ = Group.objects.get_or_create(name='Content manager')
-    Group.objects.get_or_create(name='Policy maker')
+    Group = apps.get_model("auth", "Group")
+    Permission = apps.get_model("auth", "Permission")
+    content_manager, _ = Group.objects.get_or_create(name="Content manager")
+    Group.objects.get_or_create(name="Policy maker")
     for app_config in apps.get_app_configs():
         app_config.models_module = True
         create_permissions(app_config, verbosity=0)
         app_config.models_module = None
-    permissions = Permission.objects.filter(
-        content_type__model='legislationarticle')
+    permissions = Permission.objects.filter(content_type__model="legislationarticle")
     content_manager.permissions.add(*permissions)
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0011_auto_20180321_1400'),
+        ("lcc", "0011_auto_20180321_1400"),
     ]
 
     operations = [

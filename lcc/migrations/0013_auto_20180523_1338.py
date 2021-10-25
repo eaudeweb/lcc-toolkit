@@ -8,17 +8,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0012_auto_20180417_0900'),
+        ("lcc", "0012_auto_20180417_0900"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='legislationarticle',
-            options={'ordering': ['number', 'code']},
+            name="legislationarticle",
+            options={"ordering": ["number", "code"]},
         ),
         migrations.AddField(
-            model_name='legislationarticle',
-            name='number',
+            model_name="legislationarticle",
+            name="number",
             field=models.IntegerField(blank=True, null=True),
         ),
     ]

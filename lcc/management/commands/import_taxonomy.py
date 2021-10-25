@@ -13,7 +13,7 @@ class Command(BaseCommand):
     """
 
     def add_arguments(self, parser):
-        parser.add_argument('file', type=str)
+        parser.add_argument("file", type=str)
 
     def handle(self, file, *args, **options):
         wb = load_workbook(file, read_only=True)
@@ -23,16 +23,14 @@ class Command(BaseCommand):
                 continue
             code = str(row[0].value).strip()
             name = row[1].value.strip()
-            parent_code = ".".join(code.split('.')[:-1])
+            parent_code = ".".join(code.split(".")[:-1])
             try:
-                if code.find('.') == -1:
+                if code.find(".") == -1:
                     parent = None
                 else:
                     parent = TaxonomyClassification.objects.get(code=parent_code)
                 TaxonomyClassification.objects.create(
-                    code=code,
-                    name=name,
-                    parent=parent
+                    code=code, name=name, parent=parent
                 )
             except Exception as e:
                 print("Failed to create {} with error {}".format(name, str(e)))

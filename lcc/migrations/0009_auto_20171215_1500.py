@@ -9,28 +9,36 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0008_add_separate_assessment_profile_model'),
+        ("lcc", "0008_add_separate_assessment_profile_model"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='legislationarticle',
-            name='identifier',
+            model_name="legislationarticle",
+            name="identifier",
             field=models.IntegerField(blank=True, default=None, null=True),
         ),
         migrations.AlterField(
-            model_name='assessmentprofile',
-            name='country',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='assessment_profiles', to='lcc.Country'),
+            model_name="assessmentprofile",
+            name="country",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="assessment_profiles",
+                to="lcc.Country",
+            ),
         ),
         migrations.AlterField(
-            model_name='legislationpage',
-            name='legislation',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='pages', to='lcc.Legislation'),
+            model_name="legislationpage",
+            name="legislation",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="pages",
+                to="lcc.Legislation",
+            ),
         ),
         migrations.AlterField(
-            model_name='legislationarticle',
-            name='code',
+            model_name="legislationarticle",
+            name="code",
             field=models.CharField(max_length=256),
-        )
+        ),
     ]

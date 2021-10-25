@@ -87,7 +87,6 @@ $(document).ready(function() {
     $("ul.dropdown-menu-order li a").on('click', function() {
       let orderName = $(this).attr('data-sort-id');
       let orderValue = $(this).attr('data-sort-dir');
-
       orderName !== 'relevance' ? payload[orderName] = orderValue : null;
       pageNumber ? payload['page'] = pageNumber : null;
       $(".submitBtn").click();
@@ -291,10 +290,22 @@ $(document).ready(function() {
 
   $('a.select-all').on('click', function(){
     $(this).closest('ul').find('input').prop('checked', true);
+    $(this).closest('ul').find('input').each(function(i, input){
+      let $input = $(input);
+      classifications.push($input.val())
+    });
+    payload['classifications'] = classifications;
   });
 
   $('a.deselect-all').on('click', function(){
     $(this).closest('ul').find('input').prop('checked', false);
+    $(this).closest('ul').find('input').each(function(i, input){
+      let $input = $(input);
+      let index = payload['classifications'].indexOf($input.val());
+      if (index > -1) {
+        payload['classifications'].splice(index, 1);
+      }
+    });
   });
 
   // Handle search and filters
