@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lcc', '0023_update_permissions'),
+        ('lcc', '0024_update_permissions'),
     ]
 
     operations = [

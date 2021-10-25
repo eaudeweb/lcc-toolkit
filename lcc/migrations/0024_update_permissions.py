@@ -22,7 +22,7 @@ def update_group_permissions(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("lcc", "0022_add_legislation_section"),
+        ("lcc", "0023_add_legislation_section"),
     ]
 
     operations = [

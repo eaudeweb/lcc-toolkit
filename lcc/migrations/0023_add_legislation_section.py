@@ -9,7 +9,7 @@ import mptt.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("lcc", "0021_auto_20200828_0908"),
+        ("lcc", "0022_auto_20211014_1519"),
     ]
 
     operations = [
