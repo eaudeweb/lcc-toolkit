@@ -10,6 +10,7 @@
       "country":"EST",
       "language":"en",
       "law_type":"Law",
+      "import_from_legispro": true,
       "year":2017,
       "year_amendment":null,
       "year_mention":null,
@@ -34,6 +35,7 @@
     "pk":54,
     "fields":{
       "_classification_ids":"[\"44\"]",
+      "import_from_legispro": true,
       "_tag_ids":"[]",
       "title":"Renewable Energy Agency Act 2015 (No. 11 of 2015)",
       "abstract":null,
@@ -64,6 +66,7 @@
     "pk":69,
     "fields":{
       "_classification_ids":"[\"1\"]",
+      "import_from_legispro": true,
       "_tag_ids":"[]",
       "title":"The People\u2019s Survival Fund Act (RA 10174)",
       "abstract":null,

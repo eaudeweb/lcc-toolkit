@@ -489,7 +489,10 @@ class UserProfile(models.Model):
 
 class LegislationManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().select_related("country")
+        return super().get_queryset().filter(import_from_legispro=True).select_related("country")
+
+    def really_all(self):
+        return super().get_queryset().all().select_related("country")
 
 
 class Legislation(_TaxonomyModel):

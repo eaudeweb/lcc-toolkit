@@ -232,6 +232,7 @@ class Command(BaseCommand):
     def parse_country(self, legislation_data):
         iso_code = legislation_data.find("frbrcountry").get("value")
         iso_code = iso_code.split("-")[0] if "-" in iso_code else iso_code
+        iso_code = iso_code.upper()
         if iso_code == "GB":
             return Country.objects.filter(iso_code="UK").first()
         elif iso_code == "KHR":
@@ -244,6 +245,22 @@ class Command(BaseCommand):
             return Country.objects.filter(iso_code="BM").first()
         elif iso_code == "BRZ":
             return Country.objects.filter(iso_code="BR").first()
+        elif iso_code == '(FI)':
+            return Country.objects.filter(iso_code="FI").first()
+        elif iso_code == 'UAE':
+            return Country.objects.filter(iso_code="AE").first()
+        elif iso_code == 'VAN':
+            return Country.objects.filter(iso_code="VU").first()
+        elif iso_code == 'BLG':
+            return Country.objects.filter(iso_code="BG").first()
+        elif iso_code == 'LAV':
+            return Country.objects.filter(iso_code="LAV").first()
+        elif iso_code == 'MLY':
+            return Country.objects.filter(iso_code="MY").first()
+        elif iso_code == 'LIB':
+            return Country.objects.filter(iso_code="LR").first()
+        elif iso_code == 'TZN':
+            return Country.objects.filter(iso_code="TZ").first()
         else:
             return Country.objects.filter(Q(iso_code=iso_code) | Q(pk=iso_code)).first()
 
