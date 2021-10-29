@@ -9,7 +9,8 @@
     <div class="panel panel-info">
       <div class="panel-body">
         {% if success %}
-        <p>Registration submitted for review! You will receive an email once it has been approved or denied.</p>
+        <p>Thank you! Your registration has been received. An email has been sent to you with a link 
+           to create your login details. Please be sure to check your junk/spam folders.</p>
         {% else %}
         <form role="form" method="POST">
           {% csrf_token %}
@@ -94,7 +95,7 @@
             {% endfor %}
           </div>
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="{{ form.captcha.id_for_label }}">{{ form.captcha.label }}</label>
             {{ form.captcha }}
             {% for error in form.captcha.errors %}
@@ -102,7 +103,7 @@
               {{ error|escape }}
             </p>
             {% endfor %}
-          </div>
+          </div> -->
 
           <button type="submit" class="btn btn-primary" id="login-btn">Request registration</button>
         </form>
@@ -111,8 +112,7 @@
     </div>
     <p style="margin-top: 2rem;">
       <strong>NOTE:</strong>
-      the account will have to be approved before you will be able to login with it.
-      Upon approval, you will receive a link allowing you to set a password.
+      Please contact  <a href="mailto:climatelawtoolkit@un.org">climatelawtoolkit@un.org</a> in case of any problems or technical difficulties.
     </p>
   </div>
 </div>

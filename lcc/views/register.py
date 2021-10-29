@@ -120,7 +120,7 @@ class Register(CreateView):
             role_name = profile.other_role
 
         _send_mail(
-            'Registration approved!',
+            'Climate Law Toolkit Registration',
             template.render(dict(
                 user=user,
                 role_name=role_name,
@@ -189,7 +189,7 @@ class ApproveRegistration(HasRoleMixin, UpdateView):
         token = auth.tokens.default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         _send_mail(
-            "Registration approved!",
+            "Climate Law Toolkit Registration",
             template.render(
                 dict(
                     user=user,

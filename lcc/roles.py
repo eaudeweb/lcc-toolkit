@@ -22,8 +22,8 @@ class Government(AbstractUserRole):
     available_permissions = {}
 
 
-class Legislator(AbstractUserRole):
-    role_name = "Legislator"
+class Student(AbstractUserRole):
+    role_name = "Student"
     available_permissions = {}
 
 

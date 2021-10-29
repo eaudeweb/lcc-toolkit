@@ -28,7 +28,7 @@ auth_patterns = [
     re_path(
         (
             r"^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/"
-            r"(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/"
+            r"(?P<token>[0-9A-Za-z]{1,25}-[0-9A-Za-z]{1,40})/"
         ),
         views.register.PasswordResetConfirm.as_view(),
         name="password_reset_confirm",

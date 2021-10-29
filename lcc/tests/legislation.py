@@ -106,7 +106,7 @@ class LegislationExplorer(TestCase):
         )
 
         c = Client()
-        response = c.get("/legislation/", {"q": "rabbits"})
+        response = c.get("/legislation/", {"q": "rabbits", "include_sections": "true"})
 
         self.assertEqual(
             response.context["laws"][0].highlighted_sections()[0]["text"],
