@@ -118,6 +118,8 @@ $(document).ready(function() {
       }
     });
 
+    payload["include_sections"] = $('#includeSections').is(":checked");
+
     $("#tagsSelect input").each(function(i, input){
       let $input = $(input);
       if($.inArray($input.val(), filters["tags[]"]) >= 0){
@@ -364,6 +366,11 @@ $(document).ready(function() {
 
   $('#countrySelect').on('change', function() {
     payload['countries'] = $(this).val();
+  });
+
+  $('#includeSections').on('change', function() {
+    console.log($('#includeSections').is(":checked"))
+    payload['include_sections'] = $('#includeSections').is(":checked");
   });
 
   $('#typeSelect input').on('change', function() {
