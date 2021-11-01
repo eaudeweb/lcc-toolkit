@@ -1,4 +1,12 @@
 {% load static %}
+<div class="filter-item list-container filter-type">
+  <ul class="round" id="SectionDisplaySelect">
+      <li class="first-level level">
+        <input type="checkbox" id="includeSections" value="true" {%if request.GET.include_sections == "true" %}checked{% endif %}>
+        <label for="includeSections">Display laws section information within the search results</label>
+      </li>
+  </ul>
+</div>
 {% if laws %}
   <div class="counter">
     {{ laws.start_index }} - {{ laws.end_index }} of {{ laws.paginator.count }} results
@@ -158,6 +166,7 @@
     </div>
   {% endif %}
 
+  {% if request.GET.include_sections == "true" %}
   {% for section in law.highlighted_sections %}
     <div class="section">
       <span>
@@ -195,7 +204,7 @@
       {% endif %}
     </div>
   {% endfor %}
-
+ {% endif %}
 </div>
 {% empty %}
   <span class="error">No legislation found for these filters</span>
