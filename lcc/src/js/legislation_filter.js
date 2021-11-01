@@ -371,6 +371,7 @@ $(document).ready(function() {
   $('#includeSections').on('change', function() {
     console.log($('#includeSections').is(":checked"))
     payload['include_sections'] = $('#includeSections').is(":checked");
+    $(".submitBtn").click();
   });
 
   $('#typeSelect input').on('change', function() {
