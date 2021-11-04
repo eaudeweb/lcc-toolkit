@@ -198,11 +198,6 @@ urlpatterns = [
         include((legislation_patterns, app_name), namespace="legislation"),
     ),
     path("country/", include((country_patterns, app_name), namespace="country")),
-    path("docs/<path:path>/", serve, {"document_root": settings.DOCS_ROOT}),
-    path(
-        "docs/guide.html",
-        serve,
-        {"document_root": settings.DOCS_ROOT},
-        name="user_manual",
-    ),
+    re_path(r"^docs/(?P<path>.*)$", serve, {'document_root': settings.DOCS_ROOT , }),
+    re_path(r"^docs/guide.html", serve, {'document_root': settings.DOCS_ROOT , },name="user_manual",),
 ]
