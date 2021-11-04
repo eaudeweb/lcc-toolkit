@@ -20,11 +20,6 @@
 
 <div class="results-header">
 	<div class="muted">Legal assessment results</div>
-   <a class="btn btn-danger" style="
-    position: absolute;
-    right: 0;
-    top: 0;
-    transform: scale(0.8);" href="download">Download as PDF</a>
     <a id="back_btn" class="btn btn-primary" style="
     position: absolute;
     left: 0;
@@ -35,6 +30,9 @@
    <div class="results-info">Based on your assessment, the following priority areas are suggested for reform: </div>
    <div class="results-info">
      {% include "./legislation/filter_country_attribute.modal.html" %}
+     <div>
+        <a class="btn btn-primary" style="font-weight: 700;" href="download">Download results as PDF</a>
+    </div>
    </div>
 </div>
 

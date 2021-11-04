@@ -52,6 +52,7 @@ HDI_RANGES = (
     (0.849, 0.884),
     (0.885, 0.915),
     (0.916, 0.949),
+    (0.950, math.inf),
 )
 
 GDP_RANGES = (
@@ -85,6 +86,8 @@ GHG_LUCF = (
     (1000, math.inf),
 )
 
+def truncate(f, n):
+    return math.floor(f * 10 ** n) / 10 ** n
 
 def _format_range(range):
     min, max = range
@@ -98,7 +101,7 @@ def _format_range(range):
 
 def _range_from_value(range, value):
     min, max = map(itemgetter, (0, 1))
-    return next(val for val in range if min(val) <= value <= max(val))
+    return next(val for val in range if min(val) <= truncate(value, 2) <= max(val))
 
 
 class TaxonomyTagGroup(models.Model):

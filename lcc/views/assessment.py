@@ -77,7 +77,7 @@ class LegalAssessmentResultsPDF(AssessmentSuggestionsMixin, View):
             "request": request,
         }
 
-        pdf_name = "leagal_assessment_for_{}_by_{}.pdf".format(
+        pdf_name = "Legal_assessment_for_{}_by_{}.pdf".format(
             assessment.country_name, request.user.username
         )
 

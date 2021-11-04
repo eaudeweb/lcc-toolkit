@@ -248,7 +248,7 @@ $(document).ready(function () {
                     var a = $('<a/>')
                         .text(section_name)
                         .css("color", "#0052CC")
-                        .attr('href', '/legislation/' + article.legislation.id + '/articles/#' + article.code)
+                        .attr('href', '/legislation/' + section.legislation.id + '/sections/#' + section.code)
                         .appendTo(p2);
 
                     var muted = $('<div/>')

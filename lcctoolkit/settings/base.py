@@ -30,12 +30,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_elasticsearch_dsl",
+    "django.contrib.sites",
     "rolepermissions",
     "rest_framework",
     "mptt",
     "captcha",
     "lcc",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
