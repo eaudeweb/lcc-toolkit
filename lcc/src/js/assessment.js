@@ -672,10 +672,11 @@ $(document).ready(function () {
             var nextClassificationId = $(nextClassification)
               .attr('aria-controls'); // has the id of the classification-menu
             nextClassification.click();
+            var attributeSelector = attribute ? `:${attribute}` : '';
 
-            // click on first classification-item
+            // click on classification-item last or first depending on attribute
             $(`classification-menu#${nextClassificationId}`)
-            .find('classification-item')[0]
+            .find(`classification-item${attributeSelector}`)[0]
             .click();
           }
         } catch(e) {
