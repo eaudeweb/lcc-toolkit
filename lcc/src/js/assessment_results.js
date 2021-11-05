@@ -20,7 +20,7 @@ $(document).ready(function () {
             getAssessmentResults.call(this);
             getAssessments.call(this);
 
-            filterCountryAttribute().updateFilterBasedOnURL(options);
+            filterCountryAttribute().updateFilterBasedOnURL(options, payload);
             filterCountryAttribute().attachListenerToModal(payload, send.bind(null, payload));
 
 
