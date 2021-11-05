@@ -192,7 +192,7 @@ $(document).ready(function () {
                 , 0
                 , responseClassifications[0].second_level[0].details));
               });
-            }
+        }
 
       function renderClassifications(responseClassifications) {
         var accordion = $('#accordion')[0];
@@ -201,12 +201,12 @@ $(document).ready(function () {
         for (var z = 0; z < responseClassifications.length; z++) {
           var classification = responseClassifications[z];
           var h3 = $('<h3>')
-          .text(classification.name)
-          .appendTo(accordion);
+            .text(classification.name)
+            .appendTo(accordion);
           var classification_menu = $('<classification-menu/>')
-          .addClass('flex lcct-list classification-menu')
-          .attr('role', 'menu')
-          .attr('tabindex', '0');
+            .addClass('flex lcct-list classification-menu')
+            .attr('role', 'menu')
+            .attr('tabindex', '0');
 
           for (var j = 0; classification.second_level && j < classification.second_level.length; j++) {
             var subcat = classification.second_level[j];
@@ -221,13 +221,13 @@ $(document).ready(function () {
               .attr('aria-selected', 'true')
               .attr('data-id', subcat.id)
               .on('click', getQuestionsForCategory.bind(this
-                                                          , classification.name
-                                                          , subcat.name
-                                                          , classification.second_level.length
-                                                          , j
-                                                          , previousClassification
-                                                          , nextClassification
-                                                          , currentClassification))
+                , classification.name
+                , subcat.name
+                , classification.second_level.length
+                , j
+                , previousClassification
+                , nextClassification
+                , currentClassification))
               .appendTo(classification_menu);
             var i_comp = $('<i/>')
               .text(j + 1)
@@ -261,7 +261,6 @@ $(document).ready(function () {
               )
               .appendTo(classification_item);
             }
-
           }
 
           classification_menu.appendTo(accordion);
@@ -281,7 +280,8 @@ $(document).ready(function () {
 
       function handleAccordion() {
         $('#accordion').accordion({
-          collapsible: true
+          collapsible: true,
+          heightStyle: "content"
         });
       }
 
@@ -538,8 +538,12 @@ $(document).ready(function () {
         handleGoToQuestions.call(this, false, false, index, categories_no, previousClassification, nextClassification, currentClassification);
       }
 
-      $('.next_question').click(handleGoToQuestions.bind(this, true, true, null, null, null, null, null));
-      $('.prev_question').click(handleGoToQuestions.bind(this, true, false, null, null, null, null, null));
+      $('.next_question')
+        .click(handleGoToQuestions
+        .bind(this, true, true, null, null, null, null, null));
+      $('.prev_question')
+        .click(handleGoToQuestions
+        .bind(this, true, false, null, null, null, null, null));
 
       /**
        * this will be called when the user clicks the category (left side menu) or the next/prev button
@@ -573,20 +577,28 @@ $(document).ready(function () {
 
           if(shouldClick) {
             var prevClassification = selectedClassificationsIndex > 0 ? classifications[selectedClassificationsIndex - 1] : null;
-            goNext ? goToCategory(nextCateg, null, null) : goToCategory(null, prevClassification, 'last-of-type');
+
+            goNext
+              ? goToCategory(nextCateg, null, null)
+              : goToCategory(null, prevClassification, 'last-of-type');
           }
         } else if (isLastCategory) {
           renderButtonsGoToCategoryText(null, prevCateg, previousClassification, nextClassification);
 
           if(shouldClick) {
             var nextClassification = selectedClassificationsIndex < classifications.length - 1 ? classifications[selectedClassificationsIndex + 1] : null;
-            goNext ? goToCategory(null, nextClassification, 'first-of-type') : goToCategory(prevCateg, null, null);
+
+            goNext
+              ? goToCategory(null, nextClassification, 'first-of-type')
+              : goToCategory(prevCateg, null, null);
           }
         } else {
           renderButtonsGoToCategoryText(nextCateg, prevCateg, null, null);
 
           if(shouldClick) {
-            goNext ? goToCategory(nextCateg, null, null) : goToCategory(prevCateg, null, null);
+            goNext
+              ? goToCategory(nextCateg, null, null)
+              : goToCategory(prevCateg, null, null);
           }
         }
       }
@@ -601,8 +613,16 @@ $(document).ready(function () {
        * @param {Object} nextClassification 
        */
       function renderButtonsGoToCategoryText(nextCateg, prevCateg, previousClassification, nextClassification) {
-        var textNext = nextCateg ? nextCateg.name : nextClassification ? nextClassification.second_level[0].name : '';
-        var textPrev = prevCateg ? prevCateg.name : previousClassification ? previousClassification.second_level[previousClassification.second_level.length - 1].name : '';
+        var textNext = nextCateg
+          ? nextCateg.name
+          : nextClassification
+            ? nextClassification.second_level[0].name
+            : '';
+        var textPrev = prevCateg
+          ? prevCateg.name
+          : previousClassification
+            ? previousClassification.second_level[previousClassification.second_level.length - 1].name
+            : '';
 
         if(textNext) {
           $('.next_question').show();
@@ -648,10 +668,15 @@ $(document).ready(function () {
           if(nextCateg) {
             nextCateg.click();
           } else {
-            var controls = $(nextClassification).attr('aria-controls');
-
+            // click on classification-menu
+            var nextClassificationId = $(nextClassification)
+              .attr('aria-controls'); // has the id of the classification-menu
             nextClassification.click();
-            $('classification-menu#'+controls+'').find('classification-item:'+attribute).click();
+
+            // click on first classification-item
+            $(`classification-menu#${nextClassificationId}`)
+            .find('classification-item')[0]
+            .click();
           }
         } catch(e) {
         }
