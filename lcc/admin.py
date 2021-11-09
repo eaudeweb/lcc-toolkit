@@ -103,6 +103,7 @@ class UserAdmin(BaseUserAdmin):
         "first_name",
         "last_name",
         "email",
+        "date_joined",
         "get_active",
         "get_approve_url",
     )
