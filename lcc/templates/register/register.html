@@ -11,6 +11,7 @@
         {% if success %}
         <p>Thank you! Your registration has been received. An email has been sent to you with a link 
            to create your login details. Please be sure to check your junk/spam folders.</p>
+        <p>Please contact <a href="mailto:unep-law-climatelawtoolkit@un.org">unep-law-climatelawtoolkit@un.org</a> in case of any problems or technical difficulties.</p>
         {% else %}
         <form role="form" method="POST">
           {% csrf_token %}
@@ -111,6 +112,9 @@
       </div>
     </div>
   </div>
+  {% if not success %}
+    <p style="margin-left: auto; margin-right: auto;margin-top: 2%; font-size: 'small'">If you experience any technical difficulties, please email <a href="mailto:unep-law-climatelawtoolkit@un.org">unep-law-climatelawtoolkit@un.org</a> .</p>
+  {% endif %}
 </div>
 {% endblock %}
 
