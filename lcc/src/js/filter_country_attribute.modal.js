@@ -11,18 +11,11 @@ function filterCountryAttribute() {
 
       //it will update payload object reference that it gets
       submitButton.addEventListener("click", function () {
-        contryAttributesSummary = 0;
-        console.log('rrr')
-        console.log('allSelectList', allSelectList)
-        console.log('payload', payload)
 
         for (let index = 0; index < allSelectList.length; index++) {
           const selectElement = allSelectList[index];
           const selectedValue = selectElement.selectedOptions[0].value;
           const selectedLabel = selectElement.id;
-          console.log('selectElement', selectElement)
-          console.log('selectedValue', selectedValue)
-          console.log('selectedLabel', selectedLabel)
 
           // it is single value select, so it will overwrite existing
           if(selectedValue) {
@@ -34,6 +27,7 @@ function filterCountryAttribute() {
 
         }
         updateContryAttributesSummary();
+
         if(callback) {
           callback();
         }
@@ -74,7 +68,9 @@ function filterCountryAttribute() {
   }
 
   const updateContryAttributesSummary = function() {
-    document.getElementById('contryAttributesSummary').innerText = contryAttributesSummary > 0 ? `${contryAttributesSummary} attributes selected` : 'No attributes selected';
+    const contryAttributesCount = contryAttributesSummary > 0 ? `${contryAttributesSummary} attributes selected` : 'No attributes selected';
+
+    document.getElementById('contryAttributesSummary').innerText = contryAttributesCount;
   }
 
   return {
