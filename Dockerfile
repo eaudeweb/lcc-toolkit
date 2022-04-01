@@ -33,5 +33,9 @@ COPY . $WORK_DIR
 
 RUN grunt $GRUNT_TASK
 
+RUN cd docs \
+    && make html
+
+
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["run"]
