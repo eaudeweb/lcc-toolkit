@@ -102,31 +102,58 @@ class HighlightedLaws:
 
             if hasattr(hit.meta, "inner_hits"):
                 law._highlighted_sections = []
-                if hit.meta.inner_hits.sections:
-                    for section in hit.meta.inner_hits.sections.hits:
-                        section_dict = {"pk": section.pk, "code": section.code}
-                        if not hasattr(section.meta, "highlight"):
-                            continue
-                        highlights = section.meta.highlight.to_dict()
-                        matched_text = highlights.get("sections.text")
-                        if matched_text:
-                            section_dict["text"] = mark_safe(" […] ".join(matched_text))
-                        matched_classifications = highlights.get(
-                            "sections.classifications_text"
-                        )
-                        if matched_classifications:
-                            section_dict["classifications"] = [
-                                mark_safe(classification)
-                                for classification in (
-                                    matched_classifications[0].split(CONN)
-                                )
-                            ]
-                        matched_tags = highlights.get("sections.tags_text")
-                        if matched_tags:
-                            section_dict["tags"] = [
-                                mark_safe(tag) for tag in (matched_tags[0].split(CONN))
-                            ]
-                        law._highlighted_sections.append(section_dict)
+                if hasattr(hit.meta.inner_hits, "q_in_section") or hasattr(hit.meta.inner_hits, "q_in_law"):
+                    if hasattr(hit.meta.inner_hits, "q_in_section"):
+                        for section in hit.meta.inner_hits.q_in_section.hits:
+                            section_dict = {"pk": section.pk, "code": section.code}
+                            if not hasattr(section.meta, "highlight"):
+                                continue
+                            highlights = section.meta.highlight.to_dict()
+                            matched_text = highlights.get("sections.text")
+                            if matched_text:
+                                section_dict["text"] = mark_safe(" […] ".join(matched_text))
+                            matched_classifications = highlights.get(
+                                "sections.classifications_text"
+                            )
+                            if matched_classifications:
+                                section_dict["classifications"] = [
+                                    mark_safe(classification)
+                                    for classification in (
+                                        matched_classifications[0].split(CONN)
+                                    )
+                                ]
+                            matched_tags = highlights.get("sections.tags_text")
+                            if matched_tags:
+                                section_dict["tags"] = [
+                                    mark_safe(tag) for tag in (matched_tags[0].split(CONN))
+                                ]
+                            law._highlighted_sections.append(section_dict)
+
+                    if hasattr(hit.meta.inner_hits, "q_in_law"):
+                        for section in hit.meta.inner_hits.q_in_law.hits:
+                            section_dict = {"pk": section.pk, "code": section.code}
+                            if not hasattr(section.meta, "highlight"):
+                                continue
+                            highlights = section.meta.highlight.to_dict()
+                            matched_text = highlights.get("sections.text")
+                            if matched_text:
+                                section_dict["text"] = mark_safe(" […] ".join(matched_text))
+                            matched_classifications = highlights.get(
+                                "sections.classifications_text"
+                            )
+                            if matched_classifications:
+                                section_dict["classifications"] = [
+                                    mark_safe(classification)
+                                    for classification in (
+                                        matched_classifications[0].split(CONN)
+                                    )
+                                ]
+                            matched_tags = highlights.get("sections.tags_text")
+                            if matched_tags:
+                                section_dict["tags"] = [
+                                    mark_safe(tag) for tag in (matched_tags[0].split(CONN))
+                                ]
+                            law._highlighted_sections.append(section_dict)
                 elif matched_section_classifications or matched_section_tags:
                     # NOTE: This is a hack. ElasticSearch won't return
                     # highlighted section tags in some cases so this workaround
@@ -330,6 +357,7 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                             path="sections",
                             query=Q(reduce(operator.and_, section_queries)),
                             inner_hits={
+                                "name": "q_in_law",
                                 "highlight": {"fields": section_highlights}
                             },
                         )
@@ -354,6 +382,7 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                                 )
                             ),
                             inner_hits={
+                                "name": "q_in_section",
                                 "highlight": {
                                     "fields": {
                                         **section_highlights,
@@ -457,7 +486,6 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
         elif include_sections == 'false':
             include_sections = False
         all_laws = HighlightedLaws(search=search, sort=sort, include_sections=include_sections)
-
         paginator = Paginator(all_laws, settings.LAWS_PER_PAGE)
 
         page = self.request.GET.get("page", 1)
