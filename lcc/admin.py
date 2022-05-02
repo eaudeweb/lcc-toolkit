@@ -96,6 +96,13 @@ class BaseUserAdmin(UserAdmin):
     get_active.short_description = "Approved"
 
 
+class UserProfileInline(admin.StackedInline):
+    model = models.UserProfile
+    extra = 1
+    max_num = 1
+    min_num = 1
+
+
 class UserAdmin(BaseUserAdmin):
     search_fields = ["username", "first_name", "last_name"]
     list_display = (
@@ -113,6 +120,7 @@ class UserAdmin(BaseUserAdmin):
         "groups",
         ApprovedFilter,
     )
+    inlines = [UserProfileInline]
 
 
 @admin.register(models.UserProxy)
