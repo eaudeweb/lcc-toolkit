@@ -104,6 +104,19 @@ def _range_from_value(range, value):
     return next(val for val in range if min(val) <= truncate(value, 2) <= max(val))
 
 
+class LogicalCategory(models.Model):
+    name = models.CharField(max_length=1024)
+    code = models.IntegerField()
+
+    class Meta:
+        verbose_name = "Logical category"
+        verbose_name_plural = "Logical categories"
+        ordering = ["code"]
+
+    def __str__(self):
+        return self.name
+
+
 class TaxonomyTagGroup(models.Model):
     name = models.CharField(max_length=255)
 
@@ -133,6 +146,13 @@ class TaxonomyClassification(mptt.models.MPTTModel):
     details = models.TextField(null=True, default="")
     parent = mptt.models.TreeForeignKey(
         "self", null=True, blank=True, on_delete=models.CASCADE, related_name="children"
+    )
+    logical_category = models.ForeignKey(
+        LogicalCategory,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="taxonomy_classifications"
     )
 
     class Meta:

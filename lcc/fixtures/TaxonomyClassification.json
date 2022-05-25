@@ -11,7 +11,8 @@
         "lft": 1,
         "rght": 88,
         "tree_id": 1,
-        "level": 0
+        "level": 0,
+        "logical_category": 1
     }
 },
 {
@@ -671,7 +672,8 @@
         "lft": 1,
         "rght": 56,
         "tree_id": 6,
-        "level": 0
+        "level": 0,
+        "logical_category": 2
     }
 },
 {
@@ -1091,7 +1093,8 @@
         "lft": 1,
         "rght": 108,
         "tree_id": 7,
-        "level": 0
+        "level": 0,
+        "logical_category": 2
     }
 },
 {
@@ -1901,7 +1904,8 @@
         "lft": 1,
         "rght": 82,
         "tree_id": 8,
-        "level": 0
+        "level": 0,
+        "logical_category": 2
     }
 },
 {
@@ -2516,7 +2520,8 @@
         "lft": 1,
         "rght": 34,
         "tree_id": 9,
-        "level": 0
+        "level": 0,
+        "logical_category": 2
     }
 },
 {
@@ -2771,7 +2776,8 @@
         "lft": 1,
         "rght": 96,
         "tree_id": 10,
-        "level": 0
+        "level": 0,
+        "logical_category": 3
     }
 },
 {
@@ -3491,7 +3497,8 @@
         "lft": 1,
         "rght": 48,
         "tree_id": 11,
-        "level": 0
+        "level": 0,
+        "logical_category": 3
     }
 },
 {
@@ -3851,7 +3858,8 @@
         "lft": 1,
         "rght": 70,
         "tree_id": 12,
-        "level": 0
+        "level": 0,
+        "logical_category": 3
     }
 },
 {
@@ -4376,7 +4384,8 @@
         "lft": 1,
         "rght": 44,
         "tree_id": 13,
-        "level": 0
+        "level": 0,
+        "logical_category": 4
     }
 },
 {
@@ -4706,7 +4715,8 @@
         "lft": 1,
         "rght": 40,
         "tree_id": 2,
-        "level": 0
+        "level": 0,
+        "logical_category": 4
     }
 },
 {
@@ -5006,7 +5016,8 @@
         "lft": 1,
         "rght": 110,
         "tree_id": 3,
-        "level": 0
+        "level": 0,
+        "logical_category": 4
     }
 },
 {
@@ -5831,7 +5842,8 @@
         "lft": 1,
         "rght": 58,
         "tree_id": 4,
-        "level": 0
+        "level": 0,
+        "logical_category": 4
     }
 },
 {
@@ -6266,7 +6278,8 @@
         "lft": 1,
         "rght": 34,
         "tree_id": 5,
-        "level": 0
+        "level": 0,
+        "logical_category": 4
     }
 },
 {
@@ -6508,5 +6521,771 @@
         "tree_id": 5,
         "level": 2
     }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 487,
+  "fields": {
+    "name": "Fisheries and Climate Change",
+    "code": "14",
+    "legispro_code": "",
+    "details": "",
+    "parent": null,
+    "lft": 1,
+    "rght": 102,
+    "tree_id": 6,
+    "level": 0,
+    "logical_category": 3
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 489,
+  "fields": {
+    "name": "Designated government authority in charge of fisheries",
+    "code": "14.1",
+    "legispro_code": "",
+    "details": "",
+    "parent": 487,
+    "lft": 2,
+    "rght": 13,
+    "tree_id": 6,
+    "level": 1
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 490,
+  "fields": {
+    "name": "Fisheries management legislation",
+    "code": "14.2",
+    "legispro_code": "",
+    "details": "",
+    "parent": 487,
+    "lft": 28,
+    "rght": 45,
+    "tree_id": 6,
+    "level": 1
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 491,
+  "fields": {
+    "name": "Requirements for environmental and/or social impact assessment provisions that include climate change impacts",
+    "code": "14.3",
+    "legispro_code": "",
+    "details": "",
+    "parent": 487,
+    "lft": 46,
+    "rght": 49,
+    "tree_id": 6,
+    "level": 1
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 492,
+  "fields": {
+    "name": "Provisions aimed at reducing GHG emissions from the fisheries sector",
+    "code": "14.4",
+    "legispro_code": "",
+    "details": "Fisheries and aquaculture activities emit greenhouse gases (GHGs) during processing of feeds, fish capture or growth, processing, transportation and storage. Measures that can reduce GHG emissions in fisheries include supporting more efficient engines and larger propellers; better vessel shape and hull modifications; speed reductions; use of fishing gear that requires less fuel; and use of efficient LED lights for attracting fish. Measures for reducing GHG emissions from aquaculture operations include supporting the reduction of energy intensive feedstuffs, implementing requirements for climate sensitive feed management and, where appropriate, integration of pond aquaculture with agriculture.",
+    "parent": 487,
+    "lft": 50,
+    "rght": 57,
+    "tree_id": 6,
+    "level": 1
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 493,
+  "fields": {
+    "name": "Provisions ensuring security of fisheries tenure rights",
+    "code": "14.5",
+    "legispro_code": "",
+    "details": "Tenure defines who a user is and who has a legitimate right to a resource. The definition covers use, access and management rights, and not only ownership. An example of formal tenure rights in fisheries are vessel catch limits which restrict the amount of catch that a vessel can land for a given period or per trip. Examples of customary and traditional tenure systems in fishing communities are the right to fish in certain areas, use rights which are often tied to land tenure, or collective rights of community members to the natural commons.",
+    "parent": 487,
+    "lft": 58,
+    "rght": 65,
+    "tree_id": 6,
+    "level": 1
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 494,
+  "fields": {
+    "name": "Provisions on spatial planning for coastal areas",
+    "code": "14.6",
+    "legispro_code": "",
+    "details": "As the fisheries sector often competes with other sectors in a coastal area for space, both on land and water, coastal management planning also needs to account for these interactions by aiming to maximize the benefit from synergies and to reduce inconsistencies between different policies and sectors. Stakeholder involvement therefore should be both vertical and horizontal across sectors. Integrated Coastal Zone Planning involves planning for the use, development and protection of related spaces in a dynamic manner to achieve goals jointly established with user groups and regional and local fisheries authorities.",
+    "parent": 487,
+    "lft": 66,
+    "rght": 73,
+    "tree_id": 6,
+    "level": 1
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 495,
+  "fields": {
+    "name": "Provisions on spatial planning for inland fishing areas",
+    "code": "14.7",
+    "legispro_code": "",
+    "details": "The key requirements of spatial planning for inland fisheries are the identification of dedicated areas for aquaculture development (zoning); the location of specific sites; and the involvement of all relevant stakeholders in the selection process, including interest groups outside the aquaculture sector who share the resources.",
+    "parent": 487,
+    "lft": 74,
+    "rght": 77,
+    "tree_id": 6,
+    "level": 1
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 496,
+  "fields": {
+    "name": "Disaster risk management (DRM) and disaster risk reduction (DRR) for the fisheries sector",
+    "code": "14.8",
+    "legispro_code": "",
+    "details": "Disaster risk reduction (DRR) is the systematic development and application of policies, strategies and practices aimed at preventing new and reducing existing disaster risk and managing residual risk, all of which contribute to strengthening resilience and therefore to the achievement of sustainable development. Disaster risk management (DRM) is the application of disaster risk reduction policies and strategies to prevent new disaster risks, reduce existing disaster risk and manage residual risk, contribute to the strengthening of resilience and reduction of disaster losses. DRM involves the use of administrative decisions, organisation, operational skills and capacities to implement policies, strategies and coping capacities of the society and communities to lessen the impacts of natural hazards and related environmental and technological disasters. DRM is the application of DRR and DRR is the policy objective of DRM. For more info, see: https://www.undrr.org/terminology ",
+    "parent": 487,
+    "lft": 78,
+    "rght": 85,
+    "tree_id": 6,
+    "level": 1
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 497,
+  "fields": {
+    "name": "Financing and incentives for climate smart fisheries",
+    "code": "14.9",
+    "legispro_code": "",
+    "details": "There are a wide range of climate-smart approaches in fisheries, including aquaculture, such as: improving efficiency in the use of natural resources to produce fish; shifting to more sustainable management regimes; and implementing Payment for Environmental Services (PES) mechanisms to compensate people for income they might forego when their fishing, farming or other natural resource exploitation practices are restricted. For more information, see: http://www.fao.org/climate-smart-agriculture-sourcebook/production-resources/module-b4-fisheries/chapter-b4-4/en/",
+    "parent": 487,
+    "lft": 86,
+    "rght": 101,
+    "tree_id": 6,
+    "level": 1
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 498,
+  "fields": {
+    "name": "Aquaculture management legislation or provisions",
+    "code": "14.10",
+    "legispro_code": "",
+    "details": "",
+    "parent": 487,
+    "lft": 14,
+    "rght": 27,
+    "tree_id": 6,
+    "level": 1
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 499,
+  "fields": {
+    "name": "Mandate covering all types of fisheries",
+    "code": "14.1.1",
+    "legispro_code": "",
+    "details": "The term ‘fisheries’ includes saltwater, freshwater, wild or farmed systems (i.e. aquaculture).",
+    "parent": 489,
+    "lft": 3,
+    "rght": 4,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 500,
+  "fields": {
+    "name": "Requirements for consultation and coordination among authorities involved in fisheries",
+    "code": "14.1.2",
+    "legispro_code": "",
+    "details": "",
+    "parent": 489,
+    "lft": 5,
+    "rght": 6,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 501,
+  "fields": {
+    "name": "Duty to take climate change into account in fisheries plans/policies",
+    "code": "14.1.3",
+    "legispro_code": "",
+    "details": "",
+    "parent": 489,
+    "lft": 7,
+    "rght": 8,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 502,
+  "fields": {
+    "name": "Duty to collect and report on GHG emissions and removals from the fisheries sector",
+    "code": "14.1.4",
+    "legispro_code": "",
+    "details": "",
+    "parent": 489,
+    "lft": 9,
+    "rght": 10,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 503,
+  "fields": {
+    "name": "Duty to collect and report on climate impacts in the fisheries sector",
+    "code": "14.1.5",
+    "legispro_code": "",
+    "details": "Data on climate change impacts include, for example, data on ocean warming and acidification, rising sea levels, changes in seasonality, shifts in distribution of fish species, destruction of coral ecosystems and threats to the food security and livelihoods of small scale fishers and coastal communities.\n\nFor further information, refer to the FAO publication ‘Impacts of Climate Change on Fisheries and Aquaculture’ available at http://www.fao.org/3/CA0356EN/ca0356en.pdf .",
+    "parent": 489,
+    "lft": 11,
+    "rght": 12,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 504,
+  "fields": {
+    "name": "Principles and recommendations of the CCRF and/or the EAF reflected in legislation",
+    "code": "14.2.1",
+    "legispro_code": "",
+    "details": "The CCRF encompasses almost all aspects of fisheries and aquaculture management, setting generally agreed-upon principles and standards applicable to the conservation, management and development of all fisheries. It introduces a series of principles for fisheries, including precaution, cooperation and sustainability. For more information see pages 4-7 of: http://www.fao.org/3/v9878e/v9878e.pdf .\n\nThe EAF is an approach focused on promoting an improved understanding of fisheries and its interactions with biodiversity, ecosystems, habitats and humans, so that planning, management and other processes are able to provide the most appropriate measures for a cost-efficient, resilient and sustainable fisheries sector. For more information, see: http://www.fao.org/3/a-y4773e.pdf",
+    "parent": 490,
+    "lft": 29,
+    "rght": 30,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 505,
+  "fields": {
+    "name": "Provisions on adaptive management",
+    "code": "14.2.2",
+    "legispro_code": "",
+    "details": "An example of an adaptive management provision could involve allowing an activity to commence on a small scale or for a short period with support measures to allow for a determination of its impacts on the environment. Such an activity should be monitored so as to inform future development of the activity.",
+    "parent": 490,
+    "lft": 31,
+    "rght": 32,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 506,
+  "fields": {
+    "name": "Requirements for fisheries management plans to consider climate change goals and impacts",
+    "code": "14.2.3",
+    "legispro_code": "",
+    "details": "The frequency and severity of extreme events, along with shifts in species distributions and changes in productivity are climate change-related impacts. Climate change goals are directed at adaptation, mitigation of emissions, risk-avoidance and resilience to such impacts. Measures used to achieve climate change goals could include strategies for prevention of over-fishing, reduction in use of energy-intensive feedstuffs, improved feed management, disaster risk management, early warning systems, reduction of vessel emissions, improved fuel efficiency, diversification of livelihoods and promotion of aquaculture crop insurance.\n\nInformation that feeds into a fishery management plan may include: the area of operation of the fishery and its jurisdiction; the various stakeholders; the gear and vessel types to be employed in the fishery; the history, management and socio-economic importance of the fishery; relevant information about the life histories of species; and the effects of the fishery on the recruitment, abundance, spatial distribution and age or size structure of the target species as far as possible.\n\nFor further information, refer to the FAO publication ‘Impacts of Climate Change on fisheries and aquaculture: Synthesis of urgent knowledge, adaptation and mitigation options’, available at http://www.fao.org/3/i9705en/i9705en.pdf .",
+    "parent": 490,
+    "lft": 33,
+    "rght": 34,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 507,
+  "fields": {
+    "name": "Provisions promoting integrated management of aquatic ecosystems/resources",
+    "code": "14.2.4",
+    "legispro_code": "",
+    "details": "Integrated management involves comprehensive planning and regulation of human activities aiming for minimal user conflict and long-term sustainability. It implies the use of a collaborative/participative approach involving the main stakeholders in a flexible, responsible and transparent planning process, and is respectful of existing rights and duties. Taking account of uncertainty, it complies with the precautionary approach. It accounts for natural and economic areas and not only administrative or political ones. It specifically identifies ecosystem-oriented objectives and indicators. As opposed to sectoral approaches, in the context of fisheries, it recognises the linkages between inland, coastal and ocean uses, uses integrated data collection, information and research, and recognizes traditional knowledge.\n\nExamples of such provisions might be those related to allowing an activity to commence on a small scale or for a short period so that its effects on the environment and existing interests can be monitored. Assessed effects can then inform the consideration of whether or not to continue the allowed activity, with or without modifications. The Ecosystem Approach to Fisheries is underpinned by adaptive management approaches.",
+    "parent": 490,
+    "lft": 35,
+    "rght": 36,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 508,
+  "fields": {
+    "name": "Provisions on devolved decision-making on fisheries management",
+    "code": "14.2.5",
+    "legispro_code": "",
+    "details": "",
+    "parent": 490,
+    "lft": 37,
+    "rght": 38,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 509,
+  "fields": {
+    "name": "Provisions on public participation in the decision-making process on fisheries sector management",
+    "code": "14.2.6",
+    "legispro_code": "",
+    "details": "",
+    "parent": 490,
+    "lft": 39,
+    "rght": 40,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 510,
+  "fields": {
+    "name": "Provisions on access to information",
+    "code": "14.2.7",
+    "legispro_code": "",
+    "details": "",
+    "parent": 490,
+    "lft": 41,
+    "rght": 42,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 511,
+  "fields": {
+    "name": "Provisions on access to justice and dispute resolution mechanisms",
+    "code": "14.2.8",
+    "legispro_code": "",
+    "details": "",
+    "parent": 490,
+    "lft": 43,
+    "rght": 44,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 512,
+  "fields": {
+    "name": "Environmental and/or social impact assessment provisions applicable for all fisheries",
+    "code": "14.3.1",
+    "legispro_code": "",
+    "details": "",
+    "parent": 491,
+    "lft": 47,
+    "rght": 48,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 513,
+  "fields": {
+    "name": "Provisions covering GHG emissions from the whole value chain",
+    "code": "14.4.1",
+    "legispro_code": "",
+    "details": "",
+    "parent": 492,
+    "lft": 51,
+    "rght": 52,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 514,
+  "fields": {
+    "name": "Provisions to promote energy efficiency or renewable energy in fisheries operations",
+    "code": "14.4.2",
+    "legispro_code": "",
+    "details": "Shifting to more sustainable and climate-friendly management regimes will involve costs which may be unevenly distributed.  Laws may create economic or non-economic based incentive mechanisms. Such mechanisms could include subsidies on the purchase of LED light equipment for use in fishing, or setting up aquaculture certification systems and eco-labelling, which are market-based tools for mitigating negative environmental impacts and enhancing societal and consumer benefits. Payment for Environmental Services (PES) mechanisms provide a way to compensate people for income they might forego when their fishing, fish-farming or other natural resource exploitation practices are restricted and to reward them for contributing to the common good.",
+    "parent": 492,
+    "lft": 53,
+    "rght": 54,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 515,
+  "fields": {
+    "name": "Provisions to conserve marine protected areas for carbon storage",
+    "code": "14.4.3",
+    "legispro_code": "",
+    "details": "Carbon storage (or blue carbon) refers to carbon that is sequestered in coastal vegetation systems such as mangrove forests, seagrass beds and salt marshes. Such areas have the potential to remove and store/sequester atmospheric carbon at much greater rates than terrestrial ecosystems.",
+    "parent": 492,
+    "lft": 55,
+    "rght": 56,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 516,
+  "fields": {
+    "name": "Principles and recommendations of the VGGT reflected in legislation",
+    "code": "14.5.1",
+    "legispro_code": "",
+    "details": "The VGGT principles of implementation include: human dignity, non-discrimination, equity and justice, gender equality, holistic and sustainable approach, consultation and participation, rule of law, transparency, accountability and continuous improvement.\n\nFor further information see: “The VGGT at a Glance” at http://www.fao.org/3/a-i3016e.pdf and “The VGGT and the Law: A Guide for Lawyers and Other Legal Service Providers” at http://www.fao.org/3/a-i5449e.pdf .",
+    "parent": 493,
+    "lft": 59,
+    "rght": 60,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 517,
+  "fields": {
+    "name": "Fisheries tenure rights provisions applicable to all fisheries in the country",
+    "code": "14.5.2",
+    "legispro_code": "",
+    "details": "",
+    "parent": 493,
+    "lft": 61,
+    "rght": 62,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 518,
+  "fields": {
+    "name": "Provisions for addressing climate change impacts on fisheries tenure rights",
+    "code": "14.5.3",
+    "legispro_code": "",
+    "details": "Climate change impacts addressed by such provisions could include changes in stock distribution/availability, sea level rise, disruption of coastal ecosystems and livelihoods of related populations.",
+    "parent": 493,
+    "lft": 63,
+    "rght": 64,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 519,
+  "fields": {
+    "name": "Requirements for climate change considerations in spatial planning for coastal areas",
+    "code": "14.6.1",
+    "legispro_code": "",
+    "details": "Incorporating climate change considerations into a spatial planning framework allows for better preparedness, improved response capacity and, ultimately, a reduced vulnerability of marine socio-ecological systems. It is essentially informed by information and data on climate change impacts and expected impacts of all activities which may take place in a given space. Spatial planning can support climate change risk avoidance, resilience and adaptation of operators in the sector.",
+    "parent": 494,
+    "lft": 67,
+    "rght": 68,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 520,
+  "fields": {
+    "name": "Restrictions on the use of mangroves",
+    "code": "14.6.2",
+    "legispro_code": "",
+    "details": "Mangrove ecosystems provide a habitat for aquatic and terrestrial flora and fauna, act as carbon sinks and provide other important ecosystem services. Conversion of mangroves for coastal aquaculture is a key driver of mangrove loss. Mangroves are also threatened by sea level rise. Protection of mangroves can take the form of total or partial bans on: fishing; clearing mangroves for aquaculture or other activities such as tourism; or harvesting of mangrove trees for fuel and timber. In some instances, only non-destructive forestry, fishery and aquaculture practices are permitted, while harvesting of mangrove timber for poles, firewood and charcoal production is allowed to occur only on a rotational basis. A widespread legal mechanism for protection of mangroves is the designation by government of marine protected areas for biodiversity, conservation or protection purposes.",
+    "parent": 494,
+    "lft": 69,
+    "rght": 70,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 521,
+  "fields": {
+    "name": "Regulations on land conversion to aquaculture",
+    "code": "14.6.3",
+    "legispro_code": "",
+    "details": "Inundated forests are forested areas periodically flooded during the flood season. Inundated forests represent an important habitat for fish, which find among the flooded trees a temporary breeding and nursing habitat as well as rich feeding grounds.",
+    "parent": 494,
+    "lft": 71,
+    "rght": 72,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 522,
+  "fields": {
+    "name": "Requirements for climate change considerations in spatial planning for inland fishing areas",
+    "code": "14.7.1",
+    "legispro_code": "",
+    "details": "",
+    "parent": 495,
+    "lft": 75,
+    "rght": 76,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 523,
+  "fields": {
+    "name": "Provisions on monitoring and early warning systems for climate-induced disasters",
+    "code": "14.8.1",
+    "legispro_code": "",
+    "details": "Early warning mechanisms provide early and relevant information on potential or actual disasters and their impact. The establishment of early warning systems for alerting communities to oncoming cyclones, tsunamis or other natural hazards, which are commonly attributed to climate change, is important for saving lives and limiting damage to fisheries operations caused by natural disasters in coastal areas. Ensuring that there are appropriate shelters and evacuation plans are other key aspects of early warning systems.",
+    "parent": 496,
+    "lft": 79,
+    "rght": 80,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 524,
+  "fields": {
+    "name": "Provisions on disaster response measures for fisheries",
+    "code": "14.8.2",
+    "legispro_code": "",
+    "details": "",
+    "parent": 496,
+    "lft": 81,
+    "rght": 82,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 525,
+  "fields": {
+    "name": "Provisions on vulnerability reduction and climate resilience",
+    "code": "14.8.3",
+    "legispro_code": "",
+    "details": "Such provisions could include those related to safety at sea, climate resilient infrastructure and social protection schemes for fishers. Safety at sea consists of several interrelated components such as minimum standards for boat construction, rules for on-board safety equipment, fishing regulations, development of communication systems, and search and rescue operations. Climate resilient infrastructure includes building fish markets that are windstorm resistant and making small craft beachable or trailerable. Social protection can be achieved through microfinance services which have shown to be important components of coping strategies and effective tools for decreasing and sharing risks in aquaculture and fisheries. Credit is often used to implement better management practices and reduce risks, while insurance is increasingly used to guarantee repayment of loans and enable fishers and aquaculturists to restart their productive activities after a disaster.",
+    "parent": 496,
+    "lft": 83,
+    "rght": 84,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 526,
+  "fields": {
+    "name": "Incentives for lowering GHG emissions from the fisheries value chain",
+    "code": "14.9.1",
+    "legispro_code": "",
+    "details": "Shifting to more sustainable and climate-friendly management regimes will involve costs which may be unevenly distributed.  Laws may create economic or non-economic based incentive mechanisms. Such mechanisms could include subsidies on the purchase of LED light equipment for use in fishing, or setting up aquaculture certification systems and eco-labelling, which are market-based tools for mitigating negative environmental impacts and enhancing societal and consumer benefits. Payment for Environmental Services (PES) mechanisms provide a way to compensate people for income they might forego when their fishing, fish-farming or other natural resource exploitation practices are restricted and to reward them for contributing to the common good.",
+    "parent": 497,
+    "lft": 87,
+    "rght": 88,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 527,
+  "fields": {
+    "name": "Provisions on funds and responsibilities for research and development on the sustainability of the fisheries sector",
+    "code": "14.9.2",
+    "legispro_code": "",
+    "details": "The Ecosystem Approach to Fisheries and Ecosystem Approach to Aquaculture and responsible fisheries policy requires a sound scientific basis. Short-term measures to cope with climate change effects ultimately need scientific and technological improvements to support long-term solutions. Investments in research and green technology are needed to develop sustainability and support climate change adaptation and mitigation. Legislation can establish fisheries research and development institutions, levy fees on fishers and aquaculturists to fund fisheries research and development, establish fisheries research and development funds or make provision for a certain percentage of the national budget to be set aside to fund fisheries research and development.",
+    "parent": 497,
+    "lft": 89,
+    "rght": 90,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 528,
+  "fields": {
+    "name": "Fund for climate smart fisheries approaches",
+    "code": "14.9.3",
+    "legispro_code": "",
+    "details": "",
+    "parent": 497,
+    "lft": 91,
+    "rght": 92,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 529,
+  "fields": {
+    "name": "Subsidies for climate smart fisheries",
+    "code": "14.9.4",
+    "legispro_code": "",
+    "details": "",
+    "parent": 497,
+    "lft": 93,
+    "rght": 94,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 530,
+  "fields": {
+    "name": "Certification/labelling schemes for fisheries products",
+    "code": "14.9.5",
+    "legispro_code": "",
+    "details": "",
+    "parent": 497,
+    "lft": 95,
+    "rght": 96,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 531,
+  "fields": {
+    "name": "Loans and credits for climate smart fisheries",
+    "code": "14.9.6",
+    "legispro_code": "",
+    "details": "",
+    "parent": 497,
+    "lft": 97,
+    "rght": 98,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 532,
+  "fields": {
+    "name": "Training for fisheries owners and operators on climate smart fisheries",
+    "code": "14.9.7",
+    "legispro_code": "",
+    "details": "",
+    "parent": 497,
+    "lft": 99,
+    "rght": 100,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 533,
+  "fields": {
+    "name": "Principles and recommendations of the CCRF and the EAA reflected in aquaculture legislation or provisions",
+    "code": "14.10.1",
+    "legispro_code": "",
+    "details": "The CCRF deals with aquaculture more specifically at Article 9. For more information, see: http://www.fao.org/3/v9878e/v9878e.pdf\n\nAn Ecosystem Approach to Aquaculture (EAA) is a strategy for the integration of the activity within the wider ecosystem in such a way that it promotes sustainable development, equity, and resilience of interlinked social and ecological systems. Under the EAA, the lack of complete scientific knowledge does not justify the enactment of cost-effective measures to prevent environmental and social degradation. For more information, see: http://www.fao.org/3/i1750e/i1750e00.htm",
+    "parent": 498,
+    "lft": 15,
+    "rght": 16,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 534,
+  "fields": {
+    "name": "System of authorization for aquaculture operations with entry points for climate change considerations",
+    "code": "14.10.2",
+    "legispro_code": "",
+    "details": "A number of preconditions for the issuance of a license can be set in a licensing system in order to increase the possibility for positive climate change outcomes. A licensing or permit system could take into consideration the requirements of Article 9 of the CCRF. For more information, see http://www.fao.org/3/v9878e/v9878e.pdf",
+    "parent": 498,
+    "lft": 17,
+    "rght": 18,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 535,
+  "fields": {
+    "name": "Duty of operator to mitigate environmental impacts of aquaculture operations",
+    "code": "14.10.3",
+    "legispro_code": "",
+    "details": "",
+    "parent": 498,
+    "lft": 19,
+    "rght": 20,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 536,
+  "fields": {
+    "name": "Provisions on climate sensitive management of fish farms",
+    "code": "14.10.4",
+    "legispro_code": "",
+    "details": "Legislation can stipulate that fish farms be managed in a climate sensitive way to ensure that they can adapt to climate change and reduce their emissions of GHG. For example, legislation can require that certain measures, such as farming a wider variety of species or introducing new or better-adapted strains, be incorporated into a fisheries management plan or, if applicable, in an aquaculture management plan. Further, requirements that flooded land unsuitable for agriculture be used for aquaculture, or that former rice farming areas unsuitable for further farming due to salt intrusion be repurposed for shrimp farming, or prohibitions on fish farming in areas prone to sea-level rise, can be introduced through technical regulations issued under agricultural zoning laws or under specific aquaculture zoning laws, if these exist. Mitigation measures can include supporting the reduction of energy intensive feedstuffs, requirements for climate sensitive feed management and, where appropriate, integration of pond aquaculture with agriculture. Such measures can also be integrated into fisheries and aquaculture management plans.",
+    "parent": 498,
+    "lft": 21,
+    "rght": 22,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 537,
+  "fields": {
+    "name": "Provisions on feed management considering environmental impacts",
+    "code": "14.10.5",
+    "legispro_code": "",
+    "details": "Feed management practices play a significant role in the environmental impacts of a farming operation. Overfeeding, for example, is a major cause of excess nutrients entering the environment, and can cause reduced feed efficiencies, increased waste and environmental degradation. Poor feed handling, storage and spoilage prior to ingestion will result in poor feed efficiencies and increased environmental degradation. Selecting feedstuffs with lower associated emissions such as locally-sourced oilseeds, which produce much lower emissions than fishmeal and fish oil sourced from capture fisheries, can lower the carbon footprint of a farming operation. In addition, technical specifications on the content of feed (e.g. drugs) may be introduced. Such measures may be specified in technical regulations issued under primary aquaculture legislation and may be included in a licensing /permit system for aquaculture operations.",
+    "parent": 498,
+    "lft": 23,
+    "rght": 24,
+    "tree_id": 6,
+    "level": 2
+  }
+},
+{
+  "model": "lcc.taxonomyclassification",
+  "pk": 538,
+  "fields": {
+    "name": "Provisions on aquatic animal health and biosecurity",
+    "code": "14.10.6",
+    "legispro_code": "",
+    "details": "Biosecurity in aquaculture consists of activities and measures that minimize the risk of introducing an infectious disease and spreading it to animals at a facility and the risk that diseased animals or infectious agents will leave a facility and spread to other sites and to other susceptible species. Such measures can be implemented by a Biosecurity Authority, including Port (air and sea) authorities with quarantine facilities. Legislative measures can regulate the import and export of fish, set minimum sanitary requirements, set import health standards, prescribe penalties, grant emergency powers to biosecurity officials to deal with any incursions of contaminated or invasive species, which may include prohibiting harvesting of fish, and stipulate measures for dealing with dead or diseased fish. Aquaculture legislation or, if this does not exist, primary fisheries legislation, can also introduce reporting requirements on fish health, i.e. on aquatic animal and plant (e.g. seaweed) disease to the appropriate authority.",
+    "parent": 498,
+    "lft": 25,
+    "rght": 26,
+    "tree_id": 6,
+    "level": 2
+  }
 }
 ]

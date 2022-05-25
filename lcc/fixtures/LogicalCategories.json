@@ -1,0 +1,34 @@
+[
+  {
+    "model": "lcc.logicalcategory",
+    "pk": 1,
+    "fields": {
+        "name": "Overarching climate laws",
+        "code": 2
+    }
+  },
+  {
+    "model": "lcc.logicalcategory",
+    "pk": 2,
+    "fields": {
+        "name": "Energy",
+        "code": 2
+    }
+  },
+  {
+    "model": "lcc.logicalcategory",
+    "pk": 3,
+    "fields": {
+        "name": "Agriculture",
+        "code": 3
+    }
+  },
+  {
+    "model": "lcc.logicalcategory",
+    "pk": 4,
+    "fields": {
+        "name": "Urban planning",
+        "code": 4
+    }
+  }
+]
