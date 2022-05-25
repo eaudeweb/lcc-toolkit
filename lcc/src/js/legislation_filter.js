@@ -160,7 +160,6 @@ $(document).ready(function() {
   let law_types = [];
   let tags = [];
 
-  let autocomplete = [];
   $('[data-toggle="popover"]').popover()
   $('.popoverDetails').on({
     'click': function() {
@@ -242,51 +241,6 @@ $(document).ready(function() {
     let int_slider_values = [parseInt($('#fromYear').val()), parseInt($('#toYear').val())]
     $('#yearSlider').slider('setValue', int_slider_values)
   });
-
-
-  // Activate autocomplete
-
-  $("#classificationsSelect > li.first-level > span > label").each(function(){
-    autocomplete.push({
-      id: $(this).attr('for'),
-      name: $(this).html()
-    });
-  });
-
-  $("#tagsSelect > li label").each(function(){
-    autocomplete.push({
-      id: $(this).attr('for'),
-      name: $(this).html()
-    });
-  });
-
-  $("#countrySelect").next().find('li.multiple label').each(function(){
-    autocomplete.push({
-      id: $(this).find('input').val(),
-      name: $(this).text()
-    });
-  });
-
-  $('#textSearchInput').easyAutocomplete({
-    data: autocomplete,
-    getValue: 'name',
-    list: {
-      maxNumberOfElements: 5,
-      match: {
-        enabled: true
-      },
-      onChooseEvent: function() {
-        let id = $("#textSearchInput").getSelectedItemData().id;
-        if(id.includes("classification") || id.includes("tag")){
-          $("#" + id).click();
-        } else {
-          $("input[value='"+id+"']").click();
-        }
-        $("#textSearchInput").val('').change();
-      }
-    }
-  });
-  $('div.easy-autocomplete').removeAttr('style');
 
   // Activate select/deselect links for classification filters
 

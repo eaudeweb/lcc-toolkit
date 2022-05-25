@@ -8,8 +8,11 @@ from lcc.models import (
     Gap,
     Legislation,
     LegislationSection,
+    LogicalCategory
 )
 from rest_framework import serializers
+from django.db.models import IntegerField
+from django.db.models.functions import Cast
 
 
 class QuestionAnswerSerializer(serializers.ModelSerializer):
@@ -98,6 +101,28 @@ class ClassificationSerializer(serializers.ModelSerializer):
 
         if new_query:
             return SimpleClassificationSerializer(new_query, many=True).data
+
+
+class ClassificationWithCategorySerializer(serializers.ModelSerializer):
+    classifications = serializers.SerializerMethodField("_get_classifications")
+
+    class Meta:
+        model = LogicalCategory
+        fields = ("id", "name", "classifications")
+
+    def _get_classifications(self, obj):
+        queryset = obj.taxonomy_classifications.annotate(
+            code_as_int=Cast("code", output_field=IntegerField())
+        ).order_by("code_as_int")
+        new_queryset = queryset
+        for top_level in queryset:
+            flag = False
+            for second_level in top_level.get_children().order_by("code"):
+                if Question.objects.filter(classification=second_level):
+                    flag = True
+            if not flag:
+                new_queryset = new_queryset.exclude(pk=top_level.pk)
+        return ClassificationSerializer(new_queryset, many=True).data
 
 
 class TagsSerializer(serializers.ModelSerializer):
