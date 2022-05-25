@@ -134,6 +134,11 @@ api_patterns = [
         views.api.ClassificationViewSet.as_view(),
         name="classification",
     ),
+    path(
+        "classification-cat/",
+        views.api.ClassificationWithCategoryListView.as_view(),
+        name="classification-cat",
+    ),
     path("answers/", views.api.AnswerList.as_view(), name="answers_list_create"),
     path(
         "answers/<int:pk>/", views.api.AnswerDetail.as_view(), name="answers_get_update"
