@@ -120,6 +120,14 @@ class UserAdmin(BaseUserAdmin):
         "groups",
         ApprovedFilter,
     )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': (
+                'email', 'password1', 'password2', 'first_name', 'last_name',
+                'is_superuser', 'is_staff')}
+        ),
+    )
     inlines = [UserProfileInline]
 
 
@@ -159,6 +167,10 @@ class LegislationSectionAdmin(admin.ModelAdmin):
         ).order_by("code_order_fix")
 
 
+class StaticPageAdmin(admin.ModelAdmin):
+    list_display = ("__str__", "last_modified")
+
+
 # Register your models here.
 admin.site.register(models.Legislation, LegislationAdmin)
 admin.site.register(models.LegislationSection, LegislationSectionAdmin)
@@ -174,6 +186,8 @@ admin.site.register(models.Gap)
 admin.site.register(models.Question)
 admin.site.register(models.Assessment)
 admin.site.register(models.Answer)
+admin.site.register(models.LogicalCategory)
+admin.site.register(models.StaticPage, StaticPageAdmin)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
