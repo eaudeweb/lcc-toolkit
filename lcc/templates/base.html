@@ -90,7 +90,7 @@
             </li>
 
             <li>
-              <a title="Not implemented in this version." class="disabled" href="">
+              <a class="{% active 'lessons_learned' %}" href="{% url 'lcc:lessons_learned' %}">
                 Lessons learned
               </a>
             </li>
@@ -136,22 +136,26 @@
  <section class="footer-section">
     <div class="container">
       <div class="footer-container">
-        <div class="footer-desc">
-          The information provided on this website does not, and is not intended to, constitute legal advice; instead, all information, content, and materials available on this site are for general informational purposes only. Information on this website may not constitute the most up-to-date legal or other information and no liability is assumed for the accuracy or uses of information provided. Readers of this website should contact their legal counsel to obtain advice with respect to any particular legal matter.
-          <br>
-          The designations employed and the presentation of material in this website do not imply the expression of any opinion whatsoever on the part of the UN Environment Programme, the UNFCCC secretariat, the Commonwealth Secretariat and their partners concerning the legal status of any country, territory, city or area or of its authorities, or concerning the delimitation of its frontiers or boundaries. The term “country” as used in this material also refers, as appropriate, to territories or areas.
-        </div>
-        <div class="footer-logos flex">
-          <a href="http://thecommonwealth.org/">
-              <img style="width: 148px;" src="{% static "img/peace.png" %}" />
-          </a>
-          <a href="http://www.unep.org">
-            <img style="width: 91px;" src="{% static "img/unep.png" %}" />
-          </a>
-          <a href="https://unfccc.int">
-            <img style="width: 200px; margin-left: 15px;" src="{% static "img/unfccc.png" %}" />
-          </a>
-        </div>
+        {% if footer_page %}
+          {{ footer_page.text|safe }}
+        {% else %}
+          <div class="footer-desc">
+            The information provided on this website does not, and is not intended to, constitute legal advice; instead, all information, content, and materials available on this site are for general informational purposes only. Information on this website may not constitute the most up-to-date legal or other information and no liability is assumed for the accuracy or uses of information provided. Readers of this website should contact their legal counsel to obtain advice with respect to any particular legal matter.
+            <br>
+            The designations employed and the presentation of material in this website do not imply the expression of any opinion whatsoever on the part of the UN Environment Programme, the UNFCCC secretariat, the Commonwealth Secretariat and their partners concerning the legal status of any country, territory, city or area or of its authorities, or concerning the delimitation of its frontiers or boundaries. The term “country” as used in this material also refers, as appropriate, to territories or areas.
+          </div>
+          <div class="footer-logos flex">
+            <a href="http://thecommonwealth.org/">
+                <img style="width: 148px;" src="{% static "img/peace.png" %}" />
+            </a>
+            <a href="http://www.unep.org">
+              <img style="width: 91px;" src="{% static "img/unep.png" %}" />
+            </a>
+            <a href="https://unfccc.int">
+              <img style="width: 200px; margin-left: 15px;" src="{% static "img/unfccc.png" %}" />
+            </a>
+          </div>
+        {% endif %}
       </div>
     </div>
   </section>

@@ -191,6 +191,7 @@ def crash_me(request):
 urlpatterns = [
     path("", views.base.HomePageView.as_view(), name="home_page"),
     path("about-us/", views.base.AboutUsView.as_view(), name="about_us"),
+    path("lessons-learned/", views.base.LessonsLearnedView.as_view(), name="lessons_learned"),
     path("", include((auth_patterns, app_name), namespace="auth")),
     path("api/", include((api_patterns, app_name), namespace="api")),
     path("crashme/", crash_me, name="crashme"),

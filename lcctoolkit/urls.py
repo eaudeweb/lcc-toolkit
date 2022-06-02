@@ -9,6 +9,7 @@ urlpatterns = (
     [
         url(r"^admin/", admin.site.urls),
         url(r"^", include("lcc.urls", namespace="lcc")),
+        url('tinymce/', include('tinymce.urls')),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

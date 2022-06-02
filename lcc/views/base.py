@@ -46,6 +46,43 @@ class TaxonomyFormMixin:
 class HomePageView(views.generic.TemplateView):
     template_name = "home.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        static_page = models.StaticPage.objects.filter(
+            page=models.StaticPage.HOMEPAGE
+        ).first()
+
+        context["static_page"] = static_page
+
+        return context
+
 
 class AboutUsView(views.generic.TemplateView):
     template_name = "about_us.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        static_page = models.StaticPage.objects.filter(
+            page=models.StaticPage.ABOUT_US
+        ).first()
+
+        context["static_page"] = static_page
+
+        return context
+
+
+class LessonsLearnedView(views.generic.TemplateView):
+    template_name = "lessons_learned.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        static_page = models.StaticPage.objects.filter(
+            page=models.StaticPage.LESSONS_LEARNED
+        ).first()
+
+        context["static_page"] = static_page
+
+        return context

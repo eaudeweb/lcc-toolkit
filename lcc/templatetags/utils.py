@@ -14,6 +14,10 @@ def active(context, *args):
     if resolver.url_name == "about_us":
         return ""
 
-    if set(resolver.namespaces).issubset(args):
+    if resolver.url_name == "lessons_learned":
+        if not set(resolver.namespaces).issubset(args):
+            return "active"
+    elif set(resolver.namespaces).issubset(args):
         return "active"
+
     return ""

@@ -8,6 +8,7 @@ import mptt.models
 from mptt.managers import TreeManager
 from operator import itemgetter
 from rolepermissions.roles import get_user_roles
+from tinymce.models import HTMLField
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -938,3 +939,35 @@ class UserProxy(User):
         proxy = True
         verbose_name = "Pending user approval"
         verbose_name_plural = "Pending users approval"
+
+
+class StaticPage(models.Model):
+    ABOUT_US = 0
+    FOOTER = 1
+    HOMEPAGE = 2
+    LESSONS_LEARNED = 3
+
+    PAGES = (
+      (ABOUT_US, "About us"),
+      (FOOTER, "Footer"),
+      (HOMEPAGE, "Homepage"),
+      (LESSONS_LEARNED, "Lessons learned")
+    )
+
+    text = HTMLField()
+    last_modified = models.DateTimeField(auto_now=True)
+    page = models.IntegerField(
+        choices=PAGES,
+        blank=False,
+        null=False,
+        default=FOOTER,
+        help_text="Page location"
+    )
+
+    class Meta:
+        ordering = ["page", "last_modified"]
+        verbose_name = "Static page"
+        verbose_name_plural = "Static pages"
+
+    def __str__(self):
+        return self.get_page_display()
