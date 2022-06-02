@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "mptt",
     "captcha",
+    "tinymce",
     "lcc",
 ]
 
@@ -65,6 +66,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "lcc.context.sentry",
                 "lcc.context.ga_tracking_id",
+                "lcc.context.footer_page"
             ]
         },
     },
@@ -139,3 +141,16 @@ LEGISPRO_PASS = env("LEGISPRO_PASS")
 
 RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+
+TINYMCE_DEFAULT_CONFIG = {
+    "theme": "silver",
+    "height": 500,
+    "menubar": False,
+    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
+    "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
+    "code,help,wordcount",
+    "toolbar": "undo redo | formatselect | "
+    "bold italic backcolor | alignleft aligncenter "
+    "alignright alignjustify | bullist numlist outdent indent | "
+    "removeformat | help",
+}

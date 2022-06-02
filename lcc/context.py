@@ -1,4 +1,5 @@
 from django.conf import settings
+from lcc.models import StaticPage
 
 
 def sentry(request):
@@ -13,3 +14,8 @@ def sentry(request):
 
 def ga_tracking_id(request):
     return {"ga_tracking_id": getattr(settings, "GA_TRACKING_ID", "")}
+
+
+def footer_page(request):
+    footer = StaticPage.objects.filter(page=StaticPage.FOOTER).first()
+    return {"footer_page": footer}

@@ -8,6 +8,7 @@ import mptt.models
 from mptt.managers import TreeManager
 from operator import itemgetter
 from rolepermissions.roles import get_user_roles
+from tinymce.models import HTMLField
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -104,6 +105,19 @@ def _range_from_value(range, value):
     return next(val for val in range if min(val) <= truncate(value, 2) <= max(val))
 
 
+class LogicalCategory(models.Model):
+    name = models.CharField(max_length=1024)
+    code = models.IntegerField()
+
+    class Meta:
+        verbose_name = "Logical category"
+        verbose_name_plural = "Logical categories"
+        ordering = ["code"]
+
+    def __str__(self):
+        return self.name
+
+
 class TaxonomyTagGroup(models.Model):
     name = models.CharField(max_length=255)
 
@@ -133,6 +147,13 @@ class TaxonomyClassification(mptt.models.MPTTModel):
     details = models.TextField(null=True, default="")
     parent = mptt.models.TreeForeignKey(
         "self", null=True, blank=True, on_delete=models.CASCADE, related_name="children"
+    )
+    logical_category = models.ForeignKey(
+        LogicalCategory,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="taxonomy_classifications"
     )
 
     class Meta:
@@ -918,3 +939,35 @@ class UserProxy(User):
         proxy = True
         verbose_name = "Pending user approval"
         verbose_name_plural = "Pending users approval"
+
+
+class StaticPage(models.Model):
+    ABOUT_US = 0
+    FOOTER = 1
+    HOMEPAGE = 2
+    LESSONS_LEARNED = 3
+
+    PAGES = (
+      (ABOUT_US, "About us"),
+      (FOOTER, "Footer"),
+      (HOMEPAGE, "Homepage"),
+      (LESSONS_LEARNED, "Lessons learned")
+    )
+
+    text = HTMLField()
+    last_modified = models.DateTimeField(auto_now=True)
+    page = models.IntegerField(
+        choices=PAGES,
+        blank=False,
+        null=False,
+        default=FOOTER,
+        help_text="Page location"
+    )
+
+    class Meta:
+        ordering = ["page", "last_modified"]
+        verbose_name = "Static page"
+        verbose_name_plural = "Static pages"
+
+    def __str__(self):
+        return self.get_page_display()

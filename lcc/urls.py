@@ -134,6 +134,11 @@ api_patterns = [
         views.api.ClassificationViewSet.as_view(),
         name="classification",
     ),
+    path(
+        "classification-cat/",
+        views.api.ClassificationWithCategoryListView.as_view(),
+        name="classification-cat",
+    ),
     path("answers/", views.api.AnswerList.as_view(), name="answers_list_create"),
     path(
         "answers/<int:pk>/", views.api.AnswerDetail.as_view(), name="answers_get_update"
@@ -186,6 +191,7 @@ def crash_me(request):
 urlpatterns = [
     path("", views.base.HomePageView.as_view(), name="home_page"),
     path("about-us/", views.base.AboutUsView.as_view(), name="about_us"),
+    path("lessons-learned/", views.base.LessonsLearnedView.as_view(), name="lessons_learned"),
     path("", include((auth_patterns, app_name), namespace="auth")),
     path("api/", include((api_patterns, app_name), namespace="api")),
     path("crashme/", crash_me, name="crashme"),

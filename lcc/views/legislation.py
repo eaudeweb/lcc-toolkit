@@ -503,6 +503,9 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         group_tags = models.TaxonomyTagGroup.objects.all()
+        logical_categories = models.LogicalCategory.objects.prefetch_related(
+            "taxonomy_classifications"
+        )
         top_classifications = (
             models.TaxonomyClassification.objects.filter(level=0)
             .extra(
@@ -529,6 +532,7 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                 "laws": laws,
                 "group_tags": group_tags,
                 "top_classifications": top_classifications,
+                "logical_categories": logical_categories,
                 "countries": countries,
                 "regions": regions,
                 "sub_regions": sub_regions,

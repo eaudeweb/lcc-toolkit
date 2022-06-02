@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+{% load static %} 
+{% block page-title %}About us{% endblock %} 
+{% block content-wrapper-class %}about_us{% endblock %}
+
+{% block content%}
+<div class="container small">
+  {% if static_page %}
+    {{ static_page.text|safe }}
+  {% else %}
+    <h3><b>Coming soon</b></h3>
+  {% endif %}
+</div>
+{% endblock %}

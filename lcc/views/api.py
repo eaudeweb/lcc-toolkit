@@ -100,6 +100,11 @@ class ClassificationViewSet(generics.ListAPIView):
         return new_queryset
 
 
+class ClassificationWithCategoryListView(generics.ListAPIView):
+      serializer_class = serializers.ClassificationWithCategorySerializer
+      queryset = models.LogicalCategory.objects.prefetch_related("taxonomy_classifications")
+
+
 class AnswerList(generics.ListCreateAPIView):
     queryset = models.Answer.objects.all()
     serializer_class = serializers.AnswerSerializer

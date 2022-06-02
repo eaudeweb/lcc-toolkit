@@ -14,6 +14,7 @@ class Command(BaseCommand):
     help = "Load initial data"
 
     FIXTURES = (
+        "LogicalCategories",
         "TaxonomyTagGroup",
         "TaxonomyTag",
         "TaxonomyClassification",
