@@ -170,6 +170,38 @@ class LegislationSectionAdmin(admin.ModelAdmin):
 class StaticPageAdmin(admin.ModelAdmin):
     list_display = ("__str__", "last_modified")
 
+    def get_form(self, request, obj=None, change=False, **kwargs):
+        form = super().get_form(request, obj=obj, change=change, **kwargs)
+        form.base_fields["text"].help_text = mark_safe("""
+          <h4 style="color: black;">
+            This is a WYSIWYG editor (short for "What You See Is What You Get" editor). You can use it to edit the text in a specific selected page.<br><br>
+
+            If you click the last button on the editor toolbar (the button with a question mark), a helper modal will appear. There you can find the section "Handy shortcuts" and "Keyboard navigation" that might be helpful when you edit large text.<br><br>
+
+            For this version, the file browsing is not available for adding images. But you can add any image with a valid, not restricted url.<br><br>
+
+            How to add an image:<br>
+            1. open in a new tab any image you want.<br>
+            2. right click the image and select option "Copy image"<br>
+            3. select the editor and paste it (ctrl + v or command + v for MacOS)<br><br>
+
+            After the image was added you can:<br>
+            1. edit its size by dragging the margins<br>
+            2. right click the image and select the image option. This will open a modal where you can do multiple things<br>
+            &nbsp  a. Change the url source of the image<br>
+            &nbsp  b. Change the alternative description (what the browser will display in case the image can not be loaded)<br>
+            &nbsp  c. Define a width and height for the image<br>
+            3. right click the image and select the link option. With this option you can attach a link that you can access when you click the image (we have an example for this in the footer section)
+          <h4>
+        """)
+        return form
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return ["page"]
+        else:
+            return []
+
 
 # Register your models here.
 admin.site.register(models.Legislation, LegislationAdmin)
