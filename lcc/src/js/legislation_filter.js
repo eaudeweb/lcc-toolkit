@@ -264,6 +264,27 @@ $(document).ready(function() {
     });
   });
 
+  $('.classification-parrent').change(function(){
+    if(this.checked) {
+      $(this).closest('li').find('input').prop('checked', true);
+      $(this).closest('li').find('input').each(function(i, input){
+        let $input = $(input);
+        classifications.push($input.val())
+      });
+      payload['classifications'] = classifications;
+    } else {
+      $(this).closest('li').find('input').prop('checked', false);
+      $(this).closest('li').find('input').each(function(i, input){
+        let $input = $(input);
+        let index = payload['classifications'].indexOf($input.val());
+        if (index > -1) {
+          payload['classifications'].splice(index, 1);
+        }
+      });
+    }
+    $('.classification-parrent').val(this.checked);
+  });
+
   // Handle search and filters
 
   $('#textSearchInput').on('change', function() {
