@@ -7,7 +7,7 @@
   LCCTModules.define('Config', [], function Config(){
 
     var url = {
-     'classifications':'/api/classification',
+     'classifications':'/api/classification-cat',
      'answers':'/api/answers/',
      'questions':'/api/question-category/',
      'assessment':'/api/assessments/',

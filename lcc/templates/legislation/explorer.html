@@ -38,7 +38,7 @@
   {% include "./_laws.html" %}
 </div>
 <div class="page-container half viz-container right">
-  <h4>Filter legislation</h4>
+  <h3>Filter legislation</h3>
   <div class="filter-item list-container" id="classificationsSelectWrapper">
     <h5>Select Legal Area</h5>
     <small class="form-text text-muted">
@@ -48,14 +48,14 @@
 		<form autocomplete="off">
       <ul class="logical_cat_list">
         {% for logical_cat in logical_categories %}
-          <span class="logical_cat_name">{{ logical_cat.name }}</span>
           <li class="logical_cat_section">
             <ul class="round" id="classificationsSelect">
+              <h4 class="logical_cat_name">{{ logical_cat.name }}</h4>
               {% for top_class in logical_cat.taxonomy_classifications.all %}
                 <li class="first-level level">
                   {% with top_class.get_children as second_classifications %}
                     <span class="list-header">
-                      <input id='classification-{{ top_class.pk }}' value='{{ top_class.pk }}' type='checkbox'/>
+                      <input class="classification-parrent" id='classification-{{ top_class.pk }}' value='{{ top_class.pk }}' type='checkbox'/>
                       <label for='classification-{{ top_class.pk }}'>{{ top_class.name }}
                       </label>
                       {% if second_classifications %}
@@ -72,7 +72,7 @@
                         {% with second_class.get_children as third_classifications %}
                           <li>
                             <span class="list-header">
-                              <input id='classification-{{ second_class.pk }}' value='{{ second_class.pk }}' type='checkbox'/>
+                              <input class="classification-parrent" id='classification-{{ second_class.pk }}' value='{{ second_class.pk }}' type='checkbox'/>
                               <label for="classification-{{ second_class.pk }}">{{ second_class.name }}</label>
                               {% if third_classifications %}
                                 <i class="fa fa-caret-down caret" aria-hidden="true"></i>
