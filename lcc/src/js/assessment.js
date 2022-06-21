@@ -184,13 +184,14 @@ $(document).ready(function () {
             renderClassifications.call(self, responseClassifications);
             handleAccordion();
             getQuestions
-              .call(self, responseClassifications[0].second_level[0].id)
+              .call(self, responseClassifications[0].classifications[0].second_level[0].id)
               .done(renderTitleContent(
-                responseClassifications[0].name
-                , responseClassifications[0].second_level[0].name
-                , responseClassifications[0].second_level.length
+                responseClassifications[0].classifications[0].name
+                , responseClassifications[0].classifications[0].second_level[0].name
+                , responseClassifications[0].classifications[0].second_level.length
+                , responseClassifications[0].classifications[0].second_level[0].id
                 , 0
-                , responseClassifications[0].second_level[0].details));
+                , responseClassifications[0].classifications[0].second_level[0].details));
               });
         }
 
@@ -198,77 +199,107 @@ $(document).ready(function () {
         var accordion = $('#accordion')[0];
         accordion.innerHTML = '';
 
-        for (var z = 0; z < responseClassifications.length; z++) {
-          var classification = responseClassifications[z];
+        for (var categoryIndex = 0; categoryIndex < responseClassifications.length; categoryIndex++) {
+          var category = responseClassifications[categoryIndex];
           var h3 = $('<h3>')
-            .text(classification.name)
+            .addClass('legal-header')
+            .text(category.name)
             .appendTo(accordion);
-          var classification_menu = $('<classification-menu/>')
-            .addClass('flex lcct-list classification-menu')
-            .attr('role', 'menu')
-            .attr('tabindex', '0');
+          var category_menu = $('<div>')
+            .attr('id', 'accordion-' + categoryIndex)
+            .appendTo(accordion)
 
-          for (var j = 0; classification.second_level && j < classification.second_level.length; j++) {
-            var subcat = classification.second_level[j];
-            var previousClassification = z > 0 ? responseClassifications[z-1] : null; 
-            var nextClassification = z < responseClassifications.length -1 ? responseClassifications[z+1] : null; 
-            var currentClassification = responseClassifications[z]; 
-            var classification_item = $('<classification-item/>')
-              .addClass('toc-item lcct-list classification-item' + (j == 0 && z == 0 ? ' iron-selected' : ''))
-              .attr('role', 'option')
-              .attr('tabindex', '0')
-              .attr('aria-disabled', 'false')
-              .attr('aria-selected', 'true')
-              .attr('data-id', subcat.id)
-              .on('click', getQuestionsForCategory.bind(this
-                , classification.name
-                , subcat.name
-                , classification.second_level.length
-                , j
-                , previousClassification
-                , nextClassification
-                , currentClassification))
-              .appendTo(classification_menu);
-            var i_comp = $('<i/>')
-              .text(j + 1)
-              .addClass('lcct-list')
-              .appendTo(classification_item);
-            var p = $('<span/>')
-              .text(subcat.name)
-              .addClass('lcct-list')
-              .appendTo(classification_item);
+          const classifications = category.classifications;
 
-            if(subcat.details) {
-              let fomattedDetails = handleNewLine(subcat.details);
-              fomattedDetails = fomattedDetails.indexOf('http') !== -1 ? handleLink(fomattedDetails) : fomattedDetails;
-
-              var popoverButton = $('<a/>')
-              .attr({
-                'tabindex':"0",
-                'id':`popoverDetails-${subcat.id}`,
-                'data-container':"body",
-                'class':"popoverDetails",
-                'data-toggle':"popover",
-                'data-placement':"left",
-                'data-html':"true",
-                'data-trigger':"manual",
-                'data-content':`${fomattedDetails}`
-              })
-              .html(`
-                  <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-              `)
-              .on('click', handleShowPopover(`popoverDetails-${subcat.id}`)
-              )
-              .appendTo(classification_item);
+          for (var z = 0; z < classifications.length; z++) {
+            var classification = classifications[z];
+            var h3 = $('<h3>')
+              .text(classification.name)
+              .appendTo(category_menu);
+            var classification_menu = $('<classification-menu/>')
+              .addClass('flex lcct-list classification-menu')
+              .attr('role', 'menu')
+              .attr('tabindex', '0');
+  
+            for (var j = 0; classification.second_level && j < classification.second_level.length; j++) {
+              var subcat = classification.second_level[j];
+              var previousClassification = z > 0 ?
+                classifications[z - 1] :
+                categoryIndex > 0 ?
+                  responseClassifications[categoryIndex - 1].classifications[0] :
+                  null;
+              var nextClassification = z < classifications.length - 1 ?
+                classifications[z + 1] :
+                categoryIndex < responseClassifications.length - 1 ?
+                  responseClassifications[categoryIndex + 1].classifications[0] :
+                  null;
+              var currentClassification = classifications[z];
+              var isLastCategory = categoryIndex === responseClassifications.length-1;
+              var isFirstCategory = categoryIndex === 0;
+              var isFirstInFirstClassification = j === 0 && z === 0;
+              var isLastInLastClassification = j === classification.second_level.length -1 && z === classifications.length - 1;
+              var classification_item = $('<classification-item/>')
+                .addClass('toc-item lcct-list classification-item' + (categoryIndex === 0 && j === 0 && z === 0 ? ' iron-selected' : ''))
+                .attr('role', 'option')
+                .attr('tabindex', '0')
+                .attr('aria-disabled', 'false')
+                .attr('aria-selected', 'true')
+                .attr('first-in-first-classification', isFirstInFirstClassification)
+                .attr('last-in-last-classification', isLastInLastClassification)
+                .attr('data-id', subcat.id)
+                .on('click', getQuestionsForCategory.bind(this
+                  , classification.name
+                  , subcat.name
+                  , classification.second_level.length
+                  , j
+                  , previousClassification
+                  , nextClassification
+                  , currentClassification
+                  , isFirstCategory
+                  , isLastCategory))
+                .appendTo(classification_menu);
+              var i_comp = $('<i/>')
+                .text(j + 1)
+                .addClass('lcct-list')
+                .appendTo(classification_item);
+              var p = $('<span/>')
+                .text(subcat.name)
+                .addClass('lcct-list')
+                .appendTo(classification_item);
+  
+              if(subcat.details) {
+                let fomattedDetails = handleNewLine(subcat.details);
+                fomattedDetails = fomattedDetails.indexOf('http') !== -1 ? handleLink(fomattedDetails) : fomattedDetails;
+  
+                var popoverButton = $('<a/>')
+                .attr({
+                  'tabindex':"0",
+                  'id':`popoverDetails-${subcat.id}`,
+                  'data-container':"body",
+                  'class':"popoverDetails",
+                  'data-toggle':"popover",
+                  'data-placement':"left",
+                  'data-html':"true",
+                  'data-trigger':"manual",
+                  'data-content':`${fomattedDetails}`
+                })
+                .html(`
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                `)
+                .on('click', handleShowPopover(`popoverDetails-${subcat.id}`)
+                )
+                .appendTo(classification_item);
+              }
             }
-          }
+  
+            classification_menu.appendTo(category_menu);
+            // render the next questions button text to indicate the next questions set
+            // this is done automatically at each click on next/prev buttons and also on clicking the categories
+            // but it has to be set initially
+            if(z === 0) {
+              renderButtonsGoToCategoryText(classification.second_level[0], null, null, null);
+            }
 
-          classification_menu.appendTo(accordion);
-          // render the next questions button text to indicate the next questions set
-          // this is done automatically at each click on next/prev buttons and also on clicking the categories
-          // but it has to be set initially
-          if(z === 0) {
-            renderButtonsGoToCategoryText(classification.second_level[0], null, null, null);
           }
 
         }
@@ -279,9 +310,19 @@ $(document).ready(function () {
       }
 
       function handleAccordion() {
-        $('#accordion').accordion({
-          collapsible: true,
-          heightStyle: "content"
+        $('div[id^="accordion-"]').each(function (index, item) {
+          if (index === 0) {
+            $(item).accordion({
+              collapsible: true,
+              heightStyle: "content"
+            });
+          } else {
+            $(item).accordion({
+              collapsible: true,
+              active: false,
+              heightStyle: "content"
+            });
+          }
         });
       }
 
@@ -352,7 +393,7 @@ $(document).ready(function () {
             'data-content':`${fomattedDetails}`
           })
           .html(`
-              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
           `)
           .on('click', handleShowPopover(`popoverDetails-que-${question.id}`)
           )
@@ -526,24 +567,31 @@ $(document).ready(function () {
           });
       }
 
-      function getQuestionsForCategory(classification_name, category_name, categories_no, index, previousClassification, nextClassification, currentClassification) {
+      function getQuestionsForCategory(classification_name, category_name, categories_no, index,
+          previousClassification, nextClassification, currentClassification, isFirstCategory,
+          isLastCategory) {
         var elem = $(event.currentTarget);
         var all_elems = $('classification-item').removeClass('iron-selected');
 
-        elem.addClass('iron-selected');
+          elem.addClass('iron-selected');
         classification_id = elem.attr('data-id');
         getQuestions.call(this, classification_id);
 
         renderTitleContent(classification_name, category_name, categories_no, index, currentClassification);
-        handleGoToQuestions.call(this, false, false, index, categories_no, previousClassification, nextClassification, currentClassification);
+        handleGoToQuestions.call(this, false, false, index, categories_no, previousClassification,
+          nextClassification, currentClassification, isFirstCategory, isLastCategory);
       }
 
       $('.next_question')
-        .click(handleGoToQuestions
-        .bind(this, true, true, null, null, null, null, null));
+        .click(
+          handleGoToQuestions
+          .bind(this, true, true, null, null, null, null, null, null, null)
+        );
       $('.prev_question')
-        .click(handleGoToQuestions
-        .bind(this, true, false, null, null, null, null, null));
+        .click(
+          handleGoToQuestions
+          .bind(this, true, false, null, null, null, null, null, null, null)
+        );
 
       /**
        * this will be called when the user clicks the category (left side menu) or the next/prev button
@@ -560,7 +608,8 @@ $(document).ready(function () {
        * @param {Object} nextClassification - each category clicked on the left side menu, know its nextClassification, the next/prev buttons don't
        * @param {Object} currentClassification - each category clicked on the left side menu, know its currentClassification, the next/prev buttons don't
        */
-      function handleGoToQuestions(shouldClick, goNext, categoryIndex, categoriesNo, previousClassification, nextClassification, currentClassification) {
+      function handleGoToQuestions(shouldClick, goNext, categoryIndex, categoriesNo, previousClassification,
+        nextClassification, currentClassification, isFirstCategory, isLastCategory) {
         var categories = $('.ui-accordion-content-active classification-item');
         var classifications = $('.ui-accordion-header');
         var selectedCategoriesIndex = typeof categoryIndex === "number" ? categoryIndex : getQuestionCategoryIndex(categories);
@@ -568,32 +617,53 @@ $(document).ready(function () {
         var selectedClassificationsIndex = getSelectedClassificationsIndex(classifications);
         var prevNextCategory = getCategory(categories, selectedCategoriesIndex, currentClassification);
         var prevCateg = prevNextCategory.prevCateg;
-        var nextCateg = prevNextCategory.nextCateg;        
-        var isFirstCategory = selectedCategoriesIndex == 0;
-        var isLastCategory = selectedCategoriesIndex == categoriesLength - 1;
+        var nextCateg = prevNextCategory.nextCateg;
+        var isFirst = isFirstCategory && selectedCategoriesIndex === 0;
+        var isLast = isLastCategory && selectedCategoriesIndex === categoriesLength - 1;
+        var isFirstInClassification = !isFirstCategory && selectedCategoriesIndex === 0;
+        var isLastInClassification = !isLastCategory && selectedCategoriesIndex === categoriesLength - 1;
+        var isFirstInFirstClassification = $(categories[selectedCategoriesIndex]).attr('first-in-first-classification') === "true";
+        var isLastInLastClassification = $(categories[selectedCategoriesIndex]).attr('last-in-last-classification') === "true";
+        var currentClassificationElement = classifications[selectedClassificationsIndex];
 
-        if (isFirstCategory) {
-          renderButtonsGoToCategoryText(nextCateg, null, previousClassification, nextClassification);
+        if (isFirst) {
+          renderButtonsGoToCategoryText(nextCateg, null, null, nextClassification, categoryIndex);
 
-          if(shouldClick) {
-            var prevClassification = selectedClassificationsIndex > 0 ? classifications[selectedClassificationsIndex - 1] : null;
+          if (shouldClick) {
+            var prevClassificationElement = selectedClassificationsIndex > 0 ? classifications[selectedClassificationsIndex - 1] : null;
 
             goNext
               ? goToCategory(nextCateg, null, null)
-              : goToCategory(null, prevClassification, 'last-of-type');
+              : goToCategory(null, prevClassificationElement, 'last-of-type');
           }
-        } else if (isLastCategory) {
-          renderButtonsGoToCategoryText(null, prevCateg, previousClassification, nextClassification);
+        } else if (isLast) {
+          renderButtonsGoToCategoryText(null, prevCateg, previousClassification, null, categoryIndex);
 
           if(shouldClick) {
-            var nextClassification = selectedClassificationsIndex < classifications.length - 1 ? classifications[selectedClassificationsIndex + 1] : null;
-
             goNext
-              ? goToCategory(null, nextClassification, 'first-of-type')
-              : goToCategory(prevCateg, null, null);
+            ? goToCategory(null, nextClassification, 'first-of-type')
+            : goToCategory(prevCateg, null, null);
           }
+        } else if(isLastInClassification) {
+            renderButtonsGoToCategoryText(null, prevCateg, previousClassification, nextClassification, categoryIndex);
+            var nextClassificationElement = selectedClassificationsIndex < classifications.length - 1 ? classifications[selectedClassificationsIndex + 1] : null;
+
+            if(shouldClick) {
+              goNext
+              ? goToCategory(null, nextClassificationElement, 'first-of-type', isLastInLastClassification ? currentClassificationElement : null)
+              : goToCategory(prevCateg, null, null);
+            }
+        } else if(isFirstInClassification) {
+            renderButtonsGoToCategoryText(nextCateg, null, previousClassification, nextClassification, categoryIndex);
+            var prevClassificationElement = selectedClassificationsIndex > 0 ? classifications[selectedClassificationsIndex - 1] : null;
+
+            if(shouldClick) {
+              goNext
+                ? goToCategory(nextCateg, null, null)
+                : goToCategory(null, prevClassificationElement, 'last-of-type', isFirstInFirstClassification ? currentClassificationElement : null);
+            }
         } else {
-          renderButtonsGoToCategoryText(nextCateg, prevCateg, null, null);
+          renderButtonsGoToCategoryText(nextCateg, prevCateg, null, null, categoryIndex);
 
           if(shouldClick) {
             goNext
@@ -646,7 +716,7 @@ $(document).ready(function () {
        */
       function getCategory(categories, selectedCategoriesIndex, currentClassification) {
         var result = { prevCateg: null, nextCateg: null };
-
+        
         if(currentClassification) {
           result.prevCateg = selectedCategoriesIndex > 0 ? currentClassification.second_level[selectedCategoriesIndex - 1] : null;
           result.nextCateg = selectedCategoriesIndex < currentClassification.second_level.length - 1 ? currentClassification.second_level[selectedCategoriesIndex + 1] : null;
@@ -654,6 +724,7 @@ $(document).ready(function () {
           result.prevCateg = categories[selectedCategoriesIndex - 1];
           result.nextCateg = categories[selectedCategoriesIndex + 1];
         }
+
         return result;
       }
 
@@ -663,7 +734,7 @@ $(document).ready(function () {
        * @param {Object} nextClassification 
        * @param {string} attribute - used to search for first or last child in Dom elements for clicking after expanding a new category
        */
-      function goToCategory(nextCateg, nextClassification, attribute) {
+      function goToCategory(nextCateg, nextClassification, attribute, currentClassification) {
         try {
           if(nextCateg) {
             nextCateg.click();
@@ -673,6 +744,10 @@ $(document).ready(function () {
               .attr('aria-controls'); // has the id of the classification-menu
             nextClassification.click();
             var attributeSelector = attribute ? `:${attribute}` : '';
+
+            if(currentClassification) {
+              currentClassification.click();
+            }
 
             // click on classification-item last or first depending on attribute
             $(`classification-menu#${nextClassificationId}`)
@@ -713,22 +788,20 @@ $(document).ready(function () {
         return selectedClassificationsIndex;
       }
 
-      function renderTitleContent(classification_name, category_name, categories_no, index, currentClassification) {
+      function renderTitleContent(classification_name, category_name, categories_no, id, index, currentClassificationDetails) {
         question_category[0].innerHTML = category_name
         classification_title.html(classification_name)
         current.html(parseInt(index) + 1);
         last.html(categories_no);
 
-        const subcat = currentClassification.second_level[index]
-
-        if(subcat.details) {
-          let fomattedDetails = handleNewLine(subcat.details);
+        if(currentClassificationDetails) {
+          let fomattedDetails = handleNewLine(currentClassificationDetails);
           fomattedDetails = fomattedDetails.indexOf('http') !== -1 ? handleLink(fomattedDetails) : fomattedDetails;
 
           var popoverButton = $('<a/>')
           .attr({
             'tabindex':"0",
-            'id':`popoverDetails-test-${subcat.id}`,
+            'id':`popoverDetails-test-${id}`,
             'data-container':"body",
             'class':"popoverDetails",
             'data-toggle':"popover",
@@ -740,7 +813,7 @@ $(document).ready(function () {
           .html(`
               <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
           `)
-          .on('click', handleShowPopover(`popoverDetails-test-${subcat.id}`)
+          .on('click', handleShowPopover(`popoverDetails-test-${id}`)
           )
           .appendTo(question_category);
         }
