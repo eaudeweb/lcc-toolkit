@@ -2,6 +2,7 @@ from collections import defaultdict
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth import mixins
 from django import views
 
 from lcc import models
@@ -73,7 +74,7 @@ class AboutUsView(views.generic.TemplateView):
         return context
 
 
-class LessonsLearnedView(views.generic.TemplateView):
+class LessonsLearnedView(mixins.LoginRequiredMixin, views.generic.TemplateView):
     template_name = "lessons_learned.html"
 
     def get_context_data(self, **kwargs):

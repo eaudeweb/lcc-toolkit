@@ -57,9 +57,15 @@
             <p><small>Customize suggestions from legal assessment by adjusting relevant factors for assessed country, such as type of legal system, population, GDP etc.</small></p>
           </div>
           <div class="item">
-            <img src="{% static "img/icon-lessons-learned.png" %}" />           
-            <a href="{% url 'lcc:lessons_learned' %}"><h3>Lessons learned</h3></a>
-            <p><small>Building a 'community of practice' for policy makers.</small></p>
+            {% if request.user.is_authenticated %}
+              <img src="{% static "img/icon-lessons-learned.png" %}" />
+              <a href="{% url 'lcc:lessons_learned' %}"><h3>Lessons learned</h3></a>
+              <p><small>Building a 'community of practice' for policy makers.</small></p>
+            {% else %}
+              <img src="{% static "img/icon-lessons-learned.png" %}" />
+              <h3>Lessons learned</h3></a>
+              <p><small>Building a 'community of practice' for policy makers.</small></p>
+            {% endif %}
           </div>
         </div>
       <hr>

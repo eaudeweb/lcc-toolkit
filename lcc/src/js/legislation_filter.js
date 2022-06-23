@@ -282,7 +282,6 @@ $(document).ready(function() {
         }
       });
     }
-    $('.classification-parrent').val(this.checked);
   });
 
   // Handle search and filters

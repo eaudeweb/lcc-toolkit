@@ -90,8 +90,8 @@
             </li>
 
             <li>
-              <a class="{% active 'lessons_learned' %}" href="{% url 'lcc:lessons_learned' %}">
-                Lessons learned
+              <a class="{% if not request.user.is_authenticated %}disabled{%endif%} {% active 'lessons_learned' %}" href="{% url 'lcc:lessons_learned' %}">
+                Lessons Learned
               </a>
             </li>
           </ul>
