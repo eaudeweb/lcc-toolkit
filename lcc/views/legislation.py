@@ -348,27 +348,10 @@ class LegislationExplorer(CountryMetadataFiltering, ListView):
                 "bool",
                 must=law_queries
                 + law_q_query
-                + (
-                    [
-                        Q(
-                            "nested",
-                            score_mode="max",
-                            # boost=10,
-                            path="sections",
-                            query=Q(reduce(operator.and_, section_queries)),
-                            inner_hits={
-                                "name": "q_in_law",
-                                "highlight": {"fields": section_highlights}
-                            },
-                        )
-                    ]
-                    if section_queries
-                    else []
-                ),
             )
             q_in_section = Q(
                 "bool",
-                must=law_queries
+                must=section_queries
                 + (
                     [
                         Q(

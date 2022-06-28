@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
   let payload = {};
+ 
   let orderByOptions = {
     relevance: 'Relevance',
     promulgation_sort: {
@@ -148,6 +149,12 @@ $(document).ready(function() {
     if(to_year != max_year){
       payload["to_year"] = to_year;
     }
+
+    if(payload["classifications"]) {
+      return payload["classifications"];
+    } else {
+      return [];
+    }
   }
 
   function send(payload) {
@@ -214,7 +221,7 @@ $(document).ready(function() {
     payload['to_year'] = slideEvt.value[1];
   });
 
-  preselectFilters();
+  classifications = preselectFilters();
 
   $(".third-level input").each(function(i, input){
     let $input = $(input);
