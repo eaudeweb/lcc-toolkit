@@ -254,12 +254,20 @@ class Command(BaseCommand):
         elif iso_code == 'BLG':
             return Country.objects.filter(iso_code="BG").first()
         elif iso_code == 'LAV':
-            return Country.objects.filter(iso_code="LAV").first()
+            return Country.objects.filter(iso_code="LV").first()
         elif iso_code == 'MLY':
             return Country.objects.filter(iso_code="MY").first()
         elif iso_code == 'LIB':
             return Country.objects.filter(iso_code="LR").first()
         elif iso_code == 'TZN':
+            return Country.objects.filter(iso_code="TZ").first()
+        elif iso_code == 'URG':
+            return Country.objects.filter(iso_code="UY").first()
+        elif iso_code == 'DRC':
+            return Country.objects.filter(iso_code="CD").first()
+        elif iso_code == 'US-CA':
+            return Country.objects.filter(iso_code="LA").first()
+        elif iso_code == 'CA-BC':
             return Country.objects.filter(iso_code="TZ").first()
         else:
             return Country.objects.filter(Q(iso_code=iso_code) | Q(pk=iso_code)).first()
