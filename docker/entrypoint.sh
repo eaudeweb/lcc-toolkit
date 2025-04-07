@@ -38,6 +38,7 @@ case "$1" in
                     --bind 0.0.0.0:8000 \
                     --timeout $TIMEOUT \
                     --workers 3 \
+                    --limit-request-line 8190 \
                     --access-logfile - \
                     --error-logfile -
         fi
